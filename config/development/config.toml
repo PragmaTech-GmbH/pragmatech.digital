@@ -1,0 +1,45 @@
+## -----------------------------------------------
+## Basic Configuration
+## -----------------------------------------------
+
+title = "PragmaTech Digital Solutions"
+copyright = "{year}"
+
+## -----------------------------------------------
+## Publish
+## -----------------------------------------------
+
+relativeURLs = "true"
+#canonifyURLs = "true"
+
+# Local
+baseURL = "/"
+publishDir = "public"
+
+# Remote
+#baseURL = "https://caressofsteel.github.io/demos/hugo/hugo-story/"
+#publishDir = "//centos/sites/hugodev/hugostory/"
+
+## -----------------------------------------------
+## Hugo Built-in Features
+## -----------------------------------------------
+
+disableKinds = ["taxonomy", "taxonomyTerm", "section"]
+# googleAnalytics = "G-XXXXXXXXXX"
+
+## -----------------------------------------------
+## Site Parameters
+## -----------------------------------------------
+
+[Params]
+description = "IT Consulting and Software Development"
+logo = "images/banner.jpg"
+favicon = true
+
+[Params.social]
+linkedin = "https://www.linkedin.com/company/pragmatech-digital-solutions/"
+twitter = "https://twitter.com/pragmatechds"
+
+[Params.asset]
+fontawesome_css = ["css/fontawesome-all.min.css"]
+fontawesome_js = ["js/fontawesome-all.min.js"]

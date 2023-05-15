@@ -1,0 +1,12 @@
+####################### Banner #########################
+style: "style1 orient-left content-align-left image-position-right fullscreen onload-image-fade-in onload-content-fade-right"
+title : "PragmaTech Digital Solutions"
+subtitle: |
+  Empowering lives with innovative, pragmatic tech solutions for a digitally-integrated and sustainable future.
+content : |
+  Our <strong>Brands</strong><ul><li><a href="https://rieckpil.de" target="_blank">rieckpil</a></li><li><a href="https://progmot.com" target="_blank">progmot</a></li><li><a href="https://stratospheric.dev" target="_blank">Stratospheric</a></li></ul>
+button:
+  label : "Connect"
+  link : "https://twitter.com/pragmatechds"
+image : "images/pragmatech-banner.png"
+
