@@ -9,15 +9,16 @@
 	{{ partial "head" . }}
 
 	<body class="is-preload">
-
-		<!-- Wrapper -->
-		<div id="wrapper" class="divided">
-			{{ .Content }}
-		<!-- Wrapper -->
+		<div id="wrapper">
+			<section class="banner style1 orient-left content-align-left image-position-right fullscreen onload-image-fade-in onload-content-fade-right">
+				<div class="content">
+					<h1>{{ .Title }}</h1>
+					{{ .Content }}
+				</div>
+			</section>
 		</div>
-		
-		{{ partial "scripts" . }}
 
+		{{ partial "scripts" . }}
 	</body>
 
 	{{ partial "footer" . }}

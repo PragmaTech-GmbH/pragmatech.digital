@@ -5,13 +5,14 @@ date: 2023-05-05T11:40:13+02:00
 
 ## Information pursuant to Sect. 5 German Telemedia Act (TMG)
 
-Philip Riecks\
-Fließstraße 17\
-12439 Berlin
+PragmaTech Digital Solutions Philip Riecks\
+c/o WeWork Berlin\
+Warschauer Pl. 11-13\
+10245 Berlin
 
 ## Contact
 
-E-mail: philip@progmot.com
+E-mail: mail@philipriecks.de
 
 ## VAT ID
 
