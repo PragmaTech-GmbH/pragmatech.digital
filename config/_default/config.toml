@@ -3,6 +3,8 @@
 ## -----------------------------------------------
 
 theme = "hugo-story-static"
+title = "PragmaTech Digital Solutions"
+copyright = "{year}"
 
 ## -----------------------------------------------
 ## Publish
@@ -19,7 +21,6 @@ publishDir = "public"
 #baseURL = "https://caressofsteel.github.io/demos/hugo/hugo-story/"
 #publishDir = "//centos/sites/hugodev/hugostory/"
 
-
 ## -----------------------------------------------
 ## Hugo Built-in Features
 ## -----------------------------------------------
@@ -32,7 +33,16 @@ disableKinds = ["taxonomy", "taxonomyTerm", "section"]
 ## -----------------------------------------------
 
 [Params]
+  description = "Empowering lives with innovative, pragmatic tech solutions for a digitally-integrated and sustainable future."
+  logo = "images/pragmatech-banner.png"
+  images = ["images/pragmatech-banner.png"]
+  title = "PragmaTech Digital Solutions"
+  favicon = true
 
 [Params.social]
+  linkedin = "https://www.linkedin.com/company/pragmatech-digital-solutions/"
+  twitter = "https://twitter.com/pragmatechds"
 
 [Params.asset]
+  fontawesome_css = ["css/fontawesome-all.min.css"]
+  fontawesome_js = ["js/fontawesome-all.min.js"]

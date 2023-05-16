@@ -2,8 +2,11 @@
 	<title>{{ .Site.Title }}</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<meta name="description" content="">
-	<meta name="author" content="">
+	<meta name="description" content="Empowering lives with innovative, pragmatic tech solutions for a digitally-integrated and sustainable future.">
+	<meta name="author" content="PragmaTech Digital Solutions">
+
+	{{ template "_internal/opengraph.html" . }}
+
 	{{ if .Site.Params.favicon }}
 	{{ partial "favicon" }}
 	{{ end }}

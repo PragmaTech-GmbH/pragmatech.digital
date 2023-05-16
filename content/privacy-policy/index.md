@@ -1,6 +1,8 @@
 ---
 title: "Privacy Policy"
 date: 2023-05-05T11:40:13+02:00
+description: "Privacy Policy"
+images: ["images/pragmatech-banner.png"]
 ---
 
 ## 1. An overview of data protection

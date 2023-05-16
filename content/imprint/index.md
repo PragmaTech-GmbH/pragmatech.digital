@@ -1,6 +1,8 @@
 ---
 title: "Imprint"
 date: 2023-05-05T11:40:13+02:00
+description: "Imprint"
+images: ["images/pragmatech-banner.png"]
 ---
 
 ## Information pursuant to Sect. 5 German Telemedia Act (TMG)
