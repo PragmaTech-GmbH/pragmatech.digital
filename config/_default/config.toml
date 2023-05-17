@@ -42,6 +42,7 @@ disableKinds = ["taxonomy", "taxonomyTerm", "section"]
 [Params.social]
   linkedin = "https://www.linkedin.com/company/pragmatech-digital-solutions/"
   twitter = "https://twitter.com/pragmatechds"
+  github = "https://github.com/PragmaTech-Digital-Solutions"
 
 [Params.asset]
   fontawesome_css = ["css/fontawesome-all.min.css"]
