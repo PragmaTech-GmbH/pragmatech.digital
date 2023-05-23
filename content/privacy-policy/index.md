@@ -72,7 +72,7 @@ c/o WeWork Berlin\
 Warschauer Pl. 11-13\
 10245 Berlin
 
-E-mail: mail@philipriecks.de
+E-mail: hello@pragmatech.digital
 
 The controller is the natural person or legal entity that single-handedly or jointly with others makes decisions as to the purposes of and resources for the processing of personal data (e.g., names, e-mail addresses, etc.).
 
