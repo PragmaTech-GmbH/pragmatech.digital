@@ -4,8 +4,8 @@ title : "Pioneering the Digital Future"
 subtitle: |
   Enabling Developers to Frequently Deliver Software with More Confidence 🏗️
 content : |
-  ... Through  <strong>Actionable Tech Content</strong>: <a href="https://rieckpil.de" target="_blank">rieckpil</a> | <a href="https://stratospheric.dev" target="_blank">stratospheric</a><br/>
-  ... and <strong>Hands-On Consulting</strong>: <a href="https://philipriecks.de" target="_blank">Philip Riecks</a>
+  ... Through  <strong>Actionable Tech Content</strong>: <i>Testing Java Applications Made Simple (<a href="https://rieckpil.de" target="_blank">rieckpil</a></i>) | <i>From Zero to Production with Spring Boot and AWS (<a href="https://stratospheric.dev" target="_blank">stratospheric</a>)</i><br/>
+  ... and <strong>Hands-On Consulting</strong>: <a href="https://www.linkedin.com/in/rieckpil" target="_blank">Philip Riecks</a>
 button:
   label : "Connect"
   link : "https://twitter.com/pragmatechds"
