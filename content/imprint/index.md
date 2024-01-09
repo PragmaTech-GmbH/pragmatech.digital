@@ -14,7 +14,7 @@ Warschauer Pl. 11-13\
 
 ## Contact
 
-E-mail: mail@philipriecks.de
+E-mail: philip@pragmatech.digital
 
 ## VAT ID
 

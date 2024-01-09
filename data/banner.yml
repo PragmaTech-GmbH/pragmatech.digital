@@ -2,10 +2,10 @@
 style: "style1 orient-left content-align-left image-position-right fullscreen onload-image-fade-in onload-content-fade-right"
 title : "Pioneering the Digital Future"
 subtitle: |
-  Empowering lives with innovative, pragmatic tech solutions for a digitally-integrated and sustainable future.
+  Enabling Developers to Frequently Deliver Software with More Confidence
 content : |
-  Our <strong>Content Brands</strong>: <a href="https://rieckpil.de" target="_blank">rieckpil</a> | <a href="https://progmot.com" target="_blank">progmot</a> | <a href="https://stratospheric.dev" target="_blank">stratospheric</a><br/>
-  Our <strong>Sport Support</strong>: <a href="https://www.manuel-riemann.de" target="_blank">Manuel Riemann</a> | <a href="https://www.moritz-broschinski.de" target="_blank">Moritz Broschinski</a> | <a href="https://www.anthony-losilla.de" target="_blank">Anthony Losilla</a>
+  ... Through  <strong>Actionable Tech Content</strong>: <a href="https://rieckpil.de" target="_blank">rieckpil</a> | <a href="https://stratospheric.dev" target="_blank">stratospheric</a><br/>
+  ... and <strong>Hands-On Consulting</strong>: <a href="https://philipriecks.de" target="_blank">Philip Riecks</a>
 button:
   label : "Connect"
   link : "https://twitter.com/pragmatechds"
