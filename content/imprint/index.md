@@ -8,9 +8,9 @@ images: ["images/pragmatech-banner.png"]
 ## Information pursuant to Sect. 5 German Telemedia Act (TMG)
 
 PragmaTech Digital Solutions Philip Riecks\
-c/o WeWork Berlin\
-Warschauer Pl. 11-13\
-10245 Berlin
+c/o Design Offices\
+Paul-Gossen-Straße 75\
+91052 Erlangen
 
 ## Contact
 
