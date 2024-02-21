@@ -37,7 +37,7 @@ items:
     content : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dui turpis, cursus eget orci amet aliquam congue semper. Etiam eget ultrices risus nec tempor elit."
     image: "images/clients/diffblue.webp"
 
-  # feature item loop
-  - name : "Gatling"
-    content : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dui turpis, cursus eget orci amet aliquam congue semper. Etiam eget ultrices risus nec tempor elit."
-    image: "images/clients/gatling.webp"
+#  # feature item loop
+#  - name : "Gatling"
+#    content : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dui turpis, cursus eget orci amet aliquam congue semper. Etiam eget ultrices risus nec tempor elit."
+#    image: "images/clients/gatling.webp"
