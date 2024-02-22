@@ -14,7 +14,7 @@ Paul-Gossen-Straße 75\
 
 ## Contact
 
-E-mail: philip@pragmatech.digital
+E-mail: info@pragmatech.digital
 
 ## VAT ID
 
