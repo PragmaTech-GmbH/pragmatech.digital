@@ -67,10 +67,9 @@ We herewith advise you that the transmission of data via the Internet (i.e., thr
 
 The data processing controller on this website is:
 
-PragmaTech Digital Solutions Philip Riecks\
-c/o WeWork Berlin\
-Warschauer Pl. 11-13\
-10245 Berlin
+PragmaTech GmbH\
+Bamberger Straße 40B\
+91074 Herzogenaurach
 
 E-mail: info@pragmatech.digital
 

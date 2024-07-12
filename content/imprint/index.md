@@ -7,10 +7,11 @@ images: ["images/pragmatech-banner.png"]
 
 ## Information pursuant to Sect. 5 German Telemedia Act (TMG)
 
-PragmaTech Digital Solutions Philip Riecks\
-c/o Design Offices\
-Paul-Gossen-Straße 75\
-91052 Erlangen
+PragmaTech GmbH\
+Bamberger Straße 40B\
+91074 Herzogenaurach
+
+Managing Director: Philip Riecks
 
 ## Contact
 
@@ -18,7 +19,7 @@ E-mail: info@pragmatech.digital
 
 ## VAT ID
 
-Sales tax identification number according to Sect. 27 a of the Sales Tax Law: DE343982426
+Sales tax identification number according to Sect. 27 a of the Sales Tax Law: DE368122664
 
 ## Person responsible for editorial
 

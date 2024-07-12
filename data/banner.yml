@@ -2,9 +2,11 @@
 style: "style1 orient-left content-align-left image-position-right fullscreen onload-image-fade-in onload-content-fade-right"
 title : "Establishing Confident Software Delivery"
 subtitle: |
-  Enabling Developers to Frequently Deliver Software with More Confidence 🏗️
+  Enabling Java Developers to Frequently Deliver Software with More Confidence 🏗️
 content : |
-  ... Through  <strong>Actionable Tech Content</strong>: <i>Testing Spring Boot Applications Made Simple (<a href="https://rieckpil.de" target="_blank">rieckpil</a></i>) | <i>From Zero to Production with Spring Boot and AWS (<a href="https://stratospheric.dev" target="_blank">stratospheric</a>)</i><br/>
-  ... and <strong>Hands-On Consulting</strong>: <a href="https://www.linkedin.com/in/rieckpil" target="_blank">Philip Riecks</a>
+  Achieved by: <br/><br/>
+  • <a href="#Content"><strong>Actionable Tech Content</strong></a> 📚<br/>
+  • <a href="#Consulting"><strong>Hands-On Consulting</strong></a> 🧑🏻‍💻<br/>
+  • <a href="#Workshops"><strong>Practical Workshops and Conference Talks</strong></a> 🎙
 image : "images/pragmatech-banner.png"
 

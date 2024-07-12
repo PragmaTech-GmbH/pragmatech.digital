@@ -3,7 +3,7 @@
 ## -----------------------------------------------
 
 theme = "hugo-story-static"
-title = "PragmaTech Digital Solutions"
+title = "PragmaTech GmbH"
 copyright = "{year}"
 
 ## -----------------------------------------------
@@ -33,10 +33,10 @@ disableKinds = ["taxonomy", "taxonomyTerm", "section"]
 ## -----------------------------------------------
 
 [Params]
-  description = "Empowering lives with innovative, pragmatic tech solutions for a digitally-integrated and sustainable future."
+  description = "Enabling Developers to Frequently Deliver Software with More Confidence."
   logo = "images/pragmatech-banner.png"
   images = ["images/pragmatech-banner.png"]
-  title = "PragmaTech Digital Solutions"
+  title = "PragmaTech GmbH"
   favicon = true
 
 [Params.social]
