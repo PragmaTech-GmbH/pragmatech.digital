@@ -5,7 +5,7 @@
     <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Summary }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}{{ end }}">
     <link rel="canonical" href="{{ .Permalink }}">
     <link rel="icon" href="{{ "favicon.ico" | relURL }}">
-    {{ $css := resources.Get "css/main.css" | resources.PostCSS }}
+    {{ $css := resources.Get "css/main.css" | css.PostCSS }}
     {{ $css = $css | minify | fingerprint | resources.PostProcess }}
     <link rel="stylesheet" href="{{ $css.RelPermalink }}">
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
