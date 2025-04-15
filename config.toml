@@ -2,7 +2,12 @@
 ## Basic Configuration
 ## -----------------------------------------------
 
-theme = "hugo-story-static"
+baseURL = "https://pragmatech.de/"
+
+[params]
+description = "Enabling Java Developers to Frequently Deliver Software with More Confidence"
+matomoURL = "https://analytics.pragmatech.de/"
+matomoSiteID = "1"
 
 ## -----------------------------------------------
 ## Publish
@@ -34,3 +39,21 @@ disableKinds = ["taxonomy", "taxonomyTerm", "section"]
 [Params]
 
 [Params.social]
+
+[build]
+[build.buildStats]
+enable = true
+[[build.cachebusters]]
+source = 'assets/notwatching/hugo_stats\.json'
+target = 'css'
+[[build.cachebusters]]
+source = '(postcss|tailwind)\.config\.js'
+target = 'css'
+[module]
+[[module.mounts]]
+source = 'assets'
+target = 'assets'
+[[module.mounts]]
+disableWatch = true
+source = 'hugo_stats.json'
+target = 'assets/notwatching/hugo_stats.json'

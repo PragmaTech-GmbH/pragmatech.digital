@@ -1,0 +1,109 @@
+{{ define "main" }}
+<div class="max-w-6xl mx-auto px-4">
+    <header class="mb-12 text-center">
+        <h1 class="text-4xl font-bold mb-4">{{ .Title }}</h1>
+        {{ with .Description }}
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">{{ . }}</p>
+        {{ end }}
+    </header>
+
+    <div class="mb-12">
+        {{ .Content }}
+    </div>
+
+    <!-- Filter controls -->
+    <div class="flex flex-wrap gap-4 mb-8 justify-center">
+        <button class="event-filter active py-2 px-4 rounded-full bg-primary text-white" data-filter="all">All Events</button>
+        <button class="event-filter py-2 px-4 rounded-full bg-gray-200 hover:bg-gray-300" data-filter="meetup">Meetups</button>
+        <button class="event-filter py-2 px-4 rounded-full bg-gray-200 hover:bg-gray-300" data-filter="talk">Talks</button>
+        <button class="event-filter py-2 px-4 rounded-full bg-gray-200 hover:bg-gray-300" data-filter="workshop">Workshops</button>
+    </div>
+
+    {{ partial "events-calendar.html" . }}
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {{ $events := where .Site.RegularPages "Section" "events" }}
+        {{ $futureEvents := where $events "Date" "ge" now }}
+        {{ $sortedEvents := sort $futureEvents "Date" "asc" }}
+
+        {{ range $sortedEvents }}
+        <article class="event-card bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105" data-event-type="{{ .Params.eventType }}">
+            <div class="relative">
+                {{ if .Params.image }}
+                <img src="{{ .Params.image | relURL }}" alt="{{ .Title }}" class="w-full h-48 object-cover">
+                {{ else }}
+                <div class="w-full h-48 bg-gradient-to-r from-primary/80 to-blue-600/80 flex items-center justify-center">
+                    <span class="text-white text-2xl font-bold">{{ .Title }}</span>
+                </div>
+                {{ end }}
+
+<!--                <div class="absolute top-0 right-0 m-3 px-3 py-1 rounded-full text-xs font-semibold-->
+<!--            {{ if eq .Params.eventType "meetup" }}bg-yellow-500 text-yellow-900{{ end }}-->
+<!--                {{ if eq .Params.eventType "talk" }}bg-blue-500 text-white{{ end }}-->
+<!--                {{ if eq .Params.eventType "workshop" }}bg-green-500 text-white{{ end }}>-->
+<!--                {{ humanize .Params.eventType }}-->
+<!--            </div>-->
+    </div>
+
+    <div class="p-6">
+        <h3 class="text-xl font-bold mb-2">
+            <a href="{{ .Permalink }}" class="hover:text-primary">{{ .Title }}</a>
+        </h3>
+
+        <div class="flex items-center text-gray-500 mb-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            <time>{{ .Date.Format "January 2, 2006" }} at {{ .Date.Format "3:04 PM" }}</time>
+        </div>
+
+        <div class="flex items-center text-gray-500 mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            <span>{{ .Params.location }}</span>
+        </div>
+
+        <p class="mb-4">{{ .Params.summary }}</p>
+
+        <div class="flex justify-between items-center">
+            <a href="{{ .Permalink }}" class="text-primary font-semibold hover:underline">Details →</a>
+            {{ if .Params.registration }}
+            <a href="{{ .Params.registration }}" class="btn btn-primary" target="_blank">Register</a>
+            {{ end }}
+        </div>
+    </div>
+    </article>
+    {{ end }}
+</div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const filterButtons = document.querySelectorAll('.event-filter');
+        const eventCards = document.querySelectorAll('.event-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active button styling
+                filterButtons.forEach(btn => btn.classList.remove('active', 'bg-primary', 'text-white'));
+                filterButtons.forEach(btn => btn.classList.add('bg-gray-200', 'hover:bg-gray-300'));
+                button.classList.add('active', 'bg-primary', 'text-white');
+                button.classList.remove('bg-gray-200', 'hover:bg-gray-300');
+
+                const filter = button.getAttribute('data-filter');
+
+                // Show/hide event cards based on filter
+                eventCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-event-type') === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    });
+</script>
+{{ end }}
