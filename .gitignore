@@ -10,3 +10,5 @@ node_modules
 .hugo_build.lock
 
 *.csv
+
+hugo_stats.json
