@@ -1,0 +1,27 @@
+baseURL: "https://pragmatech.de/"
+
+params:
+  description: "Enabling Java Developers to Frequently Deliver Software with More Confidence"
+  matomoURL: "https://analytics.pragmatech.de/"
+  matomoSiteID: "1"
+
+relativeURLs: "true"
+publishDir: "public"
+disableKinds: ["taxonomy", "taxonomyTerm", "section"]
+
+build:
+  buildStats:
+    enable: true
+  cachebusters:
+    - source: 'assets/notwatching/hugo_stats\.json'
+      target: 'css'
+    - source: '(postcss|tailwind)\.config\.js'
+      target: 'css'
+
+module:
+  mounts:
+    - source: 'assets'
+      target: 'assets'
+    - disableWatch: true
+      source: 'hugo_stats.json'
+      target: 'assets/notwatching/hugo_stats.json'
