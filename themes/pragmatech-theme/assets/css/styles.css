@@ -1,5 +1,24 @@
 @import "tailwindcss";
+@import "components/markdown.css";
+
+
 @source "hugo_stats.json";
+
+@theme {
+    --font-code: "source sans pro", "Helvetica", sans-serif;
+
+    --color-blue-50: #2596be;
+    --color-blue-100: #d4ebf5;
+    --color-blue-200: #add8ec;
+    --color-blue-300: oklch(0.869 0.022 252.894);
+    --color-blue-400: oklch(0.704 0.04 256.788);
+    --color-blue-500: #22d0eb;
+    --color-blue-600: oklch(0.446 0.043 257.281);
+    --color-blue-700: oklch(0.372 0.044 257.287);
+    --color-blue-800: oklch(0.279 0.041 260.031);
+    --color-blue-900: oklch(0.208 0.042 265.755);
+    --color-blue-950: oklch(0.129 0.042 264.695);
+}
 
 @layer base {
     html {

@@ -5,8 +5,30 @@
     <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Summary }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}{{ end }}">
     <link rel="canonical" href="{{ .Permalink }}">
     <link rel="icon" href="{{ "favicon.ico" | relURL }}">
-    {{ $css := resources.Get "css/main.css" | css.PostCSS }}
-    {{ $css = $css | minify | fingerprint | resources.PostProcess }}
-    <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+
+    {{ with (templates.Defer (dict "key" "global")) }}
+        {{ $t := debug.Timer "tailwindcss" }}
+        {{ with resources.Get "css/styles.css" }}
+            {{ $opts := dict
+            "inlineImports" true
+            "optimize" (not hugo.IsDevelopment)
+            }}
+        {{ with . | css.TailwindCSS $opts }}
+        {{ if hugo.IsDevelopment }}
+        <link rel="stylesheet" href="{{ .RelPermalink }}" />
+        {{ else }}
+        {{ with . | minify | fingerprint }}
+        <link
+                rel="stylesheet"
+                href="{{ .RelPermalink }}"
+                integrity="{{ .Data.Integrity }}"
+                crossorigin="anonymous" />
+        {{ end }}
+        {{ end }}
+        {{ end }}
+        {{ end }}
+        {{ $t.Stop }}
+    {{ end }}
+
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
 </head>
