@@ -1,13 +1,13 @@
 baseURL: "https://pragmatech.de/"
 
 params:
-  description: "Enabling Java Developers to Frequently Deliver Software with More Confidence"
+  description: "Engineering Confidence"
   matomoURL: "https://analytics.pragmatech.de/"
   matomoSiteID: "1"
 
-relativeURLs: "true"
+relativeURLs: true
 publishDir: "public"
-disableKinds: ["taxonomy", "taxonomyTerm", "section"]
+disableKinds: ["taxonomy", "section"]
 
 build:
   buildStats:
