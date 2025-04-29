@@ -1,6 +1,6 @@
-baseURL = "https://pragmatech.de/"
+baseURL = "https://pragmatech.digital/"
 languageCode = "en-us"
-title = "PragmaTech - Confident Software Delivery"
+title = "Engineering Confidence | PragmaTech"
 theme = "pragmatech-theme"
 
 [params]

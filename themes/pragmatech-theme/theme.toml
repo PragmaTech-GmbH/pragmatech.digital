@@ -3,12 +3,12 @@ license = "MIT"
 licenselink = "https://github.com/pragmatechgmbh/pragmatech-theme/blob/main/LICENSE"
 description = "A modern Hugo theme for PragmaTech GmbH"
 
-homepage = "https://pragmatech.de/"
-demosite = "https://pragmatech.de/"
+homepage = "https://pragmatech.digital/"
+demosite = "https://pragmatech.digital/"
 
 tags = ["responsive", "modern", "tailwind", "company", "business", "tech", "consulting"]
 features = ["responsive", "tailwind css", "modern design", "seo optimized"]
 
 [author]
 name = "PragmaTech GmbH"
-homepage = "https://pragmatech.de/"
+homepage = "https://pragmatech.digital/"
