@@ -4,7 +4,7 @@ title = "Engineering Confidence | PragmaTech"
 theme = "pragmatech-theme"
 
 [params]
-description = "Enabling Java Developers to Frequently Deliver Software with More Confidence"
+description = "Enabling Developers to Frequently Deliver Software with More Confidence"
 matomoURL = "https://analytics.pragmatech.de/"
 matomoSiteID = "1"
 
