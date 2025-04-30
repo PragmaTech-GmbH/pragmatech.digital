@@ -1,0 +1,224 @@
+{{ define "main" }}
+<!-- Header Section -->
+<section class="py-16 md:py-24 bg-blue-600 text-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl">
+            <div class="mb-4">
+                <a href="{{ "jobs" | relURL }}" class="inline-flex items-center text-blue-100 hover:text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                Back to All Positions
+                </a>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">{{ .Title }}</h1>
+            <div class="flex flex-wrap gap-3">
+                {{ if .Params.location }}
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-500 bg-opacity-30 text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        {{ .Params.location }}
+                    </span>
+                {{ end }}
+
+                {{ if .Params.type }}
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-500 bg-opacity-30 text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        {{ .Params.type }}
+                    </span>
+                {{ end }}
+
+                {{ if .Params.level }}
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-500 bg-opacity-30 text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                        {{ .Params.level }}
+                    </span>
+                {{ end }}
+
+                {{ if .Params.department }}
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-500 bg-opacity-30 text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                        </svg>
+                        {{ .Params.department }}
+                    </span>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Job Details -->
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto">
+            <!-- Summary -->
+            {{ if .Params.summary }}
+            <div class="mb-12">
+                <h2 class="text-2xl font-bold mb-4">Overview</h2>
+                <div class="bg-gray-50 p-6 rounded-xl shadow-sm">
+                    <p class="text-lg text-gray-700">{{ .Params.summary }}</p>
+                </div>
+            </div>
+            {{ end }}
+
+            <!-- Main Content -->
+            <div class="prose prose-lg mx-auto mb-12">
+                {{ .Content }}
+            </div>
+
+            <!-- Requirements Section -->
+            {{ if .Params.requirements }}
+            <div class="mb-12">
+                <h2 class="text-2xl font-bold mb-4">Requirements</h2>
+                <ul class="bg-gray-50 p-6 rounded-xl shadow-sm space-y-3">
+                    {{ range .Params.requirements }}
+                    <li class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>{{ . }}</span>
+                    </li>
+                    {{ end }}
+                </ul>
+            </div>
+            {{ end }}
+
+            <!-- Responsibilities Section -->
+            {{ if .Params.responsibilities }}
+            <div class="mb-12">
+                <h2 class="text-2xl font-bold mb-4">Responsibilities</h2>
+                <ul class="bg-gray-50 p-6 rounded-xl shadow-sm space-y-3">
+                    {{ range .Params.responsibilities }}
+                    <li class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>{{ . }}</span>
+                    </li>
+                    {{ end }}
+                </ul>
+            </div>
+            {{ end }}
+
+            <!-- Benefits -->
+            {{ if .Params.benefits }}
+            <div class="mb-12">
+                <h2 class="text-2xl font-bold mb-4">Benefits</h2>
+                <ul class="bg-gray-50 p-6 rounded-xl shadow-sm space-y-3">
+                    {{ range .Params.benefits }}
+                    <li class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>{{ . }}</span>
+                    </li>
+                    {{ end }}
+                </ul>
+            </div>
+            {{ end }}
+
+            <!-- Application Button -->
+            <div class="mt-12 text-center">
+                <p class="text-gray-600 mb-6">Ready to join our team? We'd love to hear from you!</p>
+                {{ if .Params.application_url }}
+                <a href="{{ .Params.application_url }}" class="inline-block bg-blue-600 text-white hover:bg-blue-700 font-bold py-3 px-8 rounded-lg transition-colors shadow-md">
+                    Apply for this Position
+                </a>
+                {{ else }}
+                <a href="{{ "/contact" | relURL }}" class="inline-block bg-blue-600 text-white hover:bg-blue-700 font-bold py-3 px-8 rounded-lg transition-colors shadow-md">
+                Contact Us About This Position
+                </a>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Related Jobs -->
+<section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-2xl font-bold mb-8 text-center">Other Open Positions</h2>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                {{ $currentJob := . }}
+                {{ $relatedJobs := where (where .Site.RegularPages "Section" "jobs") "Permalink" "ne" .Permalink | first 4 }}
+
+                {{ if $relatedJobs }}
+                {{ range $relatedJobs }}
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">{{ .Title }}</h3>
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            {{ if .Params.location }}
+                            <span class="inline-block px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                            {{ .Params.location }}
+                                        </span>
+                            {{ end }}
+
+                            {{ if .Params.type }}
+                            <span class="inline-block px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                            {{ .Params.type }}
+                                        </span>
+                            {{ end }}
+                        </div>
+                        <a href="{{ .RelPermalink }}" class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center">
+                            View details
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                {{ end }}
+                {{ else }}
+                <div class="md:col-span-2 bg-white rounded-lg shadow-sm p-6 text-center">
+                    <p class="text-gray-600">This is our only open position at the moment.</p>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Share Job -->
+<section class="py-12 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-2xl font-bold mb-6">Know Someone Perfect for This Role?</h2>
+            <p class="text-gray-600 mb-6">Help us find the right candidate by sharing this job opening with your network.</p>
+
+            <div class="flex justify-center space-x-4">
+                <!-- LinkedIn -->
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ .Permalink }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-blue-800 hover:bg-blue-200 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                </a>
+
+                <!-- Twitter -->
+                <a href="https://twitter.com/intent/tweet?url={{ .Permalink }}&text=Check%20out%20this%20job%20opportunity%20at%20PragmaTech:%20{{ .Title }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-blue-800 hover:bg-blue-200 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                    </svg>
+                </a>
+
+                <!-- Email -->
+                <a href="mailto:?subject=Job%20Opportunity%20at%20PragmaTech:%20{{ .Title }}&body=I%20thought%20you%20might%20be%20interested%20in%20this%20job%20opportunity:%20{{ .Permalink }}" class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-blue-800 hover:bg-blue-200 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{ end }}

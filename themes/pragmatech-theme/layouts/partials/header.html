@@ -1,20 +1,41 @@
 <header class="sticky top-0 z-50 bg-white/90 backdrop-blur shadow-sm">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center py-4">
-            <a href="/" class="flex items-center space-x-2">
+            <a href="{{ .Site.Home.RelPermalink }}" class="flex items-center space-x-2">
                 <img src="{{ "images/logo.png" | relURL }}" alt="{{ .Site.Title }}" class="h-8 w-auto">
-                <span class="text-xl font-bold text-blue-600">Pragma<span class="text-blue-500">Tech</span></span>
+                <span class="text-xl font-bold"><span class="text-blue-600" style="margin-right: 0.25rem;">Pragma</span><span class="text-blue-500">Tech</span></span>
             </a>
 
             <nav class="hidden md:flex items-center space-x-8">
-                <a href="/consulting" class="text-gray-700 hover:text-blue-600 transition-colors">Consulting</a>
-                <a href="/workshops" class="text-gray-700 hover:text-blue-600 transition-colors">Workshops</a>
-                <a href="/books" class="text-gray-700 hover:text-blue-600 transition-colors">Books</a>
-                <a href="/courses" class="text-gray-700 hover:text-blue-600 transition-colors">Courses</a>
-                <a href="/about" class="text-gray-700 hover:text-blue-600 transition-colors">About</a>
-                <a href="/events" class="text-gray-700 hover:text-blue-600 transition-colors">Upcoming Events</a>
-                <a href="/newsletter" class="text-gray-700 hover:text-blue-600 transition-colors">Newsletter</a>
-                <a href="/contact" class="text-gray-700 hover:text-blue-600 transition-colors">Contact</a>
+                <!-- Consulting -->
+                <a href="{{ "consulting" | relURL }}" class="text-gray-700 hover:text-blue-600 transition-colors">Consulting</a>
+
+                <!-- Tech Content Dropdown -->
+                <div class="relative dropdown">
+                    <button id="tech-content-button" class="flex items-center text-gray-700 hover:text-blue-600 transition-colors">
+                        Tech Content
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div id="tech-content-dropdown" class="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-10 hidden dropdown-menu">
+                        <a href="{{ "books" | relURL }}" class="block px-4 py-2 text-gray-700  hover:text-blue-600">Books</a>
+                        <a href="{{ "courses" | relURL }}" class="block px-4 py-2 text-gray-700 hover:text-blue-600">Online Courses</a>
+                        <a href="{{ "newsletter" | relURL }}" class="block px-4 py-2 text-gray-700 hover:text-blue-600">Newsletter</a>
+                        <a href="{{ "events" | relURL }}" class="block px-4 py-2 text-gray-700 hover:text-blue-600">Talks</a>
+                    </div>
+                </div>
+
+                <!-- Workshops -->
+                <a href="{{ "workshops" | relURL }}" class="text-gray-700 hover:text-blue-600 transition-colors">Workshops</a>
+
+                <!-- About -->
+                <a href="{{ "about" | relURL }}" class="text-gray-700 hover:text-blue-600 transition-colors">About</a>
+
+                <!-- Connect CTA Button -->
+                <a href="{{ .Site.Params.scheduleCallUrl | default "/contact" | relURL }}" class="inline-block bg-blue-600 text-white hover:bg-blue-700 font-medium py-2 px-4 rounded-lg transition-colors">
+                Schedule a Call
+                </a>
             </nav>
 
             <div class="md:hidden flex items-center">
@@ -29,15 +50,87 @@
         <!-- Mobile menu -->
         <div id="mobile-menu" class="hidden md:hidden py-4 border-t border-gray-200">
             <div class="flex flex-col space-y-4">
-                <a href="/consulting" class="text-gray-700 hover:text-blue-600 transition-colors">Consulting</a>
-                <a href="/workshops" class="text-gray-700 hover:text-blue-600 transition-colors">Workshops</a>
-                <a href="/books" class="text-gray-700 hover:text-blue-600 transition-colors">Books</a>
-                <a href="/courses" class="text-gray-700 hover:text-blue-600 transition-colors">Courses</a>
-                <a href="/about" class="text-gray-700 hover:text-blue-600 transition-colors">About</a>
-                <a href="/events" class="text-gray-700 hover:text-blue-600 transition-colors">Upcoming Events</a>
-                <a href="/newsletter" class="text-gray-700 hover:text-blue-600 transition-colors">Newsletter</a>
-                <a href="/contact" class="text-gray-700 hover:text-blue-600 transition-colors">Contact</a>
+                <a href="{{ "consulting" | relURL }}" class="text-gray-700 hover:text-blue-600 transition-colors">Consulting</a>
+
+                <!-- Mobile Tech Content Submenu -->
+                <div>
+                    <button id="mobile-tech-content-button" class="flex items-center justify-between w-full text-gray-700 hover:text-blue-600 transition-colors">
+                        Tech Content
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div id="mobile-tech-content-submenu" class="hidden pl-4 mt-2 space-y-2">
+                        <a href="{{ "books" | relURL }}" class="block text-gray-700 hover:text-blue-600">Books</a>
+                        <a href="{{ "courses" | relURL }}" class="block text-gray-700 hover:text-blue-600">Online Courses</a>
+                        <a href="{{ "newsletter" | relURL }}" class="block text-gray-700 hover:text-blue-600">Newsletter</a>
+                        <a href="{{ "events" | relURL }}" class="block text-gray-700 hover:text-blue-600">Talks</a>
+                    </div>
+                </div>
+
+                <a href="{{ "workshops" | relURL }}" class="text-gray-700 hover:text-blue-600 transition-colors">Workshops</a>
+                <a href="{{ "about" | relURL }}" class="text-gray-700 hover:text-blue-600 transition-colors">About</a>
+                <a href="{{ .Site.Params.scheduleCallUrl | default "/contact" | relURL }}" class="inline-block bg-blue-600 text-white hover:bg-blue-700 font-medium py-2 px-4 rounded-lg transition-colors">Connect</a>
             </div>
         </div>
     </div>
 </header>
+
+<!-- Add JavaScript for improved dropdown behavior -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Desktop dropdown
+        const techContentButton = document.getElementById('tech-content-button');
+        const techContentDropdown = document.getElementById('tech-content-dropdown');
+        const dropdown = document.querySelector('.dropdown');
+
+        // Toggle dropdown on click instead of hover
+        if (techContentButton && techContentDropdown) {
+            techContentButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                techContentDropdown.classList.toggle('hidden');
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!dropdown.contains(e.target)) {
+                    techContentDropdown.classList.add('hidden');
+                }
+            });
+
+            // Prevent dropdown from closing when clicking inside it
+            techContentDropdown.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        }
+
+        // Mobile menu and submenu
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileTechContentButton = document.getElementById('mobile-tech-content-button');
+        const mobileTechContentSubmenu = document.getElementById('mobile-tech-content-submenu');
+
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        if (mobileTechContentButton && mobileTechContentSubmenu) {
+            mobileTechContentButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                mobileTechContentSubmenu.classList.toggle('hidden');
+            });
+        }
+    });
+</script>
+
+<style>
+    /* Add this CSS to improve dropdown behavior */
+    .dropdown-menu {
+        visibility: visible;
+        opacity: 1;
+        transition: all 0.2s ease;
+    }
+</style>

@@ -1,56 +1,35 @@
 {{ define "main" }}
 <!-- Header Section -->
-<section class="py-12 md:py-16 bg-blue-600 text-white">
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="max-w-3xl">
-      <h1 class="text-3xl md:text-4xl font-bold mb-4">{{ .Title }}</h1>
-      <p class="text-lg">
-        {{ .Description }}
-      </p>
+<section class="py-16 md:py-24 bg-blue-600 text-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">{{ .Title }}</h1>
+            <p class="text-xl">
+                {{ .Description }}
+            </p>
+        </div>
     </div>
-  </div>
 </section>
 
 <!-- Main Content -->
-<section class="py-12 bg-white">
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="prose prose-lg max-w-3xl mx-auto">
-      {{ .Content }}
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="prose prose-lg max-w-5xl  mx-auto">
+            {{ .Content }}
+        </div>
     </div>
-  </div>
 </section>
-
-<!-- Table of Contents (if enabled) -->
-{{ if .Params.show_toc }}
-<div class="fixed inset-y-0 right-0 hidden lg:block lg:w-64 xl:w-72 py-24 px-4 overflow-y-auto bg-white border-l border-gray-200">
-  <div class="sticky top-24">
-    <h4 class="text-lg font-bold mb-4">On this page</h4>
-    <nav class="space-y-2 text-sm">
-      {{ $headers := findRE "<h[2|3].*?>(.|\n)*?</h[2|3]>" .Content }}
-      {{ range $headers }}
-      {{ $header := . }}
-      {{ $level := index (findRE "[2|3]" . 1) 0 }}
-      {{ $anchorID := index (findRE "id=\"(.+?)\"" . 1) 0 | replaceRE "id=\"(.+?)\"" "$1" }}
-      {{ $title := index (findRE ">(.+?)</h" . 1) 0 | replaceRE ">(.+?)</h" "$1" | htmlUnescape }}
-      <a href="#{{ $anchorID }}" class="{{ if eq $level "2" }}font-medium{{ else }}pl-4 text-gray-600{{ end }} hover:text-blue-600">
-      {{ $title }}
-      </a>
-      {{ end }}
-    </nav>
-  </div>
-</div>
-{{ end }}
 
 <!-- Last Updated Info -->
 {{ if .Params.last_updated }}
 <section class="py-8 bg-gray-50">
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="max-w-3xl mx-auto text-center">
-      <p class="text-sm text-gray-500">
-        Last updated: {{ .Params.last_updated }}
-      </p>
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center">
+            <p class="text-sm text-gray-500">
+                Last updated: {{ .Params.last_updated }}
+            </p>
+        </div>
     </div>
-  </div>
 </section>
 {{ end }}
 
