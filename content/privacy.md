@@ -4,7 +4,7 @@ description: "Information about how we collect, process, and protect your person
 date: 2023-05-05T11:40:13+02:00
 layout: "privacy"
 last_updated: "April 15, 2025"
-show_toc: true
+show_toc: false
 ---
 
 ## Privacy Policy
