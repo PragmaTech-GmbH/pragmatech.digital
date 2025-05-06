@@ -10,6 +10,9 @@
                 <!-- Consulting -->
                 <a href="{{ "consulting" | relURL }}" class="text-gray-700 hover:text-blue-600 transition-colors">Consulting</a>
 
+                <!-- Workshops -->
+                <a href="{{ "workshops" | relURL }}" class="text-gray-700 hover:text-blue-600 transition-colors">Workshops</a>
+
                 <!-- Tech Content Dropdown -->
                 <div class="relative dropdown">
                     <button id="tech-content-button" class="flex items-center text-gray-700 hover:text-blue-600 transition-colors">
@@ -20,14 +23,11 @@
                     </button>
                     <div id="tech-content-dropdown" class="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-10 hidden dropdown-menu">
                         <a href="{{ "books" | relURL }}" class="block px-4 py-2 text-gray-700  hover:text-blue-600">Books</a>
-                        <a href="{{ "courses" | relURL }}" class="block px-4 py-2 text-gray-700 hover:text-blue-600">Online Courses</a>
-                        <a href="{{ "newsletter" | relURL }}" class="block px-4 py-2 text-gray-700 hover:text-blue-600">Newsletter</a>
                         <a href="{{ "events" | relURL }}" class="block px-4 py-2 text-gray-700 hover:text-blue-600">Talks</a>
+                        <a href="{{ .Site.Params.newsletterUrl }}" target="_blank" class="block px-4 py-2 text-gray-700 hover:text-blue-600">Newsletter</a>
+                        <a href="{{ "courses" | relURL }}" class="block px-4 py-2 text-gray-700 hover:text-blue-600">Online Courses</a>
                     </div>
                 </div>
-
-                <!-- Workshops -->
-                <a href="{{ "workshops" | relURL }}" class="text-gray-700 hover:text-blue-600 transition-colors">Workshops</a>
 
                 <!-- About -->
                 <a href="{{ "about" | relURL }}" class="text-gray-700 hover:text-blue-600 transition-colors">About</a>
@@ -63,7 +63,7 @@
                     <div id="mobile-tech-content-submenu" class="hidden pl-4 mt-2 space-y-2">
                         <a href="{{ "books" | relURL }}" class="block text-gray-700 hover:text-blue-600">Books</a>
                         <a href="{{ "courses" | relURL }}" class="block text-gray-700 hover:text-blue-600">Online Courses</a>
-                        <a href="{{ "newsletter" | relURL }}" class="block text-gray-700 hover:text-blue-600">Newsletter</a>
+                        <a href="{{ .Site.Params.newsletterUrl }}" target="_blank" class="block text-gray-700 hover:text-blue-600">Newsletter</a>
                         <a href="{{ "events" | relURL }}" class="block text-gray-700 hover:text-blue-600">Talks</a>
                     </div>
                 </div>

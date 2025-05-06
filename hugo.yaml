@@ -5,6 +5,7 @@ params:
   matomoURL: "https://analytics.pragmatech.de/"
   matomoSiteID: "1"
   scheduleCallUrl: "https://pragmatech.digital/schedule-call/"
+  newsletterUrl: "https://www.linkedin.com/newsletters/7161721575862386688/"
 
 relativeURLs: true
 publishDir: "public"
