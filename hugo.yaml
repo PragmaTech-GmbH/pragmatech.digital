@@ -11,6 +11,15 @@ relativeURLs: true
 publishDir: "public"
 theme: "pragmatech-theme"
 
+# Content types configuration
+archetypeDir: "archetypes"
+contentDir: "content"
+
+# Define custom taxonomies
+taxonomies:
+  category: "categories"
+  tag: "tags"
+
 build:
   buildStats:
     enable: true

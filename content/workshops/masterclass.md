@@ -9,6 +9,7 @@ format: "On-site or Remote"
 participants: "Up to 15 developers"
 price: "€4,500 / team"
 booking_url: "/contact"
+type: "workshops"
 booking_note: "This workshop is delivered on-site at your location or remotely via video conferencing"
 topics:
   - "Unit testing Spring Boot components effectively"
