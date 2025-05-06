@@ -1,0 +1,6 @@
+/* Consistent styling for content sections across the site */
+.page-content p {
+    @apply my-8;
+}
+
+/* Add more shared content styling here as needed */

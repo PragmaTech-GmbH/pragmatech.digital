@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "components/markdown.css";
+@import "components/content-sections.css";
 
 
 @source "hugo_stats.json";

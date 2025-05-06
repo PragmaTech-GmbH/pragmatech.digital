@@ -59,10 +59,10 @@ caseStudies:
     link: "/case-studies/healthcare-cicd"
 
 testimonials:
-  - name: "Thomas Schmidt"
-    role: "CTO"
-    company: "E-commerce Solutions GmbH"
-    quote: "PragmaTech's consulting services helped us migrate to AWS and implement CI/CD pipelines correctly from the start. Their practical, no-nonsense approach saved us months of trial and error."
+  - name: "Michael Wittig"
+    role: "CEO"
+    company: "Widdix GmbH"
+    quote: "From the moment we engaged with PragmaTech, it was evident that their team was committed to delivering excellence. The implementation of their software has significantly enhanced our acceptance test suite, streamlining processes, and boosting efficiency. What used to be a cumbersome and time-consuming task has now become seamless and effortless, thanks to PragmaTech's innovative approach."
 
   - name: "Maria Rodriguez"
     role: "Engineering Lead"

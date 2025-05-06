@@ -14,14 +14,7 @@
 <!-- Main Content -->
 <section class="py-16 bg-white">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="prose prose-lg max-w-3xl mx-auto consulting-content">
-            <style>
-                /* Custom styles for consulting page paragraphs */
-                .consulting-content p {
-                    margin-bottom: 2rem;
-                    margin-top: 2rem;
-                }
-            </style>
+        <div class="prose prose-lg max-w-3xl mx-auto page-content">
             {{ .Content }}
         </div>
     </div>
@@ -120,7 +113,7 @@
 
 <!-- Testimonials -->
 {{ if .Params.testimonials }}
-<section class="py-16 bg-gray-50">
+<section class="py-16 bg-white">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
             <h2 class="text-3xl font-bold mb-4">What Our Clients Say</h2>
