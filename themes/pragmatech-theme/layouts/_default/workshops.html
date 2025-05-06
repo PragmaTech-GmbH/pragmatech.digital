@@ -11,21 +11,17 @@
     </div>
 </section>
 
-<div style="background: #f8f9fa; padding: 10px; margin: 20px 0; border: 1px solid #ddd;">
-    <p>Debug info:</p>
-    <ul>
-        <li>Layout: {{ .Layout }}</li>
-        <li>Type: {{ .Type }}</li>
-        <li>Kind: {{ .Kind }}</li>
-        <li>Section: {{ .Section }}</li>
-        <li>File path: {{ .File.Path }}</li>
-    </ul>
-</div>
-
 <!-- Main Content -->
 <section class="py-16 bg-white">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="prose prose-lg max-w-3xl mx-auto">
+        <div class="prose prose-lg max-w-3xl mx-auto consulting-content">
+            <style>
+                /* Custom styles for consulting page paragraphs */
+                .consulting-content p {
+                    margin-bottom: 2rem;
+                    margin-top: 2rem;
+                }
+            </style>
             {{ .Content }}
         </div>
     </div>
