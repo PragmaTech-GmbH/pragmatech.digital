@@ -76,40 +76,47 @@
 </section>
 
 <!-- Case Studies -->
-<!--{{ if .Params.caseStudies }}-->
-<!--<section class="py-16 bg-gray-50">-->
-<!--    <div class="container mx-auto px-4 sm:px-6 lg:px-8">-->
-<!--        <div class="text-center mb-16">-->
-<!--            <h2 class="text-3xl font-bold mb-4">Case Studies</h2>-->
-<!--            <p class="text-xl text-gray-600 max-w-2xl mx-auto">-->
-<!--                See how we've helped companies like yours improve their delivery processes-->
-<!--            </p>-->
-<!--        </div>-->
+<section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold mb-4">Case Studies</h2>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                See how we've helped companies like yours improve their delivery processes
+            </p>
+        </div>
 
-<!--        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">-->
-<!--            {{ range .Params.caseStudies }}-->
-<!--            <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">-->
-<!--                {{ if .image }}-->
-<!--                <img src="{{ .image }}" alt="{{ .title }}" class="w-full h-48 object-cover">-->
-<!--                {{ end }}-->
-<!--                <div class="p-6">-->
-<!--                    <h3 class="text-xl font-bold mb-3">{{ .title }}</h3>-->
-<!--                    <p class="text-gray-600 mb-4">{{ .summary }}</p>-->
-<!--                    {{ if .link }}-->
-<!--                    <a href="{{ .link }}" class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center">-->
-<!--                        Read case study-->
-<!--                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">-->
-<!--                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />-->
-<!--                        </svg>-->
-<!--                    </a>-->
-<!--                    {{ end }}-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            {{ end }}-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</section>-->
-<!--{{ end }}-->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {{ range first 3 (where .Site.RegularPages "Section" "case-studies") }}
+            <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                {{ if .Params.featured_image }}
+                <img src="{{ .Params.featured_image }}" alt="{{ .Title }}" class="w-full h-48 object-cover">
+                {{ else }}
+                <div class="w-full h-48 bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center">
+                    <span class="text-white text-2xl font-bold">{{ .Title }}</span>
+                </div>
+                {{ end }}
+                <div class="p-6">
+                    <div class="text-sm text-blue-600 font-medium mb-2">{{ .Params.client_industry }}</div>
+                    <h3 class="text-xl font-bold mb-3">{{ .Title }}</h3>
+                    <p class="text-gray-600 mb-4">{{ .Params.summary }}</p>
+                    <a href="{{ .RelPermalink }}" class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center">
+                        Read case study
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            {{ end }}
+        </div>
+        
+        <div class="text-center mt-8">
+            <a href="/case-studies/" class="inline-block bg-blue-600 text-white hover:bg-blue-700 font-bold py-3 px-6 rounded-lg transition-colors">
+                View All Case Studies
+            </a>
+        </div>
+    </div>
+</section>
 
 <!-- Testimonials -->
 {{ if .Params.testimonials }}
