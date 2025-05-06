@@ -1,6 +1,9 @@
 <!-- Matomo -->
+{{ if and .Site.Params.matomoURL .Site.Params.matomoSiteID }}
 <script>
     var _paq = window._paq = window._paq || [];
+    /* Track as a single page application without hash */
+    _paq.push(['disableCookies']);
     _paq.push(['trackPageView']);
     _paq.push(['enableLinkTracking']);
     (function() {
@@ -11,4 +14,6 @@
         g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
     })();
 </script>
+<noscript><p><img src="{{ .Site.Params.matomoURL }}matomo.php?idsite={{ .Site.Params.matomoSiteID }}&amp;rec=1" style="border:0;" alt=""></p></noscript>
+{{ end }}
 <!-- End Matomo Code -->
