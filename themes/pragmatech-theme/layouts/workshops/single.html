@@ -9,6 +9,17 @@
         </a>
     </div>
 
+    <div style="background: #f8f9fa; padding: 10px; margin: 20px 0; border: 1px solid #ddd;">
+        <p>Debug info:</p>
+        <ul>
+            <li>Layout: {{ .Layout }}</li>
+            <li>Type: {{ .Type }}</li>
+            <li>Kind: {{ .Kind }}</li>
+            <li>Section: {{ .Section }}</li>
+            <li>File path: {{ .File.Path }}</li>
+        </ul>
+    </div>
+
     <header class="mb-12">
         {{ if .Params.image }}
         <div class="mb-8">

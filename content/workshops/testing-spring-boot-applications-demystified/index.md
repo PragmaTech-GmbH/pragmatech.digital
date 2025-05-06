@@ -1,15 +1,15 @@
 ---
-title: "Testing Spring Boot Applications Masterclass"
+title: "Testing Spring Boot Applications Demystified"
 summary: "A comprehensive workshop to master effective testing strategies for Spring Boot applications"
 description: "Learn how to design and implement a robust testing strategy for your Spring Boot applications"
-date: 2023-05-05T11:40:13+02:00
+date: 2025-05-05T11:40:13+02:00
 image: "/images/workshops/testing-spring-boot.jpg"
-duration: "2 days"
+duration: "1-2 days"
 format: "On-site or Remote"
 participants: "Up to 15 developers"
-price: "€4,500 / team"
+price: "Starting at €2,500 / team"
 booking_url: "/contact"
-type: "workshops"  # or "workshops"
+type: "workshops"
 layout: "single"
 booking_note: "This workshop is delivered on-site at your location or remotely via video conferencing"
 topics:
@@ -43,6 +43,8 @@ testimonials:
     company: "Insurance Tech GmbH"
     quote: "Exactly what our team needed. The section on TestContainers was particularly valuable and helped us solve several persistent testing challenges."
 ---
+
+ABC
 
 ## Master Effective Testing for Spring Boot Applications
 
