@@ -1,184 +1,200 @@
 ---
-title: "Testing Spring Boot Applications"
-subtitle: "A Practical Guide to Unit, Integration, and End-to-End Testing"
-summary: "Learn how to implement a comprehensive testing strategy for your Spring Boot applications"
-description: "A complete guide for Java developers who want to master testing Spring Boot applications with practical examples and best practices"
+title: "Java Testing Toolbox"
+subtitle: "A Comprehensive Guide to Effective JUnit, Mockito and TestContainers"
+summary: "Master the essential testing libraries for Java development with practical techniques and patterns"
+description: "A comprehensive guide to Java testing libraries including JUnit 5, Mockito, AssertJ, and TestContainers with real-world examples and best practices"
 date: 2023-05-05T11:40:13+02:00
-cover_image: "/images/books/testing-spring-boot-cover.jpg"
-authors: ["Philip Riecks", "Tom Hombergs", "Sven Woltmann"]
-published_date: "April 2023"
+cover_image: "/images/courses/java-testing-toolbox.jpg"
+authors: ["Philip Riecks"]
+published_date: "June 2024"
 last_updated: "March 2025"
-pages: 450
+pages: 380
 format: "Digital Book"
 price: "€39.99"
-badge: "Bestseller"
-purchase_url: "https://books.pragmatech.de/testing-spring-boot/"
-sample_url: "https://books.pragmatech.de/testing-spring-boot/sample"
+badge: "New Release"
+purchase_url: "https://leanpub.com/java-testing-toolbox"
+sample_url: "https://pragmatech.digital/books/java-testing-toolbox-sample"
 purchase_note: "Available as PDF, EPUB, and MOBI. Includes free updates for life."
 formats: ["PDF", "EPUB", "MOBI"]
 topics:
-  - "Setting up a Spring Boot project for optimal testability"
-  - "Unit testing Spring components effectively"
-  - "Integration testing with Spring Boot Test"
+  - "Modern JUnit 5 testing techniques"
+  - "Effective mocking strategies with Mockito"
+  - "Expressive assertions with AssertJ"
   - "Database testing with TestContainers"
-  - "Testing REST APIs and documenting them with Spring REST Docs"
-  - "Testing security and authentication"
-  - "Performance testing basics"
-  - "Test-driven development with Spring Boot"
-  - "Testing in a microservices architecture"
-  - "Implementing continuous testing in CI/CD pipelines"
+  - "Testing design patterns and best practices"
+  - "Test performance optimization"
+  - "Property-based testing with jqwik"
+  - "Mutation testing with PIT"
+  - "Building a maintainable test suite"
+  - "Testing in CI/CD environments"
 toc:
-  - chapter: "1. Introduction to Testing Spring Boot Applications"
+  - chapter: "1. Modern Java Testing Foundations"
     sections:
-      - "Why Testing Matters in Spring Boot Applications"
-      - "The Testing Pyramid and Testing Strategy"
-      - "Setting Up a Spring Boot Project for Testing"
-      - "Overview of Testing Tools and Libraries"
+      - "The Testing Landscape in Java"
+      - "Evolution of Testing in Java Applications"
+      - "Test Pyramids, Diamonds, and Hexagons"
+      - "Setting Up Your Testing Environment"
+      - "Test Project Structure Best Practices"
   
-  - chapter: "2. Unit Testing Spring Components"
+  - chapter: "2. JUnit 5 In-Depth"
     sections:
-      - "Unit Testing Principles and Best Practices"
-      - "Testing Spring Services and Components"
-      - "Mocking Dependencies with Mockito"
-      - "Testing Exception Handling and Edge Cases"
-      - "Test Coverage and Quality Metrics"
+      - "JUnit 5 Architecture Overview"
+      - "Writing Basic and Advanced Tests"
+      - "Parameterized Tests"
+      - "Test Lifecycle Management"
+      - "Extensions and Custom Annotations"
+      - "Dynamic Tests and Test Templates"
+      - "JUnit 5 Migration Strategies"
   
-  - chapter: "3. Integration Testing with Spring Boot Test"
+  - chapter: "3. Mocking with Mockito"
     sections:
-      - "Introduction to Spring Boot Test"
-      - "Testing Spring MVC Controllers"
-      - "Testing REST APIs"
-      - "Testing WebClient and RestTemplate"
-      - "Testing Security and Authentication"
+      - "Mocking Fundamentals"
+      - "Verifications and Argument Matchers"
+      - "Stubbing Behavior"
+      - "Spies and Partial Mocks"
+      - "Mockito Annotations"
+      - "Advanced Mockito Features"
+      - "Common Mocking Pitfalls"
 
-  - chapter: "4. Database Testing"
+  - chapter: "4. Expressive Assertions with AssertJ"
     sections:
-      - "Testing with In-Memory Databases"
-      - "Introduction to TestContainers"
-      - "Testing JPA Repositories"
-      - "Testing Database Migrations"
-      - "Testing SQL Queries and Performance"
+      - "Introduction to Fluent Assertions"
+      - "String, Number, and Collection Assertions"
+      - "Exception Testing"
+      - "Custom Assertions"
+      - "Soft Assertions for Multiple Checks"
+      - "Migrating from Hamcrest to AssertJ"
+      - "AssertJ Best Practices"
 
-  - chapter: "5. Advanced Testing Techniques"
+  - chapter: "5. Database Testing with TestContainers"
     sections:
-      - "Testing Asynchronous Components"
-      - "Testing Scheduled Tasks"
-      - "Testing Message-Driven Applications"
-      - "Testing with Profiles and Properties"
-      - "Testing Configuration"
+      - "Test Database Approaches and Tradeoffs"
+      - "Getting Started with TestContainers"
+      - "Common Database Module Configurations"
+      - "Managing Test Data"
+      - "Database Performance Optimization"
+      - "Advanced TestContainers Patterns"
+      - "Integration with Spring and Hibernate"
 
-  - chapter: "6. Testing in a Microservices Architecture"
+  - chapter: "6. Testing Design Patterns"
     sections:
-      - "Challenges of Testing Microservices"
-      - "Service Virtualization and API Mocking"
-      - "Contract Testing with Spring Cloud Contract"
-      - "End-to-End Testing Strategies"
-      - "Testing Service Discovery and Configuration"
+      - "Test Structure Patterns"
+      - "Data Builder Patterns"
+      - "Test Fixture Strategies"
+      - "Object Mother Pattern"
+      - "Test Data Builders"
+      - "Page Object Pattern for UI Testing"
+      - "Anti-Patterns and Code Smells in Tests"
 
-  - chapter: "7. Performance Testing"
+  - chapter: "7. Advanced Testing Techniques"
     sections:
-      - "Introduction to Performance Testing"
-      - "Load Testing with JMeter and Gatling"
-      - "Measuring and Analyzing Performance"
-      - "Performance Testing in CI/CD Pipelines"
-      - "Performance Testing Best Practices"
+      - "Property-Based Testing with jqwik"
+      - "Mutation Testing with PIT"
+      - "Approval Testing"
+      - "BDD-Style Testing"
+      - "Snapshot Testing"
+      - "Test Monitoring and Metrics"
+      - "Testing for Performance"
 
-  - chapter: "8. Test-Driven Development with Spring Boot"
+  - chapter: "8. Testing in CI/CD Environments"
     sections:
-      - "Introduction to Test-Driven Development"
-      - "Applying TDD to Spring Boot Applications"
-      - "Red-Green-Refactor Cycle with Spring Boot"
-      - "Building a Spring Boot Application with TDD"
-      - "TDD Challenges and Solutions"
+      - "Test Execution in CI/CD Pipelines"
+      - "Test Parallelization Strategies"
+      - "Managing Flaky Tests"
+      - "Test Coverage Analysis"
+      - "Test Reports and Dashboards"
+      - "Testing in Docker Environments"
+      - "Testing in Cloud Environments"
 
-  - chapter: "9. Testing in Continuous Integration"
+  - chapter: "9. Testing Legacy Applications"
     sections:
-      - "Setting Up CI/CD for Spring Boot Applications"
-      - "Running Tests in CI/CD Pipelines"
-      - "Test Reporting and Monitoring"
-      - "Test Optimization and Parallelization"
-      - "Testing in Production"
+      - "Approaching Legacy Code Testing"
+      - "Working with Untested Code"
+      - "Refactoring for Testability"
+      - "Building a Safety Net of Tests"
+      - "Testing Code Without Interfaces"
+      - "Dealing with Static Methods and Dependencies"
+      - "Incremental Testing Improvements"
 
-  - chapter: "10. Testing Best Practices and Patterns"
+  - chapter: "10. Building a Testing Culture"
     sections:
-      - "Organizing Test Code for Maintainability"
-      - "Creating Reusable Test Fixtures"
-      - "Handling Test Data"
-      - "Testing Legacy Applications"
-      - "Building a Testing Culture"
+      - "Establishing Testing Practices in Teams"
+      - "Testing Metrics That Matter"
+      - "Code Reviews for Test Quality"
+      - "Test Dojos and Learning Activities"
+      - "Addressing Common Team Testing Challenges"
+      - "Testing Documentation Practices"
+      - "Continuous Improvement of Test Processes"
 
 author_bio: |
-  **Philip Riecks** is a Java expert with a passion for testing and Spring Boot. He has helped dozens of companies implement effective testing strategies and is a regular speaker at conferences like Spring I/O, Devoxx, and VMWare Explore.
-  
-  **Tom Hombergs** is a software engineer and architect with a focus on Spring Boot and clean code. He has written extensively about software development practices on his blog, reflectoring.io.
-  
-  **Sven Woltmann** is a senior Java developer and performance optimization specialist. He has over 15 years of experience building large-scale enterprise applications and is passionate about sharing his knowledge through writing and teaching.
+  **Philip Riecks** is a Java expert with a passion for testing and clean code. Through his consulting and teaching work, he has helped dozens of companies implement effective testing strategies. He is a regular speaker at conferences like Spring I/O, Devoxx, and VMWare Explore, where he shares practical insights about testing and software quality.
 
 testimonials:
-  - name: "Markus Schmid"
-    role: "Lead Java Developer"
-    company: "Digital Insurance AG"
-    quote: "This book completely transformed how our team approaches testing. The practical examples and clear explanations make complex testing concepts accessible to developers at all experience levels."
+  - name: "Martin Grotzke"
+    role: "Senior Java Developer"
+    company: "Enterprise Cloud Solutions"
+    quote: "This book has transformed how our team approaches testing. The practical techniques and patterns have improved our test suite maintainability and allowed us to catch bugs earlier in the development process."
   
-  - name: "Christina Weber"
-    role: "Software Quality Engineer"
-    company: "Enterprise Solutions"
-    quote: "I've read many testing books, but this one stands out for its practical focus and Spring Boot-specific techniques. It's filled with real-world examples that you can immediately apply to your projects."
+  - name: "Lisa Schmidt"
+    role: "Technical Lead"
+    company: "FinTech Innovations"
+    quote: "The Java Testing Toolbox provides exactly what its name suggests — a complete set of tools and techniques for effective testing. I especially appreciated the practical examples that show both the 'how' and the 'why' behind modern testing approaches."
 
 faqs:
-  - question: "Is this book suitable for beginners to Spring Boot?"
-    answer: "While some basic knowledge of Spring Boot is helpful, the book starts with fundamentals and gradually builds up to more advanced topics. If you have basic Java knowledge, you'll be able to follow along."
+  - question: "Is this book suitable for testing beginners?"
+    answer: "Yes, the book starts with testing fundamentals and progressively builds to more advanced topics. If you have basic Java knowledge, you'll be able to follow along and improve your testing skills regardless of your current level."
   
-  - question: "Does the book include code examples?"
-    answer: "Yes, the book includes numerous code examples, all of which are available for download from our GitHub repository. The examples are designed to be practical and immediately applicable to real-world projects."
+  - question: "What makes this book different from other testing books?"
+    answer: "Most testing books focus on either theory or a specific library. The Java Testing Toolbox covers the complete ecosystem of modern Java testing tools with a practical approach, showing how they work together in real-world scenarios."
   
-  - question: "How is this book different from your course on the same topic?"
-    answer: "The book provides a comprehensive reference that you can consult whenever needed, while the course offers visual learning through video demonstrations. Many readers choose to use both resources together for a complete learning experience."
+  - question: "Does the book cover Spring Boot testing?"
+    answer: "While this book focuses on the core Java testing libraries that are framework-agnostic, it does include examples of how these tools integrate with Spring Boot. For comprehensive Spring Boot testing, check out our dedicated book 'Testing Spring Boot Applications'."
   
-  - question: "Is a print version available?"
-    answer: "Currently, the book is available in digital formats only (PDF, EPUB, and MOBI). However, we're considering a print edition based on reader demand."
+  - question: "Are the code examples available for download?"
+    answer: "Yes, all code examples from the book are available in a GitHub repository, allowing you to experiment with the concepts as you read."
 ---
 
-## Master the Art of Testing Spring Boot Applications
+## Master the Art of Testing Java Applications
 
-*Testing Spring Boot Applications* is a comprehensive guide for Java developers who want to improve their testing skills and implement effective testing strategies for Spring Boot applications. Whether you're building a simple web application or a complex microservices architecture, this book will help you write tests that provide confidence in your code while maintaining development velocity.
+*Java Testing Toolbox* is a comprehensive guide to the essential testing libraries and techniques for modern Java development. This book equips you with the knowledge and skills to build effective, maintainable test suites that give you confidence in your code.
 
 ### Who This Book Is For
 
 This book is written for Java developers who want to:
 
-- Learn how to test Spring Boot applications effectively
-- Implement a comprehensive testing strategy covering all layers of their application
-- Understand the testing tools and libraries in the Spring ecosystem
-- Establish best practices for maintainable test code
-- Integrate testing into their CI/CD pipelines
+- Master modern testing libraries like JUnit 5, Mockito, AssertJ, and TestContainers
+- Learn practical testing patterns and best practices
+- Build maintainable test suites that enhance code quality
+- Address common testing challenges and pitfalls
+- Implement advanced testing techniques beyond the basics
+
+Whether you're new to testing or looking to enhance your existing skills, this book provides valuable insights and techniques for developers at all levels.
 
 ### What You'll Learn
 
-The book covers a wide range of testing topics specific to Spring Boot applications:
+The book covers a wide range of testing topics for Java applications:
 
-- Unit testing Spring components with and without dependencies
-- Integration testing with Spring Boot Test
-- Testing REST APIs and web controllers
-- Database testing with TestContainers
-- Testing security and authentication
-- Handling asynchronous code in tests
-- Performance testing basics
-- Testing in a microservices architecture
-- Implementing test-driven development with Spring Boot
-- And much more...
+- Writing expressive and maintainable tests with JUnit 5
+- Creating effective mocks and stubs with Mockito
+- Crafting readable assertions with AssertJ
+- Implementing realistic database tests with TestContainers
+- Applying design patterns to improve test organization
+- Optimizing test performance and execution
+- Exploring advanced techniques like property-based and mutation testing
+- Implementing testing in CI/CD pipelines
+- Testing legacy applications and improving testability
 
 ### Practical Approach
 
-Unlike many technical books that focus primarily on theory, *Testing Spring Boot Applications* takes a practical approach, with:
+Unlike many technical books that focus primarily on theory, *Java Testing Toolbox* takes a practical approach with:
 
-- Real-world code examples that you can adapt to your own projects
-- Best practices based on years of industry experience
+- Real-world code examples that demonstrate effective testing techniques
 - Common pitfalls and how to avoid them
-- Testing patterns that can be applied to a variety of scenarios
+- Testing patterns that can be applied to any Java project
+- Guidelines for adapting practices to your specific context
 
 All code examples are available for download, allowing you to experiment with the concepts as you read.
 
 ### Stay Current
 
-The Spring ecosystem evolves rapidly, and so does this book. When you purchase the ebook, you receive free updates for the lifetime of the edition, ensuring your reference material stays current with the latest Spring Boot releases and testing best practices.
+The Java testing ecosystem continues to evolve, and this book keeps you up-to-date with the latest tools and practices. When you purchase the ebook, you receive free updates for life, ensuring your reference material stays current as libraries and best practices evolve.
