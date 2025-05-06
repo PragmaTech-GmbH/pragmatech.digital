@@ -12,3 +12,5 @@ node_modules
 *.csv
 
 hugo_stats.json
+
+**/.claude/settings.local.json
