@@ -9,7 +9,6 @@ params:
 
 relativeURLs: true
 publishDir: "public"
-disableKinds: ["taxonomy", "section"]
 theme: "pragmatech-theme"
 
 build:
