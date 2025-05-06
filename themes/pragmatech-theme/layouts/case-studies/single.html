@@ -12,7 +12,8 @@
     <header class="mb-12">
         {{ if .Params.featured_image }}
         <div class="mb-8">
-            <img src="{{ .Params.featured_image }}" alt="{{ .Title }}" class="w-full h-64 md:h-80 object-cover rounded-xl">
+            {{ $imgData := dict "src" .Params.featured_image "alt" .Title "class" "w-full h-64 md:h-80 object-cover rounded-xl" }}
+            {{ partial "picture.html" $imgData }}
         </div>
         {{ end }}
 
@@ -125,7 +126,8 @@
             {{ range $relatedCaseStudies }}
             <div class="bg-white rounded-lg shadow-sm overflow-hidden">
                 {{ if .Params.featured_image }}
-                <img src="{{ .Params.featured_image }}" alt="{{ .Title }}" class="w-full h-40 object-cover">
+                {{ $imgData := dict "src" .Params.featured_image "alt" .Title "class" "w-full h-40 object-cover" }}
+                {{ partial "picture.html" $imgData }}
                 {{ end }}
                 <div class="p-4">
                     <h3 class="font-bold mb-2">

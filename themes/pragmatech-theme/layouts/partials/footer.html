@@ -3,7 +3,7 @@
         <div class="grid md:grid-cols-4 gap-8">
             <div>
                 <div class="flex items-center space-x-2 mb-4">
-                    <img src="{{ "images/logo.png" | relURL }}" alt="{{ .Site.Title }}" class="h-8 w-auto">
+                    {{ partial "picture" (dict "src" (relURL "images/logo.png") "alt" .Site.Title "class" "h-8 w-auto") }}
                     <span class="text-xl font-bold">Pragma<span class="text-blue-500">Tech</span></span>
                 </div>
                 <p class="text-gray-400 mb-4">

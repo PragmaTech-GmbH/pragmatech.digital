@@ -8,30 +8,14 @@
         <div class="overflow-hidden">
             <div class="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8">
                 <!-- Client logos in a single flexible grid -->
-                <div class="w-1/3 xs:w-1/4 sm:w-1/5 p-2 flex items-center justify-center">
-                    <img src="/images/clients/adevinta.png" alt="Adevinta" class="max-h-8 sm:max-h-10 md:max-h-12 w-auto">
-                </div>
-                <div class="w-1/3 xs:w-1/4 sm:w-1/5 p-2 flex items-center justify-center">
-                    <img src="/images/clients/deloitte.png" alt="Deloitte" class="max-h-8 sm:max-h-10 md:max-h-12 w-auto">
-                </div>
-                <div class="w-1/3 xs:w-1/4 sm:w-1/5 p-2 flex items-center justify-center">
-                    <img src="/images/clients/scout24.png" alt="ImmoScout24" class="max-h-8 sm:max-h-10 md:max-h-12 w-auto">
-                </div>
-                <div class="w-1/3 xs:w-1/4 sm:w-1/5 p-2 flex items-center justify-center">
-                    <img src="/images/clients/extenda.webp" alt="Extenda" class="max-h-8 sm:max-h-10 md:max-h-12 w-auto">
-                </div>
-                <div class="w-1/3 xs:w-1/4 sm:w-1/5 p-2 flex items-center justify-center">
-                    <img src="/images/clients/vmware.webp" alt="VMWare" class="max-h-8 sm:max-h-10 md:max-h-12 w-auto">
-                </div>
-                <div class="w-1/3 xs:w-1/4 sm:w-1/5 p-2 flex items-center justify-center">
-                    <img src="/images/clients/schaeffler.png" alt="Schaeffler" class="max-h-8 sm:max-h-10 md:max-h-12 w-auto">
-                </div>
-                <div class="w-1/3 xs:w-1/4 sm:w-1/5 p-2 flex items-center justify-center">
-                    <img src="/images/clients/exxeta.png" alt="Exxeta" class="max-h-8 sm:max-h-10 md:max-h-12 w-auto">
-                </div>
-                <div class="w-1/3 xs:w-1/4 sm:w-1/5 p-2 flex items-center justify-center">
-                    <img src="/images/clients/adesso.png" alt="Adesso" class="max-h-8 sm:max-h-10 md:max-h-12 w-auto">
-                </div>
+                {{ partial "client-logo" (dict "filename" "adevinta.png" "name" "Adevinta") }}
+                {{ partial "client-logo" (dict "filename" "deloitte.png" "name" "Deloitte") }}
+                {{ partial "client-logo" (dict "filename" "scout24.png" "name" "ImmoScout24") }}
+                {{ partial "client-logo" (dict "filename" "extenda.webp" "name" "Extenda") }}
+                {{ partial "client-logo" (dict "filename" "vmware.webp" "name" "VMWare") }}
+                {{ partial "client-logo" (dict "filename" "schaeffler.png" "name" "Schaeffler") }}
+                {{ partial "client-logo" (dict "filename" "exxeta.png" "name" "Exxeta") }}
+                {{ partial "client-logo" (dict "filename" "adesso.png" "name" "Adesso") }}
             </div>
         </div>
     </div>

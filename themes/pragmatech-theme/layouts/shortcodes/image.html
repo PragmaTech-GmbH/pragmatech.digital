@@ -1,0 +1,33 @@
+{{/* 
+  Image shortcode with WebP support for use in markdown content
+  
+  Usage:
+  {{< image src="/images/example.jpg" alt="Example image" class="w-full h-auto" width="800" height="600" >}}
+  
+  Parameters:
+  - src: Image source path (required)
+  - alt: Alt text for the image (required)
+  - class: CSS classes (optional)
+  - width: Width attribute (optional)
+  - height: Height attribute (optional)
+  - loading: Loading attribute - lazy, eager, auto (optional, defaults to lazy)
+  - sizes: Sizes attribute for responsive images (optional)
+*/}}
+
+{{ $src := .Get "src" }}
+{{ $alt := .Get "alt" }}
+{{ $class := .Get "class" | default "" }}
+{{ $width := .Get "width" | default "auto" }}
+{{ $height := .Get "height" | default "auto" }}
+{{ $loading := .Get "loading" | default "lazy" }}
+{{ $sizes := .Get "sizes" | default "" }}
+
+{{ partial "picture" (dict 
+  "src" $src
+  "alt" $alt
+  "class" $class
+  "width" $width
+  "height" $height
+  "loading" $loading
+  "sizes" $sizes
+) }}

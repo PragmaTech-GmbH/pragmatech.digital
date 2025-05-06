@@ -14,7 +14,8 @@
         <!-- Book Cover Image -->
         <div class="md:col-span-1">
             {{ if .Params.cover_image }}
-            <img src="{{ .Params.cover_image }}" alt="{{ .Title }}" class="w-full rounded-lg shadow-md">
+            {{ $imgData := dict "src" .Params.cover_image "alt" .Title "class" "w-full rounded-lg shadow-md" }}
+            {{ partial "picture.html" $imgData }}
             {{ else }}
             <div class="w-full h-96 bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center rounded-lg shadow-md">
                 <span class="text-white text-2xl font-bold p-8 text-center">{{ .Title }}</span>

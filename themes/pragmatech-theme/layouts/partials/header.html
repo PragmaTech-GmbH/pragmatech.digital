@@ -2,7 +2,7 @@
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center py-4">
             <a href="{{ .Site.Home.RelPermalink }}" class="flex items-center space-x-2">
-                <img src="{{ "images/logo.png" | relURL }}" alt="{{ .Site.Title }}" class="h-8 w-auto">
+                {{ partial "picture" (dict "src" (relURL "images/logo.png") "alt" .Site.Title "class" "h-8 w-auto") }}
                 <span class="text-xl font-bold"><span class="text-blue-600">Pragma</span><span class="text-blue-500">Tech</span></span>
             </a>
 
