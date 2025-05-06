@@ -3,4 +3,17 @@
     @apply my-8;
 }
 
+/* Ensure lists display properly with bullets */
+.page-content ul {
+    @apply list-disc pl-8 my-8;
+}
+
+.page-content ol {
+    @apply list-decimal pl-8 my-8;
+}
+
+.page-content li {
+    @apply mb-3;
+}
+
 /* Add more shared content styling here as needed */
