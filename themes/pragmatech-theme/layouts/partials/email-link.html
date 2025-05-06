@@ -1,0 +1,4 @@
+{{ $type := .type | default "contact" }}
+{{ $email := index .Site.Params.emails $type }}
+{{ $text := .text | default $email }}
+<a href="mailto:{{ $email }}">{{ $text }}</a>
