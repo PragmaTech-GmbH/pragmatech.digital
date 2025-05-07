@@ -7,7 +7,6 @@ params:
   matomoSiteID: "3"
   scheduleCallUrl: "https://koalendar.com/e/pragmatech-introduction-call"
   newsletterUrl: "https://www.linkedin.com/newsletters/7161721575862386688/"
-  # Social sharing defaults
   defaultShareImage: "/images/pragmatech-social-banner.png"
   socialTitle: "PragmaTech GmbH - Build & Ship Software w/ Confidence"
   # Company emails
