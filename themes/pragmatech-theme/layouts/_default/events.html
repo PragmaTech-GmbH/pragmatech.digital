@@ -1,11 +1,17 @@
 {{ define "main" }}
+<section class="relative bg-gradient-to-r from-blue-500 to-indigo-700 text-white overflow-hidden mb-8">
+    <div class="absolute inset-0 bg-[url('/images/pattern-grid.svg')] bg-center opacity-25"></div>
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
+        <div class="max-w-3xl mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">{{ .Title }}</h1>
+            {{ with .Description }}
+            <p class="text-xl">{{ . }}</p>
+            {{ end }}
+        </div>
+    </div>
+</section>
+
 <div class="max-w-6xl mx-auto px-4">
-    <header class="mb-12 text-center">
-        <h1 class="text-4xl font-bold mb-4">{{ .Title }}</h1>
-        {{ with .Description }}
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto">{{ . }}</p>
-        {{ end }}
-    </header>
 
     <div class="mb-12">
         {{ .Content }}

@@ -19,8 +19,8 @@ fi
 # Create generated directory if it doesn't exist
 mkdir -p "$GEN_DIR"
 
-# Function to convert a file to WebP
-convert_to_webp() {
+# Function to handle file processing (either copy or convert)
+process_file() {
     local input_file=$1
     local rel_path=${input_file#"$SRC_DIR/"}
     local dirname=$(dirname "$rel_path")
@@ -40,23 +40,36 @@ convert_to_webp() {
         return
     fi
     
-    # Convert to WebP
-    echo "Converting $input_file to WebP..."
-    cwebp -q 90 "$input_file" -o "$output_file"
-    
-    if [ $? -eq 0 ]; then
-        # Get file sizes for comparison
-        original_size=$(du -h "$input_file" | cut -f1)
-        webp_size=$(du -h "$output_file" | cut -f1)
-        echo "✅ Converted: $input_file ($original_size) -> $output_file ($webp_size)"
+    # If it's already a WebP file, just copy it
+    if [[ "$extension" == "webp" ]]; then
+        echo "Copying WebP file $input_file..."
+        cp "$input_file" "$output_file"
+        
+        if [ $? -eq 0 ]; then
+            file_size=$(du -h "$output_file" | cut -f1)
+            echo "✅ Copied: $input_file -> $output_file ($file_size)"
+        else
+            echo "❌ Error copying $input_file"
+        fi
     else
-        echo "❌ Error converting $input_file to WebP"
+        # Convert to WebP
+        echo "Converting $input_file to WebP..."
+        cwebp -q 90 "$input_file" -o "$output_file"
+        
+        if [ $? -eq 0 ]; then
+            # Get file sizes for comparison
+            original_size=$(du -h "$input_file" | cut -f1)
+            webp_size=$(du -h "$output_file" | cut -f1)
+            echo "✅ Converted: $input_file ($original_size) -> $output_file ($webp_size)"
+        else
+            echo "❌ Error converting $input_file to WebP"
+        fi
     fi
 }
 
-# Find all PNG, JPG, and JPEG files and convert them
-find "$SRC_DIR" -type f \( -iname "*.png" -o -iname "*.jpg" -o -iname "*.jpeg" \) | while read file; do
-    convert_to_webp "$file"
+# Find all PNG, JPG, JPEG, and WebP files and process them
+find "$SRC_DIR" -type f \( -iname "*.png" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.webp" \) | while read file; do
+    process_file "$file"
 done
 
 echo "Conversion completed! WebP images stored in $GEN_DIR"

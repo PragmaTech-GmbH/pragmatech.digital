@@ -14,6 +14,15 @@ module.exports = {
       screens: {
         'xs': '480px',
       },
+      keyframes: {
+        'slow-float': {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' },
+        }
+      },
+      animation: {
+        'slow-float': 'slow-float 6s ease-in-out infinite',
+      },
       typography: {
         DEFAULT: {
           css: {
