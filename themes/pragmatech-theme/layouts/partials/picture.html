@@ -41,7 +41,7 @@
 {{ end }}
 
 {{ $basedir := path.Dir $src }}
-{{ $genWebPPath := printf "/generated%s/%s.webp" $basedir (path.Base $basename) }}
+{{ $genWebPPath := printf "/generated/images/%s/%s.webp" $basedir (path.Base $basename) }}
 
 {{ $imageType := "png" }}
 {{ if eq $pathExt ".jpg" }}
