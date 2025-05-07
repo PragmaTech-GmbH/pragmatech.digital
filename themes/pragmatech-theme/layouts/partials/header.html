@@ -2,7 +2,7 @@
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center py-4">
             <a href="{{ .Site.Home.RelPermalink }}" class="flex items-center space-x-2">
-                {{ partial "picture" (dict "src" (relURL "images/logo.png") "alt" .Site.Title "class" "h-8 w-auto") }}
+                {{ partial "picture" (dict "src" (relURL "logo.png") "alt" .Site.Title "class" "h-8 w-auto") }}
                 <span class="text-xl font-bold"><span class="text-blue-600">Pragma</span><span class="text-blue-500">Tech</span></span>
             </a>
 
@@ -79,31 +79,47 @@
 <!-- Add JavaScript for improved dropdown behavior -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Desktop dropdown
+        // Desktop dropdowns
         const techContentButton = document.getElementById('tech-content-button');
         const techContentDropdown = document.getElementById('tech-content-dropdown');
-        const dropdown = document.querySelector('.dropdown');
+        const consultingButton = document.getElementById('consulting-button');
+        const consultingDropdown = document.getElementById('consulting-dropdown');
+        const dropdowns = document.querySelectorAll('.dropdown');
 
         // Toggle dropdown on click instead of hover
-        if (techContentButton && techContentDropdown) {
-            techContentButton.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                techContentDropdown.classList.toggle('hidden');
-            });
+        // Function to handle dropdown toggle
+        function setupDropdown(button, dropdown, container) {
+            if (button && dropdown) {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    dropdown.classList.toggle('hidden');
+                });
 
-            // Close dropdown when clicking outside
-            document.addEventListener('click', function(e) {
+                // Prevent dropdown from closing when clicking inside it
+                dropdown.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            }
+        }
+
+        // Set up Tech Content dropdown
+        setupDropdown(techContentButton, techContentDropdown);
+        
+        // Set up Consulting dropdown
+        setupDropdown(consultingButton, consultingDropdown);
+
+        // Close all dropdowns when clicking outside
+        document.addEventListener('click', function(e) {
+            dropdowns.forEach(dropdown => {
                 if (!dropdown.contains(e.target)) {
-                    techContentDropdown.classList.add('hidden');
+                    const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+                    if (dropdownMenu) {
+                        dropdownMenu.classList.add('hidden');
+                    }
                 }
             });
-
-            // Prevent dropdown from closing when clicking inside it
-            techContentDropdown.addEventListener('click', function(e) {
-                e.stopPropagation();
-            });
-        }
+        });
 
         // Mobile menu and submenu
         const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -121,6 +137,17 @@
             mobileTechContentButton.addEventListener('click', function(e) {
                 e.preventDefault();
                 mobileTechContentSubmenu.classList.toggle('hidden');
+            });
+        }
+
+        // Mobile consulting menu
+        const mobileConsultingButton = document.getElementById('mobile-consulting-button');
+        const mobileConsultingSubmenu = document.getElementById('mobile-consulting-submenu');
+
+        if (mobileConsultingButton && mobileConsultingSubmenu) {
+            mobileConsultingButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                mobileConsultingSubmenu.classList.toggle('hidden');
             });
         }
     });

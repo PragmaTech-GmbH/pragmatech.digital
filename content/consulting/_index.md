@@ -29,6 +29,49 @@ services:
     icon: "📈"
     description: "Elevate your team's capabilities through hands-on mentoring, pairing sessions, and targeted knowledge transfer focused on modern Java development practices."
 
+productized_services:
+  - name: "Test Maturity Assessment"
+    icon: "🔬"
+    tagline: "Evaluate and enhance your testing approach"
+    description: "A comprehensive evaluation of your current testing practices with actionable recommendations for improvement."
+    deliverables:
+      - "In-depth analysis of your current testing approach"
+      - "Gap analysis against industry best practices"
+      - "Prioritized roadmap for improving test coverage"
+      - "Recommendations for tools and frameworks"
+      - "Executive summary and detailed technical report"
+    timeline: "2-4 weeks"
+    price: "€4,950"
+    link: "/services/test-maturity-assessment"
+
+  - name: "Build Pipeline Acceleration"
+    icon: "🚀"
+    tagline: "Slash your build times and boost productivity"
+    description: "Optimize your CI/CD pipeline for maximum speed and reliability to give your team faster feedback cycles."
+    deliverables:
+      - "Comprehensive build pipeline analysis"
+      - "Performance optimization of test suite execution"
+      - "Parallelization and caching improvements"
+      - "Test splitting and selective execution strategies"
+      - "Hands-on implementation assistance"
+    timeline: "3-5 weeks"
+    price: "€7,500"
+    link: "/services/build-pipeline-acceleration"
+
+  - name: "Test Automation Kickstarter"
+    icon: "🧩"
+    tagline: "Get your test automation strategy right from day one"
+    description: "Launch your test automation initiative with a solid foundation for maintainable, efficient, and effective automated tests."
+    deliverables:
+      - "Test automation strategy tailored to your application"
+      - "Framework selection and initial setup"
+      - "Development of core test patterns and utilities"
+      - "Implementation of first key test scenarios"
+      - "Knowledge transfer and team training"
+    timeline: "4-6 weeks"
+    price: "€8,950"
+    link: "/services/test-automation-kickstarter"
+
 process:
   - title: "Assessment"
     description: "We deeply examine your current processes, technologies, and pain points to create a baseline."
