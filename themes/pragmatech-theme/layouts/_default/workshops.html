@@ -1,15 +1,6 @@
 {{ define "main" }}
 <!-- Header Section -->
-<section class="py-16 md:py-24 bg-blue-600 text-white">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-3xl">
-            <h1 class="text-4xl md:text-5xl font-bold mb-6">{{ .Title }}</h1>
-            <p class="text-xl">
-                {{ .Description }}
-            </p>
-        </div>
-    </div>
-</section>
+{{ partial "section-hero.html" . }}
 
 <!-- Main Content -->
 <section class="py-16 bg-white">
