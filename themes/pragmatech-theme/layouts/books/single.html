@@ -188,7 +188,10 @@
             {{ range $relatedBooks }}
             <div class="bg-white rounded-lg shadow-sm overflow-hidden">
                 {{ if .Params.cover_image }}
-                <img src="{{ .Params.cover_image }}" alt="{{ .Title }}" class="w-full h-48 object-contain p-4">
+                <div class="p-4">
+                    {{ $imgData := dict "src" .Params.cover_image "alt" .Title "class" "w-full h-40 object-contain" }}
+                    {{ partial "picture.html" $imgData }}
+                </div>
                 {{ else }}
                 <div class="w-full h-48 bg-gray-100 flex items-center justify-center">
                     <span class="text-gray-600 text-xl font-bold">{{ .Title }}</span>
