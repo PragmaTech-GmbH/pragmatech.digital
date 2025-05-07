@@ -92,10 +92,12 @@
     pre {
         code {
             @apply bg-inherit text-sm font-mono;
+            font-family: 'Source Code Pro', monospace;
         }
     }
 
     code {
         @apply bg-gray-200 px-1 rounded-md text-green-800;
+        font-family: 'Source Code Pro', monospace;
     }
 }
