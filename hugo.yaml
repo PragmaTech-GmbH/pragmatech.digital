@@ -9,7 +9,6 @@ params:
   newsletterUrl: "https://www.linkedin.com/newsletters/7161721575862386688/"
   defaultShareImage: "/images/pragmatech-social-banner.png"
   socialTitle: "PragmaTech GmbH - Build & Ship Software w/ Confidence"
-  # Company emails
   emails:
     contact: "info@pragmatech.digital"
     info: "info@pragmatech.digital"
@@ -23,11 +22,6 @@ theme: "pragmatech-theme"
 # Content types configuration
 archetypeDir: "archetypes"
 contentDir: "content"
-
-# Define custom taxonomies
-taxonomies:
-  category: "categories"
-  tag: "tags"
 
 build:
   buildStats:
