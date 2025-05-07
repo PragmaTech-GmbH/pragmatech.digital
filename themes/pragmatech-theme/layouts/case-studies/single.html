@@ -1,5 +1,5 @@
 {{ define "main" }}
-<article class="max-w-5xl mx-auto px-4">
+<article class="max-w-5xl mx-auto px-4 py-8">
     <div class="mb-8">
         <a href="/case-studies/" class="text-blue-600 hover:underline flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
@@ -9,7 +9,7 @@
         </a>
     </div>
 
-    <header class="mb-12">
+    <header class="mb-16">
         {{ if .Params.featured_image }}
         <div class="mb-8">
             {{ $imgData := dict "src" .Params.featured_image "alt" .Title "class" "w-full h-64 md:h-80 object-cover rounded-xl" }}

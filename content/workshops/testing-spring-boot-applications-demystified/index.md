@@ -3,7 +3,7 @@ title: "Testing Spring Boot Applications Demystified"
 summary: "A comprehensive workshop to master effective testing strategies for Spring Boot applications"
 description: "Learn how to design and implement a robust testing strategy for your Spring Boot applications"
 date: 2025-05-05T11:40:13+02:00
-image: "/images/workshops/testing-spring-boot.jpg"
+image: "/images/workshops/workshop-spring-boot-demystify.png"
 duration: "1-2 days"
 format: "On-site or Remote"
 participants: "Up to 15 developers"
