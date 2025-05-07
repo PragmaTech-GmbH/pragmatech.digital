@@ -1,0 +1,32 @@
+{
+  "name": "pragmatech-website",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "hugo serve -D",
+    "dev:watch": "hugo serve -D --navigateToChanged",
+    "build": "npm run clean:generated && npm run optimize:images && hugo --gc --minify",
+    "build:preview": "npm run clean:generated && npm run optimize:images && hugo --gc --minify --buildFuture",
+    "optimize:images": "bash scripts/convert-to-webp.sh",
+    "create:placeholders": "bash scripts/create-placeholder-images.sh",
+    "clean": "rm -rf public resources",
+    "clean:generated": "rm -rf static/generated",
+    "start": "hugo serve",
+    "lint": "postcss assets/css/styles.css --check",
+    "postinstall": "hugo mod npm pack",
+    "setup": "npm install && npm run create:placeholders && npm run optimize:images"
+  },
+  "keywords": [
+    "hugo",
+    "tailwindcss",
+    "consulting",
+    "pragmatech"
+  ],
+  "author": "PragmaTech Digital Solutions",
+  "license": "ISC",
+  "description": "PragmaTech Digital Solutions website",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.4",
+    "@tailwindcss/typography": "^0.5.10",
+    "tailwindcss": "^4.1.4"
+  }
+}
