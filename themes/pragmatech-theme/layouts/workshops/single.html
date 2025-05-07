@@ -61,7 +61,7 @@
     <!-- Details Section -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-20 mt-16">
         <div class="md:col-span-2">
-            <div class="prose prose-lg max-w-none">
+            <div class="prose prose-lg max-w-none page-content">
                 {{ .Content }}
             </div>
 
@@ -69,10 +69,10 @@
             {{ if .Params.topics }}
             <div class="mt-20">
                 <h2 class="text-2xl font-bold mb-6">Topics Covered</h2>
-                <ul class="space-y-3">
+                <ul class="space-y-4">
                     {{ range .Params.topics }}
                     <li class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                         <span>{{ . }}</span>
@@ -97,11 +97,11 @@
                     {{ .Params.booking_note | default "Contact us for custom pricing or to schedule this workshop for your team" }}
                 </div>
 
-                <h4 class="font-bold mb-2">Includes:</h4>
-                <ul class="space-y-2 mb-6">
+                <h4 class="font-bold mb-3">Includes:</h4>
+                <ul class="space-y-3 mb-6">
                     {{ range .Params.includes }}
                     <li class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                         </svg>
                         <span>{{ . }}</span>
@@ -160,18 +160,25 @@
         <h2 class="text-2xl font-bold mb-6">Other Workshops You Might Like</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             {{ range $relatedWorkshops }}
-            <div class="bg-white rounded-lg shadow-sm overflow-hidden">
-                {{ if .Params.image }}
-                <img src="{{ .Params.image }}" alt="{{ .Title }}" class="w-full h-40 object-cover">
-                {{ end }}
-                <div class="p-4">
-                    <h3 class="font-bold mb-2">
-                        <a href="{{ .Permalink }}" class="hover:text-blue-600">{{ .Title }}</a>
-                    </h3>
-                    <div class="text-sm text-gray-600 mb-2">{{ .Params.duration }} · {{ .Params.format }}</div>
-                    <a href="{{ .Permalink }}" class="text-blue-600 text-sm hover:underline">View details →</a>
+            <a href="{{ .Permalink }}" class="block group">
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden transition-shadow hover:shadow-md">
+                    {{ if .Params.image }}
+                    <img src="{{ .Params.image }}" alt="{{ .Title }}" class="w-full h-40 object-cover">
+                    {{ end }}
+                    <div class="p-4">
+                        <h3 class="font-bold mb-2 group-hover:text-blue-600 transition-colors">
+                            {{ .Title }}
+                        </h3>
+                        <div class="text-sm text-gray-600 mb-2">{{ .Params.duration }} · {{ .Params.format }}</div>
+                        <span class="text-blue-600 text-sm group-hover:underline inline-flex items-center">
+                            View details
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </span>
+                    </div>
                 </div>
-            </div>
+            </a>
             {{ end }}
         </div>
     </div>

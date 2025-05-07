@@ -33,31 +33,33 @@
         <!-- List of workshops -->
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {{ range where .Site.RegularPages "Section" "workshops" }}
-            <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-                {{ if .Params.image }}
-                <img src="{{ .Params.image }}" alt="{{ .Title }}" class="w-full h-48 object-cover">
-                {{ else }}
-                <div class="w-full h-48 bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center">
-                    <span class="text-white text-2xl font-bold">{{ .Title }}</span>
-                </div>
-                {{ end }}
-                <div class="p-6">
-                    <div class="text-sm text-blue-600 font-medium mb-2">{{ .Params.duration }} - {{ .Params.format }}</div>
-                    <h3 class="text-xl font-bold mb-3">{{ .Title }}</h3>
-                    <p class="text-gray-600 mb-4">{{ .Params.summary }}</p>
-                    <div class="flex justify-between items-center">
-                        <a href="{{ .RelPermalink }}" class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center">
-                            Learn more
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                            </svg>
-                        </a>
-                        {{ if .Params.price }}
-                        <span class="text-gray-900 font-bold">{{ .Params.price }}</span>
-                        {{ end }}
+            <a href="{{ .RelPermalink }}" class="block group">
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm group-hover:shadow-md transition-shadow">
+                    {{ if .Params.image }}
+                    <img src="{{ .Params.image }}" alt="{{ .Title }}" class="w-full h-48 object-cover">
+                    {{ else }}
+                    <div class="w-full h-48 bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center">
+                        <span class="text-white text-2xl font-bold">{{ .Title }}</span>
+                    </div>
+                    {{ end }}
+                    <div class="p-6">
+                        <div class="text-sm text-blue-600 font-medium mb-2">{{ .Params.duration }} - {{ .Params.format }}</div>
+                        <h3 class="text-xl font-bold mb-3 group-hover:text-blue-600 transition-colors">{{ .Title }}</h3>
+                        <p class="text-gray-600 mb-4">{{ .Params.summary }}</p>
+                        <div class="flex justify-between items-center">
+                            <div class="text-blue-600 group-hover:text-blue-800 font-medium inline-flex items-center">
+                                Learn more
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </div>
+                            {{ if .Params.price }}
+                            <span class="text-gray-900 font-bold">{{ .Params.price }}</span>
+                            {{ end }}
+                        </div>
                     </div>
                 </div>
-            </div>
+            </a>
             {{ end }}
         </div>
     </div>
