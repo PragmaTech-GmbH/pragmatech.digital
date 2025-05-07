@@ -4,7 +4,7 @@ subtitle: "30 Testing Tools and Libraries Every Java Developer Must Know"
 summary: "30 Testing Tools and Libraries Every Java Developer Must Know"
 description: "A comprehensive guide to Java testing libraries including JUnit 5, Mockito, AssertJ, and TestContainers with real-world examples and best practices"
 date: 2023-05-05T11:40:13+02:00
-cover_image: "/images/courses/java-testing-toolbox.jpg"
+cover_image: "/images/books/java-testing-toolbox.jpg"
 authors: ["Philip Riecks"]
 published_date: "June 2024"
 last_updated: "March 2025"

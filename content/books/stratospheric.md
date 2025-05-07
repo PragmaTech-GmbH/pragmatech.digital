@@ -4,7 +4,7 @@ subtitle: "From Zero to Production with Spring Boot and AWS"
 summary: "Learn how to deploy Spring Boot applications to AWS using modern cloud-native patterns"
 description: "A comprehensive guide to deploying Spring Boot applications to AWS, with practical examples of networking, security, CI/CD, and production-ready configuration"
 date: 2023-05-05T11:40:13+02:00
-cover_image: "/images/stratospheric-ebook-cover.png"
+cover_image: "/images/books/stratospheric-ebook-cover.png"
 authors: ["Philip Riecks", "Tom Hombergs", "Björn Wilmsmann"]
 published_date: "January 2022"
 last_updated: "March 2025"
