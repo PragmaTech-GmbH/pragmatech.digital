@@ -89,7 +89,7 @@
                 {{ end }}
             </div>
 
-            <div class="prose prose-lg max-w-none mb-8">
+            <div class="prose prose-lg max-w-none page-content mb-8">
                 {{ .Content }}
             </div>
 
@@ -97,10 +97,10 @@
             {{ if .Params.topics }}
             <div class="mb-8">
                 <h2 class="text-2xl font-bold mb-4">What You'll Learn</h2>
-                <ul class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {{ range .Params.topics }}
                     <li class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                         <span>{{ . }}</span>
