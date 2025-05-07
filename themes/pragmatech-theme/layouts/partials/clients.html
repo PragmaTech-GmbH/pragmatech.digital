@@ -1,0 +1,22 @@
+<section class="py-12 sm:py-16 bg-gray-50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-8 sm:mb-10">
+            <h2 class="text-xl sm:text-2xl md:text-3xl font-bold">Trusted by Leading Companies</h2>
+        </div>
+
+        <!-- Logos Carousel/Grid - Mobile Optimized -->
+        <div class="overflow-hidden">
+            <div class="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8">
+                <!-- Client logos in a single flexible grid -->
+                {{ partial "client-logo" (dict "filename" "adevinta.png" "name" "Adevinta") }}
+                {{ partial "client-logo" (dict "filename" "deloitte.png" "name" "Deloitte") }}
+                {{ partial "client-logo" (dict "filename" "scout24.png" "name" "ImmoScout24") }}
+                {{ partial "client-logo" (dict "filename" "extenda.webp" "name" "Extenda") }}
+                {{ partial "client-logo" (dict "filename" "vmware.webp" "name" "VMWare") }}
+                {{ partial "client-logo" (dict "filename" "schaeffler.png" "name" "Schaeffler") }}
+                {{ partial "client-logo" (dict "filename" "exxeta.png" "name" "Exxeta") }}
+                {{ partial "client-logo" (dict "filename" "adesso.png" "name" "Adesso") }}
+            </div>
+        </div>
+    </div>
+</section>

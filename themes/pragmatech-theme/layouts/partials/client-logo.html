@@ -1,0 +1,15 @@
+{{ $filename := .filename }}
+{{ $basename := replace $filename (path.Ext $filename) "" }}
+
+<div class="w-1/3 xs:w-1/4 sm:w-1/5 p-2 flex items-center justify-center">
+  <picture>
+    <!-- WebP version from generated directory -->
+    <source srcset="/generated/images/clients/{{ $basename }}.webp" type="image/webp">
+    <!-- Original image as fallback -->
+    <img 
+      src="/images/clients/{{ $filename }}"
+      alt="{{ .name }}" 
+      class="max-h-8 sm:max-h-10 md:max-h-12 w-auto" 
+      loading="lazy">
+  </picture>
+</div>

@@ -1,6 +1,9 @@
 public/
 resources/
 
+# Generated assets
+#static/generated/
+
 node_modules
 
 .idea
@@ -10,3 +13,7 @@ node_modules
 .hugo_build.lock
 
 *.csv
+
+hugo_stats.json
+
+**/.claude/settings.local.json

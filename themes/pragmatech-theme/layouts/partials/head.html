@@ -1,0 +1,59 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | PragmaTech GmbH{{ end }}</title>
+    <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Summary }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}{{ end }}">
+    <link rel="canonical" href="{{ .Permalink }}">
+    <link rel="icon" href="{{ "favicon.ico" | relURL }}">
+    
+    <!-- Social Sharing Meta Tags -->
+    {{ $shareImage := .Params.share_image | default "/images/pragmatech-social-banner.png" }}
+    {{ $imagePrefix := strings.TrimSuffix "/" .Site.BaseURL }}
+    {{ $fullImagePath := printf "%s%s" $imagePrefix $shareImage }}
+    {{ $pageTitle := cond .IsHome .Site.Title .Title }}
+    {{ $desc := .Description | default .Summary | default .Site.Params.description }}
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+    <meta property="og:url" content="{{ .Permalink }}">
+    <meta property="og:title" content="{{ $pageTitle }}">
+    <meta property="og:description" content="{{ $desc }}">
+    <meta property="og:image" content="{{ $fullImagePath }}">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="{{ .Permalink }}">
+    <meta name="twitter:title" content="{{ $pageTitle }}">
+    <meta name="twitter:description" content="{{ $desc }}">
+    <meta name="twitter:image" content="{{ $fullImagePath }}">
+
+    {{ with (templates.Defer (dict "key" "global")) }}
+        {{ $t := debug.Timer "tailwindcss" }}
+        {{ with resources.Get "css/styles.css" }}
+            {{ $opts := dict
+            "inlineImports" true
+            "optimize" (not hugo.IsDevelopment)
+            }}
+        {{ with . | css.TailwindCSS $opts }}
+        {{ if hugo.IsDevelopment }}
+        <link rel="stylesheet" href="{{ .RelPermalink }}" />
+        {{ else }}
+        {{ with . | minify | fingerprint }}
+        <link
+                rel="stylesheet"
+                href="{{ .RelPermalink }}"
+                integrity="{{ .Data.Integrity }}"
+                crossorigin="anonymous" />
+        {{ end }}
+        {{ end }}
+        {{ end }}
+        {{ end }}
+        {{ $t.Stop }}
+    {{ end }}
+
+    {{ $js := resources.Get "js/main.js" }}
+    {{ if hugo.IsProduction }}
+    {{ $js = $js | minify | fingerprint }}
+    {{ end }}
+    <script src="{{ $js.RelPermalink }}"></script>
+</head>

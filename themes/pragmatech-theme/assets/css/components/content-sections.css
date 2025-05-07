@@ -1,0 +1,45 @@
+/* Consistent styling for content sections across the site */
+.page-content p {
+    @apply my-6;
+}
+
+/* Ensure lists display properly with bullets */
+.page-content ul {
+    @apply list-disc pl-8 my-6;
+}
+
+.page-content ol {
+    @apply list-decimal pl-8 my-6;
+}
+
+.page-content li {
+    @apply mb-3;
+}
+
+/* Headings spacing */
+.page-content h2 {
+    @apply mt-10 mb-4 text-2xl font-bold;
+}
+
+.page-content h3 {
+    @apply mt-8 mb-3 text-xl font-bold;
+}
+
+.page-content h4 {
+    @apply mt-6 mb-2 text-lg font-bold;
+}
+
+/* Nested lists spacing */
+.page-content ul ul,
+.page-content ol ol,
+.page-content ul ol,
+.page-content ol ul {
+    @apply my-3;
+}
+
+/* Code and blockquote styling */
+.page-content blockquote {
+    @apply pl-4 border-l-4 border-gray-300 italic my-6;
+}
+
+/* Add more shared content styling here as needed */

@@ -1,0 +1,26 @@
+{{ define "main" }}
+{{ partial "section-hero.html" . }}
+
+<!-- Main Content -->
+<section class="py-12 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="prose prose-lg max-w-5xl mx-auto page-content">
+            {{ .Content }}
+        </div>
+    </div>
+</section>
+
+<!-- Last Updated Info -->
+{{ if .Params.last_updated }}
+<section class="py-8 bg-gray-50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center">
+            <p class="text-sm text-gray-500">
+                Last updated: {{ .Params.last_updated }}
+            </p>
+        </div>
+    </div>
+</section>
+{{ end }}
+
+{{ end }}

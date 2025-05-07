@@ -1,0 +1,47 @@
+baseURL: "https://pragmatech.digital/"
+title: "PragmaTech GmbH - Build & Ship Software w/ Confidence"
+
+params:
+  description: "Build & Ship Software w/ Confidence. Cut through testing complexity and slow builds for faster feedback and fearless shipping."
+  matomoURL: "https://analytics.rieckpil.de/"
+  matomoSiteID: "3"
+  scheduleCallUrl: "https://koalendar.com/e/pragmatech-introduction-call"
+  newsletterUrl: "https://www.linkedin.com/newsletters/7161721575862386688/"
+  defaultShareImage: "/images/pragmatech-social-banner.png"
+  socialTitle: "PragmaTech GmbH - Build & Ship Software w/ Confidence"
+  # Company emails
+  emails:
+    contact: "info@pragmatech.digital"
+    info: "info@pragmatech.digital"
+    privacy: "info@pragmatech.digital"
+    dpo: "info@pragmatech.digital"
+
+relativeURLs: true
+publishDir: "public"
+theme: "pragmatech-theme"
+
+# Content types configuration
+archetypeDir: "archetypes"
+contentDir: "content"
+
+# Define custom taxonomies
+taxonomies:
+  category: "categories"
+  tag: "tags"
+
+build:
+  buildStats:
+    enable: true
+  cachebusters:
+    - source: 'assets/notwatching/hugo_stats\.json'
+      target: 'css'
+    - source: '(postcss|tailwind)\.config\.js'
+      target: 'css'
+
+module:
+  mounts:
+    - source: 'assets'
+      target: 'assets'
+    - disableWatch: true
+      source: 'hugo_stats.json'
+      target: 'assets/notwatching/hugo_stats.json'

@@ -1,0 +1,134 @@
+<div class="events-calendar bg-white rounded-lg shadow-md p-6 mb-12">
+  <div class="flex justify-between items-center mb-6">
+    <button id="prev-month" class="text-gray-600 hover:text-primary">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+    </button>
+    <h3 id="current-month" class="text-xl font-bold"></h3>
+    <button id="next-month" class="text-gray-600 hover:text-primary">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      </svg>
+    </button>
+  </div>
+
+  <div class="grid grid-cols-7 gap-1 text-center mb-2">
+    <div class="font-semibold">Sun</div>
+    <div class="font-semibold">Mon</div>
+    <div class="font-semibold">Tue</div>
+    <div class="font-semibold">Wed</div>
+    <div class="font-semibold">Thu</div>
+    <div class="font-semibold">Fri</div>
+    <div class="font-semibold">Sat</div>
+  </div>
+
+  <div id="calendar-days" class="grid grid-cols-7 gap-1"></div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const events = [
+      {{ range where .Site.RegularPages "Section" "events" }}
+        {
+          date: "{{ .Date.Format "2006-01-02" }}",
+          title: "{{ .Title }}",
+          url: "{{ .Permalink }}",
+          type: "{{ .Params.eventType }}"
+        },
+      {{ end }}
+    ];
+    
+    let currentDate = new Date();
+    let currentMonth = currentDate.getMonth();
+    let currentYear = currentDate.getFullYear();
+    
+    function renderCalendar() {
+      const monthElement = document.getElementById('current-month');
+      monthElement.textContent = new Date(currentYear, currentMonth, 1).toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+      
+      const daysContainer = document.getElementById('calendar-days');
+      daysContainer.innerHTML = '';
+      
+      // Get first day of month and number of days
+      const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+      const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+      
+      // Add empty cells for days before the first day of month
+      for (let i = 0; i < firstDay; i++) {
+        const emptyDay = document.createElement('div');
+        emptyDay.className = 'h-14 bg-gray-100 rounded';
+        daysContainer.appendChild(emptyDay);
+      }
+      
+      // Add cells for each day
+      for (let day = 1; day <= daysInMonth; day++) {
+        const dayCell = document.createElement('div');
+        dayCell.className = 'relative h-14 bg-gray-50 hover:bg-gray-100 rounded flex flex-col p-1';
+        
+        // Add day number
+        const dayNumber = document.createElement('div');
+        dayNumber.className = 'text-sm';
+        dayNumber.textContent = day;
+        dayCell.appendChild(dayNumber);
+        
+        // Check if there are events on this day
+        const dayStr = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+        const dayEvents = events.filter(event => event.date === dayStr);
+        
+        if (dayEvents.length > 0) {
+          dayCell.classList.add('bg-white', 'border', 'border-primary');
+          
+          // Show indicator for each event (up to 2)
+          const eventsContainer = document.createElement('div');
+          eventsContainer.className = 'flex flex-col mt-1 overflow-hidden';
+          
+          dayEvents.slice(0, 2).forEach(event => {
+            const eventDot = document.createElement('a');
+            eventDot.href = event.url;
+            eventDot.className = `text-xs truncate ${
+              event.type === 'meetup' ? 'text-yellow-700' :
+              event.type === 'talk' ? 'text-blue-700' :
+              'text-green-700'
+            }`;
+            eventDot.textContent = event.title;
+            eventsContainer.appendChild(eventDot);
+          });
+          
+          if (dayEvents.length > 2) {
+            const moreEvents = document.createElement('div');
+            moreEvents.className = 'text-xs text-gray-500';
+            moreEvents.textContent = `+${dayEvents.length - 2} more`;
+            eventsContainer.appendChild(moreEvents);
+          }
+          
+          dayCell.appendChild(eventsContainer);
+        }
+        
+        daysContainer.appendChild(dayCell);
+      }
+    }
+    
+    // Initialize calendar
+    renderCalendar();
+    
+    // Set up month navigation
+    document.getElementById('prev-month').addEventListener('click', function() {
+      currentMonth--;
+      if (currentMonth < 0) {
+        currentMonth = 11;
+        currentYear--;
+      }
+      renderCalendar();
+    });
+    
+    document.getElementById('next-month').addEventListener('click', function() {
+      currentMonth++;
+      if (currentMonth > 11) {
+        currentMonth = 0;
+        currentYear++;
+      }
+      renderCalendar();
+    });
+  });
+</script>

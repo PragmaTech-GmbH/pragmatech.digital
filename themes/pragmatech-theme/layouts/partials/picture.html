@@ -1,0 +1,72 @@
+{{/* 
+  Reusable picture element with WebP support
+  
+  Parameters:
+    src: The original image path (required)
+    alt: Alt text for the image (required)
+    class: CSS classes for the img element (optional)
+    width: Width attribute (optional)
+    height: Height attribute (optional)
+    loading: Loading attribute (lazy, eager, auto) - defaults to lazy
+    sizes: Sizes attribute for responsive images (optional)
+    fill: Resize dimensions (format: "WxH") - Optional, leave empty for no resizing
+    
+  Usage:
+    {{ partial "picture" (dict 
+       "src" "/images/logo.png" 
+       "alt" "Logo" 
+       "class" "w-full h-auto" 
+       "loading" "lazy"
+       "width" "300"
+       "height" "200"
+    ) }}
+*/}}
+
+{{ $src := .src }}
+{{ $alt := .alt }}
+{{ $class := .class | default "" }}
+{{ $width := .width | default "auto" }}
+{{ $height := .height | default "auto" }}
+{{ $loading := .loading | default "lazy" }}
+{{ $sizes := .sizes | default "" }}
+{{ $fill := .fill | default "" }}
+
+{{ $originalPath := $src }}
+{{ $pathExt := path.Ext $src }}
+{{ $basename := replace $src $pathExt "" }}
+
+{{ $relativePath := $src }}
+{{ if hasPrefix $src "/" }}
+  {{ $relativePath = strings.TrimPrefix "/" $src }}
+{{ end }}
+
+{{ $basedir := path.Dir $src }}
+{{ $genWebPPath := printf "/generated%s/%s.webp" $basedir (path.Base $basename) }}
+
+{{ $imageType := "png" }}
+{{ if eq $pathExt ".jpg" }}
+  {{ $imageType = "jpeg" }}
+{{ else if eq $pathExt ".jpeg" }}
+  {{ $imageType = "jpeg" }}
+{{ else if eq $pathExt ".svg" }}
+  {{ $imageType = "svg+xml" }}
+{{ else if eq $pathExt ".gif" }}
+  {{ $imageType = "gif" }}
+{{ else }}
+  {{ $imageType = strings.TrimPrefix "." $pathExt }}
+{{ end }}
+
+<picture>
+  {{ if ne $pathExt ".svg" }}
+  <source srcset="{{ $genWebPPath }}" type="image/webp">
+  {{ end }}
+  <source srcset="{{ $src }}" type="image/{{ $imageType }}">
+  <img 
+    src="{{ $src }}" 
+    alt="{{ $alt }}" 
+    {{ with $class }}class="{{ . }}"{{ end }}
+    {{ if ne $width "auto" }}width="{{ $width }}"{{ end }}
+    {{ if ne $height "auto" }}height="{{ $height }}"{{ end }}
+    {{ if $sizes }}sizes="{{ $sizes }}"{{ end }}
+    loading="{{ $loading }}">
+</picture>
