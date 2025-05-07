@@ -10,7 +10,7 @@ published_date: "January 2022"
 last_updated: "March 2025"
 pages: 550
 format: "Digital Book"
-price: "$39.00"
+price: "$39"
 badge: "Bestseller"
 purchase_url: "https://leanpub.com/stratospheric"
 purchase_note: "Available as PDF, EPUB, and MOBI. Includes free updates for life."

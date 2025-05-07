@@ -10,7 +10,7 @@ published_date: "June 2024"
 last_updated: "March 2025"
 pages: 380
 format: "Digital Book"
-price: "$19.00"
+price: "$19"
 badge: "New Release"
 purchase_url: "https://leanpub.com/java-testing-toolbox"
 purchase_note: "Available as PDF. Includes free updates for life."
