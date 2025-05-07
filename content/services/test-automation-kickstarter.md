@@ -47,7 +47,7 @@ draft: false
 
 ## Overview
 
-The Test Automation Kickstarter service provides everything you need to launch a successful test automation initiative. We design and implement a solid foundation for automated testing tailored to your application, tech stack, and team needs, then implement initial test scenarios and train your team to continue building on this foundation.
+The Test Automation Kickstarter (TAK) service provides everything you need to launch a successful test automation initiative. We design and implement a solid foundation for automated testing tailored to your application, tech stack, and team needs, then implement initial test scenarios and train your team to continue building on this foundation.
 
 ## Why This Matters
 

@@ -47,7 +47,7 @@ draft: false
 
 ## Overview
 
-The Build Pipeline Acceleration service is designed to dramatically reduce your CI/CD pipeline execution time while improving reliability. Through a series of targeted optimizations, we identify and eliminate bottlenecks that slow down your build, test, and deployment processes, resulting in faster feedback cycles and improved developer productivity.
+The Build Pipeline Acceleration (BPA) service is designed to dramatically reduce your CI/CD pipeline execution time while improving reliability. Through a series of targeted optimizations, we identify and eliminate bottlenecks that slow down your build, test, and deployment processes, resulting in faster feedback cycles and improved developer productivity.
 
 ## Why This Matters
 

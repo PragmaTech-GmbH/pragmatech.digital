@@ -6,8 +6,8 @@ date: 2023-07-01T10:00:00+02:00
 image: "/images/workshops/workshop-tdd-spring-boot.png"
 duration: "1 day"
 format: "On-site or Remote"
-capacity: "Up to 15 participants"
-price: "€2,950"
+participants: "Up to 15 developers"
+price: "Starting at €2,950 / team"
 booking_url: "/contact"
 topics:
   - "TDD fundamentals with Spring Boot"
@@ -21,7 +21,7 @@ topics:
 includes:
   - "Workshop materials and slides"
   - "Real-world code examples and exercises"
-  - "30 days of post-workshop support"
+  - "Workshop recording for future reference"
   - "Practical testing patterns and anti-patterns guide"
   - "Certificate of completion"
 instructor:
@@ -29,15 +29,15 @@ instructor:
   role: "Lead Instructor"
   image: "/images/team/philip.jpg"
   bio: "Philip is a Spring Boot testing expert and consultant who has helped dozens of teams improve their testing practices. He's the author of several courses on testing Spring applications and speaks regularly at conferences on the topic."
-testimonials:
-  - name: "Maria Rodriguez"
-    role: "Engineering Lead"
-    company: "FinTech Inc."
-    quote: "The TDD workshop transformed how our team approaches testing. Philip's practical examples and hands-on exercises gave us immediate, applicable skills we started using the very next day."
-  - name: "Thomas Schmidt"
-    role: "Senior Developer"
-    company: "eCommerce Solutions GmbH"
-    quote: "Unlike other TDD workshops I've attended, this one focused on real-world Spring Boot scenarios we actually encounter daily. The testing patterns section alone was worth the price of admission."
+#testimonials:
+#  - name: "Maria Rodriguez"
+#    role: "Engineering Lead"
+#    company: "FinTech Inc."
+#    quote: "The TDD workshop transformed how our team approaches testing. Philip's practical examples and hands-on exercises gave us immediate, applicable skills we started using the very next day."
+#  - name: "Thomas Schmidt"
+#    role: "Senior Developer"
+#    company: "eCommerce Solutions GmbH"
+#    quote: "Unlike other TDD workshops I've attended, this one focused on real-world Spring Boot scenarios we actually encounter daily. The testing patterns section alone was worth the price of admission."
 draft: false
 ---
 
@@ -80,7 +80,7 @@ Knowledge prerequisites:
 - Fundamentals of Java programming
 - Familiarity with REST APIs
 
-### Workshop Outline
+### Sample Workshop Outline
 
 #### Morning Session (9:00 AM - 12:30 PM)
 

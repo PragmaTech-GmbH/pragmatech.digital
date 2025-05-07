@@ -107,10 +107,10 @@ testimonials:
     company: "Widdix GmbH"
     quote: "From the moment we engaged with PragmaTech, it was evident that their team was committed to delivering excellence. The implementation of their software has significantly enhanced our acceptance test suite, streamlining processes, and boosting efficiency. What used to be a cumbersome and time-consuming task has now become seamless and effortless, thanks to PragmaTech's innovative approach."
 
-  - name: "Maria Rodriguez"
-    role: "Engineering Lead"
-    company: "FinTech Inc."
-    quote: "Working with PragmaTech was a game-changer for our testing practices. We've reduced bugs in production by 70% and our developers are much more confident with each release."
+  - name: "Shayne Clausson"
+    role: "VP Engineering"
+    company: "Extenda Retail"
+    quote: "PragmaTech's expertise revolutionized our deployment confidence by implementing feature toggling and enhanced CI/CD pipelines for our Java applications. Their integration testing strategy caught critical issues before production, enabling safer, more frequent deployments. Our team now releases with greater security and speed thanks to their practical workshops and guidance."
 ---
 
 ## Expert Consulting for Java Development Teams

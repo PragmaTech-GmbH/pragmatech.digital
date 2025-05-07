@@ -7,7 +7,7 @@ image: "/images/workshops/workshop-spring-boot-demystify.png"
 duration: "1-2 days"
 format: "On-site or Remote"
 participants: "Up to 15 developers"
-price: "Starting at €2,500 / team"
+price: "Starting at €2,490 / team"
 booking_url: "/contact"
 type: "workshops"
 layout: "single"
@@ -26,7 +26,7 @@ includes:
   - "Comprehensive workshop materials"
   - "Hands-on practical exercises"
   - "Sample code repository"
-  - "30-day post-workshop support"
+  - "Workshop recording"
   - "Certificate of completion"
 instructor:
   name: "Philip Riecks"
@@ -36,15 +36,13 @@ instructor:
 testimonials:
   - name: "Julia König"
     role: "Senior Developer"
-    company: "Finance Solutions AG"
+    company: "1-Day Workshop"
     quote: "This workshop completely changed our team's approach to testing. The practical exercises and real-world examples made it easy to understand how to apply these concepts to our own codebase."
   - name: "Marcus Bauer"
     role: "DevOps Lead"
-    company: "Insurance Tech GmbH"
-    quote: "Exactly what our team needed. The section on TestContainers was particularly valuable and helped us solve several persistent testing challenges."
+    company: "2-Day Workshop"
+    quote: "Exactly what our team needed. The section on Testcontainers was particularly valuable and helped us solve several persistent testing challenges."
 ---
-
-ABC
 
 ## Master Effective Testing for Spring Boot Applications
 
@@ -69,7 +67,8 @@ Participants should have:
 - Basic knowledge of Java and Spring Boot
 - Experience with building web applications
 - Familiarity with Maven or Gradle
-- A laptop with Java 11+ and an IDE installed
+- A laptop with Java 17+ and an IDE installed
+- Access to a Docker Engine
 
 ### Workshop Outline
 

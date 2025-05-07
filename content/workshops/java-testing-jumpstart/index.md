@@ -4,10 +4,10 @@ summary: "Master the essential Java testing toolbox and start writing effective 
 description: "A comprehensive hands-on workshop covering JUnit, Mockito, Testcontainers, WireMock, and AssertJ to help Java developers build a solid foundation in automated testing"
 date: 2023-08-15T09:00:00+02:00
 image: "/images/workshops/workshop-java-testing.png"
-duration: "2 days"
+duration: "1-2 days"
 format: "On-site or Remote"
-capacity: "Up to 15 participants"
-price: "€3,950"
+participants: "Up to 15 developers"
+price: "Starting at €2,490 / team"
 booking_url: "/contact"
 topics:
   - "Testing fundamentals and best practices"
@@ -22,7 +22,7 @@ includes:
   - "Comprehensive workshop materials and slides"
   - "Hands-on exercises with sample applications"
   - "Testing cheat sheets and reference guides"
-  - "30 days of post-workshop support"
+  - "Workshop recording for future reference"
   - "Certificate of completion"
 instructor:
   name: "Philip Riecks"
@@ -30,14 +30,14 @@ instructor:
   image: "/images/team/philip.jpg"
   bio: "Philip is a Java testing expert who has trained hundreds of developers in effective testing practices. With experience across numerous enterprise projects, he specializes in making testing concepts accessible to developers at all experience levels."
 testimonials:
-  - name: "David Chen"
-    role: "Junior Developer"
-    company: "TechSolutions Inc."
-    quote: "As someone new to testing, this workshop was exactly what I needed. The hands-on approach helped me understand not just how to use testing tools, but why they're important. I'm now confidently writing tests for all my code."
-  - name: "Sarah Williams"
-    role: "Team Lead"
-    company: "FinTech Innovations"
-    quote: "I sent three of my junior developers to this workshop, and the difference in their work was immediate. They came back enthusiastic about testing and with practical skills they applied right away. Well worth the investment."
+#  - name: "David Chen"
+#    role: "Junior Developer"
+#    company: "TechSolutions Inc."
+#    quote: "As someone new to testing, this workshop was exactly what I needed. The hands-on approach helped me understand not just how to use testing tools, but why they're important. I'm now confidently writing tests for all my code."
+#  - name: "Sarah Williams"
+#    role: "Team Lead"
+#    company: "FinTech Innovations"
+#    quote: "I sent three of my junior developers to this workshop, and the difference in their work was immediate. They came back enthusiastic about testing and with practical skills they applied right away. Well worth the investment."
 draft: false
 ---
 
@@ -84,7 +84,7 @@ Knowledge prerequisites:
 - Familiarity with object-oriented programming
 - Experience writing simple Java applications
 
-### Workshop Outline
+### Sample Workshop Outline
 
 #### Day 1: Building Your Testing Foundation
 
