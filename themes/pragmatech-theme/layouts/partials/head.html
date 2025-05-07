@@ -56,4 +56,10 @@
     {{ $js = $js | minify | fingerprint }}
     {{ end }}
     <script src="{{ $js.RelPermalink }}"></script>
+
+    {{ $menu := resources.Get "js/menu.js" }}
+    {{ if hugo.IsProduction }}
+    {{ $menu = $menu | minify | fingerprint }}
+    {{ end }}
+    <script src="{{ $menu.RelPermalink }}"></script>
 </head>
