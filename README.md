@@ -89,4 +89,3 @@ npm run build
 ## License
 
 Copyright © PragmaTech Digital Solutions. All rights reserved.
-EOL < /dev/null
