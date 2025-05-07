@@ -1,11 +1,15 @@
 baseURL: "https://pragmatech.digital/"
+title: "PragmaTech GmbH - Build & Ship Software w/ Confidence"
 
 params:
-  description: "Engineering Confidence"
+  description: "Build & Ship Software w/ Confidence. Cut through testing complexity and slow builds for faster feedback and fearless shipping."
   matomoURL: "https://analytics.pragmatech.de/"
   matomoSiteID: "1"
   scheduleCallUrl: "https://pragmatech.digital/schedule-call/"
   newsletterUrl: "https://www.linkedin.com/newsletters/7161721575862386688/"
+  # Social sharing defaults
+  defaultShareImage: "/images/rieckpil-brand-logo.png"
+  socialTitle: "PragmaTech GmbH - Build & Ship Software w/ Confidence"
   # Company emails
   emails:
     contact: "info@pragmatech.digital"

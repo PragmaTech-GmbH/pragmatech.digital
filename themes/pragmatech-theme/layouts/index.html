@@ -17,7 +17,8 @@
             <!-- Featured Item 1 -->
             <a href="/workshops/tdd-with-spring-boot-done-right" class="block group">
                 <div class="bg-white rounded-xl overflow-hidden shadow-md group-hover:shadow-lg transition-shadow">
-                    <img src="/images/tsbam-featured-image.png" alt="Testing Spring Boot Applications Masterclass" class="w-full h-48 object-contain">
+                    {{ $imgData := dict "src" "/images/tsbam-featured-image.png" "alt" "Testing Spring Boot Applications Masterclass" "class" "w-full h-48 object-contain" }}
+                    {{ partial "picture.html" $imgData }}
                     <div class="p-6">
                         <div class="text-sm text-blue-600 font-medium mb-2">Workshop</div>
                         <h3 class="text-xl font-bold mb-3 group-hover:text-blue-600 transition-colors">TDD with Spring Boot Done Right</h3>
@@ -37,7 +38,10 @@
             <!-- Featured Item 2 -->
             <a href="/books/stratospheric" class="block group">
                 <div class="bg-white rounded-xl overflow-hidden shadow-md group-hover:shadow-lg transition-shadow">
-                    <img src="/images/stratospheric-architecture.png" alt="Stratospheric" class="py-5 w-full h-48 object-contain">
+                    <div class="py-5">
+                        {{ $imgData := dict "src" "/images/stratospheric-architecture.png" "alt" "Stratospheric" "class" "w-full h-48 object-contain" }}
+                        {{ partial "picture.html" $imgData }}
+                    </div>
                     <div class="p-6">
                         <div class="text-sm text-blue-600 font-medium mb-2">Book + Course</div>
                         <h3 class="text-xl font-bold mb-3 group-hover:text-blue-600 transition-colors">Stratospheric - Spring Boot on AWS</h3>
@@ -57,7 +61,8 @@
             <!-- Featured Item 3 -->
             <a href="/workshops/java-testing-jumpstart" class="block group">
                 <div class="bg-white rounded-xl overflow-hidden shadow-md group-hover:shadow-lg transition-shadow">
-                    <img src="/images/testing-workshop-banner.png" alt="Java Testing Jumpstart Workshop" class="w-full h-48 object-contain">
+                    {{ $imgData := dict "src" "/images/testing-workshop-banner.png" "alt" "Java Testing Jumpstart Workshop" "class" "w-full h-48 object-contain" }}
+                    {{ partial "picture.html" $imgData }}
                     <div class="p-6">
                         <div class="text-sm text-blue-600 font-medium mb-2">Workshop</div>
                         <h3 class="text-xl font-bold mb-3 group-hover:text-blue-600 transition-colors">Java Testing Jumpstart: From Zero to Hero</h3>
