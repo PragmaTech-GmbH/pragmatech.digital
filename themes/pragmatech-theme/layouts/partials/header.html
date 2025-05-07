@@ -75,7 +75,7 @@
             </nav>
 
             <div class="md:hidden flex items-center">
-                <button id="mobile-menu-button" class="text-gray-700 hover:text-blue-600 focus:outline-none">
+                <button id="mobile-menu-button" class="text-gray-700 hover:text-blue-600 focus:outline-none" aria-expanded="false" aria-label="Toggle navigation">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
@@ -160,82 +160,7 @@
 </header>
 
 <!-- Add JavaScript for improved dropdown behavior -->
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Desktop dropdowns
-        const techContentButton = document.getElementById('tech-content-button');
-        const techContentDropdown = document.getElementById('tech-content-dropdown');
-        const consultingButton = document.getElementById('consulting-button');
-        const consultingDropdown = document.getElementById('consulting-dropdown');
-        const dropdowns = document.querySelectorAll('.dropdown');
-
-        // Toggle dropdown on click instead of hover
-        // Function to handle dropdown toggle
-        function setupDropdown(button, dropdown, container) {
-            if (button && dropdown) {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    dropdown.classList.toggle('hidden');
-                });
-
-                // Prevent dropdown from closing when clicking inside it
-                dropdown.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                });
-            }
-        }
-
-        // Set up Tech Content dropdown
-        setupDropdown(techContentButton, techContentDropdown);
-        
-        // Set up Consulting dropdown
-        setupDropdown(consultingButton, consultingDropdown);
-
-        // Close all dropdowns when clicking outside
-        document.addEventListener('click', function(e) {
-            dropdowns.forEach(dropdown => {
-                if (!dropdown.contains(e.target)) {
-                    const dropdownMenu = dropdown.querySelector('.dropdown-menu');
-                    if (dropdownMenu) {
-                        dropdownMenu.classList.add('hidden');
-                    }
-                }
-            });
-        });
-
-        // Mobile menu and submenu
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileTechContentButton = document.getElementById('mobile-tech-content-button');
-        const mobileTechContentSubmenu = document.getElementById('mobile-tech-content-submenu');
-
-        if (mobileMenuButton && mobileMenu) {
-            mobileMenuButton.addEventListener('click', function() {
-                mobileMenu.classList.toggle('hidden');
-            });
-        }
-
-        if (mobileTechContentButton && mobileTechContentSubmenu) {
-            mobileTechContentButton.addEventListener('click', function(e) {
-                e.preventDefault();
-                mobileTechContentSubmenu.classList.toggle('hidden');
-            });
-        }
-
-        // Mobile consulting menu
-        const mobileConsultingButton = document.getElementById('mobile-consulting-button');
-        const mobileConsultingSubmenu = document.getElementById('mobile-consulting-submenu');
-
-        if (mobileConsultingButton && mobileConsultingSubmenu) {
-            mobileConsultingButton.addEventListener('click', function(e) {
-                e.preventDefault();
-                mobileConsultingSubmenu.classList.toggle('hidden');
-            });
-        }
-    });
-</script>
-
+<!-- Dropdown menu styling -->
 <style>
     /* Add this CSS to improve dropdown behavior */
     .dropdown-menu {
