@@ -1,5 +1,5 @@
 ---
-title: "TDD with Spring Boot Done Right"
+title: "Test-Driven Development (TDD) with Spring Boot Done Right"
 summary: "Master Test-Driven Development in Spring Boot applications with practical, real-world examples"
 description: "Learn how to apply Test-Driven Development effectively with Spring Boot using industry best practices and real-world examples"
 date: 2023-07-01T10:00:00+02:00

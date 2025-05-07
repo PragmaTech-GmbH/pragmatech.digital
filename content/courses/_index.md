@@ -5,20 +5,20 @@ date: 2023-05-05T11:40:13+02:00
 layout: "courses"
 images: ["images/pragmatech-banner.png"]
 testimonials:
-  - name: "Andreas Weber"
-    role: "Senior Developer"
-    company: "TechSolutions GmbH"
-    quote: "The testing tips in this course have transformed how our team approaches quality. We've implemented several of the suggested patterns and our test reliability has improved tremendously."
+  - name: "Siddharth Goel"
+    role: "Staff Software Engineer"
+    company: "Doctor Anywhere"
+    quote: "It has been months that I have been searching for real-world examples where I can see how TDD is applied in practice with Spring. This is probably the best resource that I got in this regard. All other resources talk about building calculator with TDD and that does limited help when building web applications."
     
-  - name: "Laura Müller"
-    role: "Java Developer"
-    company: "FinanceApp"
-    quote: "I've taken several Java courses, but this one stands out for its practical code examples and clear explanations. The sections on testing were particularly valuable for my daily work."
+  - name: "Xavier Escudero Sabadell"
+    role: "Principal Software Test Architect"
+    company: "Roche Diagnostics"
+    quote: "The depth and completeness of the content truly stands out. Exceptional content with comprehensive coverage and rich examples about JUnit5, Mockito, Spring Boot Testing, Test Containers and Wiremock, among others."
     
-  - name: "Martin Hoffmann"
-    role: "Lead Developer"
-    company: "CloudServices"
-    quote: "As a lead developer, I recommended this course to my entire team. The practical approach and focus on real-world scenarios has helped us standardize our testing practices across projects."
+  - name: "Mert D."
+    role: "Software Developer"
+    company: "VDAB"
+    quote: "A heartfelt thanks to Philip for the outstanding guidance and engaging content in the course. I also express gratitude for my employers at VDAB and Vlaanderen connect. for providing the opportunity to enhance my skills. Excited to implement these learnings and contribute to building better Spring Boot applications!"
 ---
 
 ## Comprehensive Online Courses for Java Developers
