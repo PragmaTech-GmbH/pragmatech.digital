@@ -25,7 +25,8 @@
   "name": "pragmatech-website",
   "scripts": {
     "build": "npm run clean:generated && npm run optimize:images && hugo --gc --minify",
-    "build:preview": "npm run clean:generated && npm run optimize:images && hugo --gc --minify --buildFuture",
+    "build:netlify": "hugo --gc --minify",
+    "build:netlify-preview": "hugo --gc --minify --buildFuture",
     "clean": "rm -rf public resources",
     "clean:generated": "rm -rf static/generated",
     "create:placeholders": "bash scripts/create-placeholder-images.sh",
