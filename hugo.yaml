@@ -3,8 +3,8 @@ title: "PragmaTech GmbH - Build & Ship Software w/ Confidence"
 
 params:
   description: "Build & Ship Software w/ Confidence. Cut through testing complexity and slow builds for faster feedback and fearless shipping."
-  matomoURL: "https://analytics.pragmatech.de/"
-  matomoSiteID: "1"
+  matomoURL: "https://analytics.rieckpil.de/"
+  matomoSiteID: "3"
   scheduleCallUrl: "https://koalendar.com/e/pragmatech-introduction-call"
   newsletterUrl: "https://www.linkedin.com/newsletters/7161721575862386688/"
   # Social sharing defaults
