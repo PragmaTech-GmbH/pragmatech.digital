@@ -5,7 +5,7 @@ command = "mkdir -p static/generated/images && npm run build"
 [build.environment]
 NODE_VERSION = "20"
 NPM_VERSION = "10"
-HUGO_VERSION = "0.127.0"
+HUGO_VERSION = "0.147.1"
 
 [context.production.environment]
 HUGO_ENV = "production"
