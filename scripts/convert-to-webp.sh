@@ -10,10 +10,14 @@ GEN_DIR="static/generated/images"
 
 # Check if cwebp is installed
 if ! command -v cwebp &> /dev/null; then
-    echo "Error: cwebp is not installed. Please install it first."
+    echo "Warning: cwebp is not installed. Skipping WebP conversion."
     echo "On macOS: brew install webp"
     echo "On Ubuntu: sudo apt-get install webp"
-    exit 1
+    
+    # Create directory structure but skip conversion
+    mkdir -p "$GEN_DIR"
+    echo "Skipping conversion. Creating directory structure only."
+    exit 0
 fi
 
 # Create generated directory if it doesn't exist

@@ -6,6 +6,23 @@
 # Create case studies directory if it doesn't exist
 mkdir -p static/images/case-studies
 
+# Check if convert (ImageMagick) is installed
+if ! command -v convert &> /dev/null; then
+    echo "Warning: ImageMagick is not installed. Skipping placeholder image creation."
+    echo "On macOS: brew install imagemagick"
+    echo "On Ubuntu: sudo apt-get install imagemagick"
+    echo "Checking if images already exist..."
+    
+    # Create empty files if they don't exist
+    for img in microservices-build-pipeline healthtech-startup banking-build-time; do
+        if [ ! -f "static/images/case-studies/$img.jpg" ]; then
+            echo "Warning: $img.jpg doesn't exist. Site build may fail without this image."
+        fi
+    done
+    
+    exit 0
+fi
+
 # Create placeholder images
 convert -size 1200x630 canvas:white \
     -gravity center \

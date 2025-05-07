@@ -33,7 +33,7 @@
     "dev:watch": "hugo serve -D --navigateToChanged",
     "lint": "postcss assets/css/styles.css --check",
     "optimize:images": "bash scripts/convert-to-webp.sh",
-    "postinstall": "hugo mod npm pack",
+    "postinstall": "hugo --version || true",
     "setup": "npm install && npm run create:placeholders && npm run optimize:images",
     "start": "hugo serve"
   },

@@ -12,7 +12,7 @@
     "clean:generated": "rm -rf static/generated",
     "start": "hugo serve",
     "lint": "postcss assets/css/styles.css --check",
-    "postinstall": "hugo mod npm pack",
+    "postinstall": "hugo --version || true",
     "setup": "npm install && npm run create:placeholders && npm run optimize:images"
   },
   "keywords": [

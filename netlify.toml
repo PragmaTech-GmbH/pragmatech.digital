@@ -1,6 +1,6 @@
 [build]
 publish = "public"
-command = "npm run build"
+command = "mkdir -p static/generated/images && npm run build"
 
 [build.environment]
 NODE_VERSION = "20"
