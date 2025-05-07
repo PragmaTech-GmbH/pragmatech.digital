@@ -8,7 +8,7 @@ cover_image: "/images/books/java-testing-toolbox.jpg"
 authors: ["Philip Riecks"]
 published_date: "June 2024"
 last_updated: "March 2025"
-pages: 380
+pages: 230
 format: "Digital Book"
 price: "$19"
 badge: "New Release"

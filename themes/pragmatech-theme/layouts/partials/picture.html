@@ -40,7 +40,8 @@
   {{ $relativePath = strings.TrimPrefix "/" $src }}
 {{ end }}
 
-{{ $genWebPPath := printf "/generated/images%s.webp" $basename }}
+{{ $basedir := path.Dir $src }}
+{{ $genWebPPath := printf "/generated%s/%s.webp" $basedir (path.Base $basename) }}
 
 {{ $imageType := "png" }}
 {{ if eq $pathExt ".jpg" }}

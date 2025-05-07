@@ -8,7 +8,7 @@ cover_image: "/images/books/stratospheric-ebook-cover.png"
 authors: ["Philip Riecks", "Tom Hombergs", "Björn Wilmsmann"]
 published_date: "January 2022"
 last_updated: "March 2025"
-pages: 550
+pages: 460
 format: "Digital Book"
 price: "$39"
 badge: "Bestseller"
