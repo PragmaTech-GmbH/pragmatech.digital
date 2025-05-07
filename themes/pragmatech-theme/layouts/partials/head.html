@@ -7,7 +7,7 @@
     <link rel="icon" href="{{ "favicon.ico" | relURL }}">
     
     <!-- Social Sharing Meta Tags -->
-    {{ $shareImage := .Params.share_image | default "/images/rieckpil-brand-logo.png" }}
+    {{ $shareImage := .Params.share_image | default "/images/pragmatech-social-banner.png" }}
     {{ $imagePrefix := strings.TrimSuffix "/" .Site.BaseURL }}
     {{ $fullImagePath := printf "%s%s" $imagePrefix $shareImage }}
     {{ $pageTitle := cond .IsHome .Site.Title .Title }}

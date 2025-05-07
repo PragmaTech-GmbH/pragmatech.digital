@@ -156,32 +156,41 @@
         </div>
 
         <div>
-            <div class="bg-gray-50 rounded-xl p-6 shadow-sm sticky top-24">
-                <h3 class="text-xl font-bold mb-4">Enroll in This Course</h3>
-                {{ if .Params.price }}
-                <div class="text-3xl font-bold text-blue-600 mb-4">{{ .Params.price }}</div>
-                {{ end }}
-                <a href="{{ .Params.course_url | default "#" }}" class="block w-full bg-blue-600 text-white hover:bg-blue-700 font-bold py-3 px-6 rounded-lg transition-colors text-center mb-4">
-                Start Learning Now
+            <div class="bg-gray-50 rounded-xl shadow-sm overflow-hidden sticky top-24">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-4">Enroll in This Course</h3>
+                    {{ if .Params.price }}
+                    <div class="text-3xl font-bold text-blue-600 mb-4">{{ .Params.price }}</div>
+                    {{ end }}
+                </div>
+                
+                <a href="{{ .Params.course_url | default "#" }}" class="block group hover:bg-gray-100 transition-colors">
+                    <div class="mx-6 mb-6">
+                        <div class="w-full bg-blue-600 group-hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors text-center">
+                            Start Learning Now
+                        </div>
+                        
+                        <div class="text-sm text-gray-500 mt-4">
+                            {{ .Params.enrollment_note | default "Lifetime access. Start immediately after purchase." }}
+                        </div>
+                    </div>
+                    
+                    <div class="px-6">
+                        <h4 class="font-bold mb-2">What You'll Get:</h4>
+                        <ul class="space-y-3 mb-6">
+                            {{ range .Params.features }}
+                            <li class="flex items-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span>{{ . }}</span>
+                            </li>
+                            {{ end }}
+                        </ul>
+                    </div>
                 </a>
 
-                <div class="text-sm text-gray-500 mb-6">
-                    {{ .Params.enrollment_note | default "Lifetime access. Start immediately after purchase." }}
-                </div>
-
-                <h4 class="font-bold mb-2">What You'll Get:</h4>
-                <ul class="space-y-3 mb-6">
-                    {{ range .Params.features }}
-                    <li class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                        </svg>
-                        <span>{{ . }}</span>
-                    </li>
-                    {{ end }}
-                </ul>
-
-                <div class="border-t border-gray-200 pt-4">
+                <div class="border-t border-gray-200 p-6">
                     <div class="font-bold mb-2">Not sure if this is for you?</div>
                     <a href="/contact" class="text-blue-600 hover:text-blue-800">Contact us with questions</a>
                 </div>
@@ -247,17 +256,22 @@
         <h2 class="text-2xl font-bold mb-6">Other Courses You Might Like</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             {{ range $relatedCourses }}
-            <div class="bg-white rounded-lg shadow-sm overflow-hidden">
-                {{ if .Params.image }}
-                <img src="{{ .Params.image }}" alt="{{ .Title }}" class="w-full h-40 object-cover">
-                {{ end }}
-                <div class="p-4">
-                    <h3 class="font-bold mb-2">
-                        <a href="{{ .Permalink }}" class="hover:text-blue-600">{{ .Title }}</a>
-                    </h3>
-                    <div class="text-sm text-gray-600 mb-2">{{ .Params.level }} · {{ .Params.duration }}</div>
-                    <a href="{{ .Permalink }}" class="text-blue-600 text-sm hover:underline">View details →</a>
-                </div>
+            <div class="bg-white rounded-lg shadow-sm overflow-hidden group hover:shadow-md transition-shadow">
+                <a href="{{ .Permalink }}" class="block text-current hover:text-current">
+                    {{ if .Params.image }}
+                    <img src="{{ .Params.image }}" alt="{{ .Title }}" class="w-full h-40 object-cover group-hover:opacity-95 transition-opacity">
+                    {{ end }}
+                    <div class="p-4">
+                        <h3 class="font-bold mb-2 group-hover:text-blue-600 transition-colors">{{ .Title }}</h3>
+                        <div class="text-sm text-gray-600 mb-2">{{ .Params.level }} · {{ .Params.duration }}</div>
+                        <span class="text-blue-600 text-sm inline-flex items-center">
+                            View details
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 ml-1 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </span>
+                    </div>
+                </a>
             </div>
             {{ end }}
         </div>
