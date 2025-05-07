@@ -2,7 +2,7 @@ public/
 resources/
 
 # Generated assets
-static/generated/
+#static/generated/
 
 node_modules
 
