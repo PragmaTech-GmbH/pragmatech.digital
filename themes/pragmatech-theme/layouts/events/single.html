@@ -32,7 +32,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
                     <div>
-                        <div class="font-semibold">Date & Time</div>
+                        <div class="font-semibold">Date & Time <span class="text-xs font-normal text-gray-500">(local event time)</span></div>
                         <time>{{ time.Format "Monday, January 2, 2006" .Params.startDate }}</time><br>
                         <time>{{ time.Format "3:04 PM" .Params.startDate }} - {{ with .Params.endDate }}{{ time.Format "3:04 PM" . }}{{ end }}</time>
                     </div>

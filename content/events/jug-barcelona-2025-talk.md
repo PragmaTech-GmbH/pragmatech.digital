@@ -26,8 +26,8 @@ The Java UserGroup Hamburg is excited to host PragmaTech's testing expert for an
 
 ## Location
 
-The event will be held at our usual meetup location in central Hamburg. Food and drinks will be provided.
+See on the registration page.
 
 ## Registration
 
-This talk is free to attend but registration through the JUG Hamburg Meetup page is required due to limited space.
+This talk is free to attend but registration through the JUG Barcelona page is required due to limited space.

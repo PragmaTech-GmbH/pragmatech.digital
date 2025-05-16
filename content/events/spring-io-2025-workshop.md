@@ -29,11 +29,11 @@ This intensive one-day workshop in Barcelona provides hands-on experience with m
 
 ## Location
 
-The workshop will be held at a modern tech hub in central Barcelona. Exact location details will be shared with registered participants.
+See on the registration page.
 
 ## Prerequisites
 
-- Laptop with Java 17+ and your favorite IDE
+- Laptop with Java 21+ and your favorite IDE
 - Basic Spring Boot knowledge
 - Git installed to access workshop materials
 
