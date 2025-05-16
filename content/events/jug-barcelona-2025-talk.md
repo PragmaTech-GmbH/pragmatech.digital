@@ -1,5 +1,5 @@
 ---
-title: "Java User Group Barcelona: Testing Spring Boot Applications Demystified"
+title: "JUG Barcelona: Testing Spring Boot Applications Demystified"
 date: 2025-05-16T10:00:00+02:00
 startDate: 2025-05-20T18:30:00+02:00
 endDate: 2025-05-20T21:00:00+02:00
