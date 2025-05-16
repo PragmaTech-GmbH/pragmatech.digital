@@ -20,13 +20,85 @@
     <!-- Filter controls -->
     <div class="flex flex-wrap gap-4 mb-8 justify-center">
         <button class="event-filter active py-2 px-4 rounded-full bg-primary text-white" data-filter="all">All Events</button>
-        <button class="event-filter py-2 px-4 rounded-full bg-gray-200 hover:bg-gray-300" data-filter="meetup">Meetups</button>
-        <button class="event-filter py-2 px-4 rounded-full bg-gray-200 hover:bg-gray-300" data-filter="talk">Talks</button>
-        <button class="event-filter py-2 px-4 rounded-full bg-gray-200 hover:bg-gray-300" data-filter="workshop">Workshops</button>
+        <button class="event-filter py-2 px-4 rounded-full bg-gray-200 text-gray-800 hover:bg-gray-300" data-filter="meetup">Meetups</button>
+        <button class="event-filter py-2 px-4 rounded-full bg-gray-200 text-gray-800 hover:bg-gray-300" data-filter="talk">Talks</button>
+        <button class="event-filter py-2 px-4 rounded-full bg-gray-200 text-gray-800 hover:bg-gray-300" data-filter="workshop">Workshops</button>
     </div>
 
     {{ partial "events-calendar.html" . }}
+    
+    <!-- Recent and Upcoming Events -->
+    <div class="mb-12">
+        <h2 class="text-2xl font-bold mb-6">Recent and Upcoming Events</h2>
+        
+        {{ $events := where .Site.RegularPages "Section" "events" }}
+        
+        <!-- Recent Events -->
+        <div class="mb-8">
+            <h3 class="text-xl font-semibold mb-4">Recent Events</h3>
+            {{ $pastEvents := where $events "Date" "lt" now }}
+            {{ $recentEvents := first 3 (sort $pastEvents "Date" "desc") }}
+            
+            {{ if $recentEvents }}
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {{ range $recentEvents }}
+                <a href="{{ .Permalink }}" class="block rounded-lg border border-gray-200 hover:shadow-md transition duration-150 overflow-hidden">
+                    <div class="h-40 w-full overflow-hidden">
+                        {{ if .Params.coverImage }}
+                        <img src="{{ .Params.coverImage | relURL }}" alt="{{ .Title }}" class="w-full h-full object-cover">
+                        {{ else if .Params.image }}
+                        <img src="{{ .Params.image | relURL }}" alt="{{ .Title }}" class="w-full h-full object-cover">
+                        {{ else }}
+                        <img src="/images/talks/spring-vmware-explore-talk.webp" alt="{{ .Title }}" class="w-full h-full object-cover">
+                        {{ end }}
+                    </div>
+                    <div class="p-4 bg-gray-50">
+                        <p class="text-sm text-gray-500 mb-1">{{ .Date.Format "January 2, 2006" }}</p>
+                        <h4 class="font-medium text-lg mb-2">{{ .Title }}</h4>
+                        <p class="text-sm text-gray-600 line-clamp-2">{{ .Params.summary }}</p>
+                    </div>
+                </a>
+                {{ end }}
+            </div>
+            {{ else }}
+            <p class="text-gray-500">No recent events available.</p>
+            {{ end }}
+        </div>
+        
+        <!-- Upcoming Events -->
+        <div>
+            <h3 class="text-xl font-semibold mb-4">Upcoming Events</h3>
+            {{ $futureEvents := where $events "Date" "ge" now }}
+            {{ $upcomingEvents := first 3 (sort $futureEvents "Date" "asc") }}
+            
+            {{ if $upcomingEvents }}
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {{ range $upcomingEvents }}
+                <a href="{{ .Permalink }}" class="block rounded-lg border border-gray-200 hover:shadow-md transition duration-150 overflow-hidden">
+                    <div class="h-40 w-full overflow-hidden">
+                        {{ if .Params.coverImage }}
+                        <img src="{{ .Params.coverImage | relURL }}" alt="{{ .Title }}" class="w-full h-full object-cover">
+                        {{ else if .Params.image }}
+                        <img src="{{ .Params.image | relURL }}" alt="{{ .Title }}" class="w-full h-full object-cover">
+                        {{ else }}
+                        <img src="/images/talks/spring-vmware-explore-talk.webp" alt="{{ .Title }}" class="w-full h-full object-cover">
+                        {{ end }}
+                    </div>
+                    <div class="p-4 bg-white">
+                        <p class="text-sm text-gray-500 mb-1">{{ .Date.Format "January 2, 2006" }}</p>
+                        <h4 class="font-medium text-lg mb-2">{{ .Title }}</h4>
+                        <p class="text-sm text-gray-600 line-clamp-2">{{ .Params.summary }}</p>
+                    </div>
+                </a>
+                {{ end }}
+            </div>
+            {{ else }}
+            <p class="text-gray-500">No upcoming events scheduled at this time.</p>
+            {{ end }}
+        </div>
+    </div>
 
+    <h2 class="text-2xl font-bold mb-6">All Upcoming Events</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {{ $events := where .Site.RegularPages "Section" "events" }}
         {{ $futureEvents := where $events "Date" "ge" now }}
@@ -35,20 +107,13 @@
         {{ range $sortedEvents }}
         <article class="event-card bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105" data-event-type="{{ .Params.eventType }}">
             <div class="relative">
-                {{ if .Params.image }}
+                {{ if .Params.coverImage }}
+                <img src="{{ .Params.coverImage | relURL }}" alt="{{ .Title }}" class="w-full h-48 object-cover">
+                {{ else if .Params.image }}
                 <img src="{{ .Params.image | relURL }}" alt="{{ .Title }}" class="w-full h-48 object-cover">
                 {{ else }}
-                <div class="w-full h-48 bg-gradient-to-r from-primary/80 to-blue-600/80 flex items-center justify-center">
-                    <span class="text-white text-2xl font-bold">{{ .Title }}</span>
-                </div>
+                <img src="/images/talks/spring-vmware-explore-talk.webp" alt="{{ .Title }}" class="w-full h-48 object-cover">
                 {{ end }}
-
-<!--                <div class="absolute top-0 right-0 m-3 px-3 py-1 rounded-full text-xs font-semibold-->
-<!--            {{ if eq .Params.eventType "meetup" }}bg-yellow-500 text-yellow-900{{ end }}-->
-<!--                {{ if eq .Params.eventType "talk" }}bg-blue-500 text-white{{ end }}-->
-<!--                {{ if eq .Params.eventType "workshop" }}bg-green-500 text-white{{ end }}>-->
-<!--                {{ humanize .Params.eventType }}-->
-<!--            </div>-->
     </div>
 
     <div class="p-6">
@@ -93,10 +158,13 @@
         filterButtons.forEach(button => {
             button.addEventListener('click', () => {
                 // Update active button styling
-                filterButtons.forEach(btn => btn.classList.remove('active', 'bg-primary', 'text-white'));
-                filterButtons.forEach(btn => btn.classList.add('bg-gray-200', 'hover:bg-gray-300'));
-                button.classList.add('active', 'bg-primary', 'text-white');
-                button.classList.remove('bg-gray-200', 'hover:bg-gray-300');
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('active', 'bg-primary', 'text-white');
+                    btn.classList.add('bg-gray-200', 'text-gray-800', 'hover:bg-gray-300');
+                });
+                
+                button.classList.add('active', 'bg-secondary', 'text-green');
+                button.classList.remove('bg-gray-200', 'text-gray-800', 'hover:bg-gray-300');
 
                 const filter = button.getAttribute('data-filter');
 
