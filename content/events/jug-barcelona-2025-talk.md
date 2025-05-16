@@ -9,9 +9,9 @@ registration: "https://lu.ma/pz96y9g7"
 price: "Free"
 draft: false
 summary: "Join us at JUG Barcelona for an evening of Spring Boot testing insights and best practices."
-coverImage: "/images/talks/testing-spring-boot-applications-demystified.webp"
-slideUrl: "https://speakerdeck.com/pragmatech/jug-barcelona-testing-spring-boot"
-codeUrl: ""
+coverImage: "/images/events/barcelona-jug-bcn.jpg"
+#slideUrl: "https://speakerdeck.com/pragmatech/jug-barcelona-testing-spring-boot"
+#codeUrl: ""
 ---
 
 ## About This Talk

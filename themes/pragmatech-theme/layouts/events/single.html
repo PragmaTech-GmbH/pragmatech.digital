@@ -133,12 +133,12 @@
                 {{ range $index, $event := $events }}
                 {{ if ne $event.Permalink $.Permalink }}
                 {
-                    title: {{ $event.Title | jsonify }},
+                    title: {{ $event.Title }},
                     permalink: "{{ $event.Permalink }}",
                     startDate: "{{ time.Format "2006-01-02" $event.Params.startDate }}",
                     formattedDate: "{{ time.Format "Jan 2, 2006" $event.Params.startDate }}",
                     eventType: "{{ $event.Params.eventType }}",
-                    location: {{ $event.Params.location | jsonify }}
+                    location: {{ $event.Params.location }}
                 }{{ if and (ne $index (sub (len $events) 1)) (ne $event.Permalink $.Permalink) }},{{ end }}
                 {{ end }}
                 {{ end }}

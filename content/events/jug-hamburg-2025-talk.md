@@ -9,9 +9,9 @@ registration: "https://www.meetup.com/de-DE/jug-hamburg/events/307473906/"
 price: "Free"
 draft: false
 summary: "Join us at JUG Hamburg for an evening of Spring Boot testing insights and best practices."
-coverImage: "/images/talks/spring-vmware-explore-talk.webp"
-slideUrl: "https://speakerdeck.com/pragmatech/jug-hamburg-testing-spring-boot"
-codeUrl: "https://github.com/pragmatech/testing-demos"
+coverImage: "/images/events/hamburg-jug-hh.jpg"
+slideUrl: "https://speakerdeck.com/rieckpil/testing-spring-boot-applications-demystified-jug-hh-2025"
+codeUrl: "https://github.com/rieckpil/talks/tree/main/testing-spring-boot-applications-demystified"
 ---
 
 ## About This Talk
