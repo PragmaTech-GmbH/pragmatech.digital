@@ -35,22 +35,30 @@
             {{ if $recentEvents }}
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {{ range $recentEvents }}
-                <a href="{{ .Permalink }}" class="block rounded-lg border border-gray-200 hover:shadow-md transition duration-150 overflow-hidden">
+                <a href="{{ .Permalink }}" class="group flex flex-col h-full rounded-lg border border-gray-200 hover:shadow-md transition duration-150 overflow-hidden">
                     <div class="h-40 w-full overflow-hidden">
                         {{ if .Params.coverImage }}
-                        <img src="{{ .Params.coverImage | relURL }}" alt="{{ .Title }}" class="w-full h-full object-cover">
+                        <img src="{{ .Params.coverImage | relURL }}" alt="{{ .Title }}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
                         {{ else if .Params.image }}
-                        <img src="{{ .Params.image | relURL }}" alt="{{ .Title }}" class="w-full h-full object-cover">
+                        <img src="{{ .Params.image | relURL }}" alt="{{ .Title }}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
                         {{ else }}
-                        <img src="/images/talks/spring-vmware-explore-talk.webp" alt="{{ .Title }}" class="w-full h-full object-cover">
+                        <img src="/images/talks/spring-vmware-explore-talk.webp" alt="{{ .Title }}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
                         {{ end }}
                     </div>
-                    <div class="p-4 bg-gray-50">
-                        <p class="text-sm text-gray-500 mb-1">{{ time.Format "January 2, 2006" .Params.startDate }}</p>
-                        <h4 class="font-medium text-lg mb-2">{{ .Title }}</h4>
-                        <p class="text-sm text-gray-600 line-clamp-2">{{ .Params.summary }}</p>
+                    <div class="p-4 bg-gray-50 flex-grow flex flex-col justify-between">
+                        <div>
+                            <div class="inline-block px-2 py-1 rounded-full text-xs font-semibold mb-2
+                                {{ if eq .Params.eventType "meetup" }}bg-yellow-500 text-yellow-900{{ end }}
+                                {{ if eq .Params.eventType "talk" }}bg-blue-500 text-white{{ end }}
+                                {{ if eq .Params.eventType "workshop" }}bg-green-500 text-white{{ end }}">
+                                {{ humanize .Params.eventType }}
+                            </div>
+                            <p class="text-sm text-gray-500 mb-1">{{ time.Format "January 2, 2006" .Params.startDate }}</p>
+                            <h4 class="font-bold text-lg mb-2 text-gray-800 group-hover:text-primary transition-colors">{{ .Title }}</h4>
+                            <p class="text-sm text-gray-600 line-clamp-2 mb-3">{{ .Params.summary }}</p>
+                        </div>
                         
-                        <div class="flex flex-wrap gap-2 mt-2">
+                        <div class="flex flex-wrap gap-2 mt-auto">
                             {{ if .Params.slideUrl }}
                             <a href="{{ .Params.slideUrl }}" class="text-xs text-primary flex items-center hover:underline" target="_blank">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 mr-1" viewBox="0 0 20 20" fill="currentColor">
@@ -88,22 +96,30 @@
             {{ if $upcomingEvents }}
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {{ range $upcomingEvents }}
-                <a href="{{ .Permalink }}" class="block rounded-lg border border-gray-200 hover:shadow-md transition duration-150 overflow-hidden">
+                <a href="{{ .Permalink }}" class="group flex flex-col h-full rounded-lg border border-gray-200 hover:shadow-md transition duration-150 overflow-hidden">
                     <div class="h-40 w-full overflow-hidden">
                         {{ if .Params.coverImage }}
-                        <img src="{{ .Params.coverImage | relURL }}" alt="{{ .Title }}" class="w-full h-full object-cover">
+                        <img src="{{ .Params.coverImage | relURL }}" alt="{{ .Title }}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
                         {{ else if .Params.image }}
-                        <img src="{{ .Params.image | relURL }}" alt="{{ .Title }}" class="w-full h-full object-cover">
+                        <img src="{{ .Params.image | relURL }}" alt="{{ .Title }}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
                         {{ else }}
-                        <img src="/images/talks/spring-vmware-explore-talk.webp" alt="{{ .Title }}" class="w-full h-full object-cover">
+                        <img src="/images/talks/spring-vmware-explore-talk.webp" alt="{{ .Title }}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
                         {{ end }}
                     </div>
-                    <div class="p-4 bg-white">
-                        <p class="text-sm text-gray-500 mb-1">{{ time.Format "January 2, 2006" .Params.startDate }}</p>
-                        <h4 class="font-medium text-lg mb-2">{{ .Title }}</h4>
-                        <p class="text-sm text-gray-600 line-clamp-2">{{ .Params.summary }}</p>
+                    <div class="p-4 bg-white flex-grow flex flex-col justify-between">
+                        <div>
+                            <div class="inline-block px-2 py-1 rounded-full text-xs font-semibold mb-2
+                                {{ if eq .Params.eventType "meetup" }}bg-yellow-500 text-yellow-900{{ end }}
+                                {{ if eq .Params.eventType "talk" }}bg-blue-500 text-white{{ end }}
+                                {{ if eq .Params.eventType "workshop" }}bg-green-500 text-white{{ end }}">
+                                {{ humanize .Params.eventType }}
+                            </div>
+                            <p class="text-sm text-gray-500 mb-1">{{ time.Format "January 2, 2006" .Params.startDate }}</p>
+                            <h4 class="font-bold text-lg mb-2 text-gray-800 group-hover:text-primary transition-colors">{{ .Title }}</h4>
+                            <p class="text-sm text-gray-600 line-clamp-2 mb-3">{{ .Params.summary }}</p>
+                        </div>
                         
-                        <div class="flex flex-wrap gap-2 mt-2">
+                        <div class="flex flex-wrap gap-2 mt-auto">
                             {{ if .Params.slideUrl }}
                             <a href="{{ .Params.slideUrl }}" class="text-xs text-primary flex items-center hover:underline" target="_blank">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 mr-1" viewBox="0 0 20 20" fill="currentColor">
