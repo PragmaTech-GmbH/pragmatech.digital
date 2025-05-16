@@ -18,6 +18,12 @@
         </div>
 
         <h1 class="text-4xl font-bold mb-6">{{ .Title }}</h1>
+        
+        {{ if .Params.coverImage }}
+        <div class="mb-6">
+            <img src="{{ .Params.coverImage | relURL }}" alt="{{ .Title }}" class="w-full rounded-lg object-cover max-h-96">
+        </div>
+        {{ end }}
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-gray-50 rounded-lg p-6">
             <div>
@@ -26,9 +32,9 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
                     <div>
-                        <div class="font-semibold">Date & Time</div>
-                        <time>{{ .Date.Format "Monday, January 2, 2006" }}</time><br>
-                        <time>{{ .Date.Format "3:04 PM" }} - {{ with .Params.endDate }}{{ time.Format "3:04 PM" . }}{{ end }}</time>
+                        <div class="font-semibold">Date & Time <span class="text-xs font-normal text-gray-500">(local event time)</span></div>
+                        <time>{{ time.Format "Monday, January 2, 2006" .Params.startDate }}</time><br>
+                        <time>{{ time.Format "3:04 PM" .Params.startDate }} - {{ with .Params.endDate }}{{ time.Format "3:04 PM" . }}{{ end }}</time>
                     </div>
                 </div>
 
@@ -60,29 +66,35 @@
                 {{ if .Params.registration }}
                 <a href="{{ .Params.registration }}" class="btn btn-primary text-center mb-4" target="_blank">Register Now</a>
                 {{ end }}
-
-                <div class="flex justify-center space-x-2">
-                    <a href="#" class="text-gray-600 hover:text-primary" title="Add to Google Calendar">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M19.5 22.5H4.5C3.12 22.5 2 21.38 2 20V6c0-1.38 1.12-2.5 2.5-2.5h15c1.38 0 2.5 1.12 2.5 2.5v14c0 1.38-1.12 2.5-2.5 2.5zM22 8.5H2v11.25c0 .69.56 1.25 1.25 1.25h17.5c.69 0 1.25-.56 1.25-1.25V8.5zm-17.5 9h3v-3h-3v3zm6 0h3v-3h-3v3zm6 0h3v-3h-3v3z"/>
-                        </svg>
-                    </a>
-                    <a href="#" class="text-gray-600 hover:text-primary" title="Add to Outlook">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M21.5 2h-19C1.673 2 1 2.673 1 3.5v17c0 .827.673 1.5 1.5 1.5h19c.827 0 1.5-.673 1.5-1.5v-17c0-.827-.673-1.5-1.5-1.5zm0 18h-19v-11h19v11zm0-12h-19v-5h19v5zm-1.5 2.5h-9v9h9v-9z"/>
-                        </svg>
-                    </a>
-                    <a href="#" class="text-gray-600 hover:text-primary" title="Add to iCalendar">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M19 4h-2V2h-2v2H9V2H7v2H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2zM7 12h5v5H7v-5z"/>
-                        </svg>
-                    </a>
+                
+                {{ if .Params.slideUrl }}
+                <div class="flex items-center mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    <div>
+                        <div class="font-semibold">Presentation</div>
+                        <a href="{{ .Params.slideUrl }}" class="text-primary hover:underline" target="_blank">View Slides</a>
+                    </div>
                 </div>
+                {{ end }}
+                
+                {{ if .Params.codeUrl }}
+                <div class="flex items-center mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                    </svg>
+                    <div>
+                        <div class="font-semibold">Source Code</div>
+                        <a href="{{ .Params.codeUrl }}" class="text-primary hover:underline" target="_blank">View Repository</a>
+                    </div>
+                </div>
+                {{ end }}
             </div>
         </div>
     </header>
 
-    <div class="prose max-w-none mb-12">
+    <div class="prose prose-lg max-w-none page-content mb-12">
         {{ .Content }}
     </div>
 
@@ -113,27 +125,89 @@
     <!-- Related events -->
     <div class="mt-12 pt-8 border-t border-gray-200">
         <h2 class="text-2xl font-bold mb-6">Other Upcoming Events</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {{ $currentPage := . }}
-            {{ $relatedEvents := where (where .Site.RegularPages "Section" "events") "Permalink" "ne" .Permalink }}
-            {{ $futureRelated := where $relatedEvents "Date" "ge" now }}
-            {{ range first 3 $futureRelated }}
-            <div class="bg-white rounded-lg shadow p-4">
-                <div class="inline-block px-2 py-1 rounded-full text-xs font-semibold mb-2
-            {{ if eq .Params.eventType "meetup" }}bg-yellow-500 text-yellow-900{{ end }}
-                {{ if eq .Params.eventType "talk" }}bg-blue-500 text-white{{ end }}
-                {{ if eq .Params.eventType "workshop" }}bg-green-500 text-white{{ end }}">
-                {{ humanize .Params.eventType }}
-            </div>
-            <h3 class="font-bold mb-2">
-                <a href="{{ .Permalink }}" class="hover:text-primary">{{ .Title }}</a>
-            </h3>
-            <div class="text-sm text-gray-600 mb-2">
-                <time>{{ .Date.Format "Jan 2, 2006" }}</time> · {{ .Params.location }}
-            </div>
-            <a href="{{ .Permalink }}" class="text-primary text-sm hover:underline">View details →</a>
+        <div id="other-events-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <p id="no-other-events" class="text-gray-500 col-span-3 hidden">No other upcoming events scheduled at this time.</p>
         </div>
-        {{ end }}
+        
+        <!-- Event data for JS filtering -->
+        <script>
+            const currentPageUrl = "{{ .Permalink }}";
+            const otherEventData = [
+                {{ $events := where .Site.RegularPages "Section" "events" }}
+                {{ range $index, $event := $events }}
+                {{ if ne $event.Permalink $.Permalink }}
+                {
+                    title: {{ $event.Title }},
+                    permalink: "{{ $event.Permalink }}",
+                    startDate: "{{ time.Format "2006-01-02" $event.Params.startDate }}",
+                    formattedDate: "{{ time.Format "Jan 2, 2006" $event.Params.startDate }}",
+                    eventType: "{{ $event.Params.eventType }}",
+                    location: {{ $event.Params.location }}
+                }{{ if and (ne $index (sub (len $events) 1)) (ne $event.Permalink $.Permalink) }},{{ end }}
+                {{ end }}
+                {{ end }}
+            ];
+            
+            document.addEventListener('DOMContentLoaded', function() {
+                const otherEventsContainer = document.getElementById('other-events-container');
+                const noOtherEventsMsg = document.getElementById('no-other-events');
+                
+                // Get today's date at midnight
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                
+                // Filter for upcoming events (today and later) that are not the current page
+                const otherUpcomingEvents = otherEventData.filter(event => {
+                    const eventDate = new Date(event.startDate);
+                    return eventDate >= today;
+                }).sort((a, b) => new Date(a.startDate) - new Date(b.startDate)); // Sort by date ascending
+                
+                // Display up to 3 upcoming events
+                if (otherUpcomingEvents.length > 0) {
+                    const upcomingEvents = otherUpcomingEvents.slice(0, 3);
+                    upcomingEvents.forEach(event => {
+                        otherEventsContainer.appendChild(createEventCard(event));
+                    });
+                } else {
+                    noOtherEventsMsg.classList.remove('hidden');
+                }
+                
+                // Function to create event card
+                function createEventCard(event) {
+                    const card = document.createElement('div');
+                    card.className = 'bg-white rounded-lg shadow p-4';
+                    
+                    let typeClass = '';
+                    let textClass = '';
+                    if (event.eventType === 'meetup') {
+                        typeClass = 'bg-yellow-500';
+                        textClass = 'text-yellow-900';
+                    } else if (event.eventType === 'talk') {
+                        typeClass = 'bg-blue-500';
+                        textClass = 'text-white';
+                    } else if (event.eventType === 'workshop') {
+                        typeClass = 'bg-green-500';
+                        textClass = 'text-white';
+                    }
+                    
+                    const cardContent = `
+                        <div class="inline-block px-2 py-1 rounded-full text-xs font-semibold mb-2 ${typeClass} ${textClass}">
+                            ${event.eventType.charAt(0).toUpperCase() + event.eventType.slice(1)}
+                        </div>
+                        <h3 class="font-bold mb-2">
+                            <a href="${event.permalink}" class="hover:text-primary">${event.title}</a>
+                        </h3>
+                        <div class="text-sm text-gray-600 mb-2">
+                            <time>${event.formattedDate}</time> · ${event.location}
+                        </div>
+                        <a href="${event.permalink}" class="text-primary text-sm hover:underline">View details →</a>
+                    `;
+                    
+                    card.innerHTML = cardContent;
+                    return card;
+                }
+            });
+        </script>
     </div>
     </div>
 </article>
