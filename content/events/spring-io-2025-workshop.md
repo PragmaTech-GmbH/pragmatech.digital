@@ -1,6 +1,7 @@
 ---
 title: "Testing Spring Boot Applications Demystified Workshop"
-date: 2025-05-21T09:00:00+02:00
+date: 2025-05-16T10:00:00+02:00
+startDate: 2025-05-21T09:00:00+02:00
 endDate: 2025-05-21T17:00:00+02:00
 location: "Barcelona, Spain"
 eventType: "workshop"
@@ -9,6 +10,8 @@ price: "589€"
 draft: false
 summary: "Join us for an immersive in-person workshop on Spring Boot testing in beautiful Barcelona."
 coverImage: "/images/workshops/workshop-spring-boot-demystify.webp"
+slideUrl: "https://speakerdeck.com/pragmatech/testing-spring-boot-applications-demystified"
+codeUrl: "https://github.com/pragmatech/spring-boot-testing-workshop"
 ---
 
 ## Workshop Overview

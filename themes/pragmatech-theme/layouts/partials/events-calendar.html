@@ -51,8 +51,8 @@
       {{ $eventPages := where .Site.RegularPages "Section" "events" }}
       {{ range $index, $page := $eventPages }}
         {
-          date: "{{ $page.Date.Format "2006-01-02" }}",
-          title: {{ $page.Title | jsonify }},
+          date: "{{ time.Format "2006-01-02" $page.Params.startDate }}",
+          title: {{ $page.Title  }},
           url: "{{ $page.Permalink }}",
           type: "{{ $page.Params.eventType }}"
         }{{ if ne (add $index 1) (len $eventPages) }},{{ end }}

@@ -17,14 +17,6 @@
         {{ .Content }}
     </div>
 
-    <!-- Filter controls -->
-    <div class="flex flex-wrap gap-4 mb-8 justify-center">
-        <button class="event-filter active py-2 px-4 rounded-full bg-primary text-white" data-filter="all">All Events</button>
-        <button class="event-filter py-2 px-4 rounded-full bg-gray-200 text-gray-800 hover:bg-gray-300" data-filter="meetup">Meetups</button>
-        <button class="event-filter py-2 px-4 rounded-full bg-gray-200 text-gray-800 hover:bg-gray-300" data-filter="talk">Talks</button>
-        <button class="event-filter py-2 px-4 rounded-full bg-gray-200 text-gray-800 hover:bg-gray-300" data-filter="workshop">Workshops</button>
-    </div>
-
     {{ partial "events-calendar.html" . }}
     
     <!-- Recent and Upcoming Events -->
@@ -36,7 +28,8 @@
         <!-- Recent Events -->
         <div class="mb-8">
             <h3 class="text-xl font-semibold mb-4">Recent Events</h3>
-            {{ $pastEvents := where $events "Date" "lt" now }}
+            {{ $refDate := now.Format "2006-01-02" }}
+            {{ $pastEvents := where $events ".Params.startDate" "lt" $refDate }}
             {{ $recentEvents := first 3 (sort $pastEvents "Date" "desc") }}
             
             {{ if $recentEvents }}
@@ -53,9 +46,29 @@
                         {{ end }}
                     </div>
                     <div class="p-4 bg-gray-50">
-                        <p class="text-sm text-gray-500 mb-1">{{ .Date.Format "January 2, 2006" }}</p>
+                        <p class="text-sm text-gray-500 mb-1">{{ time.Format "January 2, 2006" .Params.startDate }}</p>
                         <h4 class="font-medium text-lg mb-2">{{ .Title }}</h4>
                         <p class="text-sm text-gray-600 line-clamp-2">{{ .Params.summary }}</p>
+                        
+                        <div class="flex flex-wrap gap-2 mt-2">
+                            {{ if .Params.slideUrl }}
+                            <a href="{{ .Params.slideUrl }}" class="text-xs text-primary flex items-center hover:underline" target="_blank">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd" />
+                                </svg>
+                                Slides
+                            </a>
+                            {{ end }}
+                            
+                            {{ if .Params.codeUrl }}
+                            <a href="{{ .Params.codeUrl }}" class="text-xs text-primary flex items-center hover:underline" target="_blank">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                                Code
+                            </a>
+                            {{ end }}
+                        </div>
                     </div>
                 </a>
                 {{ end }}
@@ -68,8 +81,9 @@
         <!-- Upcoming Events -->
         <div>
             <h3 class="text-xl font-semibold mb-4">Upcoming Events</h3>
-            {{ $futureEvents := where $events "Date" "ge" now }}
-            {{ $upcomingEvents := first 3 (sort $futureEvents "Date" "asc") }}
+            {{ $refDate := now.Format "2006-01-02" }}
+            {{ $futureEvents := where $events ".Params.startDate" "gt" $refDate }}
+            {{ $upcomingEvents := first 3 (sort $futureEvents ".Params.startDate" "asc") }}
             
             {{ if $upcomingEvents }}
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -85,9 +99,29 @@
                         {{ end }}
                     </div>
                     <div class="p-4 bg-white">
-                        <p class="text-sm text-gray-500 mb-1">{{ .Date.Format "January 2, 2006" }}</p>
+                        <p class="text-sm text-gray-500 mb-1">{{ time.Format "January 2, 2006" .Params.startDate }}</p>
                         <h4 class="font-medium text-lg mb-2">{{ .Title }}</h4>
                         <p class="text-sm text-gray-600 line-clamp-2">{{ .Params.summary }}</p>
+                        
+                        <div class="flex flex-wrap gap-2 mt-2">
+                            {{ if .Params.slideUrl }}
+                            <a href="{{ .Params.slideUrl }}" class="text-xs text-primary flex items-center hover:underline" target="_blank">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd" />
+                                </svg>
+                                Slides
+                            </a>
+                            {{ end }}
+                            
+                            {{ if .Params.codeUrl }}
+                            <a href="{{ .Params.codeUrl }}" class="text-xs text-primary flex items-center hover:underline" target="_blank">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                                Code
+                            </a>
+                            {{ end }}
+                        </div>
                     </div>
                 </a>
                 {{ end }}
@@ -97,87 +131,5 @@
             {{ end }}
         </div>
     </div>
-
-    <h2 class="text-2xl font-bold mb-6">All Upcoming Events</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {{ $events := where .Site.RegularPages "Section" "events" }}
-        {{ $futureEvents := where $events "Date" "ge" now }}
-        {{ $sortedEvents := sort $futureEvents "Date" "asc" }}
-
-        {{ range $sortedEvents }}
-        <article class="event-card bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105" data-event-type="{{ .Params.eventType }}">
-            <div class="relative">
-                {{ if .Params.coverImage }}
-                <img src="{{ .Params.coverImage | relURL }}" alt="{{ .Title }}" class="w-full h-48 object-cover">
-                {{ else if .Params.image }}
-                <img src="{{ .Params.image | relURL }}" alt="{{ .Title }}" class="w-full h-48 object-cover">
-                {{ else }}
-                <img src="/images/talks/spring-vmware-explore-talk.webp" alt="{{ .Title }}" class="w-full h-48 object-cover">
-                {{ end }}
-    </div>
-
-    <div class="p-6">
-        <h3 class="text-xl font-bold mb-2">
-            <a href="{{ .Permalink }}" class="hover:text-primary">{{ .Title }}</a>
-        </h3>
-
-        <div class="flex items-center text-gray-500 mb-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-            <time>{{ .Date.Format "January 2, 2006" }} at {{ .Date.Format "3:04 PM" }}</time>
-        </div>
-
-        <div class="flex items-center text-gray-500 mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-            <span>{{ .Params.location }}</span>
-        </div>
-
-        <p class="mb-4">{{ .Params.summary }}</p>
-
-        <div class="flex justify-between items-center">
-            <a href="{{ .Permalink }}" class="text-primary font-semibold hover:underline">Details →</a>
-            {{ if .Params.registration }}
-            <a href="{{ .Params.registration }}" class="btn btn-primary" target="_blank">Register</a>
-            {{ end }}
-        </div>
-    </div>
-    </article>
-    {{ end }}
 </div>
-</div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const filterButtons = document.querySelectorAll('.event-filter');
-        const eventCards = document.querySelectorAll('.event-card');
-
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Update active button styling
-                filterButtons.forEach(btn => {
-                    btn.classList.remove('active', 'bg-primary', 'text-white');
-                    btn.classList.add('bg-gray-200', 'text-gray-800', 'hover:bg-gray-300');
-                });
-                
-                button.classList.add('active', 'bg-secondary', 'text-green');
-                button.classList.remove('bg-gray-200', 'text-gray-800', 'hover:bg-gray-300');
-
-                const filter = button.getAttribute('data-filter');
-
-                // Show/hide event cards based on filter
-                eventCards.forEach(card => {
-                    if (filter === 'all' || card.getAttribute('data-event-type') === filter) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-            });
-        });
-    });
-</script>
 {{ end }}

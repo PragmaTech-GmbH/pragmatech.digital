@@ -1,6 +1,7 @@
 ---
 title: "Java User Group Hamburg: Testing Spring Boot Applications Demystified"
-date: 2025-05-14T19:00:00+02:00
+date: 2025-05-16T10:00:00+02:00
+startDate: 2025-05-14T19:00:00+02:00
 endDate: 2025-05-14T21:00:00+02:00
 location: "Hamburg, Germany"
 eventType: "meetup"
@@ -9,6 +10,8 @@ price: "Free"
 draft: false
 summary: "Join us at JUG Hamburg for an evening of Spring Boot testing insights and best practices."
 coverImage: "/images/talks/spring-vmware-explore-talk.webp"
+slideUrl: "https://speakerdeck.com/pragmatech/jug-hamburg-testing-spring-boot"
+codeUrl: "https://github.com/pragmatech/testing-demos"
 ---
 
 ## About This Talk

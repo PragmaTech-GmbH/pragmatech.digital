@@ -1,14 +1,17 @@
 ---
 title: "Java User Group Barcelona: Testing Spring Boot Applications Demystified"
-date: 2025-05-20T18:30:00+02:00
+date: 2025-05-16T10:00:00+02:00
+startDate: 2025-05-20T18:30:00+02:00
 endDate: 2025-05-20T21:00:00+02:00
-location: "Barcelona, Germany"
+location: "Barcelona, Spain"
 eventType: "meetup"
 registration: "https://lu.ma/pz96y9g7"
 price: "Free"
 draft: false
 summary: "Join us at JUG Barcelona for an evening of Spring Boot testing insights and best practices."
 coverImage: "/images/talks/testing-spring-boot-applications-demystified.webp"
+slideUrl: "https://speakerdeck.com/pragmatech/jug-barcelona-testing-spring-boot"
+codeUrl: ""
 ---
 
 ## About This Talk
