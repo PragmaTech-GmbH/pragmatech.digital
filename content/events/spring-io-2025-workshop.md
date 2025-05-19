@@ -8,7 +8,7 @@ eventType: "workshop"
 registration: "https://2025.springio.net/workshops"
 price: "589€"
 draft: false
-summary: "Join us for an immersive in-person workshop on Spring Boot testing in beautiful Barcelona."
+summary: "Join us for a full-day in-person workshop on Spring Boot testing in beautiful Barcelona."
 coverImage: "/images/events/barcelona-spring-io.jpg"
 #slideUrl: "https://speakerdeck.com/pragmatech/testing-spring-boot-applications-demystified"
 #codeUrl: "https://github.com/pragmatech/spring-boot-testing-workshop"
