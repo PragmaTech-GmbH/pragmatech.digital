@@ -10,8 +10,8 @@ price: "589€"
 draft: false
 summary: "Join us for a full-day in-person workshop on Spring Boot testing in beautiful Barcelona."
 coverImage: "/images/events/barcelona-spring-io.jpg"
-#slideUrl: "https://speakerdeck.com/pragmatech/testing-spring-boot-applications-demystified"
-#codeUrl: "https://github.com/pragmatech/spring-boot-testing-workshop"
+slideUrl: "https://github.com/PragmaTech-GmbH/testing-spring-boot-applications-demystified-workshop/tree/main/slides/spring-io-2025"
+codeUrl: "https://github.com/PragmaTech-GmbH/testing-spring-boot-applications-demystified-workshop"
 ---
 
 ## Workshop Overview
