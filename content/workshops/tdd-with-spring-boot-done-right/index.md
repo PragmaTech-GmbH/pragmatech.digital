@@ -7,7 +7,7 @@ image: "/images/workshops/workshop-tdd-spring-boot.png"
 duration: "1 day"
 format: "On-site or Remote"
 participants: "Up to 15 developers"
-price: "Starting at 2.950€ / team"
+#price: "Starting at 2.950€ / team"
 booking_url: "/contact"
 topics:
   - "TDD fundamentals with Spring Boot"
