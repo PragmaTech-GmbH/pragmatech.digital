@@ -5,8 +5,6 @@ summary: "Transform slow, unreliable builds into rapid feedback loops that boost
 date: 2023-05-07T11:40:13+02:00
 icon: "🚀"
 tagline: "Slash your build times and boost productivity"
-price: "€7,500"
-duration: "3-5 weeks"
 for_whom:
   - "Teams experiencing slow CI/CD pipelines (10+ minutes)"
   - "Organizations with flaky or unreliable test suites"

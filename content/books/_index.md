@@ -8,17 +8,17 @@ testimonials:
   - name: "Ricardo Sueiras"
     role: "Principal Advocate in Open Source - Amazon Web Services (AWS)"
     company: "Amazon Web Services"
-    quote: "If you are a Spring Boot developer and looking to explore how to deploy your applications onto AWS, then you need to check out this book. The authors have put together a well thought out and easy to follow book that walks you through the typical use cases you will need. Perfect for beginners and an invaluable reference guide for those more experienced, they continue to add new content to this book and I cannot say enough great things about it."
+    quote: "If you are a Spring Boot developer and looking to explore how to deploy your applications onto AWS, then you need to check out this book. <br></br>The authors have put together a well thought out and easy to follow book that walks you through the typical use cases you will need. <br></br>Perfect for beginners and an invaluable reference guide for those more experienced, they continue to add new content to this book and I cannot say enough great things about it."
 
   - name: "Branislav Beňo"
     role: "Developer"
     company: "Siemens"
-    quote: "I thought that learning how to deploy Spring Boot application to the cloud, would require unbearable long time. But then came this book, and my worries vanished. On less than 500 pages, I found all I was looking for. From deployment preparation, through application connecting with required AWS services to deployment realization and application monitoring. And what is the best, all accompanied by useful code examples and access to related GitHub repository."
+    quote: "I thought that learning how to deploy Spring Boot application to the cloud, would require unbearable long time. But then came this book, and my worries vanished. <br></br>On less than 500 pages, I found all I was looking for. From deployment preparation, through application connecting with required AWS services to deployment realization and application monitoring. <br></br>And what is the best, all accompanied by useful code examples and access to related GitHub repository."
 
   - name: "Gregory Zak"
     role: "Senior Java Developer"
     company: "Self Employed"
-    quote: "Not just the theory... Delivers on the implementation. Great book that easily blends the integration of the Spring Boot framework with Amazon’s AWS services, progressing from overview to deliverables. Excellent logical organization of the fundamental AWS services that a developer can easily learn and retain in a step-by-step manner"
+    quote: "Not just the theory... Delivers on the implementation.<br></br> Great book that easily blends the integration of the Spring Boot framework with Amazon’s AWS services, progressing from overview to deliverables. <br></br>Excellent logical organization of the fundamental AWS services that a developer can easily learn and retain in a step-by-step manner"
 ---
 
 ## Comprehensive Books for Java Developers

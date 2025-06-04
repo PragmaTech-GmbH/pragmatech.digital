@@ -73,7 +73,7 @@ The workshop can be delivered either on-site at your location or remotely via vi
 ### Prerequisites
 
 Technical requirements:
-- Java 11 or later installed
+- Java 21 or later installed
 - IntelliJ IDEA (Community or Ultimate) or Eclipse
 - Git client
 - Maven or Gradle
@@ -88,16 +88,16 @@ Knowledge prerequisites:
 
 #### Day 1: Building Your Testing Foundation
 
-**Morning Session (9:00 AM - 12:30 PM)**
+**Morning Session**
 
-- **Testing Fundamentals** (1.5 hours)
+- **Testing Fundamentals**
   - Why testing matters: bugs, refactoring, and documentation
   - Types of tests: unit, integration, end-to-end
   - The testing pyramid concept
   - Characteristics of good tests (FIRST principles)
   - Hands-on: Setting up a Java project with testing dependencies
 
-- **JUnit 5 Deep Dive** (2 hours)
+- **JUnit 5 Deep Dive**
   - JUnit 5 architecture and components
   - Writing your first test cases
   - Assertions, assumptions, and test lifecycle
@@ -105,9 +105,9 @@ Knowledge prerequisites:
   - Extensions and customization
   - Hands-on: Building a comprehensive test suite for a utility class
 
-**Afternoon Session (1:30 PM - 5:00 PM)**
+**Afternoon Session**
 
-- **Mocking with Mockito** (2 hours)
+- **Mocking with Mockito**
   - Understanding test doubles: mocks, stubs, and spies
   - Creating and configuring mocks
   - Verifying interactions with mocked components
@@ -115,7 +115,7 @@ Knowledge prerequisites:
   - Common pitfalls and best practices
   - Hands-on: Testing service components with dependencies
 
-- **Expressive Assertions with AssertJ** (1.5 hours)
+- **Expressive Assertions with AssertJ** 
   - Benefits of fluent assertions
   - Testing collections, exceptions, and complex objects
   - Creating custom assertions
@@ -124,9 +124,9 @@ Knowledge prerequisites:
 
 #### Day 2: Advanced Testing Techniques
 
-**Morning Session (9:00 AM - 12:30 PM)**
+**Morning Session**
 
-- **Integration Testing with Testcontainers** (2 hours)
+- **Integration Testing with Testcontainers**
   - Introduction to container-based testing
   - Setting up database containers
   - Testing with actual dependencies vs. mocks
@@ -134,7 +134,7 @@ Knowledge prerequisites:
   - Performance considerations
   - Hands-on: Implementing database tests with Testcontainers
 
-- **API Testing with WireMock** (1.5 hours)
+- **API Testing with WireMock**
   - Testing applications with external API dependencies
   - Setting up WireMock servers
   - Stubbing responses and verifying requests
@@ -142,9 +142,9 @@ Knowledge prerequisites:
   - Recording and playback for complex APIs
   - Hands-on: Testing a service that consumes external APIs
 
-**Afternoon Session (1:30 PM - 5:00 PM)**
+**Afternoon Session**
 
-- **Building Maintainable Test Suites** (1.5 hours)
+- **Building Maintainable Test Suites** 
   - Test organization and naming conventions
   - Testing patterns for common scenarios
   - Balancing coverage and maintenance
@@ -152,14 +152,14 @@ Knowledge prerequisites:
   - Continuous testing in development workflow
   - Hands-on: Refactoring poorly structured tests
 
-- **Introduction to Test-Driven Development** (1.5 hours)
+- **Introduction to Test-Driven Development**
   - The TDD cycle: Red, Green, Refactor
   - Benefits and challenges of TDD
   - When to use (and not use) TDD
   - Adapting testing practices to your team's needs
   - Hands-on: Implementing a feature using TDD
 
-- **Putting It All Together** (1 hour)
+- **Putting It All Together** 
   - Integrating all tools in a complete testing strategy
   - Testing in CI/CD pipelines
   - Resources for continued learning
