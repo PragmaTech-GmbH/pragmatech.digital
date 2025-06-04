@@ -4,8 +4,6 @@ description: "Detailed description for SEO"
 summary: "Brief summary of the service offering"
 date: {{ .Date }}
 tagline: "Concise service tagline"
-price: "€X,XXX"
-duration: "X-Y weeks"
 for_whom:
   - "Development teams struggling with X"
   - "Organizations looking to improve Y"

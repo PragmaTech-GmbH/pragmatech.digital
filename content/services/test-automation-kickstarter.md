@@ -5,8 +5,6 @@ summary: "Launch your test automation initiative with a strong foundation that s
 date: 2023-05-08T11:40:13+02:00
 icon: "🧩"
 tagline: "Get your test automation strategy right from day one"
-price: "€8,950"
-duration: "4-6 weeks"
 for_whom:
   - "Teams starting a new test automation initiative"
   - "Organizations transitioning from manual to automated testing"

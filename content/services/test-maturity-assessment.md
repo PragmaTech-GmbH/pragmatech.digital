@@ -5,8 +5,6 @@ summary: "A structured analysis of your current testing approach with a clear ro
 date: 2023-05-06T11:40:13+02:00
 icon: "🔬"
 tagline: "Evaluate and enhance your testing approach"
-price: "€4,950"
-duration: "2-4 weeks"
 for_whom:
   - "Teams experiencing frequent production issues despite testing"
   - "Organizations scaling up and needing more robust test practices"
