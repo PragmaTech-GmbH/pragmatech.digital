@@ -13,16 +13,19 @@ testimonials:
   - name: "Igor Kolomiyets"
     role: "Solutions Architect Consultant"
     company: "IKtech Limited"
+    linkedin: "https://www.linkedin.com/in/igor-kolomiyets-b7b980"
     quote: "I am glad that I had a chance to attend Philip's workshop at Spring I/O this year.<br><br>The course material is very well structured and caters for wide variety of professionals from beginners to the advanced users of Spring Framework.<br><br>The workshop is centred around hands on lab assignments and the manner Philip presented material lead audience from the theoretical concepts to practical use of these concepts and eventually laid foundation to apply newly obtained knowledge in practice while working on lab assignments."
     
   - name: "Rasmus Lagoni"
     role: "Java Developer"
     company: "Bankdata"
+    linkedin: "https://www.linkedin.com/in/rasmus-lagoni-4553a87b/"
     quote: "Had a great time at the Testing Spring Boot Applications Demystified workshop! I learned a ton including new concepts like slice testing and test containers.<br><br>The in-depth explanations helped me finally understand tools I'd used without fully grasping, and I'm walking away with concrete ideas I will implement with my team.<br><br>I also really appreciated the philosophy that testing is not all about achieving a certain coverage threshold, but about having the confidence to release on a Friday afternoon."
 
   - name: "Sören Krum"
     role: "Senior Java Developer"
     company: "Miles AS"
+    linkedin: "https://www.linkedin.com/in/sdkrum/"
     quote: "Joined the one-day-version of this workshop during a spring conference, and I was positively impressed.<br><br>I am doing java development for some 20+ years now, and, yes i knew parts of what was presented already, but still i learned some nice new things, like the nice chaining feature of assertJ, and some pitfalls to avoid."
 
 ---

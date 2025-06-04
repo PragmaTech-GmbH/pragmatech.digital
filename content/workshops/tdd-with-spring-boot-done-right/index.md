@@ -70,7 +70,7 @@ The workshop can be delivered either on-site at your location or remotely via vi
 ### Prerequisites
 
 Technical requirements:
-- Java 17 or later
+- Java 21 or later
 - Your preferred IDE (IntelliJ IDEA recommended)
 - Git client
 - Maven or Gradle
@@ -82,48 +82,48 @@ Knowledge prerequisites:
 
 ### Sample Workshop Outline
 
-#### Morning Session (9:00 AM - 12:30 PM)
+#### Morning Session
 
-- **TDD Fundamentals in Spring Context** (1 hour)
+- **TDD Fundamentals in Spring Context**
   - The TDD cycle: Red, Green, Refactor
   - Adapting TDD for Spring Boot applications
   - Setting up a test-friendly Spring Boot project
   - Hands-on: Creating your first Spring Boot component with TDD
 
-- **Testing Spring Web MVC and REST Controllers** (1.5 hours)
+- **Testing Spring Web MVC and REST Controllers**
   - Writing tests for REST endpoints before implementation
   - Testing request validation and error handling
   - Using MockMvc effectively
   - Best practices for controller tests
   - Hands-on: Building a REST API with TDD
 
-- **Testing Database Access** (1 hour)
+- **Testing Database Access**
   - Testing JPA repositories
   - Database-focused test slices
   - Using test containers for realistic database tests
   - Hands-on: Implementing data access with TDD
 
-#### Afternoon Session (1:30 PM - 5:00 PM)
+#### Afternoon Session
 
-- **Testing Service Components and Business Logic** (1 hour)
+- **Testing Service Components and Business Logic**
   - Defining service contracts with tests
   - Mocking dependencies in service tests
   - Common patterns for service testing
   - Hands-on: Building service layer components with TDD
 
-- **Integration Testing Strategies** (1 hour)
+- **Integration Testing Strategies**
   - When to use @SpringBootTest
   - Building a test pyramid
   - Managing external dependencies in tests
   - Hands-on: Writing effective integration tests
 
-- **Advanced Topics and Best Practices** (1 hour)
+- **Advanced Topics and Best Practices** 
   - Test organization for maintainability
   - Performance considerations for fast feedback
   - Continuous testing in development workflow
   - Common pitfalls and how to avoid them
 
-- **Bringing TDD to Your Team** (30 minutes)
+- **Bringing TDD to Your Team** 
   - Strategies for introducing TDD
   - Overcoming common resistance
   - Building a test-focused development culture
