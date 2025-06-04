@@ -5,20 +5,28 @@ date: 2023-05-05T11:40:13+02:00
 layout: "workshops"
 images: ["images/pragmatech-banner.png"]
 testimonials:
-  - name: "Sarah Johnson"
-    role: "Development Manager"
-    company: "InsureTech"
-    quote: "We had Philip conduct his Testing Spring Boot Applications workshop for our entire development team. It was hands-on, practical, and immediately applicable. Our test coverage improved by 45% in the following quarter."
+#  - name: "Jørn Martin Tysnes Holm"
+#    role: "Department Manager"
+#    company: "Storebrand"
+#    quote: "The Spring Boot testing workshop at Spring IO 2025 was hands-on, focused, and immediately applicable to our daily work. A great blend of practical insights and expert guidance."
+
+  - name: "Igor Kolomiyets"
+    role: "Solutions Architect Consultant"
+    company: "IKtech Limited"
+    quote: "I am glad that I had a chance to attend Philip’s workshop at Spring I/O this year.
+The course material is very well structured and caters for wide variety of professionals from beginners to the advanced users of Spring Framework.
+The workshop is centred around hands on lab assignments and the manner Philip presented material lead audience from the theoretical concepts to practical use of these concepts and eventually laid foundation to apply newly obtained knowledge in practice while working on lab assignments."
     
-  - name: "Michael Weber"
-    role: "Lead Developer"
-    company: "Financial Services GmbH"
-    quote: "The AWS deployment workshop was exactly what our team needed. Clear explanations, practical exercises, and most importantly, answers to our specific questions. Highly recommended!"
-    
-  - name: "Anna Müller"
-    role: "Agile Coach"
-    company: "Health Solutions AG"
-    quote: "The workshop on testing microservices provided exactly the structured approach we were missing. Our teams now have a common language and methodology for testing our distributed systems."
+  - name: "Rasmus Lagoni"
+    role: "Java Developer"
+    company: "Bankdata"
+    quote: "Had a great time at the Testing Spring Boot Applications Demystified workshop! I learned a ton including new concepts like slice testing and test containers. The in-depth explanations helped me finally understand tools I’d used without fully grasping, and I’m walking away with concrete ideas I will implement with my team. I also really appreciated the philosophy that testing is not all about achieving a certain coverage threshold, but about having the confidence to release on a Friday afternoon."
+
+  - name: "Sören Krum"
+    role: "Senior Java Developer"
+    company: "Miles AS"
+    quote: "Joined the one-day-version of this workshop during a spring conference, and I was positively impressed. I am doing java development for some 20+ years now, and, yes i knew parts of what was presented already, but still i learned some nice new things, like the nice chaining feature of assertJ, and some pitfalls to avoid."
+
 ---
 
 ## Practical Workshops for Development Teams
