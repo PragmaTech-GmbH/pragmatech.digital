@@ -137,7 +137,7 @@
                     </div>
                 </div>
                 <blockquote class="text-gray-700 mb-6">
-                    "{{ .quote }}"
+                    "{{ .quote | safeHTML }}"
                 </blockquote>
                 <div>
                     <div class="font-medium">{{ .name }}</div>

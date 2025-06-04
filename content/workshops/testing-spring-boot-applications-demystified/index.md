@@ -34,14 +34,28 @@ instructor:
   image: "/images/team/philip.jpg"
   bio: "Philip is a Java expert with a passion for testing and Spring Boot. With over 10 years of industry experience, he's helped dozens of teams implement effective testing strategies. He's a regular speaker at conferences like Spring I/O, Devoxx, and VMWare Explore."
 testimonials:
-  - name: "Julia König"
-    role: "Senior Developer"
-    company: "1-Day Workshop"
-    quote: "This workshop completely changed our team's approach to testing. The practical exercises and real-world examples made it easy to understand how to apply these concepts to our own codebase."
-  - name: "Marcus Bauer"
-    role: "DevOps Lead"
-    company: "2-Day Workshop"
-    quote: "Exactly what our team needed. The section on Testcontainers was particularly valuable and helped us solve several persistent testing challenges."
+  - name: "Jørn Martin Tysnes Holm"
+    role: "Department Manager"
+    company: "Storebrand"
+    quote: "The Spring Boot testing workshop at Spring IO 2025 was hands-on, focused, and immediately applicable to our daily work. A great blend of practical insights and expert guidance."
+
+  - name: "Igor Kolomiyets"
+    role: "Solutions Architect Consultant"
+    company: "IKtech Limited"
+    quote: "I am glad that I had a chance to attend Philip’s workshop at Spring I/O this year.
+The course material is very well structured and caters for wide variety of professionals from beginners to the advanced users of Spring Framework.
+The workshop is centred around hands on lab assignments and the manner Philip presented material lead audience from the theoretical concepts to practical use of these concepts and eventually laid foundation to apply newly obtained knowledge in practice while working on lab assignments."
+
+  - name: "Rasmus Lagoni"
+    role: "Java Developer"
+    company: "Bankdata"
+    quote: "Had a great time at the Testing Spring Boot Applications Demystified workshop! I learned a ton including new concepts like slice testing and test containers. The in-depth explanations helped me finally understand tools I’d used without fully grasping, and I’m walking away with concrete ideas I will implement with my team. I also really appreciated the philosophy that testing is not all about achieving a certain coverage threshold, but about having the confidence to release on a Friday afternoon."
+    
+  - name: "Sören Krum"
+    role: "Senior Java Developer"
+    company: "Miles AS"
+    quote: "Joined the one-day-version of this workshop during a spring conference, and I was positively impressed. I am doing java development for some 20+ years now, and, yes i knew parts of what was presented already, but still i learned some nice new things, like the nice chaining feature of assertJ, and some pitfalls to avoid."
+
 ---
 
 ## Master Effective Testing for Spring Boot Applications
@@ -67,21 +81,22 @@ Participants should have:
 - Basic knowledge of Java and Spring Boot
 - Experience with building web applications
 - Familiarity with Maven or Gradle
-- A laptop with Java 17+ and an IDE installed
+- A laptop with Java 21+ and an IDE installed
 - Access to a Docker Engine
 
 ### Workshop Outline
 
-#### Day 1: Fundamentals and Unit Testing
+#### Day 1: Fundamentals, Unit and Sliced Testing
 - Testing pyramid and testing strategy overview
 - Setting up a Spring Boot project for effective testing
 - Unit testing Spring components (Services, Repositories, Controllers)
 - Mocking dependencies with Mockito
 - Best practices for writing maintainable tests
+- Writing slice tests with Spring Boot
 
 #### Day 2: Integration Testing and Advanced Topics
 - Integration testing with Spring Boot Test
-- Database testing with TestContainers
+- Database testing with Testcontainers
 - Testing REST APIs and documenting them with Spring REST Docs
 - Testing asynchronous components
 - Performance testing basics
