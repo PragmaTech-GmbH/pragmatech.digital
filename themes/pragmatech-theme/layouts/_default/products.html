@@ -1,5 +1,4 @@
 {{ define "main" }}
-<h1>DEBUG: Products page is working!</h1>
 <!-- Products Hero Banner -->
 <section class="relative bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 text-white py-20">
     <div class="absolute inset-0 bg-black/20"></div>
@@ -209,22 +208,3 @@
     </div>
 </section>
 {{ end }}
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Smooth scroll for "Explore Products" button
-    const exploreButton = document.querySelector('a[href="#products"]');
-    if (exploreButton) {
-        exploreButton.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.getElementById('products');
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    }
-});
-</script>
