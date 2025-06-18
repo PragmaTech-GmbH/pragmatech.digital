@@ -1,0 +1,230 @@
+{{ define "main" }}
+<h1>DEBUG: Products page is working!</h1>
+<!-- Products Hero Banner -->
+<section class="relative bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 text-white py-20">
+    <div class="absolute inset-0 bg-black/20"></div>
+    <div class="relative container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                Developer <span class="text-blue-200">Products</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-blue-100 mb-8">
+                Technical & digital products designed to make developers more productive and confident in their software delivery journey.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#products" class="inline-flex items-center bg-white text-blue-600 hover:bg-blue-50 font-medium py-3 px-6 rounded-lg transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                    </svg>
+                    Explore Products
+                </a>
+                <a href="{{ .Site.Params.scheduleCallUrl }}" class="inline-flex items-center border-2 border-white text-white hover:bg-white hover:text-blue-600 font-medium py-3 px-6 rounded-lg transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    Schedule a Demo
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Decorative background pattern -->
+    <div class="absolute inset-0 opacity-10">
+        <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+                <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" stroke-width="0.5"/>
+            </pattern>
+            <rect width="100" height="100" fill="url(#grid)" />
+        </svg>
+    </div>
+</section>
+
+<!-- Products Section -->
+<section id="products" class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Product Suite</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Cutting-edge tools built by developers, for developers. Each product is designed to solve real-world challenges in software development and testing.
+            </p>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="grid gap-8">
+            {{ range .Site.Data.products.products }}
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                <div class="p-8">
+                    <div class="flex flex-col lg:flex-row gap-8">
+                        <!-- Product Image/Icon -->
+                        <div class="lg:w-1/3">
+                            <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-8 text-center">
+                                <div class="text-6xl mb-4">{{ .icon }}</div>
+                                {{ if .image }}
+                                <img src="{{ .image }}" alt="{{ .title }}" class="max-w-full h-auto rounded-lg">
+                                {{ end }}
+                            </div>
+                        </div>
+
+                        <!-- Product Content -->
+                        <div class="lg:w-2/3">
+                            <!-- Status Badge -->
+                            <div class="mb-4">
+                                {{ if eq .status "coming_soon" }}
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    Coming Soon - {{ .launch_date }}
+                                </span>
+                                {{ else if eq .status "available" }}
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    Available Now
+                                </span>
+                                {{ else if eq .status "early_access" }}
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                    </svg>
+                                    Early Access
+                                </span>
+                                {{ end }}
+                            </div>
+
+                            <!-- Title and Subtitle -->
+                            <h3 class="text-2xl md:text-3xl font-bold mb-2">{{ .title }}</h3>
+                            <p class="text-lg text-blue-600 font-medium mb-4">{{ .subtitle }}</p>
+                            
+                            <!-- Description -->
+                            <p class="text-gray-600 mb-6">{{ .description }}</p>
+
+                            <!-- Features -->
+                            <div class="mb-6">
+                                <h4 class="font-semibold text-gray-900 mb-3">Key Features:</h4>
+                                <ul class="grid md:grid-cols-2 gap-2">
+                                    {{ range .features }}
+                                    <li class="flex items-start">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        <span class="text-gray-600">{{ . }}</span>
+                                    </li>
+                                    {{ end }}
+                                </ul>
+                            </div>
+
+                            <!-- Tags -->
+                            <div class="mb-6">
+                                <div class="flex flex-wrap gap-2">
+                                    {{ range .tags }}
+                                    <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">{{ . }}</span>
+                                    {{ end }}
+                                </div>
+                            </div>
+
+                            <!-- Pricing -->
+                            {{ if .pricing }}
+                            <div class="mb-6 p-4 bg-gray-50 rounded-lg">
+                                <h4 class="font-semibold text-gray-900 mb-2">Pricing:</h4>
+                                {{ if eq .pricing.model "freemium" }}
+                                <div class="text-sm text-gray-600">
+                                    <div class="mb-1"><strong>Free:</strong> {{ .pricing.free_tier }}</div>
+                                    <div><strong>Pro:</strong> {{ .pricing.paid_tier }}</div>
+                                </div>
+                                {{ else if eq .pricing.model "free" }}
+                                <div class="text-green-600 font-medium">Free & Open Source</div>
+                                {{ end }}
+                            </div>
+                            {{ end }}
+
+                            <!-- Action Buttons -->
+                            <div class="flex flex-col sm:flex-row gap-3">
+                                {{ if .links.github }}
+                                <a href="{{ .links.github }}" target="_blank" class="inline-flex items-center justify-center bg-gray-900 text-white hover:bg-gray-800 font-medium py-2 px-4 rounded-lg transition-colors">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                    </svg>
+                                    View on GitHub
+                                </a>
+                                {{ end }}
+                                
+                                {{ if eq .status "coming_soon" }}
+                                <a href="{{ .Site.Params.scheduleCallUrl }}" class="inline-flex items-center justify-center bg-blue-600 text-white hover:bg-blue-700 font-medium py-2 px-4 rounded-lg transition-colors">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5zM4 19h5v-5l-5 5z" />
+                                    </svg>
+                                    Get Early Access
+                                </a>
+                                {{ else if .links.demo }}
+                                <a href="{{ .links.demo }}" class="inline-flex items-center justify-center bg-blue-600 text-white hover:bg-blue-700 font-medium py-2 px-4 rounded-lg transition-colors">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    Try Demo
+                                </a>
+                                {{ end }}
+                                
+                                {{ if .links.documentation }}
+                                <a href="{{ .links.documentation }}" target="_blank" class="inline-flex items-center justify-center border border-gray-300 text-gray-700 hover:bg-gray-50 font-medium py-2 px-4 rounded-lg transition-colors">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                    </svg>
+                                    Documentation
+                                </a>
+                                {{ end }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter/Contact Section -->
+<section class="py-20 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Stay Updated</h2>
+            <p class="text-xl text-gray-600 mb-8">
+                Be the first to know when new products launch and get exclusive access to beta releases.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="{{ .Site.Params.newsletterUrl }}" target="_blank" class="inline-flex items-center bg-blue-600 text-white hover:bg-blue-700 font-medium py-3 px-6 rounded-lg transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    Subscribe to Newsletter
+                </a>
+                <a href="{{ .Site.Params.scheduleCallUrl }}" class="inline-flex items-center border border-gray-300 text-gray-700 hover:bg-gray-50 font-medium py-3 px-6 rounded-lg transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    Schedule a Call
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{{ end }}
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Smooth scroll for "Explore Products" button
+    const exploreButton = document.querySelector('a[href="#products"]');
+    if (exploreButton) {
+        exploreButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.getElementById('products');
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    }
+});
+</script>

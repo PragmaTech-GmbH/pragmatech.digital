@@ -1,0 +1,28 @@
+products:
+  - id: "spring-test-lens"
+    title: "Spring Test Lens"
+    subtitle: "Inspect & Improve Your Spring Boot Test Suite"
+    description: "A comprehensive set of tools to analyze, optimize, and gain insights into your Spring and Spring Boot test suite for better test performance and reliability."
+    status: "coming_soon"  # coming_soon, available, early_access
+    category: "Development Tools"
+    tags: ["Spring Boot", "Testing", "Java", "Performance", "CI/CD"]
+    features:
+      - "Test execution analysis and performance metrics"
+      - "Test dependency mapping and visualization"
+      - "Coverage gap identification"
+      - "Slow test detection and optimization suggestions"
+      - "Integration with popular CI/CD tools"
+      - "Comprehensive reporting and dashboards"
+    pricing:
+      model: "freemium"  # free, freemium, paid, enterprise
+      free_tier: "Basic analysis for up to 500 tests"
+      paid_tier: "Advanced features and unlimited tests"
+    links:
+      github: "https://github.com/PragmaTech-GmbH/spring-test-insight"
+      documentation: ""
+      demo: ""
+      signup: ""
+    image: "/images/products/spring-test-lens.svg"
+    icon: "🔍"
+    launch_date: "2025-Q2"
+    target_audience: "Java developers, Spring Boot teams, DevOps engineers"
