@@ -1,6 +1,6 @@
 products:
   - id: "spring-test-lens"
-    title: "Spring Test Lens"
+    title: "Spring Test Profiler"
     subtitle: "Inspect & Improve Your Spring Boot Test Suite"
     description: "A comprehensive set of tools to analyze, optimize, and gain insights into your Spring and Spring Boot test suite for better test performance and reliability."
     status: "coming_soon"  # coming_soon, available, early_access
@@ -18,11 +18,11 @@ products:
       free_tier: "Basic analysis for up to 500 tests"
       paid_tier: "Advanced features and unlimited tests"
     links:
-      github: "https://github.com/PragmaTech-GmbH/spring-test-insight"
+      github: "https://github.com/PragmaTech-GmbH/spring-test-profiler"
       documentation: ""
       demo: ""
       signup: ""
-    image: "/images/products/spring-test-lens.svg"
+    image: "/images/products/spring-test-profiler-logo.png"
     icon: "🔍"
     launch_date: "2025-Q2"
     target_audience: "Java developers, Spring Boot teams, DevOps engineers"
