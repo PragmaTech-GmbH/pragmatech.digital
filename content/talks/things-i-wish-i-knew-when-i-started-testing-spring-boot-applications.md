@@ -2,8 +2,8 @@
 title: "Things I Wish I Knew When I Started Testing Spring Boot Applications"
 description: "Practical lessons learned from years of Spring Boot testing mistakes, wins, and discoveries that will save you time and frustration"
 summary: "Hard-won lessons and practical advice for developers starting their Spring Boot testing journey"
-date: 2024-06-10T10:00:00+02:00
-duration: "40 minutes"
+date: 2025-07-14T10:00:00+02:00
+duration: "40-60 minutes"
 topics:
   - "Common Testing Mistakes"
   - "Test Strategy & Planning"
@@ -19,27 +19,6 @@ target_audience:
   - "Teams establishing testing practices"
   - "Developers frustrated with slow or brittle tests"
   - "Anyone looking to improve their testing approach"
-venues_delivered:
-  - name: "JavaLand"
-    location: "Brühl, Germany"
-    date: "2024-04-09"
-    type: "conference"
-    attendees: 1800
-  - name: "JUG Dortmund"
-    location: "Dortmund, Germany"
-    date: "2024-02-20"
-    type: "meetup"
-    attendees: 45
-  - name: "Spring Meetup Munich"
-    location: "Munich, Germany"
-    date: "2024-03-12"
-    type: "meetup"
-    attendees: 85
-  - name: "DevTalks Romania"
-    location: "Bucharest, Romania"
-    date: "2024-06-15"
-    type: "conference"
-    attendees: 1200
 abstract: "Testing Spring Boot applications can be overwhelming when you're starting out. This talk shares the hard-won lessons, common pitfalls, and practical wisdom I've gathered from years of testing Spring Boot applications. Learn from my mistakes so you don't have to make them yourself. We'll cover everything from choosing the right testing approach to avoiding performance traps that can make your test suite unbearably slow."
 key_takeaways:
   - "Recognize and avoid the most common Spring Boot testing mistakes"
@@ -58,9 +37,6 @@ available_for:
   - "meetups"
   - "corporate_events"
   - "workshops"
-slides_url: "https://speakerdeck.com/rieckpil/things-i-wish-i-knew-testing-spring-boot"
-video_url: "https://www.youtube.com/watch?v=spring-boot-testing-lessons"
-github_url: "https://github.com/rieckpil/spring-boot-testing-lessons"
 draft: false
 ---
 
@@ -82,7 +58,7 @@ This presentation distills years of Spring Boot testing experience into actionab
 
 **Building Effective Testing Strategies:**
 - How to choose between unit, integration, and end-to-end tests
-- When to use @SpringBootTest vs. test slices (and why it matters)
+- When to use `@SpringBootTest` vs. test slices (and why it matters)
 - Building a testing pyramid that actually works for Spring Boot
 - Test data strategies that don't become maintenance nightmares
 
