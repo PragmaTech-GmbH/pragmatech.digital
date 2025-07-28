@@ -1,8 +1,8 @@
 ---
 title: "JUG Zürich: Testing Spring Boot Applications Demystified"
 date: 2025-05-16T10:00:00+02:00
-startDate: 2025-10-22T19:00:00+02:00
-endDate: 2025-10-22T21:00:00+02:00
+startDate: 2025-10-21T19:00:00+02:00
+endDate: 2025-10-21T21:00:00+02:00
 location: "Zürich, Switzerland"
 eventType: "meetup"
 registration: "https://www.jug.ch/events/zurich/"
