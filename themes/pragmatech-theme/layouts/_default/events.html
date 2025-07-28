@@ -132,10 +132,19 @@
                     hour12: true 
                 });
                 
+                // Generate WebP path for the cover image
+                const coverImagePath = event.coverImage;
+                const imageExtension = coverImagePath.substring(coverImagePath.lastIndexOf('.'));
+                const baseImagePath = coverImagePath.replace(imageExtension, '');
+                const webpImagePath = `/generated/images${baseImagePath.replace('/images', '')}.webp`;
+                
                 const cardContent = `
                     <a href="${event.permalink}" class="block">
                         <div class="relative">
-                            <img src="${event.coverImage}" alt="${event.title}" class="w-full h-48 object-cover">
+                            <picture>
+                                <source srcset="${webpImagePath}" type="image/webp">
+                                <img src="${event.coverImage}" alt="${event.title}" class="w-full h-48 object-cover">
+                            </picture>
                             <div class="absolute top-0 right-0 m-3 px-3 py-1 rounded-full text-xs font-semibold ${typeClass} ${textClass}">
                                 ${event.eventType.charAt(0).toUpperCase() + event.eventType.slice(1)}
                             </div>
