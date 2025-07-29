@@ -16,11 +16,10 @@ codeUrl: "https://github.com/rieckpil/talks/tree/main/testing-spring-boot-applic
 
 ## About This Talk
 
-The Java UserGroup Hamburg is excited to host PragmaTech's testing expert for an evening dedicated to modern Spring Boot testing approaches. We'll cover:
+The Java User Group Hamburg is excited to host PragmaTech's testing expert for an evening dedicated to modern Spring Boot testing approaches. We'll cover:
 
 - Modern testing strategies for Spring Boot applications
 - Testing slices and their benefits
-- Performance optimization for test suites
 - Integration vs. unit testing considerations
 - Practical demos and real-world examples
 
