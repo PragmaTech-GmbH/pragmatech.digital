@@ -1,0 +1,459 @@
+{{ define "main" }}
+<!-- Product Hero Section -->
+<section class="relative bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 text-white py-20">
+    <div class="absolute inset-0 bg-black/20"></div>
+    <div class="relative container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+            <!-- Breadcrumb -->
+            <nav class="mb-8">
+                <ol class="flex items-center space-x-2 text-blue-200">
+                    <li><a href="/" class="hover:text-white transition-colors">Home</a></li>
+                    <li class="flex items-center">
+                        <svg class="w-4 h-4 mx-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <a href="/products" class="hover:text-white transition-colors">Products</a>
+                    </li>
+                    <li class="flex items-center">
+                        <svg class="w-4 h-4 mx-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="text-white">{{ .Title }}</span>
+                    </li>
+                </ol>
+            </nav>
+
+            <div class="text-center">
+                <!-- Status Badge -->
+                <div class="mb-6">
+                    {{ $productData := index .Site.Data.products.products 0 }}
+                    {{ if eq $productData.status "coming_soon" }}
+                    <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        Coming Soon - {{ $productData.launch_date }}
+                    </span>
+                    {{ else if eq $productData.status "available" }}
+                    <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-green-100 text-green-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        Available Now
+                    </span>
+                    {{ end }}
+                </div>
+
+                <!-- Product Icon/Logo -->
+                <div class="text-8xl mb-6">{{ $productData.icon }}</div>
+                
+                <!-- Title and Subtitle -->
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">{{ .Title }}</h1>
+                <p class="text-xl md:text-2xl text-blue-100 mb-8">{{ .Params.subtitle | default $productData.subtitle }}</p>
+                
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    {{ if $productData.links.github }}
+                    <a href="{{ $productData.links.github }}" target="_blank" class="inline-flex items-center bg-white text-blue-600 hover:bg-blue-50 font-medium py-3 px-6 rounded-lg transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        View on GitHub
+                    </a>
+                    {{ end }}
+                    
+                    {{ if eq $productData.status "coming_soon" }}
+                    <a href="{{ .Site.Params.scheduleCallUrl }}" class="inline-flex items-center border-2 border-white text-white hover:bg-white hover:text-blue-600 font-medium py-3 px-6 rounded-lg transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5zM4 19h5v-5l-5 5z" />
+                        </svg>
+                        Get Early Access
+                    </a>
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Pain Point Section -->
+<section class="py-20 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6 text-red-600">The Pain Point</h2>
+                <div class="w-24 h-1 bg-red-600 mx-auto mb-8"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    {{ .Params.painPoint | markdownify | default .Content }}
+                </div>
+                <div class="text-center">
+                    <!-- Placeholder for screenshot -->
+                    <div class="bg-gray-100 rounded-lg p-8 border-2 border-dashed border-gray-300">
+                        <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        <p class="text-gray-500 text-sm">Screenshot placeholder</p>
+                        <p class="text-gray-400 text-xs mt-1">Pain point visualization</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Solution Section -->
+<section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6 text-green-600">Our Solution</h2>
+                <div class="w-24 h-1 bg-green-600 mx-auto mb-8"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="order-2 md:order-1 text-center">
+                    <!-- Placeholder for screenshot -->
+                    <div class="bg-white rounded-lg p-8 border-2 border-dashed border-gray-300 shadow-sm">
+                        <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <p class="text-gray-500 text-sm">Screenshot placeholder</p>
+                        <p class="text-gray-400 text-xs mt-1">Solution demonstration</p>
+                    </div>
+                </div>
+                <div class="order-1 md:order-2">
+                    {{ .Params.solution | markdownify }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sample Report Section -->
+<section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Sample HTML Report</h2>
+                <p class="text-xl text-gray-600">See what insights {{ .Title }} provides with our comprehensive reporting</p>
+            </div>
+            
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                <div class="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-4">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-lg font-semibold">Spring Test Profiler Report</h3>
+                        <div class="flex items-center space-x-2">
+                            <span class="px-2 py-1 bg-blue-500 rounded text-sm">Interactive Preview</span>
+                            {{ if .Params.sampleReportUrl }}
+                            <a href="{{ .Params.sampleReportUrl }}" target="_blank" class="px-3 py-1 bg-white text-blue-600 rounded text-sm hover:bg-blue-50 transition-colors">
+                                Open Full Report
+                            </a>
+                            {{ end }}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="p-1">
+                    {{ if .Params.sampleReportUrl }}
+                    <!-- Iframe for actual HTML report -->
+                    <iframe 
+                        src="{{ .Params.sampleReportUrl }}" 
+                        class="w-full h-96 border-0 rounded-b-xl"
+                        title="Spring Test Profiler Sample Report"
+                        sandbox="allow-scripts allow-same-origin"
+                        scrolling="auto">
+                    </iframe>
+                    {{ else }}
+                    <!-- Fallback mockup when no report URL is provided -->
+                    <div class="h-96 bg-gray-50 rounded-b-xl flex flex-col overflow-hidden">
+                        <!-- Report Header -->
+                        <div class="bg-white border-b p-4">
+                            <div class="flex items-center justify-between mb-4">
+                                <h4 class="text-lg font-semibold">Test Execution Summary</h4>
+                                <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-sm">✓ 247 tests passed</span>
+                            </div>
+                            <div class="grid grid-cols-4 gap-4 text-center">
+                                <div class="bg-blue-50 p-3 rounded">
+                                    <div class="text-2xl font-bold text-blue-600">8.7s</div>
+                                    <div class="text-sm text-gray-600">Total Time</div>
+                                </div>
+                                <div class="bg-green-50 p-3 rounded">
+                                    <div class="text-2xl font-bold text-green-600">247</div>
+                                    <div class="text-sm text-gray-600">Tests Passed</div>
+                                </div>
+                                <div class="bg-yellow-50 p-3 rounded">
+                                    <div class="text-2xl font-bold text-yellow-600">3</div>
+                                    <div class="text-sm text-gray-600">Slow Tests</div>
+                                </div>
+                                <div class="bg-purple-50 p-3 rounded">
+                                    <div class="text-2xl font-bold text-purple-600">12</div>
+                                    <div class="text-sm text-gray-600">Contexts</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Report Content Preview -->
+                        <div class="flex-1 p-4 space-y-3 overflow-y-auto">
+                            <div class="bg-white border rounded p-3">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="font-medium">UserServiceTest</span>
+                                    <span class="text-red-600 text-sm">2.3s ⚠️</span>
+                                </div>
+                                <div class="text-sm text-gray-600">Heavy Spring context loading detected</div>
+                            </div>
+                            
+                            <div class="bg-white border rounded p-3">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="font-medium">PaymentControllerTest</span>
+                                    <span class="text-yellow-600 text-sm">1.8s</span>
+                                </div>
+                                <div class="text-sm text-gray-600">Database initialization overhead</div>
+                            </div>
+                            
+                            <div class="bg-white border rounded p-3">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="font-medium">AuthenticationTest</span>
+                                    <span class="text-green-600 text-sm">0.2s ✓</span>
+                                </div>
+                                <div class="text-sm text-gray-600">Well optimized unit test</div>
+                            </div>
+                            
+                            <div class="bg-white border rounded p-3">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="font-medium">OrderProcessingTest</span>
+                                    <span class="text-yellow-600 text-sm">1.2s</span>
+                                </div>
+                                <div class="text-sm text-gray-600">Multiple @DirtiesContext detected</div>
+                            </div>
+                            
+                            <div class="bg-white border rounded p-3">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="font-medium">EmailServiceTest</span>
+                                    <span class="text-green-600 text-sm">0.3s ✓</span>
+                                </div>
+                                <div class="text-sm text-gray-600">Uses @MockBean efficiently</div>
+                            </div>
+                            
+                            <div class="bg-white border rounded p-3">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="font-medium">DatabaseIntegrationTest</span>
+                                    <span class="text-red-600 text-sm">3.1s ⚠️</span>
+                                </div>
+                                <div class="text-sm text-gray-600">@SpringBootTest with full context loading</div>
+                            </div>
+                            
+                            <div class="bg-white border rounded p-3">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="font-medium">SecurityConfigTest</span>
+                                    <span class="text-green-600 text-sm">0.4s ✓</span>
+                                </div>
+                                <div class="text-sm text-gray-600">@WebMvcTest slice optimization</div>
+                            </div>
+                            
+                            <div class="bg-white border rounded p-3">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="font-medium">ProductCatalogTest</span>
+                                    <span class="text-yellow-600 text-sm">1.5s</span>
+                                </div>
+                                <div class="text-sm text-gray-600">Redundant @Transactional usage</div>
+                            </div>
+                            
+                            <div class="bg-blue-50 border-l-4 border-blue-400 p-3 rounded">
+                                <h5 class="font-medium text-blue-800 mb-2">💡 Optimization Recommendations</h5>
+                                <ul class="text-sm text-blue-700 space-y-1">
+                                    <li>• Replace @SpringBootTest with @WebMvcTest for controller tests</li>
+                                    <li>• Use @TestConfiguration for shared test setups</li>
+                                    <li>• Consider @DirtiesContext alternatives</li>
+                                    <li>• Mock external dependencies instead of loading full context</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="text-center pt-4 pb-2">
+                                <p class="text-gray-500 text-sm">🎯 Sample report showing test performance insights</p>
+                                <p class="text-gray-400 text-xs mt-1">Scroll to see more test results and recommendations</p>
+                            </div>
+                        </div>
+                    </div>
+                    {{ end }}
+                </div>
+            </div>
+            
+            <div class="text-center mt-8">
+                <p class="text-gray-600 mb-4">
+                    {{ if .Params.sampleReportUrl }}
+                    This is a live example of the HTML report generated by {{ .Title }}.
+                    {{ else }}
+                    This mockup shows the type of insights you'll get from {{ .Title }}'s HTML reports.
+                    {{ end }}
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    {{ $productData := index .Site.Data.products.products 0 }}
+                    {{ if $productData.links.github }}
+                    <a href="{{ $productData.links.github }}" target="_blank" class="inline-flex items-center bg-gray-900 text-white hover:bg-gray-800 font-medium py-2 px-4 rounded-lg transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        Try It Yourself
+                    </a>
+                    {{ end }}
+                    <a href="#features" class="inline-flex items-center border border-gray-300 text-gray-700 hover:bg-gray-50 font-medium py-2 px-4 rounded-lg transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                        </svg>
+                        See All Features
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section id="features" class="py-20 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Key Features</h2>
+                <p class="text-xl text-gray-600">Everything you need to optimize your testing workflow</p>
+            </div>
+            
+            {{ $productData := index .Site.Data.products.products 0 }}
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {{ range $productData.features }}
+                <div class="bg-gray-50 rounded-lg p-6">
+                    <div class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500 mr-3 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <p class="text-gray-700">{{ . }}</p>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Screenshots Gallery Section -->
+<section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">See It In Action</h2>
+                <p class="text-xl text-gray-600">Visual walkthrough of {{ .Title }}</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Screenshot placeholders -->
+                <div class="bg-white rounded-lg p-8 border-2 border-dashed border-gray-300 shadow-sm">
+                    <svg class="w-20 h-20 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    </svg>
+                    <p class="text-gray-500 text-center">Dashboard Overview</p>
+                    <p class="text-gray-400 text-xs text-center mt-1">Main interface screenshot</p>
+                </div>
+                
+                <div class="bg-white rounded-lg p-8 border-2 border-dashed border-gray-300 shadow-sm">
+                    <svg class="w-20 h-20 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    <p class="text-gray-500 text-center">Performance Analysis</p>
+                    <p class="text-gray-400 text-xs text-center mt-1">Test metrics visualization</p>
+                </div>
+                
+                <div class="bg-white rounded-lg p-8 border-2 border-dashed border-gray-300 shadow-sm">
+                    <svg class="w-20 h-20 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                    </svg>
+                    <p class="text-gray-500 text-center">Code Integration</p>
+                    <p class="text-gray-400 text-xs text-center mt-1">IDE plugin interface</p>
+                </div>
+                
+                <div class="bg-white rounded-lg p-8 border-2 border-dashed border-gray-300 shadow-sm">
+                    <svg class="w-20 h-20 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    <p class="text-gray-500 text-center">Detailed Reports</p>
+                    <p class="text-gray-400 text-xs text-center mt-1">Comprehensive analysis</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Pricing Section -->
+<section class="py-20 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Pricing</h2>
+                <p class="text-xl text-gray-600">Choose the plan that fits your needs</p>
+            </div>
+            
+            {{ $productData := index .Site.Data.products.products 0 }}
+            {{ if $productData.pricing }}
+            <div class="bg-gray-50 rounded-xl p-8 text-center">
+                {{ if eq $productData.pricing.model "freemium" }}
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-lg p-6 shadow-sm">
+                        <h3 class="text-2xl font-bold mb-4 text-gray-900">Free Tier</h3>
+                        <p class="text-gray-600 mb-4">{{ $productData.pricing.free_tier }}</p>
+                        <div class="text-3xl font-bold text-green-600 mb-4">$0</div>
+                        <p class="text-sm text-gray-500">Perfect for getting started</p>
+                    </div>
+                    <div class="bg-blue-600 text-white rounded-lg p-6 shadow-sm">
+                        <h3 class="text-2xl font-bold mb-4">Pro Tier</h3>
+                        <p class="mb-4">{{ $productData.pricing.paid_tier }}</p>
+                        <div class="text-3xl font-bold mb-4">Contact Us</div>
+                        <p class="text-sm text-blue-200">For growing teams</p>
+                    </div>
+                </div>
+                {{ else if eq $productData.pricing.model "free" }}
+                <div class="bg-white rounded-lg p-8 shadow-sm">
+                    <h3 class="text-3xl font-bold mb-4 text-green-600">Free & Open Source</h3>
+                    <p class="text-xl text-gray-600">Available to everyone, forever</p>
+                </div>
+                {{ end }}
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-20 bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 text-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Get Started?</h2>
+            <p class="text-xl text-blue-100 mb-8">
+                {{ if eq $productData.status "coming_soon" }}
+                Join the waitlist and be among the first to experience {{ .Title }}.
+                {{ else }}
+                Start optimizing your Spring Boot tests today with {{ .Title }}.
+                {{ end }}
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                {{ if $productData.links.github }}
+                <a href="{{ $productData.links.github }}" target="_blank" class="inline-flex items-center bg-white text-blue-600 hover:bg-blue-50 font-medium py-3 px-6 rounded-lg transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    Explore on GitHub
+                </a>
+                {{ end }}
+                
+                <a href="{{ .Site.Params.scheduleCallUrl }}" class="inline-flex items-center border-2 border-white text-white hover:bg-white hover:text-blue-600 font-medium py-3 px-6 rounded-lg transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    {{ if eq $productData.status "coming_soon" }}Get Early Access{{ else }}Schedule Demo{{ end }}
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{{ end }}
