@@ -68,7 +68,7 @@
             
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div>
-                    {{ .Params.painPoint | markdownify | default .Content }}
+                    {{ .Params.painPoint | markdownify | safeHTML }}
                 </div>
                 <div class="text-center">
                     <!-- Placeholder for screenshot -->
@@ -106,7 +106,7 @@
                     </div>
                 </div>
                 <div class="order-1 md:order-2">
-                    {{ .Params.solution | markdownify }}
+                    {{ .Params.solution | markdownify | safeHTML }}
                 </div>
             </div>
         </div>
