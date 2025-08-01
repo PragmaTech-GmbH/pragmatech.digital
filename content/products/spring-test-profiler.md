@@ -26,8 +26,8 @@ icon: "🔍"
 launch_date: "July 2025"
 target_audience: "Java developers, Spring Boot teams, DevOps engineers"
 painPoint: |
-  Your test suite shouldn't be a productivity killer. If your Spring Boot tests take 15+ minutes to run, fail unpredictably, or force developers to skip testing locally, you're losing valuable development time and shipping more bugs.
-  
+  Your test suite shouldn't be a productivity killer. If your Spring Boot tests take 15+ minutes to run, fail unpredictably, or force developers to skip testing locally, you're losing valuable development time and shipping more bugs.  
+  <br><br> 
   ## Slow and Unpredictable Test Suites Are Killing Your Productivity
 
   Are you tired of waiting for your Spring Boot test suite to complete? Do you struggle with:
