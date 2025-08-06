@@ -58,9 +58,9 @@ HUGO_ENV = "branch-deploy"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-# Security headers for the report HTML file (needs to be embeddable)
+# Security headers for the specific report HTML file (most specific first)
 [[headers]]
-  for = "/content/profiler/*"
+  for = "/content/profiler/report.html"
   [headers.values]
     X-Frame-Options = "SAMEORIGIN"
     X-XSS-Protection = "1; mode=block"
@@ -78,7 +78,7 @@ HUGO_ENV = "branch-deploy"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' analytics.rieckpil.de; style-src 'self' 'unsafe-inline'; img-src 'self' data: analytics.rieckpil.de; font-src 'self'; connect-src 'self' analytics.rieckpil.de; media-src 'self'; object-src 'none'; frame-src 'self';"
 
-# General security headers for all other pages
+# General security headers for all other pages (least specific)
 [[headers]]
   for = "/*"
   [headers.values]
