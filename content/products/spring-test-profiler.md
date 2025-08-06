@@ -26,6 +26,7 @@ icon: "🔍"
 launch_date: "July 2025"
 target_audience: "Java developers, Spring Boot teams, DevOps engineers"
 sampleReportUrl: "/content/profiler/report.html"
+share_image: "/images/products/spring-test-profiler-preview-image.png"
 ---
 
 Transform your Spring Boot testing workflow from a bottleneck into a competitive advantage. With Spring Test Profiler, you'll spend less time waiting for tests and more time shipping features that delight your users.
