@@ -48,15 +48,6 @@
     .btn-secondary {
         @apply bg-transparent border-2 border-blue-600 text-blue-600 hover:bg-blue-50;
     }
-
-    .sharp-image {
-        image-rendering: -webkit-optimize-contrast;
-        image-rendering: -webkit-crisp-edges;
-        image-rendering: -moz-crisp-edges;
-        image-rendering: crisp-edges;
-        image-rendering: pixelated;
-        -ms-interpolation-mode: nearest-neighbor;
-    }
 }
 
 @layer utilities {
