@@ -9,7 +9,7 @@ params:
   newsletterUrl: "https://www.linkedin.com/newsletters/7161721575862386688/"
   defaultShareImage: "/images/pragmatech-social-banner.png"
   socialTitle: "PragmaTech GmbH - Build & Ship Software w/ Confidence"
-  bannerText: "Our new open-source project [Spring Test Profiler](https://github.com/PragmaTech-GmbH/spring-test-profiler) is available! Try it now to speed up your Spring Boot builds."
+  bannerText: "Our new open-source project [Spring Test Profiler](/products/spring-test-profiler/) is available! Try it now to speed up your Spring Boot builds."
   emails:
     contact: "info@pragmatech.digital"
     info: "info@pragmatech.digital"
