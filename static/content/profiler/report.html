@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spring Test Profiler Report</title>
+  <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧪</text></svg>">
+  <script src="https://d3js.org/d3.v7.min.js" integrity="sha384-CjloA8y00+1SDAUkjs099PVfnY2KmDC2BZnws9kh8D/lX1s46w6EPhpXdqMfjK6i" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="static/css/spring-test-profiler.css">
+</head>
+<body>
+<div class="container">
+  <h1>Spring Test Profiler Report</h1>
+  <p>Understanding when and how many Spring ApplicationContexts are created in your test suite allows you to optimize
+    build times by leveraging Spring TestContext's context caching feature, which reuses already started contexts.</p>
+  <br/>
+  <div class="timestamp">Generated at: 2025-07-28 06:06:40</div>
+
+  <!-- Theory Section Fragment -->
+  <div class="theory-section">
+        <div class="theory-header" onclick="toggleTheorySection()">
+            <h2>
+                <span class="toggle-icon" id="theory-toggle-icon">▶</span>
+                Understanding Spring TestContext Context Caching
+            </h2>
+            <p class="theory-subtitle">Click to learn about Spring TestContext context caching principles and optimization tips</p>
+        </div>
+        <div class="theory-content" id="theory-content" style="display: none;">
+            <p>Spring Test Framework provides <strong>context caching</strong> to improve test performance by reusing ApplicationContext instances across multiple test classes when they share the same configuration.</p>
+
+            <h3>How Context Caching Works</h3>
+            <p>Spring generates a <strong>cache key</strong> based on:</p>
+            <ul>
+                <li><strong>Context Loader</strong> - The class responsible for loading the context</li>
+                <li><strong>Locations & Classes</strong> - Configuration files/classes specified in @ContextConfiguration</li>
+                <li><strong>Active Profiles</strong> - Profiles activated via @ActiveProfiles</li>
+                <li><strong>Property Sources</strong> - Test property sources from @TestPropertySource</li>
+                <li><strong>Context Initializers</strong> - Custom context initializers</li>
+                <li><strong>Context Customizers</strong> - Customizers from test slices like @WebMvcTest</li>
+            </ul>
+
+            <div class="cache-behavior">
+                <div class="cache-hit">
+                    <h4>🎯 Cache Hit</h4>
+                    <p>When a test class has the <em>same exact configuration</em> as a previous test, Spring reuses the existing ApplicationContext. This results in faster test execution.</p>
+                </div>
+                <div class="cache-miss">
+                    <h4>🔄 Cache Miss</h4>
+                    <p>When a test class has a <em>different configuration</em>, Spring creates a new ApplicationContext. This takes more time but ensures test isolation.</p>
+                </div>
+            </div>
+
+            <h3>Optimization Tips</h3>
+            <ul>
+                <li><strong>Group similar tests:</strong> Use the same @ContextConfiguration across related test classes</li>
+                <li><strong>Minimize @DirtiesContext:</strong> Avoid marking contexts as dirty unless absolutely necessary</li>
+                <li><strong>Use test slices:</strong> @WebMvcTest, @DataJpaTest create focused, cacheable contexts</li>
+                <li><strong>Consolidate profiles:</strong> Use consistent @ActiveProfiles across test classes</li>
+            </ul>
+
+            <div class="docs-links">
+                <h3>📚 Learn More</h3>
+                <p>For detailed information about Spring Test context caching:</p>
+                <ul>
+                    <li><a href="https://docs.spring.io/spring-framework/reference/testing/testcontext-framework/ctx-management/caching.html" target="_blank">Context Caching - Spring Framework Reference</a></li>
+                    <li><a href="https://docs.spring.io/spring-framework/reference/testing/testcontext-framework/support-classes.html" target="_blank">TestContext Framework Support Classes</a></li>
+                    <li><a href="https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html" target="_blank">Testing Spring Boot Applications</a></li>
+                    <li><a href="https://docs.spring.io/spring-framework/reference/testing/annotations/integration-spring/annotation-dirtiescontext.html" target="_blank">@DirtiesContext Annotation</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+  <!-- Summary Section Fragment -->
+  <div>
+
+        <h2>Test Execution Summary</h2>
+        <div class="execution-info">
+            <div class="execution-detail">
+                <strong>Executed via:</strong> <span>maven</span>
+            </div>
+            <div class="execution-detail">
+                <strong>Execution Time:</strong> <span>2025-07-28 06:06:40</span>
+            </div>
+            <div class="execution-detail">
+                <strong>Time Zone:</strong> <span>Etc/UTC</span>
+            </div>
+        </div>
+        <div class="summary-grid">
+            <div class="summary-card">
+                <h3>Test Classes</h3>
+                <div class="value">4</div>
+            </div>
+            <div class="summary-card">
+                <h3>Total Tests</h3>
+                <div class="value">15</div>
+            </div>
+            <div class="summary-card passed">
+                <h3>Passed</h3>
+                <div class="value">13</div>
+            </div>
+            <div class="summary-card failed">
+                <h3>Failed</h3>
+                <div class="value">0</div>
+            </div>
+            <div class="summary-card disabled">
+                <h3>Disabled</h3>
+                <div class="value">0</div>
+            </div>
+            <div class="summary-card aborted">
+                <h3>Aborted</h3>
+                <div class="value">0</div>
+            </div>
+            <div class="summary-card">
+                <h3>Total Runtime</h3>
+                <div class="value" style="font-size: 24px;">8.5s</div>
+            </div>
+            <div class="summary-card">
+                <h3>Success Rate</h3>
+                <div class="value" style="font-size: 24px;">86.7%</div>
+            </div>
+            <div class="summary-card">
+                <h3>Available Processors</h3>
+                <div class="value">4</div>
+            </div>
+        </div>
+    </div>
+
+  <!-- Context Caching Statistics Fragment -->
+  <div class="cache-stats">
+        <h2>Spring Context Caching Statistics</h2>
+
+        <!-- Basic cache metrics -->
+        <div class="cache-overview">
+            <div class="cache-metric">
+                <span class="label">Cache Size:</span>
+                <span class="value">3 / 32</span>
+            </div>
+            <div class="cache-metric">
+                <span class="label">Cache Hits:</span>
+                <span class="value">245</span>
+            </div>
+            <div class="cache-metric">
+                <span class="label">Cache Misses:</span>
+                <span class="value">6</span>
+            </div>
+            <div class="cache-metric">
+                <span class="label">Cache Hit Rate:</span>
+                <span class="value hit-rate">97.6%</span>
+            </div>
+        </div>
+
+        <!-- Detailed context information -->
+        <div class="context-cache-details">
+            <h3>Context Cache Entries</h3>
+            <div class="cache-entry">
+                <div class="cache-entry-header">
+                    <span class="cache-id">Context ID: context-0</span>
+                    <span class="bean-count">243 beans</span>
+                </div>
+                <div class="context-stats">
+                    <div class="stat-row">
+                        <span class="stat-label">Load Time:</span>
+                        <span class="stat-value">6ms</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Heap Memory:</span>
+                        <span class="stat-value">65.3MB</span>
+                    </div>
+                </div>
+                <div class="test-classes">
+                    <strong>Test Classes:</strong>
+                    <span class="test-class">digital.pragmatech.demo.BadThreeIT</span>
+                </div>
+            </div>
+            <div class="cache-entry">
+                <div class="cache-entry-header">
+                    <span class="cache-id">Context ID: context-1</span>
+                    <span class="bean-count">237 beans</span>
+                </div>
+                <div class="context-stats">
+                    <div class="stat-row">
+                        <span class="stat-label">Load Time:</span>
+                        <span class="stat-value">2ms</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Heap Memory:</span>
+                        <span class="stat-value">68.9MB</span>
+                    </div>
+                </div>
+                <div class="test-classes">
+                    <strong>Test Classes:</strong>
+                    <span class="test-class">digital.pragmatech.demo.GoodIT</span>
+                </div>
+            </div>
+            <div class="cache-entry">
+                <div class="cache-entry-header">
+                    <span class="cache-id">Context ID: context-2</span>
+                    <span class="bean-count">242 beans</span>
+                </div>
+                <div class="context-stats">
+                    <div class="stat-row">
+                        <span class="stat-label">Load Time:</span>
+                        <span class="stat-value">30ms</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Heap Memory:</span>
+                        <span class="stat-value">13.0MB</span>
+                    </div>
+                </div>
+                <div class="test-classes">
+                    <strong>Test Classes:</strong>
+                    <span class="test-class">digital.pragmatech.demo.BadOneIT</span>
+                </div>
+            </div>
+            <div class="cache-entry">
+                <div class="cache-entry-header">
+                    <span class="cache-id">Context ID: context-3</span>
+                    <span class="bean-count">242 beans</span>
+                </div>
+                <div class="context-stats">
+                    <div class="stat-row">
+                        <span class="stat-label">Load Time:</span>
+                        <span class="stat-value">2ms</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Heap Memory:</span>
+                        <span class="stat-value">63.3MB</span>
+                    </div>
+                </div>
+                <div class="test-classes">
+                    <strong>Test Classes:</strong>
+                    <span class="test-class">digital.pragmatech.demo.BadTwoIT</span>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+
+  <!-- Context Comparison Visualizer Fragment -->
+  <div class="section">
+  <h2>🔍 Spring Test Context Visualizer</h2>
+
+  <div class="context-comparison-controls">
+    <div class="dropdown-container">
+      <label for="context-a-select">Test Context A:</label>
+      <select id="context-a-select" class="context-dropdown">
+        <option value="">Select Context A</option>
+      </select>
+    </div>
+
+    <div class="vs-separator">vs.</div>
+
+    <div class="dropdown-container">
+      <label for="context-b-select">Test Context B:</label>
+      <select id="context-b-select" class="context-dropdown">
+        <option value="">Select Context B</option>
+      </select>
+    </div>
+
+    <button id="compare-contexts-btn" class="compare-button" disabled>Compare</button>
+  </div>
+
+  <div id="context-comparison-legend" class="comparison-legend" style="display: none;">
+    <div class="legend-item">
+      <span class="legend-color same-config"></span>
+      <span>Same Configuration</span>
+    </div>
+    <div class="legend-item">
+      <span class="legend-color different-values"></span>
+      <span>Different Values</span>
+    </div>
+  </div>
+
+  <div id="context-comparison-visualization" class="comparison-visualization">
+    <!-- D3.js visualization will be rendered here -->
+  </div>
+
+  <div id="context-detailed-comparison" class="detailed-comparison-container" style="display: none;">
+    <h3 class="detailed-comparison-title">Attribute Comparison Details</h3>
+    <div class="detailed-comparison-content">
+      <div class="context-detail-card context-a-detail">
+        <h4 class="context-detail-title">Test Context A</h4>
+        <div class="context-detail-value"></div>
+      </div>
+      <div class="context-detail-card context-b-detail">
+        <h4 class="context-detail-title">Test Context B</h4>
+        <div class="context-detail-value"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- Optimization Recommendations Fragment -->
+  <!--  <div th:replace="~{fragments/optimization :: optimization-section(${optimizationStats})}"></div>-->
+
+  <!-- Timeline Visualization Fragment -->
+  <!--  <div th:replace="~{fragments/timeline :: timeline-section(${timelineData}, ${jsonHelper})}"></div>-->
+
+  <!-- Context Configurations Fragment -->
+  <div class="context-configs-section">
+  <h2>Spring Context Configurations</h2>
+  <p>This section shows all unique Spring context configurations detected during test execution, grouped by their
+    MergedContextConfiguration.</p>
+  <br/>
+
+  <div>
+    
+
+    <div>
+      <div class="context-config-item">
+        <div class="context-config-header">
+          <div class="context-config-id">🔧 <span>config-3</span></div>
+          <div class="context-config-test-count">1 test class</div>
+          <div class="context-bean-count">242 beans</div>
+        </div>
+
+        <!-- Configuration details -->
+        <div class="config-details">
+          <div class="config-detail-item">
+            <div class="config-detail-key">configurationClasses:</div>
+            <div class="config-detail-value">[DemoApplication]</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">activeProfiles:</div>
+            <div class="config-detail-value">[test, integration]</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">contextLoader:</div>
+            <div class="config-detail-value">SpringBootContextLoader</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">properties:</div>
+            <div class="config-detail-value">6 properties</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">parentContext:</div>
+            <div class="config-detail-value"></div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">contextCustomizers:</div>
+            <div class="config-detail-value">[org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@21d03963, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@33f676f6, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@7b50df34, org.springframework.boot.test.web.reactor.netty.DisableReactorResourceFactoryGlobalResourcesContextCustomizerFactory$DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer@4b2c5e02, org.springframework.boot.test.autoconfigure.OnFailureConditionReportContextCustomizerFactory$OnFailureConditionReportContextCustomizer@4bc222e, org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@1f, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer@3fce8fd9, org.springframework.test.context.support.DynamicPropertiesContextCustomizer@0, org.springframework.boot.test.context.SpringBootTestAnnotation@5fc91953]</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">locations:</div>
+            <div class="config-detail-value"></div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">contextInitializers:</div>
+            <div class="config-detail-value">[]</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">beanDefinitionCount:</div>
+            <div class="config-detail-value">242</div>
+          </div>
+        </div>
+
+        <!-- Test classes using this configuration -->
+        <div class="context-test-classes">
+          <strong>Test classes using this configuration:</strong><br>
+          <span class="context-test-class">digital.pragmatech.demo.BadTwoIT</span>
+        </div>
+
+        <!-- Context complexity analysis -->
+        <div class="context-complexity">
+          <div class="complexity-indicator">
+            <strong>Context Complexity:</strong>
+            <span>242</span> bean definitions
+          </div>
+        </div>
+      </div>
+      <div class="context-config-item">
+        <div class="context-config-header">
+          <div class="context-config-id">🔧 <span>config-2</span></div>
+          <div class="context-config-test-count">1 test class</div>
+          <div class="context-bean-count">242 beans</div>
+        </div>
+
+        <!-- Configuration details -->
+        <div class="config-details">
+          <div class="config-detail-item">
+            <div class="config-detail-key">configurationClasses:</div>
+            <div class="config-detail-value">[DemoApplication]</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">activeProfiles:</div>
+            <div class="config-detail-value">[test]</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">contextLoader:</div>
+            <div class="config-detail-value">SpringBootContextLoader</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">properties:</div>
+            <div class="config-detail-value">5 properties</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">parentContext:</div>
+            <div class="config-detail-value"></div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">contextCustomizers:</div>
+            <div class="config-detail-value">[org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@21d03963, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@33f676f6, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@7b50df34, org.springframework.boot.test.web.reactor.netty.DisableReactorResourceFactoryGlobalResourcesContextCustomizerFactory$DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer@4b2c5e02, org.springframework.boot.test.autoconfigure.OnFailureConditionReportContextCustomizerFactory$OnFailureConditionReportContextCustomizer@4bc222e, org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@1f, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer@3fce8fd9, org.springframework.test.context.support.DynamicPropertiesContextCustomizer@0, org.springframework.boot.test.context.SpringBootTestAnnotation@468625c4]</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">locations:</div>
+            <div class="config-detail-value"></div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">contextInitializers:</div>
+            <div class="config-detail-value">[]</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">beanDefinitionCount:</div>
+            <div class="config-detail-value">242</div>
+          </div>
+        </div>
+
+        <!-- Test classes using this configuration -->
+        <div class="context-test-classes">
+          <strong>Test classes using this configuration:</strong><br>
+          <span class="context-test-class">digital.pragmatech.demo.BadOneIT</span>
+        </div>
+
+        <!-- Context complexity analysis -->
+        <div class="context-complexity">
+          <div class="complexity-indicator">
+            <strong>Context Complexity:</strong>
+            <span>242</span> bean definitions
+          </div>
+        </div>
+      </div>
+      <div class="context-config-item">
+        <div class="context-config-header">
+          <div class="context-config-id">🔧 <span>config-1</span></div>
+          <div class="context-config-test-count">1 test class</div>
+          <div class="context-bean-count">237 beans</div>
+        </div>
+
+        <!-- Configuration details -->
+        <div class="config-details">
+          <div class="config-detail-item">
+            <div class="config-detail-key">configurationClasses:</div>
+            <div class="config-detail-value">[DemoApplication]</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">activeProfiles:</div>
+            <div class="config-detail-value">[test]</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">contextLoader:</div>
+            <div class="config-detail-value">SpringBootContextLoader</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">properties:</div>
+            <div class="config-detail-value">1 properties</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">parentContext:</div>
+            <div class="config-detail-value"></div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">contextCustomizers:</div>
+            <div class="config-detail-value">[org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@21d03963, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@33f676f6, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@7b50df34, org.springframework.boot.test.web.reactor.netty.DisableReactorResourceFactoryGlobalResourcesContextCustomizerFactory$DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer@4b2c5e02, org.springframework.boot.test.autoconfigure.OnFailureConditionReportContextCustomizerFactory$OnFailureConditionReportContextCustomizer@4bc222e, org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@1f, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer@3fce8fd9, org.springframework.test.context.support.DynamicPropertiesContextCustomizer@0, org.springframework.boot.test.context.SpringBootTestAnnotation@447e3897]</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">locations:</div>
+            <div class="config-detail-value"></div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">contextInitializers:</div>
+            <div class="config-detail-value">[]</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">beanDefinitionCount:</div>
+            <div class="config-detail-value">237</div>
+          </div>
+        </div>
+
+        <!-- Test classes using this configuration -->
+        <div class="context-test-classes">
+          <strong>Test classes using this configuration:</strong><br>
+          <span class="context-test-class">digital.pragmatech.demo.GoodIT</span>
+        </div>
+
+        <!-- Context complexity analysis -->
+        <div class="context-complexity">
+          <div class="complexity-indicator">
+            <strong>Context Complexity:</strong>
+            <span>237</span> bean definitions
+          </div>
+        </div>
+      </div>
+      <div class="context-config-item">
+        <div class="context-config-header">
+          <div class="context-config-id">🔧 <span>config-0</span></div>
+          <div class="context-config-test-count">1 test class</div>
+          <div class="context-bean-count">243 beans</div>
+        </div>
+
+        <!-- Configuration details -->
+        <div class="config-details">
+          <div class="config-detail-item">
+            <div class="config-detail-key">configurationClasses:</div>
+            <div class="config-detail-value">[DemoApplication]</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">activeProfiles:</div>
+            <div class="config-detail-value">[test]</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">contextLoader:</div>
+            <div class="config-detail-value">SpringBootContextLoader</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">properties:</div>
+            <div class="config-detail-value">6 properties</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">parentContext:</div>
+            <div class="config-detail-value"></div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">contextCustomizers:</div>
+            <div class="config-detail-value">[[ImportsContextCustomizer@1267fcea key = [org.springframework.boot.autoconfigure.task.TaskExecutionAutoConfiguration, org.springframework.boot.autoconfigure.web.servlet.HttpEncodingAutoConfiguration, org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration, org.springframework.boot.autoconfigure.context.MessageSourceAutoConfiguration, org.springframework.boot.autoconfigure.hateoas.HypermediaAutoConfiguration, org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration, org.springframework.boot.autoconfigure.data.web.SpringDataWebAutoConfiguration, org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration, org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration, org.springframework.boot.autoconfigure.gson.GsonAutoConfiguration, org.springframework.boot.autoconfigure.jsonb.JsonbAutoConfiguration, org.springframework.boot.autoconfigure.freemarker.FreeMarkerAutoConfiguration, org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration, org.springframework.boot.autoconfigure.http.HttpMessageConvertersAutoConfiguration, org.springframework.boot.autoconfigure.groovy.template.GroovyTemplateAutoConfiguration, org.springframework.boot.autoconfigure.mustache.MustacheAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@21d03963, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@33f676f6, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@7b50df34, org.springframework.boot.test.web.reactor.netty.DisableReactorResourceFactoryGlobalResourcesContextCustomizerFactory$DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer@4b2c5e02, org.springframework.boot.test.autoconfigure.OnFailureConditionReportContextCustomizerFactory$OnFailureConditionReportContextCustomizer@4bc222e, org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@1f, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer@3fce8fd9, org.springframework.test.context.support.DynamicPropertiesContextCustomizer@0, org.springframework.boot.test.context.SpringBootTestAnnotation@468625c4]</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">locations:</div>
+            <div class="config-detail-value"></div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">contextInitializers:</div>
+            <div class="config-detail-value">[]</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">beanDefinitionCount:</div>
+            <div class="config-detail-value">243</div>
+          </div>
+        </div>
+
+        <!-- Test classes using this configuration -->
+        <div class="context-test-classes">
+          <strong>Test classes using this configuration:</strong><br>
+          <span class="context-test-class">digital.pragmatech.demo.BadThreeIT</span>
+        </div>
+
+        <!-- Context complexity analysis -->
+        <div class="context-complexity">
+          <div class="complexity-indicator">
+            <strong>Context Complexity:</strong>
+            <span>243</span> bean definitions
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- Test Execution Details Fragment -->
+  <div>
+        <h2>Test Execution Details</h2>
+        <div class="execution-overview">
+            <p>Click on any test class below to expand and see detailed information about individual test methods, including execution times and failure details.</p>
+        </div>
+        
+        <div class="test-class">
+            
+            <div class="test-class-header" 
+                 onclick="toggleClass(this)" 
+                 style="border-left: 4px solid #27ae60;">
+                <div>
+                    <div class="test-class-name">BadTwoIT</div>
+                    <div class="test-class-package">digital.pragmatech.demo</div>
+                </div>
+                <div class="test-class-stats">
+                    <span>⏱️ <span>365ms</span></span>
+                    <span>📊 <span>3 tests</span></span>
+                    
+                    <span style="color: #27ae60;">
+                        ✅ <span>3</span>
+                    </span>
+                    
+                    <!-- Disabled and aborted tests would require additional counting logic -->
+                </div>
+            </div>
+            
+            <div class="test-methods">
+                <!-- Context info is now handled globally via cache statistics -->
+                
+                <!-- Test methods -->
+                <div class="test-method passed">
+                    
+                    <div class="test-method-header">
+                        <span class="test-method-name">
+                            <span>✅</span> 
+                            <span>testServiceCreateBook</span>
+                        </span>
+                        <div class="test-method-info">
+                            <span class="test-duration">3ms</span>
+                            <span class="test-status">PASSED</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="test-method passed">
+                    
+                    <div class="test-method-header">
+                        <span class="test-method-name">
+                            <span>✅</span> 
+                            <span>testServiceFindByAuthor</span>
+                        </span>
+                        <div class="test-method-info">
+                            <span class="test-duration">13ms</span>
+                            <span class="test-status">PASSED</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="test-method passed">
+                    
+                    <div class="test-method-header">
+                        <span class="test-method-name">
+                            <span>✅</span> 
+                            <span>testServiceCountByCategory</span>
+                        </span>
+                        <div class="test-method-info">
+                            <span class="test-duration">6ms</span>
+                            <span class="test-status">PASSED</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="test-class">
+            
+            <div class="test-class-header" 
+                 onclick="toggleClass(this)" 
+                 style="border-left: 4px solid #27ae60;">
+                <div>
+                    <div class="test-class-name">BadThreeIT</div>
+                    <div class="test-class-package">digital.pragmatech.demo</div>
+                </div>
+                <div class="test-class-stats">
+                    <span>⏱️ <span>928ms</span></span>
+                    <span>📊 <span>3 tests</span></span>
+                    
+                    <span style="color: #27ae60;">
+                        ✅ <span>3</span>
+                    </span>
+                    
+                    <!-- Disabled and aborted tests would require additional counting logic -->
+                </div>
+            </div>
+            
+            <div class="test-methods">
+                <!-- Context info is now handled globally via cache statistics -->
+                
+                <!-- Test methods -->
+                <div class="test-method passed">
+                    
+                    <div class="test-method-header">
+                        <span class="test-method-name">
+                            <span>✅</span> 
+                            <span>testGetBookCountViaRestApi</span>
+                        </span>
+                        <div class="test-method-info">
+                            <span class="test-duration">318ms</span>
+                            <span class="test-status">PASSED</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="test-method passed">
+                    
+                    <div class="test-method-header">
+                        <span class="test-method-name">
+                            <span>✅</span> 
+                            <span>testGetAllBooksViaRestApi</span>
+                        </span>
+                        <div class="test-method-info">
+                            <span class="test-duration">24ms</span>
+                            <span class="test-status">PASSED</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="test-method passed">
+                    
+                    <div class="test-method-header">
+                        <span class="test-method-name">
+                            <span>✅</span> 
+                            <span>testCreateBookViaRestApi</span>
+                        </span>
+                        <div class="test-method-info">
+                            <span class="test-duration">71ms</span>
+                            <span class="test-status">PASSED</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="test-class">
+            
+            <div class="test-class-header" 
+                 onclick="toggleClass(this)" 
+                 style="border-left: 4px solid #27ae60;">
+                <div>
+                    <div class="test-class-name">BadOneIT</div>
+                    <div class="test-class-package">digital.pragmatech.demo</div>
+                </div>
+                <div class="test-class-stats">
+                    <span>⏱️ <span>6.7s</span></span>
+                    <span>📊 <span>3 tests</span></span>
+                    
+                    <span style="color: #27ae60;">
+                        ✅ <span>3</span>
+                    </span>
+                    
+                    <!-- Disabled and aborted tests would require additional counting logic -->
+                </div>
+            </div>
+            
+            <div class="test-methods">
+                <!-- Context info is now handled globally via cache statistics -->
+                
+                <!-- Test methods -->
+                <div class="test-method passed">
+                    
+                    <div class="test-method-header">
+                        <span class="test-method-name">
+                            <span>✅</span> 
+                            <span>testCreateBook</span>
+                        </span>
+                        <div class="test-method-info">
+                            <span class="test-duration">7ms</span>
+                            <span class="test-status">PASSED</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="test-method passed">
+                    
+                    <div class="test-method-header">
+                        <span class="test-method-name">
+                            <span>✅</span> 
+                            <span>testFindByCategory</span>
+                        </span>
+                        <div class="test-method-info">
+                            <span class="test-duration">85ms</span>
+                            <span class="test-status">PASSED</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="test-method passed">
+                    
+                    <div class="test-method-header">
+                        <span class="test-method-name">
+                            <span>✅</span> 
+                            <span>testCountBooks</span>
+                        </span>
+                        <div class="test-method-info">
+                            <span class="test-duration">522ms</span>
+                            <span class="test-status">PASSED</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="test-class">
+            
+            <div class="test-class-header" 
+                 onclick="toggleClass(this)" 
+                 style="border-left: 4px solid #27ae60;">
+                <div>
+                    <div class="test-class-name">GoodIT</div>
+                    <div class="test-class-package">digital.pragmatech.demo</div>
+                </div>
+                <div class="test-class-stats">
+                    <span>⏱️ <span>464ms</span></span>
+                    <span>📊 <span>4 tests</span></span>
+                    
+                    <span style="color: #27ae60;">
+                        ✅ <span>4</span>
+                    </span>
+                    
+                    <!-- Disabled and aborted tests would require additional counting logic -->
+                </div>
+            </div>
+            
+            <div class="test-methods">
+                <!-- Context info is now handled globally via cache statistics -->
+                
+                <!-- Test methods -->
+                <div class="test-method passed">
+                    
+                    <div class="test-method-header">
+                        <span class="test-method-name">
+                            <span>✅</span> 
+                            <span>testRepositoryAndService</span>
+                        </span>
+                        <div class="test-method-info">
+                            <span class="test-duration">20ms</span>
+                            <span class="test-status">PASSED</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="test-method passed">
+                    
+                    <div class="test-method-header">
+                        <span class="test-method-name">
+                            <span>✅</span> 
+                            <span>testContextReuseAgain</span>
+                        </span>
+                        <div class="test-method-info">
+                            <span class="test-duration">8ms</span>
+                            <span class="test-status">PASSED</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="test-method passed">
+                    
+                    <div class="test-method-header">
+                        <span class="test-method-name">
+                            <span>✅</span> 
+                            <span>verifyParameterizedTest</span>
+                        </span>
+                        <div class="test-method-info">
+                            <span class="test-duration">1ms</span>
+                            <span class="test-status">PASSED</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="test-method passed">
+                    
+                    <div class="test-method-header">
+                        <span class="test-method-name">
+                            <span>✅</span> 
+                            <span>testAnotherOperationSameContext</span>
+                        </span>
+                        <div class="test-method-info">
+                            <span class="test-duration">13ms</span>
+                            <span class="test-status">PASSED</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-content">
+    <p>
+      Get help with optimizing your Spring Boot test suite at
+      <a href="https://pragmatech.digital" target="_blank" rel="noopener noreferrer">
+        PragmaTech GmbH
+      </a>
+    </p>
+    <p>
+      Generated on <span>2025-07-28 06:06:40</span>
+      by <strong>Spring Test Profiler</strong>
+      <span>0.0.9-SNAPSHOT</span>
+    </p>
+    <p>
+      <a href="https://github.com/PragmaTech-GmbH/spring-test-profiler" target="_blank"
+         rel="noopener noreferrer">GitHub</a>
+      |
+      <a href="https://pragmatech.digital/products/" target="_blank" rel="noopener noreferrer">Documentation</a>
+      |
+      <a href="https://github.com/PragmaTech-GmbH/spring-test-profiler/issues" target="_blank"
+         rel="noopener noreferrer">Submit a Bug or Feature Request</a>
+    </p>
+  </div>
+</footer>
+
+<script type="application/json" id="context-statistics-json">[{"contextKey":"context-0","contextConfiguration":{"parent":null,"classes":["digital.pragmatech.demo.DemoApplication"],"activeProfiles":["test"],"propertySourceLocations":[],"propertySourceProperties":["spring.datasource.url=jdbc:h2:mem:badtest3;DB_CLOSE_DELAY=-1","spring.jpa.hibernate.ddl-auto=create-drop","server.servlet.context-path=/api/v1","spring.jackson.property-naming-strategy=SNAKE_CASE","org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true","server.port=0"],"locations":[],"contextLoader":"org.springframework.boot.test.context.SpringBootContextLoader","testClass":"digital.pragmatech.demo.BadThreeIT","contextInitializerClasses":[],"contextCustomizers":["org.springframework.boot.test.context.ImportsContextCustomizer","org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer","org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer","org.springframework.boot.test.mock.mockito.MockitoContextCustomizer","org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer","org.springframework.boot.test.web.reactor.netty.DisableReactorResourceFactoryGlobalResourcesContextCustomizerFactory$DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer","org.springframework.boot.test.autoconfigure.OnFailureConditionReportContextCustomizerFactory$OnFailureConditionReportContextCustomizer","org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer","org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer","org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer","org.springframework.test.context.support.DynamicPropertiesContextCustomizer","org.springframework.boot.test.context.SpringBootTestAnnotation"]},"loadDuration":6,"initialLoadTime":1753682799,"lastUsedTime":1753682799,"testMethods":["digital.pragmatech.demo.BadThreeIT#testGetAllBooksViaRestApi","digital.pragmatech.demo.BadThreeIT#testCreateBookViaRestApi","digital.pragmatech.demo.BadThreeIT#testGetBookCountViaRestApi"],"testClasses":["digital.pragmatech.demo.BadThreeIT"],"numberOfBeans":243},{"contextKey":"context-1","contextConfiguration":{"parent":null,"classes":["digital.pragmatech.demo.DemoApplication"],"activeProfiles":["test"],"propertySourceLocations":[],"propertySourceProperties":["org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true"],"locations":[],"contextLoader":"org.springframework.boot.test.context.SpringBootContextLoader","testClass":"digital.pragmatech.demo.GoodIT","contextInitializerClasses":[],"contextCustomizers":["org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer","org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer","org.springframework.boot.test.mock.mockito.MockitoContextCustomizer","org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer","org.springframework.boot.test.web.reactor.netty.DisableReactorResourceFactoryGlobalResourcesContextCustomizerFactory$DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer","org.springframework.boot.test.autoconfigure.OnFailureConditionReportContextCustomizerFactory$OnFailureConditionReportContextCustomizer","org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer","org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer","org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer","org.springframework.test.context.support.DynamicPropertiesContextCustomizer","org.springframework.boot.test.context.SpringBootTestAnnotation"]},"loadDuration":2,"initialLoadTime":1753682800,"lastUsedTime":1753682800,"testMethods":["digital.pragmatech.demo.GoodIT#verifyParameterizedTest","digital.pragmatech.demo.GoodIT#testContextReuseAgain","digital.pragmatech.demo.GoodIT#testRepositoryAndService","digital.pragmatech.demo.GoodIT#testAnotherOperationSameContext"],"testClasses":["digital.pragmatech.demo.GoodIT"],"numberOfBeans":237},{"contextKey":"context-2","contextConfiguration":{"parent":null,"classes":["digital.pragmatech.demo.DemoApplication"],"activeProfiles":["test"],"propertySourceLocations":[],"propertySourceProperties":["spring.datasource.url=jdbc:h2:mem:badtest1;DB_CLOSE_DELAY=-1","spring.jpa.hibernate.ddl-auto=create-drop","logging.level.org.springframework.web=DEBUG","org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true","server.port=0"],"locations":[],"contextLoader":"org.springframework.boot.test.context.SpringBootContextLoader","testClass":"digital.pragmatech.demo.BadOneIT","contextInitializerClasses":[],"contextCustomizers":["org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer","org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer","org.springframework.boot.test.mock.mockito.MockitoContextCustomizer","org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer","org.springframework.boot.test.web.reactor.netty.DisableReactorResourceFactoryGlobalResourcesContextCustomizerFactory$DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer","org.springframework.boot.test.autoconfigure.OnFailureConditionReportContextCustomizerFactory$OnFailureConditionReportContextCustomizer","org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer","org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer","org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer","org.springframework.test.context.support.DynamicPropertiesContextCustomizer","org.springframework.boot.test.context.SpringBootTestAnnotation"]},"loadDuration":30,"initialLoadTime":1753682796,"lastUsedTime":1753682798,"testMethods":["digital.pragmatech.demo.BadOneIT#testCreateBook","digital.pragmatech.demo.BadOneIT#testFindByCategory","digital.pragmatech.demo.BadOneIT#testCountBooks"],"testClasses":["digital.pragmatech.demo.BadOneIT"],"numberOfBeans":242},{"contextKey":"context-3","contextConfiguration":{"parent":null,"classes":["digital.pragmatech.demo.DemoApplication"],"activeProfiles":["test","integration"],"propertySourceLocations":[],"propertySourceProperties":["server.port=8081","spring.datasource.url=jdbc:h2:mem:badtest2;DB_CLOSE_DELAY=-1","spring.jpa.hibernate.ddl-auto=create-drop","spring.jpa.show-sql=true","management.endpoints.web.exposure.include=health,info","org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true"],"locations":[],"contextLoader":"org.springframework.boot.test.context.SpringBootContextLoader","testClass":"digital.pragmatech.demo.BadTwoIT","contextInitializerClasses":[],"contextCustomizers":["org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer","org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer","org.springframework.boot.test.mock.mockito.MockitoContextCustomizer","org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer","org.springframework.boot.test.web.reactor.netty.DisableReactorResourceFactoryGlobalResourcesContextCustomizerFactory$DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer","org.springframework.boot.test.autoconfigure.OnFailureConditionReportContextCustomizerFactory$OnFailureConditionReportContextCustomizer","org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer","org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer","org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer","org.springframework.test.context.support.DynamicPropertiesContextCustomizer","org.springframework.boot.test.context.SpringBootTestAnnotation"]},"loadDuration":2,"initialLoadTime":1753682800,"lastUsedTime":1753682800,"testMethods":["digital.pragmatech.demo.BadTwoIT#testServiceFindByAuthor","digital.pragmatech.demo.BadTwoIT#testServiceCreateBook","digital.pragmatech.demo.BadTwoIT#testServiceCountByCategory"],"testClasses":["digital.pragmatech.demo.BadTwoIT"],"numberOfBeans":242}]</script>
+<script src="static/js/report.js"></script>
+</body>
+</html>

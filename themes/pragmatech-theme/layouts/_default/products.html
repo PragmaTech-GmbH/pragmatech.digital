@@ -97,19 +97,19 @@
                             </div>
 
                             <!-- Pricing -->
-                            {{ if .Params.pricing }}
-                            <div class="mb-6 p-4 bg-gray-50 rounded-lg">
-                                <h4 class="font-semibold text-gray-900 mb-2">Pricing:</h4>
-                                {{ if eq .Params.pricing.model "freemium" }}
-                                <div class="text-sm text-gray-600">
-                                    <div class="mb-1"><strong>Free:</strong> {{ .Params.pricing.free_tier }}</div>
-                                    <div><strong>Pro:</strong> {{ .Params.pricing.paid_tier }}</div>
-                                </div>
-                                {{ else if eq .Params.pricing.model "free" }}
-                                <div class="text-green-600 font-medium">Free & Open Source</div>
-                                {{ end }}
-                            </div>
-                            {{ end }}
+<!--                            {{ if .Params.pricing }}-->
+<!--                            <div class="mb-6 p-4 bg-gray-50 rounded-lg">-->
+<!--                                <h4 class="font-semibold text-gray-900 mb-2">Pricing:</h4>-->
+<!--                                {{ if eq .Params.pricing.model "freemium" }}-->
+<!--                                <div class="text-sm text-gray-600">-->
+<!--                                    <div class="mb-1"><strong>Free:</strong> {{ .Params.pricing.free_tier }}</div>-->
+<!--                                    <div><strong>Pro:</strong> {{ .Params.pricing.paid_tier }}</div>-->
+<!--                                </div>-->
+<!--                                {{ else if eq .Params.pricing.model "free" }}-->
+<!--                                <div class="text-green-600 font-medium">Free & Open Source</div>-->
+<!--                                {{ end }}-->
+<!--                            </div>-->
+<!--                            {{ end }}-->
 
                             <!-- Action Buttons -->
                             <div class="flex flex-col sm:flex-row gap-3">

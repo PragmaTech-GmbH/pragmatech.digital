@@ -68,16 +68,30 @@
             
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div>
-                    {{ .Params.painPoint | markdownify | safeHTML }}
+                    <h2>Slow and Unpredictable Test Suites Are Killing Your Productivity</h2>
+                    <br/>
+
+                    <p>Your test suite shouldn't be a productivity killer.</p>
+                    <br/>
+                    <p>If your Spring Boot tests take 15+ minutes to run, fail unpredictably, or force developers to skip testing locally, you're losing valuable development time and shipping more bugs.</p>
+                    <br/>
+                    <p>Are you tired of waiting for your Spring Boot test suite to complete? Do you struggle with:</p>
+                    
+                    <ul class="list-disc pl-6 mt-4 space-y-2">
+                        <li><strong>Flaky tests that fail randomly</strong>, breaking your CI/CD pipeline without clear reasons</li>
+                        <li><strong>No visibility into which tests are actually slow</strong> or consuming the most resources</li>
+                        <li><strong>No actionable insights</strong> on how to optimize your test performance</li>
+                    </ul>
+                    
+                    <p class="mt-4">Every minute spent waiting for tests is a minute not spent building features your users need. Poor test performance doesn't just slow you down - it creates a culture where developers skip running tests locally, leading to more bugs in production.</p>
                 </div>
                 <div class="text-center">
                     <!-- Placeholder for screenshot -->
-                    <div class="bg-gray-100 rounded-lg p-8 border-2 border-dashed border-gray-300">
-                        <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
-                        <p class="text-gray-500 text-sm">Screenshot placeholder</p>
-                        <p class="text-gray-400 text-xs mt-1">Pain point visualization</p>
+                    <div class="bg-gray-100 rounded-lg p-8">
+                        <picture>
+                            <source srcset="/generated/images/products/slow-tests-jenkins-vertical.webp" type="image/webp">
+                            <img src="/images/products/slow-tests-jenkins-vertical.png" alt="Slow Integration Tests" class="w-full h-auto sharp-image">
+                        </picture>
                     </div>
                 </div>
             </div>
@@ -97,16 +111,28 @@
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div class="order-2 md:order-1 text-center">
                     <!-- Placeholder for screenshot -->
-                    <div class="bg-white rounded-lg p-8 border-2 border-dashed border-gray-300 shadow-sm">
-                        <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        <p class="text-gray-500 text-sm">Screenshot placeholder</p>
-                        <p class="text-gray-400 text-xs mt-1">Solution demonstration</p>
+                    <div class="bg-gray-100 rounded-lg p-8 shadow-sm">
+                        <picture>
+                            <source srcset="/generated/images/products/happy-dev.webp" type="image/webp">
+                            <img src="/images/products/happy-dev.png" alt="Fast Integration Tests" class="w-full h-auto sharp-image">
+                        </picture>
                     </div>
                 </div>
                 <div class="order-1 md:order-2">
-                    {{ .Params.solution | markdownify | safeHTML }}
+                    <h2>Spring Test Profiler Reveals the #1 Performance Killer in Spring Boot Test Suites</h2>
+
+                    <br/>
+                    <p>Misusing Spring's TestContext context caching.</p>
+                    <br/>
+                    <p>The Profiler helps you:</p>
+
+                    <ul class="list-disc pl-6 mt-4 space-y-2">
+                        <li><strong>Context Reload Analysis</strong> - Identify which tests are forcing expensive Spring context recreations and why</li>
+                        <li><strong>Cache Optimization</strong> - Get specific recommendations to maximize context reuse across your test suite (often 50-80% faster execution)</li>
+                        <li><strong>Performance Bottlenecks</strong> - Pinpoint slow tests with detailed metrics on execution time, memory usage, and context loading overhead</li>
+                        <li><strong>Smart Test Grouping</strong> - Learn which tests can share contexts and which need isolation for optimal parallel execution</li>
+                        <li><strong>CI/CD Integration</strong> - Track context cache efficiency over time and catch performance regressions</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -273,7 +299,7 @@
                         <div class="flex items-center space-x-2">
                             <span class="px-2 py-1 bg-blue-500 rounded text-sm">Interactive Preview</span>
                             {{ if .Params.sampleReportUrl }}
-                            <a href="{{ .Params.sampleReportUrl }}" target="_blank" class="px-3 py-1 bg-white text-blue-600 rounded text-sm hover:bg-blue-50 transition-colors">
+                            <a href="{{ .Params.sampleReportUrl }}" target="_blank" class="px-3 py-1 bg-white text-blue-600 rounded text-sm">
                                 Open Full Report
                             </a>
                             {{ end }}
@@ -286,7 +312,7 @@
                     <!-- Iframe for actual HTML report -->
                     <iframe 
                         src="{{ .Params.sampleReportUrl }}" 
-                        class="w-full h-96 border-0 rounded-b-xl"
+                        class="w-full h-[768px] border-0 rounded-b-xl"
                         title="Spring Test Profiler Sample Report"
                         sandbox="allow-scripts allow-same-origin"
                         scrolling="auto">
@@ -409,7 +435,7 @@
             <div class="text-center mt-8">
                 <p class="text-gray-600 mb-4">
                     {{ if .Params.sampleReportUrl }}
-                    This is a live example of the HTML report generated by {{ .Title }}.
+                    This is a <a class="bold underline" href="{{ .Params.sampleReportUrl }}" target="_blank">live example of the HTML report</a> generated by {{ .Title }}.
                     {{ else }}
                     This mockup shows the type of insights you'll get from {{ .Title }}'s HTML reports.
                     {{ end }}
@@ -472,36 +498,38 @@
             
             <div class="grid md:grid-cols-2 gap-8">
                 <!-- Screenshot placeholders -->
-                <div class="bg-white rounded-lg p-8 border-2 border-dashed border-gray-300 shadow-sm">
-                    <svg class="w-20 h-20 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                    </svg>
-                    <p class="text-gray-500 text-center">Dashboard Overview</p>
-                    <p class="text-gray-400 text-xs text-center mt-1">Main interface screenshot</p>
+                <div class="bg-white rounded-lg p-4 shadow-sm">
+                    <h3 class="text-lg font-semibold text-gray-700 mb-4 text-center">Report Overview</h3>
+                    <picture>
+                        <source srcset="/generated/images/products/report-overview.webp" type="image/webp">
+                        <img src="/images/products/report-overview.png" alt="Report Overview Screenshot" class="w-full h-auto sharp-image rounded">
+                    </picture>
                 </div>
                 
-                <div class="bg-white rounded-lg p-8 border-2 border-dashed border-gray-300 shadow-sm">
-                    <svg class="w-20 h-20 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
-                    <p class="text-gray-500 text-center">Performance Analysis</p>
-                    <p class="text-gray-400 text-xs text-center mt-1">Test metrics visualization</p>
+
+                
+                <div class="bg-white rounded-lg p-4 shadow-sm">
+                    <h3 class="text-lg font-semibold text-gray-700 mb-4 text-center">Recommendations</h3>
+                    <picture>
+                        <source srcset="/generated/images/products/context-recommendations.webp" type="image/webp">
+                        <img src="/images/products/context-recommendations.png" alt="Context Recommendations Screenshot" class="w-full h-auto sharp-image rounded">
+                    </picture>
+                </div>
+
+                <div class="bg-white rounded-lg p-4 shadow-sm">
+                    <h3 class="text-lg font-semibold text-gray-700 mb-4 text-center">Context Detail View</h3>
+                    <picture>
+                        <source srcset="/generated/images/products/context-detail-view.webp" type="image/webp">
+                        <img src="/images/products/context-detail-view.png" alt="Context Detail View Screenshot" class="w-full h-auto sharp-image rounded">
+                    </picture>
                 </div>
                 
-                <div class="bg-white rounded-lg p-8 border-2 border-dashed border-gray-300 shadow-sm">
-                    <svg class="w-20 h-20 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                    </svg>
-                    <p class="text-gray-500 text-center">Code Integration</p>
-                    <p class="text-gray-400 text-xs text-center mt-1">IDE plugin interface</p>
-                </div>
-                
-                <div class="bg-white rounded-lg p-8 border-2 border-dashed border-gray-300 shadow-sm">
-                    <svg class="w-20 h-20 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                    <p class="text-gray-500 text-center">Detailed Reports</p>
-                    <p class="text-gray-400 text-xs text-center mt-1">Comprehensive analysis</p>
+                <div class="bg-white rounded-lg p-4 shadow-sm">
+                    <h3 class="text-lg font-semibold text-gray-700 mb-4 text-center">Context Comparison</h3>
+                    <picture>
+                        <source srcset="/generated/images/products/context-comparison.webp" type="image/webp">
+                        <img src="/images/products/context-comparison.png" alt="Context Comparison Screenshot" class="w-full h-auto sharp-image rounded">
+                    </picture>
                 </div>
             </div>
         </div>
@@ -524,7 +552,7 @@
                     <div class="bg-white rounded-lg p-6 shadow-sm">
                         <h3 class="text-2xl font-bold mb-4 text-gray-900">Free Tier</h3>
                         <p class="text-gray-600 mb-4">{{ .Params.pricing.free_tier }}</p>
-                        <div class="text-3xl font-bold text-green-600 mb-4">$0</div>
+                        <div class="text-3xl font-bold text-green-600 mb-4">Free</div>
                         <p class="text-sm text-gray-500">Perfect for getting started</p>
                     </div>
                     <div class="bg-blue-600 text-white rounded-lg p-6 shadow-sm">
