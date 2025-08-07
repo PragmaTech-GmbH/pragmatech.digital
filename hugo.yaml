@@ -20,6 +20,11 @@ relativeURLs: true
 publishDir: "public"
 theme: "pragmatech-theme"
 
+
+
+# Align trailing slashes in URLs
+canonifyURLs: true
+
 # Content types configuration
 archetypeDir: "archetypes"
 contentDir: "content"
