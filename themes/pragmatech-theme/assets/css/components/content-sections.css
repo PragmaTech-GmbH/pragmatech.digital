@@ -37,6 +37,15 @@
     @apply my-3;
 }
 
+/* Links styling */
+.page-content a {
+    @apply text-blue-600 underline;
+}
+
+.page-content a:hover {
+    @apply text-blue-800;
+}
+
 /* Code and blockquote styling */
 .page-content blockquote {
     @apply pl-4 border-l-4 border-gray-300 italic my-6;

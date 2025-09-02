@@ -21,7 +21,7 @@
     
     <!-- Recent and Upcoming Events -->
     <div class="mb-12">
-        <h2 class="text-2xl font-bold mb-6">Recent and Upcoming Events</h2>
+        <h2 class="text-2xl font-bold mb-6">Upcoming and Recent Events</h2>
         
         <!-- Event data for JS filtering -->
         <script>
@@ -43,20 +43,21 @@
                 {{ end }}
             ];
         </script>
-        
-        <!-- Recent Events -->
-        <div class="mb-8">
-            <h3 class="text-xl font-semibold mb-4">Recent Events</h3>
-            <div id="recent-events-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <p id="no-recent-events" class="text-gray-500 col-span-3 hidden">No recent events available.</p>
-            </div>
-        </div>
-        
+
         <!-- Upcoming Events -->
-        <div>
+        <div class="mb-8">
             <h3 class="text-xl font-semibold mb-4">Upcoming Events</h3>
             <div id="upcoming-events-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <p id="no-upcoming-events" class="text-gray-500 col-span-3 hidden">No upcoming events scheduled at this time.</p>
+            </div>
+        </div>
+
+
+        <!-- Recent Events -->
+        <div>
+            <h3 class="text-xl font-semibold mb-4">Recent Events</h3>
+            <div id="recent-events-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <p id="no-recent-events" class="text-gray-500 col-span-3 hidden">No recent events available.</p>
             </div>
         </div>
     </div>
@@ -96,7 +97,7 @@
             
             // Display upcoming events (up to 3)
             if (futureEvents.length > 0) {
-                const upcomingEvents = futureEvents.slice(0, 3);
+                const upcomingEvents = futureEvents.slice(0, 5);
                 upcomingEvents.forEach(event => {
                     // Use the enhanced card style for upcoming events
                     upcomingEventsContainer.appendChild(createEnhancedEventCard(event, 'bg-white'));
