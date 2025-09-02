@@ -40,7 +40,7 @@
             <div class="mt-12">
                 <h2 class="text-2xl font-bold mb-6">Talk Abstract</h2>
                 <div class="bg-gray-50 rounded-lg p-6">
-                    <p class="text-lg text-gray-700">{{ .Params.abstract }}</p>
+                    <p class="text-lg text-gray-700">{{ .Params.abstract | safeHTML }}</p>
                 </div>
             </div>
             {{ end }}
