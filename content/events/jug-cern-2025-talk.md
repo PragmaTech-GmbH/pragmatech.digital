@@ -5,7 +5,7 @@ startDate: 2025-10-24T17:00:00+02:00
 endDate: 2025-10-24T19:00:00+02:00
 location: "Genf, Switzerland"
 eventType: "meetup"
-registration: "https://www.jug.ch/"
+registration: "https://indico.cern.ch/event/1593427/"
 price: "Free"
 draft: false
 summary: "Join us at JUG CERN for an evening of Spring Boot testing insights and best practices."
