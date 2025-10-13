@@ -1,7 +1,7 @@
 ---
 title: "JUG Bern: Testing Spring Boot Applications Demystified"
 date: 2025-05-16T10:00:00+02:00
-startDate: 2025-10-23T19:00:00+02:00
+startDate: 2025-10-23T18:00:00+02:00
 endDate: 2025-10-23T21:00:00+02:00
 location: "Bern, Switzerland"
 eventType: "meetup"

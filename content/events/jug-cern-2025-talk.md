@@ -2,7 +2,7 @@
 title: "JUG CERN: Testing Spring Boot Applications Demystified"
 date: 2025-05-16T10:00:00+02:00
 startDate: 2025-10-24T17:00:00+02:00
-endDate: 2025-10-24T19:00:00+02:00
+endDate: 2025-10-24T19:30:00+02:00
 location: "Genf, Switzerland"
 eventType: "meetup"
 registration: "https://indico.cern.ch/event/1593427/"
