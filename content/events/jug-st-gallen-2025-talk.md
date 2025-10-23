@@ -10,8 +10,8 @@ price: "Free"
 draft: false
 summary: "Join us at JUG St. Gallen for an evening of Spring Boot testing insights and best practices."
 coverImage: "/images/events/st-gallen-jug-ch.jpg"
-#slideUrl: "https://speakerdeck.com/rieckpil/testing-spring-boot-applications-demystified-jug-hh-2025"
-#codeUrl: "https://github.com/rieckpil/talks/tree/main/testing-spring-boot-applications-demystified"
+slideUrl: "https://github.com/rieckpil/talks/blob/main/testing-spring-boot-applications-demystified/slides/slides-jug-st-gallen-2025.pdf"
+codeUrl: "https://github.com/rieckpil/talks/tree/main/testing-spring-boot-applications-demystified"
 ---
 
 ## About This Talk
