@@ -1,0 +1,59 @@
+<!-- Workshop Gallery Section -->
+<section class="py-20 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Workshops in Action</h2>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                Engaging, hands-on workshops delivered at conferences and companies across Europe.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <!-- Workshop Image 1 -->
+            <div class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                {{ $imgData := dict "src" "/images/events/zuerich-jug-ch.jpg" "alt" "Testing Workshop at Zurich JUG" "class" "w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" }}
+                {{ partial "picture.html" $imgData }}
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+                    <div class="p-6 text-white">
+                        <h3 class="font-bold text-lg mb-1">Zurich JUG</h3>
+                        <p class="text-sm text-gray-200">Testing Spring Boot Applications Workshop</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Workshop Image 2 -->
+            <div class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                {{ $imgData := dict "src" "/images/events/barcelona-spring-io.jpg" "alt" "Workshop at Spring I/O Barcelona" "class" "w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" }}
+                {{ partial "picture.html" $imgData }}
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+                    <div class="p-6 text-white">
+                        <h3 class="font-bold text-lg mb-1">Spring I/O Barcelona</h3>
+                        <p class="text-sm text-gray-200">Advanced Spring Boot Testing Techniques</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Workshop Image 3 -->
+            <div class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                {{ $imgData := dict "src" "/images/events/cern-jug-ch.jpg" "alt" "Workshop at CERN JUG" "class" "w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" }}
+                {{ partial "picture.html" $imgData }}
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+                    <div class="p-6 text-white">
+                        <h3 class="font-bold text-lg mb-1">CERN JUG</h3>
+                        <p class="text-sm text-gray-200">Test-Driven Development with Spring Boot</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="text-center mt-12">
+            <a href="/workshops" class="inline-flex items-center bg-blue-600 text-white hover:bg-blue-700 font-bold py-3 px-8 rounded-lg transition-colors shadow-lg">
+                Explore All Workshops
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </a>
+        </div>
+    </div>
+</section>

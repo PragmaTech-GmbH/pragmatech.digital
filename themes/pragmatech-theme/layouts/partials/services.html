@@ -1,56 +1,169 @@
-<section class="py-20 bg-white">
+<!-- Pain to Transformation Section -->
+<section class="py-20 bg-gray-50">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Specializations</h2>
-            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                We help teams deliver better software through effective testing and modern development practices.
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">From Deployment Anxiety to Fearless Shipping</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Most Spring Boot teams struggle with the same testing challenges. Sound familiar?
             </p>
         </div>
 
+        <!-- Pain Points -->
+        <div class="mb-16">
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Pain Point 1 -->
+                <div class="bg-white rounded-xl p-8 shadow-sm border-l-4 border-red-500">
+                    <div class="text-red-600 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-900">Slow, Brittle Tests</h3>
+                    <ul class="text-gray-600 space-y-2">
+                        <li class="flex items-start">
+                            <span class="text-red-500 mr-2">✗</span>
+                            <span>Build times stretching to 20+ minutes</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-500 mr-2">✗</span>
+                            <span>Flaky tests that fail randomly</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-500 mr-2">✗</span>
+                            <span>Developers skipping tests to "save time"</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Pain Point 2 -->
+                <div class="bg-white rounded-xl p-8 shadow-sm border-l-4 border-red-500">
+                    <div class="text-red-600 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-900">Testing Confusion</h3>
+                    <ul class="text-gray-600 space-y-2">
+                        <li class="flex items-start">
+                            <span class="text-red-500 mr-2">✗</span>
+                            <span>Unclear when to use @SpringBootTest vs. @WebMvcTest</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-500 mr-2">✗</span>
+                            <span>Excessive mocking that hides real issues</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-500 mr-2">✗</span>
+                            <span>No strategy—just copy-pasted patterns</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Pain Point 3 -->
+                <div class="bg-white rounded-xl p-8 shadow-sm border-l-4 border-red-500">
+                    <div class="text-red-600 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-900">Deployment Fear</h3>
+                    <ul class="text-gray-600 space-y-2">
+                        <li class="flex items-start">
+                            <span class="text-red-500 mr-2">✗</span>
+                            <span>"Hope and pray" releases</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-500 mr-2">✗</span>
+                            <span>Bugs caught in production, not in CI</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-500 mr-2">✗</span>
+                            <span>Teams afraid to refactor or ship frequently</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Transition Statement -->
+        <div class="text-center mb-16">
+            <p class="text-2xl font-semibold text-gray-900 max-w-3xl mx-auto">
+                You don't need more tests. You need the right tests, running fast, giving you confidence.
+            </p>
+        </div>
+
+        <!-- Transformation -->
         <div class="grid md:grid-cols-3 gap-8">
-            <!-- Service 1 -->
-            <div class="bg-gray-50 rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow">
-                <div class="text-blue-600 mb-4 flex justify-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg></div>
-                <h3 class="text-xl font-bold mb-3">Actionable Tech Content</h3>
-                <p class="text-gray-600 mb-6">
-                    Comprehensive guides, courses, and books focused on testing Spring Boot applications and AWS deployments.
-                </p>
-                <a href="/courses" class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center">
-                    Explore content
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            <!-- Transformation 1 -->
+            <div class="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl p-8 shadow-sm border-l-4 border-emerald-500">
+                <div class="text-emerald-600 mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
-                </a>
+                </div>
+                <h3 class="text-xl font-bold mb-4 text-gray-900">Fast, Reliable Feedback</h3>
+                <ul class="text-gray-700 space-y-2">
+                    <li class="flex items-start">
+                        <span class="text-emerald-600 mr-2">✓</span>
+                        <span>Builds under 5 minutes</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-emerald-600 mr-2">✓</span>
+                        <span>Rock-solid test suites</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-emerald-600 mr-2">✓</span>
+                        <span>Developers trust the tests</span>
+                    </li>
+                </ul>
             </div>
 
-            <!-- Service 2 -->
-            <div class="bg-gray-50 rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow">
-                <div class="text-blue-600 mb-4 flex justify-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg></div>
-                <h3 class="text-xl font-bold mb-3">Hands-On Consulting</h3>
-                <p class="text-gray-600 mb-6">
-                    Practical advice and implementation help for test automation, continuous deployment, and cloud migration.
-                </p>
-                <a href="/consulting" class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center">
-                    Learn more
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            <!-- Transformation 2 -->
+            <div class="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl p-8 shadow-sm border-l-4 border-emerald-500">
+                <div class="text-emerald-600 mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                </a>
+                </div>
+                <h3 class="text-xl font-bold mb-4 text-gray-900">Clear Testing Strategy</h3>
+                <ul class="text-gray-700 space-y-2">
+                    <li class="flex items-start">
+                        <span class="text-emerald-600 mr-2">✓</span>
+                        <span>Know exactly which test type to use</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-emerald-600 mr-2">✓</span>
+                        <span>Minimal mocking, maximum value</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-emerald-600 mr-2">✓</span>
+                        <span>Consistent patterns across the team</span>
+                    </li>
+                </ul>
             </div>
 
-            <!-- Service 3 -->
-            <div class="bg-gray-50 rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow">
-                <div class="text-blue-600 mb-4 flex justify-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg></div>
-                <h3 class="text-xl font-bold mb-3">Workshops & Talks</h3>
-                <p class="text-gray-600 mb-6">
-                    Engaging workshops and conference presentations on Spring Boot testing strategies and best practices.
-                </p>
-                <a href="/workshops" class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center">
-                    View offerings
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            <!-- Transformation 3 -->
+            <div class="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl p-8 shadow-sm border-l-4 border-emerald-500">
+                <div class="text-emerald-600 mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                     </svg>
-                </a>
+                </div>
+                <h3 class="text-xl font-bold mb-4 text-gray-900">Ship with Confidence</h3>
+                <ul class="text-gray-700 space-y-2">
+                    <li class="flex items-start">
+                        <span class="text-emerald-600 mr-2">✓</span>
+                        <span>Deploy multiple times per day</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-emerald-600 mr-2">✓</span>
+                        <span>Catch issues before production</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-emerald-600 mr-2">✓</span>
+                        <span>Refactor fearlessly</span>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
