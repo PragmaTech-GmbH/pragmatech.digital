@@ -2,20 +2,20 @@
 <section class="py-20 bg-white">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">Workshops in Action</h2>
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Workshops and Talks in Action</h2>
             <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                Engaging, hands-on workshops delivered at conferences and companies across Europe.
+                Engaging, hands-on talks and workshops delivered at conferences and companies across Europe.
             </p>
         </div>
 
         <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             <!-- Workshop Image 1 -->
             <div class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                {{ $imgData := dict "src" "/images/events/zuerich-jug-ch.jpg" "alt" "Testing Workshop at Zurich JUG" "class" "w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" }}
+                {{ $imgData := dict "src" "/events/philip-jug-zurich-2025-one.jpg" "alt" "Testing Workshop at Zurich JUG" "class" "w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" }}
                 {{ partial "picture.html" $imgData }}
                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
                     <div class="p-6 text-white">
-                        <h3 class="font-bold text-lg mb-1">Zurich JUG</h3>
+                        <h3 class="font-bold text-lg mb-1">Talk at Zurich JUG</h3>
                         <p class="text-sm text-gray-200">Testing Spring Boot Applications Workshop</p>
                     </div>
                 </div>
@@ -23,24 +23,24 @@
 
             <!-- Workshop Image 2 -->
             <div class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                {{ $imgData := dict "src" "/images/events/barcelona-spring-io.jpg" "alt" "Workshop at Spring I/O Barcelona" "class" "w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" }}
+                {{ $imgData := dict "src" "/events/philip-jug-st-gallen-second-2025.jpg" "alt" "Workshop at JUG St. Gallen" "class" "w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" }}
                 {{ partial "picture.html" $imgData }}
                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
                     <div class="p-6 text-white">
-                        <h3 class="font-bold text-lg mb-1">Spring I/O Barcelona</h3>
-                        <p class="text-sm text-gray-200">Advanced Spring Boot Testing Techniques</p>
+                        <h3 class="font-bold text-lg mb-1">Talk at JUG St. Gallen</h3>
+                        <p class="text-sm text-gray-200">Testing Spring Boot Applications Demystified</p>
                     </div>
                 </div>
             </div>
 
             <!-- Workshop Image 3 -->
             <div class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                {{ $imgData := dict "src" "/images/events/cern-jug-ch.jpg" "alt" "Workshop at CERN JUG" "class" "w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" }}
+                {{ $imgData := dict "src" "/events/philip-jug-cern-2025.jpeg" "alt" "Workshop at CERN JUG" "class" "w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" }}
                 {{ partial "picture.html" $imgData }}
                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
                     <div class="p-6 text-white">
-                        <h3 class="font-bold text-lg mb-1">CERN JUG</h3>
-                        <p class="text-sm text-gray-200">Test-Driven Development with Spring Boot</p>
+                        <h3 class="font-bold text-lg mb-1">Talk at CERN JUG</h3>
+                        <p class="text-sm text-gray-200">Testing Spring Boot Applications Demystified</p>
                     </div>
                 </div>
             </div>
