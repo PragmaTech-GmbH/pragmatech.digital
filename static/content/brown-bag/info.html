@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop Fighting Your Spring Boot Tests - PragmaTech</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .page {
+            width: 210mm;
+            height: 297mm;
+            margin: 0 auto;
+            background: white;
+            box-sizing: border-box;
+        }
+
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            .page {
+                margin: 0;
+                box-shadow: none;
+            }
+            .no-print {
+                display: none;
+            }
+        }
+
+        @media screen {
+            body {
+                background: #f3f4f6;
+                padding: 20px 0;
+            }
+            .page {
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            }
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        deepblue: '#1E3A8A',
+                        brightgreen: '#10B981',
+                        coralred: '#EF4444',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans">
+<!-- Print Instructions -->
+<div class="page p-8">
+    <!-- Header -->
+    <header class="bg-deepblue text-white px-6 py-3 -mx-8 -mt-8 mb-6 flex items-center justify-between">
+        <div class="text-2xl font-bold">PragmaTech</div>
+        <div class="text-3xl font-bold text-center flex-1">Stop Fighting Your Spring Boot Tests</div>
+        <div class="text-sm text-right">
+            <div>📧 philip@pragmatech.com</div>
+            <div>🔗 linkedin.com/in/yourprofile</div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="mb-6">
+        <div class="flex gap-6">
+            <div class="flex-1">
+                <h1 class="text-3xl font-bold text-deepblue mb-3">
+                    Is Your Team Waiting 20+ Minutes<br>for Tests to Run?
+                </h1>
+                <p class="text-lg leading-relaxed">
+                    A <strong>free 45-60 minute session</strong> that shows your Spring Boot team how to <strong>cut build times</strong>, <strong>eliminate flaky tests</strong>, and <strong>ship with confidence</strong>.
+                </p>
+            </div>
+            <div class="w-64">
+                <div class="bg-gray-100 border-2 border-deepblue rounded-lg p-8 h-40 flex items-center justify-center text-center">
+                    <div>
+                        <div class="text-deepblue font-semibold text-sm mb-1">[Cover Image]</div>
+                        <div class="text-deepblue text-xs">Developer vs Tests</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem / Solution Section -->
+    <section class="mb-6">
+        <div class="grid grid-cols-2 gap-6">
+            <!-- Problem -->
+            <div>
+                <h2 class="text-xl font-bold text-deepblue mb-3">Sound Familiar?</h2>
+                <ul class="space-y-2 mb-4">
+                    <li class="flex items-start gap-2">
+                        <span class="text-coralred text-2xl font-bold">✗</span>
+                        <span>Build times that kill productivity</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-coralred text-2xl font-bold">✗</span>
+                        <span>Flaky tests that fail randomly</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-coralred text-2xl font-bold">✗</span>
+                        <span>Developers skipping tests to "save time"</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-coralred text-2xl font-bold">✗</span>
+                        <span>Confusion about <code class="bg-gray-100 px-1">@SpringBootTest</code> vs. test slices</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-coralred text-2xl font-bold">✗</span>
+                        <span>Fear of refactoring because tests might break</span>
+                    </li>
+                </ul>
+                <div class="bg-red-50 border-2 border-coralred rounded-lg p-3 text-center">
+                    <p class="font-bold text-sm">
+                        Your team doesn't need MORE tests.<br>
+                        They need the RIGHT tests, running FAST.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Solution -->
+            <div>
+                <h2 class="text-xl font-bold text-deepblue mb-3">What Your Team Will Learn</h2>
+                <ul class="space-y-2 mb-4">
+                    <li class="flex items-start gap-2">
+                        <span class="text-brightgreen text-2xl font-bold">✓</span>
+                        <span>Why Spring Boot tests fight back (and how to fix it)</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-brightgreen text-2xl font-bold">✓</span>
+                        <span>The test pyramid for Spring Boot applications</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-brightgreen text-2xl font-bold">✓</span>
+                        <span>Five quick wins to speed up your test suite</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-brightgreen text-2xl font-bold">✓</span>
+                        <span>When to use <code class="bg-gray-100 px-1">@SpringBootTest</code>, <code class="bg-gray-100 px-1">@WebMvcTest</code>, and plain unit tests</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-brightgreen text-2xl font-bold">✓</span>
+                        <span>Real-world patterns you can apply immediately</span>
+                    </li>
+                </ul>
+                <div class="bg-green-50 border-2 border-brightgreen rounded-lg p-3 text-center">
+                    <p class="font-bold text-sm">
+                        Practical, actionable insights—<br>not theory.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Session Details -->
+    <section class="mb-6 border-t-2 border-deepblue pt-4">
+        <h2 class="text-xl font-bold text-deepblue mb-3">Session Details</h2>
+        <div class="grid grid-cols-2 gap-6">
+            <div class="text-sm space-y-1">
+                <p><strong>Duration:</strong> 45-60 minutes (flexible to your schedule)</p>
+                <p><strong>Delivery:</strong> On-site at your office or remote via video</p>
+                <p><strong>Audience:</strong> Java/Spring Boot developers and tech leads</p>
+                <p><strong>Cost:</strong> <span class="text-brightgreen font-bold text-lg">Complimentary</span> for your team</p>
+            </div>
+            <div class="text-sm">
+                <p class="font-bold mb-1">What's Included:</p>
+                <ul class="list-disc list-inside space-y-1">
+                    <li>Interactive presentation with live code examples</li>
+                    <li>Q&A time for your team's specific challenges</li>
+                    <li>Testing strategy cheat sheet (PDF takeaway)</li>
+                    <li>Optional 30-min follow-up consultation</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Speaker -->
+    <section class="mb-6 border-t-2 border-deepblue pt-4">
+        <h2 class="text-xl font-bold text-deepblue mb-3">Your Speaker</h2>
+        <div class="flex gap-4">
+            <div class="w-24 h-24 bg-gray-100 border-2 border-deepblue rounded-lg flex items-center justify-center flex-shrink-0">
+                <span class="text-deepblue text-xs">[Photo]</span>
+            </div>
+            <div class="flex-1">
+                <p class="text-sm mb-2">
+                    <strong>Philip [Last Name]</strong> is a Java developer and Spring Boot testing specialist who helps teams ship faster with confidence. He's delivered this session at Java User Groups across Europe (including Zürich, Bern, Geneva, and Munich) and teaches Spring Boot testing through his online courses. Through PragmaTech, he guides teams to transform testing from an afterthought into a competitive advantage.
+                </p>
+                <ul class="text-sm space-y-1">
+                    <li class="flex items-start gap-2">
+                        <span class="text-brightgreen font-bold">✓</span>
+                        <span>Speaker at JUGs across Switzerland and Germany</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-brightgreen font-bold">✓</span>
+                        <span>Creator of Spring Boot testing courses with 10,000+ students</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-brightgreen font-bold">✓</span>
+                        <span>10+ years of Spring Boot testing experience</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="bg-deepblue text-white rounded-lg p-6 text-center -mx-8 -mb-8">
+        <h2 class="text-2xl font-bold mb-4">Ready to Help Your Team Stop Fighting Their Tests?</h2>
+        <div class="inline-block bg-brightgreen text-white font-bold text-lg px-8 py-3 rounded-lg mb-3">
+            SCHEDULE YOUR FREE SESSION
+        </div>
+        <p class="text-sm">
+            Questions? <strong>philip@pragmatech.com</strong> | <strong>LinkedIn: /in/yourprofile</strong> | <strong>www.pragmatech.com</strong>
+        </p>
+    </section>
+</div>
+</body>
+</html>
