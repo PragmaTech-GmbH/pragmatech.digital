@@ -1,13 +1,26 @@
-<section class="py-20 bg-blue-600 text-white">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-3xl mx-auto text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Boost Your Team's Confidence?</h2>
-            <p class="text-xl mb-8">
-                Let's collaborate to implement effective testing strategies and modern development practices for your projects.
+<section class="section-padding bg-gradient-to-br from-navy-900 to-navy-800 text-white relative overflow-hidden">
+    <!-- Subtle pattern overlay -->
+    <div class="absolute inset-0 opacity-5 bg-[url('/images/pattern-grid.svg')]"></div>
+
+    <div class="container mx-auto px-6 lg:px-8 relative z-10">
+        <div class="content-width text-center">
+            <h2 class="text-4xl font-semibold mb-6 text-white">
+                Let's Discuss Your Testing Challenges
+            </h2>
+            <p class="text-xl text-slate-300 mb-4 max-w-2xl mx-auto">
+                We work with enterprise Java teams ready to invest in long-term delivery excellence.
             </p>
-            <a href="/contact" class="inline-block bg-white text-blue-600 hover:bg-blue-50 font-bold py-3 px-8 rounded-lg transition-colors shadow-lg">
-                Schedule a Consultation
+            <p class="text-base text-slate-400 mb-10">
+                Ideal for teams with 5+ developers experiencing slow builds or deployment anxiety.
+            </p>
+
+            <a href="{{ .Site.Params.scheduleCallUrl | default "/contact" }}" class="premium-btn-primary-light">
+                Schedule Your Assessment
             </a>
+
+            <p class="text-sm text-slate-400 mt-6">
+                45-minute consultation • No obligation • Strategic roadmap included
+            </p>
         </div>
     </div>
 </section>

@@ -1,0 +1,153 @@
+<svg width="600" height="400" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="barRed" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f87171;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#dc2626;stop-opacity:1" />
+    </linearGradient>
+
+    <linearGradient id="barGreen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#6ee7b7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#10b981;stop-opacity:1" />
+    </linearGradient>
+
+    <style>
+      @keyframes growBar {
+        0% { height: 0; y: 280; }
+        100% { height: 220; y: 60; }
+      }
+
+      @keyframes growSmallBar {
+        0% { height: 0; y: 280; }
+        100% { height: 40; y: 240; }
+      }
+
+      @keyframes fadeIn {
+        0% { opacity: 0; transform: translateY(10px); }
+        100% { opacity: 1; transform: translateY(0); }
+      }
+
+      @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-5px); }
+      }
+
+      .bar-slow {
+        animation: growBar 2s ease-out forwards;
+      }
+
+      .bar-fast {
+        animation: growSmallBar 2s ease-out forwards;
+      }
+
+      .label {
+        animation: fadeIn 0.5s ease-out forwards;
+      }
+
+      .icon {
+        animation: bounce 2s ease-in-out infinite;
+      }
+    </style>
+  </defs>
+
+  <!-- Title -->
+  <text x="300" y="30" font-family="Inter, sans-serif" font-size="20" font-weight="700" fill="#0f172a" text-anchor="middle">
+    Build Time Comparison
+  </text>
+
+  <!-- Chart background -->
+  <rect x="50" y="50" width="500" height="280" rx="12" fill="white" stroke="#e2e8f0" stroke-width="2"/>
+
+  <!-- Y-axis labels -->
+  <g transform="translate(40, 60)">
+    <text x="0" y="0" font-family="Inter, sans-serif" font-size="11" fill="#94a3b8" text-anchor="end">30 min</text>
+    <text x="0" y="55" font-family="Inter, sans-serif" font-size="11" fill="#94a3b8" text-anchor="end">25 min</text>
+    <text x="0" y="110" font-family="Inter, sans-serif" font-size="11" fill="#94a3b8" text-anchor="end">20 min</text>
+    <text x="0" y="165" font-family="Inter, sans-serif" font-size="11" fill="#94a3b8" text-anchor="end">15 min</text>
+    <text x="0" y="220" font-family="Inter, sans-serif" font-size="11" fill="#94a3b8" text-anchor="end">10 min</text>
+    <text x="0" y="275" font-family="Inter, sans-serif" font-size="11" fill="#94a3b8" text-anchor="end">0 min</text>
+  </g>
+
+  <!-- Grid lines -->
+  <g opacity="0.2">
+    <line x1="50" y1="115" x2="550" y2="115" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
+    <line x1="50" y1="170" x2="550" y2="170" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
+    <line x1="50" y1="225" x2="550" y2="225" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
+    <line x1="50" y1="280" x2="550" y2="280" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
+  </g>
+
+  <!-- BEFORE Bar -->
+  <g transform="translate(150, 0)">
+    <!-- Bar -->
+    <rect x="0" y="280" width="100" height="0" rx="8" fill="url(#barRed)" class="bar-slow"/>
+
+    <!-- Value label on top -->
+    <g class="label" style="animation-delay: 1.8s; opacity: 0;">
+      <rect x="20" y="30" width="60" height="30" rx="6" fill="#fef2f2" stroke="#fca5a5" stroke-width="2"/>
+      <text x="50" y="52" font-family="Inter, sans-serif" font-size="16" font-weight="700" fill="#dc2626" text-anchor="middle">
+        30m
+      </text>
+    </g>
+
+    <!-- X label -->
+    <text x="50" y="310" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#475569" text-anchor="middle" class="label">
+      BEFORE
+    </text>
+
+    <!-- Sad icon -->
+    <g transform="translate(35, 325)" class="icon">
+      <circle cx="15" cy="15" r="12" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+      <circle cx="11" cy="12" r="1.5" fill="#dc2626"/>
+      <circle cx="19" cy="12" r="1.5" fill="#dc2626"/>
+      <path d="M 10 20 Q 15 17 20 20" stroke="#dc2626" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    </g>
+  </g>
+
+  <!-- AFTER Bar -->
+  <g transform="translate(350, 0)">
+    <!-- Bar -->
+    <rect x="0" y="280" width="100" height="0" rx="8" fill="url(#barGreen)" class="bar-fast"/>
+
+    <!-- Value label on top -->
+    <g class="label" style="animation-delay: 1.8s; opacity: 0;">
+      <rect x="20" y="210" width="60" height="30" rx="6" fill="#f0fdf4" stroke="#86efac" stroke-width="2"/>
+      <text x="50" y="232" font-family="Inter, sans-serif" font-size="16" font-weight="700" fill="#059669" text-anchor="middle">
+        5m
+      </text>
+    </g>
+
+    <!-- X label -->
+    <text x="50" y="310" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#475569" text-anchor="middle" class="label">
+      AFTER
+    </text>
+
+    <!-- Happy icon -->
+    <g transform="translate(35, 325)" class="icon">
+      <circle cx="15" cy="15" r="12" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+      <circle cx="11" cy="12" r="1.5" fill="#059669"/>
+      <circle cx="19" cy="12" r="1.5" fill="#059669"/>
+      <path d="M 10 16 Q 15 20 20 16" stroke="#059669" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    </g>
+
+    <!-- Sparkles -->
+    <g transform="translate(85, 245)" class="label" style="animation-delay: 2s; opacity: 0;">
+      <path d="M 8 0 L 9 5 L 14 6 L 9 7 L 8 12 L 7 7 L 2 6 L 7 5 Z" fill="#fbbf24"/>
+      <path d="M 20 8 L 21 11 L 24 12 L 21 13 L 20 16 L 19 13 L 16 12 L 19 11 Z" fill="#fbbf24"/>
+    </g>
+  </g>
+
+  <!-- Improvement label -->
+  <g transform="translate(250, 150)">
+    <path d="M 20 30 L 80 30" stroke="#10b981" stroke-width="3" stroke-dasharray="5 5"/>
+    <polygon points="80,30 72,26 72,34" fill="#10b981"/>
+
+    <rect x="0" y="0" width="100" height="35" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+    <text x="50" y="23" font-family="Inter, sans-serif" font-size="18" font-weight="700" fill="#92400e" text-anchor="middle">
+      83% faster
+    </text>
+  </g>
+
+  <!-- Bottom note -->
+  <text x="300" y="380" font-family="Inter, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">
+    Transform your build performance with PragmaTech
+  </text>
+</svg>
