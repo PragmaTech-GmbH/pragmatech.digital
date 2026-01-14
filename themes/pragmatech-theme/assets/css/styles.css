@@ -6,7 +6,18 @@
 @source "hugo_stats.json";
 
 @theme {
+    --font-sans: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
     --font-code: "Inter", "Helvetica", sans-serif;
+
+    /* Brand Colors - Sky Blue Primary */
+    --color-brand-50: #f0f9ff;
+    --color-brand-100: #e0f2fe;
+    --color-brand-400: #38bdf8;
+    --color-brand-500: #0ea5e9;
+    --color-brand-600: #0284c7;
+    --color-brand-900: #0c4a6e;
+    --color-brand-dark: #0f172a;
 
     /* Premium Navy Palette - Base Colors */
     --color-navy-50: oklch(0.98 0.005 250);
@@ -30,13 +41,14 @@
     --color-slate-500: oklch(0.50 0.015 240);
     --color-slate-600: oklch(0.40 0.015 240);
     --color-slate-700: oklch(0.32 0.014 240);
-    --color-slate-800: oklch(0.25 0.015 240);
-    --color-slate-900: oklch(0.15 0.01 240);
-    --color-slate-950: oklch(0.10 0.008 240);
+    --color-slate-800: #1e293b;
+    --color-slate-900: #0f172a;
+    --color-slate-950: #020617;
 
     /* Brand Accent Colors - Keep existing blues for strategic use */
     --color-accent-cyan: #22d0eb;
     --color-accent-teal: #2596be;
+    --color-accent-light: #6db33f;
 
     /* Premium Gold Accents */
     --color-gold-300: oklch(0.85 0.08 85);
@@ -264,4 +276,49 @@
     .content-width-full {
         @apply max-w-7xl mx-auto;
     }
+}
+
+/* Dark Theme - Glass Navigation */
+.glass-nav {
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Dark Theme - Hero Pattern */
+.hero-pattern {
+    background-color: #0f172a;
+    background-image: radial-gradient(#1e293b 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+/* SVG Gauge Animations */
+.v3-circle-slow {
+    stroke-dasharray: 283;
+    stroke-dashoffset: 0;
+    animation: fillSlow 10s linear infinite;
+}
+
+.v3-circle-fast {
+    stroke-dasharray: 283;
+    stroke-dashoffset: 0;
+    animation: fillFast 1s linear infinite;
+}
+
+@keyframes fillSlow {
+    0% { stroke-dashoffset: 283; }
+    100% { stroke-dashoffset: 0; }
+}
+
+@keyframes fillFast {
+    0% { stroke-dashoffset: 283; opacity: 1; }
+    90% { stroke-dashoffset: 0; opacity: 1; }
+    95% { opacity: 0; }
+    100% { stroke-dashoffset: 283; opacity: 0; }
+}
+
+/* Pulse animation for badges */
+.animate-pulse-slow {
+    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }

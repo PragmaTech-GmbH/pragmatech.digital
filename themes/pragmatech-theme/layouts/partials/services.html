@@ -1,288 +1,177 @@
-<!-- Problem/Solution Section -->
-<section class="section-padding bg-gradient-to-b from-slate-50 to-white">
-    <div class="container mx-auto px-6 lg:px-8">
-        <div class="content-width text-center mb-20">
-            <h2 class="mb-6">
-                The Hidden Cost of Broken Testing Practices
-            </h2>
-            <p class="text-lead text-slate-600">
-                Most enterprise teams lose 20-40% of engineering velocity to slow builds and deployment anxiety. We fix this.
-            </p>
-        </div>
-
-        <!-- Pain Points - Premium Cards -->
-        <div class="grid md:grid-cols-3 gap-8 mb-20 content-width-wide">
-            <!-- Pain Card 1 -->
-            <div class="group bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-slate-200/60 hover:border-slate-300">
-                <!-- Icon with circular background -->
-                <div class="mb-6">
-                    <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-slate-100 group-hover:bg-slate-200 transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                    </div>
+<!-- Problems Section -->
+<section class="py-20 bg-slate-900 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl font-bold text-white mb-4">The Hidden Cost of Broken Testing Practices</h2>
+        <p class="text-xl text-slate-400 mb-12 max-w-3xl mx-auto">
+            Most enterprise teams lose 20-40% of engineering velocity to slow builds and deployment anxiety. We fix this.
+        </p>
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Pain Point 1 -->
+            <div class="bg-slate-800 p-8 rounded-xl border border-slate-700 hover:border-red-500/30 transition-colors">
+                <div class="w-12 h-12 bg-red-500/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-hourglass-half text-red-500 text-xl"></i>
                 </div>
-                <h3 class="text-xl font-semibold mb-3 text-slate-900">
-                    Velocity Drain
-                </h3>
-                <p class="text-slate-600 mb-6 leading-relaxed">
+                <h3 class="text-xl font-bold text-white mb-3">Velocity Drain</h3>
+                <p class="text-slate-400 mb-6">
                     20+ minute build times kill momentum. Developers context-switch, productivity plummets.
                 </p>
-                <div class="pt-6 border-t border-slate-100">
-                    <ul class="space-y-3 text-sm text-slate-600">
-                        <li class="flex items-start">
-                            <svg class="w-5 h-5 mr-2 mt-0.5 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                            </svg>
-                            <span>Builds stretching to 30+ minutes</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-5 h-5 mr-2 mt-0.5 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                            </svg>
-                            <span>Flaky tests causing false negatives</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-5 h-5 mr-2 mt-0.5 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                            </svg>
-                            <span>Engineers skipping tests to "save time"</span>
-                        </li>
-                    </ul>
-                </div>
+                <ul class="text-left space-y-2 text-sm text-slate-500">
+                    <li class="flex items-start">
+                        <i class="fas fa-times text-slate-600 mr-2 mt-1"></i>
+                        <span>Builds stretching to 30+ minutes</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-times text-slate-600 mr-2 mt-1"></i>
+                        <span>Flaky tests causing false negatives</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-times text-slate-600 mr-2 mt-1"></i>
+                        <span>Engineers skipping tests to "save time"</span>
+                    </li>
+                </ul>
             </div>
-
-            <!-- Pain Card 2 -->
-            <div class="group bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-slate-200/60 hover:border-slate-300">
-                <!-- Icon with circular background -->
-                <div class="mb-6">
-                    <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-slate-100 group-hover:bg-slate-200 transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                    </div>
+            <!-- Pain Point 2 -->
+            <div class="bg-slate-800 p-8 rounded-xl border border-slate-700 hover:border-orange-500/30 transition-colors">
+                <div class="w-12 h-12 bg-orange-500/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-random text-orange-500 text-xl"></i>
                 </div>
-                <h3 class="text-xl font-semibold mb-3 text-slate-900">
-                    Quality Erosion
-                </h3>
-                <p class="text-slate-600 mb-6 leading-relaxed">
+                <h3 class="text-xl font-bold text-white mb-3">Quality Erosion</h3>
+                <p class="text-slate-400 mb-6">
                     Without clear strategy, testing becomes cargo-culted chaos instead of confidence-building practice.
                 </p>
-                <div class="pt-6 border-t border-slate-100">
-                    <ul class="space-y-3 text-sm text-slate-600">
-                        <li class="flex items-start">
-                            <svg class="w-5 h-5 mr-2 mt-0.5 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                            </svg>
-                            <span>Unclear when to use @SpringBootTest vs. @WebMvcTest</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-5 h-5 mr-2 mt-0.5 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                            </svg>
-                            <span>Excessive mocking that hides real issues</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-5 h-5 mr-2 mt-0.5 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                            </svg>
-                            <span>No strategy, just copy-pasted patterns</span>
-                        </li>
-                    </ul>
-                </div>
+                <ul class="text-left space-y-2 text-sm text-slate-500">
+                    <li class="flex items-start">
+                        <i class="fas fa-times text-slate-600 mr-2 mt-1"></i>
+                        <span>Unclear when to use @SpringBootTest vs. @WebMvcTest</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-times text-slate-600 mr-2 mt-1"></i>
+                        <span>Excessive mocking that hides real issues</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-times text-slate-600 mr-2 mt-1"></i>
+                        <span>No strategy, just copy-pasted patterns</span>
+                    </li>
+                </ul>
             </div>
-
-            <!-- Pain Card 3 -->
-            <div class="group bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-slate-200/60 hover:border-slate-300">
-                <!-- Icon with circular background -->
-                <div class="mb-6">
-                    <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-slate-100 group-hover:bg-slate-200 transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                        </svg>
-                    </div>
+            <!-- Pain Point 3 -->
+            <div class="bg-slate-800 p-8 rounded-xl border border-slate-700 hover:border-yellow-500/30 transition-colors">
+                <div class="w-12 h-12 bg-yellow-500/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-exclamation-triangle text-yellow-500 text-xl"></i>
                 </div>
-                <h3 class="text-xl font-semibold mb-3 text-slate-900">
-                    Deployment Fear
-                </h3>
-                <p class="text-slate-600 mb-6 leading-relaxed">
+                <h3 class="text-xl font-bold text-white mb-3">Deployment Fear</h3>
+                <p class="text-slate-400 mb-6">
                     This lack of trust culminates in deployment anxiety where every release feels like a gamble.
                 </p>
-                <div class="pt-6 border-t border-slate-100">
-                    <ul class="space-y-3 text-sm text-slate-600">
-                        <li class="flex items-start">
-                            <svg class="w-5 h-5 mr-2 mt-0.5 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                            </svg>
-                            <span>"Hope and pray" releases</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-5 h-5 mr-2 mt-0.5 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                            </svg>
-                            <span>Bugs caught in production, not in CI</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-5 h-5 mr-2 mt-0.5 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                            </svg>
-                            <span>Teams afraid to refactor or ship frequently</span>
-                        </li>
-                    </ul>
-                </div>
+                <ul class="text-left space-y-2 text-sm text-slate-500">
+                    <li class="flex items-start">
+                        <i class="fas fa-times text-slate-600 mr-2 mt-1"></i>
+                        <span>"Hope and pray" releases</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-times text-slate-600 mr-2 mt-1"></i>
+                        <span>Bugs caught in production, not in CI</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-times text-slate-600 mr-2 mt-1"></i>
+                        <span>Teams afraid to refactor or ship frequently</span>
+                    </li>
+                </ul>
             </div>
         </div>
 
-        <!-- Transition statement -->
-        <div class="text-center mb-20 content-width">
-            <div class="inline-block">
-                <div class="flex items-center justify-center gap-4 mb-6">
-                    <div class="h-px w-12 bg-gradient-to-r from-transparent to-navy-300"></div>
-                    <svg class="w-8 h-8 text-navy-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-                    </svg>
-                    <div class="h-px w-12 bg-gradient-to-l from-transparent to-navy-300"></div>
-                </div>
-            </div>
-            <h2 class="text-3xl font-semibold mb-4 text-slate-900">
-                We Transform Testing from Bottleneck to Business Advantage
-            </h2>
+        <!-- Transition Arrow -->
+        <div class="my-16 flex items-center justify-center">
+            <div class="h-px w-16 bg-gradient-to-r from-transparent to-brand-500/50"></div>
+            <i class="fas fa-arrow-right text-2xl text-brand-500 mx-4"></i>
+            <div class="h-px w-16 bg-gradient-to-l from-transparent to-brand-500/50"></div>
         </div>
 
-        <!-- Transformation - Premium Cards -->
-        <div class="grid md:grid-cols-3 gap-8 content-width-wide">
+        <h2 class="text-3xl font-bold text-white mb-12">We Transform Testing from Bottleneck to Business Advantage</h2>
+
+        <!-- Solution Cards -->
+        <div class="grid md:grid-cols-3 gap-8">
             <!-- Solution Card 1 -->
-            <div class="group relative bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-success-200/60 hover:border-success-300 overflow-hidden">
-                <!-- Subtle gradient overlay -->
-                <div class="absolute inset-0 bg-gradient-to-br from-success-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-
+            <div class="bg-slate-800 p-8 rounded-xl border border-brand-500/30 hover:border-brand-500/50 transition-colors relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-br from-brand-500/5 to-transparent"></div>
                 <div class="relative">
-                    <!-- Icon with circular background -->
-                    <div class="mb-6">
-                        <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-success-100 group-hover:bg-success-200 transition-colors">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-success-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                            </svg>
-                        </div>
+                    <div class="w-12 h-12 bg-brand-500/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-bolt text-brand-400 text-xl"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3 text-slate-900">
-                        Sub-5-Minute Builds
-                    </h3>
-                    <p class="text-slate-600 mb-6 leading-relaxed">
+                    <h3 class="text-xl font-bold text-white mb-3">Sub-5-Minute Builds</h3>
+                    <p class="text-slate-400 mb-6">
                         Fast feedback loops restore flow state and enable true continuous delivery.
                     </p>
-                    <div class="pt-6 border-t border-success-100">
-                        <ul class="space-y-3 text-sm text-slate-700">
-                            <li class="flex items-start">
-                                <svg class="w-5 h-5 mr-2 mt-0.5 text-success-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                <span>Single-digit minute CI/CD pipelines</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="w-5 h-5 mr-2 mt-0.5 text-success-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                <span>Zero flaky tests</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="w-5 h-5 mr-2 mt-0.5 text-success-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                <span>Developers trust the suite</span>
-                            </li>
-                        </ul>
-                    </div>
+                    <ul class="text-left space-y-2 text-sm text-slate-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-brand-400 mr-2 mt-1"></i>
+                            <span>Single-digit minute CI/CD pipelines</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-brand-400 mr-2 mt-1"></i>
+                            <span>Zero flaky tests</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-brand-400 mr-2 mt-1"></i>
+                            <span>Developers trust the suite</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
 
             <!-- Solution Card 2 -->
-            <div class="group relative bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-success-200/60 hover:border-success-300 overflow-hidden">
-                <!-- Subtle gradient overlay -->
-                <div class="absolute inset-0 bg-gradient-to-br from-success-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-
+            <div class="bg-slate-800 p-8 rounded-xl border border-brand-500/30 hover:border-brand-500/50 transition-colors relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-br from-brand-500/5 to-transparent"></div>
                 <div class="relative">
-                    <!-- Icon with circular background -->
-                    <div class="mb-6">
-                        <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-success-100 group-hover:bg-success-200 transition-colors">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-success-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                        </div>
+                    <div class="w-12 h-12 bg-brand-500/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-check-circle text-brand-400 text-xl"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3 text-slate-900">
-                        Clear Testing Strategy
-                    </h3>
-                    <p class="text-slate-600 mb-6 leading-relaxed">
+                    <h3 class="text-xl font-bold text-white mb-3">Clear Testing Strategy</h3>
+                    <p class="text-slate-400 mb-6">
                         Your team has a shared playbook, applying the right test patterns instinctively.
                     </p>
-                    <div class="pt-6 border-t border-success-100">
-                        <ul class="space-y-3 text-sm text-slate-700">
-                            <li class="flex items-start">
-                                <svg class="w-5 h-5 mr-2 mt-0.5 text-success-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                <span>Know exactly which test type to use</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="w-5 h-5 mr-2 mt-0.5 text-success-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                <span>Minimal mocking, maximum value</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="w-5 h-5 mr-2 mt-0.5 text-success-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                <span>Consistent patterns across the team</span>
-                            </li>
-                        </ul>
-                    </div>
+                    <ul class="text-left space-y-2 text-sm text-slate-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-brand-400 mr-2 mt-1"></i>
+                            <span>Know exactly which test type to use</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-brand-400 mr-2 mt-1"></i>
+                            <span>Minimal mocking, maximum value</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-brand-400 mr-2 mt-1"></i>
+                            <span>Consistent patterns across the team</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
 
             <!-- Solution Card 3 -->
-            <div class="group relative bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-success-200/60 hover:border-success-300 overflow-hidden">
-                <!-- Subtle gradient overlay -->
-                <div class="absolute inset-0 bg-gradient-to-br from-success-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-
+            <div class="bg-slate-800 p-8 rounded-xl border border-brand-500/30 hover:border-brand-500/50 transition-colors relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-br from-brand-500/5 to-transparent"></div>
                 <div class="relative">
-                    <!-- Icon with circular background -->
-                    <div class="mb-6">
-                        <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-success-100 group-hover:bg-success-200 transition-colors">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-success-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                        </div>
+                    <div class="w-12 h-12 bg-brand-500/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-rocket text-brand-400 text-xl"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3 text-slate-900">
-                        Ship with Confidence
-                    </h3>
-                    <p class="text-slate-600 mb-6 leading-relaxed">
+                    <h3 class="text-xl font-bold text-white mb-3">Ship with Confidence</h3>
+                    <p class="text-slate-400 mb-6">
                         Shipping becomes routine, not a ceremony. Deploy fearlessly, even on Fridays.
                     </p>
-                    <div class="pt-6 border-t border-success-100">
-                        <ul class="space-y-3 text-sm text-slate-700">
-                            <li class="flex items-start">
-                                <svg class="w-5 h-5 mr-2 mt-0.5 text-success-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                <span>Deploy multiple times per day</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="w-5 h-5 mr-2 mt-0.5 text-success-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                <span>Catch issues before production</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="w-5 h-5 mr-2 mt-0.5 text-success-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                <span>Refactor fearlessly</span>
-                            </li>
-                        </ul>
-                    </div>
+                    <ul class="text-left space-y-2 text-sm text-slate-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-brand-400 mr-2 mt-1"></i>
+                            <span>Deploy multiple times per day</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-brand-400 mr-2 mt-1"></i>
+                            <span>Catch issues before production</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-brand-400 mr-2 mt-1"></i>
+                            <span>Refactor fearlessly</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

@@ -1,281 +1,261 @@
 {{ define "main" }}
-<article class="max-w-5xl mx-auto px-4 py-8">
-    <div class="mb-8">
-        <a href="/courses/" class="text-blue-600 hover:underline flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
-            </svg>
-            Back to Courses
-        </a>
-    </div>
-
-    <header class="mb-16">
-        {{ if .Params.image }}
+<article class="bg-slate-900">
+    <div class="max-w-5xl mx-auto px-4 py-8">
         <div class="mb-8">
-            <img src="{{ .Params.image }}" alt="{{ .Title }}" class="w-full h-64 md:h-80 object-cover rounded-xl">
+            <a href="/courses/" class="text-brand-400 hover:text-brand-300 flex items-center">
+                <i class="fas fa-arrow-left mr-2"></i>
+                Back to Courses
+            </a>
+        </div>
+
+        <header class="mb-16">
+            {{ if .Params.image }}
+            <div class="mb-8">
+                <img src="{{ .Params.image }}" alt="{{ .Title }}" class="w-full h-64 md:h-80 object-cover rounded-xl">
+            </div>
+            {{ end }}
+
+            <h1 class="text-4xl font-bold mb-4 text-white">{{ .Title }}</h1>
+            <p class="text-xl text-slate-400 mb-6">{{ .Params.summary }}</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 bg-slate-800 rounded-lg p-6 border border-slate-700">
+                <div>
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-clock text-brand-400 mr-3 text-xl"></i>
+                        <div>
+                            <div class="font-semibold text-white">Duration</div>
+                            <div class="text-slate-300">{{ .Params.duration }}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-signal text-brand-400 mr-3 text-xl"></i>
+                        <div>
+                            <div class="font-semibold text-white">Level</div>
+                            <div class="text-slate-300">{{ .Params.level }}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-book text-brand-400 mr-3 text-xl"></i>
+                        <div>
+                            <div class="font-semibold text-white">Modules</div>
+                            <div class="text-slate-300">{{ .Params.modules }}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-sync-alt text-brand-400 mr-3 text-xl"></i>
+                        <div>
+                            <div class="font-semibold text-white">Last Updated</div>
+                            <div class="text-slate-300">{{ .Params.last_updated }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Details Section -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+            <div class="md:col-span-2">
+                <div class="prose prose-invert prose-lg max-w-none page-content text-slate-300">
+                    {{ .Content }}
+                </div>
+
+                <!-- Course Curriculum -->
+                {{ if .Params.curriculum }}
+                <div class="mt-12">
+                    <h2 class="text-2xl font-bold mb-6 text-white">Course Curriculum</h2>
+                    <div class="space-y-4">
+                        {{ range .Params.curriculum }}
+                        <div class="border border-slate-700 rounded-lg overflow-hidden">
+                            <div class="bg-slate-800 px-4 py-3 font-medium flex justify-between items-center">
+                                <h3 class="text-white">{{ .module }}</h3>
+                                {{ if .duration }}
+                                <span class="text-sm text-slate-400">{{ .duration }}</span>
+                                {{ end }}
+                            </div>
+                            {{ if .lessons }}
+                            <ul class="divide-y divide-slate-700">
+                                {{ range .lessons }}
+                                <li class="px-4 py-3 flex justify-between items-center bg-slate-900">
+                                    <div class="flex items-center">
+                                        {{ if .preview }}
+                                        <i class="fas fa-play-circle text-green-500 mr-2"></i>
+                                        {{ else }}
+                                        <i class="fas fa-lock text-slate-500 mr-2"></i>
+                                        {{ end }}
+                                        <span class="text-slate-300">{{ .title }}</span>
+                                    </div>
+                                    <div class="text-sm text-slate-500">{{ .duration }}</div>
+                                </li>
+                                {{ end }}
+                            </ul>
+                            {{ end }}
+                        </div>
+                        {{ end }}
+                    </div>
+                </div>
+                {{ end }}
+
+                <!-- Prerequisites -->
+                {{ if .Params.prerequisites }}
+                <div class="mt-12">
+                    <h2 class="text-2xl font-bold mb-6 text-white">Prerequisites</h2>
+                    <ul class="space-y-4">
+                        {{ range .Params.prerequisites }}
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-brand-400 mr-3 mt-1"></i>
+                            <span class="text-slate-300">{{ . }}</span>
+                        </li>
+                        {{ end }}
+                    </ul>
+                </div>
+                {{ end }}
+
+                <!-- PDF Viewer for Testing Spring Boot Applications Masterclass -->
+                {{ if eq .Title "Testing Spring Boot Applications Masterclass" }}
+                <div class="mt-12">
+                    <h2 class="text-2xl font-bold mb-6 text-white">Course Overview PDF</h2>
+                    <div class="mb-4">
+                        <a href="/documents/PragmaTech-Automated-Spring-Boot-Testing-Online-Course.pdf" download class="inline-flex items-center bg-brand-600 text-white hover:bg-brand-500 font-medium py-2 px-4 rounded-lg transition-colors">
+                            <i class="fas fa-download mr-2"></i>
+                            Download Course PDF
+                        </a>
+                    </div>
+                    <div class="border border-slate-700 rounded-xl overflow-hidden shadow-sm">
+                        <div class="pdf-container" style="position: relative; padding-bottom: 125%; height: 0;">
+                            <iframe src="/documents/PragmaTech-Automated-Spring-Boot-Testing-Online-Course.pdf#toolbar=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" frameborder="0"></iframe>
+                        </div>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+
+            <div>
+                <div class="bg-slate-800 rounded-xl border border-slate-700 overflow-hidden sticky top-24">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-4 text-white">Enroll in This Course</h3>
+                        {{ if .Params.price }}
+                        <div class="text-3xl font-bold text-brand-400 mb-4">{{ .Params.price }}</div>
+                        {{ end }}
+                    </div>
+
+                    <a href="{{ .Params.course_url | default "#" }}" class="block group hover:bg-slate-700/50 transition-colors">
+                        <div class="mx-6 mb-6">
+                            <div class="w-full bg-brand-600 group-hover:bg-brand-500 text-white font-bold py-3 px-6 rounded-lg transition-colors text-center">
+                                Start Learning Now
+                            </div>
+
+                            <div class="text-sm text-slate-400 mt-4">
+                                {{ .Params.enrollment_note | default "Lifetime access. Start immediately after purchase." }}
+                            </div>
+                        </div>
+
+                        <div class="px-6">
+                            <h4 class="font-bold mb-2 text-white">What You'll Get:</h4>
+                            <ul class="space-y-3 mb-6">
+                                {{ range .Params.features }}
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-brand-400 mr-3 mt-1"></i>
+                                    <span class="text-slate-300">{{ . }}</span>
+                                </li>
+                                {{ end }}
+                            </ul>
+                        </div>
+                    </a>
+
+                    <div class="border-t border-slate-700 p-6">
+                        <div class="font-bold mb-2 text-white">Not sure if this is for you?</div>
+                        <a href="/contact" class="text-brand-400 hover:text-brand-300">Contact us with questions</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Testimonials if available -->
+        {{ if .Params.testimonials }}
+        <div class="mb-16">
+            <h2 class="text-2xl font-bold mb-6 text-white">What Students Say</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {{ range .Params.testimonials }}
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                    <blockquote class="text-slate-300 mb-4">
+                        "{{ .quote }}"
+                    </blockquote>
+                    <div class="font-medium text-white">{{ .name }}</div>
+                    <div class="text-slate-500 text-sm">{{ .role }}, {{ .company }}</div>
+                </div>
+                {{ end }}
+            </div>
         </div>
         {{ end }}
 
-        <h1 class="text-4xl font-bold mb-4">{{ .Title }}</h1>
-        <p class="text-xl text-gray-600 mb-6">{{ .Params.summary }}</p>
-
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 bg-gray-50 rounded-lg p-6">
-            <div>
-                <div class="flex items-center mb-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <div>
-                        <div class="font-semibold">Duration</div>
-                        <div>{{ .Params.duration }}</div>
-                    </div>
-                </div>
-            </div>
-
-            <div>
-                <div class="flex items-center mb-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11" />
-                    </svg>
-                    <div>
-                        <div class="font-semibold">Level</div>
-                        <div>{{ .Params.level }}</div>
-                    </div>
-                </div>
-            </div>
-
-            <div>
-                <div class="flex items-center mb-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                    </svg>
-                    <div>
-                        <div class="font-semibold">Modules</div>
-                        <div>{{ .Params.modules }}</div>
-                    </div>
-                </div>
-            </div>
-
-            <div>
-                <div class="flex items-center mb-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <div>
-                        <div class="font-semibold">Last Updated</div>
-                        <div>{{ .Params.last_updated }}</div>
-                    </div>
+        <!-- Instructor Section -->
+        {{ if .Params.instructor }}
+        <div class="mb-16">
+            <h2 class="text-2xl font-bold mb-6 text-white">Your Instructor</h2>
+            <div class="flex flex-col md:flex-row gap-6 p-6 bg-slate-800 rounded-xl border border-slate-700">
+                {{ if .Params.instructor.image }}
+                <img src="{{ .Params.instructor.image }}" alt="{{ .Params.instructor.name }}" class="w-32 h-32 object-cover rounded-full">
+                {{ end }}
+                <div>
+                    <h3 class="text-xl font-bold mb-2 text-white">{{ .Params.instructor.name }}</h3>
+                    <div class="text-brand-400 font-medium mb-4">{{ .Params.instructor.role }}</div>
+                    <p class="text-slate-300">{{ .Params.instructor.bio }}</p>
                 </div>
             </div>
         </div>
-    </header>
+        {{ end }}
 
-    <!-- Details Section -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
-        <div class="md:col-span-2">
-            <div class="prose prose-lg max-w-none page-content">
-                {{ .Content }}
-            </div>
-
-            <!-- Course Curriculum -->
-            {{ if .Params.curriculum }}
-            <div class="mt-12">
-                <h2 class="text-2xl font-bold mb-6">Course Curriculum</h2>
-                <div class="space-y-4">
-                    {{ range .Params.curriculum }}
-                    <div class="border border-gray-200 rounded-lg overflow-hidden">
-                        <div class="bg-gray-50 px-4 py-3 font-medium flex justify-between items-center">
-                            <h3>{{ .module }}</h3>
-                            {{ if .duration }}
-                            <span class="text-sm text-gray-500">{{ .duration }}</span>
-                            {{ end }}
-                        </div>
-                        {{ if .lessons }}
-                        <ul class="divide-y divide-gray-200">
-                            {{ range .lessons }}
-                            <li class="px-4 py-3 flex justify-between items-center">
-                                <div class="flex items-center">
-                                    {{ if .preview }}
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
-                                    </svg>
-                                    {{ else }}
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
-                                    </svg>
-                                    {{ end }}
-                                    <span>{{ .title }}</span>
-                                </div>
-                                <div class="text-sm text-gray-500">{{ .duration }}</div>
-                            </li>
-                            {{ end }}
-                        </ul>
-                        {{ end }}
-                    </div>
-                    {{ end }}
+        <!-- FAQ Section -->
+        {{ if .Params.faqs }}
+        <div class="mb-16">
+            <h2 class="text-2xl font-bold mb-6 text-white">Frequently Asked Questions</h2>
+            <div class="space-y-4">
+                {{ range .Params.faqs }}
+                <div class="bg-slate-800 rounded-lg p-6 border border-slate-700">
+                    <h3 class="text-xl font-bold mb-2 text-white">{{ .question }}</h3>
+                    <div class="text-slate-300">{{ .answer }}</div>
                 </div>
+                {{ end }}
             </div>
-            {{ end }}
+        </div>
+        {{ end }}
 
-            <!-- Prerequisites -->
-            {{ if .Params.prerequisites }}
-            <div class="mt-12">
-                <h2 class="text-2xl font-bold mb-6">Prerequisites</h2>
-                <ul class="space-y-4">
-                    {{ range .Params.prerequisites }}
-                    <li class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        <span>{{ . }}</span>
-                    </li>
-                    {{ end }}
-                </ul>
-            </div>
-            {{ end }}
-
-            <!-- PDF Viewer for Testing Spring Boot Applications Masterclass -->
-            {{ if eq .Title "Testing Spring Boot Applications Masterclass" }}
-            <div class="mt-12">
-                <h2 class="text-2xl font-bold mb-6">Course Overview PDF</h2>
-                <div class="mb-4">
-                    <a href="/documents/PragmaTech-Automated-Spring-Boot-Testing-Online-Course.pdf" download class="inline-flex items-center bg-blue-600 text-white hover:bg-blue-700 font-medium py-2 px-4 rounded-lg transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                        </svg>
-                        Download Course PDF
+        <!-- Related Courses -->
+        {{ $currentCourse := . }}
+        {{ $relatedCourses := where (where .Site.RegularPages "Section" "courses") "Permalink" "ne" .Permalink | first 3 }}
+        {{ if $relatedCourses }}
+        <div class="mt-16 pt-8 border-t border-slate-700">
+            <h2 class="text-2xl font-bold mb-6 text-white">Other Courses You Might Like</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {{ range $relatedCourses }}
+                <div class="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden group hover:border-brand-500/50 transition-colors">
+                    <a href="{{ .Permalink }}" class="block">
+                        {{ if .Params.image }}
+                        <img src="{{ .Params.image }}" alt="{{ .Title }}" class="w-full h-40 object-cover group-hover:opacity-90 transition-opacity">
+                        {{ end }}
+                        <div class="p-4">
+                            <h3 class="font-bold mb-2 text-white group-hover:text-brand-400 transition-colors">{{ .Title }}</h3>
+                            <div class="text-sm text-slate-400 mb-2">{{ .Params.level }} · {{ .Params.duration }}</div>
+                            <span class="text-brand-400 text-sm inline-flex items-center">
+                                View details
+                                <i class="fas fa-arrow-right ml-1 text-xs group-hover:translate-x-0.5 transition-transform"></i>
+                            </span>
+                        </div>
                     </a>
                 </div>
-                <div class="border border-gray-200 rounded-xl overflow-hidden shadow-sm">
-                    <div class="pdf-container" style="position: relative; padding-bottom: 125%; height: 0;">
-                        <iframe src="/documents/PragmaTech-Automated-Spring-Boot-Testing-Online-Course.pdf#toolbar=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" frameborder="0"></iframe>
-                    </div>
-                </div>
-            </div>
-            {{ end }}
-        </div>
-
-        <div>
-            <div class="bg-gray-50 rounded-xl shadow-sm overflow-hidden sticky top-24">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-4">Enroll in This Course</h3>
-                    {{ if .Params.price }}
-                    <div class="text-3xl font-bold text-blue-600 mb-4">{{ .Params.price }}</div>
-                    {{ end }}
-                </div>
-                
-                <a href="{{ .Params.course_url | default "#" }}" class="block group hover:bg-gray-100 transition-colors">
-                    <div class="mx-6 mb-6">
-                        <div class="w-full bg-blue-600 group-hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors text-center">
-                            Start Learning Now
-                        </div>
-                        
-                        <div class="text-sm text-gray-500 mt-4">
-                            {{ .Params.enrollment_note | default "Lifetime access. Start immediately after purchase." }}
-                        </div>
-                    </div>
-                    
-                    <div class="px-6">
-                        <h4 class="font-bold mb-2">What You'll Get:</h4>
-                        <ul class="space-y-3 mb-6">
-                            {{ range .Params.features }}
-                            <li class="flex items-start">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </svg>
-                                <span>{{ . }}</span>
-                            </li>
-                            {{ end }}
-                        </ul>
-                    </div>
-                </a>
-
-                <div class="border-t border-gray-200 p-6">
-                    <div class="font-bold mb-2">Not sure if this is for you?</div>
-                    <a href="/contact" class="text-blue-600 hover:text-blue-800">Contact us with questions</a>
-                </div>
+                {{ end }}
             </div>
         </div>
+        {{ end }}
     </div>
-
-    <!-- Testimonials if available -->
-    {{ if .Params.testimonials }}
-    <div class="mb-16">
-        <h2 class="text-2xl font-bold mb-6">What Students Say</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {{ range .Params.testimonials }}
-            <div class="bg-gray-50 p-6 rounded-xl shadow-sm">
-                <blockquote class="text-gray-700 mb-4">
-                    "{{ .quote }}"
-                </blockquote>
-                <div class="font-medium">{{ .name }}</div>
-                <div class="text-gray-500 text-sm">{{ .role }}, {{ .company }}</div>
-            </div>
-            {{ end }}
-        </div>
-    </div>
-    {{ end }}
-
-    <!-- Instructor Section -->
-    {{ if .Params.instructor }}
-    <div class="mb-16">
-        <h2 class="text-2xl font-bold mb-6">Your Instructor</h2>
-        <div class="flex flex-col md:flex-row gap-6 p-6 bg-gray-50 rounded-xl">
-            {{ if .Params.instructor.image }}
-            <img src="{{ .Params.instructor.image }}" alt="{{ .Params.instructor.name }}" class="w-32 h-32 object-cover rounded-full">
-            {{ end }}
-            <div>
-                <h3 class="text-xl font-bold mb-2">{{ .Params.instructor.name }}</h3>
-                <div class="text-blue-600 font-medium mb-4">{{ .Params.instructor.role }}</div>
-                <p class="text-gray-700">{{ .Params.instructor.bio }}</p>
-            </div>
-        </div>
-    </div>
-    {{ end }}
-
-    <!-- FAQ Section -->
-    {{ if .Params.faqs }}
-    <div class="mb-16">
-        <h2 class="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
-        <div class="space-y-4">
-            {{ range .Params.faqs }}
-            <div class="bg-gray-50 rounded-lg p-6">
-                <h3 class="text-xl font-bold mb-2">{{ .question }}</h3>
-                <div class="text-gray-700">{{ .answer }}</div>
-            </div>
-            {{ end }}
-        </div>
-    </div>
-    {{ end }}
-
-    <!-- Related Courses -->
-    {{ $currentCourse := . }}
-    {{ $relatedCourses := where (where .Site.RegularPages "Section" "courses") "Permalink" "ne" .Permalink | first 3 }}
-    {{ if $relatedCourses }}
-    <div class="mt-16 pt-8 border-t border-gray-200">
-        <h2 class="text-2xl font-bold mb-6">Other Courses You Might Like</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {{ range $relatedCourses }}
-            <div class="bg-white rounded-lg shadow-sm overflow-hidden group hover:shadow-md transition-shadow">
-                <a href="{{ .Permalink }}" class="block text-current hover:text-current">
-                    {{ if .Params.image }}
-                    <img src="{{ .Params.image }}" alt="{{ .Title }}" class="w-full h-40 object-cover group-hover:opacity-95 transition-opacity">
-                    {{ end }}
-                    <div class="p-4">
-                        <h3 class="font-bold mb-2 group-hover:text-blue-600 transition-colors">{{ .Title }}</h3>
-                        <div class="text-sm text-gray-600 mb-2">{{ .Params.level }} · {{ .Params.duration }}</div>
-                        <span class="text-blue-600 text-sm inline-flex items-center">
-                            View details
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 ml-1 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                            </svg>
-                        </span>
-                    </div>
-                </a>
-            </div>
-            {{ end }}
-        </div>
-    </div>
-    {{ end }}
 </article>
 {{ end }}
