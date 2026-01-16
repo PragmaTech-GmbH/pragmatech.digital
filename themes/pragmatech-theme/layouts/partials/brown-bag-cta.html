@@ -1,58 +1,48 @@
-<section class="py-20 bg-gradient-to-br from-cyan-50 to-sky-50">
+<section class="py-20 bg-slate-800/50">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-5xl mx-auto">
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <!-- Content -->
                 <div>
-                    <div class="inline-block bg-sky-100 px-4 py-2 rounded-full text-sm font-semibold mb-6 text-sky-900">
-                        🎯 Free Session
+                    <div class="inline-block bg-brand-500/20 px-4 py-2 rounded-full text-sm font-semibold mb-6 text-brand-400">
+                        Free Session
                     </div>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white">
                         Stop Fighting Your Spring Boot Tests
                     </h2>
-                    <p class="text-xl text-gray-700 mb-6">
+                    <p class="text-xl text-slate-300 mb-6">
                         Free 45-minute lunch-and-learn session that shows you exactly why your tests fight back - and how to fix it.
                     </p>
-                    <p class="text-lg text-gray-600 mb-8">
+                    <p class="text-lg text-slate-400 mb-8">
                         Learn the Test Pyramid for Spring Boot, discover five quick wins to speed up your tests, and get an action plan you can implement this week. Perfect for your team's lunch break or tech meetup.
                     </p>
 
                     <!-- Key Points -->
                     <div class="space-y-3 mb-8">
                         <div class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-emerald-600 mr-3 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            <span class="text-gray-700"><strong class="text-gray-900">45-60 minutes</strong> - fits perfectly in a lunch break</span>
+                            <i class="fas fa-check text-emerald-400 mr-3 mt-1"></i>
+                            <span class="text-slate-300"><strong class="text-white">45-60 minutes</strong> - fits perfectly in a lunch break</span>
                         </div>
                         <div class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-emerald-600 mr-3 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            <span class="text-gray-700"><strong class="text-gray-900">100% free</strong> - no strings attached</span>
+                            <i class="fas fa-check text-emerald-400 mr-3 mt-1"></i>
+                            <span class="text-slate-300"><strong class="text-white">100% free</strong> - no strings attached</span>
                         </div>
                         <div class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-emerald-600 mr-3 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            <span class="text-gray-700"><strong class="text-gray-900">Available remotely or in-person</strong> - your choice</span>
+                            <i class="fas fa-check text-emerald-400 mr-3 mt-1"></i>
+                            <span class="text-slate-300"><strong class="text-white">Available remotely or in-person</strong> - your choice</span>
                         </div>
                         <div class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-emerald-600 mr-3 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            <span class="text-gray-700"><strong class="text-gray-900">Immediately actionable</strong> - practical insights, not theory</span>
+                            <i class="fas fa-check text-emerald-400 mr-3 mt-1"></i>
+                            <span class="text-slate-300"><strong class="text-white">Immediately actionable</strong> - practical insights, not theory</span>
                         </div>
                     </div>
 
                     <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="/talks/stop-fighting-your-spring-boot-tests" class="inline-flex items-center justify-center bg-sky-600 text-white hover:bg-sky-700 font-bold py-3 px-8 rounded-lg transition-colors shadow-lg">
+                        <a href="/talks/stop-fighting-your-spring-boot-tests" class="inline-flex items-center justify-center bg-brand-600 text-white hover:bg-brand-500 font-bold py-3 px-8 rounded-lg transition-colors">
                             Learn More
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                            </svg>
+                            <i class="fas fa-arrow-right ml-2"></i>
                         </a>
-                        <a href="{{ .Site.Params.scheduleCallUrl | default "/contact" }}" class="inline-flex items-center justify-center bg-transparent border-2 border-sky-600 text-sky-600 hover:bg-sky-50 font-bold py-3 px-8 rounded-lg transition-colors">
+                        <a href="{{ .Site.Params.scheduleCallUrl | default "/contact" }}" class="inline-flex items-center justify-center bg-transparent border-2 border-brand-500 text-brand-400 hover:bg-brand-500/10 font-bold py-3 px-8 rounded-lg transition-colors">
                             Book Your Free Session
                         </a>
                     </div>
@@ -62,12 +52,12 @@
                 <div class="hidden md:flex justify-center items-center">
                     <div class="relative">
                         <!-- Photo with decorative frame -->
-                        <div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-sky-200">
+                        <div class="relative rounded-2xl overflow-hidden border-4 border-slate-700">
                             <img src="/images/events/philip-jug-zurich-2025-two.JPG" alt="Philip presenting at JUG Zürich" class="w-full h-auto object-cover" />
                         </div>
 
                         <!-- Decorative elements -->
-                        <div class="absolute -bottom-4 -right-4 bg-yellow-400 rounded-full px-6 py-3 font-bold text-gray-900 text-lg shadow-xl border-4 border-white">
+                        <div class="absolute -bottom-4 -right-4 bg-yellow-400 rounded-full px-6 py-3 font-bold text-slate-900 text-lg shadow-xl border-4 border-slate-800">
                             FREE
                         </div>
                     </div>

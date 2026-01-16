@@ -1,25 +1,21 @@
 {{ define "main" }}
 <!-- Product Hero Section -->
-<section class="relative bg-gradient-to-br from-blue-900 to-blue-600 text-white py-10">
-    <div class="absolute inset-0 bg-black/20"></div>
-    <div class="relative container mx-auto px-4 sm:px-6 lg:px-8">
+<section class="relative bg-gradient-to-r from-brand-600 to-brand-500 text-white overflow-hidden pt-12 lg:pt-16 mb-8">
+    <div class="absolute inset-0 bg-[url('/images/pattern-grid.svg')] bg-center opacity-25"></div>
+    <div class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div class="max-w-4xl mx-auto">
             <div class="text-center">
                 <!-- Status Badge -->
                 <div class="mb-6">
                     {{ $productData := . }}
                     {{ if eq $productData.Params.status "coming_soon" }}
-                    <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
+                    <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-yellow-500/20 text-yellow-400">
+                        <i class="fas fa-clock mr-2"></i>
                         Coming Soon - {{ $productData.Params.launch_date }}
                     </span>
                     {{ else if eq $productData.Params.status "available" }}
-                    <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-green-100 text-green-800">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
+                    <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-green-500/20 text-green-400">
+                        <i class="fas fa-check-circle mr-2"></i>
                         Available Now
                     </span>
                     {{ end }}
@@ -27,27 +23,23 @@
 
                 <!-- Product Icon/Logo -->
                 <div class="text-8xl mb-6">{{ $productData.Params.icon }}</div>
-                
+
                 <!-- Title and Subtitle -->
-                <h1 class="text-4xl md:text-6xl font-bold mb-4">{{ .Title }}</h1>
-                <p class="text-xl md:text-2xl text-blue-100 mb-8">{{ .Params.subtitle }}</p>
-                
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">{{ .Title }}</h1>
+                <p class="text-xl text-brand-100 mb-8">{{ .Params.subtitle }}</p>
+
                 <!-- CTA Buttons -->
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
                     {{ if $productData.Params.links.github }}
-                    <a href="{{ $productData.Params.links.github }}" target="_blank" class="inline-flex items-center bg-white text-black font-medium py-3 px-6 rounded-lg transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                        </svg>
+                    <a href="{{ $productData.Params.links.github }}" target="_blank" class="inline-flex items-center bg-white text-slate-900 hover:bg-slate-100 font-medium py-3 px-6 rounded-lg transition-colors">
+                        <i class="fab fa-github mr-2"></i>
                         Start Profiling Your Tests Now
                     </a>
                     {{ end }}
-                    
+
                     {{ if eq $productData.Params.status "coming_soon" }}
-                    <a href="{{ .Site.Params.scheduleCallUrl }}" class="inline-flex items-center border-2 border-white text-white hover:bg-white hover:text-emerald-600 font-medium py-3 px-6 rounded-lg transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5zM4 19h5v-5l-5 5z" />
-                        </svg>
+                    <a href="{{ .Site.Params.scheduleCallUrl }}" class="inline-flex items-center border-2 border-white text-white hover:bg-white hover:text-brand-600 font-medium py-3 px-6 rounded-lg transition-colors">
+                        <i class="fas fa-rocket mr-2"></i>
                         Get Early Access
                     </a>
                     {{ end }}
@@ -58,36 +50,32 @@
 </section>
 
 <!-- Pain Point Section -->
-<section class="py-20 bg-white">
+<section class="py-20 bg-slate-900">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-4xl mx-auto">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-6 text-red-600">Stop Waiting for Slow Spring Boot Tests</h2>
-                <div class="w-24 h-1 bg-red-600 mx-auto mb-8"></div>
+                <h2 class="text-3xl md:text-4xl font-bold mb-6 text-red-400">Stop Waiting for Slow Spring Boot Tests</h2>
+                <div class="w-24 h-1 bg-red-500 mx-auto mb-8"></div>
             </div>
-            
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div>
-                    <h2>Slow and Unpredictable Test Suites Are Killing Your Productivity</h2>
-                    <br/>
 
-                    <p>Your test suite shouldn't be a productivity killer.</p>
-                    <br/>
-                    <p>If your Spring Boot tests take 15+ minutes to run, fail unpredictably, or force developers to skip testing locally, you're losing valuable development time and shipping more bugs.</p>
-                    <br/>
-                    <p>Are you tired of waiting for your Spring Boot test suite to complete? Do you struggle with:</p>
-                    
-                    <ul class="list-disc pl-6 mt-4 space-y-2">
-                        <li><strong>Flaky tests that fail randomly</strong>, breaking your CI/CD pipeline without clear reasons</li>
-                        <li><strong>No visibility into which tests are actually slow</strong> or consuming the most resources</li>
-                        <li><strong>No actionable insights</strong> on how to optimize your test performance</li>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="text-slate-300">
+                    <h2 class="text-2xl font-bold text-white mb-4">Slow and Unpredictable Test Suites Are Killing Your Productivity</h2>
+
+                    <p class="mb-4">Your test suite shouldn't be a productivity killer.</p>
+                    <p class="mb-4">If your Spring Boot tests take 15+ minutes to run, fail unpredictably, or force developers to skip testing locally, you're losing valuable development time and shipping more bugs.</p>
+                    <p class="mb-4">Are you tired of waiting for your Spring Boot test suite to complete? Do you struggle with:</p>
+
+                    <ul class="list-disc pl-6 mt-4 space-y-2 text-slate-300">
+                        <li><strong class="text-white">Flaky tests that fail randomly</strong>, breaking your CI/CD pipeline without clear reasons</li>
+                        <li><strong class="text-white">No visibility into which tests are actually slow</strong> or consuming the most resources</li>
+                        <li><strong class="text-white">No actionable insights</strong> on how to optimize your test performance</li>
                     </ul>
-                    
+
                     <p class="mt-4">Every minute spent waiting for tests is a minute not spent building features your users need. Poor test performance doesn't just slow you down - it creates a culture where developers skip running tests locally, leading to more bugs in production.</p>
                 </div>
                 <div class="text-center">
-                    <!-- Placeholder for screenshot -->
-                    <div class="bg-gray-100 rounded-lg p-8">
+                    <div class="bg-slate-800 rounded-lg p-8 border border-slate-700">
                         <picture>
                             <source srcset="/generated/images/products/sad-dev-mobile.webp" type="image/webp" media="(max-width: 768px)">
                             <source srcset="/generated/images/products/sad-dev.webp" type="image/webp">
@@ -102,18 +90,17 @@
 </section>
 
 <!-- Solution Section -->
-<section class="py-20 bg-gray-50">
+<section class="py-20 bg-slate-800/50">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-4xl mx-auto">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-6 text-green-600">Optimize Spring Context Caching for Faster Builds</h2>
-                <div class="w-24 h-1 bg-green-600 mx-auto mb-8"></div>
+                <h2 class="text-3xl md:text-4xl font-bold mb-6 text-green-400">Optimize Spring Context Caching for Faster Builds</h2>
+                <div class="w-24 h-1 bg-green-500 mx-auto mb-8"></div>
             </div>
-            
+
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div class="order-2 md:order-1 text-center">
-                    <!-- Placeholder for screenshot -->
-                    <div class="bg-gray-100 rounded-lg p-8 shadow-sm">
+                    <div class="bg-slate-800 rounded-lg p-8 border border-slate-700">
                         <picture>
                             <source srcset="/generated/images/products/happy-dev-mobile.webp" type="image/webp" media="(max-width: 768px)">
                             <source srcset="/generated/images/products/happy-dev.webp" type="image/webp">
@@ -122,20 +109,18 @@
                         </picture>
                     </div>
                 </div>
-                <div class="order-1 md:order-2">
-                    <h2>Spring Test Profiler Reveals the #1 Performance Killer in Spring Boot Test Suites</h2>
+                <div class="order-1 md:order-2 text-slate-300">
+                    <h2 class="text-2xl font-bold text-white mb-4">Spring Test Profiler Reveals the #1 Performance Killer in Spring Boot Test Suites</h2>
 
-                    <br/>
-                    <p>Misusing Spring's TestContext context caching.</p>
-                    <br/>
-                    <p>The Profiler helps you:</p>
+                    <p class="mb-4">Misusing Spring's TestContext context caching.</p>
+                    <p class="mb-4">The Profiler helps you:</p>
 
                     <ul class="list-disc pl-6 mt-4 space-y-2">
-                        <li><strong>Context Reload Analysis</strong> - Identify which tests are forcing expensive Spring context recreations and why</li>
-                        <li><strong>Cache Optimization</strong> - Get specific recommendations to maximize context reuse across your test suite (often 50-80% faster execution)</li>
-                        <li><strong>Performance Bottlenecks</strong> - Pinpoint slow tests with detailed metrics on execution time, memory usage, and context loading overhead</li>
-                        <li><strong>Smart Test Grouping</strong> - Learn which tests can share contexts and which need isolation for optimal parallel execution</li>
-                        <li><strong>CI/CD Integration</strong> - Track context cache efficiency over time and catch performance regressions</li>
+                        <li><strong class="text-white">Context Reload Analysis</strong> - Identify which tests are forcing expensive Spring context recreations and why</li>
+                        <li><strong class="text-white">Cache Optimization</strong> - Get specific recommendations to maximize context reuse across your test suite (often 50-80% faster execution)</li>
+                        <li><strong class="text-white">Performance Bottlenecks</strong> - Pinpoint slow tests with detailed metrics on execution time, memory usage, and context loading overhead</li>
+                        <li><strong class="text-white">Smart Test Grouping</strong> - Learn which tests can share contexts and which need isolation for optimal parallel execution</li>
+                        <li><strong class="text-white">CI/CD Integration</strong> - Track context cache efficiency over time and catch performance regressions</li>
                     </ul>
                 </div>
             </div>
@@ -144,28 +129,26 @@
 </section>
 
 <!-- Before and After Section -->
-<section class="py-20 bg-white">
+<section class="py-20 bg-slate-900">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-8xl mx-auto">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-6">See the Impact</h2>
-                <p class="text-xl text-gray-600">Real results from real projects: dramatically reduced build times</p>
+                <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white">See the Impact</h2>
+                <p class="text-xl text-slate-400">Real results from real projects: dramatically reduced build times</p>
             </div>
-            
+
             <div class="md:grid md:grid-cols-2 gap-8">
                 <!-- Before Section -->
-                <div class="bg-red-50 rounded-xl p-8 border border-red-200 mb-10">
+                <div class="bg-red-500/10 rounded-xl p-8 border border-red-500/30 mb-10">
                     <div class="text-center mb-6">
-                        <div class="inline-flex items-center justify-center w-16 h-16 bg-red-100 rounded-full mb-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-red-500/20 rounded-full mb-4">
+                            <i class="fas fa-exclamation-circle text-red-400 text-2xl"></i>
                         </div>
-                        <h3 class="text-2xl font-bold text-red-800 mb-2">Before Optimization</h3>
-                        <p class="text-red-700">Slow, unpredictable test execution</p>
+                        <h3 class="text-2xl font-bold text-red-400 mb-2">Before Optimization</h3>
+                        <p class="text-red-300">Slow, unpredictable test execution</p>
                     </div>
-                    
-                    <div class="bg-gray-900 rounded-lg p-4 text-green-400 font-mono text-sm overflow-x-auto">
+
+                    <div class="bg-slate-900 rounded-lg p-4 text-green-400 font-mono text-sm overflow-x-auto border border-slate-700">
                         <pre>$ ./mvnw verify
 
 [INFO] -------------------------------------------------------
@@ -182,49 +165,41 @@
 
 [INFO] Results:
 [INFO] Tests run: 247, Failures: 0, Errors: 0, Skipped: 0
-[INFO] 
+[INFO]
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
 [INFO] Total time: <span class="text-red-400 font-bold">18:32 min</span>
 [INFO] Finished at: 2025-01-15T10:45:23+01:00</pre>
                     </div>
-                    
+
                     <div class="mt-6 space-y-3">
-                        <div class="flex items-center text-red-700">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
+                        <div class="flex items-center text-red-300">
+                            <i class="fas fa-clock mr-2"></i>
                             <span>18+ minute build times</span>
                         </div>
-                        <div class="flex items-center text-red-700">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
+                        <div class="flex items-center text-red-300">
+                            <i class="fas fa-sync-alt mr-2"></i>
                             <span>Multiple slow Spring context loads</span>
                         </div>
-                        <div class="flex items-center text-red-700">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
+                        <div class="flex items-center text-red-300">
+                            <i class="fas fa-eye-slash mr-2"></i>
                             <span>No visibility into bottlenecks</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- After Section -->
-                <div class="bg-green-50 rounded-xl p-8 border border-green-200 mb-10">
+                <div class="bg-green-500/10 rounded-xl p-8 border border-green-500/30 mb-10">
                     <div class="text-center mb-6">
-                        <div class="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-green-500/20 rounded-full mb-4">
+                            <i class="fas fa-check-circle text-green-400 text-2xl"></i>
                         </div>
-                        <h3 class="text-2xl font-bold text-green-800 mb-2">After Optimization</h3>
-                        <p class="text-green-700">Fast, efficient test execution</p>
+                        <h3 class="text-2xl font-bold text-green-400 mb-2">After Optimization</h3>
+                        <p class="text-green-300">Fast, efficient test execution</p>
                     </div>
-                    
-                    <div class="bg-gray-900 rounded-lg p-4 text-green-400 font-mono text-sm overflow-x-auto">
+
+                    <div class="bg-slate-900 rounded-lg p-4 text-green-400 font-mono text-sm overflow-x-auto border border-slate-700">
                         <pre>$ ./mvnw verify
 
 [INFO] -------------------------------------------------------
@@ -241,44 +216,36 @@
 
 [INFO] Results:
 [INFO] Tests run: 247, Failures: 0, Errors: 0, Skipped: 0
-[INFO] 
+[INFO]
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
 [INFO] Total time: <span class="text-green-400 font-bold">04:15 min</span>
 [INFO] Finished at: 2025-01-15T10:46:35+01:00</pre>
                     </div>
-                    
+
                     <div class="mt-6 space-y-3">
-                        <div class="flex items-center text-green-700">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                            </svg>
+                        <div class="flex items-center text-green-300">
+                            <i class="fas fa-bolt mr-2"></i>
                             <span><strong>78% faster</strong> build times</span>
                         </div>
-                        <div class="flex items-center text-green-700">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
+                        <div class="flex items-center text-green-300">
+                            <i class="fas fa-check mr-2"></i>
                             <span>Optimized context sharing</span>
                         </div>
-                        <div class="flex items-center text-green-700">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                            </svg>
+                        <div class="flex items-center text-green-300">
+                            <i class="fas fa-chart-bar mr-2"></i>
                             <span>Clear performance insights</span>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <!-- Improvement Summary -->
             <div class="mt-10 text-center">
-                <div class="inline-flex items-center  rounded-full px-6 py-3 border border-blue-200">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                    </svg>
-                    <span class="text-blue-800 font-semibold text-lg">
+                <div class="inline-flex items-center bg-brand-500/10 rounded-full px-6 py-3 border border-brand-500/30">
+                    <i class="fas fa-chart-line text-brand-400 mr-3"></i>
+                    <span class="text-brand-300 font-semibold text-lg">
                         <strong>14:17 minutes saved</strong> per test run — that's <strong>multiple hours saved per month</strong> for active teams
                     </span>
                 </div>
@@ -288,34 +255,34 @@
 </section>
 
 <!-- Sample Report Section -->
-<section class="py-20 bg-gray-50">
+<section class="py-20 bg-slate-800/50">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-6">Sample HTML Report</h2>
-                <p class="text-xl text-gray-600">See what insights {{ .Title }} provides with our comprehensive reporting</p>
+                <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white">Sample HTML Report</h2>
+                <p class="text-xl text-slate-400">See what insights {{ .Title }} provides with our comprehensive reporting</p>
             </div>
-            
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
-                <div class="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-4">
+
+            <div class="bg-slate-900 rounded-xl shadow-lg overflow-hidden border border-slate-700">
+                <div class="bg-gradient-to-r from-brand-600 to-brand-500 text-white p-4">
                     <div class="flex items-center justify-between">
                         <h3 class="text-lg font-semibold">Spring Test Profiler Report</h3>
                         <div class="flex items-center space-x-2">
-                            <span class="px-2 py-1 bg-blue-500 rounded text-sm">Interactive Preview</span>
+                            <span class="px-2 py-1 bg-brand-500/50 rounded text-sm">Interactive Preview</span>
                             {{ if .Params.sampleReportUrl }}
-                            <a href="{{ .Params.sampleReportUrl }}" target="_blank" class="px-3 py-1 bg-white text-blue-600 rounded text-sm">
+                            <a href="{{ .Params.sampleReportUrl }}" target="_blank" class="px-3 py-1 bg-white text-brand-600 rounded text-sm hover:bg-slate-100 transition-colors">
                                 Open Full Report
                             </a>
                             {{ end }}
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="p-1">
                     {{ if .Params.sampleReportUrl }}
                     <!-- Iframe for actual HTML report -->
-                    <iframe 
-                        src="{{ .Params.sampleReportUrl }}" 
+                    <iframe
+                        src="{{ .Params.sampleReportUrl }}"
                         class="w-full h-[768px] border-0 rounded-b-xl"
                         title="Spring Test Profiler Sample Report"
                         sandbox="allow-scripts allow-same-origin"
@@ -323,123 +290,82 @@
                     </iframe>
                     {{ else }}
                     <!-- Fallback mockup when no report URL is provided -->
-                    <div class="h-96 bg-gray-50 rounded-b-xl flex flex-col overflow-hidden">
+                    <div class="h-96 bg-slate-800 rounded-b-xl flex flex-col overflow-hidden">
                         <!-- Report Header -->
-                        <div class="bg-white border-b p-4">
+                        <div class="bg-slate-900 border-b border-slate-700 p-4">
                             <div class="flex items-center justify-between mb-4">
-                                <h4 class="text-lg font-semibold">Test Execution Summary</h4>
-                                <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-sm">✓ 247 tests passed</span>
+                                <h4 class="text-lg font-semibold text-white">Test Execution Summary</h4>
+                                <span class="bg-green-500/20 text-green-400 px-2 py-1 rounded text-sm">✓ 247 tests passed</span>
                             </div>
                             <div class="grid grid-cols-4 gap-4 text-center">
-                                <div class="bg-blue-50 p-3 rounded">
-                                    <div class="text-2xl font-bold text-blue-600">8.7s</div>
-                                    <div class="text-sm text-gray-600">Total Time</div>
+                                <div class="bg-brand-500/10 p-3 rounded border border-brand-500/20">
+                                    <div class="text-2xl font-bold text-brand-400">8.7s</div>
+                                    <div class="text-sm text-slate-400">Total Time</div>
                                 </div>
-                                <div class="bg-green-50 p-3 rounded">
-                                    <div class="text-2xl font-bold text-green-600">247</div>
-                                    <div class="text-sm text-gray-600">Tests Passed</div>
+                                <div class="bg-green-500/10 p-3 rounded border border-green-500/20">
+                                    <div class="text-2xl font-bold text-green-400">247</div>
+                                    <div class="text-sm text-slate-400">Tests Passed</div>
                                 </div>
-                                <div class="bg-yellow-50 p-3 rounded">
-                                    <div class="text-2xl font-bold text-yellow-600">3</div>
-                                    <div class="text-sm text-gray-600">Slow Tests</div>
+                                <div class="bg-yellow-500/10 p-3 rounded border border-yellow-500/20">
+                                    <div class="text-2xl font-bold text-yellow-400">3</div>
+                                    <div class="text-sm text-slate-400">Slow Tests</div>
                                 </div>
-                                <div class="bg-purple-50 p-3 rounded">
-                                    <div class="text-2xl font-bold text-purple-600">12</div>
-                                    <div class="text-sm text-gray-600">Contexts</div>
+                                <div class="bg-purple-500/10 p-3 rounded border border-purple-500/20">
+                                    <div class="text-2xl font-bold text-purple-400">12</div>
+                                    <div class="text-sm text-slate-400">Contexts</div>
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- Report Content Preview -->
                         <div class="flex-1 p-4 space-y-3 overflow-y-auto">
-                            <div class="bg-white border rounded p-3">
+                            <div class="bg-slate-900 border border-slate-700 rounded p-3">
                                 <div class="flex items-center justify-between mb-2">
-                                    <span class="font-medium">UserServiceTest</span>
-                                    <span class="text-red-600 text-sm">2.3s ⚠️</span>
+                                    <span class="font-medium text-white">UserServiceTest</span>
+                                    <span class="text-red-400 text-sm">2.3s ⚠️</span>
                                 </div>
-                                <div class="text-sm text-gray-600">Heavy Spring context loading detected</div>
+                                <div class="text-sm text-slate-400">Heavy Spring context loading detected</div>
                             </div>
-                            
-                            <div class="bg-white border rounded p-3">
+
+                            <div class="bg-slate-900 border border-slate-700 rounded p-3">
                                 <div class="flex items-center justify-between mb-2">
-                                    <span class="font-medium">PaymentControllerTest</span>
-                                    <span class="text-yellow-600 text-sm">1.8s</span>
+                                    <span class="font-medium text-white">PaymentControllerTest</span>
+                                    <span class="text-yellow-400 text-sm">1.8s</span>
                                 </div>
-                                <div class="text-sm text-gray-600">Database initialization overhead</div>
+                                <div class="text-sm text-slate-400">Database initialization overhead</div>
                             </div>
-                            
-                            <div class="bg-white border rounded p-3">
+
+                            <div class="bg-slate-900 border border-slate-700 rounded p-3">
                                 <div class="flex items-center justify-between mb-2">
-                                    <span class="font-medium">AuthenticationTest</span>
-                                    <span class="text-green-600 text-sm">0.2s ✓</span>
+                                    <span class="font-medium text-white">AuthenticationTest</span>
+                                    <span class="text-green-400 text-sm">0.2s ✓</span>
                                 </div>
-                                <div class="text-sm text-gray-600">Well optimized unit test</div>
+                                <div class="text-sm text-slate-400">Well optimized unit test</div>
                             </div>
-                            
-                            <div class="bg-white border rounded p-3">
-                                <div class="flex items-center justify-between mb-2">
-                                    <span class="font-medium">OrderProcessingTest</span>
-                                    <span class="text-yellow-600 text-sm">1.2s</span>
-                                </div>
-                                <div class="text-sm text-gray-600">Multiple @DirtiesContext detected</div>
-                            </div>
-                            
-                            <div class="bg-white border rounded p-3">
-                                <div class="flex items-center justify-between mb-2">
-                                    <span class="font-medium">EmailServiceTest</span>
-                                    <span class="text-green-600 text-sm">0.3s ✓</span>
-                                </div>
-                                <div class="text-sm text-gray-600">Uses @MockBean efficiently</div>
-                            </div>
-                            
-                            <div class="bg-white border rounded p-3">
-                                <div class="flex items-center justify-between mb-2">
-                                    <span class="font-medium">DatabaseIntegrationTest</span>
-                                    <span class="text-red-600 text-sm">3.1s ⚠️</span>
-                                </div>
-                                <div class="text-sm text-gray-600">@SpringBootTest with full context loading</div>
-                            </div>
-                            
-                            <div class="bg-white border rounded p-3">
-                                <div class="flex items-center justify-between mb-2">
-                                    <span class="font-medium">SecurityConfigTest</span>
-                                    <span class="text-green-600 text-sm">0.4s ✓</span>
-                                </div>
-                                <div class="text-sm text-gray-600">@WebMvcTest slice optimization</div>
-                            </div>
-                            
-                            <div class="bg-white border rounded p-3">
-                                <div class="flex items-center justify-between mb-2">
-                                    <span class="font-medium">ProductCatalogTest</span>
-                                    <span class="text-yellow-600 text-sm">1.5s</span>
-                                </div>
-                                <div class="text-sm text-gray-600">Redundant @Transactional usage</div>
-                            </div>
-                            
-                            <div class="bg-blue-50 border-l-4 border-blue-400 p-3 rounded">
-                                <h5 class="font-medium text-blue-800 mb-2">💡 Optimization Recommendations</h5>
-                                <ul class="text-sm text-blue-700 space-y-1">
+
+                            <div class="bg-brand-500/10 border-l-4 border-brand-400 p-3 rounded">
+                                <h5 class="font-medium text-brand-300 mb-2">💡 Optimization Recommendations</h5>
+                                <ul class="text-sm text-brand-200 space-y-1">
                                     <li>• Replace @SpringBootTest with @WebMvcTest for controller tests</li>
                                     <li>• Use @TestConfiguration for shared test setups</li>
                                     <li>• Consider @DirtiesContext alternatives</li>
                                     <li>• Mock external dependencies instead of loading full context</li>
                                 </ul>
                             </div>
-                            
+
                             <div class="text-center pt-4 pb-2">
-                                <p class="text-gray-500 text-sm">🎯 Sample report showing test performance insights</p>
-                                <p class="text-gray-400 text-xs mt-1">Scroll to see more test results and recommendations</p>
+                                <p class="text-slate-500 text-sm">🎯 Sample report showing test performance insights</p>
                             </div>
                         </div>
                     </div>
                     {{ end }}
                 </div>
             </div>
-            
+
             <div class="text-center mt-8">
-                <p class="text-gray-600 mb-4">
+                <p class="text-slate-400 mb-4">
                     {{ if .Params.sampleReportUrl }}
-                    This is a <a class="bold underline" href="{{ .Params.sampleReportUrl }}" target="_blank">live example of the HTML report</a> generated by {{ .Title }}.
+                    This is a <a class="font-bold underline text-brand-400 hover:text-brand-300" href="{{ .Params.sampleReportUrl }}" target="_blank">live example of the HTML report</a> generated by {{ .Title }}.
                     {{ else }}
                     This mockup shows the type of insights you'll get from {{ .Title }}'s HTML reports.
                     {{ end }}
@@ -447,17 +373,13 @@
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
                     {{ $productData := . }}
                     {{ if $productData.Params.links.github }}
-                    <a href="{{ $productData.Params.links.github }}" target="_blank" class="inline-flex items-center bg-gray-900 text-white hover:bg-gray-800 font-medium py-2 px-4 rounded-lg transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                        </svg>
+                    <a href="{{ $productData.Params.links.github }}" target="_blank" class="inline-flex items-center bg-slate-800 text-white hover:bg-slate-700 border border-slate-600 font-medium py-2 px-4 rounded-lg transition-colors">
+                        <i class="fab fa-github mr-2"></i>
                         Try It Yourself
                     </a>
                     {{ end }}
-                    <a href="#features" class="inline-flex items-center border border-gray-300 text-gray-700 hover:bg-gray-50 font-medium py-2 px-4 rounded-lg transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                        </svg>
+                    <a href="#features" class="inline-flex items-center border border-slate-600 text-slate-300 hover:bg-slate-800 font-medium py-2 px-4 rounded-lg transition-colors">
+                        <i class="fas fa-arrow-down mr-2"></i>
                         See All Features
                     </a>
                 </div>
@@ -467,55 +389,37 @@
 </section>
 
 <!-- Features Section -->
-<section id="features" class="py-20 bg-white">
+<section id="features" class="py-20 bg-slate-900">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-6">Key Features</h2>
-                <p class="text-xl text-gray-600">Everything you need to optimize your testing workflow</p>
+                <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white">Key Features</h2>
+                <p class="text-xl text-slate-400">Everything you need to optimize your testing workflow</p>
             </div>
-            
+
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {{ range $index, $feature := .Params.features }}
-                <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100">
+                <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 hover:border-brand-500/50 transition-colors">
                     <div class="flex items-start">
                         <div class="flex-shrink-0 mr-4">
-                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                            <div class="w-12 h-12 bg-brand-500/20 rounded-lg flex items-center justify-center">
                                 {{ if eq $index 0 }}
-                                <!-- Test execution analysis and performance metrics -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                                </svg>
+                                <i class="fas fa-chart-bar text-brand-400 text-xl"></i>
                                 {{ else if eq $index 1 }}
-                                <!-- Context timing and resource usage tracking -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
+                                <i class="fas fa-clock text-brand-400 text-xl"></i>
                                 {{ else if eq $index 2 }}
-                                <!-- Test Context comparison to improve cache usage -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                </svg>
+                                <i class="fas fa-code-compare text-brand-400 text-xl"></i>
                                 {{ else if eq $index 3 }}
-                                <!-- Slow test detection and optimization suggestions -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                                </svg>
+                                <i class="fas fa-bolt text-brand-400 text-xl"></i>
                                 {{ else if eq $index 4 }}
-                                <!-- Integration with popular CI/CD tools -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                                </svg>
+                                <i class="fas fa-heart text-brand-400 text-xl"></i>
                                 {{ else if eq $index 5 }}
-                                <!-- Comprehensive reporting and dashboards -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                </svg>
+                                <i class="fas fa-file-alt text-brand-400 text-xl"></i>
                                 {{ end }}
                             </div>
                         </div>
                         <div>
-                            <h3 class="font-semibold text-gray-900 mb-2">
+                            <h3 class="font-semibold text-white mb-2">
                                 {{ if eq $index 0 }}Performance Analytics
                                 {{ else if eq $index 1 }}Resource Tracking
                                 {{ else if eq $index 2 }}Context Comparison
@@ -524,7 +428,7 @@
                                 {{ else if eq $index 5 }}Rich Reporting
                                 {{ end }}
                             </h3>
-                            <p class="text-gray-600 text-sm leading-relaxed">{{ $feature }}</p>
+                            <p class="text-slate-400 text-sm leading-relaxed">{{ $feature }}</p>
                         </div>
                     </div>
                 </div>
@@ -535,73 +439,64 @@
 </section>
 
 <!-- Screenshots Gallery Section -->
-<section class="py-20 bg-gray-50">
+<section class="py-20 bg-slate-800/50">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-8xl mx-auto">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-6">See It In Action</h2>
-                <p class="text-xl text-gray-600">Visual walkthrough of {{ .Title }}</p>
+                <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white">See It In Action</h2>
+                <p class="text-xl text-slate-400">Visual walkthrough of {{ .Title }}</p>
             </div>
-            
+
             <div class="grid md:grid-cols-2 gap-8">
-                <!-- Screenshot placeholders -->
-                <div class="bg-white rounded-lg p-4 shadow-sm">
-                    <h3 class="text-lg font-semibold text-gray-700 mb-4 text-center">Report Overview</h3>
+                <div class="bg-slate-900 rounded-lg p-4 border border-slate-700">
+                    <h3 class="text-lg font-semibold text-white mb-4 text-center">Report Overview</h3>
                     <picture>
                         <img src="/images/products/report-overview.png" alt="Report Overview Screenshot" class="w-full h-auto rounded">
                     </picture>
                 </div>
-                
 
-                
-                <div class="bg-white rounded-lg p-4 shadow-sm">
-                    <h3 class="text-lg font-semibold text-gray-700 mb-4 text-center">Recommendations</h3>
+                <div class="bg-slate-900 rounded-lg p-4 border border-slate-700">
+                    <h3 class="text-lg font-semibold text-white mb-4 text-center">Recommendations</h3>
                     <picture>
                         <source srcset="/generated/images/products/context-recommendations.webp" type="image/webp">
                         <img src="/images/products/context-recommendations.png" alt="Context Recommendations Screenshot" class="w-full h-auto rounded">
                     </picture>
                 </div>
 
-                <div class="bg-white rounded-lg p-4 shadow-sm">
-                    <h3 class="text-lg font-semibold text-gray-700 mb-4 text-center">Context Detail View</h3>
+                <div class="bg-slate-900 rounded-lg p-4 border border-slate-700">
+                    <h3 class="text-lg font-semibold text-white mb-4 text-center">Context Detail View</h3>
                     <picture>
                         <source srcset="/generated/images/products/context-detail-view.webp" type="image/webp">
                         <img src="/images/products/context-detail-view.png" alt="Context Detail View Screenshot" class="w-full h-auto rounded">
                     </picture>
                 </div>
-                
-                <div class="bg-white rounded-lg p-4 shadow-sm">
-                    <h3 class="text-lg font-semibold text-gray-700 mb-4 text-center">Context Comparison</h3>
+
+                <div class="bg-slate-900 rounded-lg p-4 border border-slate-700">
+                    <h3 class="text-lg font-semibold text-white mb-4 text-center">Context Comparison</h3>
                     <picture>
                         <source srcset="/generated/images/products/context-comparison.webp" type="image/webp">
                         <img src="/images/products/context-comparison.png" alt="Context Comparison Screenshot" class="w-full h-auto rounded">
                     </picture>
                 </div>
             </div>
-            
+
             <!-- Link to deployed report example -->
             {{ if .Params.sampleReportUrl }}
             <div class="text-center mt-12">
-                <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8 max-w-4xl mx-auto border border-blue-200">
+                <div class="bg-gradient-to-r from-brand-500/10 to-brand-600/10 rounded-2xl p-8 max-w-4xl mx-auto border border-brand-500/30">
                     <div class="flex items-center justify-center mb-4">
-                        <div class="bg-blue-100 rounded-full p-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                            </svg>
+                        <div class="bg-brand-500/20 rounded-full p-3">
+                            <i class="fas fa-external-link-alt text-brand-400 text-2xl"></i>
                         </div>
                     </div>
-                    <h3 class="text-2xl font-bold text-blue-900 mb-4">Want to Explore the Full Report?</h3>
-                    <p class="text-lg text-blue-800 mb-6">
+                    <h3 class="text-2xl font-bold text-white mb-4">Want to Explore the Full Report?</h3>
+                    <p class="text-lg text-slate-300 mb-6">
                         See all the insights and recommendations in action with our interactive sample report.
                     </p>
-                    <a href="{{ .Params.sampleReportUrl }}" target="_blank" class="inline-flex items-center bg-blue-600 text-white hover:bg-blue-700 font-medium py-4 px-8 rounded-xl transition-colors text-lg shadow-lg">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                        </svg>
+                    <a href="{{ .Params.sampleReportUrl }}" target="_blank" class="inline-flex items-center bg-brand-600 text-white hover:bg-brand-500 font-medium py-4 px-8 rounded-xl transition-colors text-lg shadow-lg">
+                        <i class="fas fa-file-alt mr-3"></i>
                         View Interactive Sample Report
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                        </svg>
+                        <i class="fas fa-external-link-alt ml-2 text-sm"></i>
                     </a>
                 </div>
             </div>
@@ -611,163 +506,133 @@
 </section>
 
 <!-- Pricing Section -->
-<section class="py-14 bg-gradient-to-br from-gray-50 to-white">
+<section class="py-14 bg-slate-900">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-20">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900">Simple, Transparent Pricing</h2>
-                <p class="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto">
-                    Our main product is completely open source and free to use. 
-                    Need help optimizing your test suite? We're here to assist! 
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">Simple, Transparent Pricing</h2>
+                <p class="text-xl md:text-2xl text-slate-400 max-w-3xl mx-auto">
+                    Our main product is completely open source and free to use.
+                    Need help optimizing your test suite? We're here to assist!
                 </p>
             </div>
-            
+
             {{ if .Params.pricing }}
             {{ if eq .Params.pricing.model "freemium" }}
             <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
                 <!-- Free Tier -->
-                <div class="bg-white rounded-2xl p-10 shadow-xl border-2 border-green-200 relative overflow-hidden">
+                <div class="bg-slate-800 rounded-2xl p-10 border-2 border-green-500/30 relative overflow-hidden">
                     <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-green-400 to-green-500"></div>
-                    
+
                     <div class="text-center mb-8">
-                        <div class="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C20.832 18.477 19.246 18 17.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                            </svg>
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-green-500/20 rounded-full mb-4">
+                            <i class="fas fa-book-open text-green-400 text-2xl"></i>
                         </div>
-                        <h3 class="text-3xl font-bold mb-2 text-gray-900">Open Source & Free</h3>
-                        <p class="text-gray-600 mb-6">Complete access to the Spring Test Profiler</p>
-                        <div class="text-5xl font-bold text-green-600 mb-2">$0</div>
-                        <p class="text-sm text-gray-500">Forever and always</p>
+                        <h3 class="text-3xl font-bold mb-2 text-white">Open Source & Free</h3>
+                        <p class="text-slate-400 mb-6">Complete access to the Spring Test Profiler</p>
+                        <div class="text-5xl font-bold text-green-400 mb-2">$0</div>
+                        <p class="text-sm text-slate-500">Forever and always</p>
                     </div>
-                    
+
                     <div class="space-y-4 mb-8">
                         <div class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            <p class="text-gray-700">Full test profiling and analysis</p>
+                            <i class="fas fa-check text-green-400 mr-3 mt-1"></i>
+                            <p class="text-slate-300">Full test profiling and analysis</p>
                         </div>
                         <div class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            <p class="text-gray-700">Comprehensive HTML reports</p>
+                            <i class="fas fa-check text-green-400 mr-3 mt-1"></i>
+                            <p class="text-slate-300">Comprehensive HTML reports</p>
                         </div>
                         <div class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            <p class="text-gray-700">Context caching optimization insights</p>
+                            <i class="fas fa-check text-green-400 mr-3 mt-1"></i>
+                            <p class="text-slate-300">Context caching optimization insights</p>
                         </div>
                         <div class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            <p class="text-gray-700">CI/CD integration support</p>
+                            <i class="fas fa-check text-green-400 mr-3 mt-1"></i>
+                            <p class="text-slate-300">CI/CD integration support</p>
                         </div>
                         <div class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            <p class="text-gray-700">Community support</p>
+                            <i class="fas fa-check text-green-400 mr-3 mt-1"></i>
+                            <p class="text-slate-300">Community support</p>
                         </div>
                     </div>
-                    
+
                     <div class="text-center">
                         {{ if .Params.links.github }}
-                        <a href="{{ .Params.links.github }}" target="_blank" class="inline-flex items-center bg-green-600 text-white hover:bg-green-700 font-medium py-4 px-8 rounded-xl transition-colors text-lg">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                            </svg>
+                        <a href="{{ .Params.links.github }}" target="_blank" class="inline-flex items-center bg-green-600 text-white hover:bg-green-500 font-medium py-4 px-8 rounded-xl transition-colors text-lg">
+                            <i class="fab fa-github mr-3"></i>
                             Get Started Free
                         </a>
                         {{ end }}
                     </div>
                 </div>
-                
+
                 <!-- Consulting Tier -->
-                <div class="bg-white rounded-2xl p-10 shadow-xl border-2 border-blue-200 relative overflow-hidden">
-                    <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-blue-400 to-blue-500"></div>
-                    
+                <div class="bg-slate-800 rounded-2xl p-10 border-2 border-brand-500/30 relative overflow-hidden">
+                    <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-brand-400 to-brand-500"></div>
+
                     <div class="text-center mb-8">
-                        <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                            </svg>
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-brand-500/20 rounded-full mb-4">
+                            <i class="fas fa-users text-brand-400 text-2xl"></i>
                         </div>
-                        <h3 class="text-3xl font-bold mb-2 text-gray-900">Expert Consulting</h3>
-                        <p class="text-gray-600 mb-6">For busy teams who want hands-on optimization help</p>
-                        <div class="text-3xl font-bold text-blue-600 mb-2">Custom Quote</div>
-                        <p class="text-sm text-gray-500">Tailored to your project needs</p>
+                        <h3 class="text-3xl font-bold mb-2 text-white">Expert Consulting</h3>
+                        <p class="text-slate-400 mb-6">For busy teams who want hands-on optimization help</p>
+                        <div class="text-3xl font-bold text-brand-400 mb-2">Custom Quote</div>
+                        <p class="text-sm text-slate-500">Tailored to your project needs</p>
                     </div>
-                    
+
                     <div class="space-y-4 mb-8">
                         <div class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-500 mr-3 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            <p class="text-gray-700">Everything in the free version</p>
+                            <i class="fas fa-check text-brand-400 mr-3 mt-1"></i>
+                            <p class="text-slate-300">Everything in the free version</p>
                         </div>
                         <div class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-500 mr-3 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            <p class="text-gray-700">Deep-dive analysis of your test reports</p>
+                            <i class="fas fa-check text-brand-400 mr-3 mt-1"></i>
+                            <p class="text-slate-300">Deep-dive analysis of your test reports</p>
                         </div>
                         <div class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-500 mr-3 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            <p class="text-gray-700">Custom optimization recommendations</p>
+                            <i class="fas fa-check text-brand-400 mr-3 mt-1"></i>
+                            <p class="text-slate-300">Custom optimization recommendations</p>
                         </div>
                         <div class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-500 mr-3 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            <p class="text-gray-700">Hands-on implementation support</p>
+                            <i class="fas fa-check text-brand-400 mr-3 mt-1"></i>
+                            <p class="text-slate-300">Hands-on implementation support</p>
                         </div>
                         <div class="flex items-start">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-500 mr-3 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            <p class="text-gray-700">Direct access to our experts</p>
+                            <i class="fas fa-check text-brand-400 mr-3 mt-1"></i>
+                            <p class="text-slate-300">Direct access to our experts</p>
                         </div>
                     </div>
-                    
+
                     <div class="text-center">
-                        <a href="{{ .Site.Params.scheduleCallUrl }}" class="inline-flex items-center bg-blue-600 text-white hover:bg-blue-700 font-medium py-4 px-8 rounded-xl transition-colors text-lg">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                            </svg>
+                        <a href="{{ .Site.Params.scheduleCallUrl }}" class="inline-flex items-center bg-brand-600 text-white hover:bg-brand-500 font-medium py-4 px-8 rounded-xl transition-colors text-lg">
+                            <i class="fas fa-calendar-alt mr-3"></i>
                             Schedule Consultation
                         </a>
                     </div>
                 </div>
             </div>
-            
+
             <!-- Friendly explanation -->
             <div class="mt-16 text-center">
                 <div class="rounded-2xl p-8 max-w-4xl mx-auto">
                     <div class="flex items-center justify-center mb-6">
-                        <div class="bg-blue-100 rounded-full p-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                            </svg>
+                        <div class="bg-brand-500/20 rounded-full p-3">
+                            <i class="fas fa-sun text-brand-400 text-2xl"></i>
                         </div>
                     </div>
-                    <h3 class="text-2xl font-bold text-blue-900 mb-4">Why We Offer Consulting</h3>
-                    <p class="text-lg text-blue-800 leading-relaxed">
-                        We know development teams are busy shipping features and don't always have time to dive deep into test optimization. 
-                        That's why we offer expert consulting to help you implement the recommendations from your Spring Test Profiler reports. 
-                        <strong>Our goal is to get your test suite running faster, so you can focus on what you do best - building amazing software!</strong>
+                    <h3 class="text-2xl font-bold text-white mb-4">Why We Offer Consulting</h3>
+                    <p class="text-lg text-slate-300 leading-relaxed">
+                        We know development teams are busy shipping features and don't always have time to dive deep into test optimization.
+                        That's why we offer expert consulting to help you implement the recommendations from your Spring Test Profiler reports.
+                        <strong class="text-white">Our goal is to get your test suite running faster, so you can focus on what you do best - building amazing software!</strong>
                     </p>
                 </div>
             </div>
             {{ else if eq .Params.pricing.model "free" }}
-            <div class="bg-white rounded-lg p-8 shadow-sm">
-                <h3 class="text-3xl font-bold mb-4 text-green-600">Free & Open Source</h3>
-                <p class="text-xl text-gray-600">Available to everyone, forever</p>
+            <div class="bg-slate-800 rounded-lg p-8 border border-slate-700">
+                <h3 class="text-3xl font-bold mb-4 text-green-400">Free & Open Source</h3>
+                <p class="text-xl text-slate-400">Available to everyone, forever</p>
             </div>
             {{ end }}
             {{ end }}
@@ -776,32 +641,28 @@
 </section>
 
 <!-- CTA Section -->
-<section class="py-20 bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 text-white">
+<section class="py-20 bg-gradient-to-br from-brand-600 via-brand-700 to-brand-800 text-white">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-4xl mx-auto text-center">
             <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Get Started?</h2>
-            <p class="text-xl text-blue-100 mb-8">
+            <p class="text-xl text-brand-100 mb-8">
                 {{ if eq .Params.status "coming_soon" }}
                 Join the waitlist and be among the first to experience {{ .Title }}.
                 {{ else }}
                 Start optimizing your Spring Boot tests today with {{ .Title }}.
                 {{ end }}
             </p>
-            
+
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 {{ if .Params.links.github }}
-                <a href="{{ .Params.links.github }}" target="_blank" class="inline-flex items-center bg-white text-blue-600 hover:bg-blue-50 font-medium py-3 px-6 rounded-lg transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                    </svg>
+                <a href="{{ .Params.links.github }}" target="_blank" class="inline-flex items-center bg-white text-brand-600 hover:bg-slate-100 font-medium py-3 px-6 rounded-lg transition-colors">
+                    <i class="fab fa-github mr-2"></i>
                     Explore on GitHub
                 </a>
                 {{ end }}
-                
-                <a href="{{ .Site.Params.scheduleCallUrl }}" class="inline-flex items-center border-2 border-white text-white hover:bg-white hover:text-blue-600 font-medium py-3 px-6 rounded-lg transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
+
+                <a href="{{ .Site.Params.scheduleCallUrl }}" class="inline-flex items-center border-2 border-white text-white hover:bg-white hover:text-brand-600 font-medium py-3 px-6 rounded-lg transition-colors">
+                    <i class="fas fa-calendar-alt mr-2"></i>
                     {{ if eq $productData.Params.status "coming_soon" }}Get Early Access{{ else }}Schedule Demo{{ end }}
                 </a>
             </div>

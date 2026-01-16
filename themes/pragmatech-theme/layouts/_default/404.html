@@ -1,6 +1,6 @@
 {{ define "main" }}
 <!-- 404 Hero Section -->
-<section class="min-h-screen flex items-center justify-center relative overflow-hidden bg-gray-50">
+<section class="min-h-screen flex items-center justify-center relative overflow-hidden bg-slate-900">
     <!-- Background Grid Pattern -->
     <div class="absolute inset-0 z-0 opacity-5">
         <img src="/images/pattern-grid-optimized.svg" alt="" class="w-full h-full object-cover">
@@ -9,42 +9,38 @@
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
         <div class="max-w-3xl mx-auto text-center">
             <!-- Main Content -->
-            <div class="bg-white p-8 sm:p-12 rounded-2xl shadow-sm">
+            <div class="bg-slate-800 p-8 sm:p-12 rounded-2xl border border-slate-700">
                 <!-- 404 Bug Illustration -->
                 <div class="mb-8 relative">
-                    <div class="text-[12rem] font-bold text-blue-600 opacity-10 leading-none select-none">404</div>
+                    <div class="text-[12rem] font-bold text-brand-500 opacity-10 leading-none select-none">404</div>
                     <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                         <!-- Bug animation -->
                         <div class="relative">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 text-blue-600 bug-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
-                            </svg>
+                            <i class="fas fa-bug text-7xl text-brand-400 bug-icon"></i>
                             <span class="absolute -top-1 -right-1 animate-ping inline-flex h-3 w-3 rounded-full bg-red-500 opacity-75"></span>
                         </div>
                     </div>
                 </div>
-                
-                <h1 class="text-4xl font-bold mb-6">{{ .Title }}</h1>
-                
-                <div class="prose prose-lg mx-auto mb-6">
+
+                <h1 class="text-4xl font-bold mb-6 text-white">{{ .Title }}</h1>
+
+                <div class="prose prose-invert prose-lg mx-auto mb-6 text-slate-300">
                     {{ .Content }}
                 </div>
-                
+
                 <div class="flex flex-wrap justify-center gap-4">
-                    <a href="/" class="inline-block bg-blue-600 text-white hover:bg-blue-700 font-bold py-3 px-6 rounded-lg transition-colors">
+                    <a href="/" class="inline-block bg-brand-600 text-white hover:bg-brand-500 font-bold py-3 px-6 rounded-lg transition-colors">
                         Back to Home
                     </a>
-                    <button onclick="window.history.back()" class="inline-block bg-white text-blue-600 hover:bg-gray-50 font-bold py-3 px-6 rounded-lg transition-colors border border-blue-600">
+                    <button onclick="window.history.back()" class="inline-block bg-slate-700 text-white hover:bg-slate-600 font-bold py-3 px-6 rounded-lg transition-colors border border-slate-600">
                         Go Back
                     </button>
                 </div>
             </div>
-            
+
             <!-- Fun fact about bugs -->
-            <div class="mt-8 text-sm text-gray-600">
-                <p class="font-medium">Fun Fact:</p>
+            <div class="mt-8 text-sm text-slate-500">
+                <p class="font-medium text-slate-400">Fun Fact:</p>
                 <p>The term "bug" in computing originated in 1947 when Grace Hopper found an actual moth causing issues in the Harvard Mark II computer!</p>
             </div>
         </div>
@@ -56,7 +52,7 @@
     .bug-icon {
         animation: float 3s ease-in-out infinite;
     }
-    
+
     @keyframes float {
         0% { transform: translateY(0px) rotate(0deg); }
         50% { transform: translateY(-10px) rotate(5deg); }

@@ -1,13 +1,28 @@
-<section class="py-20 bg-blue-600 text-white">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<!-- CTA Section -->
+<section id="contact" class="py-24 bg-gradient-to-br from-slate-900 to-slate-800 text-white relative overflow-hidden border-t border-slate-800">
+    <!-- Subtle pattern overlay -->
+    <div class="absolute inset-0 hero-pattern opacity-50"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div class="max-w-3xl mx-auto text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Boost Your Team's Confidence?</h2>
-            <p class="text-xl mb-8">
-                Let's collaborate to implement effective testing strategies and modern development practices for your projects.
+            <h2 class="text-4xl font-bold mb-6 text-white">
+                Let's Discuss Your Testing Challenges
+            </h2>
+            <p class="text-xl text-slate-300 mb-4">
+                We work with enterprise Java teams ready to invest in long-term delivery excellence.
             </p>
-            <a href="/contact" class="inline-block bg-white text-blue-600 hover:bg-blue-50 font-bold py-3 px-8 rounded-lg transition-colors shadow-lg">
-                Schedule a Consultation
+            <p class="text-base text-slate-400 mb-10">
+                Ideal for teams with 5+ developers experiencing slow builds or deployment anxiety.
+            </p>
+
+            <a href="{{ .Site.Params.scheduleCallUrl | default "/contact" }}" class="px-8 py-4 bg-brand-600 hover:bg-brand-500 text-white rounded-lg font-bold transition-all shadow-lg shadow-brand-500/25 inline-flex items-center gap-2 group">
+                Schedule Your Assessment
+                <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
             </a>
+
+            <p class="text-sm text-slate-500 mt-6">
+                30-minute consultation - No obligation - Strategic roadmap included
+            </p>
         </div>
     </div>
 </section>

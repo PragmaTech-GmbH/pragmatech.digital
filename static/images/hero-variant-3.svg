@@ -1,0 +1,166 @@
+<svg width="600" height="400" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ef4444;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#f59e0b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#10b981;stop-opacity:1" />
+    </linearGradient>
+
+    <style>
+      @keyframes sweepSlow {
+        0% { stroke-dashoffset: 440; }
+        100% { stroke-dashoffset: 0; }
+      }
+
+      @keyframes sweepFast {
+        0% { stroke-dashoffset: 440; }
+        35% { stroke-dashoffset: 330; }
+        100% { stroke-dashoffset: 330; }
+      }
+
+      @keyframes rotateMeter {
+        0% { transform: rotate(-90deg); }
+        100% { transform: rotate(180deg); }
+      }
+
+      @keyframes rotateNeedle {
+        0%, 100% { transform: rotate(-80deg); }
+        50% { transform: rotate(80deg); }
+      }
+
+      @keyframes countUp {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+      }
+
+      .gauge-slow {
+        stroke-dasharray: 440;
+        animation: sweepSlow 3s ease-in-out infinite;
+      }
+
+      .gauge-fast {
+        stroke-dasharray: 440;
+        animation: sweepFast 3s ease-in-out infinite;
+      }
+
+      .needle-slow {
+        transform-origin: 70px 70px;
+        animation: rotateNeedle 3s ease-in-out infinite;
+      }
+
+      .count {
+        animation: countUp 0.5s ease-out;
+      }
+    </style>
+  </defs>
+
+  <!-- Title -->
+  <text x="300" y="35" font-family="Inter, sans-serif" font-size="22" font-weight="700" fill="#0f172a" text-anchor="middle">
+    Build Performance Dashboard
+  </text>
+
+  <!-- Dashboard Container -->
+  <rect x="20" y="60" width="560" height="320" rx="16" fill="white" stroke="#e2e8f0" stroke-width="2"/>
+
+  <!-- Left Gauge: Before -->
+  <g transform="translate(120, 120)">
+    <!-- Gauge background -->
+    <circle cx="70" cy="70" r="60" fill="#fef2f2" stroke="#fee2e2" stroke-width="8"/>
+
+    <!-- Gauge arc -->
+    <circle cx="70" cy="70" r="70" fill="none" stroke="url(#gaugeGradient)" stroke-width="12"
+            stroke-linecap="round" stroke-dasharray="440" transform="rotate(-90 70 70)" class="gauge-slow"/>
+
+    <!-- Center circle -->
+    <circle cx="70" cy="70" r="45" fill="white" stroke="#e2e8f0" stroke-width="2"/>
+
+    <!-- Value display -->
+    <text x="70" y="65" font-family="Inter, sans-serif" font-size="28" font-weight="700" fill="#dc2626" text-anchor="middle" class="count">
+      30
+    </text>
+    <text x="70" y="85" font-family="Inter, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">
+      minutes
+    </text>
+
+    <!-- Label -->
+    <text x="70" y="165" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#64748b" text-anchor="middle">
+      BEFORE
+    </text>
+
+    <!-- Status indicators -->
+    <g transform="translate(10, 180)">
+      <circle cx="5" cy="0" r="4" fill="#dc2626"/>
+      <text x="15" y="4" font-family="Inter, sans-serif" font-size="10" fill="#64748b">Slow</text>
+
+      <circle cx="5" cy="18" r="4" fill="#dc2626"/>
+      <text x="15" y="22" font-family="Inter, sans-serif" font-size="10" fill="#64748b">Flaky</text>
+
+      <circle cx="5" cy="36" r="4" fill="#dc2626"/>
+      <text x="15" y="40" font-family="Inter, sans-serif" font-size="10" fill="#64748b">Unreliable</text>
+    </g>
+  </g>
+
+  <!-- Arrow -->
+  <g transform="translate(280, 170)">
+    <path d="M 0 0 L 30 0" stroke="#10b981" stroke-width="4" stroke-linecap="round"/>
+    <polygon points="30,0 22,-6 22,6" fill="#10b981"/>
+    <text x="5" y="-12" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#10b981">OPTIMIZED</text>
+  </g>
+
+  <!-- Right Gauge: After -->
+  <g transform="translate(370, 120)">
+    <!-- Gauge background -->
+    <circle cx="70" cy="70" r="60" fill="#f0fdf4" stroke="#dcfce7" stroke-width="8"/>
+
+    <!-- Gauge arc (shorter, green) -->
+    <circle cx="70" cy="70" r="70" fill="none" stroke="#10b981" stroke-width="12"
+            stroke-linecap="round" stroke-dasharray="440" transform="rotate(-90 70 70)" class="gauge-fast"/>
+
+    <!-- Center circle -->
+    <circle cx="70" cy="70" r="45" fill="white" stroke="#86efac" stroke-width="2"/>
+
+    <!-- Value display -->
+    <text x="70" y="65" font-family="Inter, sans-serif" font-size="28" font-weight="700" fill="#059669" text-anchor="middle" class="count">
+      5
+    </text>
+    <text x="70" y="85" font-family="Inter, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">
+      minutes
+    </text>
+
+    <!-- Label -->
+    <text x="70" y="165" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#059669" text-anchor="middle">
+      AFTER
+    </text>
+
+    <!-- Status indicators -->
+    <g transform="translate(10, 180)">
+      <circle cx="5" cy="0" r="4" fill="#10b981"/>
+      <text x="15" y="4" font-family="Inter, sans-serif" font-size="10" fill="#64748b">Fast</text>
+
+      <circle cx="5" cy="18" r="4" fill="#10b981"/>
+      <text x="15" y="22" font-family="Inter, sans-serif" font-size="10" fill="#64748b">Stable</text>
+
+      <circle cx="5" cy="36" r="4" fill="#10b981"/>
+      <text x="15" y="40" font-family="Inter, sans-serif" font-size="10" fill="#64748b">Reliable</text>
+    </g>
+
+    <!-- Checkmark -->
+    <g transform="translate(100, 20)">
+      <circle cx="12" cy="12" r="12" fill="#d1fae5"/>
+      <path d="M 7 12 L 10 15 L 17 8" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </g>
+  </g>
+
+  <!-- Bottom metrics bar -->
+  <g transform="translate(80, 340)">
+    <rect width="440" height="30" rx="6" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+
+    <text x="110" y="20" font-family="Inter, sans-serif" font-size="16" font-weight="700" fill="#10b981" text-anchor="middle">
+      83% Improvement
+    </text>
+
+    <text x="330" y="20" font-family="Inter, sans-serif" font-size="16" font-weight="700" fill="#3b82f6" text-anchor="middle">
+      10x Developer Velocity
+    </text>
+  </g>
+</svg>

@@ -1,0 +1,195 @@
+<svg width="600" height="400" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="slowBar" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#fca5a5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ef4444;stop-opacity:1" />
+    </linearGradient>
+
+    <linearGradient id="fastBar" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#6ee7b7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#10b981;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Animations -->
+    <style>
+      @keyframes slideProgress {
+        0% { width: 0; opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { width: 200px; opacity: 0.8; }
+      }
+
+      @keyframes slideFast {
+        0% { width: 0; opacity: 0; }
+        10% { opacity: 1; }
+        40% { width: 60px; opacity: 1; }
+        90% { opacity: 1; }
+        100% { width: 60px; opacity: 0.8; }
+      }
+
+      @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-8px); }
+      }
+
+      @keyframes fadeInCheck {
+        0%, 35% { opacity: 0; transform: scale(0.5); }
+        50% { opacity: 1; transform: scale(1.1); }
+        60% { transform: scale(1); }
+        100% { opacity: 1; transform: scale(1); }
+      }
+
+      @keyframes fadeInX {
+        0%, 85% { opacity: 0; transform: scale(0.5); }
+        95% { opacity: 1; transform: scale(1.1); }
+        100% { opacity: 1; transform: scale(1); }
+      }
+
+      @keyframes arrowPulse {
+        0%, 100% { opacity: 0.5; }
+        50% { opacity: 1; }
+      }
+
+      .progress-slow {
+        animation: slideProgress 6s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+      }
+
+      .progress-fast {
+        animation: slideFast 6s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+      }
+
+      .check {
+        animation: fadeInCheck 6s ease-in-out infinite;
+      }
+
+      .x-mark {
+        animation: fadeInX 6s ease-in-out infinite;
+      }
+
+      .arrow {
+        animation: arrowPulse 2s ease-in-out infinite;
+      }
+
+      .float-1 {
+        animation: float 3s ease-in-out infinite;
+      }
+
+      .float-2 {
+        animation: float 4s ease-in-out infinite;
+        animation-delay: 1s;
+      }
+    </style>
+  </defs>
+
+  <!-- Background decorative elements -->
+  <circle cx="80" cy="80" r="40" fill="#f1f5f9" opacity="0.6" class="float-1"/>
+  <circle cx="520" cy="320" r="30" fill="#e2e8f0" opacity="0.5" class="float-2"/>
+  <rect x="480" y="60" width="60" height="60" rx="8" fill="#f8fafc" opacity="0.4" class="float-1"/>
+
+  <!-- Main container -->
+  <g transform="translate(30, 60)">
+
+    <!-- BEFORE Section -->
+    <g>
+      <!-- Label -->
+      <text x="0" y="0" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#94a3b8" letter-spacing="0.1em">
+        BEFORE
+      </text>
+
+      <!-- Card -->
+      <g transform="translate(0, 20)">
+        <rect width="240" height="140" rx="16" fill="white" stroke="#e2e8f0" stroke-width="2"/>
+
+        <!-- Clock Icon -->
+        <g transform="translate(20, 24)">
+          <circle cx="16" cy="16" r="16" fill="#fee2e2"/>
+          <circle cx="16" cy="16" r="14" fill="none" stroke="#dc2626" stroke-width="2"/>
+          <line x1="16" y1="16" x2="16" y2="8" stroke="#dc2626" stroke-width="2" stroke-linecap="round"/>
+          <line x1="16" y1="16" x2="22" y2="16" stroke="#dc2626" stroke-width="2" stroke-linecap="round"/>
+        </g>
+
+        <!-- Title & Time -->
+        <text x="56" y="38" font-family="Inter, sans-serif" font-size="18" font-weight="600" fill="#0f172a">
+          Slow Build
+        </text>
+        <text x="56" y="56" font-family="Inter, sans-serif" font-size="14" fill="#64748b">
+          30+ minutes
+        </text>
+
+        <!-- Progress Bar Background -->
+        <rect x="20" y="88" width="200" height="10" rx="5" fill="#f1f5f9"/>
+
+        <!-- Progress Bar Fill (animated) -->
+        <rect x="20" y="88" width="0" height="10" rx="5" fill="url(#slowBar)" class="progress-slow"/>
+
+        <!-- X Mark (appears at end) -->
+        <g transform="translate(208, 78)" class="x-mark">
+          <circle cx="12" cy="12" r="12" fill="#fecaca"/>
+          <line x1="8" y1="8" x2="16" y2="16" stroke="#dc2626" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="16" y1="8" x2="8" y2="16" stroke="#dc2626" stroke-width="2.5" stroke-linecap="round"/>
+        </g>
+
+        <!-- Status text -->
+        <text x="20" y="125" font-family="Inter, sans-serif" font-size="11" fill="#94a3b8">
+          Lost productivity, context switching
+        </text>
+      </g>
+    </g>
+
+    <!-- Arrow -->
+    <g transform="translate(250, 75)">
+      <line x1="0" y1="0" x2="50" y2="0" stroke="#10b981" stroke-width="3" stroke-linecap="round" class="arrow"/>
+      <polygon points="50,0 42,-5 42,5" fill="#10b981" class="arrow"/>
+      <text x="8" y="-12" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#10b981">
+        TRANSFORM
+      </text>
+    </g>
+
+    <!-- AFTER Section -->
+    <g transform="translate(310, 0)">
+      <!-- Label -->
+      <text x="0" y="0" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#10b981" letter-spacing="0.1em">
+        AFTER
+      </text>
+
+      <!-- Card -->
+      <g transform="translate(0, 20)">
+        <rect width="240" height="140" rx="16" fill="white" stroke="#86efac" stroke-width="2"/>
+
+        <!-- Lightning Icon -->
+        <g transform="translate(20, 24)">
+          <circle cx="16" cy="16" r="16" fill="#d1fae5"/>
+          <path d="M 20 10 L 14 18 L 18 18 L 14 24 L 20 16 L 16 16 Z" fill="#059669"/>
+        </g>
+
+        <!-- Title & Time -->
+        <text x="56" y="38" font-family="Inter, sans-serif" font-size="18" font-weight="600" fill="#0f172a">
+          Fast Build
+        </text>
+        <text x="56" y="56" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="#059669">
+          3-5 minutes
+        </text>
+
+        <!-- Progress Bar Background -->
+        <rect x="20" y="88" width="200" height="10" rx="5" fill="#f1f5f9"/>
+
+        <!-- Progress Bar Fill (animated - shorter) -->
+        <rect x="20" y="88" width="0" height="10" rx="5" fill="url(#fastBar)" class="progress-fast"/>
+
+        <!-- Checkmark (appears at end) -->
+        <g transform="translate(208, 78)" class="check">
+          <circle cx="12" cy="12" r="12" fill="#86efac"/>
+          <path d="M 7 12 L 10 15 L 17 8" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </g>
+
+        <!-- Status text -->
+        <text x="20" y="125" font-family="Inter, sans-serif" font-size="11" fill="#059669">
+          Flow state, peak productivity
+        </text>
+      </g>
+    </g>
+
+  </g>
+
+</svg>

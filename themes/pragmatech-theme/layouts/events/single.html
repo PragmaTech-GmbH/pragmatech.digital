@@ -1,214 +1,202 @@
 {{ define "main" }}
-<article class="max-w-4xl mx-auto px-4 py-8">
-    <div class="mb-8">
-        <a href="/events/" class="text-primary hover:underline flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
-            </svg>
-            Back to Events
-        </a>
-    </div>
-
-    <header class="mb-16">
-        <div class="inline-block px-3 py-1 rounded-full text-sm font-semibold mb-4
-      {{ if eq .Params.eventType "meetup" }}bg-yellow-500 text-yellow-900{{ end }}
-        {{ if eq .Params.eventType "talk" }}bg-blue-500 text-white{{ end }}
-        {{ if eq .Params.eventType "workshop" }}bg-green-500 text-white{{ end }}">
-        {{ humanize .Params.eventType }}
+<article class="bg-slate-900">
+    <div class="max-w-4xl mx-auto px-4 py-8">
+        <div class="mb-8">
+            <a href="/events/" class="text-brand-400 hover:text-brand-300 flex items-center">
+                <i class="fas fa-arrow-left mr-2"></i>
+                Back to Events
+            </a>
         </div>
 
-        <h1 class="text-4xl font-bold mb-6">{{ .Title }}</h1>
-        
-        {{ if .Params.coverImage }}
-        <div class="mb-6">
-            <img src="{{ .Params.coverImage | relURL }}" alt="{{ .Title }}" class="w-full rounded-lg object-cover max-h-96">
+        <header class="mb-16">
+            <div class="inline-block px-3 py-1 rounded-full text-sm font-semibold mb-4
+                {{ if eq .Params.eventType "meetup" }}bg-yellow-500/20 text-yellow-400{{ end }}
+                {{ if eq .Params.eventType "talk" }}bg-brand-500/20 text-brand-400{{ end }}
+                {{ if eq .Params.eventType "workshop" }}bg-green-500/20 text-green-400{{ end }}">
+                {{ humanize .Params.eventType }}
+            </div>
+
+            <h1 class="text-4xl font-bold mb-6 text-white">{{ .Title }}</h1>
+
+            {{ if .Params.coverImage }}
+            <div class="mb-6">
+                <img src="{{ .Params.coverImage | relURL }}" alt="{{ .Title }}" class="w-full rounded-lg object-cover max-h-96">
+            </div>
+            {{ end }}
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-slate-800 rounded-lg p-6 border border-slate-700">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-calendar text-brand-400 mr-3 text-xl"></i>
+                        <div>
+                            <div class="font-semibold text-white">Date & Time <span class="text-xs font-normal text-slate-500">(local event time)</span></div>
+                            <time class="text-slate-300">{{ time.Format "Monday, January 2, 2006" .Params.startDate }}</time><br>
+                            <time class="text-slate-300">{{ time.Format "3:04 PM" .Params.startDate }} - {{ with .Params.endDate }}{{ time.Format "3:04 PM" . }}{{ end }}</time>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-map-marker-alt text-brand-400 mr-3 text-xl"></i>
+                        <div>
+                            <div class="font-semibold text-white">Location</div>
+                            <div class="text-slate-300">{{ .Params.location }}</div>
+                        </div>
+                    </div>
+
+                    {{ with .Params.price }}
+                    <div class="flex items-center">
+                        <i class="fas fa-ticket-alt text-brand-400 mr-3 text-xl"></i>
+                        <div>
+                            <div class="font-semibold text-white">Price</div>
+                            <div class="text-slate-300">{{ . }}</div>
+                        </div>
+                    </div>
+                    {{ end }}
+                </div>
+
+                <div class="flex flex-col justify-center">
+                    {{ if .Params.registration }}
+                    <a href="{{ .Params.registration }}" class="bg-brand-600 hover:bg-brand-500 text-white font-bold py-3 px-6 rounded-lg transition-colors text-center mb-4" target="_blank">Register Now</a>
+                    {{ end }}
+
+                    {{ if .Params.slideUrl }}
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-file-powerpoint text-brand-400 mr-3 text-xl"></i>
+                        <div>
+                            <div class="font-semibold text-white">Presentation</div>
+                            <a href="{{ .Params.slideUrl }}" class="text-brand-400 hover:text-brand-300" target="_blank">View Slides</a>
+                        </div>
+                    </div>
+                    {{ end }}
+
+                    {{ if .Params.codeUrl }}
+                    <div class="flex items-center mb-4">
+                        <i class="fab fa-github text-brand-400 mr-3 text-xl"></i>
+                        <div>
+                            <div class="font-semibold text-white">Source Code</div>
+                            <a href="{{ .Params.codeUrl }}" class="text-brand-400 hover:text-brand-300" target="_blank">View Repository</a>
+                        </div>
+                    </div>
+                    {{ end }}
+                </div>
+            </div>
+        </header>
+
+        <div class="prose prose-invert prose-lg max-w-none page-content mb-12 text-slate-300">
+            {{ .Content }}
+        </div>
+
+        <!-- Event speakers (if applicable) -->
+        {{ if .Params.speakers }}
+        <div class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 text-white">Speakers</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {{ range .Params.speakers }}
+                <div class="flex items-center bg-slate-800 p-4 rounded-lg border border-slate-700">
+                    {{ if .image }}
+                    <img src="{{ .image | relURL }}" alt="{{ .name }}" class="w-16 h-16 rounded-full object-cover mr-4">
+                    {{ else }}
+                    <div class="w-16 h-16 rounded-full bg-brand-600 flex items-center justify-center text-white mr-4">
+                        {{ slicestr .name 0 1 }}
+                    </div>
+                    {{ end }}
+                    <div>
+                        <h3 class="font-bold text-white">{{ .name }}</h3>
+                        <p class="text-slate-400">{{ .role }}</p>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
         </div>
         {{ end }}
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-gray-50 rounded-lg p-6">
-            <div>
-                <div class="flex items-center mb-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
-                    <div>
-                        <div class="font-semibold">Date & Time <span class="text-xs font-normal text-gray-500">(local event time)</span></div>
-                        <time>{{ time.Format "Monday, January 2, 2006" .Params.startDate }}</time><br>
-                        <time>{{ time.Format "3:04 PM" .Params.startDate }} - {{ with .Params.endDate }}{{ time.Format "3:04 PM" . }}{{ end }}</time>
-                    </div>
-                </div>
-
-                <div class="flex items-center mb-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                    <div>
-                        <div class="font-semibold">Location</div>
-                        <div>{{ .Params.location }}</div>
-                    </div>
-                </div>
-
-                {{ with .Params.price }}
-                <div class="flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <div>
-                        <div class="font-semibold">Price</div>
-                        <div>{{ . }}</div>
-                    </div>
-                </div>
-                {{ end }}
+        <!-- Related events -->
+        <div class="mt-12 pt-8 border-t border-slate-700">
+            <h2 class="text-2xl font-bold mb-6 text-white">Other Upcoming Events</h2>
+            <div id="other-events-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <p id="no-other-events" class="text-slate-500 col-span-3 hidden">No other upcoming events scheduled at this time.</p>
             </div>
 
-            <div class="flex flex-col justify-center">
-                {{ if .Params.registration }}
-                <a href="{{ .Params.registration }}" class="btn btn-primary text-center mb-4" target="_blank">Register Now</a>
-                {{ end }}
-                
-                {{ if .Params.slideUrl }}
-                <div class="flex items-center mb-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                    <div>
-                        <div class="font-semibold">Presentation</div>
-                        <a href="{{ .Params.slideUrl }}" class="text-primary hover:underline" target="_blank">View Slides</a>
-                    </div>
-                </div>
-                {{ end }}
-                
-                {{ if .Params.codeUrl }}
-                <div class="flex items-center mb-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                    </svg>
-                    <div>
-                        <div class="font-semibold">Source Code</div>
-                        <a href="{{ .Params.codeUrl }}" class="text-primary hover:underline" target="_blank">View Repository</a>
-                    </div>
-                </div>
-                {{ end }}
-            </div>
-        </div>
-    </header>
+            <!-- Event data for JS filtering -->
+            <script>
+                const currentPageUrl = "{{ .Permalink }}";
+                const otherEventData = [
+                    {{ $events := where .Site.RegularPages "Section" "events" }}
+                    {{ range $index, $event := $events }}
+                    {{ if ne $event.Permalink $.Permalink }}
+                    {
+                        title: {{ $event.Title }},
+                        permalink: "{{ $event.Permalink }}",
+                        startDate: "{{ time.Format "2006-01-02" $event.Params.startDate }}",
+                        formattedDate: "{{ time.Format "Jan 2, 2006" $event.Params.startDate }}",
+                        eventType: "{{ $event.Params.eventType }}",
+                        location: {{ $event.Params.location }}
+                    }{{ if and (ne $index (sub (len $events) 1)) (ne $event.Permalink $.Permalink) }},{{ end }}
+                    {{ end }}
+                    {{ end }}
+                ];
 
-    <div class="prose prose-lg max-w-none page-content mb-12">
-        {{ .Content }}
-    </div>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const otherEventsContainer = document.getElementById('other-events-container');
+                    const noOtherEventsMsg = document.getElementById('no-other-events');
 
-    <!-- Event speakers (if applicable) -->
-    {{ if .Params.speakers }}
-    <div class="mb-12">
-        <h2 class="text-2xl font-bold mb-6">Speakers</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {{ range .Params.speakers }}
-            <div class="flex items-center bg-gray-50 p-4 rounded-lg">
-                {{ if .image }}
-                <img src="{{ .image | relURL }}" alt="{{ .name }}" class="w-16 h-16 rounded-full object-cover mr-4">
-                {{ else }}
-                <div class="w-16 h-16 rounded-full bg-primary flex items-center justify-center text-white mr-4">
-                    {{ slicestr .name 0 1 }}
-                </div>
-                {{ end }}
-                <div>
-                    <h3 class="font-bold">{{ .name }}</h3>
-                    <p class="text-gray-600">{{ .role }}</p>
-                </div>
-            </div>
-            {{ end }}
-        </div>
-    </div>
-    {{ end }}
+                    // Get today's date at midnight
+                    const today = new Date();
+                    today.setHours(0, 0, 0, 0);
 
-    <!-- Related events -->
-    <div class="mt-12 pt-8 border-t border-gray-200">
-        <h2 class="text-2xl font-bold mb-6">Other Upcoming Events</h2>
-        <div id="other-events-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <p id="no-other-events" class="text-gray-500 col-span-3 hidden">No other upcoming events scheduled at this time.</p>
-        </div>
-        
-        <!-- Event data for JS filtering -->
-        <script>
-            const currentPageUrl = "{{ .Permalink }}";
-            const otherEventData = [
-                {{ $events := where .Site.RegularPages "Section" "events" }}
-                {{ range $index, $event := $events }}
-                {{ if ne $event.Permalink $.Permalink }}
-                {
-                    title: {{ $event.Title }},
-                    permalink: "{{ $event.Permalink }}",
-                    startDate: "{{ time.Format "2006-01-02" $event.Params.startDate }}",
-                    formattedDate: "{{ time.Format "Jan 2, 2006" $event.Params.startDate }}",
-                    eventType: "{{ $event.Params.eventType }}",
-                    location: {{ $event.Params.location }}
-                }{{ if and (ne $index (sub (len $events) 1)) (ne $event.Permalink $.Permalink) }},{{ end }}
-                {{ end }}
-                {{ end }}
-            ];
-            
-            document.addEventListener('DOMContentLoaded', function() {
-                const otherEventsContainer = document.getElementById('other-events-container');
-                const noOtherEventsMsg = document.getElementById('no-other-events');
-                
-                // Get today's date at midnight
-                const today = new Date();
-                today.setHours(0, 0, 0, 0);
-                
-                // Filter for upcoming events (today and later) that are not the current page
-                const otherUpcomingEvents = otherEventData.filter(event => {
-                    const eventDate = new Date(event.startDate);
-                    return eventDate >= today;
-                }).sort((a, b) => new Date(a.startDate) - new Date(b.startDate)); // Sort by date ascending
-                
-                // Display up to 3 upcoming events
-                if (otherUpcomingEvents.length > 0) {
-                    const upcomingEvents = otherUpcomingEvents.slice(0, 3);
-                    upcomingEvents.forEach(event => {
-                        otherEventsContainer.appendChild(createEventCard(event));
-                    });
-                } else {
-                    noOtherEventsMsg.classList.remove('hidden');
-                }
-                
-                // Function to create event card
-                function createEventCard(event) {
-                    const card = document.createElement('div');
-                    card.className = 'bg-white rounded-lg shadow p-4';
-                    
-                    let typeClass = '';
-                    let textClass = '';
-                    if (event.eventType === 'meetup') {
-                        typeClass = 'bg-yellow-500';
-                        textClass = 'text-yellow-900';
-                    } else if (event.eventType === 'talk') {
-                        typeClass = 'bg-blue-500';
-                        textClass = 'text-white';
-                    } else if (event.eventType === 'workshop') {
-                        typeClass = 'bg-green-500';
-                        textClass = 'text-white';
+                    // Filter for upcoming events (today and later) that are not the current page
+                    const otherUpcomingEvents = otherEventData.filter(event => {
+                        const eventDate = new Date(event.startDate);
+                        return eventDate >= today;
+                    }).sort((a, b) => new Date(a.startDate) - new Date(b.startDate)); // Sort by date ascending
+
+                    // Display up to 3 upcoming events
+                    if (otherUpcomingEvents.length > 0) {
+                        const upcomingEvents = otherUpcomingEvents.slice(0, 3);
+                        upcomingEvents.forEach(event => {
+                            otherEventsContainer.appendChild(createEventCard(event));
+                        });
+                    } else {
+                        noOtherEventsMsg.classList.remove('hidden');
                     }
-                    
-                    const cardContent = `
-                        <div class="inline-block px-2 py-1 rounded-full text-xs font-semibold mb-2 ${typeClass} ${textClass}">
-                            ${event.eventType.charAt(0).toUpperCase() + event.eventType.slice(1)}
-                        </div>
-                        <h3 class="font-bold mb-2">
-                            <a href="${event.permalink}" class="hover:text-primary">${event.title}</a>
-                        </h3>
-                        <div class="text-sm text-gray-600 mb-2">
-                            <time>${event.formattedDate}</time> · ${event.location}
-                        </div>
-                        <a href="${event.permalink}" class="text-primary text-sm hover:underline">View details →</a>
-                    `;
-                    
-                    card.innerHTML = cardContent;
-                    return card;
-                }
-            });
-        </script>
-    </div>
+
+                    // Function to create event card
+                    function createEventCard(event) {
+                        const card = document.createElement('div');
+                        card.className = 'bg-slate-800 rounded-lg border border-slate-700 p-4 hover:border-brand-500/50 transition-colors';
+
+                        let typeClass = '';
+                        let textClass = '';
+                        if (event.eventType === 'meetup') {
+                            typeClass = 'bg-yellow-500/20';
+                            textClass = 'text-yellow-400';
+                        } else if (event.eventType === 'talk') {
+                            typeClass = 'bg-brand-500/20';
+                            textClass = 'text-brand-400';
+                        } else if (event.eventType === 'workshop') {
+                            typeClass = 'bg-green-500/20';
+                            textClass = 'text-green-400';
+                        }
+
+                        const cardContent = `
+                            <div class="inline-block px-2 py-1 rounded-full text-xs font-semibold mb-2 ${typeClass} ${textClass}">
+                                ${event.eventType.charAt(0).toUpperCase() + event.eventType.slice(1)}
+                            </div>
+                            <h3 class="font-bold mb-2 text-white">
+                                <a href="${event.permalink}" class="hover:text-brand-400 transition-colors">${event.title}</a>
+                            </h3>
+                            <div class="text-sm text-slate-400 mb-2">
+                                <time>${event.formattedDate}</time> · ${event.location}
+                            </div>
+                            <a href="${event.permalink}" class="text-brand-400 text-sm hover:text-brand-300">View details →</a>
+                        `;
+
+                        card.innerHTML = cardContent;
+                        return card;
+                    }
+                });
+            </script>
+        </div>
     </div>
 </article>
 {{ end }}

@@ -1,25 +1,156 @@
-<section class="relative bg-gradient-to-r from-blue-500 to-indigo-700 text-white overflow-hidden">
-    <div class="absolute inset-0 bg-[url('/images/pattern-grid.svg')] bg-center opacity-25"></div>
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 relative z-10">
-        <div class="flex flex-col md:flex-row items-center justify-between gap-12">
-            <div class="md:max-w-2xl">
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-                    From 30-Minute Builds to 3-Minute Feedback.
-                </h1>
-                <p class="text-xl md:text-2xl mb-8">
-                    PragmaTech helps Java Spring Boot teams transform slow, fragile tests into fast, reliable feedback - so you can ship with confidence, not fear.
+<!-- Hero Section -->
+<section id="home" class="relative pt-16 pb-20 lg:pt-20 lg:pb-32 overflow-hidden hero-pattern">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+        <!-- Full-width Header -->
+        <div class="text-center mb-12">
+            <div class="inline-flex items-center px-3 py-1 rounded-full border border-brand-500/30 bg-brand-500/10 text-brand-400 text-xs font-bold uppercase tracking-wide mb-6">
+                <span class="w-2 h-2 rounded-full bg-brand-500 mr-2 animate-pulse"></span>
+                Tailored for Spring Boot Teams
+            </div>
+
+            <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight mb-6 leading-tight">
+                Ship with Confidence. <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-blue-600">Every. Single. Day.</span>
+            </h1>
+        </div>
+
+        <!-- Two-column layout: Subtitle + SVG -->
+        <div class="grid lg:grid-cols-2 gap-12 items-start">
+
+            <!-- Left Column: Subtitle, CTAs, Trusted By -->
+            <div class="text-left">
+                <p class="text-xl text-slate-400 mb-8 leading-relaxed">
+                    Slow builds and flaky tests kill developer velocity and delay releases. We help enterprise Spring Boot teams <strong class="text-white">cut build times by up to 90%</strong> and restore deployment confidence.
+                    <br><br>
+                    Turn automated testing from a <strong class="text-white">neglected afterthought</strong> into a <strong class="text-white">competitive advantage</strong>.
                 </p>
-                <div class="flex flex-wrap gap-4">
-                    <a href="{{ .Site.Params.scheduleCallUrl | default "/contact" }}" class="inline-block bg-white text-blue-600 hover:bg-gray-200 font-bold py-3 px-6 rounded-lg transition-colors shadow-lg">
-                        Schedule a Free Assessment
+
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="{{ .Site.Params.scheduleCallUrl | default "/contact" }}" class="px-8 py-4 bg-brand-600 hover:bg-brand-500 text-white rounded-lg font-bold transition-all shadow-lg shadow-brand-500/25 flex items-center justify-center gap-2 group">
+                        Schedule Your Assessment
+                        <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
                     </a>
-                    <a href="#approach" class="inline-block bg-transparent border-2 border-white text-white hover:bg-white/10 font-bold py-3 px-6 rounded-lg transition-colors">
-                        See How It Works
+                    <a href="#methodology" class="px-8 py-4 bg-slate-800 hover:bg-slate-700 text-white rounded-lg font-bold border border-slate-700 hover:border-slate-600 transition-all flex items-center justify-center">
+                        How It Works
                     </a>
                 </div>
+
+                <div class="mt-12">
+                    <span class="text-sm text-slate-500 font-semibold uppercase tracking-wider block mb-4">Trusted by teams at:</span>
+                    <div class="flex flex-wrap gap-6 items-center">
+                        <img src="/images/clients/scout24.png" alt="ImmoScout24" class="h-6 object-contain" />
+                        <img src="/images/clients/adesso.png" alt="Adesso" class="h-6 object-contain" />
+                        <img src="/images/clients/adevinta.png" alt="Adevinta" class="h-6 object-contain" />
+                        <img src="/images/clients/schaeffler.png" alt="Schaeffler" class="h-6 object-contain" />
+                        <img src="/images/clients/extenda.webp" alt="Extenda" class="h-5 object-contain" />
+                        <img src="/images/clients/exxeta.png" alt="Exxeta" class="h-6 object-contain" />
+                        <img src="/images/clients/aerlingus.svg" alt="Aer Lingus" class="h-6 object-contain" />
+                    </div>
+                </div>
             </div>
-            <div class="flex-shrink-0 hidden md:block">
-                <img src="/images/hero-illustration.svg" alt="Software Delivery Illustration" class="w-full max-w-md h-auto animate-slow-float" />
+
+            <!-- Right Column: SVG Gauge Comparison -->
+            <div>
+                <div class="bg-slate-900 rounded-lg border border-slate-800 overflow-hidden">
+                    <!-- Terminal Header -->
+                    <div class="bg-slate-800 px-4 py-2 flex items-center gap-2 border-b border-slate-700">
+                        <div class="flex gap-1.5">
+                            <div class="w-3 h-3 rounded-full bg-red-500/50"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500/50"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500/50"></div>
+                        </div>
+                        <div class="flex-1 text-center">
+                            <span class="text-slate-400 text-xs font-mono">terminal</span>
+                        </div>
+                    </div>
+                    <!-- Command Line -->
+                    <div class="bg-[#0d1117] px-4 py-3 border-b border-slate-800">
+                        <code class="text-sm font-mono">
+                            <span class="text-green-400">$</span>
+                            <span class="text-slate-300 ml-2">./mvnw verify</span>
+                            <span class="animate-pulse text-slate-400 ml-1">_</span>
+                        </code>
+                    </div>
+                    <!-- Section Headline -->
+                    <div class="text-center py-4 border-b border-slate-800">
+                        <h3 class="text-lg font-bold text-white tracking-wide">Feedback Loop Velocity</h3>
+                    </div>
+                    <!-- Gauges Container -->
+                    <div class="flex flex-row gap-2 sm:gap-6 items-start justify-center p-4 sm:p-6">
+
+                    <!-- Gauge 1: Slow -->
+                    <div class="text-center">
+                        <div class="relative inline-block">
+                            <svg class="w-20 h-20 sm:w-36 sm:h-36 transform -rotate-90" viewBox="0 0 120 120">
+                                <circle cx="60" cy="60" r="45" fill="none" stroke="#334155" stroke-width="8" />
+                                <circle cx="60" cy="60" r="45" fill="none" stroke="#ef4444" stroke-width="8" class="v3-circle-slow" stroke-linecap="round" />
+                            </svg>
+                            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
+                                <div class="text-[8px] sm:text-xs text-slate-500 font-mono uppercase">Avg Build</div>
+                                <div class="text-xl sm:text-4xl font-black text-red-500">30m</div>
+                            </div>
+                        </div>
+                        <!-- Bullet points for slow build -->
+                        <ul class="mt-3 sm:mt-6 space-y-1 sm:space-y-2 text-left">
+                            <li class="flex items-center text-slate-400 text-xs sm:text-base">
+                                <i class="fas fa-times text-red-500/70 mr-1 sm:mr-2 text-[10px] sm:text-base"></i>
+                                <span class="hidden sm:inline">Broken flow state</span>
+                                <span class="sm:hidden">Broken flow</span>
+                            </li>
+                            <li class="flex items-center text-slate-400 text-xs sm:text-base">
+                                <i class="fas fa-times text-red-500/70 mr-1 sm:mr-2 text-[10px] sm:text-base"></i>
+                                Deploy anxiety
+                            </li>
+                            <li class="flex items-center text-slate-400 text-xs sm:text-base">
+                                <i class="fas fa-times text-red-500/70 mr-1 sm:mr-2 text-[10px] sm:text-base"></i>
+                                <span class="hidden sm:inline">Friday deploy freeze</span>
+                                <span class="sm:hidden">Friday freeze</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="text-base sm:text-2xl text-slate-600 font-bold self-center mt-6 sm:mt-12">VS</div>
+
+                    <!-- Gauge 2: Fast -->
+                    <div class="text-center">
+                        <div class="relative inline-block">
+                            <svg class="w-20 h-20 sm:w-36 sm:h-36 transform -rotate-90" viewBox="0 0 120 120">
+                                <circle cx="60" cy="60" r="45" fill="none" stroke="#334155" stroke-width="8" />
+                                <!-- Glow Effect Filter -->
+                                <defs>
+                                    <filter id="glow">
+                                        <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+                                        <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                                    </filter>
+                                </defs>
+                                <circle cx="60" cy="60" r="45" fill="none" stroke="#0ea5e9" stroke-width="8" class="v3-circle-fast" stroke-linecap="round" filter="url(#glow)" />
+                            </svg>
+                            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
+                                <div class="text-[8px] sm:text-xs text-brand-500 font-mono uppercase">Optimized</div>
+                                <div class="text-xl sm:text-4xl font-black text-brand-400">3m</div>
+                            </div>
+                        </div>
+                        <!-- Bullet points for fast build -->
+                        <ul class="mt-3 sm:mt-6 space-y-1 sm:space-y-2 text-left">
+                            <li class="flex items-center text-slate-300 text-xs sm:text-base">
+                                <i class="fas fa-check text-brand-400 mr-1 sm:mr-2 text-[10px] sm:text-base"></i>
+                                <span class="hidden sm:inline">Instant validation</span>
+                                <span class="sm:hidden">Instant valid.</span>
+                            </li>
+                            <li class="flex items-center text-slate-300 text-xs sm:text-base">
+                                <i class="fas fa-check text-brand-400 mr-1 sm:mr-2 text-[10px] sm:text-base"></i>
+                                <span class="hidden sm:inline">Fearless deploys</span>
+                                <span class="sm:hidden">Fearless dep.</span>
+                            </li>
+                            <li class="flex items-center text-slate-300 text-xs sm:text-base">
+                                <i class="fas fa-check text-brand-400 mr-1 sm:mr-2 text-[10px] sm:text-base"></i>
+                                Ship any day
+                            </li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

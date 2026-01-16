@@ -1,182 +1,178 @@
-<!-- Pain to Transformation Section -->
-<section class="py-20 bg-gray-50">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">From Deployment Anxiety to Fearless Shipping</h2>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                Most Spring Boot teams struggle with the same testing challenges. Sound familiar?
-            </p>
-        </div>
-
-        <!-- Pain Points -->
-        <div class="mb-16">
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Pain Point 1 -->
-                <div class="bg-gradient-to-br from-red-50 to-orange-50 rounded-xl p-8 shadow-sm border-l-4 border-red-500">
-                    <div class="text-red-600 mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4 text-gray-900">Slow, Brittle Tests</h3>
-                    <p>Your test suite has become the bottleneck, forcing developers to wait on slow builds or skip tests entirely. Instead of providing safety, it just gets in the way.</p>
-                    <br/>
-                    <ul class="text-gray-700 space-y-2">
-                        <li class="flex items-start">
-                            <span class="text-red-600 mr-2">✗</span>
-                            <span>Build times stretching to 20+ minutes</span>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-red-600 mr-2">✗</span>
-                            <span>Flaky tests that fail randomly</span>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-red-600 mr-2">✗</span>
-                            <span>Developers skipping tests to "save time"</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Pain Point 2 -->
-                <div class="bg-gradient-to-br from-red-50 to-orange-50 rounded-xl p-8 shadow-sm border-l-4 border-red-500">
-                    <div class="text-red-600 mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4 text-gray-900">Testing Confusion</h3>
-                    <p>Without a guiding strategy, every developer is left to guess, copying patterns without understanding them. The result is a confusing mix of tests that create complexity instead of clarity.</p><br/>
-                    <ul class="text-gray-700 space-y-2">
-                        <li class="flex items-start">
-                            <span class="text-red-600 mr-2">✗</span>
-                            <span>Unclear when to use @SpringBootTest vs. @WebMvcTest</span>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-red-600 mr-2">✗</span>
-                            <span>Excessive mocking that hides real issues</span>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-red-600 mr-2">✗</span>
-                            <span>No strategy - just cargo cult copy-pasted patterns</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Pain Point 3 -->
-                <div class="bg-gradient-to-br from-red-50 to-orange-50 rounded-xl p-8 shadow-sm border-l-4 border-red-500">
-                    <div class="text-red-600 mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4 text-gray-900">Deployment Fear</h3>
-                    <p>This lack of trust culminates in deployment anxiety, where every release feels like a gamble. The fear of breaking production paralyzes innovation and refactoring.</p>
-                    <br/>
-                    <ul class="text-gray-700 space-y-2">
-                        <li class="flex items-start">
-                            <span class="text-red-600 mr-2">✗</span>
-                            <span>"Hope and pray" releases</span>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-red-600 mr-2">✗</span>
-                            <span>Bugs caught in production, not in CI</span>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-red-600 mr-2">✗</span>
-                            <span>Teams afraid to refactor or ship frequently</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- Transition Statement -->
-
-        <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">You don't need more tests. </h2>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                You need the right tests, running fast, giving you confidence.
-            </p>
-        </div>
-
-        <!-- Transformation -->
+<!-- Problems Section -->
+<section class="py-20 bg-slate-900 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl font-bold text-white mb-4">The Hidden Cost of Broken Testing Practices</h2>
+        <p class="text-xl text-slate-400 mb-12 max-w-3xl mx-auto">
+            Most enterprise teams lose 20-40% of engineering velocity to slow builds and deployment anxiety. We fix this.
+        </p>
         <div class="grid md:grid-cols-3 gap-8">
-            <!-- Transformation 1 -->
-            <div class="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl p-8 shadow-sm border-l-4 border-emerald-500">
-                <div class="text-emerald-600 mb-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
+            <!-- Pain Point 1 -->
+            <div class="bg-slate-800 p-8 rounded-xl border border-slate-700 hover:border-red-500/30 transition-colors">
+                <div class="w-12 h-12 bg-red-500/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-hourglass-half text-red-500 text-xl"></i>
                 </div>
-                <h3 class="text-xl font-bold mb-4 text-gray-900">Fast, Reliable Feedback</h3>
-                <p>Builds finish in minutes, not hours. Your test suite becomes a trusted safety net that enables speed.</p>
-                <br/>
-                <ul class="text-gray-700 space-y-2">
+                <h3 class="text-xl font-bold text-white mb-3">Velocity Drain</h3>
+                <p class="text-slate-400 mb-6">
+                    20+ minute build times kill momentum. Developers context-switch, productivity plummets.
+                </p>
+                <ul class="text-left space-y-2 text-base text-slate-300">
                     <li class="flex items-start">
-                        <span class="text-emerald-600 mr-2">✓</span>
-                        <span>Builds within single-digit minutes</span>
+                        <i class="fas fa-times text-slate-600 mr-2 mt-1"></i>
+                        <span>Builds stretching to 30+ minutes</span>
                     </li>
                     <li class="flex items-start">
-                        <span class="text-emerald-600 mr-2">✓</span>
-                        <span>Rock-solid test suites</span>
+                        <i class="fas fa-times text-slate-600 mr-2 mt-1"></i>
+                        <span>Flaky tests causing false negatives</span>
                     </li>
                     <li class="flex items-start">
-                        <span class="text-emerald-600 mr-2">✓</span>
-                        <span>Developers trust the tests</span>
+                        <i class="fas fa-times text-slate-600 mr-2 mt-1"></i>
+                        <span>Engineers skipping tests to "save time"</span>
                     </li>
                 </ul>
             </div>
-
-            <!-- Transformation 2 -->
-            <div class="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl p-8 shadow-sm border-l-4 border-emerald-500">
-                <div class="text-emerald-600 mb-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
+            <!-- Pain Point 2 -->
+            <div class="bg-slate-800 p-8 rounded-xl border border-slate-700 hover:border-orange-500/30 transition-colors">
+                <div class="w-12 h-12 bg-orange-500/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-random text-orange-500 text-xl"></i>
                 </div>
-                <h3 class="text-xl font-bold mb-4 text-gray-900">Clear Testing Strategy</h3>
-                <p>Your team has a shared playbook. They apply the right test patterns instinctively, focusing on value over volume.</p>
-                <br/>
-                <ul class="text-gray-700 space-y-2">
+                <h3 class="text-xl font-bold text-white mb-3">Quality Erosion</h3>
+                <p class="text-slate-400 mb-6">
+                    Without clear strategy, testing becomes cargo-culted chaos instead of confidence-building practice.
+                </p>
+                <ul class="text-left space-y-2 text-base text-slate-300">
                     <li class="flex items-start">
-                        <span class="text-emerald-600 mr-2">✓</span>
-                        <span>Know exactly which test type to use</span>
+                        <i class="fas fa-times text-slate-600 mr-2 mt-1"></i>
+                        <span>Unclear when to use @SpringBootTest vs. @WebMvcTest</span>
                     </li>
                     <li class="flex items-start">
-                        <span class="text-emerald-600 mr-2">✓</span>
-                        <span>Minimal mocking, maximum value</span>
+                        <i class="fas fa-times text-slate-600 mr-2 mt-1"></i>
+                        <span>Excessive mocking that hides real issues</span>
                     </li>
                     <li class="flex items-start">
-                        <span class="text-emerald-600 mr-2">✓</span>
-                        <span>Consistent patterns across the team</span>
+                        <i class="fas fa-times text-slate-600 mr-2 mt-1"></i>
+                        <span>No strategy, just copy-pasted patterns</span>
                     </li>
                 </ul>
             </div>
-
-            <!-- Transformation 3 -->
-            <div class="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl p-8 shadow-sm border-l-4 border-emerald-500">
-                <div class="text-emerald-600 mb-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
+            <!-- Pain Point 3 -->
+            <div class="bg-slate-800 p-8 rounded-xl border border-slate-700 hover:border-yellow-500/30 transition-colors">
+                <div class="w-12 h-12 bg-yellow-500/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-exclamation-triangle text-yellow-500 text-xl"></i>
                 </div>
-                <h3 class="text-xl font-bold mb-4 text-gray-900">Ship with Confidence</h3>
-                <p>Shipping becomes routine, not a ceremony. You can refactor major components and deploy on a Friday, fearlessly.</p>
-                <br/>
-                <ul class="text-gray-700 space-y-2">
+                <h3 class="text-xl font-bold text-white mb-3">Deployment Fear</h3>
+                <p class="text-slate-400 mb-6">
+                    This lack of trust culminates in deployment anxiety where every release feels like a gamble.
+                </p>
+                <ul class="text-left space-y-2 text-base text-slate-300">
                     <li class="flex items-start">
-                        <span class="text-emerald-600 mr-2">✓</span>
-                        <span>Deploy multiple times per day</span>
+                        <i class="fas fa-times text-slate-600 mr-2 mt-1"></i>
+                        <span>"Hope and pray" releases</span>
                     </li>
                     <li class="flex items-start">
-                        <span class="text-emerald-600 mr-2">✓</span>
-                        <span>Catch issues before production</span>
+                        <i class="fas fa-times text-slate-600 mr-2 mt-1"></i>
+                        <span>Bugs caught in production, not in CI</span>
                     </li>
                     <li class="flex items-start">
-                        <span class="text-emerald-600 mr-2">✓</span>
-                        <span>Refactor fearlessly</span>
+                        <i class="fas fa-times text-slate-600 mr-2 mt-1"></i>
+                        <span>Teams afraid to refactor or ship frequently</span>
                     </li>
                 </ul>
+            </div>
+        </div>
+
+        <!-- Transition Arrow -->
+        <div class="my-16 flex items-center justify-center">
+            <div class="h-px w-16 bg-gradient-to-r from-transparent to-brand-500/50"></div>
+            <i class="fas fa-arrow-right text-2xl text-brand-500 mx-4"></i>
+            <div class="h-px w-16 bg-gradient-to-l from-transparent to-brand-500/50"></div>
+        </div>
+
+        <h2 class="text-3xl font-bold text-white mb-12">We Transform Testing from Bottleneck to Business Advantage</h2>
+
+        <!-- Solution Cards -->
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Solution Card 1 -->
+            <div class="bg-slate-800 p-8 rounded-xl border border-brand-500/30 hover:border-brand-500/50 transition-colors relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-br from-brand-500/5 to-transparent"></div>
+                <div class="relative">
+                    <div class="w-12 h-12 bg-brand-500/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-bolt text-brand-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Sub-5-Minute Builds</h3>
+                    <p class="text-slate-400 mb-6">
+                        Fast feedback loops restore flow state and enable true continuous delivery.
+                    </p>
+                    <ul class="text-left space-y-2 text-base text-slate-300">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-brand-400 mr-2 mt-1"></i>
+                            <span>Single-digit minute CI/CD pipelines</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-brand-400 mr-2 mt-1"></i>
+                            <span>Zero flaky tests</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-brand-400 mr-2 mt-1"></i>
+                            <span>Developers trust the suite</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Solution Card 2 -->
+            <div class="bg-slate-800 p-8 rounded-xl border border-brand-500/30 hover:border-brand-500/50 transition-colors relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-br from-brand-500/5 to-transparent"></div>
+                <div class="relative">
+                    <div class="w-12 h-12 bg-brand-500/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-check-circle text-brand-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Clear Testing Strategy</h3>
+                    <p class="text-slate-400 mb-6">
+                        Your team has a shared playbook, applying the right test patterns instinctively.
+                    </p>
+                    <ul class="text-left space-y-2 text-base text-slate-300">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-brand-400 mr-2 mt-1"></i>
+                            <span>Know exactly which test type to use</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-brand-400 mr-2 mt-1"></i>
+                            <span>Minimal mocking, maximum value</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-brand-400 mr-2 mt-1"></i>
+                            <span>Consistent patterns across the team</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Solution Card 3 -->
+            <div class="bg-slate-800 p-8 rounded-xl border border-brand-500/30 hover:border-brand-500/50 transition-colors relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-br from-brand-500/5 to-transparent"></div>
+                <div class="relative">
+                    <div class="w-12 h-12 bg-brand-500/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-rocket text-brand-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Ship with Confidence</h3>
+                    <p class="text-slate-400 mb-6">
+                        Shipping becomes routine, not a ceremony. Deploy fearlessly, even on Fridays.
+                    </p>
+                    <ul class="text-left space-y-2 text-base text-slate-300">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-brand-400 mr-2 mt-1"></i>
+                            <span>Deploy multiple times per day</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-brand-400 mr-2 mt-1"></i>
+                            <span>Catch issues before production</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-brand-400 mr-2 mt-1"></i>
+                            <span>Refactor fearlessly</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

@@ -1,12 +1,12 @@
-<!-- Reusable Hero Section with Pattern Grid Background -->
-<section class="relative bg-gradient-to-r from-blue-500 to-indigo-700 text-white overflow-hidden">
+<!-- Reusable Hero Section with Gradient Theme -->
+<section class="relative bg-gradient-to-r from-brand-600 to-brand-500 text-white overflow-hidden pt-12 lg:pt-16 mb-8">
     <div class="absolute inset-0 bg-[url('/images/pattern-grid.svg')] bg-center opacity-25"></div>
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 relative z-10">
-        <div class="max-w-3xl">
-            <h1 class="text-4xl md:text-5xl font-bold mb-6">{{ .Title }}</h1>
-            <p class="text-xl">
-                {{ .Description }}
-            </p>
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10 flex items-center justify-center min-h-[200px]">
+        <div class="max-w-3xl mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 text-white text-center">{{ .Title }}</h1>
+            {{ with .Description }}
+            <p class="text-xl text-brand-100">{{ . }}</p>
+            {{ end }}
         </div>
     </div>
 </section>
