@@ -3,7 +3,7 @@
 {{ partial "head.html" . }}
 <body class="bg-slate-900 text-slate-300 font-sans antialiased selection:bg-brand-500 selection:text-white">
 {{ partial "header.html" . }}
-{{ partial "banner.html" . }}
+{{ if not .IsHome }}{{ partial "banner.html" . }}{{ end }}
 <main>
     {{ block "main" . }}{{ end }}
 </main>
