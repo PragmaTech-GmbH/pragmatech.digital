@@ -1,28 +1,28 @@
 {{ define "main" }}
-<section class="relative bg-gradient-to-r from-blue-500 to-indigo-700 text-white overflow-hidden mb-8">
+<section class="relative bg-gradient-to-r from-brand-600 to-brand-500 text-white overflow-hidden mb-8 pt-28 lg:pt-32">
     <div class="absolute inset-0 bg-[url('/images/pattern-grid.svg')] bg-center opacity-25"></div>
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
         <div class="max-w-3xl mx-auto text-center">
             <h1 class="text-4xl md:text-5xl font-bold mb-6">{{ .Title }}</h1>
             {{ with .Description }}
-            <p class="text-xl">{{ . }}</p>
+            <p class="text-xl text-brand-100">{{ . }}</p>
             {{ end }}
         </div>
     </div>
 </section>
 
-<div class="max-w-6xl mx-auto px-4">
+<div class="max-w-6xl mx-auto px-4 pb-16">
 
-    <div class="mb-12">
+    <div class="mb-12 prose prose-invert prose-lg max-w-none text-slate-300">
         {{ .Content }}
     </div>
 
     {{ partial "events-calendar.html" . }}
-    
+
     <!-- Recent and Upcoming Events -->
     <div class="mb-12">
-        <h2 class="text-2xl font-bold mb-6">Upcoming and Recent Events</h2>
-        
+        <h2 class="text-2xl font-bold mb-6 text-white">Upcoming and Recent Events</h2>
+
         <!-- Event data for JS filtering -->
         <script>
             const eventData = [
@@ -46,99 +46,99 @@
 
         <!-- Upcoming Events -->
         <div class="mb-8">
-            <h3 class="text-xl font-semibold mb-4">Upcoming Events</h3>
+            <h3 class="text-xl font-semibold mb-4 text-white">Upcoming Events</h3>
             <div id="upcoming-events-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <p id="no-upcoming-events" class="text-gray-500 col-span-3 hidden">No upcoming events scheduled at this time.</p>
+                <p id="no-upcoming-events" class="text-slate-400 col-span-3 hidden">No upcoming events scheduled at this time.</p>
             </div>
         </div>
 
 
         <!-- Recent Events -->
         <div>
-            <h3 class="text-xl font-semibold mb-4">Recent Events</h3>
+            <h3 class="text-xl font-semibold mb-4 text-white">Recent Events</h3>
             <div id="recent-events-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <p id="no-recent-events" class="text-gray-500 col-span-3 hidden">No recent events available.</p>
+                <p id="no-recent-events" class="text-slate-400 col-span-3 hidden">No recent events available.</p>
             </div>
         </div>
     </div>
-    
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const today = new Date();
             today.setHours(0, 0, 0, 0);
-            
+
             const recentEventsContainer = document.getElementById('recent-events-container');
             const upcomingEventsContainer = document.getElementById('upcoming-events-container');
             const noRecentEventsMsg = document.getElementById('no-recent-events');
             const noUpcomingEventsMsg = document.getElementById('no-upcoming-events');
-            
+
             // Filter past events (before today)
             const pastEvents = eventData.filter(event => {
                 const eventDate = new Date(event.startDate);
                 return eventDate < today;
             }).sort((a, b) => new Date(b.startDate) - new Date(a.startDate)); // Sort by date descending
-            
+
             // Filter future events (today and later)
             const futureEvents = eventData.filter(event => {
                 const eventDate = new Date(event.startDate);
                 return eventDate >= today;
             }).sort((a, b) => new Date(a.startDate) - new Date(b.startDate)); // Sort by date ascending
-            
+
             // Display recent events (up to 3)
             if (pastEvents.length > 0) {
                 const recentEvents = pastEvents.slice(0, 3);
                 recentEvents.forEach(event => {
                     // Use the enhanced card style for recent events
-                    recentEventsContainer.appendChild(createEnhancedEventCard(event, 'bg-gray-50'));
+                    recentEventsContainer.appendChild(createEnhancedEventCard(event));
                 });
             } else {
                 noRecentEventsMsg.classList.remove('hidden');
             }
-            
+
             // Display upcoming events (up to 3)
             if (futureEvents.length > 0) {
                 const upcomingEvents = futureEvents.slice(0, 5);
                 upcomingEvents.forEach(event => {
                     // Use the enhanced card style for upcoming events
-                    upcomingEventsContainer.appendChild(createEnhancedEventCard(event, 'bg-white'));
+                    upcomingEventsContainer.appendChild(createEnhancedEventCard(event));
                 });
             } else {
                 noUpcomingEventsMsg.classList.remove('hidden');
             }
-            
-            // Enhanced event card matching the "All Upcoming Events" style
-            function createEnhancedEventCard(event, bgClass) {
+
+            // Enhanced event card matching the dark theme
+            function createEnhancedEventCard(event) {
                 const article = document.createElement('article');
-                article.className = 'event-card bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105';
+                article.className = 'event-card bg-slate-800 rounded-lg overflow-hidden border border-slate-700 hover:border-brand-500/50 transition-all';
                 article.dataset.eventType = event.eventType;
-                
+
                 let typeClass = '';
                 let textClass = '';
                 if (event.eventType === 'meetup') {
-                    typeClass = 'bg-yellow-500';
-                    textClass = 'text-yellow-900';
+                    typeClass = 'bg-yellow-500/20';
+                    textClass = 'text-yellow-400';
                 } else if (event.eventType === 'talk') {
-                    typeClass = 'bg-blue-500';
-                    textClass = 'text-white';
+                    typeClass = 'bg-brand-500/20';
+                    textClass = 'text-brand-400';
                 } else if (event.eventType === 'workshop') {
-                    typeClass = 'bg-green-500';
-                    textClass = 'text-white';
+                    typeClass = 'bg-green-500/20';
+                    textClass = 'text-green-400';
                 }
-                
+
                 // Format time from startDate
                 const eventDate = new Date(event.startDate);
-                const formattedTime = eventDate.toLocaleTimeString('en-US', { 
-                    hour: 'numeric', 
-                    minute: '2-digit', 
-                    hour12: true 
+                const formattedTime = eventDate.toLocaleTimeString('en-US', {
+                    hour: 'numeric',
+                    minute: '2-digit',
+                    hour12: true
                 });
-                
+
                 // Generate WebP path for the cover image
                 const coverImagePath = event.coverImage;
                 const imageExtension = coverImagePath.substring(coverImagePath.lastIndexOf('.'));
                 const baseImagePath = coverImagePath.replace(imageExtension, '');
                 const webpImagePath = `/generated/images${baseImagePath.replace('/images', '')}.webp`;
-                
+
                 const cardContent = `
                     <a href="${event.permalink}" class="block">
                         <div class="relative">
@@ -152,48 +152,39 @@
                         </div>
 
                         <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">
-                                <span class="hover:text-primary">${event.title}</span>
+                            <h3 class="text-xl font-bold mb-2 text-white">
+                                <span class="hover:text-brand-400 transition-colors">${event.title}</span>
                             </h3>
 
-                            <div class="flex items-center text-gray-500 mb-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                </svg>
+                            <div class="flex items-center text-slate-400 mb-2">
+                                <i class="fas fa-calendar-alt mr-2"></i>
                                 <time>${event.formattedDate}</time>
                             </div>
 
-                            <div class="flex items-center text-gray-500 mb-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                                </svg>
+                            <div class="flex items-center text-slate-400 mb-4">
+                                <i class="fas fa-map-marker-alt mr-2"></i>
                                 <span>${event.location}</span>
                             </div>
 
-                            <p class="mb-4 line-clamp-2">${event.summary}</p>
+                            <p class="text-slate-300 mb-4 line-clamp-2">${event.summary}</p>
 
                             <div class="flex flex-col gap-3">
                                 <div class="flex justify-between items-center">
-                                    <a href="${event.permalink}" class="text-primary font-semibold hover:underline">Details →</a>
-                                    ${event.registration ? `<a href="${event.registration}" class="btn btn-primary" target="_blank">Register</a>` : ''}
+                                    <span class="text-brand-400 font-semibold hover:text-brand-300 transition-colors">Details →</span>
+                                    ${event.registration ? `<a href="${event.registration}" class="bg-brand-600 hover:bg-brand-500 text-white px-3 py-1 rounded text-sm transition-colors" target="_blank">Register</a>` : ''}
                                 </div>
-                                
+
                                 <div class="flex flex-wrap gap-3 mt-1">
                                     ${event.slideUrl ? `
-                                    <a href="${event.slideUrl}" class="text-xs text-primary flex items-center hover:underline" target="_blank" onclick="event.stopPropagation()">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd" />
-                                        </svg>
+                                    <a href="${event.slideUrl}" class="text-xs text-brand-400 flex items-center hover:text-brand-300 transition-colors" target="_blank" onclick="event.stopPropagation()">
+                                        <i class="fas fa-file-alt mr-1"></i>
                                         Slides
                                     </a>
                                     ` : ''}
-                                    
+
                                     ${event.codeUrl ? `
-                                    <a href="${event.codeUrl}" class="text-xs text-primary flex items-center hover:underline" target="_blank" onclick="event.stopPropagation()">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                        </svg>
+                                    <a href="${event.codeUrl}" class="text-xs text-brand-400 flex items-center hover:text-brand-300 transition-colors" target="_blank" onclick="event.stopPropagation()">
+                                        <i class="fas fa-code mr-1"></i>
                                         Code
                                     </a>
                                     ` : ''}
@@ -202,7 +193,7 @@
                         </div>
                     </a>
                 `;
-                
+
                 article.innerHTML = cardContent;
                 return article;
             }

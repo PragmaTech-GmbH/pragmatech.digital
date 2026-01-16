@@ -99,7 +99,7 @@
     }
 
     h2 {
-        @apply font-semibold text-slate-800;
+        @apply font-semibold;
         font-size: clamp(2rem, 4vw, 3rem);
         line-height: 1.2;
         letter-spacing: -0.025em;

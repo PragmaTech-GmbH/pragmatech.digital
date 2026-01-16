@@ -1,0 +1,48 @@
+{{ define "main" }}
+{{ partial "section-hero.html" . }}
+
+<!-- Main Content -->
+<section class="py-16 bg-slate-900 border-t border-slate-800">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="prose prose-invert prose-lg max-w-3xl mx-auto page-content text-slate-300">
+            {{ .Content }}
+        </div>
+    </div>
+</section>
+
+<!-- List Items -->
+{{ if .Pages }}
+<section class="py-16 bg-slate-800/50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {{ range .Pages }}
+            <a href="{{ .RelPermalink }}" class="block group">
+                <div class="bg-slate-800 rounded-xl overflow-hidden border border-slate-700 group-hover:border-brand-500/50 transition-colors h-full">
+                    {{ if .Params.image }}
+                    <img src="{{ .Params.image }}" alt="{{ .Title }}" class="w-full h-48 object-cover">
+                    {{ else if .Params.cover_image }}
+                    <img src="{{ .Params.cover_image }}" alt="{{ .Title }}" class="w-full h-48 object-cover">
+                    {{ end }}
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3 text-white group-hover:text-brand-400 transition-colors">{{ .Title }}</h3>
+                        {{ with .Params.summary }}
+                        <p class="text-slate-400 mb-4">{{ . }}</p>
+                        {{ else }}
+                        <p class="text-slate-400 mb-4">{{ .Summary | truncate 150 }}</p>
+                        {{ end }}
+                        <div class="text-brand-400 group-hover:text-brand-300 font-medium inline-flex items-center transition-colors">
+                            Learn more
+                            <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            {{ end }}
+        </div>
+    </div>
+</section>
+{{ end }}
+
+<!-- CTA Section -->
+{{ partial "cta.html" . }}
+{{ end }}

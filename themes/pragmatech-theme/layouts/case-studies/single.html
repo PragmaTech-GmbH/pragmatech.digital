@@ -1,10 +1,8 @@
 {{ define "main" }}
 <article class="max-w-5xl mx-auto px-4 py-8">
     <div class="mb-8">
-        <a href="/case-studies/" class="text-blue-600 hover:underline flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
-            </svg>
+        <a href="/case-studies/" class="text-brand-400 hover:text-brand-300 flex items-center transition-colors">
+            <i class="fas fa-arrow-left mr-2"></i>
             Back to Case Studies
         </a>
     </div>
@@ -17,42 +15,36 @@
         </div>
         {{ end }}
 
-        <h1 class="text-4xl font-bold mb-4">{{ .Title }}</h1>
-        <p class="text-xl text-gray-600 mb-6">{{ .Params.summary }}</p>
+        <h1 class="text-4xl font-bold mb-4 text-white">{{ .Title }}</h1>
+        <p class="text-xl text-slate-400 mb-6">{{ .Params.summary }}</p>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 bg-gray-50 rounded-lg p-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 bg-slate-800 rounded-lg p-6 border border-slate-700">
             <div>
                 <div class="flex items-center mb-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                    </svg>
+                    <i class="fas fa-building text-brand-400 mr-3 text-xl"></i>
                     <div>
-                        <div class="font-semibold">Client</div>
-                        <div>{{ .Params.client_name }}</div>
+                        <div class="font-semibold text-white">Client</div>
+                        <div class="text-slate-300">{{ .Params.client_name }}</div>
                     </div>
                 </div>
             </div>
 
             <div>
                 <div class="flex items-center mb-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
+                    <i class="fas fa-briefcase text-brand-400 mr-3 text-xl"></i>
                     <div>
-                        <div class="font-semibold">Industry</div>
-                        <div>{{ .Params.client_industry }}</div>
+                        <div class="font-semibold text-white">Industry</div>
+                        <div class="text-slate-300">{{ .Params.client_industry }}</div>
                     </div>
                 </div>
             </div>
 
             <div>
                 <div class="flex items-center mb-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                    </svg>
+                    <i class="fas fa-chart-bar text-brand-400 mr-3 text-xl"></i>
                     <div>
-                        <div class="font-semibold">Company Size</div>
-                        <div>{{ .Params.client_size }}</div>
+                        <div class="font-semibold text-white">Company Size</div>
+                        <div class="text-slate-300">{{ .Params.client_size }}</div>
                     </div>
                 </div>
             </div>
@@ -63,17 +55,17 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
         <!-- Main Content -->
         <div class="md:col-span-2">
-            <div class="prose prose-lg max-w-none page-content">
+            <div class="prose prose-invert prose-lg max-w-none page-content text-slate-300">
                 {{ .Content }}
             </div>
 
             <!-- Technologies Used -->
             {{ if .Params.technologies }}
             <div class="mt-12">
-                <h2 class="text-2xl font-bold mb-6">Technologies Used</h2>
+                <h2 class="text-2xl font-bold mb-6 text-white">Technologies Used</h2>
                 <div class="flex flex-wrap gap-2">
                     {{ range .Params.technologies }}
-                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">{{ . }}</span>
+                    <span class="bg-brand-500/20 text-brand-400 px-3 py-1 rounded-full text-sm font-medium">{{ . }}</span>
                     {{ end }}
                 </div>
             </div>
@@ -82,33 +74,31 @@
 
         <!-- Sidebar -->
         <div>
-            <div class="bg-gray-50 rounded-xl p-6 shadow-sm sticky top-24">
-                <h3 class="text-xl font-bold mb-4">Key Results</h3>
+            <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 sticky top-24">
+                <h3 class="text-xl font-bold mb-4 text-white">Key Results</h3>
                 <ul class="space-y-4">
                     {{ range .Params.results }}
                     <li class="flex items-start">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        <span>{{ . }}</span>
+                        <i class="fas fa-check-circle text-brand-400 mr-3 mt-1"></i>
+                        <span class="text-slate-300">{{ . }}</span>
                     </li>
                     {{ end }}
                 </ul>
 
                 {{ if .Params.testimonial }}
-                <div class="mt-8 border-t border-gray-200 pt-6">
-                    <h4 class="font-bold mb-4">Client Testimonial</h4>
-                    <blockquote class="italic text-gray-700 mb-4">
+                <div class="mt-8 border-t border-slate-700 pt-6">
+                    <h4 class="font-bold mb-4 text-white">Client Testimonial</h4>
+                    <blockquote class="italic text-slate-300 mb-4">
                         "{{ .Params.testimonial.quote }}"
                     </blockquote>
-                    <div class="font-medium">{{ .Params.testimonial.name }}</div>
-                    <div class="text-gray-500 text-sm">{{ .Params.testimonial.role }}</div>
+                    <div class="font-medium text-white">{{ .Params.testimonial.name }}</div>
+                    <div class="text-slate-500 text-sm">{{ .Params.testimonial.role }}</div>
                 </div>
                 {{ end }}
 
-                <div class="mt-8 border-t border-gray-200 pt-6">
-                    <h4 class="font-bold mb-4">Need Similar Results?</h4>
-                    <a href="/contact" class="block w-full bg-blue-600 text-white hover:bg-blue-700 font-bold py-3 px-6 rounded-lg transition-colors text-center">
+                <div class="mt-8 border-t border-slate-700 pt-6">
+                    <h4 class="font-bold mb-4 text-white">Need Similar Results?</h4>
+                    <a href="/contact" class="block w-full bg-brand-600 text-white hover:bg-brand-500 font-bold py-3 px-6 rounded-lg transition-colors text-center">
                         Contact Us
                     </a>
                 </div>
@@ -120,21 +110,21 @@
     {{ $currentCaseStudy := . }}
     {{ $relatedCaseStudies := where (where .Site.RegularPages "Section" "case-studies") "Permalink" "ne" .Permalink | first 3 }}
     {{ if $relatedCaseStudies }}
-    <div class="mt-16 pt-8 border-t border-gray-200">
-        <h2 class="text-2xl font-bold mb-6">More Case Studies</h2>
+    <div class="mt-16 pt-8 border-t border-slate-700">
+        <h2 class="text-2xl font-bold mb-6 text-white">More Case Studies</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             {{ range $relatedCaseStudies }}
-            <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+            <div class="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden hover:border-brand-500/50 transition-colors">
                 {{ if .Params.featured_image }}
                 {{ $imgData := dict "src" .Params.featured_image "alt" .Title "class" "w-full h-40 object-cover" }}
                 {{ partial "picture.html" $imgData }}
                 {{ end }}
                 <div class="p-4">
-                    <h3 class="font-bold mb-2">
-                        <a href="{{ .Permalink }}" class="hover:text-blue-600">{{ .Title }}</a>
+                    <h3 class="font-bold mb-2 text-white">
+                        <a href="{{ .Permalink }}" class="hover:text-brand-400 transition-colors">{{ .Title }}</a>
                     </h3>
-                    <div class="text-sm text-gray-600 mb-2">{{ .Params.client_industry }}</div>
-                    <a href="{{ .Permalink }}" class="text-blue-600 text-sm hover:underline">Read case study →</a>
+                    <div class="text-sm text-slate-400 mb-2">{{ .Params.client_industry }}</div>
+                    <a href="{{ .Permalink }}" class="text-brand-400 text-sm hover:text-brand-300 transition-colors">Read case study →</a>
                 </div>
             </div>
             {{ end }}
