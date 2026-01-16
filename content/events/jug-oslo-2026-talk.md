@@ -9,7 +9,7 @@ registration: ""
 price: "Free"
 draft: false
 summary: "Join us at JUG Oslo for an evening of Spring Boot testing insights and best practices."
-coverImage: "/images/events/jug-oslo.jpg"
+coverImage: "/images/events/oslo-jug-norway.jpg"
 slideUrl: ""
 codeUrl: "https://github.com/rieckpil/talks/tree/main/testing-spring-boot-applications-demystified"
 ---

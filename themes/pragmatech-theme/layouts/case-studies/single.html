@@ -1,5 +1,5 @@
 {{ define "main" }}
-<article class="max-w-5xl mx-auto px-4 py-8">
+<article class="max-w-3xl mx-auto px-4 py-8 pt-32 lg:pt-40">
     <div class="mb-8">
         <a href="/case-studies/" class="text-brand-400 hover:text-brand-300 flex items-center transition-colors">
             <i class="fas fa-arrow-left mr-2"></i>
@@ -7,129 +7,19 @@
         </a>
     </div>
 
-    <header class="mb-16">
-        {{ if .Params.featured_image }}
-        <div class="mb-8">
-            {{ $imgData := dict "src" .Params.featured_image "alt" .Title "class" "w-full h-64 md:h-80 object-cover rounded-xl" }}
-            {{ partial "picture.html" $imgData }}
+    <!-- Coming Soon Placeholder -->
+    <div class="bg-slate-800 rounded-xl border border-slate-700 p-12 text-center">
+        <div class="w-20 h-20 bg-brand-500/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-file-alt text-3xl text-brand-400"></i>
         </div>
-        {{ end }}
-
-        <h1 class="text-4xl font-bold mb-4 text-white">{{ .Title }}</h1>
-        <p class="text-xl text-slate-400 mb-6">{{ .Params.summary }}</p>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 bg-slate-800 rounded-lg p-6 border border-slate-700">
-            <div>
-                <div class="flex items-center mb-2">
-                    <i class="fas fa-building text-brand-400 mr-3 text-xl"></i>
-                    <div>
-                        <div class="font-semibold text-white">Client</div>
-                        <div class="text-slate-300">{{ .Params.client_name }}</div>
-                    </div>
-                </div>
-            </div>
-
-            <div>
-                <div class="flex items-center mb-2">
-                    <i class="fas fa-briefcase text-brand-400 mr-3 text-xl"></i>
-                    <div>
-                        <div class="font-semibold text-white">Industry</div>
-                        <div class="text-slate-300">{{ .Params.client_industry }}</div>
-                    </div>
-                </div>
-            </div>
-
-            <div>
-                <div class="flex items-center mb-2">
-                    <i class="fas fa-chart-bar text-brand-400 mr-3 text-xl"></i>
-                    <div>
-                        <div class="font-semibold text-white">Company Size</div>
-                        <div class="text-slate-300">{{ .Params.client_size }}</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Content Section -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
-        <!-- Main Content -->
-        <div class="md:col-span-2">
-            <div class="prose prose-invert prose-lg max-w-none page-content text-slate-300">
-                {{ .Content }}
-            </div>
-
-            <!-- Technologies Used -->
-            {{ if .Params.technologies }}
-            <div class="mt-12">
-                <h2 class="text-2xl font-bold mb-6 text-white">Technologies Used</h2>
-                <div class="flex flex-wrap gap-2">
-                    {{ range .Params.technologies }}
-                    <span class="bg-brand-500/20 text-brand-400 px-3 py-1 rounded-full text-sm font-medium">{{ . }}</span>
-                    {{ end }}
-                </div>
-            </div>
-            {{ end }}
-        </div>
-
-        <!-- Sidebar -->
-        <div>
-            <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 sticky top-24">
-                <h3 class="text-xl font-bold mb-4 text-white">Key Results</h3>
-                <ul class="space-y-4">
-                    {{ range .Params.results }}
-                    <li class="flex items-start">
-                        <i class="fas fa-check-circle text-brand-400 mr-3 mt-1"></i>
-                        <span class="text-slate-300">{{ . }}</span>
-                    </li>
-                    {{ end }}
-                </ul>
-
-                {{ if .Params.testimonial }}
-                <div class="mt-8 border-t border-slate-700 pt-6">
-                    <h4 class="font-bold mb-4 text-white">Client Testimonial</h4>
-                    <blockquote class="italic text-slate-300 mb-4">
-                        "{{ .Params.testimonial.quote }}"
-                    </blockquote>
-                    <div class="font-medium text-white">{{ .Params.testimonial.name }}</div>
-                    <div class="text-slate-500 text-sm">{{ .Params.testimonial.role }}</div>
-                </div>
-                {{ end }}
-
-                <div class="mt-8 border-t border-slate-700 pt-6">
-                    <h4 class="font-bold mb-4 text-white">Need Similar Results?</h4>
-                    <a href="/contact" class="block w-full bg-brand-600 text-white hover:bg-brand-500 font-bold py-3 px-6 rounded-lg transition-colors text-center">
-                        Contact Us
-                    </a>
-                </div>
-            </div>
-        </div>
+        <h1 class="text-3xl font-bold text-white mb-4">Coming Soon</h1>
+        <p class="text-slate-400 text-lg mb-6">
+            This case study is currently being prepared. Check back soon to see how we've helped enterprise teams transform their testing practices.
+        </p>
+        <a href="/contact" class="inline-flex items-center gap-2 px-6 py-3 bg-brand-600 hover:bg-brand-500 text-white rounded-lg font-semibold transition-colors">
+            Get in Touch
+            <i class="fas fa-arrow-right"></i>
+        </a>
     </div>
-
-    <!-- Related Case Studies -->
-    {{ $currentCaseStudy := . }}
-    {{ $relatedCaseStudies := where (where .Site.RegularPages "Section" "case-studies") "Permalink" "ne" .Permalink | first 3 }}
-    {{ if $relatedCaseStudies }}
-    <div class="mt-16 pt-8 border-t border-slate-700">
-        <h2 class="text-2xl font-bold mb-6 text-white">More Case Studies</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {{ range $relatedCaseStudies }}
-            <div class="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden hover:border-brand-500/50 transition-colors">
-                {{ if .Params.featured_image }}
-                {{ $imgData := dict "src" .Params.featured_image "alt" .Title "class" "w-full h-40 object-cover" }}
-                {{ partial "picture.html" $imgData }}
-                {{ end }}
-                <div class="p-4">
-                    <h3 class="font-bold mb-2 text-white">
-                        <a href="{{ .Permalink }}" class="hover:text-brand-400 transition-colors">{{ .Title }}</a>
-                    </h3>
-                    <div class="text-sm text-slate-400 mb-2">{{ .Params.client_industry }}</div>
-                    <a href="{{ .Permalink }}" class="text-brand-400 text-sm hover:text-brand-300 transition-colors">Read case study →</a>
-                </div>
-            </div>
-            {{ end }}
-        </div>
-    </div>
-    {{ end }}
 </article>
 {{ end }}
