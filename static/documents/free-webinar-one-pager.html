@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing Spring Boot Applications Demystified - Free Webinar</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
+            min-height: 100vh;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #1e293b;
+            border-radius: 16px;
+            padding: 48px;
+            border: 1px solid #334155;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid #334155;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .logo span {
+            color: #22c55e;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        h1 span {
+            color: #22c55e;
+        }
+
+        .tagline {
+            font-size: 18px;
+            color: #94a3b8;
+        }
+
+        .section {
+            margin-bottom: 32px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #22c55e;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .benefit {
+            background: #0f172a;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #334155;
+        }
+
+        .benefit-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .benefit h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .benefit p {
+            font-size: 14px;
+            color: #94a3b8;
+        }
+
+        .topics-list {
+            list-style: none;
+        }
+
+        .topics-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #334155;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .topics-list li:last-child {
+            border-bottom: none;
+        }
+
+        .check {
+            color: #22c55e;
+            font-weight: bold;
+        }
+
+        .format-box {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(34, 197, 94, 0.05) 100%);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 12px;
+            padding: 24px;
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+
+        .format-item {
+            flex: 1;
+        }
+
+        .format-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #22c55e;
+            margin-bottom: 4px;
+        }
+
+        .format-label {
+            font-size: 14px;
+            color: #94a3b8;
+        }
+
+        .contact-section {
+            background: #0f172a;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .contact-section h3 {
+            font-size: 18px;
+            margin-bottom: 16px;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .contact-link {
+            color: #22c55e;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid #334155;
+            text-align: center;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        @media print {
+            body {
+                background: white;
+                color: #1e293b;
+                padding: 20px;
+            }
+
+            .container {
+                background: white;
+                border: none;
+                box-shadow: none;
+            }
+
+            .benefit, .format-box, .contact-section {
+                background: #f8fafc;
+            }
+
+            .tagline, .benefit p, .format-label {
+                color: #64748b;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">Pragma<span>Tech</span></div>
+            <div class="badge">Free Webinar for Your Team</div>
+            <h1>Testing Spring Boot Applications <span>Demystified</span></h1>
+            <p class="tagline">Help your Java Spring Boot team ship quality software faster with confidence</p>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Key Benefits</h2>
+            <div class="benefits-grid">
+                <div class="benefit">
+                    <div class="benefit-icon">&#9889;</div>
+                    <h3>Improved Velocity</h3>
+                    <p>Ship features faster with rapid feedback from your test suite</p>
+                </div>
+                <div class="benefit">
+                    <div class="benefit-icon">&#10004;</div>
+                    <h3>Deployment Confidence</h3>
+                    <p>Deploy to production knowing your tests have your back</p>
+                </div>
+                <div class="benefit">
+                    <div class="benefit-icon">&#128187;</div>
+                    <h3>AI Code Quality</h3>
+                    <p>Ensure AI-generated code meets your quality standards</p>
+                </div>
+                <div class="benefit">
+                    <div class="benefit-icon">&#128200;</div>
+                    <h3>Measurable Results</h3>
+                    <p>Track improvement in coverage and build times</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">What Your Team Will Learn</h2>
+            <ul class="topics-list">
+                <li><span class="check">&#10003;</span> Spring Boot Test Slice ecosystem and when to use each</li>
+                <li><span class="check">&#10003;</span> Integration testing with Testcontainers</li>
+                <li><span class="check">&#10003;</span> Optimizing test execution for faster CI/CD pipelines</li>
+                <li><span class="check">&#10003;</span> Mocking strategies: when to mock vs. use real dependencies</li>
+                <li><span class="check">&#10003;</span> Common testing anti-patterns and how to avoid them</li>
+                <li><span class="check">&#10003;</span> Live Q&A for your team's specific challenges</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Format</h2>
+            <div class="format-box">
+                <div class="format-item">
+                    <div class="format-value">60 min</div>
+                    <div class="format-label">Duration</div>
+                </div>
+                <div class="format-item">
+                    <div class="format-value">Virtual</div>
+                    <div class="format-label">Meet / Teams / Zoom</div>
+                </div>
+                <div class="format-item">
+                    <div class="format-value">FREE</div>
+                    <div class="format-label">No cost, no obligation</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-section">
+            <h3>Schedule Your Free Session</h3>
+            <div class="contact-links">
+                <a href="https://www.linkedin.com/in/rieckpil" class="contact-link">LinkedIn: /in/rieckpil</a>
+                <span>|</span>
+                <a href="https://koalendar.com/e/pragmatech-introduction-call" class="contact-link">koalendar.com/e/pragmatech-introduction-call</a>
+                <span>|</span>
+                <a href="https://pragmatech.digital/contact" class="contact-link">pragmatech.digital/contact</a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>PragmaTech GmbH | Build & Ship Software with Confidence</p>
+            <p>pragmatech.digital</p>
+        </div>
+    </div>
+</body>
+</html>
