@@ -322,3 +322,46 @@
 .animate-pulse-slow {
     animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
+
+/* Velocity Blueprint - Range Slider */
+.vb-range-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 6px;
+    border-radius: 3px;
+    background: #334155;
+    outline: none;
+    cursor: pointer;
+}
+
+.vb-range-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #d97706;
+    cursor: pointer;
+    border: 2px solid #fbbf24;
+    box-shadow: 0 0 6px rgba(217, 119, 6, 0.4);
+}
+
+.vb-range-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #d97706;
+    cursor: pointer;
+    border: 2px solid #fbbf24;
+    box-shadow: 0 0 6px rgba(217, 119, 6, 0.4);
+}
+
+.vb-range-slider::-webkit-slider-thumb:hover {
+    background: #b45309;
+    box-shadow: 0 0 10px rgba(217, 119, 6, 0.6);
+}
+
+.vb-range-slider::-moz-range-thumb:hover {
+    background: #b45309;
+    box-shadow: 0 0 10px rgba(217, 119, 6, 0.6);
+}

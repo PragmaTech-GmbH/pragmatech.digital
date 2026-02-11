@@ -10,6 +10,8 @@ params:
   defaultShareImage: "/images/pragmatech-social-banner.png"
   socialTitle: "PragmaTech GmbH - Build & Ship Software w/ Confidence"
   bannerText: "Our new open-source project [Spring Test Profiler](/products/spring-test-profiler/) is available! Try it now to speed up your Spring Boot builds."
+  mailerliteAccountId: ""  # Fill after Mailerlite account setup
+  mailerliteFormId: ""     # Fill after creating embedded form
   emails:
     contact: "info@pragmatech.digital"
     info: "info@pragmatech.digital"
