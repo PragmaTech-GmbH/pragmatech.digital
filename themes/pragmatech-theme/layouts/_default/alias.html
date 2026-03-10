@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{{ .Page.Title }}</title>
+    <meta http-equiv="refresh" content="0; url={{ .Permalink }}">
+    <link rel="canonical" href="{{ .Permalink }}">
+
+    {{ $shareImage := .Page.Params.share_image | default "/images/pragmatech-social-banner.png" }}
+    {{ $imagePrefix := strings.TrimSuffix "/" .Page.Site.BaseURL }}
+    {{ $fullImagePath := printf "%s%s" $imagePrefix $shareImage }}
+    {{ $desc := .Page.Description | default .Page.Site.Params.description }}
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ .Permalink }}">
+    <meta property="og:title" content="{{ .Page.Title }}">
+    <meta property="og:description" content="{{ $desc }}">
+    <meta property="og:image" content="{{ $fullImagePath }}">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="{{ .Permalink }}">
+    <meta name="twitter:title" content="{{ .Page.Title }}">
+    <meta name="twitter:description" content="{{ $desc }}">
+    <meta name="twitter:image" content="{{ $fullImagePath }}">
+</head>
+<body>
+    <a href="{{ .Permalink }}">Redirecting&hellip;</a>
+</body>
+</html>
