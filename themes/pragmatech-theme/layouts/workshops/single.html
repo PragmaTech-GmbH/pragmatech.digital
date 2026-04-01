@@ -106,19 +106,13 @@
             </div>
         </div>
 
-        <!-- Testimonials if available -->
-        {{ if .Params.testimonials }}
+        <!-- Testimonials -->
+        {{ if index .Site.Data.testimonials "workshop-comments" }}
         <div class="mb-20 mt-16">
             <h2 class="text-2xl font-bold mb-6 text-white">What Participants Say</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {{ range .Params.testimonials }}
-                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
-                    <blockquote class="text-slate-300 mb-4">
-                        "{{ .quote }}"
-                    </blockquote>
-                    <div class="font-medium text-white">{{ .name }}</div>
-                    <div class="text-slate-500 text-sm">{{ .role }}, {{ .company }}</div>
-                </div>
+                {{ range index .Site.Data.testimonials "workshop-comments" }}
+                {{ partial "testimonial-card.html" (dict "testimonial" . "style" "default" "showStars" false) }}
                 {{ end }}
             </div>
         </div>

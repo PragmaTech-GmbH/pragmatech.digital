@@ -1,8 +1,8 @@
 ---
 title: "JCON Europe: Testing Spring Boot Applications Demystified"
 date: 2026-01-16T10:00:00+02:00
-startDate: 2026-05-12T14:00:00+02:00
-endDate: 2026-05-12T15:00:00+02:00
+startDate: 2026-04-23T16:00:00+02:00
+endDate: 2026-04-23T16:45:00+02:00
 location: "Cologne, Germany"
 eventType: "talk"
 registration: "https://schedule.jcon.one/2026/session/1038420"
@@ -26,7 +26,7 @@ JCON Europe is one of the premier Java conferences in Europe. In this session, w
 
 ## Location
 
-The conference takes place at the Gürzenich in Cologne, Germany - a historic event venue in the heart of the city.
+The session takes place at Cinema 5 in the Gürzenich, Cologne, Germany.
 
 ## Registration
 

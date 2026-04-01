@@ -402,7 +402,8 @@
     </div>
 </section>
 
-{{/* Companies Who've Hosted This Webinar - COMMENTED OUT until feedback is collected
+{{ $webinarClients := index .Site.Data "webinar-clients" }}
+{{ if $webinarClients }}
 <section class="py-16 bg-slate-900">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
@@ -412,47 +413,16 @@
             </p>
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center justify-items-center max-w-5xl mx-auto">
+        <div class="flex flex-wrap justify-center gap-6 sm:gap-8 items-center max-w-5xl mx-auto">
+            {{ range $webinarClients }}
             <div class="grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                <img src="{{ "images/webinar-clients/company-1.png" | relURL }}" alt="Company 1" class="h-12 w-auto hidden" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                <div class="h-12 w-28 bg-slate-800 rounded-lg border border-slate-700 flex items-center justify-center">
-                    <span class="text-slate-500 text-xs">Logo 1</span>
-                </div>
+                {{ partial "client-logo" (dict "filename" .logo "name" .name) }}
             </div>
-            <div class="grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                <img src="{{ "images/webinar-clients/company-2.png" | relURL }}" alt="Company 2" class="h-12 w-auto hidden" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                <div class="h-12 w-28 bg-slate-800 rounded-lg border border-slate-700 flex items-center justify-center">
-                    <span class="text-slate-500 text-xs">Logo 2</span>
-                </div>
-            </div>
-            <div class="grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                <img src="{{ "images/webinar-clients/company-3.png" | relURL }}" alt="Company 3" class="h-12 w-auto hidden" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                <div class="h-12 w-28 bg-slate-800 rounded-lg border border-slate-700 flex items-center justify-center">
-                    <span class="text-slate-500 text-xs">Logo 3</span>
-                </div>
-            </div>
-            <div class="grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                <img src="{{ "images/webinar-clients/company-4.png" | relURL }}" alt="Company 4" class="h-12 w-auto hidden" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                <div class="h-12 w-28 bg-slate-800 rounded-lg border border-slate-700 flex items-center justify-center">
-                    <span class="text-slate-500 text-xs">Logo 4</span>
-                </div>
-            </div>
-            <div class="grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                <img src="{{ "images/webinar-clients/company-5.png" | relURL }}" alt="Company 5" class="h-12 w-auto hidden" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                <div class="h-12 w-28 bg-slate-800 rounded-lg border border-slate-700 flex items-center justify-center">
-                    <span class="text-slate-500 text-xs">Logo 5</span>
-                </div>
-            </div>
-            <div class="grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                <img src="{{ "images/webinar-clients/company-6.png" | relURL }}" alt="Company 6" class="h-12 w-auto hidden" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                <div class="h-12 w-28 bg-slate-800 rounded-lg border border-slate-700 flex items-center justify-center">
-                    <span class="text-slate-500 text-xs">Logo 6</span>
-                </div>
-            </div>
+            {{ end }}
         </div>
     </div>
 </section>
-*/}}
+{{ end }}
 
 <!-- AI Code Concerns Section -->
 <section class="py-16 bg-gradient-to-r from-brand-600/20 to-brand-500/10 border-y border-brand-500/20">
@@ -538,21 +508,27 @@
     </div>
 </section>
 
-{{/* Testimonials Section - COMMENTED OUT until feedback is collected
+{{ $testimonials := index .Site.Data.testimonials "webinar-comments" }}
+{{ if not $testimonials }}
+    {{ $testimonials = index .Site.Data.testimonials "workshop-comments" }}
+{{ end }}
+{{ if $testimonials }}
 <section class="py-16 bg-slate-800/50">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
             <h2 class="text-3xl font-bold mb-4 text-white">What Teams Are Saying</h2>
             <p class="text-xl text-slate-400 max-w-2xl mx-auto">
-                Feedback from engineering teams who've attended the webinar
+                Feedback from engineering teams who've attended our sessions
             </p>
         </div>
         <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            Testimonial cards here...
+            {{ range first 3 $testimonials }}
+            {{ partial "testimonial-card.html" (dict "testimonial" . "style" "compact" "showStars" true) }}
+            {{ end }}
         </div>
     </div>
 </section>
-*/}}
+{{ end }}
 
 <!-- Perfect For Section -->
 <section class="py-16 bg-slate-900">
@@ -646,7 +622,7 @@
                     </svg>
                     Send LinkedIn DM
                 </a>
-                <a href="https://koalendar.com/e/pragmatech-introduction-call" target="_blank" class="inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-500 text-white px-6 py-4 rounded-lg font-bold transition-all shadow-lg">
+                <a href="https://cal.eu/pragmatech/pragmatech-introduction-call" target="_blank" class="inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-500 text-white px-6 py-4 rounded-lg font-bold transition-all shadow-lg">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>

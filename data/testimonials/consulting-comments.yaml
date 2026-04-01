@@ -1,0 +1,27 @@
+- text: >
+    PragmaTech's expertise revolutionized our deployment confidence by
+    implementing feature toggling and enhanced CI/CD pipelines for our Java
+    applications. Their integration testing strategy caught critical issues
+    before production, enabling safer, more frequent deployments. Our team
+    now releases with greater security and speed thanks to their practical
+    workshops and guidance.
+  person: "Shayne Clausson"
+  company: "Extenda Retail"
+  position: "VP Engineering"
+  timestamp: "2025-01-01"
+  linkedin: "https://www.linkedin.com/in/shayneclausson"
+  logo: "extenda.webp"
+
+- text: >
+    From the moment we engaged with PragmaTech, it was evident that their
+    team was committed to delivering excellence. The implementation of their
+    software has significantly enhanced our acceptance test suite, streamlining
+    processes, and boosting efficiency. What used to be a cumbersome and
+    time-consuming task has now become seamless and effortless, thanks to
+    PragmaTech's innovative approach.
+  person: "Michael Wittig"
+  company: "Widdix GmbH"
+  position: "CEO"
+  timestamp: "2025-01-01"
+  linkedin: "https://www.linkedin.com/in/michael-wittig"
+  logo: "widdix.png"

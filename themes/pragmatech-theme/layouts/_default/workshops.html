@@ -106,32 +106,8 @@
         </div>
 
         <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {{ range .Params.testimonials }}
-            <div class="bg-slate-900 p-8 rounded-xl border border-slate-700">
-                <div class="flex items-center mb-6">
-                    <div class="text-yellow-400 flex">
-                        {{ range seq 5 }}
-                        <i class="fas fa-star"></i>
-                        {{ end }}
-                    </div>
-                </div>
-                <blockquote class="text-slate-300 mb-6">
-                    "{{ .quote | safeHTML }}"
-                </blockquote>
-                <div>
-                    <div class="font-medium text-white">
-                        {{ if .linkedin }}
-                        <a href="{{ .linkedin }}" target="_blank" rel="noopener noreferrer" class="text-brand-400 hover:text-brand-300 transition-colors">
-                            {{ .name }}
-                            <i class="fab fa-linkedin ml-1 text-sm"></i>
-                        </a>
-                        {{ else }}
-                        {{ .name }}
-                        {{ end }}
-                    </div>
-                    <div class="text-slate-500 text-sm">{{ .role }}, {{ .company }}</div>
-                </div>
-            </div>
+            {{ range index .Site.Data.testimonials "workshop-comments" }}
+            {{ partial "testimonial-card.html" (dict "testimonial" . "style" "default" "showStars" true) }}
             {{ end }}
         </div>
     </div>
