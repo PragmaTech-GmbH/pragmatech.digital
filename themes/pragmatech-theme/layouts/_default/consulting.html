@@ -131,7 +131,7 @@
 </section>
 
 <!-- Testimonials -->
-{{ if .Params.testimonials }}
+{{ if index .Site.Data.testimonials "consulting-comments" }}
 <section class="py-16 bg-slate-900">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
@@ -142,23 +142,8 @@
         </div>
 
         <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {{ range .Params.testimonials }}
-            <div class="bg-slate-800 p-8 rounded-xl border border-slate-700">
-                <div class="flex items-center mb-6">
-                    <div class="text-yellow-400 flex">
-                        {{ range seq 5 }}
-                        <i class="fas fa-star"></i>
-                        {{ end }}
-                    </div>
-                </div>
-                <blockquote class="text-slate-300 mb-6">
-                    "{{ .quote }}"
-                </blockquote>
-                <div>
-                    <div class="font-medium text-white">{{ .name }}</div>
-                    <div class="text-slate-500 text-sm">{{ .role }}, {{ .company }}</div>
-                </div>
-            </div>
+            {{ range index .Site.Data.testimonials "consulting-comments" }}
+            {{ partial "testimonial-card.html" (dict "testimonial" . "style" "default" "showStars" true) }}
             {{ end }}
         </div>
     </div>

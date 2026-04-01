@@ -1,0 +1,108 @@
+{{- $t := .testimonial -}}
+{{- $style := .style | default "default" -}}
+{{- $showStars := .showStars | default true -}}
+{{- $showLogo := .showLogo | default false -}}
+{{- $text := $t.text | replaceRE "\n\n" "<br><br>" | safeHTML -}}
+
+{{ if eq $style "premium" }}
+{{/* Premium style: decorative quote, larger card, company logo footer */}}
+<div class="relative">
+    <div class="absolute -top-4 -left-2 text-6xl text-brand-500 font-serif opacity-30">"</div>
+
+    <div class="relative bg-slate-900 rounded-2xl p-8 border border-slate-700">
+        <blockquote class="text-lg text-slate-300 mb-6">
+            {{ $text }}
+        </blockquote>
+
+        <div class="flex items-center gap-4">
+            {{ if $t.picture }}
+            <img src="{{ $t.picture }}" alt="{{ $t.person }}" class="w-12 h-12 rounded-full object-cover">
+            {{ end }}
+            <div>
+                <div class="font-semibold text-white">
+                    {{ if $t.linkedin }}
+                    <a href="{{ $t.linkedin }}" target="_blank" rel="noopener noreferrer" class="text-brand-400 hover:text-brand-300 transition-colors">
+                        {{ $t.person }}
+                        <i class="fab fa-linkedin ml-1 text-sm"></i>
+                    </a>
+                    {{ else }}
+                    {{ $t.person }}
+                    {{ end }}
+                </div>
+                <div class="text-slate-500 text-sm">{{ $t.position }}, {{ $t.company }}</div>
+            </div>
+        </div>
+
+        {{ if and $showLogo $t.logo }}
+        <div class="mt-6 pt-6 border-t border-slate-800">
+            <img src="/images/clients/{{ $t.logo }}" class="h-6 grayscale opacity-50" alt="{{ $t.company }}" />
+        </div>
+        {{ end }}
+    </div>
+</div>
+
+{{ else if eq $style "compact" }}
+{{/* Compact style: for webinar page, tighter spacing */}}
+<div class="bg-slate-800 p-5 rounded-xl border border-slate-700">
+    {{ if $showStars }}
+    <div class="flex items-center mb-3">
+        <div class="text-yellow-400 flex">
+            {{ range seq 5 }}<i class="fas fa-star text-sm"></i>{{ end }}
+        </div>
+    </div>
+    {{ end }}
+    <blockquote class="text-slate-300 mb-4 text-sm">
+        "{{ $text }}"
+    </blockquote>
+    <div>
+        <div class="font-medium text-white text-sm">
+            {{ if $t.linkedin }}
+            <a href="{{ $t.linkedin }}" target="_blank" rel="noopener noreferrer" class="text-brand-400 hover:text-brand-300 transition-colors">
+                {{ $t.person }}
+                <i class="fab fa-linkedin ml-1 text-xs"></i>
+            </a>
+            {{ else }}
+            {{ $t.person }}
+            {{ end }}
+        </div>
+        <div class="text-slate-500 text-xs">{{ $t.position }}, {{ $t.company }}</div>
+    </div>
+</div>
+
+{{ else }}
+{{/* Default style: standard card with stars */}}
+<div class="bg-slate-800 p-6 rounded-xl border border-slate-700">
+    {{ if $showStars }}
+    <div class="flex items-center mb-4">
+        <div class="text-yellow-400 flex">
+            {{ range seq 5 }}<i class="fas fa-star"></i>{{ end }}
+        </div>
+    </div>
+    {{ end }}
+    <blockquote class="text-slate-300 mb-6">
+        "{{ $text }}"
+    </blockquote>
+    <div>
+        {{ if $t.picture }}
+        <div class="flex items-center gap-3">
+            <img src="{{ $t.picture }}" alt="{{ $t.person }}" class="w-10 h-10 rounded-full object-cover">
+            <div>
+        {{ end }}
+        <div class="font-medium text-white">
+            {{ if $t.linkedin }}
+            <a href="{{ $t.linkedin }}" target="_blank" rel="noopener noreferrer" class="text-brand-400 hover:text-brand-300 transition-colors">
+                {{ $t.person }}
+                <i class="fab fa-linkedin ml-1 text-sm"></i>
+            </a>
+            {{ else }}
+            {{ $t.person }}
+            {{ end }}
+        </div>
+        <div class="text-slate-500 text-sm">{{ $t.position }}, {{ $t.company }}</div>
+        {{ if $t.picture }}
+            </div>
+        </div>
+        {{ end }}
+    </div>
+</div>
+{{ end }}

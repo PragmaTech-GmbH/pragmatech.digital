@@ -5,7 +5,7 @@ params:
   description: "Cut through testing complexity and slow builds for faster feedback and fearless shipping."
   matomoURL: "https://analytics.rieckpil.de/"
   matomoSiteID: "3"
-  scheduleCallUrl: "https://koalendar.com/e/pragmatech-introduction-call"
+  scheduleCallUrl: "https://cal.eu/pragmatech/pragmatech-introduction-call"
   newsletterUrl: "https://www.linkedin.com/newsletters/7161721575862386688/"
   defaultShareImage: "/images/pragmatech-social-banner.png"
   socialTitle: "PragmaTech GmbH - Build & Ship Software w/ Confidence"
@@ -42,6 +42,8 @@ module:
   mounts:
     - source: 'assets'
       target: 'assets'
+    - source: 'data'
+      target: 'data'
     - disableWatch: true
       source: 'hugo_stats.json'
       target: 'assets/notwatching/hugo_stats.json'

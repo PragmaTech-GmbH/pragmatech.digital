@@ -1,0 +1,20 @@
+- name: "REWE Group"
+  logo: "rewegroup.png"
+
+- name: "Nürnberger Versicherung"
+  logo: "nuernberger.png"
+
+- name: "Infinum"
+  logo: "infinum.png"
+
+- name: "DATEV"
+  logo: "datev.png"
+
+- name: "Adevinta"
+  logo: "adevinta.png"
+
+- name: "Adesso"
+  logo: "adesso.png"
+
+- name: "Schaeffler"
+  logo: "schaeffler.png"

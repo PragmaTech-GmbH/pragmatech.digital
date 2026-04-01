@@ -7,6 +7,7 @@ module.exports = {
   theme: {
     fontFamily: {
       'sans': ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+      'heading': ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],
       'serif': ['ui-serif', 'Georgia', 'Cambria', 'Times New Roman', 'Times', 'serif'],
       'mono': ['Source Code Pro', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
     },
@@ -28,16 +29,16 @@ module.exports = {
           css: {
             fontFamily: ['Inter', 'system-ui', 'sans-serif'].join(','),
             h1: {
-              fontFamily: ['Inter', 'system-ui', 'sans-serif'].join(','),
+              fontFamily: ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'].join(','),
             },
             h2: {
-              fontFamily: ['Inter', 'system-ui', 'sans-serif'].join(','),
+              fontFamily: ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'].join(','),
             },
             h3: {
-              fontFamily: ['Inter', 'system-ui', 'sans-serif'].join(','),
+              fontFamily: ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'].join(','),
             },
             h4: {
-              fontFamily: ['Inter', 'system-ui', 'sans-serif'].join(','),
+              fontFamily: ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'].join(','),
             },
             code: {
               fontFamily: ['Source Code Pro', 'monospace'].join(','),
