@@ -3,3 +3,9 @@
 
 - name: "Nürnberger Versicherung"
   logo: "nuernberger.png"
+
+- name: "Infinum"
+  logo: "infinum.png"
+
+- name: "DATEV"
+  logo: "datev.png"
