@@ -5,49 +5,60 @@
     <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-brand-500/10 to-transparent"></div>
 
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="max-w-4xl mx-auto text-center">
-            <div class="inline-flex items-center gap-2 bg-red-500/15 text-red-400 px-4 py-2 rounded-full text-sm font-medium mb-6">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                </svg>
-                Your team uses AI to write code. But who tests it?
+        <div class="max-w-4xl mx-auto">
+            <!-- Pre-header -->
+            <div class="text-center mb-8">
+                <span class="inline-block text-xs font-bold tracking-widest uppercase text-brand-400 mb-6">
+                    The Safety Net for AI-Powered Spring Boot Teams
+                </span>
+
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+                    AI Writes Code in Seconds. <br class="hidden sm:block"><span class="text-red-400">Your Tests Take Hours.</span>
+                </h1>
+
+                <p class="text-xl text-slate-300 max-w-3xl mx-auto">
+                    Claude Code, Copilot and Cursor are shipping more code than ever. We ensure it doesn't break your production. Specialized testing strategy for Java teams to eliminate regressions and kill AI slop for good.
+                </p>
             </div>
 
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-                AI Writes Code Faster. <br class="hidden sm:block">Without Meaningful and Fast Tests, <br class="hidden sm:block">It Just Creates <span class="text-red-400">Bugs Faster.</span>
-            </h1>
-
-            <p class="text-xl text-slate-300 mb-4 max-w-3xl mx-auto">
-                Copilot, Cursor, Claude - your devs ship more code than ever. But more code without a fast, reliable test suite doesn't mean more productivity. It means more regressions, more rollbacks, more weekend firefighting.
-            </p>
-
-            <p class="text-lg text-brand-400 font-semibold mb-10 max-w-2xl mx-auto">
-                Learn how to build a safety net that keeps up with AI-speed development - specifically for Spring Boot & Java teams.
-            </p>
-
-            <!-- Pain point bullets -->
-            <div class="flex flex-wrap justify-center gap-x-8 gap-y-3 mb-10 text-sm text-slate-400">
-                <div class="flex items-center gap-2">
-                    <svg class="w-4 h-4 text-red-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                    <span>Slow CI pipelines killing velocity</span>
+            <!-- Value props with icons -->
+            <div class="grid sm:grid-cols-3 gap-6 mb-12 max-w-3xl mx-auto">
+                <div class="flex items-start gap-3">
+                    <div class="flex-shrink-0 w-10 h-10 bg-brand-500/15 rounded-lg flex items-center justify-center">
+                        <svg class="w-5 h-5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="text-white font-semibold text-sm">Kill the Lag</div>
+                        <div class="text-slate-400 text-sm">Optimize CI pipelines for AI-speed velocity</div>
+                    </div>
                 </div>
-                <div class="flex items-center gap-2">
-                    <svg class="w-4 h-4 text-red-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                    <span>Flaky tests nobody trusts</span>
+                <div class="flex items-start gap-3">
+                    <div class="flex-shrink-0 w-10 h-10 bg-brand-500/15 rounded-lg flex items-center justify-center">
+                        <svg class="w-5 h-5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="text-white font-semibold text-sm">Restore Trust</div>
+                        <div class="text-slate-400 text-sm">Eliminate flaky tests devs have learned to ignore</div>
+                    </div>
                 </div>
-                <div class="flex items-center gap-2">
-                    <svg class="w-4 h-4 text-red-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                    <span>AI-generated slop slipping into production</span>
+                <div class="flex items-start gap-3">
+                    <div class="flex-shrink-0 w-10 h-10 bg-brand-500/15 rounded-lg flex items-center justify-center">
+                        <svg class="w-5 h-5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="text-white font-semibold text-sm">Protect Production</div>
+                        <div class="text-slate-400 text-sm">Stop AI-generated bugs before they reach the user</div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Primary CTA Buttons -->
+            <!-- CTAs -->
             <div class="flex flex-col sm:flex-row gap-4 justify-center mb-6">
                 <a href="#schedule-webinar" class="inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-500 text-white px-8 py-4 rounded-lg font-bold transition-all shadow-lg text-lg">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -63,7 +74,7 @@
                 </a>
             </div>
 
-            <p class="text-slate-500 text-sm">Free 60-minute session. No cost, no obligation. Virtual or on-site.</p>
+            <p class="text-slate-500 text-sm text-center">Free 60-minute webinar. No cost, no obligation. Virtual or on-site.</p>
         </div>
     </div>
 </section>
