@@ -9,3 +9,12 @@
 
 - name: "DATEV"
   logo: "datev.png"
+
+- name: "Adevinta"
+  logo: "adevinta.png"
+
+- name: "Adesso"
+  logo: "adesso.png"
+
+- name: "Schaeffler"
+  logo: "schaeffler.png"
