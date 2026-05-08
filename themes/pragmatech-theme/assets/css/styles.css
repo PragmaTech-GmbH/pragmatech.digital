@@ -378,13 +378,49 @@ html[data-variant-a-theme="light"] [data-variant="a"] .bg-slate-800 { background
 html[data-variant-a-theme="light"] [data-variant="a"] .bg-slate-800\/80 { background-color: #f8fafc !important; }
 html[data-variant-a-theme="light"] [data-variant="a"] .bg-slate-800\/40 { background-color: #f8fafc !important; }
 
-/* Hero gradient / authority gradient */
-html[data-variant-a-theme="light"] [data-variant="a"] .from-slate-900 { --tw-gradient-from: #ffffff var(--tw-gradient-from-position) !important; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important; }
-html[data-variant-a-theme="light"] [data-variant="a"] .via-slate-900\/50 { --tw-gradient-via: rgba(241, 245, 249, 0.5) !important; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to) !important; }
-html[data-variant-a-theme="light"] [data-variant="a"] .via-slate-900 { --tw-gradient-via: #ffffff !important; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to) !important; }
-html[data-variant-a-theme="light"] [data-variant="a"] .to-brand-900\/20 { --tw-gradient-to: rgba(14, 165, 233, 0.08) !important; }
-html[data-variant-a-theme="light"] [data-variant="a"] .to-brand-900\/30 { --tw-gradient-to: rgba(14, 165, 233, 0.10) !important; }
-html[data-variant-a-theme="light"] [data-variant="a"] .from-slate-800\/80 { --tw-gradient-from: #f8fafc !important; }
+/* Section-level gradient backgrounds — flat white in light theme (no gradient). */
+/* Authority section uses .bg-gradient-to-br with slate-900 stops on the <section>. */
+html[data-variant-a-theme="light"] [data-variant="a"] section.bg-gradient-to-br {
+    background-image: none !important;
+    background-color: #ffffff !important;
+}
+
+/* Hero overlay <div> uses .bg-gradient-to-br.from-slate-900 — fade to a barely-there brand tint. */
+html[data-variant-a-theme="light"] [data-variant="a"] div.bg-gradient-to-br.from-slate-900 {
+    background-image: linear-gradient(to bottom right, transparent, transparent, rgba(14, 165, 233, 0.06)) !important;
+}
+
+/* Offer pillar cards: .bg-gradient-to-br.from-slate-800/80.to-slate-900 → flat light card. */
+html[data-variant-a-theme="light"] [data-variant="a"] .bg-gradient-to-br.from-slate-800\/80 {
+    background-image: linear-gradient(to bottom right, #ffffff, #f1f5f9) !important;
+    border-color: rgba(14, 165, 233, 0.55) !important;
+    box-shadow: 0 14px 34px -16px rgba(15, 23, 42, 0.18);
+}
+
+/* Benefits numerals (text-brand-400/80) — boost contrast on white. */
+html[data-variant-a-theme="light"] [data-variant="a"] .text-brand-400\/80 {
+    color: rgba(2, 132, 199, 0.95) !important;
+}
+
+/* Authority bullets sit on a light gradient — give the row a subtle separator card on light theme. */
+html[data-variant-a-theme="light"] [data-variant="a"] section.bg-gradient-to-br ul {
+    background-color: rgba(255, 255, 255, 0.6);
+    border: 1px solid #e2e8f0;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    backdrop-filter: blur(4px);
+}
+
+/* Photo border on light theme — softer slate tone instead of dark slate-700. */
+html[data-variant-a-theme="light"] [data-variant="a"] img.border-slate-700,
+html[data-variant-a-theme="light"] [data-variant="a"] picture.border-slate-700 {
+    border-color: #cbd5e1 !important;
+}
+
+/* KPI gradient numbers stay (brand→brand text) but add bottom border so the strip frames cleanly. */
+html[data-variant-a-theme="light"] [data-variant="a"] .grid.grid-cols-2.lg\:grid-cols-5.pt-10 {
+    border-top-color: #cbd5e1 !important;
+}
 
 /* Terminal-style pain/code panels — invert frame, keep dark inside */
 html[data-variant-a-theme="light"] [data-variant="a"] .bg-\[\#0a0e16\] {
