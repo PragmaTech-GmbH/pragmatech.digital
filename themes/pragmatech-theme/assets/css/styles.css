@@ -327,3 +327,104 @@
 .animate-pulse-slow {
     animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
+
+/* ----------------------------------------------------------- */
+/* Homepage variant toggle — show only the active variant.     */
+/* Default to variant A on first paint (no localStorage yet).  */
+/* ----------------------------------------------------------- */
+.variant-section { display: none; }
+html:not([data-active-variant]) [data-variant="a"],
+html[data-active-variant="a"] [data-variant="a"],
+html[data-active-variant="b"] [data-variant="b"],
+html[data-active-variant="c"] [data-variant="c"] {
+    display: block;
+}
+
+/* Active toggle button styling */
+.variant-toggle-btn--active {
+    background-color: var(--color-brand-600);
+    color: #ffffff !important;
+}
+.variant-toggle-btn--active:hover {
+    background-color: var(--color-brand-500);
+}
+
+/* Active theme toggle button */
+.theme-toggle-btn--active {
+    background-color: var(--color-brand-600);
+    color: #ffffff !important;
+}
+.theme-toggle-btn--active:hover {
+    background-color: var(--color-brand-500);
+}
+
+/* ----------------------------------------------------------- */
+/* Variant A — Light Theme overrides                           */
+/* Activated by html[data-variant-a-theme="light"] on home.    */
+/* Scoped to [data-variant="a"] so B/C are never affected.     */
+/* ----------------------------------------------------------- */
+html[data-variant-a-theme="light"] [data-variant="a"] .hero-pattern {
+    background-color: #f8fafc;
+    background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+}
+
+/* Section/page surfaces */
+html[data-variant-a-theme="light"] [data-variant="a"] .bg-slate-950 { background-color: #f1f5f9 !important; }
+html[data-variant-a-theme="light"] [data-variant="a"] .bg-slate-900 { background-color: #ffffff !important; }
+html[data-variant-a-theme="light"] [data-variant="a"] .bg-slate-900\/80 { background-color: rgba(255, 255, 255, 0.92) !important; }
+html[data-variant-a-theme="light"] [data-variant="a"] .bg-slate-900\/60 { background-color: #f8fafc !important; }
+html[data-variant-a-theme="light"] [data-variant="a"] .bg-slate-900\/50 { background-color: #f8fafc !important; }
+html[data-variant-a-theme="light"] [data-variant="a"] .bg-slate-800 { background-color: #f1f5f9 !important; }
+html[data-variant-a-theme="light"] [data-variant="a"] .bg-slate-800\/80 { background-color: #f8fafc !important; }
+html[data-variant-a-theme="light"] [data-variant="a"] .bg-slate-800\/40 { background-color: #f8fafc !important; }
+
+/* Hero gradient / authority gradient */
+html[data-variant-a-theme="light"] [data-variant="a"] .from-slate-900 { --tw-gradient-from: #ffffff var(--tw-gradient-from-position) !important; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important; }
+html[data-variant-a-theme="light"] [data-variant="a"] .via-slate-900\/50 { --tw-gradient-via: rgba(241, 245, 249, 0.5) !important; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to) !important; }
+html[data-variant-a-theme="light"] [data-variant="a"] .via-slate-900 { --tw-gradient-via: #ffffff !important; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to) !important; }
+html[data-variant-a-theme="light"] [data-variant="a"] .to-brand-900\/20 { --tw-gradient-to: rgba(14, 165, 233, 0.08) !important; }
+html[data-variant-a-theme="light"] [data-variant="a"] .to-brand-900\/30 { --tw-gradient-to: rgba(14, 165, 233, 0.10) !important; }
+html[data-variant-a-theme="light"] [data-variant="a"] .from-slate-800\/80 { --tw-gradient-from: #f8fafc !important; }
+
+/* Terminal-style pain/code panels — invert frame, keep dark inside */
+html[data-variant-a-theme="light"] [data-variant="a"] .bg-\[\#0a0e16\] {
+    background-color: #0f172a !important;
+    color: #e2e8f0;
+}
+
+/* Borders */
+html[data-variant-a-theme="light"] [data-variant="a"] .border-slate-800 { border-color: #e2e8f0 !important; }
+html[data-variant-a-theme="light"] [data-variant="a"] .border-slate-700 { border-color: #cbd5e1 !important; }
+html[data-variant-a-theme="light"] [data-variant="a"] .border-slate-700\/60 { border-color: #e2e8f0 !important; }
+html[data-variant-a-theme="light"] [data-variant="a"] .border-slate-700\/50 { border-color: #e2e8f0 !important; }
+html[data-variant-a-theme="light"] [data-variant="a"] .border-slate-800\/60 { border-color: #f1f5f9 !important; }
+
+/* Borders inside the inverted terminal panels — keep dark */
+html[data-variant-a-theme="light"] [data-variant="a"] .bg-\[\#0a0e16\] .border-slate-800 { border-color: #1e293b !important; }
+
+/* Text */
+html[data-variant-a-theme="light"] [data-variant="a"] .text-white { color: #0f172a !important; }
+html[data-variant-a-theme="light"] [data-variant="a"] .text-slate-200 { color: #1e293b !important; }
+html[data-variant-a-theme="light"] [data-variant="a"] .text-slate-300 { color: #334155 !important; }
+html[data-variant-a-theme="light"] [data-variant="a"] .text-slate-400 { color: #475569 !important; }
+html[data-variant-a-theme="light"] [data-variant="a"] .text-slate-500 { color: #64748b !important; }
+html[data-variant-a-theme="light"] [data-variant="a"] .text-slate-600 { color: #94a3b8 !important; }
+
+/* Text inside the inverted terminal panels — keep light */
+html[data-variant-a-theme="light"] [data-variant="a"] .bg-\[\#0a0e16\] .text-white { color: #ffffff !important; }
+html[data-variant-a-theme="light"] [data-variant="a"] .bg-\[\#0a0e16\] .text-slate-300 { color: #cbd5e1 !important; }
+html[data-variant-a-theme="light"] [data-variant="a"] .bg-\[\#0a0e16\] .text-slate-400 { color: #94a3b8 !important; }
+html[data-variant-a-theme="light"] [data-variant="a"] .bg-\[\#0a0e16\] .text-slate-500 { color: #64748b !important; }
+html[data-variant-a-theme="light"] [data-variant="a"] .bg-\[\#0a0e16\] .text-slate-600 { color: #475569 !important; }
+
+/* Gauge track (uses text-slate-800 as stroke) — switch to a visible light grey */
+html[data-variant-a-theme="light"] [data-variant="a"] svg .text-slate-800 { color: #e2e8f0 !important; }
+
+/* Big benefit numerals (text-slate-800) — soften so they're still subtle on white */
+html[data-variant-a-theme="light"] [data-variant="a"] .text-slate-800:not(svg .text-slate-800) { color: #e2e8f0 !important; }
+
+/* Body link/button shadow contrast on light bg */
+html[data-variant-a-theme="light"] [data-variant="a"] .shadow-2xl { box-shadow: 0 18px 40px -10px rgba(15, 23, 42, 0.18); }
+
+/* Logo trust strip looks better unmuted on light */
+html[data-variant-a-theme="light"] [data-variant="a"] img[loading="lazy"] { mix-blend-mode: multiply; }

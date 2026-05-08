@@ -1,0 +1,145 @@
+# Single source of truth for the homepage redesign.
+# All three variants (A/B/C) read from this file — only layout differs.
+
+hero:
+  preHeadline: "For Spring Boot Teams"
+  headlineLead: "Guaranteed Developer Productivity Boost:"
+  headlineAccent: "50% Faster Spring Boot Builds in 30 Days"
+  subheadline: "Stop letting AI-generated code turn your team into exhausted auditors. Get blazingly fast feedback loops to deploy with zero fear."
+  primaryCTA: "Get Your Free Audit"
+  secondaryCTA: "See the Methodology"
+  guaranteeNote: "100% risk-free • 30-day guarantee • Money-back if we miss"
+  trustLabel: "Trusted by developers at"
+
+# Logos for the trust strip (filenames live in /static/generated/images/)
+trustLogos:
+  - { file: "adesso.webp",     name: "Adesso" }
+  - { file: "deloitte.webp",   name: "Deloitte" }
+  - { file: "vmware.webp",     name: "VMware" }
+  - { file: "scout24.webp",    name: "Scout24" }
+  - { file: "schaeffler.webp", name: "Schaeffler" }
+  - { file: "exxeta.webp",     name: "Exxeta" }
+  - { file: "extenda.webp",    name: "Extenda Retail" }
+  - { file: "widdix.webp",     name: "Widdix" }
+
+painSection:
+  headline: "Does this sound like your current engineering reality?"
+  subheadline: "Six symptoms tech leads tell us about every single week."
+
+painPoints:
+  - category: "Productivity Killer"
+    title: "Agonizingly Slow Builds"
+    description: "Endless test runs constantly pull developers out of their flow, destroying motivation and causing expensive context switches."
+    icon: "clock"
+  - category: "The AI Time Bomb"
+    title: "Flying Blind with AI Code"
+    description: "AI tools pump out code in record time, but without fast, automated checks, this turns into a ticking time bomb for production bugs."
+    icon: "bomb"
+  - category: "False Security"
+    title: "The Flaky Test Frustration"
+    description: "Unreliable integration tests drive teams crazy with avoidable retry-loops, giving a false sense of security and wasting valuable time."
+    icon: "alert"
+  - category: "Exhausted Auditors"
+    title: "Review Bottlenecks"
+    description: "Developers are shifting from proud creators to exhausted code-auditors, spending hours untangling \"almost right\" AI code."
+    icon: "user"
+  - category: "Sinking Metrics"
+    title: "Dropping DORA Metrics"
+    description: "Instead of shipping features fast, teams are stepping on the brakes because they fear the next deployment."
+    icon: "trend-down"
+  - category: "Craftsmanship Decay"
+    title: "Maintenance Hell"
+    description: "Code gets blindly approved because the test suite is too slow to provide immediate, reliable feedback."
+    icon: "wrench"
+
+authority:
+  headline: "The Proven Track Record Behind the Speed"
+  imageSubtitle: "Philip Riecks — International Speaker & Spring Boot Testing Expert"
+  imageAlt: "Philip Riecks speaking at a conference"
+  bullets:
+    - title: "Battle-Tested Foundation"
+      text: "Over 10 years on the developer frontlines and 6 years as a consultant inside the engine rooms of 10+ different teams."
+    - title: "Black-on-White Results"
+      text: "Proven track record of turning agonizingly slow build pipelines into blazingly fast safety nets."
+    - title: "Global Recognition"
+      text: "International speaker with over 20 talks in the USA, Belgium, Spain, Germany, and Switzerland."
+    - title: "Massive Community Trust"
+      text: "Founder of a leading testing academy (8,500+ users) and a weekly newsletter trusted blindly by 10,000 developers."
+    - title: "The Niche Pioneer"
+      text: "Running a highly recognized Spring Boot blog for over 5 years — long before the AI hype started."
+  kpis:
+    - { value: "10+",   label: "Years on the Frontlines" }
+    - { value: "10K",   label: "Newsletter Readers" }
+    - { value: "8,500", label: "Academy Members" }
+    - { value: "20+",   label: "International Talks" }
+    - { value: "5+",    label: "Years Spring Boot Blog" }
+
+benefitsSection:
+  headline: "Imagine Deploying in the AI Era with Zero Fear"
+  subheadline: "The exact opposite of every pain point above — what life looks like 30 days in."
+
+benefits:
+  - title: "Record-Breaking Productivity"
+    description: "Blazingly fast tests that make your developers instantly more productive, eliminating the constant dread of fatal bugs."
+  - title: "The Unshakeable Safety Net"
+    description: "Effortlessly and risk-free leverage the full potential of AI tools, knowing every flaw is caught immediately."
+  - title: "Long-term Autonomy"
+    description: "Proven knowledge anchored deep within your team to maintain peak performance smoothly and permanently."
+
+methodology:
+  headline: "Our Blueprint for 50% Faster Builds"
+  subheadline: "Five steps. No heavy jargon. Real results black-on-white."
+  steps:
+    - title: "The Unvarnished Report"
+      description: "A ruthless baseline analysis of your project, pipeline, and ways of working to identify hidden productivity killers."
+    - title: "The Build-Time Turbo"
+      description: "Picking low-hanging fruits directly in the code (Spring Context Caching, parallelization, Testcontainers optimization) for instant flow."
+    - title: "Pipeline Sanitation"
+      description: "Eliminating flaky tests, removing duplicate steps, and adding smart caching to build a rock-solid safety net."
+    - title: "The Strategy Rollout"
+      description: "Handing over a foolproof standard workflow and showing your team the massive time savings black-on-white."
+    - title: "Ultimate Team Enablement"
+      description: "Hands-on mentoring directly in the code to turn your developers into self-sufficient testing experts."
+
+offer:
+  headline: "Ready to speed up? Here is the deal."
+  subheadline: "Three reasons this is a no-brainer."
+  pillars:
+    - tag: "100% Risk-Free"
+      title: "The Guarantee"
+      description: "We guarantee a minimum 30% reduction in your build times. If you don't see it black-on-white, you get your money back."
+    - tag: "Strictly Limited"
+      title: "The Exclusivity"
+      description: "To ensure smooth, hands-on integration, I only work with a maximum of 3 teams simultaneously."
+    - tag: "The Bonus"
+      title: "The Autopilot Upgrade"
+      description: "You get a custom MCP-Server (or Skill) to make testing knowledge instantly accessible, plus optional monthly check-ins to ensure your DORA metrics never slip."
+
+testimonialsSection:
+  headline: "Real Teams. Real Numbers."
+  subheadline: "Two recent customer stories — Challenge, Solution, Result."
+
+faqSection:
+  headline: "Questions before booking?"
+  faqs:
+    - question: "What if my codebase is too messy or my pipeline is unique?"
+      answer: "That's exactly the case where the 50% gain is most achievable. The TÜV-Report in step 1 is built for unique setups — we map your reality before touching anything. If we can't beat 30%, you don't pay."
+    - question: "How much developer time do we have to commit?"
+      answer: "About 2 hours per week from a tech lead and ~1 hour per week per dev during the rollout. The first two weeks are mostly me working in the code; team enablement happens in weeks 3 and 4."
+    - question: "We already use Testcontainers / Spring Context Caching. Will this still help?"
+      answer: "Yes — most teams who 'already use them' are leaving 40–70% on the table due to misconfiguration. The audit will show you exactly where the gap is, with measurements."
+    - question: "What does the 30-day guarantee actually cover?"
+      answer: "If at the end of week 4 your CI build time has not dropped by at least 30% versus the documented baseline, you get a full refund. No clauses, no fine print."
+
+finalCTA:
+  headline: "Secure Your Free Qualification Call"
+  subheadline: "No sales pitch. A 15-minute walkthrough of where your pipeline currently stands."
+  steps:
+    - title: "Pick a slot"
+      description: "Click the button and grab a 15-minute slot in my calendar."
+    - title: "Briefly diagnose"
+      description: "We'll discuss where your pipeline stands today and the challenges you're hitting."
+    - title: "See the optimization"
+      description: "I'll show you exactly how an optimization would look for your specific setup — completely independent of whether we end up working together."
+  buttonText: "Book My 15-Min Call"
+  reassurance: "15 minutes. Zero pitch. You leave with at least one concrete optimization you can ship next week."

@@ -1,0 +1,337 @@
+{{/*
+    Variant A — Performance Dashboard
+    Conversion-bold direction. Split hero with animated gauges,
+    6-card pain grid, horizontal 5-step methodology timeline.
+*/}}
+{{ $home := .Site.Data.homepage }}
+{{ $cases := index .Site.Data.testimonials "customer-cases" }}
+{{ $bookUrl := .Site.Params.scheduleCallUrl }}
+
+<section data-variant="a" class="variant-section">
+
+    <!-- ============================================================ -->
+    <!-- 1. HERO                                                      -->
+    <!-- ============================================================ -->
+    <section class="hero-pattern relative overflow-hidden border-b border-slate-800">
+        <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-900/50 to-brand-900/20 pointer-events-none"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 lg:py-28">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7">
+                    <span class="inline-flex items-center gap-2 px-3 py-1 mb-6 text-xs font-semibold tracking-widest text-brand-300 uppercase bg-brand-500/10 rounded-full border border-brand-500/30">
+                        <span class="w-1.5 h-1.5 rounded-full bg-brand-400 animate-pulse"></span>
+                        {{ $home.hero.preHeadline }}
+                    </span>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-[1.05]">
+                        {{ $home.hero.headlineLead }}<br>
+                        <span class="bg-gradient-to-r from-brand-400 to-emerald-400 text-transparent bg-clip-text">{{ $home.hero.headlineAccent }}</span>
+                    </h1>
+                    <p class="text-xl text-slate-300 mb-8 max-w-2xl leading-relaxed">{{ $home.hero.subheadline }}</p>
+                    <div class="flex flex-col sm:flex-row gap-4 mb-6">
+                        <a href="{{ $bookUrl }}" target="_blank" rel="noopener"
+                           class="inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-500 text-white px-8 py-4 rounded-lg font-bold transition-all shadow-xl shadow-brand-500/25 hover:shadow-brand-500/50 text-lg">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                            {{ $home.hero.primaryCTA }}
+                        </a>
+                        <a href="#methodology-a" class="inline-flex items-center justify-center gap-2 bg-slate-800/80 hover:bg-slate-700 border border-slate-700 hover:border-slate-600 text-white px-8 py-4 rounded-lg font-semibold transition-colors">
+                            {{ $home.hero.secondaryCTA }}
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+                        </a>
+                    </div>
+                    <p class="text-sm text-slate-500">{{ $home.hero.guaranteeNote }}</p>
+                </div>
+
+                <!-- Right: dual gauges (slow vs fast) -->
+                <div class="lg:col-span-5">
+                    <div class="bg-slate-900/80 backdrop-blur border border-slate-800 rounded-2xl p-8 shadow-2xl">
+                        <div class="flex items-center justify-between mb-8">
+                            <div class="flex items-center gap-2 text-xs font-mono text-slate-500">
+                                <span class="w-2 h-2 rounded-full bg-red-500"></span>
+                                <span class="w-2 h-2 rounded-full bg-yellow-500"></span>
+                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                                <span class="ml-3">build-pipeline.yml</span>
+                            </div>
+                            <span class="text-[10px] uppercase tracking-widest text-slate-500">live</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-6">
+                            <!-- Slow gauge -->
+                            <div class="text-center">
+                                <div class="relative w-32 h-32 mx-auto">
+                                    <svg viewBox="0 0 100 100" class="w-full h-full -rotate-90">
+                                        <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="6" class="text-slate-800"/>
+                                        <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" class="text-red-500 v3-circle-slow"/>
+                                    </svg>
+                                    <div class="absolute inset-0 flex flex-col items-center justify-center">
+                                        <span class="text-2xl font-bold text-red-400">30m</span>
+                                        <span class="text-[10px] uppercase tracking-widest text-slate-500">before</span>
+                                    </div>
+                                </div>
+                                <p class="mt-4 text-xs text-slate-400">Endless waits.<br>Devs lose flow.</p>
+                            </div>
+                            <!-- Fast gauge -->
+                            <div class="text-center">
+                                <div class="relative w-32 h-32 mx-auto">
+                                    <svg viewBox="0 0 100 100" class="w-full h-full -rotate-90">
+                                        <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="6" class="text-slate-800"/>
+                                        <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" class="text-emerald-400 v3-circle-fast"/>
+                                    </svg>
+                                    <div class="absolute inset-0 flex flex-col items-center justify-center">
+                                        <span class="text-2xl font-bold text-emerald-400">3m</span>
+                                        <span class="text-[10px] uppercase tracking-widest text-slate-500">after</span>
+                                    </div>
+                                </div>
+                                <p class="mt-4 text-xs text-slate-400">Blazingly fast.<br>Instant feedback.</p>
+                            </div>
+                        </div>
+                        <div class="mt-6 pt-6 border-t border-slate-800 flex items-center justify-between text-xs">
+                            <span class="text-slate-500">CI run time</span>
+                            <span class="font-mono text-emerald-400">−90%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trust strip -->
+            <div class="mt-14 pt-10 border-t border-slate-800/60">
+                <p class="text-xs uppercase tracking-widest text-slate-500 mb-6 text-center">{{ $home.hero.trustLabel }}</p>
+                <div class="flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
+                    {{ range $home.trustLogos }}
+                    {{ if not (in (slice "vmware.webp" "widdix.webp") .file) }}
+                    <img src="/generated/images/{{ .file }}" alt="{{ .name }}" class="h-7 sm:h-8 w-auto" loading="lazy">
+                    {{ end }}
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 2. PAIN POINTS — build-log style                             -->
+    <!-- ============================================================ -->
+    <section class="py-20 sm:py-28 bg-slate-950 border-b border-slate-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">{{ $home.painSection.headline }}</h2>
+                <p class="font-mono text-sm text-slate-500">// reading: ./engineering-reality.log</p>
+            </div>
+            <div class="bg-[#0a0e16] border border-slate-800 rounded-xl overflow-hidden font-mono text-sm">
+                {{ range $i, $pain := $home.painPoints }}
+                <div class="grid grid-cols-[auto_auto_1fr] gap-3 sm:gap-4 px-4 sm:px-6 py-5 border-b border-slate-800 last:border-b-0 hover:bg-slate-900/40 transition-colors">
+                    <span class="text-slate-600 select-none hidden sm:inline">{{ printf "%02d" (add $i 1) }}</span>
+                    <span class="px-2 h-fit text-[11px] font-bold rounded
+                        {{ if le $i 1 }}bg-red-500/15 text-red-400 border border-red-500/30{{ else if le $i 3 }}bg-amber-500/15 text-amber-400 border border-amber-500/30{{ else }}bg-orange-500/15 text-orange-400 border border-orange-500/30{{ end }}
+                    ">
+                        {{ if le $i 1 }}FAIL{{ else if le $i 3 }}WARN{{ else }}DEBT{{ end }}
+                    </span>
+                    <div>
+                        <p class="text-white font-bold mb-1">{{ $pain.title }} <span class="text-slate-600 font-normal">— {{ $pain.category }}</span></p>
+                        <p class="text-slate-400 leading-relaxed" style="font-family: 'Inter', sans-serif;">{{ $pain.description }}</p>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 3. AUTHORITY                                                 -->
+    <!-- ============================================================ -->
+    <section class="py-20 sm:py-28 bg-gradient-to-br from-slate-900 via-slate-900 to-brand-900/30 border-b border-slate-800 relative overflow-hidden">
+        <div class="absolute -top-32 -right-32 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-14">
+                <h2 class="text-3xl md:text-4xl font-bold text-white">{{ $home.authority.headline }}</h2>
+            </div>
+            <div class="grid lg:grid-cols-12 gap-10 items-start mb-14">
+                <div class="lg:col-span-4">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-brand-500/20 to-transparent rounded-2xl blur-xl"></div>
+                        <img src="/images/rieckpil-speaker.jpeg" alt="{{ $home.authority.imageAlt }}"
+                             class="relative w-full h-auto rounded-2xl overflow-hidden border border-slate-700 shadow-2xl">
+                        <p class="mt-4 text-sm text-slate-400 italic text-center">{{ $home.authority.imageSubtitle }}</p>
+                    </div>
+                </div>
+                <div class="lg:col-span-8">
+                    <ul class="space-y-5">
+                        {{ range $home.authority.bullets }}
+                        <li class="flex items-start gap-4">
+                            <div class="flex-shrink-0 mt-1 w-6 h-6 rounded-full bg-brand-500/15 border border-brand-500/30 flex items-center justify-center">
+                                <svg class="w-3.5 h-3.5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                            </div>
+                            <p class="text-base text-slate-300 leading-relaxed">
+                                <span class="font-bold text-white">{{ .title }}:</span> {{ .text }}
+                            </p>
+                        </li>
+                        {{ end }}
+                    </ul>
+                </div>
+            </div>
+
+            <!-- KPI strip -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 pt-10 border-t border-slate-800">
+                {{ range $home.authority.kpis }}
+                <div class="text-center px-4">
+                    <div class="text-3xl md:text-4xl font-bold bg-gradient-to-br from-brand-300 to-brand-500 bg-clip-text text-transparent">{{ .value }}</div>
+                    <div class="text-xs uppercase tracking-widest text-slate-500 mt-2">{{ .label }}</div>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 4. BENEFITS — stacked rows (from Variant B)                  -->
+    <!-- ============================================================ -->
+    <section class="py-20 sm:py-28 bg-slate-900 border-b border-slate-800">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-2xl mb-16">
+                <p class="text-[11px] tracking-[0.3em] uppercase text-brand-400 font-bold mb-4">The Other Side</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-white leading-tight">{{ $home.benefitsSection.headline }}</h2>
+                <p class="text-lg text-slate-400 mt-4">{{ $home.benefitsSection.subheadline }}</p>
+            </div>
+            <div class="space-y-12">
+                {{ range $i, $benefit := $home.benefits }}
+                <div class="grid lg:grid-cols-12 gap-6 lg:gap-12 items-baseline pb-12 border-b border-slate-800 last:border-b-0">
+                    <div class="lg:col-span-3">
+                        <div class="font-heading text-7xl md:text-8xl font-bold text-brand-400/80 leading-none">0{{ add $i 1 }}</div>
+                    </div>
+                    <div class="lg:col-span-9">
+                        <h3 class="text-2xl md:text-3xl font-bold text-white mb-3">{{ $benefit.title }}</h3>
+                        <p class="text-lg text-slate-400 leading-relaxed">{{ $benefit.description }}</p>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 5. METHODOLOGY — vertical (from Variant B)                   -->
+    <!-- ============================================================ -->
+    <section id="methodology-a" class="py-20 sm:py-28 bg-slate-950 border-b border-slate-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <p class="text-[11px] tracking-[0.3em] uppercase text-brand-400 font-bold mb-4">The Blueprint</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">{{ $home.methodology.headline }}</h2>
+                <p class="text-lg text-slate-400">{{ $home.methodology.subheadline }}</p>
+            </div>
+            <ol class="relative space-y-12">
+                <div class="absolute left-7 top-0 bottom-0 w-px bg-gradient-to-b from-brand-500/40 via-slate-700 to-transparent"></div>
+                {{ range $i, $step := $home.methodology.steps }}
+                <li class="relative flex gap-6 pl-0">
+                    <div class="flex-shrink-0 relative z-10">
+                        <div class="w-14 h-14 rounded-full bg-slate-900 border-2 border-brand-500 flex items-center justify-center text-xl font-bold text-brand-400 shadow-lg shadow-brand-500/20">
+                            {{ add $i 1 }}
+                        </div>
+                    </div>
+                    <div class="pt-2">
+                        <h3 class="text-xl md:text-2xl font-bold text-white mb-2">{{ $step.title }}</h3>
+                        <p class="text-slate-400 leading-relaxed">{{ $step.description }}</p>
+                    </div>
+                </li>
+                {{ end }}
+            </ol>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 6. OFFER                                                     -->
+    <!-- ============================================================ -->
+    <section class="py-20 sm:py-28 bg-slate-900 border-b border-slate-800 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-brand-600/5 via-transparent to-emerald-500/5"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center mb-14">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">{{ $home.offer.headline }}</h2>
+                <p class="text-lg text-slate-400">{{ $home.offer.subheadline }}</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6">
+                {{ range $home.offer.pillars }}
+                <div class="bg-gradient-to-br from-slate-800/80 to-slate-900 border-2 border-brand-500/30 rounded-2xl p-8 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 px-3 py-1 bg-brand-500 text-slate-900 text-[10px] font-bold uppercase tracking-widest rounded-bl-lg">{{ .tag }}</div>
+                    <h3 class="text-2xl font-bold text-white mt-4 mb-4">{{ .title }}</h3>
+                    <p class="text-slate-300 leading-relaxed">{{ .description }}</p>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 7. CUSTOMER CASES — full-width quote cards (from Variant B)  -->
+    <!-- ============================================================ -->
+    <section class="py-20 sm:py-28 bg-slate-950 border-b border-slate-800">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <p class="text-[11px] tracking-[0.3em] uppercase text-brand-400 font-bold mb-4">Field Notes</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-white">{{ $home.testimonialsSection.headline }}</h2>
+            </div>
+            <div class="space-y-8">
+                {{ range $cases }}
+                <article class="border border-slate-800 rounded-2xl p-8 md:p-12 bg-slate-900/50">
+                    <div class="grid md:grid-cols-12 gap-8">
+                        <div class="md:col-span-3">
+                            <div class="text-6xl text-brand-400/40 font-heading leading-none mb-2">&ldquo;</div>
+                            <div class="text-white font-bold">{{ .person }}</div>
+                            <div class="text-sm text-slate-400 mt-1">{{ .position }}</div>
+                            <div class="text-sm text-slate-500">{{ .company }}</div>
+                            {{ if .logo }}<img src="/generated/images/{{ .logo }}" alt="{{ .company }}" class="h-6 mt-3 opacity-70">{{ end }}
+                        </div>
+                        <div class="md:col-span-9 space-y-6">
+                            <div class="grid sm:grid-cols-3 gap-6">
+                                <div>
+                                    <p class="text-[10px] tracking-[0.25em] uppercase text-slate-500 font-semibold mb-2">Challenge</p>
+                                    <p class="text-slate-300 leading-relaxed text-sm">{{ .challenge }}</p>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] tracking-[0.25em] uppercase text-slate-500 font-semibold mb-2">Solution</p>
+                                    <p class="text-slate-300 leading-relaxed text-sm">{{ .solution }}</p>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] tracking-[0.25em] uppercase text-brand-400 font-semibold mb-2">Result</p>
+                                    <p class="text-white leading-relaxed text-sm font-semibold">{{ .result }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                {{ end }}
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 8. FAQ + FINAL CTA                                           -->
+    <!-- ============================================================ -->
+    <section class="py-20 sm:py-28 bg-slate-900">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">{{ $home.finalCTA.headline }}</h2>
+                <p class="text-lg text-slate-400 max-w-2xl mx-auto">{{ $home.finalCTA.subheadline }}</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 mb-14">
+                {{ range $i, $step := $home.finalCTA.steps }}
+                <div class="text-center">
+                    <div class="w-10 h-10 rounded-full bg-brand-500/15 border border-brand-500/30 text-brand-400 font-bold flex items-center justify-center mx-auto mb-4">{{ add $i 1 }}</div>
+                    <h3 class="text-base font-bold text-white mb-2">{{ $step.title }}</h3>
+                    <p class="text-sm text-slate-400">{{ $step.description }}</p>
+                </div>
+                {{ end }}
+            </div>
+
+            <div class="flex flex-col items-center mb-16">
+                <a href="{{ $bookUrl }}" target="_blank" rel="noopener"
+                   class="inline-flex items-center justify-center gap-3 bg-brand-600 hover:bg-brand-500 text-white px-10 py-5 rounded-lg font-bold transition-all shadow-2xl shadow-brand-500/30 hover:shadow-brand-500/50 text-lg">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    {{ $home.finalCTA.buttonText }}
+                </a>
+                <p class="text-sm text-slate-500 mt-4 text-center max-w-lg">{{ $home.finalCTA.reassurance }}</p>
+            </div>
+
+            <div class="border-t border-slate-800 pt-14">
+                <h3 class="text-2xl font-bold text-white text-center mb-8">{{ $home.faqSection.headline }}</h3>
+                {{ partial "home/faq-accordion.html" (dict "faqs" $home.faqSection.faqs "style" "default" "id" "faq-a") }}
+            </div>
+        </div>
+    </section>
+
+</section>
