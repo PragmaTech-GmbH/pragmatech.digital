@@ -1,5 +1,5 @@
 # Single source of truth for the homepage redesign.
-# All three variants (A/B/C) read from this file — only layout differs.
+# All three variants (A/B/C) read from this file - only layout differs.
 
 hero:
   preHeadline: "Unlock Your Superpower in the AI Era"
@@ -54,7 +54,7 @@ painPoints:
 
 authority:
   headline: "The Proven Track Record Behind the Speed"
-  imageSubtitle: "Philip Riecks — International Speaker & Spring Boot Testing Expert"
+  imageSubtitle: "Philip Riecks - International Speaker & Spring Boot Testing Expert"
   imageAlt: "Philip Riecks speaking at a conference"
   bullets:
     - title: "Battle-Tested Foundation"
@@ -66,7 +66,7 @@ authority:
     - title: "Massive Community Trust"
       text: "Founder of a leading testing academy (8,500+ users) and a weekly newsletter trusted blindly by 10,000 developers."
     - title: "The Niche Pioneer"
-      text: "Running a highly recognized Spring Boot blog for over 5 years — long before the AI hype started."
+      text: "Running a highly recognized Spring Boot blog for over 5 years - long before the AI hype started."
   kpis:
     - { value: "10+",   label: "Years on the Frontlines" }
     - { value: "10K",   label: "Newsletter Readers" }
@@ -95,7 +95,7 @@ authority:
 
 benefitsSection:
   headline: "Imagine Deploying in the AI Era with Zero Fear"
-  subheadline: "The exact opposite of every pain point above — what life looks like 30 days in."
+  subheadline: "The exact opposite of every pain point above - what life looks like 30 days in."
 
 benefits:
   - title: "Record-Breaking Productivity"
@@ -121,8 +121,8 @@ methodology:
       description: "Hands-on mentoring directly in the code to turn your developers into self-sufficient testing experts."
   cta:
     headline: "Want this blueprint applied to your pipeline?"
-    button: "Start with Step 1 — The Free Audit"
-    note: "30-minute call. We open with step 1 — no commitment, no pitch."
+    button: "Start with Step 1 - The Free Audit"
+    note: "30-minute call. We open with step 1 - no commitment, no pitch."
 
 offer:
   headline: "Ready to speed up? Here is the deal."
@@ -140,17 +140,17 @@ offer:
 
 testimonialsSection:
   headline: "Real Teams. Real Numbers."
-  subheadline: "Two recent customer stories — Challenge, Solution, Result."
+  subheadline: "Two recent customer stories - Challenge, Solution, Result."
 
 faqSection:
   headline: "Questions before booking?"
   faqs:
     - question: "What if my codebase is too messy or my pipeline is unique?"
-      answer: "That's exactly the case where the 50% gain is most achievable. The TÜV-Report in step 1 is built for unique setups — we map your reality before touching anything. If we can't beat 30%, you don't pay."
+      answer: "That's exactly the case where the 50% gain is most achievable. The TÜV-Report in step 1 is built for unique setups - we map your reality before touching anything. If we can't beat 30%, you don't pay."
     - question: "How much developer time do we have to commit?"
       answer: "About 2 hours per week from a tech lead and ~1 hour per week per dev during the rollout. The first two weeks are mostly me working in the code; team enablement happens in weeks 3 and 4."
     - question: "We already use Testcontainers / Spring Context Caching. Will this still help?"
-      answer: "Yes — most teams who 'already use them' are leaving 40–70% on the table due to misconfiguration. The audit will show you exactly where the gap is, with measurements."
+      answer: "Yes - most teams who 'already use them' are leaving 40–70% on the table due to misconfiguration. The audit will show you exactly where the gap is, with measurements."
     - question: "What does the 30-day guarantee actually cover?"
       answer: "If at the end of week 4 your CI build time has not dropped by at least 30% versus the documented baseline, you get a full refund. No clauses, no fine print."
 
@@ -163,6 +163,6 @@ finalCTA:
     - title: "Briefly diagnose"
       description: "We'll discuss where your pipeline stands today and the challenges you're hitting."
     - title: "See the optimization"
-      description: "I'll show you exactly how an optimization would look for your specific setup — completely independent of whether we end up working together."
+      description: "I'll show you exactly how an optimization would look for your specific setup - completely independent of whether we end up working together."
   buttonText: "Book My 15-Min Call"
   reassurance: "15 minutes. Zero pitch. You leave with at least one concrete optimization you can ship next week."

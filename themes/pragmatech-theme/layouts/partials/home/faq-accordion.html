@@ -1,9 +1,9 @@
 {{/*
-    FAQ accordion — keyboard accessible, no external JS dependency.
+    FAQ accordion - keyboard accessible, no external JS dependency.
     Params:
-      .faqs   — slice of {question, answer}
-      .style  — "default" | "minimal" | "terminal"
-      .id     — unique prefix to avoid id collisions when used twice on a page
+      .faqs   - slice of {question, answer}
+      .style  - "default" | "minimal" | "terminal"
+      .id     - unique prefix to avoid id collisions when used twice on a page
 */}}
 {{ $style := .style | default "default" }}
 {{ $idPrefix := .id | default "faq" }}

@@ -1,16 +1,16 @@
 # Two slots for customer use cases on the homepage.
 # Replace placeholder values when real stories are ready.
 # Schema: person, position, company (mandatory) + logo, picture, linkedin (optional)
-#         + challenge, solution, result (mandatory — Challenge → Solution → Result narrative)
+#         + challenge, solution, result (mandatory - Challenge → Solution → Result narrative)
 
 - person:    "[Customer Name]"
   position:  "[Role / Title]"
   company:   "[Company Name]"
-  logo:      ""              # filename in /static/generated/images/, e.g. "extenda.webp" — optional
-  picture:   ""              # path to headshot — optional
-  linkedin:  ""              # full URL — optional
+  logo:      ""              # filename in /static/generated/images/, e.g. "extenda.webp" - optional
+  picture:   ""              # path to headshot - optional
+  linkedin:  ""              # full URL - optional
   challenge: "[The pain they faced before working with us. 1–2 sentences. e.g. \"Their integration test suite took 47 minutes per CI run, blocking 30+ developers and turning every PR into a context-switch nightmare.\"]"
-  solution:  "[What we did — the specific intervention. 1–2 sentences. e.g. \"We refactored Spring context caching, parallelized Testcontainers, and removed 12 redundant pipeline steps over a 4-week engagement.\"]"
+  solution:  "[What we did - the specific intervention. 1–2 sentences. e.g. \"We refactored Spring context caching, parallelized Testcontainers, and removed 12 redundant pipeline steps over a 4-week engagement.\"]"
   result:    "[The measurable outcome. Lead with a number. e.g. \"Build time dropped from 47 minutes to 6 minutes (-87%). Deploy frequency doubled within the first month.\"]"
 
 - person:    "[Customer Name]"
@@ -19,6 +19,6 @@
   logo:      ""
   picture:   ""
   linkedin:  ""
-  challenge: "[The pain they faced before working with us — 1–2 sentences.]"
-  solution:  "[What we did — the specific intervention, 1–2 sentences.]"
-  result:    "[The measurable outcome — numbers, metrics, before/after.]"
+  challenge: "[The pain they faced before working with us - 1–2 sentences.]"
+  solution:  "[What we did - the specific intervention, 1–2 sentences.]"
+  result:    "[The measurable outcome - numbers, metrics, before/after.]"
