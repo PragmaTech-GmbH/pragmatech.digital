@@ -2,11 +2,11 @@
 # All three variants (A/B/C) read from this file — only layout differs.
 
 hero:
-  preHeadline: "For Spring Boot Teams"
+  preHeadline: "Unlock Your Superpower in the AI Era"
   headlineLead: "Guaranteed Developer Productivity Boost:"
   headlineAccent: "50% Faster Spring Boot Builds in 30 Days"
   subheadline: "Stop letting AI-generated code turn your team into exhausted auditors. Get blazingly fast feedback loops to deploy with zero fear."
-  primaryCTA: "Get Your Free Audit"
+  primaryCTA: "Speed Up Your Builds Now"
   secondaryCTA: "See the Methodology"
   guaranteeNote: "100% risk-free • 30-day guarantee • Money-back if we miss"
   trustLabel: "Trusted by developers at"
@@ -73,6 +73,25 @@ authority:
     - { value: "8,500", label: "Academy Members" }
     - { value: "20+",   label: "International Talks" }
     - { value: "5+",    label: "Years Spring Boot Blog" }
+  socials:
+    - { platform: "youtube",  label: "YouTube",  url: "" }
+    - { platform: "linkedin", label: "LinkedIn", url: "" }
+    - { platform: "github",   label: "GitHub",   url: "" }
+  booksSectionLabel: "Authored Works"
+  booksSectionHeadline: "Books Authored by Philip"
+  books:
+    - title: "Stratospheric"
+      subtitle: "From Zero to Production with Spring Boot and AWS"
+      cover: "/images/books/stratospheric-ebook-cover.png"
+      link: "/books/stratospheric/"
+    - title: "Testing Spring Boot Applications Demystified"
+      subtitle: "Master Spring Boot testing with battle-tested strategies"
+      cover: "/images/books/tsbad-book-cover.png"
+      link: "/books/testing-spring-boot-applications-demystified/"
+    - title: "Java Testing Toolbox"
+      subtitle: "30 Testing Tools Every Java Developer Must Know"
+      cover: "/images/books/java-testing-toolbox.jpg"
+      link: "/books/java-testing-toolbox/"
 
 benefitsSection:
   headline: "Imagine Deploying in the AI Era with Zero Fear"
@@ -100,6 +119,10 @@ methodology:
       description: "Handing over a foolproof standard workflow and showing your team the massive time savings black-on-white."
     - title: "Ultimate Team Enablement"
       description: "Hands-on mentoring directly in the code to turn your developers into self-sufficient testing experts."
+  cta:
+    headline: "Want this blueprint applied to your pipeline?"
+    button: "Start with Step 1 — The Free Audit"
+    note: "30-minute call. We open with step 1 — no commitment, no pitch."
 
 offer:
   headline: "Ready to speed up? Here is the deal."

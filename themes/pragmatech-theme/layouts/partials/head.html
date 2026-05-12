@@ -6,28 +6,6 @@
     <link rel="canonical" href="{{ .Permalink }}">
     <link rel="icon" href="{{ "favicon.ico" | relURL }}">
 
-    {{ if .IsHome }}
-    <!-- Pre-paint: pick the right homepage variant + theme before first render to avoid FOUC. -->
-    <script>
-    (function () {
-        try {
-            var allowed = ['a', 'b', 'c'];
-            var match = (window.location.search.match(/[?&]variant=([abc])/i) || [])[1];
-            var v = match ? match.toLowerCase() : window.localStorage.getItem('homepageVariant');
-            if (allowed.indexOf(v) === -1) v = 'a';
-            document.documentElement.setAttribute('data-active-variant', v);
-
-            var themes = ['dark', 'light'];
-            var t = window.localStorage.getItem('homepageVariantATheme');
-            if (themes.indexOf(t) === -1) t = 'dark';
-            document.documentElement.setAttribute('data-variant-a-theme', t);
-        } catch (e) {
-            document.documentElement.setAttribute('data-active-variant', 'a');
-            document.documentElement.setAttribute('data-variant-a-theme', 'dark');
-        }
-    })();
-    </script>
-    {{ end }}
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -95,10 +73,10 @@
     <script src="{{ $menu.RelPermalink }}"></script>
 
     {{ if .IsHome }}
-    {{ $variantJs := resources.Get "js/variant-toggle.js" }}
+    {{ $homeJs := resources.Get "js/home.js" }}
     {{ if hugo.IsProduction }}
-    {{ $variantJs = $variantJs | minify | fingerprint }}
+    {{ $homeJs = $homeJs | minify | fingerprint }}
     {{ end }}
-    <script src="{{ $variantJs.RelPermalink }}" defer></script>
+    <script src="{{ $homeJs.RelPermalink }}" defer></script>
     {{ end }}
 </head>

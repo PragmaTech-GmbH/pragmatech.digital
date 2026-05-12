@@ -7,7 +7,7 @@
 {{ $cases := index .Site.Data.testimonials "customer-cases" }}
 {{ $bookUrl := .Site.Params.scheduleCallUrl }}
 
-<section data-variant="a" class="variant-section">
+<section data-variant="a">
 
     <!-- ============================================================ -->
     <!-- 1. HERO                                                      -->
@@ -17,8 +17,15 @@
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 lg:py-28">
             <div class="grid lg:grid-cols-12 gap-12 items-center">
                 <div class="lg:col-span-7">
-                    <span class="inline-flex items-center gap-2 px-3 py-1 mb-6 text-xs font-semibold tracking-widest text-brand-300 uppercase bg-brand-500/10 rounded-full border border-brand-500/30">
-                        <span class="w-1.5 h-1.5 rounded-full bg-brand-400 animate-pulse"></span>
+                    <span class="inline-flex items-center gap-2 pl-2 pr-4 py-1.5 mb-6 rounded-full
+                                 bg-white border border-brand-100
+                                 text-[11px] font-bold tracking-[0.18em] uppercase text-brand-900
+                                 shadow-sm shadow-brand-500/10">
+                        <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-brand-500 text-white shadow-sm shadow-brand-500/40">
+                            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M14.615 1.595a.75.75 0 01.359.852L12.982 9.75h7.268a.75.75 0 01.548 1.262l-10.5 11.25a.75.75 0 01-1.272-.71l1.992-7.302H3.75a.75.75 0 01-.548-1.262l10.5-11.25a.75.75 0 01.913-.143z" clip-rule="evenodd"/>
+                            </svg>
+                        </span>
                         {{ $home.hero.preHeadline }}
                     </span>
                     <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-[1.05]">
@@ -28,8 +35,12 @@
                     <p class="text-xl text-slate-300 mb-8 max-w-2xl leading-relaxed">{{ $home.hero.subheadline }}</p>
                     <div class="flex flex-col sm:flex-row gap-4 mb-6">
                         <a href="{{ $bookUrl }}" target="_blank" rel="noopener"
-                           class="inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-500 text-white px-8 py-4 rounded-lg font-bold transition-all shadow-xl shadow-brand-500/25 hover:shadow-brand-500/50 text-lg">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                           class="cta-primary inline-flex items-center justify-center gap-2
+                                  bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400
+                                  text-white px-8 py-4 rounded-lg font-bold text-lg
+                                  shadow-lg shadow-brand-500/20 hover:shadow-xl hover:shadow-brand-500/30
+                                  hover:-translate-y-0.5 transition-all">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
                             {{ $home.hero.primaryCTA }}
                         </a>
                         <a href="#methodology-a" class="inline-flex items-center justify-center gap-2 bg-slate-800/80 hover:bg-slate-700 border border-slate-700 hover:border-slate-600 text-white px-8 py-4 rounded-lg font-semibold transition-colors">
@@ -113,6 +124,17 @@
                 <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">{{ $home.painSection.headline }}</h2>
                 <p class="font-mono text-sm text-slate-500">// reading: ./engineering-reality.log</p>
             </div>
+
+            <figure class="max-w-3xl mx-auto mb-12">
+                <picture>
+                    <source srcset="/generated/images/lp/ai-speed-illusion.webp" type="image/webp">
+                    <img src="/images/lp/ai-speed-illusion.png"
+                         alt="The AI speed illusion: AI generates code in seconds, but verification, tests, and pipelines crawl behind."
+                         class="w-full h-auto rounded-xl ring-1 ring-slate-200 shadow-[0_18px_40px_-12px_rgba(15,23,42,0.18)]"
+                         loading="lazy">
+                </picture>
+                <figcaption class="font-mono text-xs text-slate-500 text-center mt-3">// The AI speed illusion — your pipeline is the bottleneck, not the model</figcaption>
+            </figure>
             <div class="bg-[#0a0e16] border border-slate-800 rounded-xl overflow-hidden font-mono text-sm">
                 {{ range $i, $pain := $home.painPoints }}
                 <div class="grid grid-cols-[auto_auto_1fr] gap-3 sm:gap-4 px-4 sm:px-6 py-5 border-b border-slate-800 last:border-b-0 hover:bg-slate-900/40 transition-colors">
@@ -163,6 +185,29 @@
                         </li>
                         {{ end }}
                     </ul>
+
+                    {{ with $home.authority.socials }}
+                    <div class="mt-8 pt-6 border-t border-slate-200 flex items-center gap-4">
+                        {{ range . }}
+                        <a href="{{ if .url }}{{ .url }}{{ else }}#{{ end }}"
+                           {{ if .url }}target="_blank" rel="noopener"{{ end }}
+                           aria-label="{{ .label }}"
+                           title="{{ .label }}"
+                           class="group inline-flex items-center justify-center w-14 h-14 rounded-full
+                                  bg-white border border-slate-200 text-slate-700
+                                  shadow-sm transition-all
+                                  hover:bg-brand-500 hover:border-brand-500 hover:text-white hover:-translate-y-0.5 hover:shadow-lg hover:shadow-brand-500/30">
+                            {{ if eq .platform "youtube" }}
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                            {{ else if eq .platform "linkedin" }}
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.063 2.063 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                            {{ else if eq .platform "github" }}
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.4 3-.405 1.02.005 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                            {{ end }}
+                        </a>
+                        {{ end }}
+                    </div>
+                    {{ end }}
                 </div>
             </div>
 
@@ -175,6 +220,32 @@
                 </div>
                 {{ end }}
             </div>
+
+            <!-- Books I've Written -->
+            {{ with $home.authority.books }}
+            <div class="mt-16 pt-14 border-t border-slate-800">
+                <div class="text-center mb-12">
+                    <p class="text-[11px] tracking-[0.25em] uppercase text-brand-600 font-bold mb-3">{{ $home.authority.booksSectionLabel }}</p>
+                    <h3 class="text-2xl md:text-3xl font-bold text-white">{{ $home.authority.booksSectionHeadline }}</h3>
+                </div>
+                <div class="grid sm:grid-cols-3 gap-8 lg:gap-10 max-w-5xl mx-auto">
+                    {{ range . }}
+                    <a href="{{ .link }}" class="group flex flex-col items-center text-center">
+                        <div class="relative mb-5 transition-transform duration-300 group-hover:-translate-y-1.5">
+                            <div class="absolute inset-x-2 -bottom-2 h-3 bg-slate-900/10 blur-md rounded-full"></div>
+                            <img src="{{ .cover }}" alt="{{ .title }}"
+                                 class="relative h-56 sm:h-60 lg:h-64 w-auto rounded-md object-contain
+                                        shadow-[0_14px_30px_-10px_rgba(15,23,42,0.25)]
+                                        ring-1 ring-slate-200
+                                        transition-shadow duration-300 group-hover:shadow-[0_20px_40px_-12px_rgba(2,132,199,0.35)]">
+                        </div>
+                        <h4 class="text-base font-bold text-white leading-snug group-hover:text-brand-500 transition-colors">{{ .title }}</h4>
+                        <p class="text-xs text-slate-500 mt-1.5 leading-relaxed max-w-[16rem]">{{ .subtitle }}</p>
+                    </a>
+                    {{ end }}
+                </div>
+            </div>
+            {{ end }}
         </div>
     </section>
 
@@ -230,6 +301,22 @@
                 </li>
                 {{ end }}
             </ol>
+
+            {{ with $home.methodology.cta }}
+            <div class="mt-16 pt-10 border-t border-slate-200 text-center">
+                <p class="text-lg md:text-xl font-bold text-white mb-6">{{ .headline }}</p>
+                <a href="{{ $bookUrl }}" target="_blank" rel="noopener"
+                   class="cta-primary inline-flex items-center justify-center gap-2
+                          bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400
+                          text-white px-8 py-4 rounded-lg font-bold text-base
+                          shadow-lg shadow-brand-500/20 hover:shadow-xl hover:shadow-brand-500/30
+                          hover:-translate-y-0.5 transition-all">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    {{ .button }}
+                </a>
+                <p class="text-sm text-slate-500 mt-4">{{ .note }}</p>
+            </div>
+            {{ end }}
         </div>
     </section>
 
@@ -320,8 +407,12 @@
 
             <div class="flex flex-col items-center mb-16">
                 <a href="{{ $bookUrl }}" target="_blank" rel="noopener"
-                   class="inline-flex items-center justify-center gap-3 bg-brand-600 hover:bg-brand-500 text-white px-10 py-5 rounded-lg font-bold transition-all shadow-2xl shadow-brand-500/30 hover:shadow-brand-500/50 text-lg">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                   class="cta-primary inline-flex items-center justify-center gap-2
+                          bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400
+                          text-white px-10 py-5 rounded-lg font-bold text-lg
+                          shadow-lg shadow-brand-500/20 hover:shadow-xl hover:shadow-brand-500/30
+                          hover:-translate-y-0.5 transition-all">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
                     {{ $home.finalCTA.buttonText }}
                 </a>
                 <p class="text-sm text-slate-500 mt-4 text-center max-w-lg">{{ $home.finalCTA.reassurance }}</p>

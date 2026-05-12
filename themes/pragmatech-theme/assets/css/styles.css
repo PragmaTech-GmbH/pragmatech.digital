@@ -329,138 +329,103 @@
 }
 
 /* ----------------------------------------------------------- */
-/* Homepage variant toggle — show only the active variant.     */
-/* Default to variant A on first paint (no localStorage yet).  */
+/* Homepage (light theme).                                     */
+/* Scoped to [data-variant="a"] so other pages aren't affected.*/
 /* ----------------------------------------------------------- */
-.variant-section { display: none; }
-html:not([data-active-variant]) [data-variant="a"],
-html[data-active-variant="a"] [data-variant="a"],
-html[data-active-variant="b"] [data-variant="b"],
-html[data-active-variant="c"] [data-variant="c"] {
-    display: block;
-}
-
-/* Active toggle button styling */
-.variant-toggle-btn--active {
-    background-color: var(--color-brand-600);
-    color: #ffffff !important;
-}
-.variant-toggle-btn--active:hover {
-    background-color: var(--color-brand-500);
-}
-
-/* Active theme toggle button */
-.theme-toggle-btn--active {
-    background-color: var(--color-brand-600);
-    color: #ffffff !important;
-}
-.theme-toggle-btn--active:hover {
-    background-color: var(--color-brand-500);
-}
-
-/* ----------------------------------------------------------- */
-/* Variant A — Light Theme overrides                           */
-/* Activated by html[data-variant-a-theme="light"] on home.    */
-/* Scoped to [data-variant="a"] so B/C are never affected.     */
-/* ----------------------------------------------------------- */
-html[data-variant-a-theme="light"] [data-variant="a"] .hero-pattern {
+[data-variant="a"] .hero-pattern {
     background-color: #f8fafc;
     background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
 }
 
-/* Section/page surfaces */
-html[data-variant-a-theme="light"] [data-variant="a"] .bg-slate-950 { background-color: #f1f5f9 !important; }
-html[data-variant-a-theme="light"] [data-variant="a"] .bg-slate-900 { background-color: #ffffff !important; }
-html[data-variant-a-theme="light"] [data-variant="a"] .bg-slate-900\/80 { background-color: rgba(255, 255, 255, 0.92) !important; }
-html[data-variant-a-theme="light"] [data-variant="a"] .bg-slate-900\/60 { background-color: #f8fafc !important; }
-html[data-variant-a-theme="light"] [data-variant="a"] .bg-slate-900\/50 { background-color: #f8fafc !important; }
-html[data-variant-a-theme="light"] [data-variant="a"] .bg-slate-800 { background-color: #f1f5f9 !important; }
-html[data-variant-a-theme="light"] [data-variant="a"] .bg-slate-800\/80 { background-color: #f8fafc !important; }
-html[data-variant-a-theme="light"] [data-variant="a"] .bg-slate-800\/40 { background-color: #f8fafc !important; }
+/* Section / page surfaces */
+[data-variant="a"] .bg-slate-950 { background-color: #f1f5f9 !important; }
+[data-variant="a"] .bg-slate-900 { background-color: #ffffff !important; }
+[data-variant="a"] .bg-slate-900\/80 { background-color: rgba(255, 255, 255, 0.92) !important; }
+[data-variant="a"] .bg-slate-900\/60 { background-color: #f8fafc !important; }
+[data-variant="a"] .bg-slate-900\/50 { background-color: #f8fafc !important; }
+[data-variant="a"] .bg-slate-800 { background-color: #f1f5f9 !important; }
+[data-variant="a"] .bg-slate-800\/80 { background-color: #f8fafc !important; }
+[data-variant="a"] .bg-slate-800\/40 { background-color: #f8fafc !important; }
 
-/* Section-level gradient backgrounds — flat white in light theme (no gradient). */
-/* Authority section uses .bg-gradient-to-br with slate-900 stops on the <section>. */
-html[data-variant-a-theme="light"] [data-variant="a"] section.bg-gradient-to-br {
+/* Authority section uses .bg-gradient-to-br with slate-900 stops → flat white. */
+[data-variant="a"] section.bg-gradient-to-br {
     background-image: none !important;
     background-color: #ffffff !important;
 }
 
 /* Hero overlay <div> uses .bg-gradient-to-br.from-slate-900 — fade to a barely-there brand tint. */
-html[data-variant-a-theme="light"] [data-variant="a"] div.bg-gradient-to-br.from-slate-900 {
+[data-variant="a"] div.bg-gradient-to-br.from-slate-900 {
     background-image: linear-gradient(to bottom right, transparent, transparent, rgba(14, 165, 233, 0.06)) !important;
 }
 
 /* Offer pillar cards: .bg-gradient-to-br.from-slate-800/80.to-slate-900 → flat light card. */
-html[data-variant-a-theme="light"] [data-variant="a"] .bg-gradient-to-br.from-slate-800\/80 {
+[data-variant="a"] .bg-gradient-to-br.from-slate-800\/80 {
     background-image: linear-gradient(to bottom right, #ffffff, #f1f5f9) !important;
     border-color: rgba(14, 165, 233, 0.55) !important;
     box-shadow: 0 14px 34px -16px rgba(15, 23, 42, 0.18);
 }
 
-/* Benefits numerals (text-brand-400/80) — boost contrast on white. */
-html[data-variant-a-theme="light"] [data-variant="a"] .text-brand-400\/80 {
+/* Benefits numerals — solid contrast on white. */
+[data-variant="a"] .text-brand-400\/80 {
     color: rgba(2, 132, 199, 0.95) !important;
 }
 
-/* Authority bullets sit on a light gradient — give the row a subtle separator card on light theme. */
-html[data-variant-a-theme="light"] [data-variant="a"] section.bg-gradient-to-br ul {
-    background-color: rgba(255, 255, 255, 0.6);
-    border: 1px solid #e2e8f0;
-    border-radius: 1rem;
-    padding: 1.5rem;
-    backdrop-filter: blur(4px);
-}
-
-/* Photo border on light theme — softer slate tone instead of dark slate-700. */
-html[data-variant-a-theme="light"] [data-variant="a"] img.border-slate-700,
-html[data-variant-a-theme="light"] [data-variant="a"] picture.border-slate-700 {
+/* Photo border softens to slate-300. */
+[data-variant="a"] img.border-slate-700,
+[data-variant="a"] picture.border-slate-700 {
     border-color: #cbd5e1 !important;
 }
 
-/* KPI gradient numbers stay (brand→brand text) but add bottom border so the strip frames cleanly. */
-html[data-variant-a-theme="light"] [data-variant="a"] .grid.grid-cols-2.lg\:grid-cols-5.pt-10 {
+/* KPI strip top border tone. */
+[data-variant="a"] .grid.grid-cols-2.lg\:grid-cols-5.pt-10 {
     border-top-color: #cbd5e1 !important;
 }
 
-/* Terminal-style pain/code panels — invert frame, keep dark inside */
-html[data-variant-a-theme="light"] [data-variant="a"] .bg-\[\#0a0e16\] {
+/* Terminal-style pain/code panels — keep their own dark frame. */
+[data-variant="a"] .bg-\[\#0a0e16\] {
     background-color: #0f172a !important;
     color: #e2e8f0;
 }
 
 /* Borders */
-html[data-variant-a-theme="light"] [data-variant="a"] .border-slate-800 { border-color: #e2e8f0 !important; }
-html[data-variant-a-theme="light"] [data-variant="a"] .border-slate-700 { border-color: #cbd5e1 !important; }
-html[data-variant-a-theme="light"] [data-variant="a"] .border-slate-700\/60 { border-color: #e2e8f0 !important; }
-html[data-variant-a-theme="light"] [data-variant="a"] .border-slate-700\/50 { border-color: #e2e8f0 !important; }
-html[data-variant-a-theme="light"] [data-variant="a"] .border-slate-800\/60 { border-color: #f1f5f9 !important; }
+[data-variant="a"] .border-slate-800 { border-color: #e2e8f0 !important; }
+[data-variant="a"] .border-slate-700 { border-color: #cbd5e1 !important; }
+[data-variant="a"] .border-slate-700\/60 { border-color: #e2e8f0 !important; }
+[data-variant="a"] .border-slate-700\/50 { border-color: #e2e8f0 !important; }
+[data-variant="a"] .border-slate-800\/60 { border-color: #f1f5f9 !important; }
 
-/* Borders inside the inverted terminal panels — keep dark */
-html[data-variant-a-theme="light"] [data-variant="a"] .bg-\[\#0a0e16\] .border-slate-800 { border-color: #1e293b !important; }
+/* Borders inside the dark terminal panels stay dark. */
+[data-variant="a"] .bg-\[\#0a0e16\] .border-slate-800 { border-color: #1e293b !important; }
 
 /* Text */
-html[data-variant-a-theme="light"] [data-variant="a"] .text-white { color: #0f172a !important; }
-html[data-variant-a-theme="light"] [data-variant="a"] .text-slate-200 { color: #1e293b !important; }
-html[data-variant-a-theme="light"] [data-variant="a"] .text-slate-300 { color: #334155 !important; }
-html[data-variant-a-theme="light"] [data-variant="a"] .text-slate-400 { color: #475569 !important; }
-html[data-variant-a-theme="light"] [data-variant="a"] .text-slate-500 { color: #64748b !important; }
-html[data-variant-a-theme="light"] [data-variant="a"] .text-slate-600 { color: #94a3b8 !important; }
+[data-variant="a"] .text-white { color: #0f172a !important; }
+[data-variant="a"] .text-slate-200 { color: #1e293b !important; }
+[data-variant="a"] .text-slate-300 { color: #334155 !important; }
+[data-variant="a"] .text-slate-400 { color: #475569 !important; }
+[data-variant="a"] .text-slate-500 { color: #64748b !important; }
+[data-variant="a"] .text-slate-600 { color: #94a3b8 !important; }
 
-/* Text inside the inverted terminal panels — keep light */
-html[data-variant-a-theme="light"] [data-variant="a"] .bg-\[\#0a0e16\] .text-white { color: #ffffff !important; }
-html[data-variant-a-theme="light"] [data-variant="a"] .bg-\[\#0a0e16\] .text-slate-300 { color: #cbd5e1 !important; }
-html[data-variant-a-theme="light"] [data-variant="a"] .bg-\[\#0a0e16\] .text-slate-400 { color: #94a3b8 !important; }
-html[data-variant-a-theme="light"] [data-variant="a"] .bg-\[\#0a0e16\] .text-slate-500 { color: #64748b !important; }
-html[data-variant-a-theme="light"] [data-variant="a"] .bg-\[\#0a0e16\] .text-slate-600 { color: #475569 !important; }
+/* Text inside the dark terminal panels stays light. */
+[data-variant="a"] .bg-\[\#0a0e16\] .text-white { color: #ffffff !important; }
+[data-variant="a"] .bg-\[\#0a0e16\] .text-slate-300 { color: #cbd5e1 !important; }
+[data-variant="a"] .bg-\[\#0a0e16\] .text-slate-400 { color: #94a3b8 !important; }
+[data-variant="a"] .bg-\[\#0a0e16\] .text-slate-500 { color: #64748b !important; }
+[data-variant="a"] .bg-\[\#0a0e16\] .text-slate-600 { color: #475569 !important; }
 
-/* Gauge track (uses text-slate-800 as stroke) — switch to a visible light grey */
-html[data-variant-a-theme="light"] [data-variant="a"] svg .text-slate-800 { color: #e2e8f0 !important; }
+/* Gauge SVG track (text-slate-800 stroke) — light grey on white. */
+[data-variant="a"] svg .text-slate-800 { color: #e2e8f0 !important; }
 
-/* Big benefit numerals (text-slate-800) — soften so they're still subtle on white */
-html[data-variant-a-theme="light"] [data-variant="a"] .text-slate-800:not(svg .text-slate-800) { color: #e2e8f0 !important; }
+/* Big benefit numerals (text-slate-800) — soften to background-grey on white. */
+[data-variant="a"] .text-slate-800:not(svg .text-slate-800) { color: #e2e8f0 !important; }
 
-/* Body link/button shadow contrast on light bg */
-html[data-variant-a-theme="light"] [data-variant="a"] .shadow-2xl { box-shadow: 0 18px 40px -10px rgba(15, 23, 42, 0.18); }
+/* Lighten the heavy slate drop shadows so they read on white. */
+[data-variant="a"] .shadow-2xl { box-shadow: 0 18px 40px -10px rgba(15, 23, 42, 0.18); }
 
-/* Logo trust strip looks better unmuted on light */
-html[data-variant-a-theme="light"] [data-variant="a"] img[loading="lazy"] { mix-blend-mode: multiply; }
+/* Multi-color client logos blend cleanly on white. */
+[data-variant="a"] img[loading="lazy"] { mix-blend-mode: multiply; }
+
+/* Brand-tinted CTAs keep crisp white text (beats the global text-white→dark override). */
+[data-variant="a"] a.cta-primary,
+[data-variant="a"] a.cta-primary *,
+[data-variant="a"] a.cta-primary svg { color: #ffffff !important; stroke: #ffffff !important; }
+[data-variant="a"] a.cta-primary svg path { stroke: #ffffff !important; }

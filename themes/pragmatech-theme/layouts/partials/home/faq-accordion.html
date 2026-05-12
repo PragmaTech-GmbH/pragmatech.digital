@@ -41,9 +41,9 @@
              role="region"
              aria-labelledby="{{ $itemId }}-trigger"
              class="faq-panel hidden
-                {{ if eq $style "minimal" }}pb-4 pr-9 text-slate-300{{ end }}
-                {{ if eq $style "default" }}px-6 pb-5 text-slate-300 leading-relaxed{{ end }}
-                {{ if eq $style "terminal" }}px-4 pb-4 pl-8 text-slate-400 text-sm leading-relaxed{{ end }}
+                {{ if eq $style "minimal" }}mt-1 pb-4 pr-9 text-slate-300{{ end }}
+                {{ if eq $style "default" }}mt-2 px-6 pb-6 text-slate-300 leading-relaxed border-t border-slate-200 pt-4{{ end }}
+                {{ if eq $style "terminal" }}mt-1 px-4 pb-4 pl-8 text-slate-400 text-sm leading-relaxed{{ end }}
              ">
             {{ $faq.answer | safeHTML }}
         </div>
