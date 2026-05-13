@@ -1,0 +1,220 @@
+{{ define "main" }}
+<section class="relative overflow-hidden bg-white border-b border-slate-200">
+    <div class="absolute inset-0 bg-gradient-to-br from-white via-brand-50/40 to-white pointer-events-none"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 lg:py-28">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+            <!-- Left: copy -->
+            <div>
+                <span class="inline-flex items-center gap-2 pl-2 pr-4 py-1.5 mb-6 rounded-full
+                             bg-brand-50 border border-brand-100
+                             text-[11px] font-bold tracking-[0.18em] uppercase text-brand-900
+                             shadow-sm shadow-brand-500/10">
+                    <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-brand-500 text-white shadow-sm shadow-brand-500/40">
+                        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M3 3h7v7H3V3zm0 11h7v7H3v-7zm11-11h7v7h-7V3zm0 11h7v7h-7v-7z"/>
+                        </svg>
+                    </span>
+                    Survey · 2026
+                </span>
+
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-[1.05]">
+                    Where does your team really stand on
+                    <span class="bg-gradient-to-r from-brand-600 to-emerald-600 text-transparent bg-clip-text">Spring Boot productivity?</span>
+                </h1>
+
+                <p class="text-xl text-slate-600 mb-8 leading-relaxed">
+                    The 2026 Spring Boot Developer Productivity Survey benchmarks how real teams build, test, and ship —
+                    from build times to test coverage to deployment frequency. Be the first to get the full report.
+                </p>
+
+                <ul class="space-y-3 mb-8">
+                    <li class="flex items-start gap-3 text-slate-700">
+                        <span class="flex-shrink-0 inline-flex items-center justify-center w-6 h-6 rounded-full bg-emerald-100 text-emerald-600 mt-0.5">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                            </svg>
+                        </span>
+                        <span>Full 2026 outcome report — anonymized, segmented by team size and industry.</span>
+                    </li>
+                    <li class="flex items-start gap-3 text-slate-700">
+                        <span class="flex-shrink-0 inline-flex items-center justify-center w-6 h-6 rounded-full bg-emerald-100 text-emerald-600 mt-0.5">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                            </svg>
+                        </span>
+                        <span>Industry benchmarks for build time, test coverage, and deployment frequency.</span>
+                    </li>
+                    <li class="flex items-start gap-3 text-slate-700">
+                        <span class="flex-shrink-0 inline-flex items-center justify-center w-6 h-6 rounded-full bg-emerald-100 text-emerald-600 mt-0.5">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                            </svg>
+                        </span>
+                        <span>A personal comparison vs. peers when you complete the survey.</span>
+                    </li>
+                </ul>
+
+                <!-- Compact trust row -->
+                <div class="flex flex-wrap gap-3">
+                    <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-xs text-slate-700 shadow-sm">
+                        <svg class="w-4 h-4 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        ~4 minutes
+                    </span>
+                    <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-xs text-slate-700 shadow-sm">
+                        <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                        </svg>
+                        100% anonymous
+                    </span>
+                    <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-xs text-slate-700 shadow-sm">
+                        <svg class="w-4 h-4 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                        Free report
+                    </span>
+                </div>
+            </div>
+
+            <!-- Right: lead form -->
+            <div>
+                <div class="bg-white border border-slate-200 rounded-2xl p-6 md:p-8 lg:p-10 shadow-xl shadow-slate-200/60">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-2">Get the 2026 report</h2>
+                    <p class="text-sm text-slate-600 mb-6">
+                        Enter your email and we'll send the report the moment it's published.
+                    </p>
+
+                    {{/* MailerLite embedded form — universal loader is guarded by .Page.Store
+                         and shared with the `mailerlite` shortcode, so it loads only once. */}}
+                    {{ if not (.Page.Store.Get "mailerliteLoaded") }}
+                      {{ .Page.Store.Set "mailerliteLoaded" true }}
+                    <!-- MailerLite Universal -->
+                    <script>
+                        (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+                        .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+                        n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+                        (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+                        ml('account', '1613864');
+                    </script>
+                    <!-- End MailerLite Universal -->
+                    {{ end }}
+                    <div class="ml-embedded" data-form="BCIFki"></div>
+
+                    <!-- Visual divider -->
+                    <div class="relative my-8" aria-hidden="true">
+                        <div class="absolute inset-0 flex items-center">
+                            <div class="w-full border-t border-slate-200"></div>
+                        </div>
+                        <div class="relative flex justify-center">
+                            <span class="bg-white px-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">
+                                or use the styled form
+                            </span>
+                        </div>
+                    </div>
+
+                    {{/* Custom-styled form — submits by proxying the email into the
+                         MailerLite-embedded form above and triggering its submit, so the
+                         existing MailerLite redirect to /report-success/ still applies. */}}
+                    <form id="customSurveyForm" class="space-y-4" novalidate>
+                        <div>
+                            <label for="customSurveyEmail" class="block text-sm font-semibold text-slate-700 mb-2">
+                                Email address
+                            </label>
+                            <input
+                                id="customSurveyEmail"
+                                name="email"
+                                type="email"
+                                required
+                                autocomplete="email"
+                                placeholder="you@company.com"
+                                class="w-full px-4 py-3 rounded-lg border border-slate-300 bg-white text-slate-900 placeholder-slate-400
+                                       focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors"
+                            />
+                        </div>
+
+                        <button
+                            type="submit"
+                            id="customSurveySubmit"
+                            class="cta-primary w-full inline-flex items-center justify-center gap-2
+                                   bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400
+                                   text-white px-6 py-3.5 rounded-lg font-bold
+                                   shadow-lg shadow-brand-500/20 hover:shadow-xl hover:shadow-brand-500/30
+                                   hover:-translate-y-0.5 transition-all">
+                            Send me the report
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </button>
+
+                        <p id="customSurveyStatus" class="hidden text-sm" role="status" aria-live="polite"></p>
+                    </form>
+
+                    <script>
+                        (function () {
+                            document.addEventListener('DOMContentLoaded', function () {
+                                var customForm = document.getElementById('customSurveyForm');
+                                var statusEl = document.getElementById('customSurveyStatus');
+                                var submitBtn = document.getElementById('customSurveySubmit');
+                                var mailerLiteContainer = document.querySelector('.ml-embedded[data-form="BCIFki"]');
+                                if (!customForm || !mailerLiteContainer) return;
+
+                                function showStatus(message, isError) {
+                                    statusEl.textContent = message;
+                                    statusEl.classList.remove('hidden', 'text-emerald-600', 'text-red-600');
+                                    statusEl.classList.add(isError ? 'text-red-600' : 'text-emerald-600');
+                                }
+
+                                function findMailerLiteForm() {
+                                    return mailerLiteContainer.querySelector('form');
+                                }
+
+                                customForm.addEventListener('submit', function (event) {
+                                    event.preventDefault();
+                                    var emailValue = document.getElementById('customSurveyEmail').value.trim();
+                                    if (!emailValue) {
+                                        showStatus('Please enter your email address.', true);
+                                        return;
+                                    }
+
+                                    var mailerLiteForm = findMailerLiteForm();
+                                    if (!mailerLiteForm) {
+                                        showStatus('The form is still loading. Please try again in a moment.', true);
+                                        return;
+                                    }
+
+                                    var mailerLiteEmailInput = mailerLiteForm.querySelector('input[type="email"]');
+                                    if (mailerLiteEmailInput) {
+                                        mailerLiteEmailInput.value = emailValue;
+                                        mailerLiteEmailInput.dispatchEvent(new Event('input', { bubbles: true }));
+                                        mailerLiteEmailInput.dispatchEvent(new Event('change', { bubbles: true }));
+                                    }
+
+                                    submitBtn.disabled = true;
+                                    submitBtn.classList.add('opacity-60', 'cursor-not-allowed');
+
+                                    var mailerLiteSubmitBtn = mailerLiteForm.querySelector('button[type="submit"], input[type="submit"]');
+                                    if (mailerLiteSubmitBtn) {
+                                        mailerLiteSubmitBtn.click();
+                                    } else if (typeof mailerLiteForm.requestSubmit === 'function') {
+                                        mailerLiteForm.requestSubmit();
+                                    } else {
+                                        mailerLiteForm.submit();
+                                    }
+                                });
+                            });
+                        })();
+                    </script>
+
+                    <p class="text-xs text-slate-500 mt-6">
+                        We'll only email you about the survey and the report. Unsubscribe anytime.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+{{ end }}
