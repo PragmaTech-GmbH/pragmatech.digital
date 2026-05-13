@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>PragmaTech — Pitch (Terminal)</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+    <link rel="stylesheet" href="assets/pitch-terminal.css">
+</head>
+<body>
+
+<div class="deck-chrome">
+    <img class="logo" src="assets/pragmatech-logo.png" alt="PragmaTech">
+    <div class="slide-num"><span class="cur">01</span><span style="color: var(--term-faint); margin: 0 0.4em">/</span><span class="tot">04</span></div>
+</div>
+
+<div class="reveal">
+    <div class="slides">
+
+        <!-- ============================================================ -->
+        <!-- SLIDE 1 — THE HOOK (animated terminal session)                -->
+        <!-- ============================================================ -->
+        <section class="slide-hook">
+            <div class="eyebrow">diagnostic.session</div>
+            <h1>AI ships code at line-speed. <span class="err">Your pipeline ships it at dial-up.</span></h1>
+
+            <div class="term-window">
+                <div class="term-titlebar">
+                    <span class="term-dots"><span></span><span></span><span></span></span>
+                    <span class="term-title">~/your-spring-boot-project — zsh — 120×30</span>
+                    <span class="term-tag">live</span>
+                </div>
+                <div class="term-body">
+                    <div class="term-line"><span class="prompt"></span>./pipeline-audit --industry-wide --year=2025</div>
+                    <div class="term-line out muted">Sampling 200+ engineering teams ...</div>
+                    <div class="term-line"><hr></div>
+                    <div class="term-line out"><span class="key">[INPUT]</span>  ai_code_velocity   = <span class="ok">+340%</span>  <span class="comment"># Cursor, Copilot, Claude Code, ...</span></div>
+                    <div class="term-line out"><span class="key">[PIPE]</span>   build_time_avg     = <span class="err">28m 12s</span>  <span class="comment"># unchanged since 2022</span></div>
+                    <div class="term-line out"><span class="key">[PIPE]</span>   flaky_test_ratio   = <span class="err">7.4%</span>     <span class="comment"># retry-loops eating Tuesday</span></div>
+                    <div class="term-line out"><span class="key">[PIPE]</span>   spring_ctx_loads   = <span class="warn">38 / run</span>  <span class="comment"># cache hit rate: low</span></div>
+                    <div class="term-line out"><span class="key">[OUT]</span>    devs_self_report   = <span class="ok">"+20% faster"</span>  <span class="comment"># perception</span></div>
+                    <div class="term-line out"><span class="key">[OUT]</span>    measured_throughput= <span class="err">-19%</span>     <span class="comment"># METR 2025, ground truth</span></div>
+                    <div class="term-line"><hr></div>
+                    <div class="term-line out"><span class="err em">FATAL:</span> developers have mutated from <span class="em">creators</span> into <span class="em">exhausted auditors</span></div>
+                    <div class="term-line out muted">  ↳ root cause: pipeline cannot validate AI output fast enough</div>
+                    <div class="term-line out muted">  ↳ symptom: context-switching, dropping DORA, AI-induced burnout</div>
+                    <div class="term-line"><hr></div>
+                    <div class="term-line out"><span class="ok">conclusion</span> = <span class="em">"the bottleneck is not the model — it's the pipeline."</span></div>
+                    <div class="term-line"><span class="prompt"></span><span class="cursor"></span></div>
+                </div>
+            </div>
+
+            <div class="term-conclusion">
+                <strong>tl;dr</strong> Productivity isn't typing speed. It's <em>shipping</em> speed. And shipping speed is gated by your build &amp; test pipeline.
+            </div>
+
+            <aside class="notes">
+                What you just shared aligns 100% with what I see across the industry every single day. My mind is already racing because this exact challenge is my absolute specialty.
+
+                We are currently seeing a fatal trend: AI tools generate code in record time, but because build &amp; test pipelines are slow, unstable, or flaky, this code turns into a ticking time bomb. Brand-new studies from METR prove it black-and-white: developers believe they are 20% faster with AI, but in reality, they have become 19% slower.
+
+                Why? Because they are mutating from proud software creators into exhausted auditors who spend hours untangling foreign AI code. This constant waiting and context-switching destroys your team's flow and ultimately drags your DORA metrics down.
+            </aside>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SLIDE 2 — THE AUTHORITY (git log)                             -->
+        <!-- ============================================================ -->
+        <section class="slide-authority">
+            <div class="photo-block">
+                <img src="assets/philip.jpeg" alt="Philip Riecks">
+                <div class="photo-meta">
+                    <div><span class="key">whoami</span>:   <span class="val">philip</span></div>
+                    <div><span class="key">role</span>:     <span class="val">Spring Boot Performance Consultant</span></div>
+                    <div><span class="key">since</span>:    <span class="val">2014-08-15</span></div>
+                </div>
+            </div>
+            <div class="term-window" style="margin: 0">
+                <div class="term-titlebar">
+                    <span class="term-dots"><span></span><span></span><span></span></span>
+                    <span class="term-title">git log --author=philip --oneline-bio</span>
+                    <span class="term-tag">why-me</span>
+                </div>
+                <div class="term-body">
+                    <div class="git-entry">
+                        <span class="hash">commit a1b2c3d</span> <span class="date">(HEAD)</span><br>
+                        <span class="author">Author:</span> Philip Riecks &lt;mail@philipriecks.de&gt;<br>
+                        <span class="date">Date:   today</span>
+                        <span class="body"><span class="subject">10+ years deep in Spring Boot engine rooms</span> — 6 of them as a hands-on consultant inside 10+ different teams.</span>
+                    </div>
+                    <hr>
+                    <div class="git-entry">
+                        <span class="hash">commit 4d5e6f7</span><br>
+                        <span class="author">Author:</span> Philip Riecks<br>
+                        <span class="date">Date:   2019</span>
+                        <span class="body"><span class="subject">Founded a leading Spring Boot blog</span> — running for 5+ years, long before the AI hype.</span>
+                    </div>
+                    <hr>
+                    <div class="git-entry">
+                        <span class="hash">commit 7g8h9i0</span><br>
+                        <span class="author">Author:</span> Philip Riecks<br>
+                        <span class="date">Date:   2021</span>
+                        <span class="body"><span class="subject">Launched testing academy</span> — trusted blindly by <span class="ok">10,000+ developers</span> today.</span>
+                    </div>
+                    <hr>
+                    <div class="git-entry">
+                        <span class="hash">commit b0c1d2e</span><br>
+                        <span class="author">Author:</span> Philip Riecks<br>
+                        <span class="date">Date:   ongoing</span>
+                        <span class="body"><span class="subject">Hands-on, in the codebase — not a slide-deck consultant.</span> The work happens directly in your repo.</span>
+                    </div>
+                    <hr>
+                    <div class="git-entry">
+                        <span class="hash">commit f3g4h5i</span><br>
+                        <span class="author">Author:</span> Philip Riecks<br>
+                        <span class="date">Date:   ongoing</span>
+                        <span class="body"><span class="subject">International speaker</span> — talks delivered in USA, Spain, Germany, Belgium, Switzerland.</span>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="notes">
+                And this specific bottleneck is exactly what I solve. Briefly about my background: I'm Philip Riecks and I've been working deep in the engine rooms of Spring Boot projects for over 10 years - 6 of those as a hands-on consultant. Long before the AI hype, I founded one of the most recognized Spring Boot blogs and a testing academy that over 10,000 developers blindly trust today. I'm not a consultant who just delivers shiny PowerPoints; I get my hands dirty directly in the code.
+            </aside>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SLIDE 3 — THE OFFER & METHODOLOGY (code block)                -->
+        <!-- ============================================================ -->
+        <section class="slide-offer">
+            <div class="promise-block">
+                <div class="eyebrow">the.offer</div>
+                <div class="promise-line">
+                    <span class="key">const</span> <span class="ident">sprint</span> <span class="punct">=</span> <span class="punct">{</span> <span class="ident">reduce</span><span class="punct">:</span> <span class="num">50</span><span class="str">%</span><span class="punct">,</span> <span class="ident">in</span><span class="punct">:</span> <span class="num">30</span><span class="str"> days</span> <span class="punct">};</span>
+                </div>
+                <p style="color: var(--term-mute); font-family: var(--font-mono); font-size: 0.9rem;">A blazingly fast, rock-solid safety net. Deploy AI code without fear.</p>
+            </div>
+
+            <div class="steps-code">
+                <div class="titlebar">
+                    <span><span class="file">pipeline-sprint.ts</span> &nbsp; — &nbsp; 3 stages</span>
+                    <span>main * </span>
+                </div>
+                <div class="step">
+                    <div class="ln">01</div>
+                    <div class="sig"><span class="fn">audit</span><span class="par">(</span>project<span class="par">)</span> ⟶ <span class="fn">report</span></div>
+                    <div class="desc">The Ruthless Baseline Audit. Diagnose the hidden productivity killers in your setup.</div>
+                </div>
+                <div class="step">
+                    <div class="ln">02</div>
+                    <div class="sig"><span class="fn">turbo</span><span class="par">(</span>code<span class="par">)</span> ⟶ <span class="fn">−40%</span></div>
+                    <div class="desc">The Build-Time Turbo. Spring Context Caching, parallelization, Testcontainers.</div>
+                </div>
+                <div class="step">
+                    <div class="ln">03</div>
+                    <div class="sig"><span class="fn">sanitize</span><span class="par">(</span>pipeline<span class="par">)</span> ⟶ <span class="fn">0 flakes</span></div>
+                    <div class="desc">The Pipeline Sanitation. Kill flaky tests. Trust green and red lights again.</div>
+                </div>
+            </div>
+
+            <aside class="notes">
+                My offer to Tech Leads like you is extremely simple: We reduce your Spring Boot build times by a guaranteed 50% in just 30 days. We build a blazingly fast, rock-solid safety net so your team can deploy AI-generated code fearlessly and rapidly.
+
+                How do we achieve this? We execute a compact 3-step sprint:
+
+                1. The Ruthless Baseline Audit: We start with an unvarnished analysis of your project to uncover the hidden productivity killers in your setup.
+                2. The Build-Time Turbo: We grab the low-hanging fruits directly in your code - optimizing your Spring Context Caching and drastically speeding up those painfully slow Testcontainers.
+                3. The Pipeline Sanitation: We ruthlessly eliminate flaky tests and remove unreliabilities, so your developers can rely 100% on green and red lights again.
+            </aside>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SLIDE 4 — THE CLOSE (shell session)                           -->
+        <!-- ============================================================ -->
+        <section class="slide-close">
+            <p class="usp-statement"><span class="key">self</span>.<span class="ident">obsolescence</span> = <span class="str">true</span>;</p>
+
+            <div class="usp-pill">⚡ Custom AI Testing Skill · MCP Server</div>
+
+            <p style="color: var(--term-mute); max-width: 700px; margin: 0 auto 1rem; font-family: var(--font-mono); font-size: 0.9rem;">
+                10 years of testing expertise — injected straight into your devs' IDEs. A permanent autopilot that secures your new build times.
+            </p>
+
+            <div class="assertion-block">
+                <div><span class="comment">// risk-free, money-back</span></div>
+                <div><span class="key">assert</span>(<span class="ident">build_time_reduction</span> &gt;= <span class="ok">0.30</span>) <span class="comment">|| <span class="ok">refund(client)</span></span></div>
+                <div><span class="comment">// no ifs, no buts.</span></div>
+            </div>
+
+            <div class="shell-cta">
+                <div><span class="prompt"></span>book <span class="arg">--duration=45m</span> <span class="arg">--when="tuesday morning"</span> <span class="arg">--strings=0</span></div>
+                <div style="color: var(--term-mute); margin-top: 0.4rem;">  ↳ <span class="ok">ready</span>. we'll look at your code, sketch the 30-day sprint, no commitment.</div>
+                <a href="#" class="cta-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    ./schedule-deep-dive.sh
+                </a>
+            </div>
+
+            <aside class="notes">
+                But here is the most important part: I make myself obsolete afterwards. Your team will receive a custom AI Testing Skill - an MCP Server - that injects my concentrated 10 years of testing expertise directly into your developers' IDEs. Think of it as a permanent autopilot that effortlessly secures your new, phenomenal build times.
+
+                And this entire sprint is absolutely risk-free for you. If we don't reduce your build times by at least 30% black-and-white, you get your money back. No ifs, no buts.
+
+                Based on what you've told me about your setup today, I already see 2 or 3 massive levers we could pull. If you're open to it, let's sit down next week for a separate 45-minute deep dive. We can briefly look at your code or pipeline and sketch out a concrete, tailored strategy of what this 30-day sprint would look like for you. Completely no-strings-attached.
+
+                How does your schedule look - do you have 45 minutes next week, maybe Tuesday morning?
+            </aside>
+        </section>
+
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/notes/notes.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/highlight/highlight.js"></script>
+<script src="assets/pitch.js"></script>
+</body>
+</html>

@@ -82,130 +82,199 @@
             <!-- Right: lead form -->
             <div>
                 <div class="bg-white border border-slate-200 rounded-2xl p-6 md:p-8 lg:p-10 shadow-xl shadow-slate-200/60">
-                    <h2 class="text-2xl font-bold text-slate-900 mb-2">Get the 2026 report</h2>
-                    <p class="text-sm text-slate-600 mb-6">
-                        Enter your email and we'll send the report the moment it's published.
+                    <h2 class="text-2xl font-bold text-slate-900 mb-6 text-center">Get the 2026 report</h2>
+
+                    {{/* PDF cover preview placeholder — pure CSS/SVG mockup so users
+                         see at a glance what they're subscribing for. Swap the inner
+                         markup for a real cover image once the design is ready. */}}
+                    <div class="relative mx-auto mb-6 group" style="max-width: 220px;">
+                        <div class="relative aspect-[210/297] rounded-md overflow-hidden border border-slate-200
+                                    shadow-2xl shadow-slate-400/30
+                                    transform -rotate-2 group-hover:rotate-0 group-hover:-translate-y-1
+                                    transition-all duration-500 ease-out
+                                    bg-gradient-to-br from-white via-white to-brand-50/40">
+                            <!-- Top brand band -->
+                            <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-brand-600 via-brand-500 to-emerald-500"></div>
+
+                            <!-- Cover content -->
+                            <div class="absolute inset-0 pt-5 px-5 pb-4 flex flex-col">
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="text-[8px] font-bold tracking-[0.2em] uppercase text-brand-700">PragmaTech</span>
+                                    <span class="text-[8px] font-bold tracking-[0.12em] uppercase bg-yellow-400 text-yellow-900 px-1.5 py-0.5 rounded shadow-sm">2026</span>
+                                </div>
+
+                                <p class="text-[7px] font-mono uppercase tracking-[0.25em] text-slate-400 mb-2">Industry Report · Vol 01</p>
+
+                                <h3 class="text-[14px] font-bold text-slate-900 leading-[1.15] mb-1">
+                                    Spring Boot
+                                </h3>
+                                <h3 class="text-[14px] font-bold text-slate-900 leading-[1.15] mb-3">
+                                    <span class="bg-gradient-to-r from-brand-600 to-emerald-600 text-transparent bg-clip-text">
+                                        Developer Productivity
+                                    </span>
+                                </h3>
+                                <p class="text-[8px] text-slate-500 leading-snug mb-3">
+                                    Benchmarks for build time, test coverage, and deployment frequency across real teams.
+                                </p>
+
+                                <!-- Faux bar chart -->
+                                <div class="flex-1 flex items-end gap-[3px] mb-3 min-h-0">
+                                    <div class="flex-1 rounded-sm bg-slate-200" style="height: 28%"></div>
+                                    <div class="flex-1 rounded-sm bg-slate-300" style="height: 42%"></div>
+                                    <div class="flex-1 rounded-sm bg-brand-400" style="height: 56%"></div>
+                                    <div class="flex-1 rounded-sm bg-brand-500" style="height: 38%"></div>
+                                    <div class="flex-1 rounded-sm bg-brand-500" style="height: 68%"></div>
+                                    <div class="flex-1 rounded-sm bg-emerald-500" style="height: 88%"></div>
+                                    <div class="flex-1 rounded-sm bg-brand-500" style="height: 52%"></div>
+                                    <div class="flex-1 rounded-sm bg-slate-300" style="height: 34%"></div>
+                                </div>
+
+                                <div class="flex items-center justify-between border-t border-slate-200 pt-2">
+                                    <span class="text-[7px] font-mono text-slate-400 tracking-wide">100+ teams surveyed</span>
+                                    <span class="text-[7px] font-mono text-slate-400 tracking-wide">pragmatech.digital</span>
+                                </div>
+                            </div>
+
+                            <!-- Spine shadow on the left edge -->
+                            <div class="absolute inset-y-0 left-0 w-1.5 bg-gradient-to-r from-slate-400/30 via-slate-300/15 to-transparent pointer-events-none"></div>
+                            <!-- Subtle paper texture / page corner curl on top-right -->
+                            <div class="absolute top-2 right-2 w-3 h-3 bg-gradient-to-br from-slate-100 to-transparent rounded-bl-sm opacity-60 pointer-events-none"></div>
+                        </div>
+
+                        <!-- Stacked-pages effect: two thin slabs behind the cover -->
+                        <div class="absolute inset-0 -z-10 rounded-md bg-slate-200/60 transform -rotate-3 translate-y-1 translate-x-1 transition-transform duration-500 group-hover:rotate-[-1deg]"></div>
+                        <div class="absolute inset-0 -z-20 rounded-md bg-slate-100 transform -rotate-[5deg] translate-y-2 translate-x-2 transition-transform duration-500 group-hover:rotate-[-2deg]"></div>
+                    </div>
+
+                    <p class="text-center text-xs text-slate-500 italic mb-6">
+                        Preview — full report drops when results are in.
                     </p>
 
-                    {{/* MailerLite embedded form — universal loader is guarded by .Page.Store
-                         and shared with the `mailerlite` shortcode, so it loads only once. */}}
-                    {{ if not (.Page.Store.Get "mailerliteLoaded") }}
-                      {{ .Page.Store.Set "mailerliteLoaded" true }}
-                    <!-- MailerLite Universal -->
-                    <script>
-                        (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
-                        .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
-                        n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
-                        (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
-                        ml('account', '1613864');
-                    </script>
-                    <!-- End MailerLite Universal -->
-                    {{ end }}
-                    <div class="ml-embedded" data-form="BCIFki"></div>
+                    <p class="text-sm text-slate-600 mb-6">
+                        Tell us where to send it and we'll email you the moment the report is published.
+                    </p>
 
-                    <!-- Visual divider -->
-                    <div class="relative my-8" aria-hidden="true">
-                        <div class="absolute inset-0 flex items-center">
-                            <div class="w-full border-t border-slate-200"></div>
-                        </div>
-                        <div class="relative flex justify-center">
-                            <span class="bg-white px-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">
-                                or use the styled form
-                            </span>
+                    {{/* MailerLite branded form — uses the exported action URL, hidden inputs
+                         and reCAPTCHA from the dashboard. We keep MailerLite's structural
+                         class names (ml-block-form, ml-form-fieldRow, ml-validate-*) so
+                         webforms.min.js binds validation + AJAX submit + the success
+                         redirect callback. The MailerLite CSS block is omitted; Tailwind
+                         classes provide the visual style. */}}
+                    <div id="mlb2-41246099" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-41246099">
+                        <div class="ml-form-embedWrapper embedForm">
+                            <div class="ml-form-embedBody ml-form-embedBodyDefault row-form">
+                                <form class="ml-block-form space-y-4"
+                                      action="https://assets.mailerlite.com/jsonp/1613864/forms/187358602568140384/subscribe"
+                                      data-code=""
+                                      method="post"
+                                      target="_blank">
+                                    <div class="ml-form-formContent space-y-4">
+                                        <div class="ml-form-fieldRow">
+                                            <div class="ml-field-group ml-field-name ml-validate-required">
+                                                <label for="surveyFieldName" class="block text-sm font-semibold text-slate-700 mb-2">Name</label>
+                                                <input id="surveyFieldName"
+                                                       aria-label="name"
+                                                       aria-required="true"
+                                                       type="text"
+                                                       name="fields[name]"
+                                                       placeholder="Jane Doe"
+                                                       autocomplete="given-name"
+                                                       class="form-control w-full px-4 py-3 rounded-lg border border-slate-300 bg-white text-slate-900 placeholder-slate-400
+                                                              focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors" />
+                                            </div>
+                                        </div>
+
+                                        <div class="ml-form-fieldRow">
+                                            <div class="ml-field-group ml-field-company ml-validate-required">
+                                                <label for="surveyFieldCompany" class="block text-sm font-semibold text-slate-700 mb-2">Company</label>
+                                                <input id="surveyFieldCompany"
+                                                       aria-label="company"
+                                                       aria-required="true"
+                                                       type="text"
+                                                       name="fields[company]"
+                                                       placeholder="Acme Inc."
+                                                       autocomplete="organization"
+                                                       class="form-control w-full px-4 py-3 rounded-lg border border-slate-300 bg-white text-slate-900 placeholder-slate-400
+                                                              focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors" />
+                                            </div>
+                                        </div>
+
+                                        <div class="ml-form-fieldRow ml-last-item">
+                                            <div class="ml-field-group ml-field-email ml-validate-email ml-validate-required">
+                                                <label for="surveyFieldEmail" class="block text-sm font-semibold text-slate-700 mb-2">Email address</label>
+                                                <input id="surveyFieldEmail"
+                                                       aria-label="email"
+                                                       aria-required="true"
+                                                       type="email"
+                                                       name="fields[email]"
+                                                       placeholder="you@company.com"
+                                                       autocomplete="email"
+                                                       class="form-control w-full px-4 py-3 rounded-lg border border-slate-300 bg-white text-slate-900 placeholder-slate-400
+                                                              focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="ml-form-recaptcha ml-validate-required pt-2">
+                                        <div class="g-recaptcha" data-sitekey="6Lf1KHQUAAAAAFNKEX1hdSWCS3mRMv4FlFaNslaD"></div>
+                                    </div>
+
+                                    <input type="hidden" name="ml-submit" value="1">
+                                    <input type="hidden" name="anticsrf" value="true">
+
+                                    <div class="ml-form-embedSubmit pt-2">
+                                        <button type="submit"
+                                                class="primary cta-primary w-full inline-flex items-center justify-center gap-2
+                                                       bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400
+                                                       text-white px-6 py-3.5 rounded-lg font-bold
+                                                       shadow-lg shadow-brand-500/20 hover:shadow-xl hover:shadow-brand-500/30
+                                                       hover:-translate-y-0.5 transition-all">
+                                            Get the Report
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                            </svg>
+                                        </button>
+                                        <button disabled="disabled" style="display: none;" type="button"
+                                                class="loading w-full inline-flex items-center justify-center gap-2
+                                                       bg-brand-500/70 text-white px-6 py-3.5 rounded-lg font-bold cursor-wait">
+                                            <span class="surveyLoaderSpinner inline-block w-5 h-5 border-2 border-white border-t-transparent rounded-full"></span>
+                                            <span class="sr-only">Loading...</span>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="ml-form-successBody row-success" style="display: none">
+                                <div class="ml-form-successContent text-center py-4">
+                                    <h4 class="text-xl font-bold text-slate-900 mb-2">Thank you!</h4>
+                                    <p class="text-sm text-slate-600">Check your inbox to confirm your subscription.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    {{/* Custom-styled form — submits by proxying the email into the
-                         MailerLite-embedded form above and triggering its submit, so the
-                         existing MailerLite redirect to /report-success/ still applies. */}}
-                    <form id="customSurveyForm" class="space-y-4" novalidate>
-                        <div>
-                            <label for="customSurveyEmail" class="block text-sm font-semibold text-slate-700 mb-2">
-                                Email address
-                            </label>
-                            <input
-                                id="customSurveyEmail"
-                                name="email"
-                                type="email"
-                                required
-                                autocomplete="email"
-                                placeholder="you@company.com"
-                                class="w-full px-4 py-3 rounded-lg border border-slate-300 bg-white text-slate-900 placeholder-slate-400
-                                       focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors"
-                            />
-                        </div>
-
-                        <button
-                            type="submit"
-                            id="customSurveySubmit"
-                            class="cta-primary w-full inline-flex items-center justify-center gap-2
-                                   bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400
-                                   text-white px-6 py-3.5 rounded-lg font-bold
-                                   shadow-lg shadow-brand-500/20 hover:shadow-xl hover:shadow-brand-500/30
-                                   hover:-translate-y-0.5 transition-all">
-                            Send me the report
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                            </svg>
-                        </button>
-
-                        <p id="customSurveyStatus" class="hidden text-sm" role="status" aria-live="polite"></p>
-                    </form>
+                    <style>
+                        @keyframes surveyLoaderSpin { to { transform: rotate(360deg); } }
+                        .surveyLoaderSpinner { animation: surveyLoaderSpin 0.8s linear infinite; }
+                        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+                        .ml-error input, .ml-error textarea, .ml-error select { border-color: #ef4444 !important; }
+                        .ml-error .label-description, .ml-error label:first-child { color: #ef4444 !important; }
+                        .ml-form-recaptcha.ml-error iframe { border: solid 1px #ef4444; border-radius: 4px; }
+                    </style>
 
                     <script>
-                        (function () {
-                            document.addEventListener('DOMContentLoaded', function () {
-                                var customForm = document.getElementById('customSurveyForm');
-                                var statusEl = document.getElementById('customSurveyStatus');
-                                var submitBtn = document.getElementById('customSurveySubmit');
-                                var mailerLiteContainer = document.querySelector('.ml-embedded[data-form="BCIFki"]');
-                                if (!customForm || !mailerLiteContainer) return;
-
-                                function showStatus(message, isError) {
-                                    statusEl.textContent = message;
-                                    statusEl.classList.remove('hidden', 'text-emerald-600', 'text-red-600');
-                                    statusEl.classList.add(isError ? 'text-red-600' : 'text-emerald-600');
-                                }
-
-                                function findMailerLiteForm() {
-                                    return mailerLiteContainer.querySelector('form');
-                                }
-
-                                customForm.addEventListener('submit', function (event) {
-                                    event.preventDefault();
-                                    var emailValue = document.getElementById('customSurveyEmail').value.trim();
-                                    if (!emailValue) {
-                                        showStatus('Please enter your email address.', true);
-                                        return;
-                                    }
-
-                                    var mailerLiteForm = findMailerLiteForm();
-                                    if (!mailerLiteForm) {
-                                        showStatus('The form is still loading. Please try again in a moment.', true);
-                                        return;
-                                    }
-
-                                    var mailerLiteEmailInput = mailerLiteForm.querySelector('input[type="email"]');
-                                    if (mailerLiteEmailInput) {
-                                        mailerLiteEmailInput.value = emailValue;
-                                        mailerLiteEmailInput.dispatchEvent(new Event('input', { bubbles: true }));
-                                        mailerLiteEmailInput.dispatchEvent(new Event('change', { bubbles: true }));
-                                    }
-
-                                    submitBtn.disabled = true;
-                                    submitBtn.classList.add('opacity-60', 'cursor-not-allowed');
-
-                                    var mailerLiteSubmitBtn = mailerLiteForm.querySelector('button[type="submit"], input[type="submit"]');
-                                    if (mailerLiteSubmitBtn) {
-                                        mailerLiteSubmitBtn.click();
-                                    } else if (typeof mailerLiteForm.requestSubmit === 'function') {
-                                        mailerLiteForm.requestSubmit();
-                                    } else {
-                                        mailerLiteForm.submit();
-                                    }
-                                });
-                            });
-                        })();
+                        function ml_webform_success_41246099() {
+                            try {
+                                window.top.location.href = 'https://pragmatech.digital/report-success';
+                            } catch (e) {
+                                window.location.href = 'https://pragmatech.digital/report-success';
+                            }
+                        }
+                    </script>
+                    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+                    <script src="https://groot.mailerlite.com/js/w/webforms.min.js?vb397d78ebaa8a0f631d35384c46d781b" type="text/javascript"></script>
+                    <script>
+                        fetch("https://assets.mailerlite.com/jsonp/1613864/forms/187358602568140384/takel");
                     </script>
 
                     <p class="text-xs text-slate-500 mt-6">
