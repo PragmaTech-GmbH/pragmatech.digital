@@ -343,13 +343,13 @@
             </div>
 
             <div class="bg-slate-900 rounded-xl shadow-lg overflow-hidden border border-slate-700">
-                <div class="bg-gradient-to-r from-brand-600 to-brand-500 text-white p-4">
+                <div class="on-brand bg-gradient-to-r from-brand-600 to-brand-500 text-white p-4">
                     <div class="flex items-center justify-between">
                         <h3 class="text-lg font-semibold">Spring Test Profiler Report</h3>
                         <div class="flex items-center space-x-2">
                             <span class="px-2 py-1 bg-brand-500/50 rounded text-sm">Interactive Preview</span>
                             {{ if .Params.sampleReportUrl }}
-                            <a href="{{ .Params.sampleReportUrl }}" target="_blank" class="px-3 py-1 bg-white text-brand-600 rounded text-sm hover:bg-slate-100 transition-colors">
+                            <a href="{{ .Params.sampleReportUrl }}" target="_blank" class="px-3 py-1 bg-white !text-brand-600 rounded text-sm hover:bg-slate-100 transition-colors">
                                 Open Full Report
                             </a>
                             {{ end }}
