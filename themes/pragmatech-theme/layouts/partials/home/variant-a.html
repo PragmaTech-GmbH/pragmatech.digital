@@ -303,21 +303,81 @@
                 {{ end }}
             </ol>
 
-            {{ with $home.methodology.cta }}
-            <div class="mt-16 pt-10 border-t border-slate-200 text-center">
-                <p class="text-lg md:text-xl font-bold text-white mb-6">{{ .headline }}</p>
-                <a href="{{ $bookUrl }}" target="_blank" rel="noopener"
-                   class="cta-primary inline-flex items-center justify-center gap-2
-                          bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400
-                          text-white px-8 py-4 rounded-lg font-bold text-base
-                          shadow-lg shadow-brand-500/20 hover:shadow-xl hover:shadow-brand-500/30
-                          hover:-translate-y-0.5 transition-all">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                    {{ .button }}
-                </a>
-                <p class="text-sm text-slate-500 mt-4">{{ .note }}</p>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 5a. METHODOLOGY CTA - light band                             -->
+    <!-- ============================================================ -->
+    {{ with $home.methodology.cta }}
+    <section class="bg-white border-b border-slate-200">
+        <div class="absolute inset-0 bg-gradient-to-br from-white via-brand-50/30 to-white pointer-events-none"></div>
+        <div class="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 text-center">
+            <p class="text-xl md:text-2xl font-bold text-slate-900 mb-6">{{ .headline }}</p>
+            <a href="{{ $bookUrl }}" target="_blank" rel="noopener"
+               class="cta-primary inline-flex items-center justify-center gap-2
+                      bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400
+                      text-white px-8 py-4 rounded-lg font-bold text-base
+                      shadow-lg shadow-brand-500/20 hover:shadow-xl hover:shadow-brand-500/30
+                      hover:-translate-y-0.5 transition-all">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                {{ .button }}
+            </a>
+            <p class="text-sm text-slate-500 mt-4">{{ .note }}</p>
+        </div>
+    </section>
+    {{ end }}
+
+    <!-- ============================================================ -->
+    <!-- 5b. TESTIMONIALS - Hero quote + supporting pair              -->
+    <!-- ============================================================ -->
+    <section class="py-20 sm:py-28 bg-slate-950 border-b border-slate-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-14">
+                <p class="text-[11px] tracking-[0.3em] uppercase text-brand-400 font-bold mb-4">Hear it from them</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-white">What tech leaders say</h2>
             </div>
-            {{ end }}
+
+            <!-- Hero quote -->
+            <figure class="relative max-w-4xl mx-auto text-center mb-14">
+                <svg class="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 text-brand-500/30" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z"/>
+                </svg>
+                <blockquote class="text-2xl md:text-3xl font-bold text-white leading-snug mb-8 pt-6">
+                    Their integration testing strategy caught critical issues before production, enabling safer, more frequent deployments.
+                </blockquote>
+                <figcaption class="flex items-center justify-center gap-4">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-br from-brand-500 to-emerald-500 text-white font-bold flex items-center justify-center text-sm">SC</div>
+                    <div class="text-left">
+                        <div class="text-white font-bold">Shayne Clausson</div>
+                        <div class="text-sm text-slate-400">VP Engineering · Extenda Retail</div>
+                    </div>
+                </figcaption>
+            </figure>
+
+            <!-- Supporting pair -->
+            <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <article class="bg-slate-900/60 border border-slate-800 rounded-xl p-6">
+                    <p class="text-slate-300 italic leading-relaxed mb-5">"What used to be a cumbersome and time-consuming task has now become seamless and effortless."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-full bg-slate-700 text-white text-xs font-bold flex items-center justify-center">MW</div>
+                        <div>
+                            <div class="text-white text-sm font-semibold">Michael Wittig</div>
+                            <div class="text-xs text-slate-500">CEO · Widdix GmbH</div>
+                        </div>
+                    </div>
+                </article>
+                <article class="bg-slate-900/60 border border-slate-800 rounded-xl p-6">
+                    <p class="text-slate-300 italic leading-relaxed mb-5">"Hands-on, focused, and immediately applicable to our daily work. A great blend of practical insights and expert guidance."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-full bg-slate-700 text-white text-xs font-bold flex items-center justify-center">JH</div>
+                        <div>
+                            <div class="text-white text-sm font-semibold">Jørn Martin Tysnes Holm</div>
+                            <div class="text-xs text-slate-500">Department Manager · Storebrand</div>
+                        </div>
+                    </div>
+                </article>
+            </div>
         </div>
     </section>
 

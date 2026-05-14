@@ -155,7 +155,7 @@ faqSection:
       answer: "If at the end of week 4 your CI build time has not dropped by at least 30% versus the documented baseline, you get a full refund. No clauses, no fine print."
 
 finalCTA:
-  headline: "Secure Your Free Qualification Call"
+  headline: "Let's Analyze Your Situation"
   subheadline: "No sales pitch. A 15-minute walkthrough of where your pipeline currently stands."
   steps:
     - title: "Pick a slot"
