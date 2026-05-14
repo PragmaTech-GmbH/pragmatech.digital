@@ -30,17 +30,15 @@
                 </ul>
             </div>
 
-            <!-- Column 3: Resources -->
+            <!-- Column 3: Report teaser -->
             <div>
-                <h4 class="text-white font-semibold mb-4">Resources</h4>
-                <ul class="space-y-2 text-sm text-slate-400">
-                    {{ with .Site.Params.newsletterUrl }}
-                    <li><a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="hover:text-brand-400 transition-colors">Newsletter</a></li>
-                    {{ end }}
-                    <li><a href="{{ "books" | relURL }}" class="hover:text-brand-400 transition-colors">Books</a></li>
-                    <li><a href="{{ "talks" | relURL }}" class="hover:text-brand-400 transition-colors">Talks</a></li>
-                    <li><a href="{{ "courses" | relURL }}" class="hover:text-brand-400 transition-colors">Online Courses</a></li>
-                </ul>
+                <p class="text-[10px] tracking-[0.25em] uppercase text-brand-400 font-bold mb-3">For Tech Leads</p>
+                <h4 class="text-white font-semibold mb-3 leading-snug">What's actually slowing Spring Boot teams down?</h4>
+                <p class="text-sm text-slate-400 leading-relaxed">
+                    I'm surveying 100+ teams to map the hidden bottlenecks heads of engineering keep
+                    hitting — and what high-performing teams do differently. The report distills it
+                    into practical insights you can apply to your pipeline.
+                </p>
             </div>
 
             <!-- Column 4: Productivity Survey lead-gen card -->
