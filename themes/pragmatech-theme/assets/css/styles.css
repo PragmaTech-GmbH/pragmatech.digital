@@ -429,3 +429,11 @@
 [data-variant="a"] a.cta-primary *,
 [data-variant="a"] a.cta-primary svg { color: #ffffff !important; stroke: #ffffff !important; }
 [data-variant="a"] a.cta-primary svg path { stroke: #ffffff !important; }
+
+/* Force white text on opt-in brand-tinted surfaces (gradient strips, iframe chrome, etc.).
+   Apply `on-brand` to any element with a saturated brand/emerald background where the
+   `text-white → slate-900` flip would otherwise leave dark text on a dark surface. */
+[data-variant="a"] .on-brand,
+[data-variant="a"] .on-brand *,
+[data-variant="a"] .on-brand svg { color: #ffffff !important; stroke: #ffffff !important; }
+[data-variant="a"] .on-brand a { color: var(--color-brand-50) !important; }
