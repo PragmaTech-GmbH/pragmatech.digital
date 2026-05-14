@@ -1,0 +1,87 @@
+{
+  "meta": {
+    "title": "Spring Boot Developer Productivity",
+    "subtitle": "Industry Report · Vol 01",
+    "year": "2026",
+    "edition": "First edition",
+    "url": "pragmatech.digital",
+    "surveyUrl": "pragmatech.digital/spring-boot-developer-productivity-survey",
+    "publisher": "PragmaTech",
+    "tagline": "Build & ship software with confidence."
+  },
+  "samplePages": [2, 3, 4, 5],
+  "cover": {
+    "eyebrow": "Industry Report · Vol 01",
+    "headline": "Spring Boot Developer Productivity",
+    "subhead": "Benchmarks for build time, test coverage, and deployment frequency across real teams.",
+    "footnote": "100+ teams surveyed · anonymized · segmented by team size and industry"
+  },
+  "about": {
+    "intro": "How long does a Spring Boot build really take in 2026? How much of your code is actually covered by tests? How often does the average team ship to production? This report turns first-hand answers from 100+ engineering teams into honest, comparable benchmarks — so you can see where your team stands, and where the rest of the industry is heading.",
+    "methodology": [
+      { "label": "Teams surveyed", "value": "112" },
+      { "label": "Countries represented", "value": "24" },
+      { "label": "Survey window", "value": "Jan – Mar 2026" },
+      { "label": "Anonymisation", "value": "Per-response, no PII retained" }
+    ],
+    "toc": [
+      { "page": "01", "title": "Cover" },
+      { "page": "02", "title": "About this report" },
+      { "page": "03", "title": "Build times" },
+      { "page": "04", "title": "Test coverage" },
+      { "page": "05", "title": "Deployment frequency & next steps" }
+    ],
+    "kpis": [
+      { "label": "Median build time", "value": "4m 20s", "trend": "+18% vs. last informal benchmarks" },
+      { "label": "Median line coverage", "value": "67%", "trend": "Most teams sit between 55–80%" },
+      { "label": "Median deploy frequency", "value": "Weekly", "trend": "Only 14% deploy on demand" }
+    ]
+  },
+  "buildTimes": {
+    "headline": "Build times scale faster than teams do",
+    "intro": "We asked teams for the median wall-clock time of a clean `./mvnw verify` (or Gradle equivalent) on the developer machine they use day-to-day. Larger teams report meaningfully longer builds — driven mostly by test-suite weight, not compilation.",
+    "unit": "minutes",
+    "bars": [
+      { "label": "1 – 5 devs",  "valueLabel": "2m 10s", "valueSeconds": 130 },
+      { "label": "6 – 20 devs", "valueLabel": "4m 20s", "valueSeconds": 260 },
+      { "label": "20+ devs",    "valueLabel": "7m 45s", "valueSeconds": 465 }
+    ],
+    "takeaway": {
+      "title": "The 3.6× rule",
+      "body": "On average, teams of 20+ developers wait 3.6× longer for a green build than 1–5 dev teams. Most of the gap is test execution: 71% of the larger teams report integration tests as the dominant slice of build time."
+    }
+  },
+  "testCoverage": {
+    "headline": "Test coverage clusters around 'good enough'",
+    "intro": "Line coverage, self-reported from each team's primary Spring Boot service. The distribution is sharply peaked: most teams have decided 60–80% is the right operating point and stopped optimising.",
+    "buckets": [
+      { "label": "<40%",   "share": 6 },
+      { "label": "40–60%", "share": 19 },
+      { "label": "60–80%", "share": 47 },
+      { "label": "80–95%", "share": 23 },
+      { "label": "95%+",   "share": 5 }
+    ],
+    "pullQuote": {
+      "text": "We stopped chasing coverage at 75%. The last 20% would have taken longer to write than the entire previous year of features.",
+      "attribution": "Staff engineer, fintech, 50-person team"
+    }
+  },
+  "deployFrequency": {
+    "headline": "Most teams ship weekly — very few ship on demand",
+    "intro": "Production deployment cadence for the team's primary service. 'On demand' means a developer can deploy any commit, any time, with no batch boundary.",
+    "buckets": [
+      { "label": "On demand",     "share": 14 },
+      { "label": "Daily",         "share": 21 },
+      { "label": "Weekly",        "share": 38 },
+      { "label": "Monthly",       "share": 19 },
+      { "label": "Quarterly+",    "share":  8 }
+    ],
+    "closing": {
+      "title": "What's next",
+      "body": "The full 2026 report will include segmentation by industry (finance, e-commerce, public sector, SaaS), team age, and CI provider — plus the open-ended answers from teams that have measurably moved from monthly to weekly cadence inside the past 12 months.",
+      "ctaTitle": "Want to contribute next year's data?",
+      "ctaBody": "Take the 2027 survey (~4 minutes, fully anonymous) and you'll receive the next report the moment it ships.",
+      "ctaLink": "pragmatech.digital/spring-boot-developer-productivity-survey"
+    }
+  }
+}

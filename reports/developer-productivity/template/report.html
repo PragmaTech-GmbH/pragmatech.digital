@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>{{meta.title}} {{meta.year}}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ========== Page 1 · Cover ============================================== -->
+<section class="page cover">
+  <div class="cover__band"></div>
+
+  <header class="cover__masthead">
+    <div class="cover__brand">
+      <div class="cover__brand-mark">P</div>
+      <div class="cover__wordmark">Pragma<span>Tech</span></div>
+    </div>
+    <div class="cover__year">{{meta.year}}</div>
+  </header>
+
+  <div class="cover__center">
+    <div class="cover__eyebrow">{{cover.eyebrow}}</div>
+    <h1 class="cover__title">Spring Boot<br/><em>Developer Productivity</em></h1>
+    <p class="cover__subhead">{{cover.subhead}}</p>
+  </div>
+
+  <div class="cover__chart">
+    <i style="height:18%;background:var(--slate-200)"></i>
+    <i style="height:24%;background:var(--slate-200)"></i>
+    <i style="height:36%;background:var(--slate-300)"></i>
+    <i style="height:52%;background:var(--brand-400)"></i>
+    <i style="height:46%;background:var(--brand-400)"></i>
+    <i style="height:62%;background:var(--brand-500)"></i>
+    <i style="height:74%;background:var(--brand-500)"></i>
+    <i style="height:88%;background:var(--brand-600)"></i>
+    <i style="height:96%;background:var(--emerald-500)"></i>
+    <i style="height:78%;background:var(--brand-600)"></i>
+    <i style="height:64%;background:var(--brand-500)"></i>
+    <i style="height:48%;background:var(--brand-400)"></i>
+    <i style="height:38%;background:var(--slate-300)"></i>
+    <i style="height:30%;background:var(--slate-300)"></i>
+    <i style="height:22%;background:var(--slate-200)"></i>
+    <i style="height:14%;background:var(--slate-200)"></i>
+  </div>
+
+  <div class="cover__footnote">
+    <div class="cover__footnote-text">{{cover.footnote}}</div>
+    <div class="cover__meta">
+      <strong>{{meta.publisher}}</strong><br/>
+      {{meta.edition}}<br/>
+      {{meta.url}}
+    </div>
+  </div>
+</section>
+
+<!-- ========== Page 2 · About this report ================================= -->
+<section class="page">
+  {{watermarkP2}}
+  <div class="page__body">
+    <div class="about__eyebrow">About this report</div>
+    <h2 class="about__title">A first honest benchmark of how Spring Boot teams actually ship.</h2>
+    <p class="about__intro">{{about.intro}}</p>
+
+    <div class="about__columns">
+      <div class="about__col">
+        <h3>Methodology</h3>
+        <dl class="about__method">{{methodHtml}}</dl>
+      </div>
+      <div class="about__col">
+        <h3>Contents</h3>
+        <ol class="about__toc">{{tocHtml}}</ol>
+      </div>
+    </div>
+
+    <div class="kpis">{{kpisHtml}}</div>
+  </div>
+  <div class="footer">
+    <span class="footer__page">02 / 05</span>
+    <span class="footer__url">{{meta.url}}</span>
+    <span class="footer__sample">{{footerSampleP2}}</span>
+  </div>
+</section>
+
+<!-- ========== Page 3 · Build times ======================================= -->
+<section class="page">
+  {{watermarkP3}}
+  <div class="page__body">
+    <div class="chapter__num">Ch. 01 <span>· Build times</span></div>
+    <h2 class="chapter__title">{{buildTimes.headline}}</h2>
+    <p class="chapter__intro">{{buildTimes.introHtml}}</p>
+
+    <div class="hbar__caption">
+      <span>Median build time (mm:ss)</span>
+      <span>By team size</span>
+    </div>
+    <div class="hbar">{{buildBarsHtml}}</div>
+
+    <div class="callout">
+      <div class="callout__bar"></div>
+      <div class="callout__body">
+        <div class="callout__title">{{buildTimes.takeaway.title}}</div>
+        <div class="callout__text">{{buildTimes.takeaway.body}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <span class="footer__page">03 / 05</span>
+    <span class="footer__url">{{meta.url}}</span>
+    <span class="footer__sample">{{footerSampleP3}}</span>
+  </div>
+</section>
+
+<!-- ========== Page 4 · Test coverage ===================================== -->
+<section class="page">
+  {{watermarkP4}}
+  <div class="page__body">
+    <div class="chapter__num">Ch. 02 <span>· Test coverage</span></div>
+    <h2 class="chapter__title">{{testCoverage.headline}}</h2>
+    <p class="chapter__intro">{{testCoverage.intro}}</p>
+
+    <div class="hbar__caption">
+      <span>Share of teams (%)</span>
+      <span>Self-reported line coverage</span>
+    </div>
+    <div class="vbar">{{coverageVbarHtml}}</div>
+    <div class="vbar__labels">{{coverageLabelsHtml}}</div>
+
+    <div class="pullquote">
+      <div class="pullquote__text">{{testCoverage.pullQuote.text}}</div>
+      <div class="pullquote__by">— {{testCoverage.pullQuote.attribution}}</div>
+    </div>
+  </div>
+  <div class="footer">
+    <span class="footer__page">04 / 05</span>
+    <span class="footer__url">{{meta.url}}</span>
+    <span class="footer__sample">{{footerSampleP4}}</span>
+  </div>
+</section>
+
+<!-- ========== Page 5 · Deploy frequency & closing ======================== -->
+<section class="page">
+  {{watermarkP5}}
+  <div class="page__body">
+    <div class="chapter__num">Ch. 03 <span>· Deployment frequency</span></div>
+    <h2 class="chapter__title">{{deployFrequency.headline}}</h2>
+    <p class="chapter__intro">{{deployFrequency.intro}}</p>
+
+    <div class="hbar__caption">
+      <span>Share of teams (%)</span>
+      <span>Production deploy cadence</span>
+    </div>
+    <div class="deploy">{{deployHtml}}</div>
+
+    <div class="closing">
+      <div class="closing__body">
+        <h3>{{deployFrequency.closing.title}}</h3>
+        <p>{{deployFrequency.closing.body}}</p>
+      </div>
+      <div class="closing__cta">
+        <div>
+          <h3>{{deployFrequency.closing.ctaTitle}}</h3>
+          <p>{{deployFrequency.closing.ctaBody}}</p>
+        </div>
+        <a class="closing__link">{{deployFrequency.closing.ctaLink}}</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <span class="footer__page">05 / 05</span>
+    <span class="footer__url">{{meta.url}}</span>
+    <span class="footer__sample">{{footerSampleP5}}</span>
+  </div>
+</section>
+
+</body>
+</html>

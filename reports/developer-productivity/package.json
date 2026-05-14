@@ -1,0 +1,13 @@
+{
+  "name": "developer-productivity-report",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Renders the Spring Boot Developer Productivity Survey 2026 PDF lead magnet.",
+  "type": "module",
+  "scripts": {
+    "build": "node render.mjs"
+  },
+  "devDependencies": {
+    "puppeteer": "^23.0.0"
+  }
+}
