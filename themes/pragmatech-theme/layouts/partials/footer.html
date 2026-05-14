@@ -2,6 +2,8 @@
 <footer class="bg-slate-950 pt-16 pb-8 border-t border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+
+            <!-- Column 1: Brand -->
             <div class="col-span-1 md:col-span-1">
                 <span class="font-bold text-xl text-white tracking-tight block mb-4">Pragma<span class="text-brand-500">Tech</span></span>
                 <p class="text-slate-500 text-sm mb-4">
@@ -9,49 +11,101 @@
                     Cut through testing complexity and slow builds for faster feedback and fearless shipping.
                 </p>
                 <div class="flex space-x-4">
-                    <a href="https://www.linkedin.com/company/pragmatech-digital-solutions/" class="text-slate-400 hover:text-brand-400 transition-colors">
+                    <a href="https://www.linkedin.com/company/pragmatech-digital-solutions/" class="text-slate-400 hover:text-brand-400 transition-colors" aria-label="LinkedIn">
                         <i class="fab fa-linkedin text-xl"></i>
                     </a>
-                    <a href="https://github.com/PragmaTech-GmbH" class="text-slate-400 hover:text-brand-400 transition-colors">
+                    <a href="https://github.com/PragmaTech-GmbH" class="text-slate-400 hover:text-brand-400 transition-colors" aria-label="GitHub">
                         <i class="fab fa-github text-xl"></i>
                     </a>
                 </div>
             </div>
+
+            <!-- Column 2: Offerings -->
             <div>
-                <h4 class="text-white font-semibold mb-4">Overview</h4>
+                <h4 class="text-white font-semibold mb-4">Offerings</h4>
                 <ul class="space-y-2 text-sm text-slate-400">
-                    <li><a href="/events" class="hover:text-brand-400 transition-colors">Events</a></li>
-                    <li><a href="/consulting" class="hover:text-brand-400 transition-colors">Consulting</a></li>
-                    <li><a href="/workshops" class="hover:text-brand-400 transition-colors">Workshops</a></li>
-                    <li><a href="/courses" class="hover:text-brand-400 transition-colors">Tech Content</a></li>
+                    <li><a href="{{ "workshops" | relURL }}" class="hover:text-brand-400 transition-colors">Workshops</a></li>
+                    <li><a href="{{ "free-webinar" | relURL }}" class="hover:text-brand-400 transition-colors">Webinars</a></li>
+                    <li><a href="{{ "products/spring-test-profiler" | relURL }}" class="hover:text-brand-400 transition-colors">Spring Test Profiler</a></li>
                 </ul>
             </div>
+
+            <!-- Column 3: Resources -->
             <div>
-                <h4 class="text-white font-semibold mb-4">Services</h4>
+                <h4 class="text-white font-semibold mb-4">Resources</h4>
                 <ul class="space-y-2 text-sm text-slate-400">
-                    <li><a href="/services/test-maturity-assessment" class="hover:text-brand-400 transition-colors">Test Maturity Assessment</a></li>
-                    <li><a href="/services/build-pipeline-acceleration" class="hover:text-brand-400 transition-colors">Build Pipeline Acceleration</a></li>
-                    <li><a href="/services/test-automation-kickstarter" class="hover:text-brand-400 transition-colors">Test Automation Kickstarter</a></li>
+                    {{ with .Site.Params.newsletterUrl }}
+                    <li><a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="hover:text-brand-400 transition-colors">Newsletter</a></li>
+                    {{ end }}
+                    <li><a href="{{ "books" | relURL }}" class="hover:text-brand-400 transition-colors">Books</a></li>
+                    <li><a href="{{ "talks" | relURL }}" class="hover:text-brand-400 transition-colors">Talks</a></li>
+                    <li><a href="{{ "courses" | relURL }}" class="hover:text-brand-400 transition-colors">Online Courses</a></li>
                 </ul>
             </div>
+
+            <!-- Column 4: Productivity Survey lead-gen card -->
             <div>
-                <h4 class="text-white font-semibold mb-4">Company</h4>
-                <ul class="space-y-2 text-sm text-slate-400">
-                    <li><a href="/jobs" class="hover:text-brand-400 transition-colors">Jobs</a></li>
-                    <li><a href="/about" class="hover:text-brand-400 transition-colors">About Us</a></li>
-                    <li><a href="/contact" class="hover:text-brand-400 transition-colors">Contact Us</a></li>
-                </ul>
+                <a href="{{ "spring-boot-developer-productivity-survey" | relURL }}" class="group block" aria-label="Get the 2026 Spring Boot Developer Productivity Survey report">
+                    <!-- Mini PDF cover thumbnail (compact variant of the one on the survey LP) -->
+                    <div class="relative mx-auto mb-4" style="max-width: 98px;">
+                        <div class="relative aspect-[210/297] rounded-md overflow-hidden border border-slate-700
+                                    shadow-2xl shadow-black/40
+                                    transform -rotate-2 group-hover:rotate-0 group-hover:-translate-y-0.5
+                                    transition-all duration-500 ease-out
+                                    bg-gradient-to-br from-white via-white to-brand-50/40">
+                            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-brand-600 via-brand-500 to-emerald-500"></div>
+                            <div class="absolute inset-0 pt-3 px-3 pb-2 flex flex-col">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-[6px] font-bold tracking-[0.15em] uppercase text-brand-700">PragmaTech</span>
+                                    <span class="text-[6px] font-bold tracking-[0.1em] uppercase bg-yellow-400 text-yellow-900 px-1 py-0.5 rounded">2026</span>
+                                </div>
+                                <p class="text-[5px] font-mono uppercase tracking-[0.2em] text-slate-400 mb-1">Industry Report</p>
+                                <h3 class="text-[8px] font-bold text-slate-900 leading-[1.15] mb-0.5">Spring Boot</h3>
+                                <h3 class="text-[8px] font-bold text-slate-900 leading-[1.15] mb-2">
+                                    <span class="bg-gradient-to-r from-brand-600 to-emerald-600 text-transparent bg-clip-text">Developer Productivity</span>
+                                </h3>
+                                <div class="flex-1 flex items-end gap-[2px] mb-1 min-h-0">
+                                    <div class="flex-1 rounded-sm bg-slate-200" style="height: 28%"></div>
+                                    <div class="flex-1 rounded-sm bg-slate-300" style="height: 42%"></div>
+                                    <div class="flex-1 rounded-sm bg-brand-400" style="height: 56%"></div>
+                                    <div class="flex-1 rounded-sm bg-brand-500" style="height: 38%"></div>
+                                    <div class="flex-1 rounded-sm bg-brand-500" style="height: 68%"></div>
+                                    <div class="flex-1 rounded-sm bg-emerald-500" style="height: 88%"></div>
+                                    <div class="flex-1 rounded-sm bg-brand-500" style="height: 52%"></div>
+                                    <div class="flex-1 rounded-sm bg-slate-300" style="height: 34%"></div>
+                                </div>
+                            </div>
+                            <div class="absolute inset-y-0 left-0 w-1 bg-gradient-to-r from-slate-400/30 via-slate-300/15 to-transparent pointer-events-none"></div>
+                        </div>
+                        <div class="absolute inset-0 -z-10 rounded-md bg-slate-800/60 transform -rotate-3 translate-y-0.5 translate-x-0.5 transition-transform duration-500 group-hover:rotate-[-1deg]"></div>
+                    </div>
+
+                    <!-- Small "logo" link below the thumbnail -->
+                    <div class="flex items-center justify-center gap-2 text-sm font-semibold text-slate-300 group-hover:text-brand-400 transition-colors">
+                        <span class="inline-flex items-center justify-center w-6 h-6 rounded-md bg-emerald-600 group-hover:bg-emerald-500 text-white transition-colors">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 17v-6m4 6V7m4 10v-4M5 21h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                            </svg>
+                        </span>
+                        <span>Get the 2026 Report</span>
+                        <svg class="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                        </svg>
+                    </div>
+                </a>
             </div>
+
         </div>
 
-        <div class="border-t border-slate-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <div class="border-t border-slate-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="text-slate-500 text-sm">
                 &copy; {{ now.Format "2006" }} PragmaTech GmbH. All rights reserved.
             </div>
-            <div class="mt-4 md:mt-0">
-                <ul class="flex space-x-6 text-sm text-slate-500">
-                    <li><a href="/imprint" class="hover:text-brand-400 transition-colors">Imprint</a></li>
-                    <li><a href="/privacy" class="hover:text-brand-400 transition-colors">Privacy Policy</a></li>
+            <div>
+                <ul class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-slate-500">
+                    <li><a href="{{ "contact" | relURL }}" class="hover:text-brand-400 transition-colors">Contact</a></li>
+                    <li><a href="{{ "imprint" | relURL }}" class="hover:text-brand-400 transition-colors">Imprint</a></li>
+                    <li><a href="{{ "privacy" | relURL }}" class="hover:text-brand-400 transition-colors">Privacy Policy</a></li>
                 </ul>
             </div>
         </div>

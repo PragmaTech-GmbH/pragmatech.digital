@@ -68,11 +68,11 @@ authority:
     - title: "The Niche Pioneer"
       text: "Running a highly recognized Spring Boot blog for over 5 years - long before the AI hype started."
   kpis:
-    - { value: "10+",   label: "Years on the Frontlines" }
+    - { value: "10+",   label: "Years JVM Experience" }
     - { value: "10K",   label: "Newsletter Readers" }
     - { value: "8,500", label: "Academy Members" }
     - { value: "20+",   label: "International Talks" }
-    - { value: "5+",    label: "Years Spring Boot Blog" }
+    - { value: "8+",    label: "Years Spring Boot Blog" }
   socials:
     - { platform: "youtube",  label: "YouTube",  url: "" }
     - { platform: "linkedin", label: "LinkedIn", url: "" }
@@ -83,15 +83,15 @@ authority:
     - title: "Stratospheric"
       subtitle: "From Zero to Production with Spring Boot and AWS"
       cover: "/images/books/stratospheric-ebook-cover.png"
-      link: "/books/stratospheric/"
+      link: "https://leanpub.com/stratospheric/"
     - title: "Testing Spring Boot Applications Demystified"
       subtitle: "Master Spring Boot testing with battle-tested strategies"
       cover: "/images/books/tsbad-book-cover.png"
-      link: "/books/testing-spring-boot-applications-demystified/"
+      link: "https://leanpub.com/testing-spring-boot-applications-demystified"
     - title: "Java Testing Toolbox"
       subtitle: "30 Testing Tools Every Java Developer Must Know"
       cover: "/images/books/java-testing-toolbox.jpg"
-      link: "/books/java-testing-toolbox/"
+      link: "https://leanpub.com/java-testing-toolbox/"
 
 benefitsSection:
   headline: "Imagine Deploying in the AI Era with Zero Fear"
@@ -121,7 +121,7 @@ methodology:
       description: "Hands-on mentoring directly in the code to turn your developers into self-sufficient testing experts."
   cta:
     headline: "Want this blueprint applied to your pipeline?"
-    button: "Start with Step 1 - The Free Audit"
+    button: "Start with Step 1 - The Unvarnished Report"
     note: "30-minute call. We open with step 1 - no commitment, no pitch."
 
 offer:
@@ -164,5 +164,5 @@ finalCTA:
       description: "We'll discuss where your pipeline stands today and the challenges you're hitting."
     - title: "See the optimization"
       description: "I'll show you exactly how an optimization would look for your specific setup - completely independent of whether we end up working together."
-  buttonText: "Book My 15-Min Call"
+  buttonText: "Let's Analyze Your Setup"
   reassurance: "15 minutes. Zero pitch. You leave with at least one concrete optimization you can ship next week."
