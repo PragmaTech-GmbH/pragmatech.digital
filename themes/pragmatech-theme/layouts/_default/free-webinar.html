@@ -1,81 +1,94 @@
 {{ define "main" }}
+<div data-variant="a">
+
 <!-- Hero Section -->
-<section class="relative py-20 md:py-28 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden">
-    <div class="absolute inset-0 bg-[url('/images/grid-pattern.svg')] opacity-5"></div>
-    <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-brand-500/10 to-transparent"></div>
+<section class="relative overflow-hidden bg-white border-b border-slate-200">
+    <div class="absolute inset-0 bg-gradient-to-br from-white via-brand-50/40 to-white pointer-events-none"></div>
 
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="max-w-4xl mx-auto">
-            <!-- Pre-header -->
-            <div class="text-center mb-8">
-                <span class="inline-block text-xs font-bold tracking-widest uppercase text-brand-400 mb-6">
-                    The Safety Net for AI-Powered Spring Boot Teams
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 lg:py-24">
+        <div class="text-center mb-10">
+            <span class="inline-flex items-center gap-2 pl-2 pr-4 py-1.5 mb-6 rounded-full
+                         bg-brand-50 border border-brand-100
+                         text-[11px] font-bold tracking-[0.18em] uppercase text-brand-900
+                         shadow-sm shadow-brand-500/10">
+                <span class="on-brand inline-flex items-center justify-center w-5 h-5 rounded-full bg-brand-500 text-white shadow-sm shadow-brand-500/40">
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                    </svg>
                 </span>
+                Lunch &amp; Learn for AI-powered Spring Boot teams
+            </span>
 
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-                    AI Writes Code in Seconds. <br class="hidden sm:block"><span class="text-red-400">Your Tests Take Hours.</span>
-                </h1>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-[1.05] max-w-4xl mx-auto">
+                AI writes code in seconds.
+                <span class="block mt-1 bg-gradient-to-r from-brand-600 to-emerald-600 text-transparent bg-clip-text">Your tests take hours.</span>
+            </h1>
 
-                <p class="text-xl text-slate-300 max-w-3xl mx-auto">
-                    Claude Code, Copilot and Cursor are shipping more code than ever. We ensure it doesn't break your production. Specialized testing strategy for Java teams to eliminate regressions and kill AI slop for good.
-                </p>
-            </div>
-
-            <!-- Value props with icons -->
-            <div class="grid sm:grid-cols-3 gap-6 mb-12 max-w-3xl mx-auto">
-                <div class="flex items-start gap-3">
-                    <div class="flex-shrink-0 w-10 h-10 bg-brand-500/15 rounded-lg flex items-center justify-center">
-                        <svg class="w-5 h-5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                        </svg>
-                    </div>
-                    <div>
-                        <div class="text-white font-semibold text-sm">Kill the Lag</div>
-                        <div class="text-slate-400 text-sm">Optimize CI pipelines for AI-speed velocity</div>
-                    </div>
-                </div>
-                <div class="flex items-start gap-3">
-                    <div class="flex-shrink-0 w-10 h-10 bg-brand-500/15 rounded-lg flex items-center justify-center">
-                        <svg class="w-5 h-5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                    </div>
-                    <div>
-                        <div class="text-white font-semibold text-sm">Restore Trust</div>
-                        <div class="text-slate-400 text-sm">Eliminate flaky tests devs have learned to ignore</div>
-                    </div>
-                </div>
-                <div class="flex items-start gap-3">
-                    <div class="flex-shrink-0 w-10 h-10 bg-brand-500/15 rounded-lg flex items-center justify-center">
-                        <svg class="w-5 h-5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                        </svg>
-                    </div>
-                    <div>
-                        <div class="text-white font-semibold text-sm">Protect Production</div>
-                        <div class="text-slate-400 text-sm">Stop AI-generated bugs before they reach the user</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CTAs -->
-            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-6">
-                <a href="#schedule-webinar" class="inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-500 text-white px-8 py-4 rounded-lg font-bold transition-all shadow-lg text-lg">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
-                    Schedule a Free Webinar for Your Team
-                </a>
-                <a href="{{ "documents/Stop-Fighting-Your-Spring-Boot-Tests-Talk-EN.pdf" | relURL }}" target="_blank" class="inline-flex items-center justify-center gap-2 bg-white text-slate-900 px-6 py-4 rounded-lg font-bold transition-all hover:bg-slate-100 shadow-lg">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                    Download One-Pager
-                </a>
-            </div>
-
-            <p class="text-slate-500 text-sm text-center">Free 60-minute webinar. No cost, no obligation. Virtual or on-site.</p>
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+                Claude Code, Copilot and Cursor are shipping more code than ever. We help your team make sure it doesn't break production — with a testing strategy that eliminates regressions and kills AI slop for good.
+            </p>
         </div>
+
+        <!-- Value props with icons -->
+        <div class="grid sm:grid-cols-3 gap-6 mb-10 max-w-4xl mx-auto">
+            <div class="flex items-start gap-3 p-4 bg-white border border-slate-200 rounded-xl shadow-sm">
+                <div class="flex-shrink-0 w-10 h-10 bg-brand-50 border border-brand-100 rounded-lg flex items-center justify-center">
+                    <svg class="w-5 h-5 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                </div>
+                <div>
+                    <div class="text-slate-900 font-semibold text-sm">Kill the lag</div>
+                    <div class="text-slate-600 text-sm">Optimize CI pipelines for AI-speed velocity</div>
+                </div>
+            </div>
+            <div class="flex items-start gap-3 p-4 bg-white border border-slate-200 rounded-xl shadow-sm">
+                <div class="flex-shrink-0 w-10 h-10 bg-emerald-50 border border-emerald-100 rounded-lg flex items-center justify-center">
+                    <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                <div>
+                    <div class="text-slate-900 font-semibold text-sm">Restore trust</div>
+                    <div class="text-slate-600 text-sm">Eliminate flaky tests devs have learned to ignore</div>
+                </div>
+            </div>
+            <div class="flex items-start gap-3 p-4 bg-white border border-slate-200 rounded-xl shadow-sm">
+                <div class="flex-shrink-0 w-10 h-10 bg-yellow-50 border border-yellow-100 rounded-lg flex items-center justify-center">
+                    <svg class="w-5 h-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                </div>
+                <div>
+                    <div class="text-slate-900 font-semibold text-sm">Protect production</div>
+                    <div class="text-slate-600 text-sm">Stop AI-generated bugs before they reach the user</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTAs -->
+        <div class="flex flex-col sm:flex-row gap-3 justify-center mb-4">
+            <a href="#schedule-webinar" class="cta-primary inline-flex items-center justify-center gap-2
+                      bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400
+                      text-white px-6 py-3.5 rounded-lg font-bold
+                      shadow-lg shadow-brand-500/20 hover:shadow-xl hover:shadow-brand-500/30
+                      hover:-translate-y-0.5 transition-all">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                Schedule a free lunch &amp; learn for your team
+            </a>
+            <a href="{{ "documents/Stop-Fighting-Your-Spring-Boot-Tests-Talk-EN.pdf" | relURL }}" target="_blank" class="inline-flex items-center justify-center gap-2
+                      bg-white border border-slate-300 text-slate-700 hover:border-brand-500 hover:text-brand-600
+                      px-6 py-3.5 rounded-lg font-semibold transition-all">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Download one-pager
+            </a>
+        </div>
+
+        <p class="text-slate-500 text-sm text-center">Free 60-minute session. No cost, no obligation. Virtual or on-site.</p>
     </div>
 </section>
 
@@ -408,7 +421,7 @@
 
                     <!-- Arrow to next section (visible on lg screens) -->
                     <div class="hidden lg:flex absolute -right-4 top-1/2 -translate-y-1/2 z-10">
-                        <div class="w-8 h-8 bg-brand-500 rounded-full flex items-center justify-center shadow-lg">
+                        <div class="on-brand w-8 h-8 bg-brand-500 rounded-full flex items-center justify-center shadow-lg">
                             <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                             </svg>
@@ -417,7 +430,7 @@
 
                     <!-- Arrow down (visible on smaller screens) -->
                     <div class="lg:hidden flex justify-center my-4">
-                        <div class="w-8 h-8 bg-brand-500 rounded-full flex items-center justify-center shadow-lg">
+                        <div class="on-brand w-8 h-8 bg-brand-500 rounded-full flex items-center justify-center shadow-lg">
                             <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                             </svg>
@@ -429,7 +442,7 @@
                 <div class="relative">
                     <div class="bg-slate-900 rounded-2xl border border-brand-500/50 p-8 h-full ring-2 ring-brand-500/20">
                         <div class="absolute -top-3 left-1/2 -translate-x-1/2">
-                            <span class="bg-brand-500 text-white text-xs font-bold px-3 py-1 rounded-full">MAIN CONTENT</span>
+                            <span class="on-brand bg-brand-500 text-white text-xs font-bold px-3 py-1 rounded-full">MAIN CONTENT</span>
                         </div>
 
                         <div class="flex items-center gap-4 mb-6 mt-2">
@@ -487,7 +500,7 @@
 
                     <!-- Arrow to next section (visible on lg screens) -->
                     <div class="hidden lg:flex absolute -right-4 top-1/2 -translate-y-1/2 z-10">
-                        <div class="w-8 h-8 bg-brand-500 rounded-full flex items-center justify-center shadow-lg">
+                        <div class="on-brand w-8 h-8 bg-brand-500 rounded-full flex items-center justify-center shadow-lg">
                             <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                             </svg>
@@ -496,7 +509,7 @@
 
                     <!-- Arrow down (visible on smaller screens) -->
                     <div class="lg:hidden flex justify-center my-4">
-                        <div class="w-8 h-8 bg-brand-500 rounded-full flex items-center justify-center shadow-lg">
+                        <div class="on-brand w-8 h-8 bg-brand-500 rounded-full flex items-center justify-center shadow-lg">
                             <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                             </svg>
@@ -620,7 +633,7 @@
             <!-- Price -->
             <div class="bg-slate-800 p-8 rounded-xl border border-brand-500/50 text-center relative overflow-hidden">
                 <div class="absolute top-4 right-4">
-                    <span class="bg-brand-500 text-white text-xs font-bold px-3 py-1 rounded-full">FREE</span>
+                    <span class="on-brand bg-brand-500 text-white text-xs font-bold px-3 py-1 rounded-full">FREE</span>
                 </div>
                 <div class="text-brand-400 mb-4 flex justify-center">
                     <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -714,45 +727,66 @@
 </section>
 
 <!-- Final CTA Section -->
-<section id="schedule-webinar" class="py-20 bg-gradient-to-br from-brand-600/20 via-slate-900 to-slate-900">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-3xl mx-auto text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">
-                Secure Your Team's Spring Boot Pipeline
+<section id="schedule-webinar" class="relative overflow-hidden bg-white border-t border-slate-200">
+    <div class="absolute inset-0 bg-gradient-to-br from-white via-brand-50/40 to-white pointer-events-none"></div>
+
+    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-24">
+        <div class="bg-white border border-slate-200 rounded-2xl shadow-xl shadow-slate-200/60 p-8 md:p-12 text-center">
+            <span class="inline-flex items-center gap-2 pl-2 pr-4 py-1.5 mb-6 rounded-full
+                         bg-brand-50 border border-brand-100
+                         text-[11px] font-bold tracking-[0.18em] uppercase text-brand-900
+                         shadow-sm shadow-brand-500/10">
+                <span class="on-brand inline-flex items-center justify-center w-5 h-5 rounded-full bg-brand-500 text-white shadow-sm shadow-brand-500/40">
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    </svg>
+                </span>
+                Book your session
+            </span>
+
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-slate-900 leading-tight">
+                Secure your team's
+                <span class="bg-gradient-to-r from-brand-600 to-emerald-600 text-transparent bg-clip-text">Spring Boot pipeline.</span>
             </h2>
-            <p class="text-xl text-slate-300 mb-4">
-                Book a 15-minute discovery call and we'll tailor the webinar agenda to your specific tech stack and testing challenges.
+            <p class="text-lg text-slate-600 mb-2 max-w-2xl mx-auto leading-relaxed">
+                Book a 15-minute discovery call and we'll tailor the lunch &amp; learn agenda to your tech stack and testing challenges.
             </p>
             <p class="text-slate-500 text-sm mb-10">
-                60-minute virtual session. No cost, no obligation. We come to your team.
+                60-minute virtual session · No cost, no obligation · We come to your team.
             </p>
 
             <div class="flex flex-col sm:flex-row gap-3 justify-center mb-4">
-                <a href="https://cal.eu/pragmatech/pragmatech-introduction-call" target="_blank" class="inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-500 text-white px-5 py-2.5 rounded-lg font-semibold text-sm transition-all shadow-lg">
+                <a href="https://cal.eu/pragmatech/pragmatech-introduction-call" target="_blank" class="cta-primary inline-flex items-center justify-center gap-2
+                          bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400
+                          text-white px-6 py-3 rounded-lg font-bold
+                          shadow-lg shadow-brand-500/20 hover:shadow-xl hover:shadow-brand-500/30
+                          hover:-translate-y-0.5 transition-all">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
-                    Book a Webinar Discovery Call
+                    Book a discovery call
                 </a>
-                <a href="https://www.linkedin.com/in/rieckpil" target="_blank" class="inline-flex items-center justify-center gap-2 bg-white text-slate-900 px-5 py-2.5 rounded-lg font-semibold text-sm transition-all hover:bg-slate-100 shadow-lg">
+                <a href="https://www.linkedin.com/in/rieckpil" target="_blank" class="inline-flex items-center justify-center gap-2
+                          bg-white border border-slate-300 text-slate-700 hover:border-brand-500 hover:text-brand-600
+                          px-6 py-3 rounded-lg font-semibold transition-all">
                     <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                     </svg>
                     Send LinkedIn DM
                 </a>
             </div>
-            <div class="flex flex-col sm:flex-row gap-3 justify-center">
-                <a href="{{ "contact" | relURL }}" class="inline-flex items-center justify-center gap-2 border border-slate-600 hover:border-slate-500 text-slate-300 hover:text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-all">
+            <div class="flex flex-col sm:flex-row gap-3 justify-center text-sm">
+                <a href="{{ "contact" | relURL }}" class="inline-flex items-center justify-center gap-2 text-slate-500 hover:text-brand-600 px-3 py-2 transition-colors">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
-                    Go to Contact
+                    Go to contact page
                 </a>
-                <a href="{{ "documents/Stop-Fighting-Your-Spring-Boot-Tests-Talk-EN.pdf" | relURL }}" target="_blank" class="inline-flex items-center justify-center gap-2 border border-slate-600 hover:border-slate-500 text-slate-300 hover:text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-all">
+                <a href="{{ "documents/Stop-Fighting-Your-Spring-Boot-Tests-Talk-EN.pdf" | relURL }}" target="_blank" class="inline-flex items-center justify-center gap-2 text-slate-500 hover:text-brand-600 px-3 py-2 transition-colors">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
-                    Download One-Pager
+                    Download one-pager
                 </a>
             </div>
 
@@ -761,11 +795,13 @@
             {{ if $webinarClients }}
             <p class="text-slate-500 text-sm mt-8">
                 Used by teams at
-                {{ range $i, $c := $webinarClients }}{{ if $i }}, {{ end }}<strong class="text-slate-400">{{ $c.name }}</strong>{{ end }}
+                {{ range $i, $c := $webinarClients }}{{ if $i }}, {{ end }}<strong class="text-slate-700">{{ $c.name }}</strong>{{ end }}
                 and more to secure their Spring Boot pipelines.
             </p>
             {{ end }}
         </div>
     </div>
 </section>
+
+</div>{{/* /data-variant=a */}}
 {{ end }}

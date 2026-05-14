@@ -431,9 +431,8 @@
 [data-variant="a"] a.cta-primary svg path { stroke: #ffffff !important; }
 
 /* Force white text on opt-in brand-tinted surfaces (gradient strips, iframe chrome, etc.).
-   Apply `on-brand` to any element with a saturated brand/emerald background where the
-   `text-white → slate-900` flip would otherwise leave dark text on a dark surface. */
+   Apply `on-brand` to any element where the `text-white → slate-900` flip would otherwise
+   leave dark text on a saturated brand/emerald background. Scoped tightly: only the element
+   the class sits on, not all descendants — nested buttons keep their own text colours. */
 [data-variant="a"] .on-brand,
-[data-variant="a"] .on-brand *,
-[data-variant="a"] .on-brand svg { color: #ffffff !important; stroke: #ffffff !important; }
-[data-variant="a"] .on-brand a { color: var(--color-brand-50) !important; }
+[data-variant="a"] .on-brand > svg { color: #ffffff !important; stroke: #ffffff !important; }

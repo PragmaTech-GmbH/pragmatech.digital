@@ -29,7 +29,7 @@
                              bg-brand-50 border border-brand-100
                              text-[11px] font-bold tracking-[0.18em] uppercase text-brand-900
                              shadow-sm shadow-brand-500/10">
-                    <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-emerald-500 text-white shadow-sm shadow-emerald-500/40">
+                    <span class="on-brand inline-flex items-center justify-center w-5 h-5 rounded-full bg-emerald-500 text-white shadow-sm shadow-emerald-500/40">
                         <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
                         </svg>
@@ -343,13 +343,13 @@
             </div>
 
             <div class="bg-slate-900 rounded-xl shadow-lg overflow-hidden border border-slate-700">
-                <div class="on-brand bg-gradient-to-r from-brand-600 to-brand-500 text-white p-4">
+                <div class="bg-gradient-to-r from-brand-600 to-brand-500 p-4">
                     <div class="flex items-center justify-between">
-                        <h3 class="text-lg font-semibold">Spring Test Profiler Report</h3>
+                        <h3 class="on-brand text-lg font-semibold">Spring Test Profiler Report</h3>
                         <div class="flex items-center space-x-2">
-                            <span class="px-2 py-1 bg-brand-500/50 rounded text-sm">Interactive Preview</span>
+                            <span class="on-brand px-2 py-1 bg-brand-500/50 rounded text-sm">Interactive Preview</span>
                             {{ if .Params.sampleReportUrl }}
-                            <a href="{{ .Params.sampleReportUrl }}" target="_blank" class="px-3 py-1 bg-white !text-brand-600 rounded text-sm hover:bg-slate-100 transition-colors">
+                            <a href="{{ .Params.sampleReportUrl }}" target="_blank" class="px-3 py-1 bg-white text-brand-600 rounded text-sm hover:bg-slate-100 transition-colors">
                                 Open Full Report
                             </a>
                             {{ end }}
@@ -572,7 +572,7 @@
                     <p class="text-lg text-slate-300 mb-6">
                         See all the insights and recommendations in action with our interactive sample report.
                     </p>
-                    <a href="{{ .Params.sampleReportUrl }}" target="_blank" class="inline-flex items-center bg-brand-600 text-white hover:bg-brand-500 font-medium py-4 px-8 rounded-xl transition-colors text-lg shadow-lg">
+                    <a href="{{ .Params.sampleReportUrl }}" target="_blank" class="cta-primary inline-flex items-center bg-brand-600 text-white hover:bg-brand-500 font-medium py-4 px-8 rounded-xl transition-colors text-lg shadow-lg">
                         <i class="fas fa-file-alt mr-3"></i>
                         View Interactive Sample Report
                         <i class="fas fa-external-link-alt ml-2 text-sm"></i>
@@ -638,7 +638,7 @@
 
                     <div class="text-center">
                         {{ if .Params.links.github }}
-                        <a href="{{ .Params.links.github }}" target="_blank" class="inline-flex items-center bg-green-600 text-white hover:bg-green-500 font-medium py-4 px-8 rounded-xl transition-colors text-lg">
+                        <a href="{{ .Params.links.github }}" target="_blank" class="cta-primary inline-flex items-center bg-green-600 text-white hover:bg-green-500 font-medium py-4 px-8 rounded-xl transition-colors text-lg">
                             <i class="fab fa-github mr-3"></i>
                             Get Started Free
                         </a>
@@ -684,7 +684,7 @@
                     </div>
 
                     <div class="text-center">
-                        <a href="{{ .Site.Params.scheduleCallUrl }}" class="inline-flex items-center bg-brand-600 text-white hover:bg-brand-500 font-medium py-4 px-8 rounded-xl transition-colors text-lg">
+                        <a href="{{ .Site.Params.scheduleCallUrl }}" class="cta-primary inline-flex items-center bg-brand-600 text-white hover:bg-brand-500 font-medium py-4 px-8 rounded-xl transition-colors text-lg">
                             <i class="fas fa-calendar-alt mr-3"></i>
                             Schedule Consultation
                         </a>
@@ -729,7 +729,7 @@
                          bg-brand-50 border border-brand-100
                          text-[11px] font-bold tracking-[0.18em] uppercase text-brand-900
                          shadow-sm shadow-brand-500/10">
-                <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-brand-500 text-white shadow-sm shadow-brand-500/40">
+                <span class="on-brand inline-flex items-center justify-center w-5 h-5 rounded-full bg-brand-500 text-white shadow-sm shadow-brand-500/40">
                     <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>
                     </svg>
