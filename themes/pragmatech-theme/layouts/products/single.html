@@ -1,50 +1,129 @@
 {{ define "main" }}
+{{ $productData := . }}
+<div data-variant="a">
+
 <!-- Product Hero Section -->
-<section class="relative bg-gradient-to-r from-brand-600 to-brand-500 text-white overflow-hidden pt-12 lg:pt-16 mb-8">
-    <div class="absolute inset-0 bg-[url('/images/pattern-grid.svg')] bg-center opacity-25"></div>
-    <div class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div class="max-w-4xl mx-auto">
-            <div class="text-center">
+<section class="relative overflow-hidden bg-white border-b border-slate-200">
+    <div class="absolute inset-0 bg-gradient-to-br from-white via-brand-50/40 to-white pointer-events-none"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 lg:py-24">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+            <!-- Left: copy -->
+            <div>
                 <!-- Status Badge -->
-                <div class="mb-6">
-                    {{ $productData := . }}
-                    {{ if eq $productData.Params.status "coming_soon" }}
-                    <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-yellow-500/20 text-yellow-400">
-                        <i class="fas fa-clock mr-2"></i>
-                        Coming Soon - {{ $productData.Params.launch_date }}
+                {{ if eq $productData.Params.status "coming_soon" }}
+                <span class="inline-flex items-center gap-2 pl-2 pr-4 py-1.5 mb-6 rounded-full
+                             bg-yellow-50 border border-yellow-200
+                             text-[11px] font-bold tracking-[0.18em] uppercase text-yellow-900
+                             shadow-sm shadow-yellow-500/10">
+                    <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-yellow-400 text-yellow-900 shadow-sm">
+                        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        </svg>
                     </span>
-                    {{ else if eq $productData.Params.status "available" }}
-                    <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-green-500/20 text-green-400">
-                        <i class="fas fa-check-circle mr-2"></i>
-                        Available Now
+                    Coming Soon · {{ $productData.Params.launch_date }}
+                </span>
+                {{ else if eq $productData.Params.status "available" }}
+                <span class="inline-flex items-center gap-2 pl-2 pr-4 py-1.5 mb-6 rounded-full
+                             bg-brand-50 border border-brand-100
+                             text-[11px] font-bold tracking-[0.18em] uppercase text-brand-900
+                             shadow-sm shadow-brand-500/10">
+                    <span class="on-brand inline-flex items-center justify-center w-5 h-5 rounded-full bg-emerald-500 text-white shadow-sm shadow-emerald-500/40">
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                        </svg>
                     </span>
+                    {{ $productData.Params.category | default "Available Now" }}
+                </span>
+                {{ end }}
+
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-[1.05]">
+                    {{ .Title }}
+                    {{ with .Params.subtitle }}
+                    <span class="block mt-2 text-2xl md:text-3xl lg:text-4xl font-semibold bg-gradient-to-r from-brand-600 to-emerald-600 text-transparent bg-clip-text leading-tight">{{ . }}</span>
                     {{ end }}
-                </div>
+                </h1>
 
-                <!-- Product Icon/Logo -->
-                <div class="text-8xl mb-6">{{ $productData.Params.icon }}</div>
-
-                <!-- Title and Subtitle -->
-                <h1 class="text-4xl md:text-5xl font-bold mb-4">{{ .Title }}</h1>
-                <p class="text-xl text-brand-100 mb-8">{{ .Params.subtitle }}</p>
+                {{ with .Params.description }}
+                <p class="text-xl text-slate-600 mb-8 leading-relaxed">{{ . }}</p>
+                {{ end }}
 
                 <!-- CTA Buttons -->
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <div class="flex flex-col sm:flex-row gap-3 mb-8">
                     {{ if $productData.Params.links.github }}
-                    <a href="{{ $productData.Params.links.github }}" target="_blank" class="inline-flex items-center bg-white text-slate-900 hover:bg-slate-100 font-medium py-3 px-6 rounded-lg transition-colors">
-                        <i class="fab fa-github mr-2"></i>
+                    <a href="{{ $productData.Params.links.github }}" target="_blank" class="cta-primary inline-flex items-center justify-center gap-2
+                              bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400
+                              text-white px-6 py-3.5 rounded-lg font-bold
+                              shadow-lg shadow-brand-500/20 hover:shadow-xl hover:shadow-brand-500/30
+                              hover:-translate-y-0.5 transition-all">
+                        <i class="fab fa-github"></i>
                         Start Profiling Your Tests Now
                     </a>
                     {{ end }}
-
-                    {{ if eq $productData.Params.status "coming_soon" }}
-                    <a href="{{ .Site.Params.scheduleCallUrl }}" class="inline-flex items-center border-2 border-white text-white hover:bg-white hover:text-brand-600 font-medium py-3 px-6 rounded-lg transition-colors">
-                        <i class="fas fa-rocket mr-2"></i>
-                        Get Early Access
+                    <a href="#features" class="inline-flex items-center justify-center gap-2
+                              bg-white border border-slate-300 text-slate-700 hover:border-brand-500 hover:text-brand-600
+                              px-6 py-3.5 rounded-lg font-semibold transition-all">
+                        See how it works
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+                        </svg>
                     </a>
-                    {{ end }}
+                </div>
+
+                <!-- Trust row -->
+                <div class="flex flex-wrap gap-3">
+                    <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-xs text-slate-700 shadow-sm">
+                        <i class="fas fa-code text-brand-500"></i>
+                        Open source
+                    </span>
+                    <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-xs text-slate-700 shadow-sm">
+                        <i class="fas fa-bolt text-emerald-500"></i>
+                        Spring & Spring Boot
+                    </span>
+                    <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-xs text-slate-700 shadow-sm">
+                        <i class="fas fa-chart-line text-yellow-500"></i>
+                        Actionable reports
+                    </span>
                 </div>
             </div>
+
+            <!-- Right: product visual -->
+            <div>
+                <div class="relative">
+                    <div class="absolute -inset-4 bg-gradient-to-br from-brand-500/10 via-transparent to-emerald-500/10 rounded-3xl blur-2xl"></div>
+                    <div class="relative bg-white border border-slate-200 rounded-2xl p-8 shadow-xl shadow-slate-200/60">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-full bg-red-400"></span>
+                                <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
+                                <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+                            </div>
+                            <span class="text-[10px] font-mono uppercase tracking-[0.18em] text-slate-400">report.html</span>
+                        </div>
+                        <div class="text-6xl mb-4 text-center">{{ $productData.Params.icon }}</div>
+                        <p class="text-center text-xs font-mono uppercase tracking-[0.25em] text-slate-400 mb-2">Spring Test Profiler</p>
+                        <p class="text-center text-sm text-slate-600 leading-snug mb-5">
+                            Analyze Your Spring Context Caching to Speed Up Your Build
+                        </p>
+                        <div class="flex items-end gap-1.5 h-20">
+                            <div class="flex-1 rounded-sm bg-slate-200" style="height: 28%"></div>
+                            <div class="flex-1 rounded-sm bg-slate-300" style="height: 42%"></div>
+                            <div class="flex-1 rounded-sm bg-brand-400" style="height: 56%"></div>
+                            <div class="flex-1 rounded-sm bg-brand-500" style="height: 38%"></div>
+                            <div class="flex-1 rounded-sm bg-brand-500" style="height: 68%"></div>
+                            <div class="flex-1 rounded-sm bg-emerald-500" style="height: 88%"></div>
+                            <div class="flex-1 rounded-sm bg-brand-500" style="height: 52%"></div>
+                            <div class="flex-1 rounded-sm bg-slate-300" style="height: 34%"></div>
+                        </div>
+                        <div class="flex items-center justify-between mt-4 pt-3 border-t border-slate-200">
+                            <span class="text-[10px] font-mono text-slate-400 tracking-wide">12 contexts analysed</span>
+                            <span class="text-[10px] font-mono text-emerald-600 tracking-wide font-semibold">-78% build time</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </section>
@@ -145,10 +224,10 @@
                             <i class="fas fa-exclamation-circle text-red-400 text-2xl"></i>
                         </div>
                         <h3 class="text-2xl font-bold text-red-400 mb-2">Before Optimization</h3>
-                        <p class="text-red-300">Slow, unpredictable test execution</p>
+                        <p class="text-red-100">Slow, unpredictable test execution</p>
                     </div>
 
-                    <div class="bg-slate-900 rounded-lg p-4 text-green-400 font-mono text-sm overflow-x-auto border border-slate-700">
+                    <div class="bg-[#0a0e16] rounded-lg p-4 text-green-400 font-mono text-sm overflow-x-auto border border-slate-800">
                         <pre>$ ./mvnw verify
 
 [INFO] -------------------------------------------------------
@@ -174,15 +253,15 @@
                     </div>
 
                     <div class="mt-6 space-y-3">
-                        <div class="flex items-center text-red-300">
+                        <div class="flex items-center text-red-100">
                             <i class="fas fa-clock mr-2"></i>
                             <span>18+ minute build times</span>
                         </div>
-                        <div class="flex items-center text-red-300">
+                        <div class="flex items-center text-red-100">
                             <i class="fas fa-sync-alt mr-2"></i>
                             <span>Multiple slow Spring context loads</span>
                         </div>
-                        <div class="flex items-center text-red-300">
+                        <div class="flex items-center text-red-100">
                             <i class="fas fa-eye-slash mr-2"></i>
                             <span>No visibility into bottlenecks</span>
                         </div>
@@ -196,10 +275,10 @@
                             <i class="fas fa-check-circle text-green-400 text-2xl"></i>
                         </div>
                         <h3 class="text-2xl font-bold text-green-400 mb-2">After Optimization</h3>
-                        <p class="text-green-300">Fast, efficient test execution</p>
+                        <p class="text-green-100">Fast, efficient test execution</p>
                     </div>
 
-                    <div class="bg-slate-900 rounded-lg p-4 text-green-400 font-mono text-sm overflow-x-auto border border-slate-700">
+                    <div class="bg-[#0a0e16] rounded-lg p-4 text-green-400 font-mono text-sm overflow-x-auto border border-slate-800">
                         <pre>$ ./mvnw verify
 
 [INFO] -------------------------------------------------------
@@ -225,15 +304,15 @@
                     </div>
 
                     <div class="mt-6 space-y-3">
-                        <div class="flex items-center text-green-300">
+                        <div class="flex items-center text-green-100">
                             <i class="fas fa-bolt mr-2"></i>
                             <span><strong>78% faster</strong> build times</span>
                         </div>
-                        <div class="flex items-center text-green-300">
+                        <div class="flex items-center text-green-100">
                             <i class="fas fa-check mr-2"></i>
                             <span>Optimized context sharing</span>
                         </div>
-                        <div class="flex items-center text-green-300">
+                        <div class="flex items-center text-green-100">
                             <i class="fas fa-chart-bar mr-2"></i>
                             <span>Clear performance insights</span>
                         </div>
@@ -246,7 +325,7 @@
                 <div class="inline-flex items-center bg-brand-500/10 rounded-full px-6 py-3 border border-brand-500/30">
                     <i class="fas fa-chart-line text-brand-400 mr-3"></i>
                     <span class="text-brand-300 font-semibold text-lg">
-                        <strong>14:17 minutes saved</strong> per test run — that's <strong>multiple hours saved per month</strong> for active teams
+                        <strong>14:17 minutes saved</strong> per test run - that's <strong>multiple hours saved per month</strong> for active teams
                     </span>
                 </div>
             </div>
@@ -264,11 +343,11 @@
             </div>
 
             <div class="bg-slate-900 rounded-xl shadow-lg overflow-hidden border border-slate-700">
-                <div class="bg-gradient-to-r from-brand-600 to-brand-500 text-white p-4">
+                <div class="bg-gradient-to-r from-brand-600 to-brand-500 p-4">
                     <div class="flex items-center justify-between">
-                        <h3 class="text-lg font-semibold">Spring Test Profiler Report</h3>
+                        <h3 class="on-brand text-lg font-semibold">Spring Test Profiler Report</h3>
                         <div class="flex items-center space-x-2">
-                            <span class="px-2 py-1 bg-brand-500/50 rounded text-sm">Interactive Preview</span>
+                            <span class="on-brand px-2 py-1 bg-brand-500/50 rounded text-sm">Interactive Preview</span>
                             {{ if .Params.sampleReportUrl }}
                             <a href="{{ .Params.sampleReportUrl }}" target="_blank" class="px-3 py-1 bg-white text-brand-600 rounded text-sm hover:bg-slate-100 transition-colors">
                                 Open Full Report
@@ -493,7 +572,7 @@
                     <p class="text-lg text-slate-300 mb-6">
                         See all the insights and recommendations in action with our interactive sample report.
                     </p>
-                    <a href="{{ .Params.sampleReportUrl }}" target="_blank" class="inline-flex items-center bg-brand-600 text-white hover:bg-brand-500 font-medium py-4 px-8 rounded-xl transition-colors text-lg shadow-lg">
+                    <a href="{{ .Params.sampleReportUrl }}" target="_blank" class="cta-primary inline-flex items-center bg-brand-600 text-white hover:bg-brand-500 font-medium py-4 px-8 rounded-xl transition-colors text-lg shadow-lg">
                         <i class="fas fa-file-alt mr-3"></i>
                         View Interactive Sample Report
                         <i class="fas fa-external-link-alt ml-2 text-sm"></i>
@@ -559,7 +638,7 @@
 
                     <div class="text-center">
                         {{ if .Params.links.github }}
-                        <a href="{{ .Params.links.github }}" target="_blank" class="inline-flex items-center bg-green-600 text-white hover:bg-green-500 font-medium py-4 px-8 rounded-xl transition-colors text-lg">
+                        <a href="{{ .Params.links.github }}" target="_blank" class="cta-primary inline-flex items-center bg-green-600 text-white hover:bg-green-500 font-medium py-4 px-8 rounded-xl transition-colors text-lg">
                             <i class="fab fa-github mr-3"></i>
                             Get Started Free
                         </a>
@@ -605,7 +684,7 @@
                     </div>
 
                     <div class="text-center">
-                        <a href="{{ .Site.Params.scheduleCallUrl }}" class="inline-flex items-center bg-brand-600 text-white hover:bg-brand-500 font-medium py-4 px-8 rounded-xl transition-colors text-lg">
+                        <a href="{{ .Site.Params.scheduleCallUrl }}" class="cta-primary inline-flex items-center bg-brand-600 text-white hover:bg-brand-500 font-medium py-4 px-8 rounded-xl transition-colors text-lg">
                             <i class="fas fa-calendar-alt mr-3"></i>
                             Schedule Consultation
                         </a>
@@ -640,33 +719,57 @@
     </div>
 </section>
 
-<!-- CTA Section -->
-<section class="py-20 bg-gradient-to-br from-brand-600 via-brand-700 to-brand-800 text-white">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Get Started?</h2>
-            <p class="text-xl text-brand-100 mb-8">
+<!-- Closing CTA Section -->
+<section class="relative overflow-hidden bg-white border-t border-slate-200">
+    <div class="absolute inset-0 bg-gradient-to-br from-white via-brand-50/40 to-white pointer-events-none"></div>
+
+    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-24">
+        <div class="bg-white border border-slate-200 rounded-2xl shadow-xl shadow-slate-200/60 p-8 md:p-12 text-center">
+            <span class="inline-flex items-center gap-2 pl-2 pr-4 py-1.5 mb-6 rounded-full
+                         bg-brand-50 border border-brand-100
+                         text-[11px] font-bold tracking-[0.18em] uppercase text-brand-900
+                         shadow-sm shadow-brand-500/10">
+                <span class="on-brand inline-flex items-center justify-center w-5 h-5 rounded-full bg-brand-500 text-white shadow-sm shadow-brand-500/40">
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                    </svg>
+                </span>
+                Ready to ship faster
+            </span>
+
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4 leading-tight">
                 {{ if eq .Params.status "coming_soon" }}
-                Join the waitlist and be among the first to experience {{ .Title }}.
+                Be the first to experience <span class="bg-gradient-to-r from-brand-600 to-emerald-600 text-transparent bg-clip-text">{{ .Title }}</span>.
                 {{ else }}
-                Start optimizing your Spring Boot tests today with {{ .Title }}.
+                Start optimizing your <span class="bg-gradient-to-r from-brand-600 to-emerald-600 text-transparent bg-clip-text">Spring Boot tests</span> today.
                 {{ end }}
+            </h2>
+            <p class="text-lg text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+                Plug the profiler in, run your suite once, and get a report showing exactly where every second of build time is going - plus what to fix first.
             </p>
 
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <div class="flex flex-col sm:flex-row gap-3 justify-center">
                 {{ if .Params.links.github }}
-                <a href="{{ .Params.links.github }}" target="_blank" class="inline-flex items-center bg-white text-brand-600 hover:bg-slate-100 font-medium py-3 px-6 rounded-lg transition-colors">
-                    <i class="fab fa-github mr-2"></i>
+                <a href="{{ .Params.links.github }}" target="_blank" class="cta-primary inline-flex items-center justify-center gap-2
+                          bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400
+                          text-white px-6 py-3.5 rounded-lg font-bold
+                          shadow-lg shadow-brand-500/20 hover:shadow-xl hover:shadow-brand-500/30
+                          hover:-translate-y-0.5 transition-all">
+                    <i class="fab fa-github"></i>
                     Explore on GitHub
                 </a>
                 {{ end }}
 
-                <a href="{{ .Site.Params.scheduleCallUrl }}" class="inline-flex items-center border-2 border-white text-white hover:bg-white hover:text-brand-600 font-medium py-3 px-6 rounded-lg transition-colors">
-                    <i class="fas fa-calendar-alt mr-2"></i>
-                    {{ if eq $productData.Params.status "coming_soon" }}Get Early Access{{ else }}Schedule Demo{{ end }}
+                <a href="{{ .Site.Params.scheduleCallUrl }}" class="inline-flex items-center justify-center gap-2
+                          bg-white border border-slate-300 text-slate-700 hover:border-brand-500 hover:text-brand-600
+                          px-6 py-3.5 rounded-lg font-semibold transition-all">
+                    <i class="fas fa-calendar-alt"></i>
+                    {{ if eq $productData.Params.status "coming_soon" }}Get early access{{ else }}Talk to an expert{{ end }}
                 </a>
             </div>
         </div>
     </div>
 </section>
+
+</div>{{/* /data-variant=a */}}
 {{ end }}

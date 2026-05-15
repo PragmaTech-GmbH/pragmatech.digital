@@ -1,6 +1,9 @@
 {{ define "main" }}
-<article class="bg-slate-900">
-    <div class="max-w-5xl mx-auto px-4 py-8">
+<article data-variant="a" class="bg-white">
+    <!-- Subtle ambient background gradient, matches the survey landing page -->
+    <div class="relative">
+        <div class="absolute inset-x-0 top-0 h-96 bg-gradient-to-br from-white via-brand-50/40 to-white pointer-events-none"></div>
+    <div class="relative max-w-5xl mx-auto px-4 py-8">
         <div class="mb-8">
             <a href="/workshops/" class="text-brand-400 hover:text-brand-300 flex items-center">
                 <i class="fas fa-arrow-left mr-2"></i>
@@ -54,7 +57,7 @@
         <!-- Details Section -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-20 mt-16">
             <div class="md:col-span-2">
-                <div class="prose prose-invert prose-lg max-w-none page-content text-slate-300">
+                <div class="prose prose-lg max-w-none page-content text-slate-700">
                     {{ .Content }}
                 </div>
 
@@ -80,7 +83,7 @@
                     {{ if .Params.price }}
                     <div class="text-3xl font-bold text-brand-400 mb-4">{{ .Params.price }}</div>
                     {{ end }}
-                    <a href="{{ .Params.booking_url | default "/contact" }}" class="block w-full bg-brand-600 text-white hover:bg-brand-500 font-bold py-3 px-6 rounded-lg transition-colors text-center mb-4">
+                    <a href="{{ .Params.booking_url | default "/contact" }}" class="cta-primary block w-full bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400 text-white font-bold py-3 px-6 rounded-lg shadow-lg shadow-brand-500/20 hover:shadow-xl hover:shadow-brand-500/30 transition-all text-center mb-4">
                     Schedule Now
                     </a>
 
@@ -164,6 +167,7 @@
             </div>
         </div>
         {{ end }}
+    </div>
     </div>
 </article>
 {{ end }}

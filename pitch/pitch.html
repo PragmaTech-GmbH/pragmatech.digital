@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>PragmaTech — Pitch</title>
+
+    <!-- Fonts (same stack as pragmatech.digital) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Reveal.js (CDN) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+
+    <!-- Our brand theme + scene animations -->
+    <link rel="stylesheet" href="assets/pitch.css">
+</head>
+<body>
+
+<!-- Persistent slide chrome (logo top-left, counter top-right) -->
+<div class="deck-chrome">
+    <img class="logo" src="assets/pragmatech-logo.png" alt="PragmaTech">
+    <div class="slide-num"><span class="cur">01</span><span style="color: var(--slate-700); margin: 0 0.4em">/</span><span class="tot">04</span></div>
+</div>
+
+<div class="reveal">
+    <div class="slides">
+
+        <!-- ============================================================ -->
+        <!-- SLIDE 1 — THE HOOK                                           -->
+        <!-- ============================================================ -->
+        <section class="slide-hook">
+            <div class="eyebrow">The Reality Check</div>
+            <h1>AI is fast. <span class="gradient-text">Your pipeline isn't.</span></h1>
+
+            <!-- Animated bottleneck scene -->
+            <svg class="scene" viewBox="0 0 1100 380" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                <!-- Defs: paths the glyphs travel along -->
+                <defs>
+                    <!-- AI → funnel entrance (top, middle, bottom) -->
+                    <path id="path-in-top"    d="M 130 145 C 200 145, 260 145, 310 100" fill="none"/>
+                    <path id="path-in-mid"    d="M 130 175 L 310 175" fill="none"/>
+                    <path id="path-in-bot"    d="M 130 205 C 200 205, 260 205, 310 250" fill="none"/>
+
+                    <!-- Constriction wobble path -->
+                    <path id="path-queue"     d="M 380 190 L 540 195" fill="none"/>
+
+                    <!-- Constriction → PROD -->
+                    <path id="path-out"       d="M 580 195 C 700 195, 850 210, 970 215" fill="none"/>
+
+                    <!-- Glow filter for the bottleneck zone -->
+                    <radialGradient id="bottleneck-glow" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#f87171" stop-opacity="0.55"/>
+                        <stop offset="60%" stop-color="#ef4444" stop-opacity="0.18"/>
+                        <stop offset="100%" stop-color="#ef4444" stop-opacity="0"/>
+                    </radialGradient>
+                </defs>
+
+                <!-- Connector pipes (dashed, flowing) -->
+                <path class="pipe" d="M 130 175 L 310 175"/>
+                <path class="pipe" d="M 580 195 L 970 215"/>
+
+                <!-- AI source -->
+                <circle class="ai-core" cx="90" cy="175" r="42"/>
+                <text x="90" y="170" text-anchor="middle" font-family="JetBrains Mono" font-size="13" font-weight="700" fill="#7dd3fc" letter-spacing="3">AI</text>
+                <text x="90" y="195" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#94a3b8" letter-spacing="2">SOURCE</text>
+
+                <!-- Funnel walls (the pipeline) -->
+                <path class="funnel" d="M 310 80 L 540 170 L 600 170 L 880 130 L 880 290 L 600 220 L 540 220 L 310 310 Z"/>
+
+                <!-- Bottleneck red glow zone (over the constriction) -->
+                <ellipse cx="570" cy="195" rx="80" ry="60" fill="url(#bottleneck-glow)"/>
+                <rect class="funnel-glow" x="540" y="165" width="60" height="60" rx="4"/>
+
+                <!-- BOTTLENECK label -->
+                <text class="bottleneck-label" x="570" y="50" text-anchor="middle">[ BOTTLENECK ]</text>
+                <line x1="570" y1="60" x2="570" y2="155" stroke="#f87171" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.6"/>
+
+                <!-- PROD output -->
+                <circle class="prod-core" cx="1010" cy="215" r="38"/>
+                <text x="1010" y="212" text-anchor="middle" font-family="JetBrains Mono" font-size="11" font-weight="700" fill="#34d399" letter-spacing="2">PROD</text>
+                <text x="1010" y="228" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#64748b" letter-spacing="1">(slow)</text>
+
+                <!-- Stacked "queue" glyphs at the funnel entrance (visible pile-up) -->
+                <g>
+                    <rect class="glyph-queue" x="445" y="172" width="28" height="6" rx="2" opacity="0.9">
+                        <animate attributeName="x" values="445;448;445" dur="0.7s" repeatCount="indefinite"/>
+                    </rect>
+                    <rect class="glyph-queue" x="465" y="183" width="32" height="6" rx="2" opacity="0.85">
+                        <animate attributeName="x" values="465;462;465" dur="0.9s" repeatCount="indefinite"/>
+                    </rect>
+                    <rect class="glyph-queue" x="450" y="195" width="22" height="6" rx="2" opacity="0.9">
+                        <animate attributeName="x" values="450;453;450" dur="0.8s" repeatCount="indefinite"/>
+                    </rect>
+                    <rect class="glyph-queue" x="475" y="207" width="30" height="6" rx="2" opacity="0.8">
+                        <animate attributeName="x" values="475;472;475" dur="1.1s" repeatCount="indefinite"/>
+                    </rect>
+                    <rect class="glyph-queue" x="455" y="219" width="24" height="6" rx="2" opacity="0.85">
+                        <animate attributeName="x" values="455;458;455" dur="0.8s" repeatCount="indefinite"/>
+                    </rect>
+                </g>
+
+                <!-- Incoming AI-code glyphs (continuous flow from AI source) -->
+                <g>
+                    <rect class="glyph" width="26" height="6" rx="2">
+                        <animateMotion dur="2s" repeatCount="indefinite" begin="0s">
+                            <mpath href="#path-in-mid"/>
+                        </animateMotion>
+                        <animate attributeName="opacity" values="0;1;1;0.2" dur="2s" repeatCount="indefinite" begin="0s"/>
+                    </rect>
+                    <rect class="glyph" width="22" height="6" rx="2">
+                        <animateMotion dur="2s" repeatCount="indefinite" begin="0.4s">
+                            <mpath href="#path-in-top"/>
+                        </animateMotion>
+                        <animate attributeName="opacity" values="0;1;1;0.2" dur="2s" repeatCount="indefinite" begin="0.4s"/>
+                    </rect>
+                    <rect class="glyph" width="30" height="6" rx="2">
+                        <animateMotion dur="2s" repeatCount="indefinite" begin="0.8s">
+                            <mpath href="#path-in-bot"/>
+                        </animateMotion>
+                        <animate attributeName="opacity" values="0;1;1;0.2" dur="2s" repeatCount="indefinite" begin="0.8s"/>
+                    </rect>
+                    <rect class="glyph" width="24" height="6" rx="2">
+                        <animateMotion dur="2s" repeatCount="indefinite" begin="1.2s">
+                            <mpath href="#path-in-mid"/>
+                        </animateMotion>
+                        <animate attributeName="opacity" values="0;1;1;0.2" dur="2s" repeatCount="indefinite" begin="1.2s"/>
+                    </rect>
+                    <rect class="glyph" width="28" height="6" rx="2">
+                        <animateMotion dur="2s" repeatCount="indefinite" begin="1.6s">
+                            <mpath href="#path-in-top"/>
+                        </animateMotion>
+                        <animate attributeName="opacity" values="0;1;1;0.2" dur="2s" repeatCount="indefinite" begin="1.6s"/>
+                    </rect>
+                </g>
+
+                <!-- Slow trickle out to PROD -->
+                <g>
+                    <rect class="glyph-prod" width="22" height="6" rx="2">
+                        <animateMotion dur="5s" repeatCount="indefinite" begin="0s">
+                            <mpath href="#path-out"/>
+                        </animateMotion>
+                        <animate attributeName="opacity" values="0;1;1;0.3" dur="5s" repeatCount="indefinite" begin="0s"/>
+                    </rect>
+                    <rect class="glyph-prod" width="20" height="6" rx="2">
+                        <animateMotion dur="5s" repeatCount="indefinite" begin="2.5s">
+                            <mpath href="#path-out"/>
+                        </animateMotion>
+                        <animate attributeName="opacity" values="0;1;1;0.3" dur="5s" repeatCount="indefinite" begin="2.5s"/>
+                    </rect>
+                </g>
+
+                <!-- Section labels under the scene -->
+                <text x="90" y="320" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#475569" letter-spacing="2">AI INPUT (fast)</text>
+                <text x="570" y="360" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#475569" letter-spacing="2">BUILD &amp; TEST PIPELINE (slow / flaky)</text>
+                <text x="1010" y="280" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#475569" letter-spacing="2">PROD OUTPUT</text>
+            </svg>
+
+            <!-- Stat row (fragments) -->
+            <div class="stat-row">
+                <div class="stat bad fragment fade-in">
+                    <div class="num strike">+20%</div>
+                    <div class="lbl">Devs <em>feel</em> faster with AI</div>
+                </div>
+                <div class="stat bad fragment fade-in">
+                    <div class="num">−19%</div>
+                    <div class="lbl"><strong>Reality</strong> (METR 2025)</div>
+                </div>
+            </div>
+
+            <p class="tagline fragment fade-up">Productivity isn't typing speed — it's <em>shipping</em> speed.</p>
+
+            <aside class="notes">
+                What you just shared aligns 100% with what I see across the industry every single day. My mind is already racing because this exact challenge is my absolute specialty.
+
+                We are currently seeing a fatal trend: AI tools generate code in record time, but because build &amp; test pipelines are slow, unstable, or flaky, this code turns into a ticking time bomb. Brand-new studies from METR prove it black-and-white: developers believe they are 20% faster with AI, but in reality, they have become 19% slower.
+
+                Why? Because they are mutating from proud software creators into exhausted auditors who spend hours untangling foreign AI code. This constant waiting and context-switching destroys your team's flow and ultimately drags your DORA metrics down.
+            </aside>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SLIDE 2 — THE AUTHORITY                                      -->
+        <!-- ============================================================ -->
+        <section class="slide-authority">
+            <div class="photo-wrap">
+                <img src="assets/philip.jpeg" alt="Philip Riecks speaking at a conference">
+            </div>
+            <div>
+                <div class="role">Why Me</div>
+                <h2>Philip Riecks <span class="gradient-text">— in the engine room since 2014.</span></h2>
+
+                <ul>
+                    <li class="fragment fade-up"><strong>10+ years</strong> deep in Spring Boot engine rooms — 6 of them as a hands-on consultant inside 10+ different teams.</li>
+                    <li class="fragment fade-up"><strong>Founder</strong> of a leading Spring Boot blog — running for 5+ years, long before the AI hype.</li>
+                    <li class="fragment fade-up"><strong>Testing academy</strong> trusted blindly by <strong>10,000+ developers</strong>.</li>
+                    <li class="fragment fade-up">I don't deliver shiny PowerPoints. I get my hands dirty <strong>directly in your code</strong>.</li>
+                    <li class="fragment fade-up">International speaker — USA, Spain, Germany, Belgium, Switzerland.</li>
+                </ul>
+
+                <div class="git-log fragment fade-up">
+                    <div><span>$</span> git log --author="philip" --grep="build-time"</div>
+                    <div style="margin-top:0.4em">commit <span style="color:#fbbf24">a1b2c3d</span></div>
+                    <div>Author: <span class="em">Philip Riecks &lt;mail@philipriecks.de&gt;</span></div>
+                    <div>Subject: <span class="em">cut another pipeline from 42m to 6m</span></div>
+                </div>
+            </div>
+
+            <aside class="notes">
+                And this specific bottleneck is exactly what I solve. Briefly about my background: I'm Philip Riecks and I've been working deep in the engine rooms of Spring Boot projects for over 10 years - 6 of those as a hands-on consultant. Long before the AI hype, I founded one of the most recognized Spring Boot blogs and a testing academy that over 10,000 developers blindly trust today. I'm not a consultant who just delivers shiny PowerPoints; I get my hands dirty directly in the code.
+            </aside>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SLIDE 3 — THE OFFER & METHODOLOGY                            -->
+        <!-- ============================================================ -->
+        <section class="slide-offer">
+            <div class="badge" style="margin-bottom:1rem">The Promise</div>
+            <h2 class="promise"><span class="gradient-text-bold">50% Faster Builds.</span> Guaranteed. In <span class="gradient-text-bold">30 Days.</span></h2>
+            <p class="promise-sub">A blazingly fast, rock-solid safety net so your team can deploy AI-generated code fearlessly. A compact 3-step sprint:</p>
+
+            <div class="steps-grid">
+                <div class="card-step fragment fade-up">
+                    <div class="step-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 100-15 7.5 7.5 0 000 15z"/></svg>
+                    </div>
+                    <div class="step-num">Step 01</div>
+                    <h3>The Ruthless Baseline Audit</h3>
+                    <p>An unvarnished analysis of your project to uncover the hidden productivity killers in your setup.</p>
+                </div>
+
+                <div class="card-step fragment fade-up">
+                    <div class="step-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </div>
+                    <div class="step-num">Step 02</div>
+                    <h3>The Build-Time Turbo</h3>
+                    <p>Low-hanging fruit straight in your code: Spring Context Caching, parallelization, drastically faster Testcontainers.</p>
+                </div>
+
+                <div class="card-step fragment fade-up">
+                    <div class="step-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                    </div>
+                    <div class="step-num">Step 03</div>
+                    <h3>The Pipeline Sanitation</h3>
+                    <p>Ruthlessly eliminate flaky tests and unreliabilities. Your team trusts green &amp; red lights again — 100%.</p>
+                </div>
+            </div>
+
+            <aside class="notes">
+                My offer to Tech Leads like you is extremely simple: We reduce your Spring Boot build times by a guaranteed 50% in just 30 days. We build a blazingly fast, rock-solid safety net so your team can deploy AI-generated code fearlessly and rapidly.
+
+                How do we achieve this? We execute a compact 3-step sprint:
+
+                1. The Ruthless Baseline Audit: We start with an unvarnished analysis of your project to uncover the hidden productivity killers in your setup.
+                2. The Build-Time Turbo: We grab the low-hanging fruits directly in your code - optimizing your Spring Context Caching and drastically speeding up those painfully slow Testcontainers.
+                3. The Pipeline Sanitation: We ruthlessly eliminate flaky tests and remove unreliabilities, so your developers can rely 100% on green and red lights again.
+            </aside>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SLIDE 4 — THE CLOSE                                          -->
+        <!-- ============================================================ -->
+        <section class="slide-close">
+            <div class="usp-block fragment fade-up">
+                <div class="badge">The No-Brainer</div>
+                <div class="usp-headline">I make myself <span class="gradient-text">obsolete</span>.</div>
+                <div class="usp-pill">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.547-.547z"/></svg>
+                    Custom AI Testing Skill <span class="mono" style="color:var(--brand-300); font-size:0.7rem; letter-spacing:0.15em">· MCP SERVER</span>
+                </div>
+                <p class="usp-sub">10 years of testing expertise injected straight into your developers' IDEs — a permanent autopilot that secures your new, phenomenal build times.</p>
+            </div>
+
+            <div class="guarantee-block fragment fade-up">
+                <div class="guarantee-card">
+                    <span class="check">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                    </span>
+                    <strong>30% reduction guaranteed</strong> &nbsp;·&nbsp; or money back. <em>No ifs, no buts.</em>
+                </div>
+            </div>
+
+            <div class="close-cta fragment fade-up">
+                <div class="close-line">Tuesday morning. <span class="gradient-text">45 minutes.</span> No strings.</div>
+                <a href="#" class="cta-pill">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    Let's deep-dive your pipeline →
+                </a>
+            </div>
+
+            <aside class="notes">
+                But here is the most important part: I make myself obsolete afterwards. Your team will receive a custom AI Testing Skill - an MCP Server - that injects my concentrated 10 years of testing expertise directly into your developers' IDEs. Think of it as a permanent autopilot that effortlessly secures your new, phenomenal build times.
+
+                And this entire sprint is absolutely risk-free for you. If we don't reduce your build times by at least 30% black-and-white, you get your money back. No ifs, no buts.
+
+                Based on what you've told me about your setup today, I already see 2 or 3 massive levers we could pull. If you're open to it, let's sit down next week for a separate 45-minute deep dive. We can briefly look at your code or pipeline and sketch out a concrete, tailored strategy of what this 30-day sprint would look like for you. Completely no-strings-attached.
+
+                How does your schedule look - do you have 45 minutes next week, maybe Tuesday morning?
+            </aside>
+        </section>
+
+    </div>
+</div>
+
+<!-- Reveal.js + plugins (CDN) -->
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/notes/notes.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/highlight/highlight.js"></script>
+
+<!-- Our init -->
+<script src="assets/pitch.js"></script>
+</body>
+</html>

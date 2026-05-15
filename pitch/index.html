@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PragmaTech — Pitch Variants</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --brand-400: #38bdf8;
+            --brand-500: #0ea5e9;
+            --brand-600: #0284c7;
+            --gold-500: #b8862c;
+            --term-green: #34d399;
+            --slate-200: #e2e8f0;
+            --slate-400: #94a3b8;
+            --slate-500: #64748b;
+            --slate-700: #334155;
+            --slate-800: #1e293b;
+            --slate-900: #0f172a;
+            --slate-950: #020617;
+            --font-sans: 'Inter', system-ui, sans-serif;
+            --font-heading: 'Space Grotesk', 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+        * { box-sizing: border-box; }
+        html, body { margin: 0; padding: 0; background: var(--slate-950); color: var(--slate-200); font-family: var(--font-sans); }
+        body {
+            min-height: 100vh;
+            background-image: radial-gradient(rgba(56, 189, 248, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .wrap {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 1.6rem 5rem;
+        }
+
+        header {
+            margin-bottom: 3.5rem;
+        }
+        header .logo-row {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1.6rem;
+        }
+        header .logo-row img { height: 30px; opacity: 0.85; }
+        header .logo-row .tag {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--brand-400);
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            border-left: 1px solid var(--slate-700);
+            padding-left: 0.8rem;
+        }
+        header h1 {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: clamp(2rem, 4vw, 3rem);
+            letter-spacing: -0.025em;
+            line-height: 1.1;
+            color: #ffffff;
+            margin: 0 0 0.8rem;
+        }
+        header h1 .accent {
+            background: linear-gradient(to right, var(--brand-400), var(--brand-500));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        header p {
+            color: var(--slate-400);
+            max-width: 640px;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.4rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 1.8rem;
+            background: rgba(30, 41, 59, 0.4);
+            border: 1px solid var(--slate-800);
+            border-radius: 16px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.25s ease;
+            backdrop-filter: blur(8px);
+        }
+        .card:hover {
+            transform: translateY(-3px);
+            border-color: var(--brand-500);
+            box-shadow: 0 20px 40px -20px rgba(2, 132, 199, 0.4);
+        }
+        .card .preview {
+            height: 140px;
+            border-radius: 10px;
+            margin-bottom: 1.2rem;
+            border: 1px solid var(--slate-800);
+            background-size: cover;
+            background-position: center top;
+            overflow: hidden;
+            position: relative;
+        }
+        .card .preview .mini-headline {
+            position: absolute;
+            inset: auto 0.8rem 0.6rem;
+            font-size: 0.65rem;
+            font-family: var(--font-mono);
+            letter-spacing: 0.1em;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .card .preview-default {
+            background: linear-gradient(135deg, #0f172a 0%, #0c4a6e 100%);
+            background-image:
+                radial-gradient(rgba(56, 189, 248, 0.18) 1px, transparent 1px),
+                linear-gradient(135deg, #0f172a 0%, #0c4a6e 100%);
+            background-size: 16px 16px, 100% 100%;
+            background-position: 0 0, 0 0;
+        }
+        .card .preview-editorial {
+            background: linear-gradient(135deg, #fafaf7 0%, #f4efe6 100%);
+        }
+        .card .preview-terminal {
+            background: linear-gradient(135deg, #0a0e16 0%, #060912 100%);
+            background-image: repeating-linear-gradient(to bottom, transparent 0 3px, rgba(255,255,255,0.025) 3px 4px), linear-gradient(135deg, #0a0e16 0%, #060912 100%);
+        }
+
+        .preview .mock {
+            position: absolute;
+            inset: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            text-align: center;
+        }
+        .preview-default .mock {
+            color: #ffffff;
+        }
+        .preview-default .mock .h {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 12px;
+        }
+        .preview-default .mock .h .accent {
+            background: linear-gradient(to right, var(--brand-400), var(--brand-500));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .preview-default .mock .glyph-row { display: flex; gap: 4px; }
+        .preview-default .mock .glyph-row span {
+            width: 12px; height: 3px; background: var(--brand-400); border-radius: 1px;
+            opacity: 0.7;
+        }
+
+        .preview-editorial .mock {
+            color: #0c1117;
+        }
+        .preview-editorial .mock .h {
+            font-family: var(--font-heading);
+            font-weight: 500;
+            font-style: italic;
+            font-size: 12px;
+            color: var(--gold-500);
+        }
+        .preview-editorial .mock .h2 {
+            font-family: var(--font-mono);
+            font-size: 8px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--slate-500);
+        }
+        .preview-editorial .mock .line {
+            display: block;
+            width: 80%;
+            height: 1px;
+            background: var(--gold-500);
+            opacity: 0.5;
+        }
+
+        .preview-terminal .mock {
+            color: var(--term-green);
+            font-family: var(--font-mono);
+            font-size: 8px;
+            text-align: left;
+            align-items: flex-start;
+            padding-top: 6px;
+        }
+        .preview-terminal .mock div { line-height: 1.4; }
+        .preview-terminal .mock .arrow { color: #ef4444; }
+        .preview-terminal .mock .ok { color: var(--term-green); }
+        .preview-terminal .mock .err { color: #f87171; }
+        .preview-terminal .mock .key { color: var(--brand-400); }
+
+        .card-tag {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            color: var(--brand-400);
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
+        }
+        .card-tag.gold     { color: var(--gold-500); }
+        .card-tag.green    { color: var(--term-green); }
+
+        .card h2 {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin: 0 0 0.4rem;
+            letter-spacing: -0.015em;
+        }
+        .card .desc {
+            font-size: 0.92rem;
+            color: var(--slate-400);
+            line-height: 1.5;
+            margin: 0 0 1.2rem;
+            flex: 1;
+        }
+        .card .meta {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            color: var(--slate-500);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+        .card .meta span {
+            padding: 0.25rem 0.55rem;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--slate-800);
+            border-radius: 4px;
+        }
+        .card .open {
+            margin-top: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--brand-400);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .extra {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem 1.6rem;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--slate-800);
+            border-radius: 12px;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+        }
+        .extra a {
+            color: var(--brand-400);
+            text-decoration: none;
+            border-bottom: 1px dashed var(--slate-700);
+            padding-bottom: 1px;
+        }
+        .extra a:hover { color: #ffffff; border-bottom-color: var(--brand-400); }
+        .extra .label {
+            color: var(--slate-500);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            margin-right: 0.4rem;
+        }
+
+        footer {
+            margin-top: 3rem;
+            padding-top: 1.6rem;
+            border-top: 1px solid var(--slate-800);
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--slate-500);
+            letter-spacing: 0.1em;
+        }
+        footer .hint {
+            display: flex;
+            gap: 1.6rem;
+            flex-wrap: wrap;
+        }
+        footer kbd {
+            background: var(--slate-800);
+            border: 1px solid var(--slate-700);
+            border-radius: 4px;
+            padding: 1px 6px;
+            margin: 0 2px;
+            color: var(--brand-400);
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrap">
+    <header>
+        <div class="logo-row">
+            <img src="assets/pragmatech-logo.png" alt="PragmaTech">
+            <span class="tag">pitch · variants</span>
+        </div>
+        <h1>Three takes on the same <span class="accent">4-minute pitch.</span></h1>
+        <p>Same script, same story, same speaker notes — three distinct visual personalities. Pick the one that fits your audience for the call.</p>
+    </header>
+
+    <div class="grid">
+
+        <a class="card" href="pitch.html">
+            <div class="preview preview-default">
+                <div class="mock">
+                    <div class="h">AI is fast. <span class="accent">Your pipeline isn't.</span></div>
+                    <div class="glyph-row"><span></span><span></span><span></span><span></span></div>
+                    <div class="mini-headline" style="color: rgba(56,189,248,0.6)">[ BOTTLENECK ]</div>
+                </div>
+            </div>
+            <div class="card-tag">01 · Default</div>
+            <h2>Performance Dashboard</h2>
+            <p class="desc">Dark slate, brand-blue gradient, animated SVG bottleneck scene. Conversion-bold and energetic. Best for first-time discovery calls with engineering managers.</p>
+            <div class="meta">
+                <span>animated</span>
+                <span>dark</span>
+                <span>conversion</span>
+            </div>
+            <span class="open">Open the deck →</span>
+        </a>
+
+        <a class="card" href="pitch-editorial.html">
+            <div class="preview preview-editorial">
+                <div class="mock">
+                    <div class="h2">A Field Report</div>
+                    <div class="h">the gap.</div>
+                    <span class="line"></span>
+                    <div class="mini-headline" style="color: var(--slate-500)">SOURCE · METR 2025</div>
+                </div>
+            </div>
+            <div class="card-tag gold">02 · Editorial</div>
+            <h2>The Boardroom Brief</h2>
+            <p class="desc">Light, magazine-style. Gold accents, animated divergence chart, quiet confidence. Best for VP/C-level conversations where restraint signals seriousness.</p>
+            <div class="meta">
+                <span>premium</span>
+                <span>light</span>
+                <span>executive</span>
+            </div>
+            <span class="open">Open the deck →</span>
+        </a>
+
+        <a class="card" href="pitch-terminal.html">
+            <div class="preview preview-terminal">
+                <div class="mock">
+                    <div><span class="ok">$</span> ./pipeline-audit</div>
+                    <div><span class="key">[PIPE]</span> build = <span class="err">28m</span></div>
+                    <div><span class="key">[PIPE]</span> flaky = <span class="err">7.4%</span></div>
+                    <div><span class="key">[OUT]</span>  delta = <span class="err">-19%</span></div>
+                    <div class="mini-headline" style="color: var(--term-green); right:auto; left: 8px;">// METR 2025</div>
+                </div>
+            </div>
+            <div class="card-tag green">03 · Terminal</div>
+            <h2>Developer Native</h2>
+            <p class="desc">Pure monospace, terminal aesthetic. Animated shell session, code-block methodology, git-log credentials. Best for hardcore engineering audiences who think in code.</p>
+            <div class="meta">
+                <span>monospace</span>
+                <span>terminal</span>
+                <span>engineering</span>
+            </div>
+            <span class="open">Open the deck →</span>
+        </a>
+
+    </div>
+
+    <div class="extra">
+        <span class="label">Also</span>
+        <a href="Pitch-Deck.pdf">↗ Original Pitch-Deck.pdf (reference)</a>
+    </div>
+
+    <footer>
+        <div class="hint">
+            <span><kbd>→</kbd> next slide</span>
+            <span><kbd>Space</kbd> next fragment</span>
+            <span><kbd>S</kbd> speaker view</span>
+            <span><kbd>F</kbd> fullscreen</span>
+            <span><kbd>Esc</kbd> overview</span>
+            <span>?print-pdf · export</span>
+        </div>
+    </footer>
+</div>
+
+</body>
+</html>

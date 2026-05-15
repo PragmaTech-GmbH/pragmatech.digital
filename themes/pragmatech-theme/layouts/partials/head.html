@@ -6,6 +6,7 @@
     <link rel="canonical" href="{{ .Permalink }}">
     <link rel="icon" href="{{ "favicon.ico" | relURL }}">
 
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -70,4 +71,12 @@
     {{ $menu = $menu | minify | fingerprint }}
     {{ end }}
     <script src="{{ $menu.RelPermalink }}"></script>
+
+    {{ if .IsHome }}
+    {{ $homeJs := resources.Get "js/home.js" }}
+    {{ if hugo.IsProduction }}
+    {{ $homeJs = $homeJs | minify | fingerprint }}
+    {{ end }}
+    <script src="{{ $homeJs.RelPermalink }}" defer></script>
+    {{ end }}
 </head>

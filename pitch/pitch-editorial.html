@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>PragmaTech — Pitch (Editorial)</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+    <link rel="stylesheet" href="assets/pitch-editorial.css">
+</head>
+<body>
+
+<div class="deck-chrome">
+    <img class="logo" src="assets/pragmatech-logo.png" alt="PragmaTech">
+    <div class="slide-num"><span class="cur">01</span><span style="color: var(--ink-faint); margin: 0 0.4em">/</span><span class="tot">04</span></div>
+</div>
+
+<div class="reveal">
+    <div class="slides">
+
+        <!-- ============================================================ -->
+        <!-- SLIDE 1 — THE HOOK (editorial)                                -->
+        <!-- ============================================================ -->
+        <section class="slide-hook">
+            <div class="eyebrow">A Field Report on AI &amp; Engineering Velocity</div>
+            <h1>AI raised the floor on coding speed. <br><span class="gap-word">Deployment speed never caught up.</span></h1>
+            <p class="deck-sub">There is a widening gap between how fast code is <em>generated</em> and how fast it can be <em>shipped</em>. This gap is the real bottleneck.</p>
+
+            <!-- Editorial divergence chart -->
+            <div class="chart-wrap">
+                <div class="chart-meta">
+                    <span class="chart-title">AI Velocity vs. Deploy Velocity, 2022 → 2026</span>
+                    <span class="chart-source">Source · METR 2025 · Internal Field Data</span>
+                </div>
+                <svg class="chart-svg" viewBox="0 0 900 320" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <!-- Axes -->
+                    <line class="axis" x1="60" y1="280" x2="860" y2="280"/>
+                    <line class="axis" x1="60" y1="40"  x2="60"  y2="280"/>
+
+                    <!-- Gridlines -->
+                    <line class="gridline" x1="60" y1="80"  x2="860" y2="80"/>
+                    <line class="gridline" x1="60" y1="140" x2="860" y2="140"/>
+                    <line class="gridline" x1="60" y1="200" x2="860" y2="200"/>
+
+                    <!-- Axis labels -->
+                    <text class="axis-lbl" x="60"  y="300" text-anchor="middle">2022</text>
+                    <text class="axis-lbl" x="260" y="300" text-anchor="middle">2023</text>
+                    <text class="axis-lbl" x="460" y="300" text-anchor="middle">2024</text>
+                    <text class="axis-lbl" x="660" y="300" text-anchor="middle">2025</text>
+                    <text class="axis-lbl" x="860" y="300" text-anchor="middle">2026</text>
+
+                    <text class="axis-lbl" x="50" y="285" text-anchor="end">LOW</text>
+                    <text class="axis-lbl" x="50" y="45"  text-anchor="end">HIGH</text>
+
+                    <!-- AI velocity line: rises sharply -->
+                    <path class="line ai" d="M 60 245 C 200 240, 300 220, 460 130 C 560 70, 700 55, 860 50"/>
+                    <circle class="dot ai" cx="860" cy="50" r="5"/>
+
+                    <!-- Deploy velocity line: flat / dips slightly -->
+                    <path class="line deploy" d="M 60 200 C 240 205, 400 215, 560 220 C 700 225, 800 232, 860 235"/>
+                    <circle class="dot deploy" cx="860" cy="235" r="5"/>
+
+                    <!-- Gap bracket at right edge -->
+                    <path class="gap-bracket" d="M 880 50 L 895 50 L 895 235 L 880 235"/>
+                    <text class="gap-label" x="900" y="148">THE GAP</text>
+
+                    <!-- Pulsing dot at the divergence point -->
+                    <circle class="pulse-dot" cx="460" cy="170" r="5"/>
+                </svg>
+                <div class="chart-legend">
+                    <div><span class="swatch ai"></span>AI Code Generation Velocity</div>
+                    <div><span class="swatch deploy"></span>Deploy / Pipeline Velocity</div>
+                </div>
+            </div>
+
+            <p class="pullquote fragment fade-up">
+                Developers <span class="accent">feel</span> 20% faster with AI. Per METR's 2025 study, they are in fact <span class="accent">19% slower.</span>
+            </p>
+
+            <aside class="notes">
+                What you just shared aligns 100% with what I see across the industry every single day. My mind is already racing because this exact challenge is my absolute specialty.
+
+                We are currently seeing a fatal trend: AI tools generate code in record time, but because build &amp; test pipelines are slow, unstable, or flaky, this code turns into a ticking time bomb. Brand-new studies from METR prove it black-and-white: developers believe they are 20% faster with AI, but in reality, they have become 19% slower.
+
+                Why? Because they are mutating from proud software creators into exhausted auditors who spend hours untangling foreign AI code. This constant waiting and context-switching destroys your team's flow and ultimately drags your DORA metrics down.
+            </aside>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SLIDE 2 — THE AUTHORITY (magazine spread)                     -->
+        <!-- ============================================================ -->
+        <section class="slide-authority">
+            <div class="photo-col">
+                <img src="assets/philip.jpeg" alt="Philip Riecks">
+                <p class="photo-caption">Philip Riecks · Spring I/O · 2024</p>
+            </div>
+            <div>
+                <div class="eyebrow">Profile</div>
+                <h2>Philip Riecks <br><span class="italic">in the engine room since 2014.</span></h2>
+                <p class="byline">Spring Boot &middot; Testing &middot; Build Performance</p>
+
+                <div class="bio-row">
+                    <div class="lbl">Decade</div>
+                    <div class="val"><strong>10+ years</strong> in the engine rooms of Spring Boot teams. 6 of those as a hands-on consultant inside 10+ different organisations.</div>
+                </div>
+                <div class="bio-row">
+                    <div class="lbl">Voice</div>
+                    <div class="val">Founder of a leading <strong>Spring Boot blog</strong>, running for 5+ years &mdash; long before the AI hype.</div>
+                </div>
+                <div class="bio-row">
+                    <div class="lbl">Trust</div>
+                    <div class="val">Testing academy followed and trusted by <strong>10,000+ developers</strong>.</div>
+                </div>
+                <div class="bio-row">
+                    <div class="lbl">Practice</div>
+                    <div class="val">Not a slide-deck consultant. The work happens <strong>directly in your codebase</strong>.</div>
+                </div>
+                <div class="bio-row">
+                    <div class="lbl">Stage</div>
+                    <div class="val">International speaker &mdash; USA, Spain, Germany, Belgium, Switzerland.</div>
+                </div>
+            </div>
+
+            <aside class="notes">
+                And this specific bottleneck is exactly what I solve. Briefly about my background: I'm Philip Riecks and I've been working deep in the engine rooms of Spring Boot projects for over 10 years - 6 of those as a hands-on consultant. Long before the AI hype, I founded one of the most recognized Spring Boot blogs and a testing academy that over 10,000 developers blindly trust today. I'm not a consultant who just delivers shiny PowerPoints; I get my hands dirty directly in the code.
+            </aside>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SLIDE 3 — THE OFFER & METHODOLOGY (editorial spread)          -->
+        <!-- ============================================================ -->
+        <section class="slide-offer">
+            <div class="eyebrow promise-eyebrow">The Promise</div>
+            <h2 class="promise">A guaranteed <span class="italic">50% faster build</span> in <span class="italic">30 days.</span></h2>
+            <p class="promise-sub">A blazingly fast, rock-solid safety net so your team can deploy AI-generated code without fear. Delivered in a compact 3-step engagement.</p>
+
+            <div class="steps-list">
+                <div class="step-row">
+                    <div class="num">01</div>
+                    <div class="body">
+                        <h3>The Ruthless Baseline Audit</h3>
+                        <p>An unvarnished diagnosis of your project to uncover the hidden productivity killers in your setup &mdash; before a single line of code is touched.</p>
+                    </div>
+                </div>
+                <div class="step-row">
+                    <div class="num">02</div>
+                    <div class="body">
+                        <h3>The Build-Time Turbo</h3>
+                        <p>Low-hanging fruit, directly in the code: Spring Context Caching, parallelization, drastically faster Testcontainers, smart caching.</p>
+                    </div>
+                </div>
+                <div class="step-row">
+                    <div class="num">03</div>
+                    <div class="body">
+                        <h3>The Pipeline Sanitation</h3>
+                        <p>Flaky tests eliminated. Unreliability removed. The team trusts <em>green</em> and <em>red</em> lights again &mdash; 100%.</p>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="notes">
+                My offer to Tech Leads like you is extremely simple: We reduce your Spring Boot build times by a guaranteed 50% in just 30 days. We build a blazingly fast, rock-solid safety net so your team can deploy AI-generated code fearlessly and rapidly.
+
+                How do we achieve this? We execute a compact 3-step sprint:
+
+                1. The Ruthless Baseline Audit: We start with an unvarnished analysis of your project to uncover the hidden productivity killers in your setup.
+                2. The Build-Time Turbo: We grab the low-hanging fruits directly in your code - optimizing your Spring Context Caching and drastically speeding up those painfully slow Testcontainers.
+                3. The Pipeline Sanitation: We ruthlessly eliminate flaky tests and remove unreliabilities, so your developers can rely 100% on green and red lights again.
+            </aside>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SLIDE 4 — THE CLOSE (editorial closer)                        -->
+        <!-- ============================================================ -->
+        <section class="slide-close">
+            <div class="closer-block">
+                <div class="eyebrow">The Standing Offer</div>
+                <p class="usp-quote">I make myself <span class="accent">obsolete.</span></p>
+
+                <div class="usp-card">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.547-.547z"/></svg>
+                    Custom AI Testing Skill <span class="pill-sub">· MCP SERVER</span>
+                </div>
+                <p class="usp-sub">10 years of testing expertise injected straight into your developers' IDEs &mdash; a permanent autopilot that secures your new, phenomenal build times.</p>
+
+                <p class="guarantee-line">If we don't reduce your build times by at least <span class="accent">30%</span>, you get your money back. <em>No ifs. No buts.</em></p>
+
+                <div class="close-line">A <span class="accent">45-minute deep dive.</span> No strings.</div>
+
+                <a href="#" class="cta-line">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    Tuesday morning works — book the deep dive →
+                </a>
+            </div>
+
+            <aside class="notes">
+                But here is the most important part: I make myself obsolete afterwards. Your team will receive a custom AI Testing Skill - an MCP Server - that injects my concentrated 10 years of testing expertise directly into your developers' IDEs. Think of it as a permanent autopilot that effortlessly secures your new, phenomenal build times.
+
+                And this entire sprint is absolutely risk-free for you. If we don't reduce your build times by at least 30% black-and-white, you get your money back. No ifs, no buts.
+
+                Based on what you've told me about your setup today, I already see 2 or 3 massive levers we could pull. If you're open to it, let's sit down next week for a separate 45-minute deep dive. We can briefly look at your code or pipeline and sketch out a concrete, tailored strategy of what this 30-day sprint would look like for you. Completely no-strings-attached.
+
+                How does your schedule look - do you have 45 minutes next week, maybe Tuesday morning?
+            </aside>
+        </section>
+
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/notes/notes.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/highlight/highlight.js"></script>
+<script src="assets/pitch.js"></script>
+</body>
+</html>

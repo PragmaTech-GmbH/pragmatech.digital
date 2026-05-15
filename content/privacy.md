@@ -7,8 +7,6 @@ last_updated: "April 15, 2025"
 show_toc: false
 ---
 
-# Privacy Policy
-
 ## 1. An overview of data protection
 
 ### General information

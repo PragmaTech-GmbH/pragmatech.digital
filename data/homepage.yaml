@@ -1,0 +1,170 @@
+# Single source of truth for the homepage redesign.
+# All three variants (A/B/C) read from this file - only layout differs.
+
+hero:
+  preHeadline: "Unlock Your Superpower in the AI Era"
+  headlineLead: "Guaranteed Developer Productivity Boost:"
+  headlineAccent: "50% Faster Spring Boot Builds in 30 Days"
+  subheadline: "Stop letting AI-generated code turn your team into exhausted auditors. Get blazingly fast feedback loops to deploy with zero fear."
+  primaryCTA: "Speed Up Your Builds Now"
+  secondaryCTA: "See the Methodology"
+  guaranteeNote: "100% risk-free • 30-day guarantee • Money-back if we miss"
+  trustLabel: "Trusted by developers at"
+
+# Logos for the trust strip (filenames live in /static/generated/images/)
+trustLogos:
+  - { file: "adesso.webp",     name: "Adesso" }
+  - { file: "deloitte.webp",   name: "Deloitte" }
+  - { file: "vmware.webp",     name: "VMware" }
+  - { file: "scout24.webp",    name: "Scout24" }
+  - { file: "schaeffler.webp", name: "Schaeffler" }
+  - { file: "exxeta.webp",     name: "Exxeta" }
+  - { file: "extenda.webp",    name: "Extenda Retail" }
+  - { file: "widdix.webp",     name: "Widdix" }
+
+painSection:
+  headline: "Does this sound like your current engineering reality?"
+  subheadline: "Six symptoms tech leads tell us about every single week."
+
+painPoints:
+  - category: "Productivity Killer"
+    title: "Agonizingly Slow Builds"
+    description: "Endless test runs constantly pull developers out of their flow, destroying motivation and causing expensive context switches."
+    icon: "clock"
+  - category: "The AI Time Bomb"
+    title: "Flying Blind with AI Code"
+    description: "AI tools pump out code in record time, but without fast, automated checks, this turns into a ticking time bomb for production bugs."
+    icon: "bomb"
+  - category: "False Security"
+    title: "The Flaky Test Frustration"
+    description: "Unreliable integration tests drive teams crazy with avoidable retry-loops, giving a false sense of security and wasting valuable time."
+    icon: "alert"
+  - category: "Exhausted Auditors"
+    title: "Review Bottlenecks"
+    description: "Developers are shifting from proud creators to exhausted code-auditors, spending hours untangling \"almost right\" AI code."
+    icon: "user"
+  - category: "Sinking Metrics"
+    title: "Dropping DORA Metrics"
+    description: "Instead of shipping features fast, teams are stepping on the brakes because they fear the next deployment."
+    icon: "trend-down"
+  - category: "Craftsmanship Decay"
+    title: "Maintenance Hell"
+    description: "Code gets blindly approved because the test suite is too slow to provide immediate, reliable feedback."
+    icon: "wrench"
+
+authority:
+  headline: "The Proven Track Record Behind the Speed"
+  imageSubtitle: "Philip Riecks - International Speaker & Spring Boot Testing Expert"
+  imageAlt: "Philip Riecks speaking at a conference"
+  bullets:
+    - title: "Battle-Tested Foundation"
+      text: "Over 10 years on the developer frontlines and 6 years as a consultant inside the engine rooms of 10+ different teams."
+    - title: "Black-on-White Results"
+      text: "Proven track record of turning agonizingly slow build pipelines into blazingly fast safety nets."
+    - title: "Global Recognition"
+      text: "International speaker with over 20 talks in the USA, Belgium, Spain, Germany, and Switzerland."
+    - title: "Massive Community Trust"
+      text: "Founder of a leading testing academy (8,500+ users) and a weekly newsletter trusted blindly by 10,000 developers."
+    - title: "The Niche Pioneer"
+      text: "Running a highly recognized Spring Boot blog for over 5 years - long before the AI hype started."
+  kpis:
+    - { value: "10+",   label: "Years JVM Experience" }
+    - { value: "10K",   label: "Newsletter Readers" }
+    - { value: "8,500", label: "Academy Members" }
+    - { value: "20+",   label: "International Talks" }
+    - { value: "8+",    label: "Years Spring Boot Blog" }
+  socials:
+    - { platform: "youtube",  label: "YouTube",  url: "" }
+    - { platform: "linkedin", label: "LinkedIn", url: "" }
+    - { platform: "github",   label: "GitHub",   url: "" }
+  booksSectionLabel: "Authored Works"
+  booksSectionHeadline: "Books Authored by Philip"
+  books:
+    - title: "Stratospheric"
+      subtitle: "From Zero to Production with Spring Boot and AWS"
+      cover: "/images/books/stratospheric-ebook-cover.png"
+      link: "https://leanpub.com/stratospheric/"
+    - title: "Testing Spring Boot Applications Demystified"
+      subtitle: "Master Spring Boot testing with battle-tested strategies"
+      cover: "/images/books/tsbad-book-cover.png"
+      link: "https://leanpub.com/testing-spring-boot-applications-demystified"
+    - title: "Java Testing Toolbox"
+      subtitle: "30 Testing Tools Every Java Developer Must Know"
+      cover: "/images/books/java-testing-toolbox.jpg"
+      link: "https://leanpub.com/java-testing-toolbox/"
+
+benefitsSection:
+  headline: "Imagine Deploying in the AI Era with Zero Fear"
+  subheadline: "The exact opposite of every pain point above - what life looks like 30 days in."
+
+benefits:
+  - title: "Record-Breaking Productivity"
+    description: "Blazingly fast tests that make your developers instantly more productive, eliminating the constant dread of fatal bugs."
+  - title: "The Unshakeable Safety Net"
+    description: "Effortlessly and risk-free leverage the full potential of AI tools, knowing every flaw is caught immediately."
+  - title: "Long-term Autonomy"
+    description: "Proven knowledge anchored deep within your team to maintain peak performance smoothly and permanently."
+
+methodology:
+  headline: "Our Blueprint for 50% Faster Builds"
+  subheadline: "Five steps. No heavy jargon. Real results black-on-white."
+  steps:
+    - title: "The Unvarnished Report"
+      description: "A ruthless baseline analysis of your project, pipeline, and ways of working to identify hidden productivity killers."
+    - title: "The Build-Time Turbo"
+      description: "Picking low-hanging fruits directly in the code (Spring Context Caching, parallelization, Testcontainers optimization) for instant flow."
+    - title: "Pipeline Sanitation"
+      description: "Eliminating flaky tests, removing duplicate steps, and adding smart caching to build a rock-solid safety net."
+    - title: "The Strategy Rollout"
+      description: "Handing over a foolproof standard workflow and showing your team the massive time savings black-on-white."
+    - title: "Ultimate Team Enablement"
+      description: "Hands-on mentoring directly in the code to turn your developers into self-sufficient testing experts."
+  cta:
+    headline: "Want this blueprint applied to your pipeline?"
+    button: "Start with Step 1 - The Unvarnished Report"
+    note: "30-minute call. We open with step 1 - no commitment, no pitch."
+
+offer:
+  headline: "How working together looks."
+  subheadline: "Three things you can count on from day one."
+  pillars:
+    - tag: "Skin in the game"
+      title: "The Guarantee"
+      description: "Once we have the unvarnished baseline report, we agree on a target together - usually a 50% cut in build time. If we don't meet it, you pay nothing."
+    - tag: "A handful at a time"
+      title: "The Exclusivity"
+      description: "We deliberately keep the client list short and work with only a handful of teams in parallel. Expect blazing-fast feedback, direct access, and zero queues."
+    - tag: "The Bonus"
+      title: "The Autopilot Upgrade"
+      description: "You get a custom MCP-Server (or Skill) to make testing knowledge instantly accessible, plus optional monthly check-ins to ensure your DORA metrics never slip."
+
+testimonialsSection:
+  headline: "Real Teams. Real Numbers."
+  subheadline: "Two recent customer stories - Challenge, Solution, Result."
+
+faqSection:
+  headline: "Questions before booking?"
+  faqs:
+    - question: "How do I prepare for the meeting?"
+      answer: "A short overview of your project is enough: age, team size, and the biggest challenges you're facing today. We'll discuss the rest together on the call."
+    - question: "Will this work for Kotlin too?"
+      answer: "Yes - the approach works for all JVM languages, including Kotlin, Groovy, and Scala."
+    - question: "What does the 30-day discovery cover and how does it work?"
+      answer: "If we identify we can help, we start with a detailed report of your current situation. Based on that, we agree on a target number (usually a 50% improvement). If we don't reach it, you pay nothing."
+    - question: "Which Spring Boot versions do you support?"
+      answer: "Everything starting from Spring Boot 2.x onwards, including Spring Boot 3 and the latest Spring Boot 4 releases."
+    - question: "Which Java versions do you support?"
+      answer: "All of them - from Java 8 to the latest release."
+
+finalCTA:
+  headline: "Let's Analyze Your Situation"
+  subheadline: "No sales pitch. A 15-minute walkthrough of where your pipeline currently stands."
+  steps:
+    - title: "Pick a slot"
+      description: "Click the button and grab a 15-minute slot in my calendar."
+    - title: "Briefly diagnose"
+      description: "We'll discuss where your pipeline stands today and the challenges you're hitting."
+    - title: "See the optimization"
+      description: "I'll show you exactly how an optimization would look for your specific setup - completely independent of whether we end up working together."
+  buttonText: "Let's Analyze Your Setup"
+  reassurance: "15 minutes. Zero pitch. You leave with at least one concrete optimization you can ship next week."

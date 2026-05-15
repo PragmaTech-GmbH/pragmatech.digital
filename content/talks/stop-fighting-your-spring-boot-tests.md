@@ -1,6 +1,6 @@
 ---
 title: "Stop Fighting Your Spring Boot Tests"
-description: "Free lunch-and-learn session that shows you exactly why your tests fight back—and how to fix it"
+description: "Free lunch-and-learn session that shows you exactly why your tests fight back-and how to fix it"
 summary: "Practical strategies to transform slow, brittle Spring Boot tests into fast, reliable feedback - perfect for lunch breaks"
 date: 2025-11-07T10:00:00+02:00
 duration: "45-60 minutes"
