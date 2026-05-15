@@ -125,15 +125,15 @@ methodology:
     note: "30-minute call. We open with step 1 - no commitment, no pitch."
 
 offer:
-  headline: "Ready to speed up? Here is the deal."
-  subheadline: "Three reasons this is a no-brainer."
+  headline: "How working together looks."
+  subheadline: "Three things you can count on from day one."
   pillars:
-    - tag: "100% Risk-Free"
+    - tag: "Skin in the game"
       title: "The Guarantee"
-      description: "We guarantee a minimum 30% reduction in your build times. If you don't see it black-on-white, you get your money back."
-    - tag: "Strictly Limited"
+      description: "Once we have the unvarnished baseline report, we agree on a target together - usually a 50% cut in build time. If we don't meet it, you pay nothing."
+    - tag: "A handful at a time"
       title: "The Exclusivity"
-      description: "To ensure smooth, hands-on integration, I only work with a maximum of 3 teams simultaneously."
+      description: "We deliberately keep the client list short and work with only a handful of teams in parallel. Expect blazing-fast feedback, direct access, and zero queues."
     - tag: "The Bonus"
       title: "The Autopilot Upgrade"
       description: "You get a custom MCP-Server (or Skill) to make testing knowledge instantly accessible, plus optional monthly check-ins to ensure your DORA metrics never slip."
@@ -145,14 +145,16 @@ testimonialsSection:
 faqSection:
   headline: "Questions before booking?"
   faqs:
-    - question: "What if my codebase is too messy or my pipeline is unique?"
-      answer: "That's exactly the case where the 50% gain is most achievable. The TÜV-Report in step 1 is built for unique setups - we map your reality before touching anything. If we can't beat 30%, you don't pay."
-    - question: "How much developer time do we have to commit?"
-      answer: "About 2 hours per week from a tech lead and ~1 hour per week per dev during the rollout. The first two weeks are mostly me working in the code; team enablement happens in weeks 3 and 4."
-    - question: "We already use Testcontainers / Spring Context Caching. Will this still help?"
-      answer: "Yes - most teams who 'already use them' are leaving 40–70% on the table due to misconfiguration. The audit will show you exactly where the gap is, with measurements."
-    - question: "What does the 30-day guarantee actually cover?"
-      answer: "If at the end of week 4 your CI build time has not dropped by at least 30% versus the documented baseline, you get a full refund. No clauses, no fine print."
+    - question: "How do I prepare for the meeting?"
+      answer: "A short overview of your project is enough: age, team size, and the biggest challenges you're facing today. We'll discuss the rest together on the call."
+    - question: "Will this work for Kotlin too?"
+      answer: "Yes - the approach works for all JVM languages, including Kotlin, Groovy, and Scala."
+    - question: "What does the 30-day discovery cover and how does it work?"
+      answer: "If we identify we can help, we start with a detailed report of your current situation. Based on that, we agree on a target number (usually a 50% improvement). If we don't reach it, you pay nothing."
+    - question: "Which Spring Boot versions do you support?"
+      answer: "Everything starting from Spring Boot 2.x onwards, including Spring Boot 3 and the latest Spring Boot 4 releases."
+    - question: "Which Java versions do you support?"
+      answer: "All of them - from Java 8 to the latest release."
 
 finalCTA:
   headline: "Let's Analyze Your Situation"

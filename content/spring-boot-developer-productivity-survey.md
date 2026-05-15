@@ -1,6 +1,6 @@
 ---
-title: "Spring Boot Developer Productivity Survey 2026"
-description: "Help shape the 2026 benchmark on Spring Boot team productivity. Subscribe to receive the outcome report when it's published."
+title: "Spring Boot Developer Productivity Report 2026"
+description: "Join the waiting list to receive the 2026 Spring Boot Developer Productivity Report the moment it's published - industry benchmarks for build time, test coverage, and deployment frequency."
 layout: "survey-landing"
 share_image: "/images/pragmatech-banner.png"
 ---
