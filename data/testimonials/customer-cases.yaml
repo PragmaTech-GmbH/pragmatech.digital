@@ -2,23 +2,34 @@
 # Replace placeholder values when real stories are ready.
 # Schema: person, position, company (mandatory) + logo, picture, linkedin (optional)
 #         + challenge, solution, result (mandatory - Challenge → Solution → Result narrative)
+#         + metrics.before / metrics.after / metrics.codeSize / metrics.duration (optional - badges, free-form strings)
 
-- person:    "[Customer Name]"
-  position:  "[Role / Title]"
-  company:   "[Company Name]"
-  logo:      ""              # filename in /static/generated/images/, e.g. "extenda.webp" - optional
-  picture:   ""              # path to headshot - optional
-  linkedin:  ""              # full URL - optional
-  challenge: "[The pain they faced before working with us. 1–2 sentences. e.g. \"Their integration test suite took 47 minutes per CI run, blocking 30+ developers and turning every PR into a context-switch nightmare.\"]"
-  solution:  "[What we did - the specific intervention. 1–2 sentences. e.g. \"We refactored Spring context caching, parallelized Testcontainers, and removed 12 redundant pipeline steps over a 4-week engagement.\"]"
-  result:    "[The measurable outcome. Lead with a number. e.g. \"Build time dropped from 47 minutes to 6 minutes (-87%). Deploy frequency doubled within the first month.\"]"
-
-- person:    "[Customer Name]"
-  position:  "[Role / Title]"
-  company:   "[Company Name]"
-  logo:      ""
+- person:    ""
+  position:  ""
+  company:   "ImmoScout24"
+  logo:      "generated/images/clients/scout24.webp"
   picture:   ""
   linkedin:  ""
-  challenge: "[The pain they faced before working with us - 1–2 sentences.]"
-  solution:  "[What we did - the specific intervention, 1–2 sentences.]"
-  result:    "[The measurable outcome - numbers, metrics, before/after.]"
+  metrics:
+    before:   "26 min"
+    after:    "12 min"
+    codeSize: "102k LoC"
+    duration: "3 weeks"
+  challenge: "An abstract integration test class wired with @DirtiesContext forced a fresh Spring context for every test, dragging every PR through a 26-minute build on GitHub Actions."
+  solution:  "Removed @DirtiesContext, adjusted dozens of existing integration tests to share a single cached context, and streamlined data setup and cleanup so they no longer leak state. Rolled out in 3 weeks."
+  result:    "Build time dropped from 26 to 12 minutes on GitHub Actions. A follow-up workshop handed the team the patterns and guardrails to keep those minutes from sneaking back in. Devs are shipping faster than ever."
+
+- person:    ""
+  position:  ""
+  company:   "AboutBits"
+  logo:      "images/clients/aboutbits.jpg"
+  picture:   ""
+  linkedin:  ""
+  metrics:
+    before:   "15 min"
+    after:    "3 min"
+    codeSize: "134k LoC"
+    duration: "2 weeks"
+  challenge: "Resource-heavy integration tests with a test setup that wasn't parallel-friendly - the suite ran sequentially for 15 minutes on every push, killing the team's feedback loop."
+  solution:  "Refactored the test setup to remove shared mutable state and enabled effective JUnit parallelization across the integration suite. Rolled out across the codebase in two weeks."
+  result:    "Build time dropped from 15 minutes to a blazing-fast 3 minutes. Devs now get feedback in the duration of a coffee break."

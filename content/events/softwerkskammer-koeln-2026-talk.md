@@ -26,10 +26,10 @@ The Softwerkskammer Köln hosts PragmaTech's testing expert for an evening dedic
 
 ## Schedule
 
-- 18:00 — Doors open & networking
-- 18:30 — Presentation begins
-- 19:30 — Q&A and networking
-- 21:00 — Event concludes
+- 18:00 - Doors open & networking
+- 18:30 - Presentation begins
+- 19:30 - Q&A and networking
+- 21:00 - Event concludes
 
 ## Location
 

@@ -345,7 +345,11 @@
 [data-variant="a"] .bg-slate-900\/50 { background-color: #f8fafc !important; }
 [data-variant="a"] .bg-slate-800 { background-color: #f1f5f9 !important; }
 [data-variant="a"] .bg-slate-800\/80 { background-color: #f8fafc !important; }
+[data-variant="a"] .bg-slate-800\/60 { background-color: #f1f5f9 !important; }
+[data-variant="a"] .bg-slate-800\/50 { background-color: #f8fafc !important; }
 [data-variant="a"] .bg-slate-800\/40 { background-color: #f8fafc !important; }
+[data-variant="a"] .border-slate-700\/50 { border-color: #e2e8f0 !important; }
+[data-variant="a"] .border-slate-700\/60 { border-color: #e2e8f0 !important; }
 
 /* Authority section uses .bg-gradient-to-br with slate-900 stops → flat white. */
 [data-variant="a"] section.bg-gradient-to-br {
@@ -353,7 +357,7 @@
     background-color: #ffffff !important;
 }
 
-/* Hero overlay <div> uses .bg-gradient-to-br.from-slate-900 — fade to a barely-there brand tint. */
+/* Hero overlay <div> uses .bg-gradient-to-br.from-slate-900 - fade to a barely-there brand tint. */
 [data-variant="a"] div.bg-gradient-to-br.from-slate-900 {
     background-image: linear-gradient(to bottom right, transparent, transparent, rgba(14, 165, 233, 0.06)) !important;
 }
@@ -365,7 +369,7 @@
     box-shadow: 0 14px 34px -16px rgba(15, 23, 42, 0.18);
 }
 
-/* Benefits numerals — solid contrast on white. */
+/* Benefits numerals - solid contrast on white. */
 [data-variant="a"] .text-brand-400\/80 {
     color: rgba(2, 132, 199, 0.95) !important;
 }
@@ -381,7 +385,7 @@
     border-top-color: #cbd5e1 !important;
 }
 
-/* Terminal-style pain/code panels — keep their own dark frame. */
+/* Terminal-style pain/code panels - keep their own dark frame. */
 [data-variant="a"] .bg-\[\#0a0e16\] {
     background-color: #0f172a !important;
     color: #e2e8f0;
@@ -412,10 +416,10 @@
 [data-variant="a"] .bg-\[\#0a0e16\] .text-slate-500 { color: #64748b !important; }
 [data-variant="a"] .bg-\[\#0a0e16\] .text-slate-600 { color: #475569 !important; }
 
-/* Gauge SVG track (text-slate-800 stroke) — light grey on white. */
+/* Gauge SVG track (text-slate-800 stroke) - light grey on white. */
 [data-variant="a"] svg .text-slate-800 { color: #e2e8f0 !important; }
 
-/* Big benefit numerals (text-slate-800) — soften to background-grey on white. */
+/* Big benefit numerals (text-slate-800) - soften to background-grey on white. */
 [data-variant="a"] .text-slate-800:not(svg .text-slate-800) { color: #e2e8f0 !important; }
 
 /* Lighten the heavy slate drop shadows so they read on white. */
@@ -433,6 +437,6 @@
 /* Force white text on opt-in brand-tinted surfaces (gradient strips, iframe chrome, etc.).
    Apply `on-brand` to any element where the `text-white → slate-900` flip would otherwise
    leave dark text on a saturated brand/emerald background. Scoped tightly: only the element
-   the class sits on, not all descendants — nested buttons keep their own text colours. */
+   the class sits on, not all descendants - nested buttons keep their own text colours. */
 [data-variant="a"] .on-brand,
 [data-variant="a"] .on-brand > svg { color: #ffffff !important; stroke: #ffffff !important; }
