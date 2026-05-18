@@ -1,87 +1,359 @@
 {
   "meta": {
-    "title": "Spring Boot Developer Productivity",
-    "subtitle": "Industry Report · Vol 01",
+    "title": "The AI Productivity Paradox",
+    "subtitle": "Industry Report · No. 01 / 2026",
     "year": "2026",
     "edition": "First edition",
     "url": "pragmatech.digital",
-    "surveyUrl": "pragmatech.digital/spring-boot-developer-productivity-survey",
     "publisher": "PragmaTech",
-    "tagline": "Build & ship software with confidence."
+    "tagline": "Build & Ship Software w/ Confidence"
   },
-  "samplePages": [2, 3, 4, 5],
+  "samplePages": [],
   "cover": {
-    "eyebrow": "Industry Report · Vol 01",
-    "headline": "Spring Boot Developer Productivity",
-    "subhead": "Benchmarks for build time, test coverage, and deployment frequency across real teams.",
-    "footnote": "100+ teams surveyed · anonymized · segmented by team size and industry"
-  },
-  "about": {
-    "intro": "How long does a Spring Boot build really take in 2026? How much of your code is actually covered by tests? How often does the average team ship to production? This report turns first-hand answers from 100+ engineering teams into honest, comparable benchmarks — so you can see where your team stands, and where the rest of the industry is heading.",
-    "methodology": [
-      { "label": "Teams surveyed", "value": "112" },
-      { "label": "Countries represented", "value": "24" },
-      { "label": "Survey window", "value": "Jan – Mar 2026" },
-      { "label": "Anonymisation", "value": "Per-response, no PII retained" }
-    ],
-    "toc": [
-      { "page": "01", "title": "Cover" },
-      { "page": "02", "title": "About this report" },
-      { "page": "03", "title": "Build times" },
-      { "page": "04", "title": "Test coverage" },
-      { "page": "05", "title": "Deployment frequency & next steps" }
-    ],
+    "issueLine": ["May 12&ndash;18, 2026", "92 Engineers", "3 Continents"],
+    "bigTitleLines": ["The&nbsp;AI", "Productivity"],
+    "bigTitleAccent": "Paradox.",
+    "subtitle": "Why teams shipping 30&times; more code with AI still feel slower &mdash; and what <em>92 Spring Boot engineers</em> say is actually holding them back in 2026.",
     "kpis": [
-      { "label": "Median build time", "value": "4m 20s", "trend": "+18% vs. last informal benchmarks" },
-      { "label": "Median line coverage", "value": "67%", "trend": "Most teams sit between 55–80%" },
-      { "label": "Median deploy frequency", "value": "Weekly", "trend": "Only 14% deploy on demand" }
-    ]
-  },
-  "buildTimes": {
-    "headline": "Build times scale faster than teams do",
-    "intro": "We asked teams for the median wall-clock time of a clean `./mvnw verify` (or Gradle equivalent) on the developer machine they use day-to-day. Larger teams report meaningfully longer builds — driven mostly by test-suite weight, not compilation.",
-    "unit": "minutes",
-    "bars": [
-      { "label": "1 – 5 devs",  "valueLabel": "2m 10s", "valueSeconds": 130 },
-      { "label": "6 – 20 devs", "valueLabel": "4m 20s", "valueSeconds": 260 },
-      { "label": "20+ devs",    "valueLabel": "7m 45s", "valueSeconds": 465 }
+      { "value": "92",   "valueSuffix": "",  "label": "Completed Responses" },
+      { "value": "43",   "valueSuffix": "%", "label": "Survey Conversion" },
+      { "value": "21.9", "valueSuffix": "%", "label": "Biggest Frustration:<br/>Slow Build &amp; Test Feedback" },
+      { "value": "25",   "valueSuffix": "%", "label": "Blame AI&#8209;Generated Code Itself" }
     ],
-    "takeaway": {
-      "title": "The 3.6× rule",
-      "body": "On average, teams of 20+ developers wait 3.6× longer for a green build than 1–5 dev teams. Most of the gap is test execution: 71% of the larger teams report integration tests as the dominant slice of build time."
-    }
+    "footerLeft": "Build &amp; Ship Software w/ Confidence",
+    "footerRight": "pragmatech.digital",
+    "footerRightHref": "https://pragmatech.digital/",
+    "cornerMark": "VOL.<br>01<br>2026"
   },
-  "testCoverage": {
-    "headline": "Test coverage clusters around 'good enough'",
-    "intro": "Line coverage, self-reported from each team's primary Spring Boot service. The distribution is sharply peaked: most teams have decided 60–80% is the right operating point and stopped optimising.",
-    "buckets": [
-      { "label": "<40%",   "share": 6 },
-      { "label": "40–60%", "share": 19 },
-      { "label": "60–80%", "share": 47 },
-      { "label": "80–95%", "share": 23 },
-      { "label": "95%+",   "share": 5 }
+  "executiveSummary": {
+    "sectionNum": "§ 01 &nbsp;/ EXECUTIVE SUMMARY",
+    "runner": "Executive Summary",
+    "folio": "02 / 11",
+    "headlineLines": ["The promise", "doesn&rsquo;t match", "the pipeline."],
+    "lede": "AI tools promised to make us 10&times; faster. The largest independent studies of 2025 and 2026 tell a more uncomfortable story &mdash; and our own data from 92 engineers confirms it.",
+    "columns": [
+      {
+        "h3": "The two studies framing this report",
+        "paragraphs": [
+          "Google&rsquo;s <strong>2025 DORA Report</strong> &mdash; surveying nearly 5,000 technology professionals &mdash; found that <strong>90% of teams now use AI</strong> and <strong>80% feel more productive</strong>, yet AI adoption still has a <em>negative</em> relationship with software delivery stability. The report&rsquo;s central conclusion: AI doesn&rsquo;t fix a team; it amplifies whatever is already there.",
+          "The <strong>METR randomized controlled trial</strong> (2025) measured experienced open-source developers on real tasks. Result: they thought AI made them <strong>20% faster</strong>. It actually made them <strong>19% slower</strong>. The bottleneck was reviewing, debugging, and verifying generated code &mdash; precisely the work that gets harder on a flaky test pipeline."
+        ]
+      },
+      {
+        "h3": "What our 92 engineers say",
+        "paragraphs": [
+          "The same paradox shows up in our data. <strong>30%</strong> name quality and reliability as their absolute highest priority &mdash; ahead of speed. But the things blocking them are not product complexity. They are <strong>slow tests, flaky pipelines, unreviewed AI output, and legacy code drowning in technical debt</strong>.",
+          "For Spring Boot teams, the picture sharpens: <strong>19%</strong> say their biggest testing bottleneck is simply <em>getting everyone on the same testing strategy</em>. Tools are not the constraint. <strong>Alignment, integration tests, and feedback loops are.</strong>"
+        ]
+      }
+    ],
+    "fourNumbersHeading": "Four numbers to remember",
+    "fourNumbers": [
+      { "value": "21.9", "valueSuffix": "%", "label": "Say long build &amp; test times are their #1 frustration",     "tone": "neutral" },
+      { "value": "25",   "valueSuffix": "%", "label": "Frustrated by analyzing &amp; debugging AI&#8209;generated code", "tone": "hot" },
+      { "value": "21.4", "valueSuffix": "%", "label": "Blocked by unmanageable legacy code",                            "tone": "gold" },
+      { "value": "19.0", "valueSuffix": "%", "label": "Spring Boot teams: no shared testing strategy",                  "tone": "neutral" }
     ],
     "pullQuote": {
-      "text": "We stopped chasing coverage at 75%. The last 20% would have taken longer to write than the entire previous year of features.",
-      "attribution": "Staff engineer, fintech, 50-person team"
+      "text": "We feel like we are generating 30&times; more code using AI. But how do we reliably secure this code without our test pipelines turning into a maintenance time bomb?",
+      "attribution": "The question behind this study"
     }
   },
-  "deployFrequency": {
-    "headline": "Most teams ship weekly — very few ship on demand",
-    "intro": "Production deployment cadence for the team's primary service. 'On demand' means a developer can deploy any commit, any time, with no batch boundary.",
-    "buckets": [
-      { "label": "On demand",     "share": 14 },
-      { "label": "Daily",         "share": 21 },
-      { "label": "Weekly",        "share": 38 },
-      { "label": "Monthly",       "share": 19 },
-      { "label": "Quarterly+",    "share":  8 }
+  "methodology": {
+    "sectionNum": "§ 02 &nbsp;/ METHODOLOGY",
+    "runner": "Methodology",
+    "folio": "03 / 11",
+    "runnerBot": "Methodology &amp; Sample",
+    "headlineLines": ["How the", "numbers", "were gathered."],
+    "lede": "Six questions. Three minutes. One week of fieldwork across a self-selected audience of working Java and Spring Boot engineers.",
+    "fieldworkHeading": "Fieldwork",
+    "fieldwork": [
+      { "field": "Period",              "value": "12 &ndash; 18 May 2026" },
+      { "field": "Survey visits",       "value": "214" },
+      { "field": "Completed responses", "value": "92" },
+      { "field": "Completion rate",     "value": "43.0%" },
+      { "field": "Leads captured",      "value": "60" },
+      { "field": "Channels",            "value": "Newsletter, LinkedIn" },
+      { "field": "Questions",           "value": "6 (4 open · 2 multi)" }
     ],
-    "closing": {
-      "title": "What's next",
-      "body": "The full 2026 report will include segmentation by industry (finance, e-commerce, public sector, SaaS), team age, and CI provider — plus the open-ended answers from teams that have measurably moved from monthly to weekly cadence inside the past 12 months.",
-      "ctaTitle": "Want to contribute next year's data?",
-      "ctaBody": "Take the 2027 survey (~4 minutes, fully anonymous) and you'll receive the next report the moment it ships.",
-      "ctaLink": "pragmatech.digital/spring-boot-developer-productivity-survey"
+    "sampleNoteHeading": "A note on the sample",
+    "sampleNote": "The audience self-selected via a developer newsletter and LinkedIn distribution focused on Java and Spring Boot. The sample skews toward practitioners actively thinking about testing and AI &mdash; not the &ldquo;not-using-AI-yet&rdquo; long tail. Read the findings as a snapshot of <em>engaged, AI-aware</em> engineering teams rather than the global average.",
+    "chartTitle": "Company size of respondents",
+    "chartCaption": "N = 88 · Question 5",
+    "companySize": {
+      "n": 88,
+      "centerLabel": "RESPONDENTS",
+      "segments": [
+        { "label": "Small &lt; 50",      "count": 27, "share": 30.7, "color": "primary" },
+        { "label": "Medium &lt; 1,000",  "count": 28, "share": 31.8, "color": "hot" },
+        { "label": "Large &gt; 1,000",   "count": 33, "share": 37.5, "color": "neutral-dark" }
+      ]
+    },
+    "callout": {
+      "label": "Why this matters",
+      "body": "The respondent base is split almost evenly across small, mid&#8209;market and enterprise. Findings hold whether you ship a 5-developer SaaS or operate a Spring Boot estate inside a Fortune 500."
+    }
+  },
+  "q1Priorities": {
+    "sectionNum": "§ 03 &nbsp;/ WHAT&rsquo;S TOP OF MIND",
+    "runner": "Q1 · Top Priorities",
+    "runnerBot": "Section 03 &middot; What&rsquo;s Top of Mind",
+    "folio": "04 / 11",
+    "headlineLines": ["Quality", "still wins."],
+    "lede": "We asked 112 engineers what their team&rsquo;s absolute highest priority is right now. Free-text answers, hand-coded into seven themes. <em>Some answers map to more than one.</em>",
+    "chartTitle": "Q1 &mdash; &ldquo;What is currently the absolute highest priority for you and your engineering team?&rdquo;",
+    "chartCaption": "N = 112 free-text answers · Multi-coded · Share of respondents mentioning theme",
+    "axisMax": 30,
+    "bars": [
+      { "label": "Quality &amp; Reliability",         "value": 30.4, "color": "primary" },
+      { "label": "Fast Feature Delivery",             "value": 25.0, "color": "primary-dark" },
+      { "label": "AI Integration / Adoption",         "value": 18.8, "color": "hot" },
+      { "label": "Maintainability &amp; Tech Debt",   "value": 10.7, "color": "warn" },
+      { "label": "Security",                          "value":  8.0, "color": "neutral" },
+      { "label": "Migrations &amp; Upgrades",         "value":  1.8, "color": "muted" },
+      { "label": "Testing &amp; Coverage",            "value":  0.9, "color": "muted" }
+    ],
+    "pullQuote": {
+      "text": "Shipping features reliably with minimal or no technical debt, supported by tests that effectively identify regressions and expose bugs.",
+      "attribution": "Respondent #81"
+    },
+    "signal": {
+      "h3": "The signal",
+      "paragraphs": [
+        "<strong>Quality and speed are not opposites in this dataset.</strong> Engineers want both &mdash; in the same answer. Almost a quarter of respondents explicitly paired them: &ldquo;deliver fast <em>with</em> high quality&rdquo;, &ldquo;faster delivery with higher quality&rdquo;, &ldquo;ship features quicker while tackling technical debt.&rdquo;",
+        "AI is named directly by <strong>18.8%</strong> &mdash; but always with the same hedge: <em>&ldquo;leverage AI, but in a controlled manner&rdquo;</em>; <em>&ldquo;use AI tools but review code&rdquo;</em>; <em>&ldquo;not reduce code quality while using Gen AI as much as possible&rdquo;.</em>"
+      ]
+    }
+  },
+  "q2Bottlenecks": {
+    "sectionNum": "§ 04 &nbsp;/ THE REAL BOTTLENECKS",
+    "runner": "Q2 · Real Bottlenecks",
+    "runnerBot": "Section 04 &middot; Real Bottlenecks",
+    "folio": "05 / 11",
+    "headlineLines": ["What is", "actually", "blocking us."],
+    "lede": "101 free-text answers to &ldquo;what is holding you back from shipping features quickly?&rdquo;, coded into ten themes. <em>One in five teams blames their test suite.</em>",
+    "chartTitle": "Q2 &mdash; What is currently holding you back the most from shipping new features quickly and smoothly?",
+    "chartCaption": "N = 101 free-text answers · Multi-coded · Share of respondents mentioning theme",
+    "axisMax": 20,
+    "bars": [
+      { "label": "Testing problems (slow, flaky, missing)", "value": 19.8, "color": "hot" },
+      { "label": "Unclear / changing requirements",         "value": 16.8, "color": "primary" },
+      { "label": "Legacy code &amp; tech debt",             "value": 14.9, "color": "neutral-dark" },
+      { "label": "Meetings &amp; bureaucracy",              "value": 13.9, "color": "primary-dark" },
+      { "label": "Lack of skills / knowledge",              "value": 13.9, "color": "primary-dark" },
+      { "label": "Slow build / CI / deployment",            "value": 11.9, "color": "hot" },
+      { "label": "AI code review &amp; adoption friction",  "value": 10.9, "color": "warn" },
+      { "label": "Code review overhead",                    "value":  9.9, "color": "neutral" },
+      { "label": "Bugs &amp; production incidents",         "value":  6.9, "color": "muted" },
+      { "label": "Architecture &amp; coupling",             "value":  5.0, "color": "muted" }
+    ],
+    "quotes": [
+      { "text": "Slow and painful integration tests, dead code and unused functionalities, lack of observability.",                    "attribution": "Respondent · #53" },
+      { "text": "Review time gets longer due to bigger and more complicated AI&#8209;generated merge requests.",                       "attribution": "Respondent · #12" },
+      { "text": "Interpreting the tests to grasp dependencies is challenging &mdash; sometimes they&rsquo;re just AI&#8209;generated noise.", "attribution": "Respondent · #73" }
+    ]
+  },
+  "q3FrictionMap": {
+    "sectionNum": "§ 05 &nbsp;/ THE FRICTION MAP",
+    "runner": "Q3 · The Friction Map",
+    "runnerBot": "Section 05 &middot; The Friction Map",
+    "folio": "06 / 11",
+    "headlineLines": ["Where the", "day&nbsp;goes."],
+    "lede": "Forced-choice question: pick what frustrates you most about your current deployment and testing process. Multiple selections allowed.",
+    "chartTitle": "Q3 &mdash; What frustrates you the most about your current deployment or testing process?",
+    "chartCaption": "192 selections from 92 respondents · % of total selections shown",
+    "axisMax": 22,
+    "bars": [
+      { "label": "Build &amp; test times too long",     "value": 21.88, "color": "hot" },
+      { "label": "Unmanageable legacy code",            "value": 21.35, "color": "neutral-dark" },
+      { "label": "Constant context switches",           "value": 16.67, "color": "primary" },
+      { "label": "Analyzing AI&#8209;generated code",   "value": 15.63, "color": "warn" },
+      { "label": "Flaky / unreliable tests",            "value": 15.10, "color": "hot" },
+      { "label": "Debugging AI&#8209;generated code",   "value":  9.38, "color": "warn" }
+    ],
+    "legend": [
+      { "color": "hot",          "label": "Test &amp; build feedback loops" },
+      { "color": "warn",         "label": "AI&#8209;generated code friction" },
+      { "color": "neutral-dark", "label": "Codebase &amp; flow" },
+      { "color": "primary",      "label": "Cognitive context switch" }
+    ],
+    "callout": {
+      "label": "The hidden math of this chart",
+      "body": "Grouped by theme, the picture changes. <strong>Test &amp; build pipeline friction</strong> (slow times + flaky tests) accounts for <strong>36.98%</strong> of all selections. <strong>AI&#8209;generated code friction</strong> (analyzing + debugging) accounts for <strong>25.01%</strong>. The two together &mdash; a productivity tax on every AI-assisted change &mdash; eat <strong>three out of five</strong> frustration votes in the sample."
+    }
+  },
+  "q6SpringBoot": {
+    "sectionNum": "§ 06 &nbsp;/ THE SPRING BOOT TESTING STACK",
+    "runner": "Q6 · Spring Boot Bottlenecks",
+    "runnerBot": "Section 06 &middot; Spring Boot Bottlenecks",
+    "folio": "07 / 11",
+    "headlineLines": ["Where Spring", "Boot teams", "get stuck."],
+    "lede": "For automated testing inside Spring Boot codebases, what is your team&rsquo;s biggest bottleneck right now? <em>Pick your top frustration.</em>",
+    "chartTitle": "Q6 &mdash; Spring Boot automated testing bottlenecks",
+    "chartCaption": "N = 95 selections · % of total selections shown",
+    "axisMax": 20,
+    "bars": [
+      { "label": "Getting everybody on the same testing strategy", "value": 18.95, "color": "hot" },
+      { "label": "Flaky &amp; unreliable integration tests",       "value": 16.84, "color": "primary" },
+      { "label": "Test data &amp; transaction rollbacks",          "value": 16.84, "color": "primary" },
+      { "label": "Disagreement on what to test / overusing mocks", "value": 15.79, "color": "neutral-dark" },
+      { "label": "Slow Spring context startup &amp; caching",      "value": 13.68, "color": "warn" },
+      { "label": "Testcontainers too slow",                        "value": 10.53, "color": "warn" },
+      { "label": "Sharing common testing knowledge",               "value":  7.37, "color": "neutral" }
+    ],
+    "legend": [
+      { "color": "hot",          "label": "Strategy / alignment" },
+      { "color": "primary",      "label": "Test design" },
+      { "color": "neutral-dark", "label": "What to test" },
+      { "color": "warn",         "label": "Infra speed" }
+    ],
+    "pattern": {
+      "h3": "The pattern hiding in the data",
+      "paragraphs": [
+        "The top three answers &mdash; strategy alignment (18.95%), flaky integration tests (16.84%), and test data management (16.84%) &mdash; are <strong>not tooling problems</strong>. Spring Boot, JUnit 5 and Testcontainers all <em>can</em> solve them.",
+        "What&rsquo;s missing is a shared <strong>opinion</strong> on how the team writes tests: when to use a slice test versus a full <code>@SpringBootTest</code>, when a Testcontainer is warranted, and how to keep state clean between tests."
+      ]
+    },
+    "calloutAside": {
+      "label": "Read together with Q3",
+      "paragraphs": [
+        "22% of all engineers (Q3) say <em>build &amp; test times</em> are their #1 frustration. For Spring Boot teams (Q6), <strong>only 24%</strong> blame infrastructure (Spring context + Testcontainers). The other <strong>76%</strong> blame strategy, design and discipline.",
+        "<strong>You can&rsquo;t buy your way out of this with faster hardware.</strong>"
+      ]
+    }
+  },
+  "analysis": {
+    "sectionNum": "§ 07 &nbsp;/ ANALYSIS",
+    "runner": "Analysis · The Acceleration Whiplash",
+    "runnerBot": "Section 07 &middot; The Acceleration Whiplash",
+    "folio": "08 / 11",
+    "headlineLines": ["The acceleration", "whiplash."],
+    "lede": "AI generates more code &mdash; faster. Everything <em>downstream</em> of that code generation has to absorb the new volume. Three independent datasets now point to the same place.",
+    "statCards": [
+      { "value": "90",   "valueSuffix": "%", "tone": "neutral", "label": "Engineers using AI at work (DORA 2025)",                          "sub": "&ldquo;AI adoption is near-universal&rdquo;. 80% report higher productivity, but 30% have little or no trust in AI-generated code." },
+      { "value": "&minus;19", "valueSuffix": "%", "tone": "hot",  "label": "Productivity change for experienced devs using AI (METR RCT, 2025)", "sub": "Developers <em>believed</em> AI made them 20% faster. The randomized controlled trial showed they were 19% slower on real tasks." },
+      { "value": "+441", "valueSuffix": "%", "tone": "gold",     "label": "Median time-in-PR-review change among 22k AI-using devs (Faros AI, 2026)", "sub": "The throughput moved up; the review tax exploded behind it. Incidents-per-PR also rose 242%." }
+    ],
+    "rightColumn": {
+      "h3": "What our 92 engineers are telling us",
+      "intro": "The DORA report calls AI a <em>&ldquo;mirror and a multiplier&rdquo;</em>. Our data shows the mirror clearly. Engineers don&rsquo;t blame AI in the abstract &mdash; they blame the work AI creates downstream:",
+      "bullets": [
+        "<strong>25% in Q3</strong> point to AI-generated code itself &mdash; analyzing it (15.6%) and debugging it (9.4%).",
+        "<strong>11% in Q2</strong> independently surface &ldquo;AI conversations&rdquo;, &ldquo;reviewing generated code&rdquo;, and &ldquo;bigger, more complicated AI MRs&rdquo; as a top blocker.",
+        "<strong>37% in Q3</strong> point to slow or flaky test pipelines &mdash; the safety net that has to verify the new volume."
+      ],
+      "callout": {
+        "label": "The thesis of this report",
+        "body": "AI didn&rsquo;t create most of these problems. It <strong>exposed</strong> them. Teams that already had fast, reliable tests are amplified by AI. Teams with slow, flaky pipelines and unaligned testing strategies experience what Faros calls the <em>acceleration whiplash</em>: more code merged, more bugs to catch, and a review tax that wipes out the speed gain."
+      }
+    }
+  },
+  "recommendations": {
+    "sectionNum": "§ 08 &nbsp;/ WHAT TO DO ABOUT IT",
+    "runner": "Recommendations",
+    "runnerBot": "Section 08 &middot; Recommendations",
+    "folio": "09 / 11",
+    "headlineLines": ["Five moves", "that pay for", "themselves."],
+    "lede": "Each recommendation is tied to a specific number in this report. They are ordered by leverage &mdash; how much of the pain a single move removes.",
+    "items": [
+      {
+        "num": "01",
+        "title": "Write a one-page testing strategy &mdash; and enforce it.",
+        "body": "The biggest Spring Boot bottleneck is not flaky tests; it&rsquo;s that <strong>nobody agrees on what to test</strong>. Define which features get unit tests, which get slice tests (@WebMvcTest, @DataJpaTest), which get @SpringBootTest with Testcontainers, and which get end-to-end. Ship the doc. Make it a PR review check.",
+        "tie": "&rarr; Addresses Q6 #1 (18.95%) + Q6 #4 mock disagreement (15.79%)"
+      },
+      {
+        "num": "02",
+        "title": "Cut Spring context startups to one per test suite.",
+        "body": "Most Spring Boot suites accidentally rebuild the application context dozens of times because slightly different <code>@MockBean</code>, <code>@TestConfiguration</code>, or property overrides bust the cache. Audit your suite. One context per slice type. Reuse Testcontainers via singleton pattern. <em>This single change typically halves CI time on a mid-size codebase.</em>",
+        "tie": "&rarr; Addresses Q3 build &amp; test times (21.88%) + Q6 context startup (13.68%)"
+      },
+      {
+        "num": "03",
+        "title": "Make the test pipeline the gate for AI&#8209;generated PRs.",
+        "body": "If AI generates a 30&#8209;file PR, a human cannot review every line. <strong>The test suite must.</strong> That means coverage gates, mutation testing for critical paths, and a contract for AI tooling: it must produce <em>integration</em> tests, not just unit tests that mock the world. Stop merging AI code that only adds @Mock-heavy unit tests.",
+        "tie": "&rarr; Addresses Q3 AI-code friction (25.01%) + Q2 AI review burden (10.9%)"
+      },
+      {
+        "num": "04",
+        "title": "Quarantine flaky tests within 24 hours.",
+        "body": "A flaky test trains your team to ignore red builds. Adopt a hard rule: any test that fails intermittently is <strong>tagged @Disabled with a ticket within one working day</strong>, and the owning team has one sprint to fix or delete it. The signal value of the suite recovers almost immediately.",
+        "tie": "&rarr; Addresses Q3 flaky tests (15.10%) + Q6 flaky integration (16.84%)"
+      },
+      {
+        "num": "05",
+        "title": "Treat test-data management as a first-class concern.",
+        "body": "16.84% of Spring Boot teams point here. The fix is unglamorous and reliable: per-test transaction rollback by default, dedicated builders or fixtures for shared data, and Testcontainers reused across the JVM. Avoid <code>@DirtiesContext</code>. Avoid shared mutable state between tests. Avoid &ldquo;just clean the database&rdquo; in <code>@AfterEach</code>.",
+        "tie": "&rarr; Addresses Q6 test data (16.84%)"
+      }
+    ]
+  },
+  "offer": {
+    "sectionNum": "§ 09 &nbsp;/ THE OFFER",
+    "runner": "The Offer · 50% Faster Builds",
+    "runnerBot": "Section 09 &middot; The Offer",
+    "folio": "10 / 11",
+    "eyebrowMono": "// Guaranteed Developer Productivity Boost",
+    "h2Lines": ["50% Faster Spring Boot Builds"],
+    "h2Accent": "in 30 Days.",
+    "pain": "Stop letting AI&#8209;generated code turn your team into <strong>exhausted auditors</strong>. Get blazingly fast feedback loops to deploy with <strong>zero fear</strong>.",
+    "badges": ["100% risk-free", "30-day guarantee", "Money-back if we miss"],
+    "blueprintHeading": "Our blueprint for 50% faster builds",
+    "blueprintIntro": "Five steps. No heavy jargon. Real results black&#8209;on&#8209;white.",
+    "blueprint": [
+      { "n": "01", "h4": "The Unvarnished Report",  "p": "A ruthless baseline analysis of your project, pipeline, and ways of working to identify hidden productivity killers." },
+      { "n": "02", "h4": "The Build-Time Turbo",    "p": "Picking low-hanging fruits directly in the code &mdash; Spring context caching, parallelization, Testcontainers optimization &mdash; for instant flow." },
+      { "n": "03", "h4": "Pipeline Sanitation",     "p": "Eliminating flaky tests, removing duplicate steps, and adding smart caching to build a rock-solid safety net." },
+      { "n": "04", "h4": "The Strategy Rollout",    "p": "Handing over a foolproof standard workflow and showing your team the massive time savings black&#8209;on&#8209;white." },
+      { "n": "05", "h4": "Ultimate Team Enablement","p": "Hands-on mentoring directly in the code to turn your developers into self-sufficient testing experts." }
+    ],
+    "blueprintCloser": {
+      "h4": "Want this applied to your pipeline?",
+      "p":  "Start with Step 1 &mdash; The Unvarnished Report. <a class=\"link\" href=\"https://www.cal.eu/pragmatech/pragmatech-discovery\">Book a slot &rarr;</a>"
+    },
+    "bigCta": {
+      "title": "Book Step 1 &mdash; The Unvarnished Report.",
+      "body":  "30-minute call. Zero pitch. You leave with at least one concrete optimization you can ship next week &mdash; whether we end up working together or not.",
+      "ctaLabel": "Book a slot &rarr;",
+      "ctaUrl":   "https://www.cal.eu/pragmatech/pragmatech-discovery",
+      "buttonLabel": "Pick a slot",
+      "buttonUrlDim": "cal.eu/",
+      "buttonUrlMain": "pragmatech/<br>pragmatech-discovery"
+    }
+  },
+  "about": {
+    "sectionNum": "§ 10 &nbsp;/ ABOUT THIS REPORT",
+    "runner": "About &amp; Next Steps",
+    "runnerBot": "About &amp; Next Steps",
+    "folio": "11 / 11",
+    "endLabel": "END OF REPORT &middot; 11 / 11",
+    "headlineLines": ["The whole", "point of this."],
+    "leftColumn": {
+      "aboutHeading": "About PragmaTech",
+      "aboutParagraphs": [
+        "<strong>PragmaTech</strong> helps Java teams build &amp; ship software with confidence &mdash; cutting through testing complexity and slow builds for faster feedback and fearless shipping. Founded by <strong>Philip Riecks</strong>, we&rsquo;ve spent years inside the engine rooms of startups, scale-ups, and multi-billion-euro enterprises turning slow, flaky test pipelines into fast, trusted safety nets.",
+        "This report exists because in 2026, the question changed. It&rsquo;s no longer <em>&ldquo;how do we write good tests?&rdquo;</em> It&rsquo;s <em>&ldquo;how do we validate the 30&times; more code AI now generates &mdash; without our pipeline becoming a maintenance time bomb?&rdquo;</em>"
+      ],
+      "sourcesHeading": "Sources cited",
+      "sources": [
+        "Google Cloud / DORA. <em>2025 State of AI-Assisted Software Development Report.</em> 90% AI adoption; AI as &ldquo;mirror and multiplier&rdquo;; negative relationship with delivery stability.",
+        "Becker, Rush, Barnes &amp; Rein. <em>Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity.</em> METR, July 2025. Randomized controlled trial: &minus;19% productivity.",
+        "Faros AI. <em>AI Engineering Report 2026.</em> Telemetry across 22,000 developers: time-in-PR-review up 441%, incidents-per-PR up 242%."
+      ]
+    },
+    "rightColumn": {
+      "ctaTag": "Next step",
+      "ctaH3":  "Stop the test&#8209;pipeline time bomb.",
+      "ctaParagraphs": [
+        "If this report sounds like your week, you are not alone. <strong>Three out of every five engineers surveyed</strong> are losing time to slow test feedback and AI-code friction.",
+        "PragmaTech&rsquo;s <strong>Testing Spring Boot Applications</strong> course walks Java teams through the playbook on the previous page &mdash; slice tests, Testcontainers, test data, and a shared strategy &mdash; in roughly 40 focused lessons. We also run on-site workshops and a 30-day build-speed-up engagement with a 50% guarantee."
+      ],
+      "ctaUrl": "https://pragmatech.digital/",
+      "ctaUrlDisplay": "pragmatech.digital",
+      "newsletter": {
+        "label": "You will be the first to know",
+        "body":  "You were one of 60 engineers who left an email at the end of this survey. The next edition of the report &mdash; with year-over-year comparisons and a deeper cut on AI&#8209;generated code review patterns &mdash; lands in your inbox first."
+      }
     }
   }
 }

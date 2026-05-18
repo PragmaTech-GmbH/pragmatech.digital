@@ -1,0 +1,855 @@
+/* ---------------------------------------------------------------------------
+   The AI Productivity Paradox 2026 — print stylesheet
+   Editorial design, print-first, A4. Palette + typography mirror
+   themes/pragmatech-theme/assets/css/styles.css so the PDF stays visually
+   consistent with the rest of pragmatech.digital. Keep the two palettes in
+   sync if the website's brand colours change.
+   --------------------------------------------------------------------------- */
+
+:root {
+  /* brand-blue family (mirrors --color-brand-* in the Hugo theme) */
+  --brand-50:   #f0f9ff;
+  --brand-100:  #e0f2fe;
+  --brand-200:  #bae6fd;
+  --brand-400:  #38bdf8;
+  --brand-500:  #0ea5e9;
+  --brand-600:  #0284c7;
+  --brand-700:  #0369a1;
+  --brand-900:  #0c4a6e;
+
+  /* second-positive accent for gradients & footers */
+  --emerald-400: #34d399;
+  --emerald-500: #10b981;
+  --emerald-600: #059669;
+  --emerald-soft: #d1fae5;
+
+  /* slate (ink) — body & surfaces */
+  --slate-50:   #f8fafc;
+  --slate-100:  #f1f5f9;
+  --slate-200:  #e2e8f0;
+  --slate-300:  #cbd5e1;
+  --slate-400:  #94a3b8;
+  --slate-500:  #64748b;
+  --slate-600:  #475569;
+  --slate-700:  #334155;
+  --slate-800:  #1e293b;
+  --slate-900:  #0f172a;
+
+  /* semantic colors retained from the report's editorial intent */
+  --terra:      #DC2626;
+  --terra-soft: #FEE2E2;
+  --gold:       #D97706;
+  --gold-soft:  #FEF3C7;
+
+  /* aliases used throughout the stylesheet */
+  --paper:      #FFFFFF;
+  --paper-soft: var(--slate-50);
+  --paper-card: var(--slate-50);
+  --ink:        var(--slate-900);
+  --ink-soft:   var(--slate-600);
+  --ink-muted:  var(--slate-500);
+  --rule:       var(--slate-200);
+  --rule-soft:  var(--slate-100);
+  --accent:     var(--brand-500);
+  --accent-dark: var(--brand-600);
+  --accent-soft: var(--brand-50);
+}
+
+@page {
+  size: A4;
+  margin: 0;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 10pt;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  font-feature-settings: 'kern', 'liga', 'calt', 'ss01';
+}
+
+.page {
+  width: 210mm;
+  height: 297mm;
+  padding: 20mm 18mm 18mm 18mm;
+  position: relative;
+  overflow: hidden;
+  page-break-after: always;
+  background: var(--paper);
+}
+
+.page:last-of-type { page-break-after: auto; }
+
+/* ---- TYPOGRAPHY SYSTEM ---- */
+
+.display, h1, h2 {
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 0.98;
+  color: var(--ink);
+}
+
+h2 { font-size: 32pt; margin-bottom: 6mm; }
+h3 {
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-size: 13pt;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 3mm;
+  color: var(--ink);
+}
+
+.eyebrow {
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-size: 8pt;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.lede {
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-size: 13pt;
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+.mono, .num {
+  font-family: 'JetBrains Mono', 'Source Code Pro', ui-monospace, monospace;
+  font-feature-settings: 'tnum';
+}
+
+p { margin-bottom: 3mm; }
+p:last-child { margin-bottom: 0; }
+
+strong { font-weight: 700; }
+em { font-style: italic; }
+
+code {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.92em;
+  padding: 0.3mm 1.2mm;
+  background: var(--slate-100);
+  color: var(--slate-800);
+  border-radius: 1mm;
+}
+
+/* ---- LINKS ---- */
+a { color: inherit; text-decoration: none; }
+a.link {
+  color: var(--accent-dark);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 0.4mm solid var(--accent);
+  padding-bottom: 0.2mm;
+}
+a.cta-button {
+  display: block;
+  background: var(--paper);
+  color: var(--ink);
+  padding: 5mm 6mm;
+  border-radius: 1mm;
+  text-align: center;
+  text-decoration: none;
+  border: 0.3mm solid transparent;
+}
+a.pill-link {
+  display: inline-block;
+  margin-top: 3mm;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 2mm 4mm;
+  border-radius: 0.8mm;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 9pt;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+}
+
+/* ---- PAGE HEADER & FOOTER ---- */
+
+.runner-top {
+  position: absolute;
+  top: 9mm; left: 18mm; right: 18mm;
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 7.5pt;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  padding-bottom: 2.5mm;
+  border-bottom: 0.4mm solid var(--ink);
+}
+
+.runner-bot {
+  position: absolute;
+  bottom: 10mm; left: 18mm; right: 18mm;
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 7.5pt;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  padding-top: 2mm;
+  border-top: 0.3mm solid var(--rule);
+}
+
+/* PragmaTech brand mark — official P-mark logo + wordmark. */
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 2mm;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 9pt;
+  letter-spacing: -0.005em;
+  text-transform: none;
+  color: var(--ink);
+}
+.brand-mark .glyph-img {
+  display: inline-block;
+  width: 4mm; height: 4mm;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.brand-mark.lg {
+  font-size: 13pt;
+  gap: 3mm;
+}
+.brand-mark.lg .glyph-img {
+  width: 7mm; height: 7mm;
+}
+.brand-mark.inv { color: var(--paper); }
+
+.folio {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  color: var(--ink);
+  font-size: 8.5pt;
+}
+
+/* ---- COVER PAGE ---- */
+
+.cover {
+  background: var(--slate-900);
+  color: var(--paper);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.cover .top-bar {
+  background: var(--paper);
+  color: var(--ink);
+  padding: 5mm 14mm;
+  display: flex; justify-content: space-between; align-items: center;
+}
+
+.cover .top-bar .meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 7.5pt;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.cover .main {
+  flex: 1;
+  padding: 22mm 14mm 0 14mm;
+  display: flex; flex-direction: column;
+  position: relative;
+}
+
+.cover .issue-line {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8.5pt;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  margin-bottom: 10mm;
+  text-transform: uppercase;
+}
+
+.cover .issue-line span:not(:last-child)::after {
+  content: '  //  ';
+  color: var(--slate-600);
+}
+
+.cover .big-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 70pt;
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  color: var(--paper);
+  margin-bottom: 6mm;
+}
+
+.cover .big-title .accent {
+  color: var(--accent);
+  font-style: italic;
+  font-weight: 700;
+}
+
+.cover .subtitle {
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-style: normal;
+  font-size: 15pt;
+  font-weight: 300;
+  line-height: 1.35;
+  color: #D4D4D4;
+  margin-bottom: 14mm;
+  max-width: 155mm;
+}
+
+.cover .subtitle em {
+  color: var(--paper);
+  font-style: normal;
+  font-weight: 500;
+}
+
+.cover .kpi-row {
+  display: flex;
+  gap: 8mm;
+  margin-top: auto;
+  margin-bottom: 10mm;
+}
+
+.cover .kpi {
+  flex: 1;
+  border-top: 0.6mm solid var(--accent);
+  padding-top: 3mm;
+}
+
+.cover .kpi .v {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 26pt;
+  letter-spacing: -0.03em;
+  color: var(--paper);
+  line-height: 1;
+}
+
+.cover .kpi .l {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 7.5pt;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--slate-400);
+  margin-top: 2.5mm;
+  line-height: 1.4;
+}
+
+.cover .footer-bar {
+  background: var(--emerald-500);
+  color: var(--paper);
+  padding: 5mm 14mm;
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 8pt;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.cover .corner-mark {
+  position: absolute;
+  top: 18mm; right: 14mm;
+  width: 22mm; height: 22mm;
+  border: 0.4mm solid var(--slate-700);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 6.5pt;
+  letter-spacing: 0.15em;
+  text-align: center;
+  color: var(--slate-400);
+  line-height: 1.3;
+}
+
+/* ---- SECTION NUMBER ---- */
+
+.section-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9pt;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--accent-dark);
+}
+
+/* ---- COLUMN LAYOUTS ---- */
+
+.cols-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8mm;
+}
+
+.cols-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 6mm;
+}
+
+.cols-4 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 4mm;
+}
+
+/* ---- KPI / STAT BLOCKS ---- */
+
+.stat-card {
+  background: var(--paper-card);
+  padding: 5mm;
+  border: 0.3mm solid var(--rule);
+  border-left: 1mm solid var(--accent);
+  border-radius: 1mm;
+}
+.stat-card.hot { border-left-color: var(--terra); }
+.stat-card.gold { border-left-color: var(--gold); }
+
+.stat-card .v {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 28pt;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--ink);
+}
+.stat-card.hot .v { color: var(--terra); }
+.stat-card.gold .v { color: var(--gold); }
+
+.stat-card .l {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 8pt;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-top: 2mm;
+  color: var(--ink-soft);
+  line-height: 1.3;
+}
+
+.stat-card .sub {
+  font-size: 9pt;
+  color: var(--ink-soft);
+  margin-top: 3mm;
+  line-height: 1.4;
+  font-style: normal;
+}
+
+/* ---- PULL QUOTE ---- */
+
+.pullquote {
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13pt;
+  line-height: 1.4;
+  color: var(--ink);
+  padding-left: 6mm;
+  border-left: 1mm solid var(--accent);
+  margin: 5mm 0;
+}
+
+.pullquote::before {
+  content: '\201C';
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 24pt;
+  line-height: 0;
+  color: var(--accent);
+  margin-right: 1mm;
+  vertical-align: -0.45em;
+}
+
+.pullquote .attr {
+  display: block;
+  margin-top: 3mm;
+  font-style: normal;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 8pt;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-dark);
+}
+
+/* ---- CHART CONTAINERS ---- */
+
+.chart {
+  background: var(--paper-soft);
+  padding: 6mm;
+  margin: 4mm 0;
+  border: 0.3mm solid var(--rule);
+  border-radius: 1mm;
+}
+
+.chart .title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 10pt;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  margin-bottom: 1mm;
+}
+
+.chart .caption {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 7pt;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 4mm;
+}
+
+/* SVG chart text — default fill to ink, fonts to Space Grotesk */
+svg text {
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  fill: var(--ink);
+}
+
+/* ---- TABLES ---- */
+
+table { border-collapse: collapse; width: 100%; font-size: 9.5pt; }
+th, td { padding: 2mm 3mm; text-align: left; }
+th {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 7.5pt;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  border-bottom: 0.4mm solid var(--ink);
+}
+td { border-bottom: 0.2mm solid var(--rule); }
+td.num { font-family: 'JetBrains Mono', monospace; text-align: right; }
+
+/* ---- DECORATIVE RULES ---- */
+
+.rule-thick { border-top: 0.7mm solid var(--ink); margin: 4mm 0; }
+.rule-thin  { border-top: 0.3mm solid var(--rule); margin: 4mm 0; }
+
+.tag {
+  display: inline-block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 7pt;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.7mm 2mm;
+  background: var(--ink);
+  color: var(--paper);
+  margin-right: 1.5mm;
+}
+.tag.accent { background: var(--accent); }
+.tag.terra { background: var(--terra); }
+.tag.gold { background: var(--gold); }
+
+/* ---- CALLOUT BOX (dark / terminal style) ---- */
+
+.callout {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 6mm 7mm;
+  margin: 4mm 0;
+  position: relative;
+  border-radius: 1mm;
+}
+.callout::before {
+  content: '';
+  position: absolute;
+  top: 3mm; left: 4mm;
+  width: 1.8mm; height: 1.8mm;
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: 3mm 0 0 var(--gold), 6mm 0 0 var(--terra);
+}
+.callout .label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 7pt;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-top: 2mm;
+  margin-bottom: 3mm;
+}
+.callout p { color: var(--paper); }
+.callout strong { color: var(--paper); font-weight: 700; }
+.callout em { color: var(--accent-soft); font-style: normal; }
+.callout code { background: rgba(255,255,255,0.08); color: var(--paper); }
+
+/* status pills - FAIL / WARN / PASS */
+.pill {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 6.5pt;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 0.5mm 1.8mm;
+  border-radius: 0.5mm;
+  text-transform: uppercase;
+  vertical-align: 0.4mm;
+}
+.pill.fail { background: var(--terra-soft); color: var(--terra); }
+.pill.warn { background: var(--gold-soft); color: var(--gold); }
+.pill.pass { background: var(--emerald-soft); color: var(--emerald-600); }
+.pill.info { background: var(--paper-soft); color: var(--ink-soft); border: 0.2mm solid var(--rule); }
+
+/* ---- RECOMMENDATIONS ---- */
+
+.rec {
+  display: grid;
+  grid-template-columns: 12mm 1fr;
+  gap: 4mm;
+  padding: 2.2mm 0;
+  border-top: 0.3mm solid var(--rule);
+}
+.rec:last-child { border-bottom: 0.3mm solid var(--rule); }
+.rec .num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 22pt;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  color: var(--accent);
+}
+.rec h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 10.5pt;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 1mm;
+  color: var(--ink);
+}
+.rec p { font-size: 9pt; color: var(--ink); line-height: 1.35; }
+.rec .tie {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 6.8pt;
+  letter-spacing: 0.05em;
+  color: var(--accent-dark);
+  font-weight: 700;
+  margin-top: 1.2mm;
+}
+
+/* ---- FINAL CTA ---- */
+
+.cta-block {
+  background: var(--accent-dark);
+  background-image:
+    radial-gradient(60% 100% at 100% 0%, rgba(14, 165, 233, 0.45), transparent 60%),
+    radial-gradient(60% 100% at 0% 100%, rgba(16, 185, 129, 0.45), transparent 60%);
+  color: var(--paper);
+  padding: 8mm 9mm;
+  margin-top: 6mm;
+  border-radius: 1mm;
+}
+.cta-block h3 {
+  color: var(--paper);
+  font-size: 20pt;
+  line-height: 1.05;
+  margin-bottom: 3mm;
+  letter-spacing: -0.025em;
+}
+.cta-block p { color: var(--paper); font-size: 10pt; line-height: 1.4; }
+.cta-block strong { color: var(--paper); font-weight: 700; }
+.cta-block em { color: var(--accent-soft); font-style: normal; }
+.cta-block .tag { background: var(--paper); color: var(--accent-dark); }
+
+/* ---- OFFER PITCH PAGE ---- */
+
+.pitch-hero {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 10mm 11mm;
+  margin: 4mm 0 6mm 0;
+  border-radius: 1mm;
+  position: relative;
+  overflow: hidden;
+}
+.pitch-hero .eyebrow-mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 7.5pt;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 5mm;
+}
+.pitch-hero h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 32pt;
+  font-weight: 700;
+  line-height: 1.0;
+  letter-spacing: -0.035em;
+  color: var(--paper);
+  margin-bottom: 5mm;
+  max-width: 165mm;
+}
+.pitch-hero h2 .accent {
+  color: var(--accent);
+}
+.pitch-hero .pain {
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-size: 11pt;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #D4D4D4;
+  max-width: 155mm;
+  margin-bottom: 6mm;
+}
+.pitch-hero .pain strong { color: var(--paper); font-weight: 600; }
+.pitch-hero .badges {
+  display: flex;
+  gap: 4mm;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 7.5pt;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.pitch-hero .badges span::before {
+  content: '\25CF ';
+  color: var(--accent);
+  margin-right: 1mm;
+}
+
+.blueprint {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4mm 7mm;
+  margin-top: 4mm;
+}
+.blueprint .step {
+  display: grid;
+  grid-template-columns: 10mm 1fr;
+  gap: 3mm;
+  padding: 2.5mm 0;
+}
+.blueprint .step .n {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 16pt;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  color: var(--accent);
+  border-top: 0.6mm solid var(--accent);
+  padding-top: 2mm;
+}
+.blueprint .step.closer .n {
+  color: var(--paper);
+  background: var(--ink);
+  border-top-color: transparent;
+  border-radius: 0.5mm;
+  padding: 2mm 0 0 0;
+  text-align: center;
+}
+.blueprint .step .body { padding-top: 1mm; }
+.blueprint .step h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 10.5pt;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 1mm;
+  color: var(--ink);
+}
+.blueprint .step p {
+  font-size: 9pt;
+  line-height: 1.4;
+  color: var(--ink-soft);
+}
+
+.big-cta {
+  background: var(--accent-dark);
+  background-image:
+    radial-gradient(60% 100% at 100% 0%, rgba(56,189,248,0.35), transparent 60%),
+    radial-gradient(60% 100% at 0% 100%, rgba(16,185,129,0.4), transparent 60%);
+  color: var(--paper);
+  padding: 7mm 9mm;
+  border-radius: 1mm;
+  margin-top: 5mm;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 8mm;
+  align-items: center;
+}
+.big-cta .left h3 {
+  color: var(--paper);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16pt;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  margin-bottom: 2mm;
+}
+.big-cta .left p {
+  color: var(--brand-50);
+  font-size: 9pt;
+  line-height: 1.4;
+}
+.big-cta a.cta-button {
+  background: var(--paper);
+  color: var(--ink);
+  padding: 5mm 6mm;
+  border-radius: 1mm;
+  text-align: center;
+  text-decoration: none;
+}
+.big-cta a.cta-button .label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 6.5pt;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-dark);
+  font-weight: 700;
+  margin-bottom: 2mm;
+}
+.big-cta a.cta-button .url {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11.5pt;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  line-height: 1.1;
+}
+.big-cta a.cta-button .url .dim { color: var(--ink-muted); font-weight: 500; }
+
+/* ---- DIAGONAL WATERMARK (sample preview only) ---- */
+
+.watermark {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 0;
+}
+.watermark .text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 220pt;
+  letter-spacing: 0.08em;
+  color: var(--slate-900);
+  opacity: 0.035;
+  transform: rotate(-22deg);
+  white-space: nowrap;
+}
