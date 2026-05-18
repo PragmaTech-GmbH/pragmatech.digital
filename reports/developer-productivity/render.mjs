@@ -182,11 +182,12 @@ function buildHorizontalBarsSvg({ bars, axisMax, legend }) {
   const rowGap = 12;                                     // 34 per row total
   const labelXEnd = 215;
   const trackX = 220;
-  const trackW = 310;
-  const valueX = 540;
+  const trackW = 270;                                    // narrower so longest bars don't overlap the value text on the right
+  const valueX = 545;                                    // % value right-edge (text-anchor: end)
+  const maxFill = 250;                                   // ≤ trackW; gives ~25px breathing room between bar end and label
 
   const max = axisMax || Math.max(...bars.map((b) => Number(b.value || 0)));
-  const scale = (290 / max);                             // 290 = max fill width
+  const scale = (maxFill / max);
 
   // If any bar carries 2 decimals of meaningful precision, format the whole
   // chart with 2 decimals; otherwise 1 decimal. Matches the source report
@@ -200,7 +201,7 @@ function buildHorizontalBarsSvg({ bars, axisMax, legend }) {
   const rows = bars.map((b, i) => {
     const yTop = 4 + i * (rowH + rowGap);
     const yMid = yTop + 14;
-    const fillW = Math.max(0, Math.min(290, Number(b.value || 0) * scale));
+    const fillW = Math.max(0, Math.min(maxFill, Number(b.value || 0) * scale));
     return `
       <text x="${labelXEnd}" y="${yMid}" text-anchor="end">${raw(b.label)}</text>
       <rect x="${trackX}" y="${yTop}" width="${trackW}" height="${rowH}" fill="#E5E7EB"/>
