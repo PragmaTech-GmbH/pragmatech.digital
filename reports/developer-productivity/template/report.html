@@ -2,178 +2,415 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>{{meta.title}} {{meta.year}}</title>
+  <title>{{meta.title}} - Industry Report {{meta.year}}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" />
-  <link rel="stylesheet" href="styles.css" />
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="{{cssHref}}" />
 </head>
 <body>
 
-<!-- ========== Page 1 · Cover ============================================== -->
+<!-- ========== Page 1 · Cover =================================================== -->
 <section class="page cover">
-  <div class="cover__band"></div>
-
-  <header class="cover__masthead">
-    <div class="cover__brand">
-      <div class="cover__brand-mark">P</div>
-      <div class="cover__wordmark">Pragma<span>Tech</span></div>
-    </div>
-    <div class="cover__year">{{meta.year}}</div>
-  </header>
-
-  <div class="cover__center">
-    <div class="cover__eyebrow">{{cover.eyebrow}}</div>
-    <h1 class="cover__title">Spring Boot<br/><em>Developer Productivity</em></h1>
-    <p class="cover__subhead">{{cover.subhead}}</p>
+  <div class="top-bar">
+    <a class="brand-mark" href="https://pragmatech.digital/"><img class="glyph-img" src="{{logoDataUri}}" alt=""/>{{meta.publisher}}</a>
+    <span class="meta">{{meta.subtitle}}</span>
   </div>
 
-  <div class="cover__chart">
-    <i style="height:18%;background:var(--slate-200)"></i>
-    <i style="height:24%;background:var(--slate-200)"></i>
-    <i style="height:36%;background:var(--slate-300)"></i>
-    <i style="height:52%;background:var(--brand-400)"></i>
-    <i style="height:46%;background:var(--brand-400)"></i>
-    <i style="height:62%;background:var(--brand-500)"></i>
-    <i style="height:74%;background:var(--brand-500)"></i>
-    <i style="height:88%;background:var(--brand-600)"></i>
-    <i style="height:96%;background:var(--emerald-500)"></i>
-    <i style="height:78%;background:var(--brand-600)"></i>
-    <i style="height:64%;background:var(--brand-500)"></i>
-    <i style="height:48%;background:var(--brand-400)"></i>
-    <i style="height:38%;background:var(--slate-300)"></i>
-    <i style="height:30%;background:var(--slate-300)"></i>
-    <i style="height:22%;background:var(--slate-200)"></i>
-    <i style="height:14%;background:var(--slate-200)"></i>
+  <div class="main">
+    <div class="corner-mark">{{cover.cornerMark}}</div>
+
+    <div class="issue-line">{{coverIssueLineHtml}}</div>
+
+    <h1 class="big-title">
+      {{coverBigTitleHtml}}
+    </h1>
+
+    <p class="subtitle">{{cover.subtitle}}</p>
+
+    <div class="kpi-row">{{coverKpisHtml}}</div>
   </div>
 
-  <div class="cover__footnote">
-    <div class="cover__footnote-text">{{cover.footnote}}</div>
-    <div class="cover__meta">
-      <strong>{{meta.publisher}}</strong><br/>
-      {{meta.edition}}<br/>
-      {{meta.url}}
-    </div>
+  <div class="footer-bar">
+    <span>{{cover.footerLeft}}</span>
+    <span><a href="{{cover.footerRightHref}}" style="color: inherit;">{{cover.footerRight}}</a></span>
   </div>
 </section>
 
-<!-- ========== Page 2 · About this report ================================= -->
+<!-- ========== Page 2 · Executive Summary ======================================= -->
 <section class="page">
   {{watermarkP2}}
-  <div class="page__body">
-    <div class="about__eyebrow">About this report</div>
-    <h2 class="about__title">A first honest benchmark of how Spring Boot teams actually ship.</h2>
-    <p class="about__intro">{{about.intro}}</p>
-
-    <div class="about__columns">
-      <div class="about__col">
-        <h3>Methodology</h3>
-        <dl class="about__method">{{methodHtml}}</dl>
-      </div>
-      <div class="about__col">
-        <h3>Contents</h3>
-        <ol class="about__toc">{{tocHtml}}</ol>
-      </div>
-    </div>
-
-    <div class="kpis">{{kpisHtml}}</div>
+  <div class="runner-top">
+    <a class="brand-mark" href="https://pragmatech.digital/"><img class="glyph-img" src="{{logoDataUri}}" alt=""/>{{meta.publisher}}</a>
+    <span>{{executiveSummary.runner}}</span>
   </div>
-  <div class="footer">
-    <span class="footer__page">02 / 05</span>
-    <span class="footer__url">{{meta.url}}</span>
-    <span class="footer__sample">{{footerSampleP2}}</span>
+
+  <div class="section-num">{{executiveSummary.sectionNum}}</div>
+  <h2 style="margin-top:3mm;">{{summaryHeadlineHtml}}</h2>
+
+  <p class="lede" style="max-width:160mm; margin-bottom:6mm; color:var(--ink-soft);">
+    {{executiveSummary.lede}}
+  </p>
+
+  <div class="cols-2" style="margin-bottom: 5mm;">
+    {{summaryColumnsHtml}}
+  </div>
+
+  <div class="rule-thick"></div>
+
+  <h3 style="margin-bottom: 4mm;">{{executiveSummary.fourNumbersHeading}}</h3>
+  <div class="cols-4">{{summaryFourNumbersHtml}}</div>
+
+  <div class="pullquote" style="margin-top: 6mm;">
+    {{executiveSummary.pullQuote.text}}
+    <span class="attr">- {{executiveSummary.pullQuote.attribution}}</span>
+  </div>
+
+  <div class="runner-bot">
+    <span>{{meta.title}}</span>
+    <span class="folio">{{executiveSummary.folio}}</span>
   </div>
 </section>
 
-<!-- ========== Page 3 · Build times ======================================= -->
+<!-- ========== Page 3 · Methodology & Demographics ============================== -->
 <section class="page">
   {{watermarkP3}}
-  <div class="page__body">
-    <div class="chapter__num">Ch. 01 <span>· Build times</span></div>
-    <h2 class="chapter__title">{{buildTimes.headline}}</h2>
-    <p class="chapter__intro">{{buildTimes.introHtml}}</p>
+  <div class="runner-top">
+    <a class="brand-mark" href="https://pragmatech.digital/"><img class="glyph-img" src="{{logoDataUri}}" alt=""/>{{meta.publisher}}</a>
+    <span>{{methodology.runner}}</span>
+  </div>
 
-    <div class="hbar__caption">
-      <span>Median build time (mm:ss)</span>
-      <span>By team size</span>
+  <div class="section-num">{{methodology.sectionNum}}</div>
+  <h2 style="margin-top:3mm;">{{methodologyHeadlineHtml}}</h2>
+
+  <p class="lede" style="max-width:155mm; margin-bottom: 6mm; color:var(--ink-soft);">
+    {{methodology.lede}}
+  </p>
+
+  <div class="cols-2" style="grid-template-columns: 1.05fr 1fr; gap: 10mm;">
+    <div>
+      <h3>{{methodology.fieldworkHeading}}</h3>
+      <table>
+        <tr><th>Field</th><th style="text-align:right">Value</th></tr>
+        {{methodologyFieldworkHtml}}
+      </table>
+
+      <h3 style="margin-top: 8mm;">{{methodology.sampleNoteHeading}}</h3>
+      <p style="font-size:9.5pt;">{{methodology.sampleNote}}</p>
     </div>
-    <div class="hbar">{{buildBarsHtml}}</div>
 
-    <div class="callout">
-      <div class="callout__bar"></div>
-      <div class="callout__body">
-        <div class="callout__title">{{buildTimes.takeaway.title}}</div>
-        <div class="callout__text">{{buildTimes.takeaway.body}}</div>
+    <div>
+      <div class="chart">
+        <div class="title">{{methodology.chartTitle}}</div>
+        <div class="caption">{{methodology.chartCaption}}</div>
+        {{methodologyDonutSvg}}
+      </div>
+
+      <div class="callout" style="margin-top:5mm;">
+        <div class="label">{{methodology.callout.label}}</div>
+        <p style="font-size:9.5pt;">{{methodology.callout.body}}</p>
       </div>
     </div>
   </div>
-  <div class="footer">
-    <span class="footer__page">03 / 05</span>
-    <span class="footer__url">{{meta.url}}</span>
-    <span class="footer__sample">{{footerSampleP3}}</span>
+
+  <div class="runner-bot">
+    <span>{{methodology.runnerBot}}</span>
+    <span class="folio">{{methodology.folio}}</span>
   </div>
 </section>
 
-<!-- ========== Page 4 · Test coverage ===================================== -->
+<!-- ========== Page 4 · Q1 Priorities =========================================== -->
 <section class="page">
   {{watermarkP4}}
-  <div class="page__body">
-    <div class="chapter__num">Ch. 02 <span>· Test coverage</span></div>
-    <h2 class="chapter__title">{{testCoverage.headline}}</h2>
-    <p class="chapter__intro">{{testCoverage.intro}}</p>
+  <div class="runner-top">
+    <a class="brand-mark" href="https://pragmatech.digital/"><img class="glyph-img" src="{{logoDataUri}}" alt=""/>{{meta.publisher}}</a>
+    <span>{{q1Priorities.runner}}</span>
+  </div>
 
-    <div class="hbar__caption">
-      <span>Share of teams (%)</span>
-      <span>Self-reported line coverage</span>
+  <div class="section-num">{{q1Priorities.sectionNum}}</div>
+  <h2 style="margin-top:3mm;">{{q1HeadlineHtml}}</h2>
+
+  <p class="lede" style="max-width:160mm; color:var(--ink-soft); margin-bottom:5mm;">
+    {{q1Priorities.lede}}
+  </p>
+
+  <div class="chart">
+    <div class="title">{{q1Priorities.chartTitle}}</div>
+    <div class="caption">{{q1Priorities.chartCaption}}</div>
+    {{q1BarsSvg}}
+  </div>
+
+  <div class="cols-2" style="margin-top: 4mm;">
+    <div>
+      <div class="pullquote" style="margin-top:0;">
+        {{q1Priorities.pullQuote.text}}
+        <span class="attr">- {{q1Priorities.pullQuote.attribution}}</span>
+      </div>
     </div>
-    <div class="vbar">{{coverageVbarHtml}}</div>
-    <div class="vbar__labels">{{coverageLabelsHtml}}</div>
-
-    <div class="pullquote">
-      <div class="pullquote__text">{{testCoverage.pullQuote.text}}</div>
-      <div class="pullquote__by">— {{testCoverage.pullQuote.attribution}}</div>
+    <div>
+      <h3>{{q1Priorities.signal.h3}}</h3>
+      {{q1SignalParagraphsHtml}}
     </div>
   </div>
-  <div class="footer">
-    <span class="footer__page">04 / 05</span>
-    <span class="footer__url">{{meta.url}}</span>
-    <span class="footer__sample">{{footerSampleP4}}</span>
+
+  <div class="runner-bot">
+    <span>{{q1Priorities.runnerBot}}</span>
+    <span class="folio">{{q1Priorities.folio}}</span>
   </div>
 </section>
 
-<!-- ========== Page 5 · Deploy frequency & closing ======================== -->
+<!-- ========== Page 5 · Q2 Bottlenecks ========================================== -->
 <section class="page">
   {{watermarkP5}}
-  <div class="page__body">
-    <div class="chapter__num">Ch. 03 <span>· Deployment frequency</span></div>
-    <h2 class="chapter__title">{{deployFrequency.headline}}</h2>
-    <p class="chapter__intro">{{deployFrequency.intro}}</p>
+  <div class="runner-top">
+    <a class="brand-mark" href="https://pragmatech.digital/"><img class="glyph-img" src="{{logoDataUri}}" alt=""/>{{meta.publisher}}</a>
+    <span>{{q2Bottlenecks.runner}}</span>
+  </div>
 
-    <div class="hbar__caption">
-      <span>Share of teams (%)</span>
-      <span>Production deploy cadence</span>
+  <div class="section-num">{{q2Bottlenecks.sectionNum}}</div>
+  <h2 style="margin-top:3mm;">{{q2HeadlineHtml}}</h2>
+
+  <p class="lede" style="max-width:160mm; color:var(--ink-soft); margin-bottom:5mm;">
+    {{q2Bottlenecks.lede}}
+  </p>
+
+  <div class="chart">
+    <div class="title">{{q2Bottlenecks.chartTitle}}</div>
+    <div class="caption">{{q2Bottlenecks.chartCaption}}</div>
+    {{q2BarsSvg}}
+  </div>
+
+  <div class="cols-3" style="margin-top: 4mm;">{{q2QuotesHtml}}</div>
+
+  <div class="runner-bot">
+    <span>{{q2Bottlenecks.runnerBot}}</span>
+    <span class="folio">{{q2Bottlenecks.folio}}</span>
+  </div>
+</section>
+
+<!-- ========== Page 6 · Q3 Friction Map ========================================= -->
+<section class="page">
+  {{watermarkP6}}
+  <div class="runner-top">
+    <a class="brand-mark" href="https://pragmatech.digital/"><img class="glyph-img" src="{{logoDataUri}}" alt=""/>{{meta.publisher}}</a>
+    <span>{{q3FrictionMap.runner}}</span>
+  </div>
+
+  <div class="section-num">{{q3FrictionMap.sectionNum}}</div>
+  <h2 style="margin-top:3mm;">{{q3HeadlineHtml}}</h2>
+
+  <p class="lede" style="max-width:160mm; color:var(--ink-soft); margin-bottom:5mm;">
+    {{q3FrictionMap.lede}}
+  </p>
+
+  <div class="chart">
+    <div class="title">{{q3FrictionMap.chartTitle}}</div>
+    <div class="caption">{{q3FrictionMap.chartCaption}}</div>
+    {{q3BarsSvg}}
+  </div>
+
+  <div class="callout" style="margin-top: 5mm;">
+    <div class="label">{{q3FrictionMap.callout.label}}</div>
+    <p style="font-size: 10.5pt;">{{q3FrictionMap.callout.body}}</p>
+  </div>
+
+  <div class="runner-bot">
+    <span>{{q3FrictionMap.runnerBot}}</span>
+    <span class="folio">{{q3FrictionMap.folio}}</span>
+  </div>
+</section>
+
+<!-- ========== Page 7 · Q6 Spring Boot Bottlenecks ============================== -->
+<section class="page">
+  {{watermarkP7}}
+  <div class="runner-top">
+    <a class="brand-mark" href="https://pragmatech.digital/"><img class="glyph-img" src="{{logoDataUri}}" alt=""/>{{meta.publisher}}</a>
+    <span>{{q6SpringBoot.runner}}</span>
+  </div>
+
+  <div class="section-num">{{q6SpringBoot.sectionNum}}</div>
+  <h2 style="margin-top:3mm;">{{q6HeadlineHtml}}</h2>
+
+  <p class="lede" style="max-width:160mm; color:var(--ink-soft); margin-bottom:5mm;">
+    {{q6SpringBoot.lede}}
+  </p>
+
+  <div class="chart">
+    <div class="title">{{q6SpringBoot.chartTitle}}</div>
+    <div class="caption">{{q6SpringBoot.chartCaption}}</div>
+    {{q6BarsSvg}}
+  </div>
+
+  <div class="cols-2" style="margin-top:5mm;">
+    <div>
+      <h3>{{q6SpringBoot.pattern.h3}}</h3>
+      {{q6PatternParagraphsHtml}}
     </div>
-    <div class="deploy">{{deployHtml}}</div>
-
-    <div class="closing">
-      <div class="closing__body">
-        <h3>{{deployFrequency.closing.title}}</h3>
-        <p>{{deployFrequency.closing.body}}</p>
-      </div>
-      <div class="closing__cta">
-        <div>
-          <h3>{{deployFrequency.closing.ctaTitle}}</h3>
-          <p>{{deployFrequency.closing.ctaBody}}</p>
-        </div>
-        <a class="closing__link">{{deployFrequency.closing.ctaLink}}</a>
+    <div>
+      <div class="callout">
+        <div class="label">{{q6SpringBoot.calloutAside.label}}</div>
+        {{q6CalloutAsideParagraphsHtml}}
       </div>
     </div>
   </div>
-  <div class="footer">
-    <span class="footer__page">05 / 05</span>
-    <span class="footer__url">{{meta.url}}</span>
-    <span class="footer__sample">{{footerSampleP5}}</span>
+
+  <div class="runner-bot">
+    <span>{{q6SpringBoot.runnerBot}}</span>
+    <span class="folio">{{q6SpringBoot.folio}}</span>
+  </div>
+</section>
+
+<!-- ========== Page 8 · Analysis · The Acceleration Whiplash ==================== -->
+<section class="page">
+  {{watermarkP8}}
+  <div class="runner-top">
+    <a class="brand-mark" href="https://pragmatech.digital/"><img class="glyph-img" src="{{logoDataUri}}" alt=""/>{{meta.publisher}}</a>
+    <span>{{analysis.runner}}</span>
+  </div>
+
+  <div class="section-num">{{analysis.sectionNum}}</div>
+  <h2 style="margin-top:3mm;">{{analysisHeadlineHtml}}</h2>
+
+  <p class="lede" style="max-width:165mm; color:var(--ink-soft); margin-bottom:5mm;">
+    {{analysis.lede}}
+  </p>
+
+  <div class="cols-2" style="gap: 10mm;">
+    <div>{{analysisStatCardsHtml}}</div>
+
+    <div>
+      <h3 style="font-size: 14pt;">{{analysis.rightColumn.h3}}</h3>
+      <p style="font-size: 10pt;">{{analysis.rightColumn.intro}}</p>
+
+      <ul style="font-size:10pt; padding-left:5mm; margin: 3mm 0 4mm 0;">{{analysisBulletsHtml}}</ul>
+
+      <div class="callout" style="margin-top: 0;">
+        <div class="label">{{analysis.rightColumn.callout.label}}</div>
+        <p style="font-size: 10.5pt;">{{analysis.rightColumn.callout.body}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="runner-bot">
+    <span>{{analysis.runnerBot}}</span>
+    <span class="folio">{{analysis.folio}}</span>
+  </div>
+</section>
+
+<!-- ========== Page 9 · Recommendations ========================================= -->
+<section class="page">
+  {{watermarkP9}}
+  <div class="runner-top">
+    <a class="brand-mark" href="https://pragmatech.digital/"><img class="glyph-img" src="{{logoDataUri}}" alt=""/>{{meta.publisher}}</a>
+    <span>{{recommendations.runner}}</span>
+  </div>
+
+  <div class="section-num">{{recommendations.sectionNum}}</div>
+  <h2 style="margin-top:3mm;">{{recommendationsHeadlineHtml}}</h2>
+
+  <p class="lede" style="max-width:165mm; color:var(--ink-soft); margin-bottom: 5mm;">
+    {{recommendations.lede}}
+  </p>
+
+  <div>{{recommendationsHtml}}</div>
+
+  <div class="runner-bot">
+    <span>{{recommendations.runnerBot}}</span>
+    <span class="folio">{{recommendations.folio}}</span>
+  </div>
+</section>
+
+<!-- ========== Page 10 · The Offer ============================================== -->
+<section class="page">
+  {{watermarkP10}}
+  <div class="runner-top">
+    <a class="brand-mark" href="https://pragmatech.digital/"><img class="glyph-img" src="{{logoDataUri}}" alt=""/>{{meta.publisher}}</a>
+    <span>{{offer.runner}}</span>
+  </div>
+
+  <div class="section-num">{{offer.sectionNum}}</div>
+
+  <div class="pitch-hero">
+    <div class="eyebrow-mono">{{offer.eyebrowMono}}</div>
+    <h2>{{offerH2Html}}</h2>
+    <p class="pain">{{offer.pain}}</p>
+    <div class="badges">{{offerBadgesHtml}}</div>
+  </div>
+
+  <h3 style="margin-top: 2mm;">{{offer.blueprintHeading}}</h3>
+  <p style="font-size: 10pt; color: var(--ink-soft); margin-bottom: 1mm;">
+    {{offer.blueprintIntro}}
+  </p>
+
+  <div class="blueprint">{{blueprintHtml}}</div>
+
+  <div class="big-cta">
+    <div class="left">
+      <h3>{{offer.bigCta.title}}</h3>
+      <p>{{offer.bigCta.body}}</p>
+      <a class="pill-link" href="{{offer.bigCta.ctaUrl}}">{{offer.bigCta.ctaLabel}}</a>
+    </div>
+    <a class="cta-button" href="{{offer.bigCta.ctaUrl}}">
+      <div class="label">{{offer.bigCta.buttonLabel}}</div>
+      <div class="url">
+        <span class="dim">{{offer.bigCta.buttonUrlDim}}</span>{{offer.bigCta.buttonUrlMain}}
+      </div>
+    </a>
+  </div>
+
+  <div class="runner-bot">
+    <span>{{offer.runnerBot}}</span>
+    <span class="folio">{{offer.folio}}</span>
+  </div>
+</section>
+
+<!-- ========== Page 11 · About & Closing ======================================== -->
+<section class="page">
+  {{watermarkP11}}
+  <div class="runner-top">
+    <a class="brand-mark" href="https://pragmatech.digital/"><img class="glyph-img" src="{{logoDataUri}}" alt=""/>{{meta.publisher}}</a>
+    <span>{{about.runner}}</span>
+  </div>
+
+  <div class="section-num">{{about.sectionNum}}</div>
+  <h2 style="margin-top:3mm;">{{aboutHeadlineHtml}}</h2>
+
+  <div class="cols-2" style="margin-top: 5mm;">
+    <div>
+      <h3>{{about.leftColumn.aboutHeading}}</h3>
+      {{aboutLeftParagraphsHtml}}
+
+      <h3 style="margin-top:6mm;">{{about.leftColumn.sourcesHeading}}</h3>
+      {{aboutSourcesHtml}}
+    </div>
+
+    <div>
+      <figure style="margin: 0 0 5mm 0; background: transparent;">
+        <img src="{{speakerDataUri}}" alt="Philip Riecks, founder of PragmaTech"
+             style="display:block; width:100%; height:auto; border-radius: 1.5mm;" />
+      </figure>
+
+      <div class="cta-block" style="margin-top:0;">
+        <div class="tag accent">{{about.rightColumn.ctaTag}}</div>
+        <h3 style="margin-top: 4mm;">{{about.rightColumn.ctaH3}}</h3>
+        {{aboutRightCtaParagraphsHtml}}
+        <p style="margin-top: 3mm; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 12pt; letter-spacing: -0.005em;">
+          <a href="{{about.rightColumn.ctaUrl}}" style="color: inherit; border-bottom: 0.4mm solid var(--paper); padding-bottom: 0.3mm;">{{about.rightColumn.ctaUrlDisplay}}</a>
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <div style="position:absolute; bottom: 14mm; left: 18mm; right: 18mm;">
+    <div class="rule-thick"></div>
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-top: 3mm;">
+      <a class="brand-mark lg" href="https://pragmatech.digital/"><img class="glyph-img" src="{{logoDataUri}}" alt=""/>{{meta.publisher}}</a>
+      <div class="mono" style="font-size: 8pt; letter-spacing: 0.15em; color: var(--ink-soft);">
+        {{about.endLabel}}
+      </div>
+    </div>
   </div>
 </section>
 
