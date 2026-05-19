@@ -96,7 +96,7 @@ html, body {
   color: var(--ink);
 }
 
-h2 { font-size: 32pt; margin-bottom: 6mm; }
+h2 { font-size: 42pt; margin-bottom: 6mm; line-height: 1.02; }
 h3 {
   font-family: 'Space Grotesk', 'Inter', sans-serif;
   font-size: 13pt;

@@ -13,7 +13,7 @@
     "issueLine": ["May 12&ndash;18, 2026", "92 Engineers", "3 Continents"],
     "bigTitleLines": ["The&nbsp;AI", "Productivity"],
     "bigTitleAccent": "Paradox.",
-    "subtitle": "Why teams shipping 30&times; more code with AI still feel slower &mdash; and what <em>92 Spring Boot engineers</em> say is actually holding them back in 2026.",
+    "subtitle": "Why teams shipping 30&times; more code with AI still feel slower - and what <em>92 Spring Boot engineers</em> say is actually holding them back in 2026.",
     "kpis": [
       { "value": "92",   "valueSuffix": "",  "label": "Completed Responses" },
       { "value": "43",   "valueSuffix": "%", "label": "Survey Conversion" },
@@ -30,19 +30,19 @@
     "runner": "Executive Summary",
     "folio": "02 / 11",
     "headlineLines": ["The promise", "doesn&rsquo;t match", "the pipeline."],
-    "lede": "AI tools promised to make us 10&times; faster. The largest independent studies of 2025 and 2026 tell a more uncomfortable story &mdash; and our own data from 92 engineers confirms it.",
+    "lede": "AI tools promised to make us 10&times; faster. The largest independent studies of 2025 and 2026 tell a more uncomfortable story - and our own data from 92 engineers confirms it.",
     "columns": [
       {
         "h3": "The two studies framing this report",
         "paragraphs": [
-          "Google&rsquo;s <strong>2025 DORA Report</strong> &mdash; surveying nearly 5,000 technology professionals &mdash; found that <strong>90% of teams now use AI</strong> and <strong>80% feel more productive</strong>, yet AI adoption still has a <em>negative</em> relationship with software delivery stability. The report&rsquo;s central conclusion: AI doesn&rsquo;t fix a team; it amplifies whatever is already there.",
-          "The <strong>METR randomized controlled trial</strong> (2025) measured experienced open-source developers on real tasks. Result: they thought AI made them <strong>20% faster</strong>. It actually made them <strong>19% slower</strong>. The bottleneck was reviewing, debugging, and verifying generated code &mdash; precisely the work that gets harder on a flaky test pipeline."
+          "Google&rsquo;s <a class=\"link\" href=\"https://dora.dev/research/\"><strong>2025 DORA Report</strong></a> - surveying nearly 5,000 technology professionals - found that <strong>90% of teams now use AI</strong> and <strong>80% feel more productive</strong>, yet AI adoption still has a <em>negative</em> relationship with software delivery stability. The report&rsquo;s central conclusion: AI doesn&rsquo;t fix a team; it amplifies whatever is already there.",
+          "The <a class=\"link\" href=\"https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/\"><strong>METR randomized controlled trial</strong></a> (2025) measured experienced open-source developers on real tasks. Result: they thought AI made them <strong>20% faster</strong>. It actually made them <strong>19% slower</strong>. The bottleneck was reviewing, debugging, and verifying generated code - precisely the work that gets harder on a flaky test pipeline."
         ]
       },
       {
         "h3": "What our 92 engineers say",
         "paragraphs": [
-          "The same paradox shows up in our data. <strong>30%</strong> name quality and reliability as their absolute highest priority &mdash; ahead of speed. But the things blocking them are not product complexity. They are <strong>slow tests, flaky pipelines, unreviewed AI output, and legacy code drowning in technical debt</strong>.",
+          "The same paradox shows up in our data. <strong>30%</strong> name quality and reliability as their absolute highest priority - ahead of speed. But the things blocking them are not product complexity. They are <strong>slow tests, flaky pipelines, unreviewed AI output, and legacy code drowning in technical debt</strong>.",
           "For Spring Boot teams, the picture sharpens: <strong>19%</strong> say their biggest testing bottleneck is simply <em>getting everyone on the same testing strategy</em>. Tools are not the constraint. <strong>Alignment, integration tests, and feedback loops are.</strong>"
         ]
       }
@@ -72,21 +72,20 @@
       { "field": "Survey visits",       "value": "214" },
       { "field": "Completed responses", "value": "92" },
       { "field": "Completion rate",     "value": "43.0%" },
-      { "field": "Leads captured",      "value": "60" },
       { "field": "Channels",            "value": "Newsletter, LinkedIn" },
       { "field": "Questions",           "value": "6 (4 open · 2 multi)" }
     ],
     "sampleNoteHeading": "A note on the sample",
-    "sampleNote": "The audience self-selected via a developer newsletter and LinkedIn distribution focused on Java and Spring Boot. The sample skews toward practitioners actively thinking about testing and AI &mdash; not the &ldquo;not-using-AI-yet&rdquo; long tail. Read the findings as a snapshot of <em>engaged, AI-aware</em> engineering teams rather than the global average.",
+    "sampleNote": "The audience self-selected via a developer newsletter and LinkedIn distribution focused on Java and Spring Boot. The sample skews toward practitioners actively thinking about testing and AI - not the &ldquo;not-using-AI-yet&rdquo; long tail. Read the findings as a snapshot of <em>engaged, AI-aware</em> engineering teams rather than the global average.",
     "chartTitle": "Company size of respondents",
     "chartCaption": "N = 88 · Question 5",
     "companySize": {
       "n": 88,
       "centerLabel": "RESPONDENTS",
       "segments": [
-        { "label": "Small &lt; 50",      "count": 27, "share": 30.7, "color": "primary" },
-        { "label": "Medium &lt; 1,000",  "count": 28, "share": 31.8, "color": "hot" },
-        { "label": "Large &gt; 1,000",   "count": 33, "share": 37.5, "color": "neutral-dark" }
+        { "label": "Small &le; 50 Employees",      "count": 27, "share": 30.7, "color": "primary" },
+        { "label": "Medium &lt; 1,000 Employees",  "count": 28, "share": 31.8, "color": "hot" },
+        { "label": "Large &gt; 1,000 Employees",   "count": 33, "share": 37.5, "color": "neutral-dark" }
       ]
     },
     "callout": {
@@ -101,7 +100,7 @@
     "folio": "04 / 11",
     "headlineLines": ["Quality", "still wins."],
     "lede": "We asked 112 engineers what their team&rsquo;s absolute highest priority is right now. Free-text answers, hand-coded into seven themes. <em>Some answers map to more than one.</em>",
-    "chartTitle": "Q1 &mdash; &ldquo;What is currently the absolute highest priority for you and your engineering team?&rdquo;",
+    "chartTitle": "Q1 - &ldquo;What is currently the absolute highest priority for you and your engineering team?&rdquo;",
     "chartCaption": "N = 112 free-text answers · Multi-coded · Share of respondents mentioning theme",
     "axisMax": 30,
     "bars": [
@@ -120,8 +119,8 @@
     "signal": {
       "h3": "The signal",
       "paragraphs": [
-        "<strong>Quality and speed are not opposites in this dataset.</strong> Engineers want both &mdash; in the same answer. Almost a quarter of respondents explicitly paired them: &ldquo;deliver fast <em>with</em> high quality&rdquo;, &ldquo;faster delivery with higher quality&rdquo;, &ldquo;ship features quicker while tackling technical debt.&rdquo;",
-        "AI is named directly by <strong>18.8%</strong> &mdash; but always with the same hedge: <em>&ldquo;leverage AI, but in a controlled manner&rdquo;</em>; <em>&ldquo;use AI tools but review code&rdquo;</em>; <em>&ldquo;not reduce code quality while using Gen AI as much as possible&rdquo;.</em>"
+        "<strong>Quality and speed are not opposites in this dataset.</strong> Engineers want both - in the same answer. Almost a quarter of respondents explicitly paired them: &ldquo;deliver fast <em>with</em> high quality&rdquo;, &ldquo;faster delivery with higher quality&rdquo;, &ldquo;ship features quicker while tackling technical debt.&rdquo;",
+        "AI is named directly by <strong>18.8%</strong> - but always with the same hedge: <em>&ldquo;leverage AI, but in a controlled manner&rdquo;</em>; <em>&ldquo;use AI tools but review code&rdquo;</em>; <em>&ldquo;not reduce code quality while using Gen AI as much as possible&rdquo;.</em>"
       ]
     }
   },
@@ -132,7 +131,7 @@
     "folio": "05 / 11",
     "headlineLines": ["What is", "actually", "blocking us."],
     "lede": "101 free-text answers to &ldquo;what is holding you back from shipping features quickly?&rdquo;, coded into ten themes. <em>One in five teams blames their test suite.</em>",
-    "chartTitle": "Q2 &mdash; What is currently holding you back the most from shipping new features quickly and smoothly?",
+    "chartTitle": "Q2 - What is currently holding you back the most from shipping new features quickly and smoothly?",
     "chartCaption": "N = 101 free-text answers · Multi-coded · Share of respondents mentioning theme",
     "axisMax": 20,
     "bars": [
@@ -150,7 +149,7 @@
     "quotes": [
       { "text": "Slow and painful integration tests, dead code and unused functionalities, lack of observability.",                    "attribution": "Respondent · #53" },
       { "text": "Review time gets longer due to bigger and more complicated AI&#8209;generated merge requests.",                       "attribution": "Respondent · #12" },
-      { "text": "Interpreting the tests to grasp dependencies is challenging &mdash; sometimes they&rsquo;re just AI&#8209;generated noise.", "attribution": "Respondent · #73" }
+      { "text": "Interpreting the tests to grasp dependencies is challenging - sometimes they&rsquo;re just AI&#8209;generated noise.", "attribution": "Respondent · #73" }
     ]
   },
   "q3FrictionMap": {
@@ -160,7 +159,7 @@
     "folio": "06 / 11",
     "headlineLines": ["Where the", "day&nbsp;goes."],
     "lede": "Forced-choice question: pick what frustrates you most about your current deployment and testing process. Multiple selections allowed.",
-    "chartTitle": "Q3 &mdash; What frustrates you the most about your current deployment or testing process?",
+    "chartTitle": "Q3 - What frustrates you the most about your current deployment or testing process?",
     "chartCaption": "192 selections from 92 respondents · % of total selections shown",
     "axisMax": 22,
     "bars": [
@@ -179,7 +178,7 @@
     ],
     "callout": {
       "label": "The hidden math of this chart",
-      "body": "Grouped by theme, the picture changes. <strong>Test &amp; build pipeline friction</strong> (slow times + flaky tests) accounts for <strong>36.98%</strong> of all selections. <strong>AI&#8209;generated code friction</strong> (analyzing + debugging) accounts for <strong>25.01%</strong>. The two together &mdash; a productivity tax on every AI-assisted change &mdash; eat <strong>three out of five</strong> frustration votes in the sample."
+      "body": "Grouped by theme, the picture changes. <strong>Test &amp; build pipeline friction</strong> (slow times + flaky tests) accounts for <strong>36.98%</strong> of all selections. <strong>AI&#8209;generated code friction</strong> (analyzing + debugging) accounts for <strong>25.01%</strong>. The two together - a productivity tax on every AI-assisted change - eat <strong>three out of five</strong> frustration votes in the sample."
     }
   },
   "q6SpringBoot": {
@@ -189,7 +188,7 @@
     "folio": "07 / 11",
     "headlineLines": ["Where Spring", "Boot teams", "get stuck."],
     "lede": "For automated testing inside Spring Boot codebases, what is your team&rsquo;s biggest bottleneck right now? <em>Pick your top frustration.</em>",
-    "chartTitle": "Q6 &mdash; Spring Boot automated testing bottlenecks",
+    "chartTitle": "Q6 - Spring Boot automated testing bottlenecks",
     "chartCaption": "N = 95 selections · % of total selections shown",
     "axisMax": 20,
     "bars": [
@@ -210,7 +209,7 @@
     "pattern": {
       "h3": "The pattern hiding in the data",
       "paragraphs": [
-        "The top three answers &mdash; strategy alignment (18.95%), flaky integration tests (16.84%), and test data management (16.84%) &mdash; are <strong>not tooling problems</strong>. Spring Boot, JUnit 5 and Testcontainers all <em>can</em> solve them.",
+        "The top three answers - strategy alignment (18.95%), flaky integration tests (16.84%), and test data management (16.84%) - are <strong>not tooling problems</strong>. Spring Boot, JUnit 5 and Testcontainers all <em>can</em> solve them.",
         "What&rsquo;s missing is a shared <strong>opinion</strong> on how the team writes tests: when to use a slice test versus a full <code>@SpringBootTest</code>, when a Testcontainer is warranted, and how to keep state clean between tests."
       ]
     },
@@ -228,7 +227,7 @@
     "runnerBot": "Section 07 &middot; The Acceleration Whiplash",
     "folio": "08 / 11",
     "headlineLines": ["The acceleration", "whiplash."],
-    "lede": "AI generates more code &mdash; faster. Everything <em>downstream</em> of that code generation has to absorb the new volume. Three independent datasets now point to the same place.",
+    "lede": "AI generates more code - faster. Everything <em>downstream</em> of that code generation has to absorb the new volume. Three independent datasets now point to the same place.",
     "statCards": [
       { "value": "90",   "valueSuffix": "%", "tone": "neutral", "label": "Engineers using AI at work (DORA 2025)",                          "sub": "&ldquo;AI adoption is near-universal&rdquo;. 80% report higher productivity, but 30% have little or no trust in AI-generated code." },
       { "value": "&minus;19", "valueSuffix": "%", "tone": "hot",  "label": "Productivity change for experienced devs using AI (METR RCT, 2025)", "sub": "Developers <em>believed</em> AI made them 20% faster. The randomized controlled trial showed they were 19% slower on real tasks." },
@@ -236,11 +235,11 @@
     ],
     "rightColumn": {
       "h3": "What our 92 engineers are telling us",
-      "intro": "The DORA report calls AI a <em>&ldquo;mirror and a multiplier&rdquo;</em>. Our data shows the mirror clearly. Engineers don&rsquo;t blame AI in the abstract &mdash; they blame the work AI creates downstream:",
+      "intro": "The DORA report calls AI a <em>&ldquo;mirror and a multiplier&rdquo;</em>. Our data shows the mirror clearly. Engineers don&rsquo;t blame AI in the abstract - they blame the work AI creates downstream:",
       "bullets": [
-        "<strong>25% in Q3</strong> point to AI-generated code itself &mdash; analyzing it (15.6%) and debugging it (9.4%).",
+        "<strong>25% in Q3</strong> point to AI-generated code itself - analyzing it (15.6%) and debugging it (9.4%).",
         "<strong>11% in Q2</strong> independently surface &ldquo;AI conversations&rdquo;, &ldquo;reviewing generated code&rdquo;, and &ldquo;bigger, more complicated AI MRs&rdquo; as a top blocker.",
-        "<strong>37% in Q3</strong> point to slow or flaky test pipelines &mdash; the safety net that has to verify the new volume."
+        "<strong>37% in Q3</strong> point to slow or flaky test pipelines - the safety net that has to verify the new volume."
       ],
       "callout": {
         "label": "The thesis of this report",
@@ -254,11 +253,11 @@
     "runnerBot": "Section 08 &middot; Recommendations",
     "folio": "09 / 11",
     "headlineLines": ["Five moves", "that pay for", "themselves."],
-    "lede": "Each recommendation is tied to a specific number in this report. They are ordered by leverage &mdash; how much of the pain a single move removes.",
+    "lede": "Each recommendation is tied to a specific number in this report. They are ordered by leverage - how much of the pain a single move removes.",
     "items": [
       {
         "num": "01",
-        "title": "Write a one-page testing strategy &mdash; and enforce it.",
+        "title": "Write a one-page testing strategy - and enforce it.",
         "body": "The biggest Spring Boot bottleneck is not flaky tests; it&rsquo;s that <strong>nobody agrees on what to test</strong>. Define which features get unit tests, which get slice tests (@WebMvcTest, @DataJpaTest), which get @SpringBootTest with Testcontainers, and which get end-to-end. Ship the doc. Make it a PR review check.",
         "tie": "&rarr; Addresses Q6 #1 (18.95%) + Q6 #4 mock disagreement (15.79%)"
       },
@@ -302,18 +301,18 @@
     "blueprintIntro": "Five steps. No heavy jargon. Real results black&#8209;on&#8209;white.",
     "blueprint": [
       { "n": "01", "h4": "The Unvarnished Report",  "p": "A ruthless baseline analysis of your project, pipeline, and ways of working to identify hidden productivity killers." },
-      { "n": "02", "h4": "The Build-Time Turbo",    "p": "Picking low-hanging fruits directly in the code &mdash; Spring context caching, parallelization, Testcontainers optimization &mdash; for instant flow." },
+      { "n": "02", "h4": "The Build-Time Turbo",    "p": "Picking low-hanging fruits directly in the code - Spring context caching, parallelization, Testcontainers optimization - for instant flow." },
       { "n": "03", "h4": "Pipeline Sanitation",     "p": "Eliminating flaky tests, removing duplicate steps, and adding smart caching to build a rock-solid safety net." },
       { "n": "04", "h4": "The Strategy Rollout",    "p": "Handing over a foolproof standard workflow and showing your team the massive time savings black&#8209;on&#8209;white." },
       { "n": "05", "h4": "Ultimate Team Enablement","p": "Hands-on mentoring directly in the code to turn your developers into self-sufficient testing experts." }
     ],
     "blueprintCloser": {
       "h4": "Want this applied to your pipeline?",
-      "p":  "Start with Step 1 &mdash; The Unvarnished Report. <a class=\"link\" href=\"https://www.cal.eu/pragmatech/pragmatech-discovery\">Book a slot &rarr;</a>"
+      "p":  "Start with Step 1 - The Unvarnished Report. <a class=\"link\" href=\"https://www.cal.eu/pragmatech/pragmatech-discovery\">Book a slot &rarr;</a>"
     },
     "bigCta": {
-      "title": "Book Step 1 &mdash; The Unvarnished Report.",
-      "body":  "30-minute call. Zero pitch. You leave with at least one concrete optimization you can ship next week &mdash; whether we end up working together or not.",
+      "title": "Book Step 1 - The Unvarnished Report.",
+      "body":  "30-minute call. Zero pitch. You leave with at least one concrete optimization you can ship next week - whether we end up working together or not.",
       "ctaLabel": "Book a slot &rarr;",
       "ctaUrl":   "https://www.cal.eu/pragmatech/pragmatech-discovery",
       "buttonLabel": "Pick a slot",
@@ -331,8 +330,8 @@
     "leftColumn": {
       "aboutHeading": "About PragmaTech",
       "aboutParagraphs": [
-        "<strong>PragmaTech</strong> helps Java teams build &amp; ship software with confidence &mdash; cutting through testing complexity and slow builds for faster feedback and fearless shipping. Founded by <strong>Philip Riecks</strong>, we&rsquo;ve spent years inside the engine rooms of startups, scale-ups, and multi-billion-euro enterprises turning slow, flaky test pipelines into fast, trusted safety nets.",
-        "This report exists because in 2026, the question changed. It&rsquo;s no longer <em>&ldquo;how do we write good tests?&rdquo;</em> It&rsquo;s <em>&ldquo;how do we validate the 30&times; more code AI now generates &mdash; without our pipeline becoming a maintenance time bomb?&rdquo;</em>"
+        "<strong>PragmaTech</strong> helps Java teams build &amp; ship software with confidence - cutting through testing complexity and slow builds for faster feedback and fearless shipping. Founded by <strong>Philip Riecks</strong>, we&rsquo;ve spent years inside the engine rooms of startups, scale-ups, and multi-billion-euro enterprises turning slow, flaky test pipelines into fast, trusted safety nets.",
+        "This report exists because in 2026, the question changed. It&rsquo;s no longer <em>&ldquo;how do we write good tests?&rdquo;</em> It&rsquo;s <em>&ldquo;how do we validate the 30&times; more code AI now generates - without our pipeline becoming a maintenance time bomb?&rdquo;</em>"
       ],
       "sourcesHeading": "Sources cited",
       "sources": [
@@ -346,13 +345,13 @@
       "ctaH3":  "Stop the test&#8209;pipeline time bomb.",
       "ctaParagraphs": [
         "If this report sounds like your week, you are not alone. <strong>Three out of every five engineers surveyed</strong> are losing time to slow test feedback and AI-code friction.",
-        "PragmaTech&rsquo;s <strong>Testing Spring Boot Applications</strong> course walks Java teams through the playbook on the previous page &mdash; slice tests, Testcontainers, test data, and a shared strategy &mdash; in roughly 40 focused lessons. We also run on-site workshops and a 30-day build-speed-up engagement with a 50% guarantee."
+        "PragmaTech&rsquo;s <strong>Testing Spring Boot Applications</strong> course walks Java teams through the playbook on the previous page - slice tests, Testcontainers, test data, and a shared strategy - in roughly 40 focused lessons. We also run on-site workshops and a 30-day build-speed-up engagement with a 50% guarantee."
       ],
       "ctaUrl": "https://pragmatech.digital/",
       "ctaUrlDisplay": "pragmatech.digital",
       "newsletter": {
         "label": "You will be the first to know",
-        "body":  "You were one of 60 engineers who left an email at the end of this survey. The next edition of the report &mdash; with year-over-year comparisons and a deeper cut on AI&#8209;generated code review patterns &mdash; lands in your inbox first."
+        "body":  "You were one of 60 engineers who left an email at the end of this survey. The next edition of the report - with year-over-year comparisons and a deeper cut on AI&#8209;generated code review patterns - lands in your inbox first."
       }
     }
   }

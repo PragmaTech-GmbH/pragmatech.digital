@@ -64,8 +64,12 @@ const joinParagraphs = (arr, klass) => (arr || [])
   .map((p) => `<p${klass ? ` class="${klass}"` : ''}>${raw(p)}</p>`)
   .join('');
 
-// Join short lines into one block with <br/> separators.
+// Join short lines into one block with <br/> separators (for poster-style multi-line titles).
 const joinBreaks = (arr) => (arr || []).map(raw).join('<br/>');
+
+// Join lines with a single space so they flow as one paragraph and wrap
+// naturally at the container's full width (used for page headlines).
+const joinNatural = (arr) => (arr || []).map(raw).join(' ');
 
 // ----------------------------------------------------------------------------
 // Chunk builders
@@ -374,17 +378,17 @@ function buildChunks(data) {
     coverKpisHtml:      buildCoverKpisHtml(data.cover),
 
     // Executive Summary
-    summaryHeadlineHtml:      joinBreaks(data.executiveSummary.headlineLines),
+    summaryHeadlineHtml:      joinNatural(data.executiveSummary.headlineLines),
     summaryColumnsHtml:       buildSummaryColumnsHtml(data.executiveSummary.columns),
     summaryFourNumbersHtml:   buildFourNumbersHtml(data.executiveSummary.fourNumbers),
 
     // Methodology
-    methodologyHeadlineHtml:  joinBreaks(data.methodology.headlineLines),
+    methodologyHeadlineHtml:  joinNatural(data.methodology.headlineLines),
     methodologyFieldworkHtml: buildFieldworkHtml(data.methodology.fieldwork),
     methodologyDonutSvg:      buildDonutSvg(data.methodology.companySize),
 
     // Q1
-    q1HeadlineHtml:           joinBreaks(data.q1Priorities.headlineLines),
+    q1HeadlineHtml:           joinNatural(data.q1Priorities.headlineLines),
     q1BarsSvg:                buildHorizontalBarsSvg({
                                 bars: data.q1Priorities.bars,
                                 axisMax: data.q1Priorities.axisMax,
@@ -392,7 +396,7 @@ function buildChunks(data) {
     q1SignalParagraphsHtml:   buildSignalParagraphsHtml(data.q1Priorities.signal),
 
     // Q2
-    q2HeadlineHtml:           joinBreaks(data.q2Bottlenecks.headlineLines),
+    q2HeadlineHtml:           joinNatural(data.q2Bottlenecks.headlineLines),
     q2BarsSvg:                buildHorizontalBarsSvg({
                                 bars: data.q2Bottlenecks.bars,
                                 axisMax: data.q2Bottlenecks.axisMax,
@@ -400,7 +404,7 @@ function buildChunks(data) {
     q2QuotesHtml:             buildQuotesColsHtml(data.q2Bottlenecks.quotes, '11pt'),
 
     // Q3
-    q3HeadlineHtml:           joinBreaks(data.q3FrictionMap.headlineLines),
+    q3HeadlineHtml:           joinNatural(data.q3FrictionMap.headlineLines),
     q3BarsSvg:                buildHorizontalBarsSvg({
                                 bars: data.q3FrictionMap.bars,
                                 axisMax: data.q3FrictionMap.axisMax,
@@ -408,7 +412,7 @@ function buildChunks(data) {
                               }),
 
     // Q6
-    q6HeadlineHtml:           joinBreaks(data.q6SpringBoot.headlineLines),
+    q6HeadlineHtml:           joinNatural(data.q6SpringBoot.headlineLines),
     q6BarsSvg:                buildHorizontalBarsSvg({
                                 bars: data.q6SpringBoot.bars,
                                 axisMax: data.q6SpringBoot.axisMax,
@@ -418,12 +422,12 @@ function buildChunks(data) {
     q6CalloutAsideParagraphsHtml: buildCalloutAsideParagraphsHtml(data.q6SpringBoot.calloutAside),
 
     // Analysis
-    analysisHeadlineHtml:    joinBreaks(data.analysis.headlineLines),
+    analysisHeadlineHtml:    joinNatural(data.analysis.headlineLines),
     analysisStatCardsHtml:   buildAnalysisStatCardsHtml(data.analysis.statCards),
     analysisBulletsHtml:     buildAnalysisBulletsHtml(data.analysis.rightColumn.bullets),
 
     // Recommendations
-    recommendationsHeadlineHtml: joinBreaks(data.recommendations.headlineLines),
+    recommendationsHeadlineHtml: joinNatural(data.recommendations.headlineLines),
     recommendationsHtml:         buildRecommendationsHtml(data.recommendations.items),
 
     // Offer
@@ -432,7 +436,7 @@ function buildChunks(data) {
     blueprintHtml:   buildBlueprintHtml(data.offer),
 
     // About
-    aboutHeadlineHtml:             joinBreaks(data.about.headlineLines),
+    aboutHeadlineHtml:             joinNatural(data.about.headlineLines),
     aboutLeftParagraphsHtml:       joinParagraphs(data.about.leftColumn.aboutParagraphs)
                                      .replace(/<p>/g, '<p style="font-size: 10pt;">'),
     aboutSourcesHtml:              buildAboutSourcesHtml(data.about.leftColumn.sources),
