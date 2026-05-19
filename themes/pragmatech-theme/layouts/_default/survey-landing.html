@@ -135,6 +135,7 @@
                                                 <input id="surveyFieldName"
                                                        aria-label="name"
                                                        aria-required="true"
+                                                       required
                                                        type="text"
                                                        name="fields[name]"
                                                        placeholder="Jane Doe"
@@ -150,6 +151,7 @@
                                                 <input id="surveyFieldCompany"
                                                        aria-label="company"
                                                        aria-required="true"
+                                                       required
                                                        type="text"
                                                        name="fields[company]"
                                                        placeholder="Acme Inc."
@@ -165,6 +167,7 @@
                                                 <input id="surveyFieldEmail"
                                                        aria-label="email"
                                                        aria-required="true"
+                                                       required
                                                        type="email"
                                                        name="fields[email]"
                                                        placeholder="you@company.com"
@@ -228,21 +231,23 @@
                             }
                         }
 
-                        // Fallback path: if the MailerLite JS does NOT intercept the submit
+                        // Fallback path: if MailerLite's JS does NOT intercept the submit
                         // (script blocked, network issue, etc.), the form's native POST is
-                        // routed into the hidden iframe `mlSubmitTarget`. The iframe fires a
-                        // load event for its initial blank document AND a second time once
-                        // MailerLite responds to the form. We trigger the redirect on the
-                        // second load so the user always lands on the success page.
+                        // routed into the hidden iframe `mlSubmitTarget`, and we redirect
+                        // the parent once that response loads. The iframe load listener is
+                        // attached only AFTER a real submit event fires, so the iframe's
+                        // initial about:blank load (and any browser-quirk extra loads) cannot
+                        // trigger a redirect. HTML5 `required` validation runs before the
+                        // submit event, so invalid forms never reach this code path.
                         (function () {
                             var iframe = document.getElementById('mlSubmitTarget');
-                            if (!iframe) return;
-                            var loadCount = 0;
-                            iframe.addEventListener('load', function () {
-                                loadCount += 1;
-                                if (loadCount >= 2) {
+                            var form = document.querySelector('#mlb2-41246099 form');
+                            if (!iframe || !form) return;
+                            form.addEventListener('submit', function () {
+                                iframe.addEventListener('load', function onSubmitResponse() {
+                                    iframe.removeEventListener('load', onSubmitResponse);
                                     window.location.href = '{{ "report-success" | relURL }}';
-                                }
+                                });
                             });
                         })();
                     </script>
