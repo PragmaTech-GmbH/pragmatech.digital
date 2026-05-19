@@ -355,7 +355,7 @@ a.pill-link {
 }
 
 .cover .footer-bar {
-  background: var(--emerald-500);
+  background: var(--accent);
   color: var(--paper);
   padding: 5mm 14mm;
   display: flex; justify-content: space-between; align-items: center;

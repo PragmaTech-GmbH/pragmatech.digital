@@ -13,10 +13,10 @@
     "issueLine": ["May 12&ndash;18, 2026", "92 Engineers", "3 Continents"],
     "bigTitleLines": ["The&nbsp;AI", "Productivity"],
     "bigTitleAccent": "Paradox.",
-    "subtitle": "Why teams shipping 30&times; more code with AI still feel slower - and what <em>92 Spring Boot engineers</em> say is actually holding them back in 2026.",
+    "subtitle": "What <em>92 Spring Boot engineers</em> say AI is really doing to their test pipelines, their reviews, and their development workflow in 2026.",
     "kpis": [
       { "value": "92",   "valueSuffix": "",  "label": "Completed Responses" },
-      { "value": "43",   "valueSuffix": "%", "label": "Survey Conversion" },
+      { "value": "~55",  "valueSuffix": "%", "label": "Pair speed &amp; quality<br/>for their highest priority" },
       { "value": "21.9", "valueSuffix": "%", "label": "Biggest Frustration:<br/>Slow Build &amp; Test Feedback" },
       { "value": "25",   "valueSuffix": "%", "label": "Blame AI&#8209;Generated Code Itself" }
     ],
@@ -263,7 +263,7 @@
       },
       {
         "num": "02",
-        "title": "Cut Spring context startups to one per test suite.",
+        "title": "Cut Spring context startups to a handful - not one per test class.",
         "body": "Most Spring Boot suites accidentally rebuild the application context dozens of times because slightly different <code>@MockBean</code>, <code>@TestConfiguration</code>, or property overrides bust the cache. Audit your suite. One context per slice type. Reuse Testcontainers via singleton pattern. <em>This single change typically halves CI time on a mid-size codebase.</em>",
         "tie": "&rarr; Addresses Q3 build &amp; test times (21.88%) + Q6 context startup (13.68%)"
       },
@@ -282,7 +282,7 @@
       {
         "num": "05",
         "title": "Treat test-data management as a first-class concern.",
-        "body": "16.84% of Spring Boot teams point here. The fix is unglamorous and reliable: per-test transaction rollback by default, dedicated builders or fixtures for shared data, and Testcontainers reused across the JVM. Avoid <code>@DirtiesContext</code>. Avoid shared mutable state between tests. Avoid &ldquo;just clean the database&rdquo; in <code>@AfterEach</code>.",
+        "body": "16.84% of Spring Boot teams point here. The fix is unglamorous and reliable: per-test transaction rollback by default, dedicated builders or fixtures for shared data, and Testcontainers reused across the JVM. Avoid <code>@DirtiesContext</code>. Avoid shared mutable state between tests.",
         "tie": "&rarr; Addresses Q6 test data (16.84%)"
       }
     ]
@@ -312,7 +312,7 @@
     },
     "bigCta": {
       "title": "Book Step 1 - The Unvarnished Report.",
-      "body":  "30-minute call. Zero pitch. You leave with at least one concrete optimization you can ship next week - whether we end up working together or not.",
+      "body":  "15-minute call. Zero pitch. You leave with at least one concrete optimization you can ship next week - whether we end up working together or not.",
       "ctaLabel": "Book a slot &rarr;",
       "ctaUrl":   "https://www.cal.eu/pragmatech/pragmatech-discovery",
       "buttonLabel": "Pick a slot",
@@ -345,14 +345,10 @@
       "ctaH3":  "Stop the test&#8209;pipeline time bomb.",
       "ctaParagraphs": [
         "If this report sounds like your week, you are not alone. <strong>Three out of every five engineers surveyed</strong> are losing time to slow test feedback and AI-code friction.",
-        "PragmaTech&rsquo;s <strong>Testing Spring Boot Applications</strong> course walks Java teams through the playbook on the previous page - slice tests, Testcontainers, test data, and a shared strategy - in roughly 40 focused lessons. We also run on-site workshops and a 30-day build-speed-up engagement with a 50% guarantee."
+        "<strong>PragmaTech</strong> helps engineering teams increase their development productivity by upskilling them on effective Spring Boot testing - through online courses, on-site workshops, and hands-on engagements."
       ],
       "ctaUrl": "https://pragmatech.digital/",
-      "ctaUrlDisplay": "pragmatech.digital",
-      "newsletter": {
-        "label": "You will be the first to know",
-        "body":  "You were one of 60 engineers who left an email at the end of this survey. The next edition of the report - with year-over-year comparisons and a deeper cut on AI&#8209;generated code review patterns - lands in your inbox first."
-      }
+      "ctaUrlDisplay": "pragmatech.digital"
     }
   }
 }
