@@ -24,19 +24,11 @@ npm install            # one-time; downloads Chromium for Puppeteer (~170 MB)
 npm run build          # produces the PDF
 ```
 
-The renderer emits **two visual variants** of the same report from the same
-data + template. They differ only by stylesheet.
+Outputs:
 
-| Variant | Style | Local output | Public path (served by Hugo) |
-|---|---|---|---|
-| `editorial` | Dark editorial cover, magazine layout, dark callouts | `output/report-editorial.pdf` | `static/documents/Spring-Boot-Developer-Productivity-Report-2026.pdf` (canonical lead-magnet) |
-| `classic` | Light magazine cover with gradient band + yellow year tag, soft brand-blue callouts | `output/report-classic.pdf` | `static/documents/Spring-Boot-Developer-Productivity-Report-2026-Classic.pdf` |
-
-The canonical lead-magnet filename (`Spring-Boot-Developer-Productivity-Report-2026.pdf`)
-is bound to the editorial variant so the Hugo links wired to that path (header,
-footer, report-success) keep working unchanged. The classic variant lands beside
-it with a `-Classic` suffix and can be promoted to canonical by flipping the
-`publicName` fields in the `VARIANTS` array in `render.mjs`.
+- `output/report.pdf` - local working copy (gitignored).
+- `../../static/documents/Spring-Boot-Developer-Productivity-Report-2026.pdf` - the
+  committed lead magnet served by Hugo at `/documents/...pdf`.
 
 ## Edit
 
@@ -44,13 +36,10 @@ it with a `-Classic` suffix and can be promoted to canonical by flipping the
 |---|---|
 | The numbers in the charts | `data/sample.json` |
 | Page copy, headlines, takeaways | `data/sample.json` |
-| Editorial variant layout, colours, typography | `template/styles-editorial.css` |
-| Classic variant layout, colours, typography | `template/styles-classic.css` |
+| Layout, colours, typography | `template/styles-editorial.css` |
 | Page structure or chart SVG | `template/report.html` |
-| Add/remove a variant | `VARIANTS` array in `render.mjs` |
 
-The template uses `{{dotted.path}}` placeholders that resolve against `data/sample.json`,
-plus `{{cssHref}}` which is swapped per-variant by the renderer.
+The template uses `{{dotted.path}}` placeholders that resolve against `data/sample.json`.
 
 ## Sample vs. real data
 

@@ -16,23 +16,14 @@ const OUTPUT_DIR = join(HERE, 'output');
 const PUBLIC_DIR = resolve(HERE, '..', '..', 'static', 'documents');
 const LOGO_FILE = resolve(HERE, '..', '..', 'static', 'images', 'logo.png');
 
-// Two visual variants share the same template + data; they differ only by
-// stylesheet. The canonical lead-magnet filename
-// (Spring-Boot-Developer-Productivity-Report-2026.pdf) stays bound to the
-// editorial variant so the Hugo links wired to that path keep working; the
-// classic variant lands beside it with a -Classic suffix.
+// Single editorial variant — fills the canonical lead-magnet filename that
+// Hugo's header/footer/report-success layouts already link to.
 const VARIANTS = [
   {
     key: 'editorial',
     cssHref: 'styles-editorial.css',
-    outputName: 'report-editorial.pdf',
+    outputName: 'report.pdf',
     publicName: 'Spring-Boot-Developer-Productivity-Report-2026.pdf',
-  },
-  {
-    key: 'classic',
-    cssHref: 'styles-classic.css',
-    outputName: 'report-classic.pdf',
-    publicName: 'Spring-Boot-Developer-Productivity-Report-2026-Classic.pdf',
   },
 ];
 
