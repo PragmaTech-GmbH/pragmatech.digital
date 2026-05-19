@@ -84,18 +84,17 @@
                 <div class="bg-white border border-slate-200 rounded-2xl p-6 md:p-8 lg:p-10 shadow-xl shadow-slate-200/60">
                     <h2 class="text-2xl font-bold text-slate-900 mb-6 text-center">Join the waiting list</h2>
 
-                    {{/* AI Speed Illusion visual hook — the core thesis behind the
-                         2026 report: expected +20% speedup, actual −19% slowdown, with
-                         slow test pipelines as the bottleneck. Replaces the earlier
-                         placeholder PDF cover mockup. */}}
+                    {{/* Cover preview of the finished report — generated thumbnail of
+                         page 1 of PragmaTech-...-2026.pdf. Sits above the form so the
+                         visitor sees exactly what they will receive on signup. */}}
                     <figure class="mb-6">
-                        <img src="{{ "images/lp/ai-speed-illusion-green.png" | relURL }}"
-                             alt="The AI Speed Illusion: expected +20% speedup vs actual −19% slowdown, bottlenecked by slow test pipelines and flaky tests."
-                             width="1376" height="768"
+                        <img src="{{ "images/reports/ai-productivity-paradox-2026/cover-md.png" | relURL }}"
+                             alt="Cover of The AI Productivity Paradox - Industry Report 2026"
+                             width="720" height="1019"
                              loading="eager" decoding="async"
-                             class="w-full rounded-lg border border-slate-200 shadow-lg shadow-slate-400/20" />
+                             class="block mx-auto max-w-[260px] w-full rounded-md border border-slate-200 shadow-xl shadow-slate-400/30" />
                         <figcaption class="text-center text-xs text-slate-500 italic mt-3">
-                            The paradox behind the report — what 92 Spring Boot engineers told us.
+                            The 11-page report you'll get the moment it ships.
                         </figcaption>
                     </figure>
 

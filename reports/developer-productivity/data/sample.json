@@ -78,14 +78,14 @@
     "sampleNoteHeading": "A note on the sample",
     "sampleNote": "The audience self-selected via a developer newsletter and LinkedIn distribution focused on Java and Spring Boot. The sample skews toward practitioners actively thinking about testing and AI - not the &ldquo;not-using-AI-yet&rdquo; long tail. Read the findings as a snapshot of <em>engaged, AI-aware</em> engineering teams rather than the global average.",
     "chartTitle": "Company size of respondents",
-    "chartCaption": "N = 88 · Question 5",
+    "chartCaption": "N = 92 · Question 5",
     "companySize": {
-      "n": 88,
+      "n": 92,
       "centerLabel": "RESPONDENTS",
       "segments": [
-        { "label": "Small &le; 50 Employees",      "count": 27, "share": 30.7, "color": "primary" },
-        { "label": "Medium &lt; 1,000 Employees",  "count": 28, "share": 31.8, "color": "hot" },
-        { "label": "Large &gt; 1,000 Employees",   "count": 33, "share": 37.5, "color": "neutral-dark" }
+        { "label": "Small &le; 50 Employees",      "count": 28, "share": 30.4, "color": "primary" },
+        { "label": "Medium &lt; 1,000 Employees",  "count": 29, "share": 31.5, "color": "hot" },
+        { "label": "Large &gt; 1,000 Employees",   "count": 35, "share": 38.0, "color": "neutral-dark" }
       ]
     },
     "callout": {
@@ -188,7 +188,7 @@
     "folio": "07 / 11",
     "headlineLines": ["Where Spring", "Boot teams", "get stuck."],
     "lede": "For automated testing inside Spring Boot codebases, what is your team&rsquo;s biggest bottleneck right now? <em>Pick your top frustration.</em>",
-    "chartTitle": "Q6 - Spring Boot automated testing bottlenecks",
+    "chartTitle": "Q4 - Spring Boot automated testing bottlenecks",
     "chartCaption": "N = 95 selections · % of total selections shown",
     "axisMax": 20,
     "bars": [

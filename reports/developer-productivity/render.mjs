@@ -15,6 +15,7 @@ const DATA_FILE = join(HERE, 'data', 'sample.json');
 const OUTPUT_DIR = join(HERE, 'output');
 const PUBLIC_DIR = resolve(HERE, '..', '..', 'static', 'documents');
 const LOGO_FILE = resolve(HERE, '..', '..', 'static', 'images', 'logo.png');
+const SPEAKER_FILE = resolve(HERE, '..', '..', 'static', 'images', 'rieckpil-speaker.jpeg');
 
 // Single editorial variant — fills the canonical lead-magnet filename that
 // Hugo's header/footer/report-success layouts already link to.
@@ -23,7 +24,7 @@ const VARIANTS = [
     key: 'editorial',
     cssHref: 'styles-editorial.css',
     outputName: 'report.pdf',
-    publicName: 'Spring-Boot-Developer-Productivity-Report-2026.pdf',
+    publicName: 'PragmaTech-Spring-Boot-Developer-Productivity-Report-2026.pdf',
   },
 ];
 
@@ -505,15 +506,17 @@ async function renderVariant({ browser, template, data, chunks, variant }) {
 }
 
 async function main() {
-  console.log('• reading template + data + logo');
-  const [template, rawJson, logoBytes] = await Promise.all([
+  console.log('• reading template + data + assets');
+  const [template, rawJson, logoBytes, speakerBytes] = await Promise.all([
     readFile(TEMPLATE_FILE, 'utf8'),
     readFile(DATA_FILE, 'utf8'),
     readFile(LOGO_FILE),
+    readFile(SPEAKER_FILE),
   ]);
   const data = JSON.parse(rawJson);
   const logoDataUri = `data:image/png;base64,${logoBytes.toString('base64')}`;
-  const chunks = { ...buildChunks(data), logoDataUri };
+  const speakerDataUri = `data:image/jpeg;base64,${speakerBytes.toString('base64')}`;
+  const chunks = { ...buildChunks(data), logoDataUri, speakerDataUri };
 
   await mkdir(OUTPUT_DIR, { recursive: true });
 

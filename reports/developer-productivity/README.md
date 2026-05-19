@@ -27,8 +27,8 @@ npm run build          # produces the PDF
 Outputs:
 
 - `output/report.pdf` - local working copy (gitignored).
-- `../../static/documents/Spring-Boot-Developer-Productivity-Report-2026.pdf` - the
-  committed lead magnet served by Hugo at `/documents/...pdf`.
+- `../../static/documents/PragmaTech-Spring-Boot-Developer-Productivity-Report-2026.pdf` -
+  the committed lead magnet served by Hugo at `/documents/...pdf`.
 
 ## Edit
 
