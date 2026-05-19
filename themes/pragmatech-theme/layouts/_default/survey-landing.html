@@ -111,11 +111,23 @@
                     <div id="mlb2-41246099" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-41246099">
                         <div class="ml-form-embedWrapper embedForm">
                             <div class="ml-form-embedBody ml-form-embedBodyDefault row-form">
+                                {{/* Hidden iframe used as the form's submission target so the
+                                     MailerLite POST stays inside the page (no new tab). The
+                                     MailerLite webforms.min.js library usually intercepts the
+                                     submit via JSONP and calls ml_webform_success_41246099 - but
+                                     when it doesn't (script blocked, network issue, etc.), the
+                                     native POST falls back into this iframe instead of opening
+                                     a new tab. The load listener below redirects the parent to
+                                     /report-success on the second iframe load (the response
+                                     to the form post). */}}
+                                <iframe name="mlSubmitTarget" id="mlSubmitTarget"
+                                        style="display:none" aria-hidden="true" tabindex="-1"></iframe>
+
                                 <form class="ml-block-form space-y-4"
                                       action="https://assets.mailerlite.com/jsonp/1613864/forms/187358602568140384/subscribe"
                                       data-code=""
                                       method="post"
-                                      target="_blank">
+                                      target="mlSubmitTarget">
                                     <div class="ml-form-formContent space-y-4">
                                         <div class="ml-form-fieldRow">
                                             <div class="ml-field-group ml-field-name ml-validate-required">
@@ -206,13 +218,33 @@
                     </style>
 
                     <script>
+                        // Success callback fired by MailerLite's webforms.min.js when JSONP
+                        // submission succeeds. We force a redirect to /report-success.
                         function ml_webform_success_41246099() {
                             try {
-                                window.top.location.href = 'https://pragmatech.digital/report-success';
+                                window.top.location.href = '{{ "report-success" | relURL }}';
                             } catch (e) {
-                                window.location.href = 'https://pragmatech.digital/report-success';
+                                window.location.href = '{{ "report-success" | relURL }}';
                             }
                         }
+
+                        // Fallback path: if the MailerLite JS does NOT intercept the submit
+                        // (script blocked, network issue, etc.), the form's native POST is
+                        // routed into the hidden iframe `mlSubmitTarget`. The iframe fires a
+                        // load event for its initial blank document AND a second time once
+                        // MailerLite responds to the form. We trigger the redirect on the
+                        // second load so the user always lands on the success page.
+                        (function () {
+                            var iframe = document.getElementById('mlSubmitTarget');
+                            if (!iframe) return;
+                            var loadCount = 0;
+                            iframe.addEventListener('load', function () {
+                                loadCount += 1;
+                                if (loadCount >= 2) {
+                                    window.location.href = '{{ "report-success" | relURL }}';
+                                }
+                            });
+                        })();
                     </script>
                     <script src="https://groot.mailerlite.com/js/w/webforms.min.js?vb397d78ebaa8a0f631d35384c46d781b" type="text/javascript"></script>
                     <script>
