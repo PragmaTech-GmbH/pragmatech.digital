@@ -1,0 +1,457 @@
+{{ define "main" }}
+{{ $bookUrl := .Site.Params.scheduleCallUrl | default "/contact" }}
+
+<!-- ============================================================ -->
+<!-- 1. HERO                                                      -->
+<!-- ============================================================ -->
+<section id="hero" class="hero-pattern relative overflow-hidden border-b border-slate-800">
+    <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-900/70 to-brand-900/30 pointer-events-none"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 lg:py-28">
+        <div class="grid lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-7">
+                <span class="inline-flex items-center gap-2 pl-2 pr-4 py-1.5 mb-6 rounded-full
+                             bg-white border border-brand-100
+                             text-[11px] font-bold tracking-[0.18em] uppercase text-brand-900
+                             shadow-sm shadow-brand-500/10">
+                    <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-brand-500 text-white">
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </span>
+                    SpringInspect 360 &middot; Spring Boot Codebase Audit
+                </span>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-[1.05]">
+                    Your Spring Boot codebase
+                    <span class="bg-gradient-to-r from-brand-400 to-emerald-400 text-transparent bg-clip-text">wasn't built for AI-speed development.</span>
+                </h1>
+                <p class="text-xl text-slate-300 mb-8 max-w-2xl leading-relaxed">
+                    SpringInspect 360 is a one-week, seven-dimension audit of your Spring Boot project. You get a 10-page PDF with concrete findings, a top-10 hotspot table, and a 90-day roadmap — so you know exactly where slow tests, brittle pipelines, and silent tech debt are dragging your team down.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 mb-6">
+                    <a href="{{ $bookUrl }}" target="_blank" rel="noopener"
+                       class="cta-primary inline-flex items-center justify-center gap-2
+                              bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400
+                              text-white px-8 py-4 rounded-lg font-bold text-lg
+                              shadow-lg shadow-brand-500/20 hover:shadow-xl hover:shadow-brand-500/30
+                              hover:-translate-y-0.5 transition-all">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                        Book a free 15-min call
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                        </svg>
+                    </a>
+                    <a href="#deliverable" class="inline-flex items-center justify-center gap-2 bg-slate-800/80 hover:bg-slate-700 border border-slate-700 hover:border-slate-600 text-white px-8 py-4 rounded-lg font-semibold transition-colors">
+                        See what's inside the audit
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+                        </svg>
+                    </a>
+                </div>
+                <p class="text-sm text-slate-500">15 minutes. No prep. No sales pressure.</p>
+            </div>
+
+            <!-- Right: tilted PDF cover mockup -->
+            <div class="lg:col-span-5">
+                <div class="relative">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-brand-500/20 to-transparent rounded-2xl blur-2xl"></div>
+                    <div class="relative transform rotate-2 hover:rotate-0 transition-transform duration-500">
+                        <div class="bg-slate-900/80 backdrop-blur border border-slate-700 rounded-2xl p-3 shadow-2xl shadow-black/40">
+                            <picture>
+                                <source srcset="/generated/images/products/spring-inspect-360.webp" type="image/webp">
+                                <img src="/images/products/spring-inspect-360.png"
+                                     alt="SpringInspect 360 audit report cover"
+                                     class="w-full h-auto rounded-xl border border-slate-700"
+                                     loading="eager">
+                            </picture>
+                        </div>
+                        <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-slate-950 border border-brand-500/40 rounded-full px-4 py-1.5 text-[11px] font-mono text-brand-300 shadow-lg whitespace-nowrap">
+                            10-page PDF &middot; 7 dimensions &middot; 1 roadmap
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 2. PROBLEM                                                   -->
+<!-- ============================================================ -->
+<section id="problem" class="py-20 sm:py-28 bg-slate-50 border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center mb-12">
+            <p class="text-[11px] tracking-[0.25em] uppercase text-brand-600 font-bold mb-3">Why this audit, why now</p>
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">AI made your team faster. Your codebase didn't get the memo.</h2>
+            <p class="text-lg text-slate-700 leading-relaxed">
+                Copilot, Cursor, and Claude Code doubled your PR throughput in six months. The test suite still takes 18 minutes. The pipeline still flakes on Tuesdays. Nobody fully trusts the green build. And every refactor risks waking up a part of the code only one person understands.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6 mb-12">
+            <div class="premium-card">
+                <div class="flex items-start gap-4">
+                    <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-red-50 border border-red-200 flex items-center justify-center">
+                        <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Tests that don't keep up.</h3>
+                        <p class="text-slate-700 leading-relaxed">Slow Surefire runs, flaky integration tests, coverage you can't defend in a review.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="premium-card">
+                <div class="flex items-start gap-4">
+                    <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-amber-50 border border-amber-200 flex items-center justify-center">
+                        <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Pipelines you can't predict.</h3>
+                        <p class="text-slate-700 leading-relaxed">Build times drifting upward, cache hit ratios nobody tracks, deploys gated on hope.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="premium-card">
+                <div class="flex items-start gap-4">
+                    <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-orange-50 border border-orange-200 flex items-center justify-center">
+                        <svg class="w-5 h-5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.24 17 6.657 18.166 8.5 18.236 10.708 17.657 18.657z M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Hotspots only the senior dev can navigate.</h3>
+                        <p class="text-slate-700 leading-relaxed">Files with high churn <em>and</em> high complexity <em>and</em> a single author — the bug factory you keep meaning to refactor.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="premium-card">
+                <div class="flex items-start gap-4">
+                    <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-slate-100 border border-slate-300 flex items-center justify-center">
+                        <svg class="w-5 h-5 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">No shared definition of "production-ready."</h3>
+                        <p class="text-slate-700 leading-relaxed">Tech lead, backend dev, and on-call each have a different answer.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p class="max-w-2xl mx-auto text-center text-xl text-slate-900 font-semibold leading-relaxed">
+            You don't need another linter. You need a map of where to invest the next quarter.
+        </p>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 3. DELIVERABLE                                               -->
+<!-- ============================================================ -->
+<section id="deliverable" class="py-20 sm:py-28 bg-slate-900 border-b border-slate-800">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center mb-14">
+            <p class="text-[11px] tracking-[0.25em] uppercase text-brand-400 font-bold mb-3">What you get</p>
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">One PDF. One walkthrough. One clear roadmap.</h2>
+            <p class="text-lg text-slate-300 leading-relaxed">
+                Every audit ships the same deliverables — no scope creep, no "we'll see how far we get".
+            </p>
+        </div>
+
+        <div class="space-y-4 mb-10">
+            {{ $items := slice
+                (dict "title" "A 10-page audit report (PDF)" "body" "Magazine-style layout with an executive summary, RAG heatmap (red/amber/green), and a maturity rating (1&ndash;5) per dimension. Designed for both your director and your team to read.")
+                (dict "title" "Seven dimensions, scored individually" "body" "Test Quality, Code Health, Spring Boot Hygiene, Build &amp; Pipeline, Security, Observability, Knowledge &amp; Docs.")
+                (dict "title" "A top-10 hotspot table" "body" "The intersection of high churn &times; high complexity &times; single-author files — sourced from your actual git history with code-maat. This is where your bugs already live.")
+                (dict "title" "Real CI metrics" "body" "Live data from GitHub Actions or Jenkins: median and p95 pipeline duration, success rate, queue time, slowest jobs, recent failures. Not a YAML read-through.")
+                (dict "title" "A prioritized 90-day roadmap" "body" "Three phases — quick wins in days 0&ndash;30, structural fixes in 30&ndash;60, durable improvements in 60&ndash;90.")
+                (dict "title" "A 30-minute walkthrough call with your team" "body" "I present the findings live so your tech lead, backend devs, and on-call rep can push back, ask questions, and align on what ships first.")
+            }}
+            {{ range $i, $item := $items }}
+            <div class="grid grid-cols-[auto_1fr] gap-6 items-start bg-slate-800/40 border border-slate-700/60 rounded-xl px-6 py-5 hover:border-brand-500/40 transition-colors">
+                <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-brand-500/20">
+                    {{ add $i 1 }}
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-white mb-1">{{ $item.title }}</h3>
+                    <p class="text-slate-300 leading-relaxed">{{ $item.body | safeHTML }}</p>
+                </div>
+            </div>
+            {{ end }}
+        </div>
+
+        <p class="text-center text-sm text-slate-400 italic">
+            Every claim in the report is traceable to a file, a commit, or a CI run. No vibes.
+        </p>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 4. HOW IT WORKS                                              -->
+<!-- ============================================================ -->
+<section id="how-it-works" class="py-20 sm:py-28 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center mb-14">
+            <p class="text-[11px] tracking-[0.25em] uppercase text-brand-600 font-bold mb-3">The week</p>
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">Kick off Monday. Get the PDF Friday.</h2>
+            <p class="text-lg text-slate-700 leading-relaxed">
+                One week of fieldwork. Three of your devs, 60&ndash;90 minutes each. Everything else runs in the background.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-4 mb-10">
+            {{ $days := slice
+                (dict "day" "Day 1" "title" "Kickoff & automated scans" "body" "30-minute kickoff call. Repo access. I run JaCoCo, Surefire, PMD, OWASP Dependency-Check, gitleaks, and code-maat against a non-invasive copy of your repo.")
+                (dict "day" "Day 2" "title" "Tech lead interview" "body" "60&ndash;90 minutes on architecture, tech debt, Spring Boot strategy, and what you'd change if you had a free week.")
+                (dict "day" "Day 3" "title" "Senior backend dev interview" "body" "60&ndash;90 minutes on testing pain, build pipeline reality, and code health.")
+                (dict "day" "Day 4" "title" "On-call / ops-aware dev interview" "body" "60&ndash;90 minutes on incidents, logging, tracing, and the gap between &ldquo;deployed&rdquo; and &ldquo;actually working&rdquo;.")
+                (dict "day" "Day 5" "title" "Synthesis & delivery" "body" "Final report drafted, PDF sent. 30-minute walkthrough call scheduled within the following week.")
+            }}
+            {{ range $i, $d := $days }}
+            <div class="relative bg-slate-50 border border-slate-200 rounded-xl p-5 hover:border-brand-500/60 hover:bg-white transition-colors">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-brand-500 text-white font-bold text-sm">{{ add $i 1 }}</span>
+                    <span class="text-[11px] tracking-[0.15em] uppercase text-slate-500 font-semibold">{{ $d.day }}</span>
+                </div>
+                <h3 class="text-base font-bold text-slate-900 mb-2 leading-snug">{{ $d.title }}</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">{{ $d.body | safeHTML }}</p>
+            </div>
+            {{ end }}
+        </div>
+
+        <div class="max-w-3xl mx-auto bg-slate-900 text-slate-200 rounded-xl px-6 py-5 flex items-start gap-4">
+            <svg class="w-6 h-6 flex-shrink-0 text-brand-400 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+            <p class="text-sm leading-relaxed">
+                <span class="font-semibold text-white">Your repo is never modified.</span> I work against an <code class="font-mono text-brand-300 text-xs bg-slate-800 px-1.5 py-0.5 rounded">rsync</code>'d copy, and the contract is verified on every run.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 5. DIFFERENTIATORS                                           -->
+<!-- ============================================================ -->
+<section id="differentiators" class="py-20 sm:py-28 bg-gradient-to-br from-slate-900 via-slate-900 to-brand-900/30 border-b border-slate-800 relative overflow-hidden">
+    <div class="absolute -top-32 -right-32 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl"></div>
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center mb-14">
+            <p class="text-[11px] tracking-[0.25em] uppercase text-brand-400 font-bold mb-3">What makes this different</p>
+            <h2 class="text-3xl md:text-4xl font-bold text-white">Three reasons this isn't another SonarQube screenshot.</h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-slate-800/40 border border-slate-700/60 rounded-2xl p-7 hover:border-brand-500/50 transition-colors">
+                <div class="w-12 h-12 rounded-lg bg-brand-500/10 border border-brand-500/30 flex items-center justify-center mb-5">
+                    <svg class="w-6 h-6 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3">Real pipeline data, not YAML peeking.</h3>
+                <p class="text-slate-300 leading-relaxed">
+                    Most audits read your CI config and call it done. This one pulls live GitHub Actions or Jenkins API data — median build time, p95 duration, success rate, top slow jobs and steps, recent failures. The pipeline section reflects what your team actually experiences.
+                </p>
+            </div>
+
+            <div class="bg-slate-800/40 border border-slate-700/60 rounded-2xl p-7 hover:border-brand-500/50 transition-colors">
+                <div class="w-12 h-12 rounded-lg bg-brand-500/10 border border-brand-500/30 flex items-center justify-center mb-5">
+                    <svg class="w-6 h-6 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3">Hotspots are about <em>where bugs live</em>, not where lines change.</h3>
+                <p class="text-slate-300 leading-relaxed">
+                    The audit uses code-maat (Adam Tornhill's industry-standard tool) to join churn with complexity. The result is a top-10 of files that are <em>both</em> hard to read <em>and</em> frequently touched — the actual bug factory. Not a list of "biggest files".
+                </p>
+            </div>
+
+            <div class="bg-slate-800/40 border border-slate-700/60 rounded-2xl p-7 hover:border-brand-500/50 transition-colors">
+                <div class="w-12 h-12 rounded-lg bg-brand-500/10 border border-brand-500/30 flex items-center justify-center mb-5">
+                    <svg class="w-6 h-6 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3">Non-invasive. Verified on every run.</h3>
+                <p class="text-slate-300 leading-relaxed">
+                    The tool captures <code class="font-mono text-brand-300 text-sm bg-slate-900 px-1.5 py-0.5 rounded">git status</code> before and after each scan. If a single byte changed in your repo, the run exits with an error. Your code is yours.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 6. FIT (Who this is for, who it isn't)                       -->
+<!-- ============================================================ -->
+<section id="fit" class="py-20 sm:py-28 bg-slate-50 border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center mb-14">
+            <p class="text-[11px] tracking-[0.25em] uppercase text-brand-600 font-bold mb-3">Who this is for</p>
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Built for Spring Boot teams shipping fast.</h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="bg-white border border-emerald-200 rounded-2xl p-7 shadow-sm">
+                <h3 class="text-xl font-bold text-slate-900 mb-5 flex items-center gap-2">
+                    <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-emerald-500 text-white">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                        </svg>
+                    </span>
+                    This is for you if
+                </h3>
+                <ul class="space-y-3">
+                    {{ $forYou := slice
+                        "You lead or work in a Spring Boot 2.x or 3.x codebase (Maven, Gradle Groovy, or Gradle Kotlin)"
+                        "Your test suite is the bottleneck nobody wants to own"
+                        "Your team uses AI coding tools and the safety net hasn't caught up"
+                        "You're planning a Spring Boot LTS upgrade and want to know what's hiding"
+                        "You inherited the codebase and want an outside read before your next planning cycle"
+                    }}
+                    {{ range $forYou }}
+                    <li class="flex items-start gap-3">
+                        <svg class="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        <span class="text-slate-700 leading-relaxed">{{ . }}</span>
+                    </li>
+                    {{ end }}
+                </ul>
+            </div>
+
+            <div class="bg-white border border-rose-200 rounded-2xl p-7 shadow-sm">
+                <h3 class="text-xl font-bold text-slate-900 mb-5 flex items-center gap-2">
+                    <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-rose-500 text-white">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </span>
+                    This isn't for you if
+                </h3>
+                <ul class="space-y-3">
+                    {{ $notForYou := slice
+                        "The project is greenfield (under 6 months old) — there isn't enough history to mine"
+                        "You're on a non-JVM stack — the analyzers are Spring Boot-specific"
+                        "You're looking for a generic &ldquo;code quality dashboard&rdquo; — this is a fixed, deliverable-driven audit, not a SaaS tool"
+                    }}
+                    {{ range $notForYou }}
+                    <li class="flex items-start gap-3">
+                        <svg class="w-5 h-5 text-rose-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                        <span class="text-slate-700 leading-relaxed">{{ . | safeHTML }}</span>
+                    </li>
+                    {{ end }}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 7. ABOUT PHILIP                                              -->
+<!-- ============================================================ -->
+<section id="about" class="py-20 sm:py-28 bg-slate-900 border-b border-slate-800 relative overflow-hidden">
+    <div class="absolute -top-32 -left-32 w-96 h-96 bg-brand-500/5 rounded-full blur-3xl"></div>
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center mb-14">
+            <p class="text-[11px] tracking-[0.25em] uppercase text-brand-400 font-bold mb-3">About the auditor</p>
+            <h2 class="text-3xl md:text-4xl font-bold text-white">The first 90 minutes of every engagement, productized.</h2>
+        </div>
+
+        <div class="grid lg:grid-cols-12 gap-10 items-center">
+            <div class="lg:col-span-8 order-2 lg:order-1">
+                <p class="text-lg text-slate-300 leading-relaxed mb-5">
+                    I'm <span class="font-bold text-white">Philip Riecks</span>. I've spent the last several years helping Spring Boot teams cut test execution time, harden their pipelines, and ship with confidence — through training, courses, and one-on-one consulting.
+                </p>
+                <p class="text-lg text-slate-300 leading-relaxed">
+                    SpringInspect 360 is the assessment I always wished existed when I walked into a new codebase. It's the first 90 minutes of every engagement, productized.
+                </p>
+
+                <div class="mt-8 flex flex-wrap items-center gap-4">
+                    <a href="{{ .Site.Params.linkedinUrl }}" target="_blank" rel="noopener"
+                       aria-label="LinkedIn"
+                       class="inline-flex items-center justify-center w-11 h-11 rounded-full bg-slate-800 border border-slate-700 text-slate-300 hover:bg-brand-500 hover:border-brand-500 hover:text-white transition-all">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.063 2.063 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    </a>
+                    <a href="{{ .Site.Params.githubUrl }}" target="_blank" rel="noopener"
+                       aria-label="GitHub"
+                       class="inline-flex items-center justify-center w-11 h-11 rounded-full bg-slate-800 border border-slate-700 text-slate-300 hover:bg-brand-500 hover:border-brand-500 hover:text-white transition-all">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.4 3-.405 1.02.005 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                    </a>
+                    <a href="mailto:mail@philipriecks.de"
+                       class="inline-flex items-center gap-2 text-sm font-semibold text-slate-300 hover:text-brand-400 transition-colors">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                        mail@philipriecks.de
+                    </a>
+                </div>
+            </div>
+
+            <div class="lg:col-span-4 order-1 lg:order-2">
+                <div class="relative max-w-xs mx-auto">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-brand-500/20 to-transparent rounded-2xl blur-xl"></div>
+                    <img src="/images/rieckpil-speaker.jpeg" alt="Philip Riecks"
+                         class="relative w-full h-auto rounded-2xl overflow-hidden border border-slate-700 shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 8. FAQ                                                       -->
+<!-- ============================================================ -->
+<section id="faq" class="py-20 sm:py-28 bg-slate-900 border-b border-slate-800">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <p class="text-[11px] tracking-[0.25em] uppercase text-brand-400 font-bold mb-3">FAQ</p>
+            <h2 class="text-3xl md:text-4xl font-bold text-white">Common questions</h2>
+        </div>
+
+        {{ partial "home/faq-accordion.html" (dict "faqs" .Params.faqs "style" "default" "id" "si360-faq") }}
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 9. FINAL CTA                                                 -->
+<!-- ============================================================ -->
+<section id="book" class="hero-pattern relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-900 to-brand-900/40 pointer-events-none"></div>
+    <div class="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 text-center">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+            Find out where your codebase actually stands.
+        </h2>
+        <p class="text-lg text-slate-300 mb-10 leading-relaxed">
+            15 minutes. No prep needed. We'll figure out if SpringInspect 360 is the right fit for your team.
+        </p>
+        <a href="{{ $bookUrl }}" target="_blank" rel="noopener"
+           class="inline-flex items-center justify-center gap-3
+                  bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400
+                  text-white px-10 py-5 rounded-lg font-bold text-lg
+                  shadow-xl shadow-brand-500/30 hover:shadow-2xl hover:shadow-brand-500/40
+                  hover:-translate-y-0.5 transition-all">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+            Book your free discovery call
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+        </a>
+        <p class="mt-6 text-sm text-slate-500">
+            Prefer email? <a href="mailto:mail@philipriecks.de" class="text-brand-400 hover:text-brand-300 underline-offset-4 hover:underline">mail@philipriecks.de</a>
+        </p>
+    </div>
+</section>
+{{ end }}
