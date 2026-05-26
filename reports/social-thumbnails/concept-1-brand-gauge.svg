@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#020617"/>
+      <stop offset="60%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#0c4a6e"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#22d0eb"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.7" cy="0.5" r="0.6">
+      <stop offset="0%" stop-color="#0ea5e9" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#0ea5e9" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="dots" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="1.5" cy="1.5" r="1" fill="#1e293b" opacity="0.55"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bgGrad)"/>
+  <rect width="1200" height="630" fill="url(#dots)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- Brand header bar -->
+  <g transform="translate(70,52)">
+    <image href="pragmatech-p-mark.png" x="0" y="0" width="42" height="55"/>
+    <text x="58" y="34" font-size="22" font-weight="800" fill="#ffffff" letter-spacing="3">PRAGMA<tspan fill="#22d0eb">TECH</tspan></text>
+    <text x="58" y="52" font-size="9" font-weight="600" fill="#64748b" letter-spacing="4.5">DIGITAL SOLUTIONS</text>
+  </g>
+
+  <!-- Top-right pill -->
+  <g transform="translate(1130,68)" text-anchor="end">
+    <rect x="-280" y="-22" rx="20" ry="20" width="280" height="38" fill="#0c4a6e" stroke="#0ea5e9" stroke-opacity="0.45"/>
+    <text x="-140" y="2" text-anchor="middle" font-size="12" font-weight="700" letter-spacing="3.2" fill="#bae6fd">AI-ERA  ·  30-DAY GUARANTEE</text>
+  </g>
+
+  <!-- Headline -->
+  <g transform="translate(70,225)">
+    <text x="0" y="0" font-size="56" font-weight="800" fill="#ffffff" letter-spacing="-1.4">50% Faster</text>
+    <text x="0" y="66" font-size="56" font-weight="800" fill="#ffffff" letter-spacing="-1.4">Spring Boot Builds.</text>
+    <text x="0" y="142" font-size="42" font-weight="800" fill="url(#accentGrad)" letter-spacing="-1">Guaranteed in 30 days.</text>
+    <text x="0" y="184" font-size="18" font-weight="500" fill="#94a3b8">Stop auditing AI code. Ship with zero fear.</text>
+  </g>
+
+  <!-- Bottom badge -->
+  <g transform="translate(70,500)">
+    <rect x="0" y="0" rx="8" ry="8" width="295" height="36" fill="#022c22" stroke="#10b981" stroke-opacity="0.5"/>
+    <circle cx="20" cy="18" r="9" fill="#10b981"/>
+    <path d="M15.5 18 L18.5 21 L24.5 14.5" stroke="#022c22" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="38" y="23" font-size="12" font-weight="700" letter-spacing="2.4" fill="#a7f3d0">100% RISK-FREE · MONEY-BACK PROMISE</text>
+  </g>
+
+  <!-- URL bottom -->
+  <g transform="translate(70,575)">
+    <text x="0" y="0" font-size="13" font-weight="600" letter-spacing="3" fill="#475569">pragmatech.digital</text>
+  </g>
+
+  <!-- Right side: dashboard card -->
+  <g transform="translate(720,135)">
+    <rect x="0" y="0" rx="22" ry="22" width="430" height="430" fill="#0b1220" stroke="#1e293b" stroke-width="1.5"/>
+    <g transform="translate(24,28)">
+      <circle cx="6" cy="6" r="6" fill="#ef4444"/>
+      <circle cx="26" cy="6" r="6" fill="#eab308"/>
+      <circle cx="46" cy="6" r="6" fill="#10b981"/>
+      <text x="78" y="11" font-size="13" font-family="ui-monospace, Menlo, monospace" fill="#64748b">build-pipeline.yml</text>
+      <text x="345" y="11" font-size="10" font-weight="700" letter-spacing="3" fill="#10b981">● LIVE</text>
+    </g>
+
+    <!-- Gauges -->
+    <g transform="translate(105,200)">
+      <circle r="68" fill="none" stroke="#1e293b" stroke-width="9"/>
+      <g transform="rotate(-90)">
+        <circle r="68" fill="none" stroke="#ef4444" stroke-width="9" stroke-linecap="round"
+                stroke-dasharray="320 427"/>
+      </g>
+      <text text-anchor="middle" y="3" font-size="34" font-weight="800" fill="#f87171">30m</text>
+      <text text-anchor="middle" y="26" font-size="10" font-weight="700" letter-spacing="3" fill="#64748b">BEFORE</text>
+    </g>
+    <text x="105" y="313" text-anchor="middle" font-size="12" fill="#94a3b8">Endless waits.</text>
+    <text x="105" y="329" text-anchor="middle" font-size="12" fill="#94a3b8">Devs lose flow.</text>
+
+    <g transform="translate(325,200)">
+      <circle r="68" fill="none" stroke="#1e293b" stroke-width="9"/>
+      <g transform="rotate(-90)">
+        <circle r="68" fill="none" stroke="#34d399" stroke-width="9" stroke-linecap="round"
+                stroke-dasharray="105 427"/>
+      </g>
+      <text text-anchor="middle" y="3" font-size="34" font-weight="800" fill="#34d399">3m</text>
+      <text text-anchor="middle" y="26" font-size="10" font-weight="700" letter-spacing="3" fill="#64748b">AFTER</text>
+    </g>
+    <text x="325" y="313" text-anchor="middle" font-size="12" fill="#94a3b8">Blazingly fast.</text>
+    <text x="325" y="329" text-anchor="middle" font-size="12" fill="#94a3b8">Instant feedback.</text>
+
+    <line x1="30" y1="360" x2="400" y2="360" stroke="#1e293b" stroke-width="1"/>
+    <text x="30" y="392" font-size="13" fill="#64748b">CI run time</text>
+    <text x="400" y="392" text-anchor="end" font-size="22" font-weight="800" font-family="ui-monospace, Menlo, monospace" fill="#34d399">−90%</text>
+  </g>
+</svg>

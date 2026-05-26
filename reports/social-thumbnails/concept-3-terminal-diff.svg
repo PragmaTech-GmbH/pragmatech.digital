@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#020617"/>
+      <stop offset="60%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#0c4a6e"/>
+    </linearGradient>
+    <linearGradient id="accent3" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#22d0eb"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+    <radialGradient id="glow3" cx="0.5" cy="0.5" r="0.6">
+      <stop offset="0%" stop-color="#0ea5e9" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#0ea5e9" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="dots3" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="1.5" cy="1.5" r="1" fill="#1e293b" opacity="0.55"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg3)"/>
+  <rect width="1200" height="630" fill="url(#dots3)"/>
+  <rect width="1200" height="630" fill="url(#glow3)"/>
+
+  <!-- Top brand bar -->
+  <g transform="translate(70,52)">
+    <image href="pragmatech-p-mark.png" x="0" y="0" width="42" height="55"/>
+    <text x="58" y="34" font-size="22" font-weight="800" fill="#ffffff" letter-spacing="3">PRAGMA<tspan fill="#22d0eb">TECH</tspan></text>
+    <text x="58" y="52" font-size="9" font-weight="600" fill="#64748b" letter-spacing="4.5">DIGITAL SOLUTIONS</text>
+  </g>
+  <g transform="translate(1130,68)" text-anchor="end">
+    <rect x="-160" y="-22" rx="20" ry="20" width="160" height="38" fill="#064e3b" stroke="#10b981" stroke-opacity="0.5"/>
+    <text x="-80" y="2" text-anchor="middle" font-size="12" font-weight="700" letter-spacing="3" fill="#a7f3d0">−90% CI TIME</text>
+  </g>
+
+  <!-- Headline -->
+  <g transform="translate(600,180)">
+    <text x="0" y="0" text-anchor="middle" font-size="44" font-weight="800" fill="#ffffff" letter-spacing="-1.2">From <tspan fill="#f87171">slow audits</tspan> to <tspan fill="url(#accent3)">blazing-fast builds.</tspan></text>
+    <text x="0" y="36" text-anchor="middle" font-size="18" font-weight="500" fill="#94a3b8">50% faster Spring Boot pipelines in 30 days — guaranteed.</text>
+  </g>
+
+  <!-- Side-by-side terminal cards -->
+  <!-- BEFORE -->
+  <g transform="translate(70,275)">
+    <rect x="0" y="0" rx="16" ry="16" width="510" height="270" fill="#0b1220" stroke="#7f1d1d" stroke-width="1.5"/>
+    <g transform="translate(20,24)">
+      <circle cx="6" cy="6" r="6" fill="#ef4444"/>
+      <circle cx="26" cy="6" r="6" fill="#eab308"/>
+      <circle cx="46" cy="6" r="6" fill="#10b981"/>
+      <text x="78" y="11" font-size="12" font-family="ui-monospace, Menlo, monospace" fill="#64748b">build · before</text>
+      <rect x="395" y="-2" rx="4" ry="4" width="55" height="20" fill="#7f1d1d"/>
+      <text x="423" y="12" text-anchor="middle" font-size="10" font-weight="800" letter-spacing="2" fill="#fecaca">FAIL</text>
+    </g>
+    <line x1="0" y1="50" x2="510" y2="50" stroke="#1e293b"/>
+    <g transform="translate(28,80)" font-family="ui-monospace, Menlo, monospace" font-size="13">
+      <text x="0" y="0" fill="#64748b">$ mvn verify</text>
+      <text x="0" y="24" fill="#94a3b8">[INFO] Running 1,284 tests...</text>
+      <text x="0" y="48" fill="#94a3b8">[WARN] Spring context reloaded 47×</text>
+      <text x="0" y="72" fill="#f87171">[FAIL] 3 flaky tests · retry loop</text>
+      <text x="0" y="96" fill="#94a3b8">[INFO] BUILD finished</text>
+    </g>
+    <line x1="20" y1="210" x2="490" y2="210" stroke="#1e293b" stroke-dasharray="3 3"/>
+    <g transform="translate(28,240)">
+      <text x="0" y="0" font-size="12" letter-spacing="2.5" font-weight="700" fill="#64748b">TOTAL TIME</text>
+      <text x="450" y="0" text-anchor="end" font-size="32" font-weight="800" font-family="ui-monospace, Menlo, monospace" fill="#f87171">30m 12s</text>
+    </g>
+  </g>
+
+  <!-- AFTER -->
+  <g transform="translate(620,275)">
+    <rect x="0" y="0" rx="16" ry="16" width="510" height="270" fill="#0b1220" stroke="#065f46" stroke-width="1.5"/>
+    <g transform="translate(20,24)">
+      <circle cx="6" cy="6" r="6" fill="#ef4444"/>
+      <circle cx="26" cy="6" r="6" fill="#eab308"/>
+      <circle cx="46" cy="6" r="6" fill="#10b981"/>
+      <text x="78" y="11" font-size="12" font-family="ui-monospace, Menlo, monospace" fill="#64748b">build · after</text>
+      <rect x="395" y="-2" rx="4" ry="4" width="55" height="20" fill="#065f46"/>
+      <text x="423" y="12" text-anchor="middle" font-size="10" font-weight="800" letter-spacing="2" fill="#a7f3d0">PASS</text>
+    </g>
+    <line x1="0" y1="50" x2="510" y2="50" stroke="#1e293b"/>
+    <g transform="translate(28,80)" font-family="ui-monospace, Menlo, monospace" font-size="13">
+      <text x="0" y="0" fill="#64748b">$ mvn verify</text>
+      <text x="0" y="24" fill="#94a3b8">[INFO] Running 1,284 tests...</text>
+      <text x="0" y="48" fill="#a7f3d0">[OK]   Context cached · 1×</text>
+      <text x="0" y="72" fill="#a7f3d0">[OK]   Parallel exec · 8 workers</text>
+      <text x="0" y="96" fill="#a7f3d0">[OK]   BUILD SUCCESS ✓</text>
+    </g>
+    <line x1="20" y1="210" x2="490" y2="210" stroke="#1e293b" stroke-dasharray="3 3"/>
+    <g transform="translate(28,240)">
+      <text x="0" y="0" font-size="12" letter-spacing="2.5" font-weight="700" fill="#64748b">TOTAL TIME</text>
+      <text x="450" y="0" text-anchor="end" font-size="32" font-weight="800" font-family="ui-monospace, Menlo, monospace" fill="#34d399">3m 04s</text>
+    </g>
+  </g>
+
+  <!-- Bottom strip -->
+  <g transform="translate(600,590)">
+    <text x="0" y="0" text-anchor="middle" font-size="13" font-weight="600" letter-spacing="3" fill="#ffffff">100% RISK-FREE  ·  MONEY-BACK PROMISE  ·  pragmatech.digital</text>
+  </g>
+</svg>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="0.5" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+    <linearGradient id="accent2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#22d0eb"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+    <radialGradient id="centerGlow" cx="0.5" cy="0.5" r="0.55">
+      <stop offset="0%" stop-color="#0ea5e9" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#0ea5e9" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="dots2" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.1" fill="#1e293b" opacity="0.5"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg2)"/>
+  <rect width="1200" height="630" fill="url(#dots2)"/>
+  <rect width="1200" height="630" fill="url(#centerGlow)"/>
+
+  <!-- Centered logo crown -->
+  <g transform="translate(600,52)">
+    <image href="pragmatech-p-mark.png" x="-30" y="0" width="60" height="78"/>
+    <text x="0" y="106" text-anchor="middle" font-size="20" font-weight="800" fill="#ffffff" letter-spacing="4">PRAGMA<tspan fill="#22d0eb">TECH</tspan></text>
+    <text x="0" y="124" text-anchor="middle" font-size="9" font-weight="600" fill="#64748b" letter-spacing="5">DIGITAL SOLUTIONS</text>
+  </g>
+
+  <!-- Divider with eyebrow -->
+  <g transform="translate(600,210)">
+    <line x1="-160" y1="0" x2="-95" y2="0" stroke="#334155" stroke-width="1"/>
+    <text x="0" y="5" text-anchor="middle" font-size="12" font-weight="700" letter-spacing="4" fill="#38bdf8">SPRING BOOT · AI-ERA PRODUCTIVITY</text>
+    <line x1="95" y1="0" x2="160" y2="0" stroke="#334155" stroke-width="1"/>
+  </g>
+
+  <!-- Big headline -->
+  <g transform="translate(600,275)">
+    <text x="0" y="0" text-anchor="middle" font-size="64" font-weight="800" fill="#ffffff" letter-spacing="-1.6">Cut your build time</text>
+    <text x="0" y="76" text-anchor="middle" font-size="64" font-weight="800" fill="url(#accent2)" letter-spacing="-1.6">in half. Guaranteed.</text>
+  </g>
+
+  <!-- Inline dual gauge strip -->
+  <g transform="translate(600,470)">
+    <!-- Before dial -->
+    <g transform="translate(-200,0)">
+      <circle r="42" fill="#0b1220" stroke="#1e293b" stroke-width="6"/>
+      <g transform="rotate(-90)">
+        <circle r="42" fill="none" stroke="#ef4444" stroke-width="6" stroke-linecap="round"
+                stroke-dasharray="198 264"/>
+      </g>
+      <text text-anchor="middle" y="2" font-size="22" font-weight="800" fill="#f87171">30m</text>
+      <text text-anchor="middle" y="18" font-size="8" font-weight="700" letter-spacing="2.5" fill="#64748b">BEFORE</text>
+    </g>
+
+    <!-- Arrow -->
+    <g transform="translate(-110,0)">
+      <line x1="0" y1="0" x2="50" y2="0" stroke="#475569" stroke-width="2" stroke-dasharray="4 3"/>
+      <polygon points="50,-6 62,0 50,6" fill="#475569"/>
+    </g>
+
+    <!-- Center label: −90% -->
+    <g transform="translate(-15,0)">
+      <rect x="-50" y="-22" rx="22" ry="22" width="110" height="44" fill="#064e3b" stroke="#10b981" stroke-opacity="0.5"/>
+      <text x="0" y="6" text-anchor="middle" font-size="22" font-weight="800" font-family="ui-monospace, Menlo, monospace" fill="#34d399">−90%</text>
+    </g>
+
+    <!-- Arrow 2 -->
+    <g transform="translate(55,0)">
+      <line x1="0" y1="0" x2="50" y2="0" stroke="#475569" stroke-width="2" stroke-dasharray="4 3"/>
+      <polygon points="50,-6 62,0 50,6" fill="#475569"/>
+    </g>
+
+    <!-- After dial -->
+    <g transform="translate(200,0)">
+      <circle r="42" fill="#0b1220" stroke="#1e293b" stroke-width="6"/>
+      <g transform="rotate(-90)">
+        <circle r="42" fill="none" stroke="#34d399" stroke-width="6" stroke-linecap="round"
+                stroke-dasharray="66 264"/>
+      </g>
+      <text text-anchor="middle" y="2" font-size="22" font-weight="800" fill="#34d399">3m</text>
+      <text text-anchor="middle" y="18" font-size="8" font-weight="700" letter-spacing="2.5" fill="#64748b">AFTER</text>
+    </g>
+  </g>
+
+  <!-- Bottom strip -->
+  <g transform="translate(600,580)">
+    <text x="0" y="0" text-anchor="middle" font-size="14" font-weight="600" letter-spacing="3" fill="#64748b">100% RISK-FREE  ·  30-DAY GUARANTEE  ·  pragmatech.digital</text>
+  </g>
+</svg>
