@@ -12,7 +12,7 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 const STATIC_DIR = resolve(HERE, '..', '..', 'static');
 const MAP_FILE = join(STATIC_DIR, 'images', 'webinar', 'tsbad-webinar-map-parts.png');
 const LOGO_FILE = join(STATIC_DIR, 'images', 'logo.png');
-const OUTPUT_FILE = join(STATIC_DIR, 'images', 'webinar', 'lunch-learn-social-thumbnail.png');
+const OUTPUT_FILE = join(STATIC_DIR, 'images', 'webinar', 'lunch-learn-social-thumbnail.jpg');
 
 async function toDataUri(filePath, mime) {
   const bytes = await readFile(filePath);
@@ -215,7 +215,8 @@ async function main() {
 
     await page.screenshot({
       path: OUTPUT_FILE,
-      type: 'png',
+      type: 'jpeg',
+      quality: 85,
       clip: { x: 0, y: 0, width: 1200, height: 630 },
       omitBackground: false,
     });

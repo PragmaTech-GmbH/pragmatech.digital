@@ -2,7 +2,7 @@
 title: "Testing Spring Boot Applications Demystified"
 description: "Free 60-minute lunch & learn for Java Spring Boot teams - Learn to ship quality software faster with confidence"
 layout: "free-webinar"
-share_image: "/images/webinar/lunch-learn-social-thumbnail.png"
+share_image: "/images/webinar/lunch-learn-social-thumbnail.jpg"
 aliases:
   - /confidence-in-every-commit
   - /free-webinar
