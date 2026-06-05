@@ -212,6 +212,22 @@
                 </div>
             </div>
 
+            <!-- Spoken at -->
+            {{ with $home.authority.conferences }}
+            <div class="mb-14 pt-10 border-t border-slate-800">
+                <p class="text-xs uppercase tracking-widest text-slate-500 mb-6 text-center">{{ $home.authority.conferencesLabel }}</p>
+                <div class="flex flex-wrap items-stretch justify-center gap-4 sm:gap-6">
+                    {{ range . }}
+                    <div class="flex items-center justify-center w-40 h-20 sm:w-48 sm:h-24 px-5
+                                bg-white rounded-xl border border-slate-200 shadow-sm
+                                transition-all hover:-translate-y-0.5 hover:shadow-lg" title="{{ .name }}">
+                        <img src="{{ .file }}" alt="{{ .name }} logo" class="max-h-12 sm:max-h-14 max-w-full w-auto object-contain" loading="lazy">
+                    </div>
+                    {{ end }}
+                </div>
+            </div>
+            {{ end }}
+
             <!-- KPI strip -->
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 pt-10 border-t border-slate-800">
                 {{ range $home.authority.kpis }}
