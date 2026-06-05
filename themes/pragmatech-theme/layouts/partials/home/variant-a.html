@@ -220,6 +220,14 @@
                     <div class="text-xs uppercase tracking-widest text-slate-500 mt-2">{{ .label }}</div>
                 </div>
                 {{ end }}
+                {{ with $home.authority.mvpBadge }}
+                <div class="flex flex-col items-center justify-center px-4">
+                    <a href="{{ .url }}" target="_blank" rel="noopener">
+                        <img src="{{ .image }}" alt="{{ .alt }}" class="h-10 md:h-11 w-auto" loading="lazy">
+                    </a>
+                    <div class="text-xs uppercase tracking-widest text-slate-500 mt-2 text-center">{{ .label }}</div>
+                </div>
+                {{ end }}
             </div>
 
             <!-- Books I've Written -->

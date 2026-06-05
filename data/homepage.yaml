@@ -56,6 +56,11 @@ authority:
   headline: "The Proven Track Record Behind the Speed"
   imageSubtitle: "Philip Riecks - International Speaker & Spring Boot Testing Expert"
   imageAlt: "Philip Riecks speaking at a conference"
+  mvpBadge:
+    image: "/images/mvp-badge-horizontal-blue.png"
+    alt: "Microsoft Most Valuable Professional (MVP) badge"
+    label: "Microsoft MVP for Java"
+    url: "https://mvp.microsoft.com/en-US/mvp/profile/85c99c75-69db-4573-941d-a8f42b1bc7f6"
   bullets:
     - title: "Battle-Tested Foundation"
       text: "Over 10 years on the developer frontlines and 6 years as a consultant inside the engine rooms of 10+ different teams."
@@ -72,7 +77,6 @@ authority:
     - { value: "10K",   label: "Newsletter Readers" }
     - { value: "8,500", label: "Academy Members" }
     - { value: "20+",   label: "International Talks" }
-    - { value: "8+",    label: "Years Spring Boot Blog" }
   socials:
     - { platform: "youtube",  label: "YouTube",  url: "" }
     - { platform: "linkedin", label: "LinkedIn", url: "" }
