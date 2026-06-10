@@ -28,7 +28,7 @@ painSection:
 
 painPoints:
   - category: "Productivity Killer"
-    title: "Agonizingly Slow Builds"
+    title: "Painfully Slow Builds"
     description: "Endless test runs constantly pull developers out of their flow, destroying motivation and causing expensive context switches."
     icon: "clock"
   - category: "The AI Time Bomb"
