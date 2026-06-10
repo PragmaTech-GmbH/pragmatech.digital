@@ -78,9 +78,9 @@ authority:
     - { value: "8,500", label: "Academy Members" }
     - { value: "20+",   label: "International Talks" }
   socials:
-    - { platform: "youtube",  label: "YouTube",  url: "" }
-    - { platform: "linkedin", label: "LinkedIn", url: "" }
-    - { platform: "github",   label: "GitHub",   url: "" }
+    - { platform: "youtube",  label: "YouTube",  url: "https://www.youtube.com/rieckpil" }
+    - { platform: "linkedin", label: "LinkedIn", url: "https://www.linkedin.com/in/rieckpil/" }
+    - { platform: "github",   label: "GitHub",   url: "https://github.com/rieckpil/" }
   conferencesLabel: "Spoken At"
   conferences:
     - { file: "/images/conferences/devoxx-belgium.svg", name: "Devoxx Belgium" }

@@ -214,7 +214,7 @@
 
             <!-- Spoken at -->
             {{ with $home.authority.conferences }}
-            <div class="mb-14 pt-10 border-t border-slate-800">
+            <div class="mb-14 pt-10">
                 <p class="text-xs uppercase tracking-widest text-slate-500 mb-6 text-center">{{ $home.authority.conferencesLabel }}</p>
                 <div class="flex flex-wrap items-stretch justify-center gap-4 sm:gap-6">
                     {{ range . }}
@@ -229,7 +229,7 @@
             {{ end }}
 
             <!-- KPI strip -->
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 pt-10 border-t border-slate-800">
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 pt-10">
                 {{ range $home.authority.kpis }}
                 <div class="text-center px-4">
                     <div class="text-3xl md:text-4xl font-bold bg-gradient-to-br from-brand-300 to-brand-500 bg-clip-text text-transparent">{{ .value }}</div>
