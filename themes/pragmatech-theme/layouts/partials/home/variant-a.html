@@ -6,6 +6,7 @@
 {{ $home := .Site.Data.homepage }}
 {{ $cases := index .Site.Data.testimonials "customer-cases" }}
 {{ $leaderQuotes := index .Site.Data.testimonials "consulting-comments" }}
+{{ $trainingQuotes := index .Site.Data.testimonials "training-comments" }}
 {{ $bookUrl := .Site.Params.scheduleCallUrl }}
 
 <section data-variant="a">
@@ -387,6 +388,31 @@
                     </div>
                 </article>
                 {{ end }}
+            </div>
+
+            <!-- Visually distinct sub-block: course / workshop / talk audiences -->
+            <div class="mt-20">
+                <div class="flex items-center gap-4 max-w-5xl mx-auto mb-10">
+                    <div class="h-px flex-1 bg-slate-800"></div>
+                    <p class="text-[11px] tracking-[0.25em] uppercase text-slate-500 font-bold whitespace-nowrap">From course students &amp; talk audiences</p>
+                    <div class="h-px flex-1 bg-slate-800"></div>
+                </div>
+
+                <!-- Compact accent-bordered cards, driven by data/testimonials/training-comments.yaml -->
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
+                    {{ range $trainingQuotes }}
+                    <figure class="bg-slate-900/60 border border-slate-800 border-l-2 border-l-brand-500/60 rounded-r-xl rounded-l-sm p-6 flex flex-col">
+                        <blockquote class="text-slate-300 text-sm leading-relaxed mb-5 flex-1">&ldquo;{{ .text | safeHTML }}&rdquo;</blockquote>
+                        <figcaption class="pt-4 border-t border-slate-800/80">
+                            <div class="text-white font-semibold text-sm">{{ .person }}</div>
+                            <div class="text-xs text-slate-400">
+                                {{ with .position }}{{ . }}{{ end }}{{ with .company }} · {{ . }}{{ end }}
+                            </div>
+                            {{ with .context }}<div class="text-[11px] text-brand-400/80 mt-1">{{ . }}</div>{{ end }}
+                        </figcaption>
+                    </figure>
+                    {{ end }}
+                </div>
             </div>
         </div>
     </section>

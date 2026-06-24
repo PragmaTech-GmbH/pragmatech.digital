@@ -18,3 +18,12 @@
 
 - name: "Schaeffler"
   logo: "schaeffler.png"
+
+- name: "Entur"
+  logo: "entur.png"
+
+- name: "Digiteal"
+  logo: "digiteal.png"
+
+- name: "Platform X"
+  logo: "platform-x.png"

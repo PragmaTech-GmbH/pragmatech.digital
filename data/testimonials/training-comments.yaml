@@ -1,0 +1,60 @@
+# Testimonials from course students, workshop participants, and talk/session audiences.
+# Rendered as a visually distinct sub-block within the "What tech leaders say" section.
+- text: >
+    As feedback, I really wanted to let you know that your courses are
+    genuinely excellent. Very focused and hands-on, far more so than many
+    of the other resources on the internet or YouTube that essentially stop
+    at Hello World. I've been a Java and Spring developer for many years, and
+    I learned a lot from you, especially about integration testing. Thank you
+    so much for that! It really helps me in my daily work.
+  person: "Oli"
+  position: "Course Student"
+  context: "TDD Course"
+
+- text: >
+    Honestly, it's the best course content on testing in general. Most
+    importantly, it gives you the structure - how to navigate the testing
+    field. Yet it still provides real-world examples. The content is
+    absolutely awesome. A good investment of money and time.
+  person: "Sergei Sukhoborov"
+  position: "Course Student"
+  context: "via LinkedIn DM"
+
+- text: >
+    The session was very insightful and easy to follow. Already 2 months
+    later we've been able to cut test execution time in half!
+  person: "Ludvik Bjørklund"
+  position: "Backend Developer"
+  company: "Team Payments"
+  context: "Session at Entur"
+
+- text: >
+    Philip delivered an outstanding session in our Spring Boot CoP, breaking
+    down testing concepts into clear, practical bites. His structured approach
+    to unit, sliced, and integration testing resonated with us. The session
+    sparked plenty of internal discussion and motivates dev teams to rethink
+    parts of their testing strategy. A truly valuable talk.
+  person: "Dustin Hütter"
+  position: "Engineer"
+  company: "REWE Digital"
+  context: "Spring Boot CoP"
+
+- text: >
+    We had Philip as a guest in our Spring Boot Community of Practice, and his
+    talk gave an excellent overview of the support the Spring Framework offers
+    for the various types of tests. We'll use this as a starting point for
+    further discussion, drawing on the very good material Philip provides.
+  person: "Stefan Scheidt"
+  position: "Engineer"
+  company: "REWE Digital"
+  context: "Spring Boot CoP"
+
+- text: >
+    A very well-structured talk that gave our developers a solid overview of
+    Spring Boot testing. Especially for less experienced colleagues, the
+    introduction was very easy to follow and helped surface existing gaps and
+    topics worth exploring more deeply. Thank you, Philip!
+  person: "Aaron Budick"
+  position: "Engineer"
+  company: "Nürnberger Versicherung"
+  context: "Internal Tech Talk"
