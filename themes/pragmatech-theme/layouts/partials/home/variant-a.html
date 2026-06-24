@@ -6,6 +6,7 @@
 {{ $home := .Site.Data.homepage }}
 {{ $cases := index .Site.Data.testimonials "customer-cases" }}
 {{ $leaderQuotes := index .Site.Data.testimonials "consulting-comments" }}
+{{ $trainingQuotes := index .Site.Data.testimonials "training-comments" }}
 {{ $bookUrl := .Site.Params.scheduleCallUrl }}
 
 <section data-variant="a">
@@ -126,15 +127,15 @@
                 <p class="font-mono text-sm text-slate-500">// reading: ./engineering-reality.log</p>
             </div>
 
-            <figure class="max-w-3xl mx-auto mb-12">
+            <figure class="max-w-4xl mx-auto mb-12">
                 <picture>
-                    <source srcset="/generated/images/lp/ai-speed-illusion-green.webp" type="image/webp">
-                    <img src="/images/lp/ai-speed-illusion-green.png"
-                         alt="The AI speed illusion: AI generates code in seconds, but verification, tests, and pipelines crawl behind."
+                    <source srcset="/generated/images/lp/attention-bottleneck.webp" type="image/webp">
+                    <img src="/images/lp/attention-bottleneck.png"
+                         alt="The attention bottleneck: AI agents create an infinite supply of code, but human time to audit, QA, and review it cannot scale - the bottleneck shifts from authoring to reviewing."
                          class="w-full h-auto rounded-xl ring-1 ring-slate-200 shadow-[0_18px_40px_-12px_rgba(15,23,42,0.18)]"
                          loading="lazy">
                 </picture>
-                <figcaption class="font-mono text-xs text-slate-500 text-center mt-3">// The AI speed illusion - your pipeline is the bottleneck, not the model</figcaption>
+                <figcaption class="font-mono text-xs text-slate-500 text-center mt-3">// The bottleneck has shifted from writing code to reviewing it</figcaption>
             </figure>
             <div class="bg-white border border-slate-200 rounded-xl overflow-hidden font-mono text-sm shadow-sm">
                 {{ range $i, $pain := $home.painPoints }}
@@ -276,6 +277,63 @@
     </section>
 
     <!-- ============================================================ -->
+    <!-- 3b. FAST FEEDBACK - the solution (light)                     -->
+    <!-- ============================================================ -->
+    {{ with $home.fastFeedback }}
+    <section class="py-20 sm:py-28 bg-slate-100 border-b border-slate-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center mb-12">
+                <p class="text-[11px] tracking-[0.3em] uppercase text-brand-600 font-bold mb-4">{{ .eyebrow }}</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">{{ .headline }}</h2>
+                <p class="text-lg text-slate-600">{{ .subheadline }}</p>
+            </div>
+
+            <figure class="max-w-4xl mx-auto">
+                <picture>
+                    <source srcset="/generated/images/lp/fast-feedback-foundation.webp" type="image/webp">
+                    <img src="/images/lp/fast-feedback-foundation.png"
+                         alt="{{ .imageAlt }}"
+                         class="w-full h-auto rounded-xl ring-1 ring-slate-200 shadow-[0_18px_40px_-12px_rgba(15,23,42,0.18)]"
+                         loading="lazy">
+                </picture>
+                <figcaption class="font-mono text-xs text-slate-500 text-center mt-3">{{ .figcaption }}</figcaption>
+            </figure>
+
+            <!-- DORA backing -->
+            <div class="mt-16 pt-12 border-t border-slate-200">
+                <div class="max-w-3xl mx-auto text-center mb-10">
+                    <h3 class="text-2xl md:text-3xl font-bold text-slate-900 mb-3">{{ .doraLabel }}</h3>
+                    <p class="text-base text-slate-600">{{ .doraIntro }}</p>
+                </div>
+
+                <figure class="max-w-4xl mx-auto bg-white rounded-xl ring-1 ring-slate-200 p-4 sm:p-6 shadow-sm mb-12">
+                    <picture>
+                        <source srcset="/generated/images/lp/dora-core-summary.webp" type="image/webp">
+                        <img src="/images/lp/dora-core-summary.png"
+                             alt="{{ .doraImageAlt }}"
+                             class="w-full h-auto"
+                             loading="lazy">
+                    </picture>
+                </figure>
+
+                {{ with .doraPoints }}
+                <div class="grid sm:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                    {{ range . }}
+                    <div class="flex items-start gap-3">
+                        <div class="flex-shrink-0 mt-1 w-6 h-6 rounded-full bg-brand-500/15 border border-brand-500/30 flex items-center justify-center">
+                            <svg class="w-3.5 h-3.5 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                        </div>
+                        <p class="text-base text-slate-700 leading-relaxed">{{ . }}</p>
+                    </div>
+                    {{ end }}
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </section>
+    {{ end }}
+
+    <!-- ============================================================ -->
     <!-- 4. BENEFITS - stacked rows (from Variant B)                  -->
     <!-- ============================================================ -->
     <section class="py-20 sm:py-28 bg-slate-900 border-b border-slate-800">
@@ -387,6 +445,31 @@
                     </div>
                 </article>
                 {{ end }}
+            </div>
+
+            <!-- Visually distinct sub-block: course / workshop / talk audiences -->
+            <div class="mt-20">
+                <div class="flex items-center gap-4 max-w-5xl mx-auto mb-10">
+                    <div class="h-px flex-1 bg-slate-800"></div>
+                    <p class="text-[11px] tracking-[0.25em] uppercase text-slate-500 font-bold whitespace-nowrap">From course students &amp; talk audiences</p>
+                    <div class="h-px flex-1 bg-slate-800"></div>
+                </div>
+
+                <!-- Compact accent-bordered cards, driven by data/testimonials/training-comments.yaml -->
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
+                    {{ range $trainingQuotes }}
+                    <figure class="bg-slate-900/60 border border-slate-800 border-l-2 border-l-brand-500/60 rounded-r-xl rounded-l-sm p-6 flex flex-col">
+                        <blockquote class="text-slate-300 text-sm leading-relaxed mb-5 flex-1">&ldquo;{{ .text | safeHTML }}&rdquo;</blockquote>
+                        <figcaption class="pt-4 border-t border-slate-800/80">
+                            <div class="text-white font-semibold text-sm">{{ .person }}</div>
+                            <div class="text-xs text-slate-400">
+                                {{ with .position }}{{ . }}{{ end }}{{ with .company }} · {{ . }}{{ end }}
+                            </div>
+                            {{ with .context }}<div class="text-[11px] text-brand-400/80 mt-1">{{ . }}</div>{{ end }}
+                        </figcaption>
+                    </figure>
+                    {{ end }}
+                </div>
             </div>
         </div>
     </section>

@@ -17,3 +17,5 @@ node_modules
 hugo_stats.json
 
 **/.claude/settings.local.json
+
+.playwright-mcp/

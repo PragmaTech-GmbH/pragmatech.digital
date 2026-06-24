@@ -7,27 +7,27 @@
                 <span class="font-bold text-xl text-white tracking-tight">Pragma<span class="text-brand-500">Tech</span></span>
             </a>
 
-            <div class="hidden md:block">
-                <div class="ml-10 flex items-baseline space-x-6">
-                    <a href="{{ "workshops" | relURL }}" class="flex items-center gap-2 text-slate-300 hover:text-brand-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+            <div class="hidden xl:block">
+                <div class="ml-8 flex items-baseline space-x-4 2xl:space-x-5">
+                    <a href="{{ "workshops" | relURL }}" class="flex items-center gap-2 text-slate-300 hover:text-brand-400 px-2 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                         </svg>
                         Workshops
                     </a>
-                    <a href="{{ "lunch-and-learn" | relURL }}" class="flex items-center gap-2 text-slate-300 hover:text-brand-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                    <a href="{{ "lunch-and-learn" | relURL }}" class="flex items-center gap-2 text-slate-300 hover:text-brand-400 px-2 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                         </svg>
                         Lunch &amp; Learn
                     </a>
-                    <a href="{{ "products/spring-test-profiler" | relURL }}" class="flex items-center gap-2 text-slate-300 hover:text-brand-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                    <a href="{{ "products/spring-test-profiler" | relURL }}" class="flex items-center gap-2 text-slate-300 hover:text-brand-400 px-2 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                         </svg>
                         Spring Test Profiler
                     </a>
-                    <a href="{{ "spring-boot-developer-productivity-survey" | relURL }}" class="relative flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white pl-4 pr-5 py-2 rounded-lg text-sm font-bold transition-all shadow-md hover:shadow-lg">
+                    <a href="{{ "spring-boot-developer-productivity-survey" | relURL }}" class="relative flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white pl-3 pr-4 py-2 rounded-lg text-sm font-bold whitespace-nowrap transition-all shadow-md hover:shadow-lg">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-6m4 6V7m4 10v-4M5 21h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2z" />
                         </svg>
@@ -37,8 +37,8 @@
                 </div>
             </div>
 
-            <div class="hidden md:block">
-                <a href="{{ .Site.Params.scheduleCallUrl | default "/contact" | relURL }}" class="flex items-center gap-2 bg-gradient-to-r from-brand-600 to-brand-500 text-white px-5 py-2.5 rounded-lg text-sm font-bold transition-all shadow-lg shadow-brand-500/20 hover:shadow-lg hover:from-brand-500 hover:to-brand-400">
+            <div class="hidden xl:block">
+                <a href="{{ .Site.Params.scheduleCallUrl | default "/contact" | relURL }}" class="flex items-center gap-2 bg-gradient-to-r from-brand-600 to-brand-500 text-white px-4 py-2.5 rounded-lg text-sm font-bold whitespace-nowrap transition-all shadow-lg shadow-brand-500/20 hover:shadow-lg hover:from-brand-500 hover:to-brand-400">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
@@ -47,7 +47,7 @@
             </div>
 
             <!-- Mobile menu button -->
-            <div class="-mr-2 flex md:hidden">
+            <div class="-mr-2 flex xl:hidden">
                 <button type="button" id="mobile-menu-button" class="bg-slate-800 inline-flex items-center justify-center p-2 rounded-md text-slate-400 hover:text-white hover:bg-slate-700 focus:outline-none" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="sr-only">Open main menu</span>
                     <i class="fas fa-bars"></i>
@@ -57,7 +57,7 @@
     </div>
 
     <!-- Mobile Menu -->
-    <div class="hidden md:hidden bg-slate-900 border-b border-slate-800" id="mobile-menu">
+    <div class="hidden xl:hidden bg-slate-900 border-b border-slate-800" id="mobile-menu">
         <div class="px-4 pt-2 pb-4 space-y-2">
             <a href="{{ "workshops" | relURL }}" class="flex items-center gap-3 text-slate-300 hover:text-white px-3 py-2 rounded-md text-base font-medium">
                 <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
