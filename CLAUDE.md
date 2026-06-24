@@ -38,3 +38,8 @@ It's used to showcase the company's services, blog posts, and other content rela
 - Create feature branches from `main`
 - Use descriptive commit messages
 - Reference related issues in commits when applicable
+
+## Image Inclusion
+- When I tell you to include an image, ensure first it's size is less than or equal 500kb
+- Always include the `.webp` version of an image
+- If the `.webp` version is not available, run `scripts/convert-to-webp.sh` to generate it from the original image

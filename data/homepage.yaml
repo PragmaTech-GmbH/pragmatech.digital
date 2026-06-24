@@ -103,6 +103,20 @@ authority:
       cover: "/images/books/java-testing-toolbox.jpg"
       link: "https://leanpub.com/java-testing-toolbox/"
 
+fastFeedback:
+  eyebrow: "The Solution"
+  headline: "Fast Feedback: The Engine in the AI World"
+  subheadline: "When AI generates code by the bucket, the bottleneck moves from writing it to verifying it. Fast feedback loops - automated testing and CI - are the protective engine that keep speed honest."
+  imageAlt: "Fast feedback as the agentic foundation: AI agents and massive code generation flow through fast feedback loops (CI and test automation) - the feedback engine - to deliver outcomes over motion and real value, not just velocity."
+  figcaption: "// Fast feedback is the engine that turns AI output into shipped, reliable value"
+  doraLabel: "Backed by the DORA research"
+  doraIntro: "DORA's Core Model puts \"Fast feedback\" alongside fast flow and a climate for learning as a capability that predicts software delivery performance - which in turn predicts organizational performance and well-being."
+  doraImageAlt: "The DORA Core Model: capabilities (climate for learning, fast flow, fast feedback) predict performance (software delivery and reliability), which predicts outcomes (organizational performance and well-being)."
+  doraPoints:
+    - "Throughput is no longer the constraint - human time, attention, and QA capacity is. The fixed limit has become people, not code."
+    - "The hard problem now is designing environments, feedback loops, and control systems so agents can build and maintain complex, reliable software at scale."
+    - "Unattended agents parallelize the work, but only fast feedback keeps scarce developer attention from becoming the next bottleneck."
+
 benefitsSection:
   headline: "Imagine Deploying in the AI Era with Zero Fear"
   subheadline: "The exact opposite of every pain point above - what life looks like 30 days in."
