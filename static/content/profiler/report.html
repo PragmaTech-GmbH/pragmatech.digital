@@ -1,30 +1,2535 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name=description
-          content="A comprehensive set of tools to analyze, optimize, and gain insights into your Spring and Spring Boot test suite for better test performance and reliability.">
-    <link rel=canonical href=https://pragmatech.digital/content/profiler/report/index.html>
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="https://pragmatech.digital/content/profiler/report/index.html>">
-    <meta property="og:title" content="Spring Test Profiler Live Demo Report">
-    <meta property="og:description"
-          content="A comprehensive set of tools to analyze, optimize, and gain insights into your Spring and Spring Boot test suite for better test performance and reliability.">
-    <meta property="og:image"
-          content="https://pragmatech.digital/images/products/spring-test-profiler-preview-image.png">
-    <meta name=twitter:card content="summary_large_image">
-    <meta name=twitter:url content="https://pragmatech.digital/content/profiler/report/index.html>">
-    <meta name=twitter:title content="Spring Test Profiler Live Demo Report">
-    <meta name=twitter:description
-          content="A comprehensive set of tools to analyze, optimize, and gain insights into your Spring and Spring Boot test suite for better test performance and reliability.">
-    <meta name=twitter:image
-          content="https://pragmatech.digital/images/products/spring-test-profiler-preview-image.png">
-    <title>Spring Test Profiler Live Demo Report</title>
-    <link rel="icon"
-          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧪</text></svg>">
-    <script src="https://d3js.org/d3.v7.min.js" integrity="sha384-CjloA8y00+1SDAUkjs099PVfnY2KmDC2BZnws9kh8D/lX1s46w6EPhpXdqMfjK6i" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="static/css/spring-test-profiler.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+        content="A comprehensive set of tools to analyze, optimize, and gain insights into your Spring and Spring Boot test suite for better test performance and reliability.">
+  <link rel="canonical" href="https://pragmatech.digital/content/profiler/report.html">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://pragmatech.digital/content/profiler/report.html">
+  <meta property="og:title" content="Spring Test Profiler Live Demo Report">
+  <meta property="og:description"
+        content="A comprehensive set of tools to analyze, optimize, and gain insights into your Spring and Spring Boot test suite for better test performance and reliability.">
+  <meta property="og:image"
+        content="https://pragmatech.digital/images/products/spring-test-profiler-preview-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://pragmatech.digital/content/profiler/report.html">
+  <meta name="twitter:title" content="Spring Test Profiler Live Demo Report">
+  <meta name="twitter:description"
+        content="A comprehensive set of tools to analyze, optimize, and gain insights into your Spring and Spring Boot test suite for better test performance and reliability.">
+  <meta name="twitter:image"
+        content="https://pragmatech.digital/images/products/spring-test-profiler-preview-image.png">
+
+  <title>Spring Test Profiler Live Demo Report</title>
+  <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧪</text></svg>">
+  <script src="https://d3js.org/d3.v7.min.js" integrity="sha384-CjloA8y00+1SDAUkjs099PVfnY2KmDC2BZnws9kh8D/lX1s46w6EPhpXdqMfjK6i" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/diff@5.2.0/dist/diff.min.js" integrity="sha384-lJJVaUgxmk/PVfQnAsGN1QuJZrE+n6bg2EMu33yVZOJ2av/3UzTHbmnPCI7ENJYa" crossorigin="anonymous"></script>
+  <style>* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+h2 {
+    color: #34495e;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.timestamp {
+    color: #7f8c8d;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.theory-section {
+    background: white;
+    border-radius: 8px;
+    padding: 20px 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.theory-header {
+    cursor: pointer;
+    user-select: none;
+    padding: 10px 0;
+    border-bottom: 1px solid #ecf0f1;
+    margin-bottom: 20px;
+    transition: background-color 0.2s ease;
+}
+
+.theory-header:hover {
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    padding: 10px 15px;
+    margin: 0 -15px 20px -15px;
+}
+
+.theory-header h2 {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #2c3e50;
+}
+
+.toggle-icon {
+    font-size: 14px;
+    color: #7f8c8d;
+    transition: transform 0.3s ease;
+    display: inline-block;
+    width: 20px;
+}
+
+.toggle-icon.expanded {
+    /* Arrow direction is handled by JavaScript text content changes */
+}
+
+.theory-subtitle {
+    color: #7f8c8d;
+    font-size: 14px;
+    margin: 5px 0 0 30px;
+    font-style: italic;
+}
+
+.theory-content {
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.theory-content h3 {
+    color: #2c3e50;
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+.theory-content ul {
+    margin: 15px 0;
+    padding-left: 25px;
+}
+
+.theory-content li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+.cache-behavior {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 25px 0;
+}
+
+.cache-hit, .cache-miss {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    border-left: 4px solid;
+}
+
+.cache-hit {
+    border-color: #27ae60;
+}
+
+.cache-miss {
+    border-color: #e74c3c;
+}
+
+.cache-hit h4, .cache-miss h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.docs-links {
+    background: #ecf0f1;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 25px;
+}
+
+.docs-links h3 {
+    margin-top: 0;
+    color: #2c3e50;
+}
+
+.docs-links a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.docs-links a:hover {
+    text-decoration: underline;
+}
+
+/* Context caching explainer animation (X-ray scanner, 24s auto-loop) */
+.caching-animation {
+    margin: 25px auto;
+    max-width: 760px;
+}
+
+.caching-animation svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: #ffffff;
+    border: 1px solid #ecf0f1;
+    border-radius: 8px;
+}
+
+.caching-animation text {
+    font-family: inherit;
+    text-anchor: middle;
+}
+
+.caching-animation .xray-scanner-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    fill: #7f8c8d;
+}
+
+.caching-animation .xray-scanner-frame {
+    fill: #f8f9fa;
+    stroke: #2c3e50;
+    stroke-width: 2;
+}
+
+.caching-animation .xray-test-card-one rect {
+    fill: #ffffff;
+    stroke: #3498db;
+    stroke-width: 2;
+}
+
+.caching-animation .xray-card-annotation {
+    font-family: 'SFMono-Regular', Consolas, 'Courier New', monospace;
+    font-size: 11px;
+    fill: #8e44ad;
+}
+
+.caching-animation .xray-card-name {
+    font-size: 12px;
+    font-weight: 700;
+    fill: #2c3e50;
+}
+
+.caching-animation .xray-beam {
+    fill: #3498db;
+}
+
+.caching-animation .xray-pill rect {
+    fill: #eafaf1;
+    stroke: #27ae60;
+    stroke-width: 1.5;
+}
+
+.caching-animation .xray-pill text {
+    font-size: 11px;
+    fill: #1e8449;
+}
+
+.caching-animation .xray-fingerprint rect {
+    fill: #2c3e50;
+}
+
+.caching-animation .xray-fingerprint-type {
+    font-family: 'SFMono-Regular', Consolas, 'Courier New', monospace;
+    font-size: 11px;
+    fill: #ecf0f1;
+}
+
+.caching-animation .xray-fingerprint-hash,
+.caching-animation .xray-slot-hash {
+    font-family: 'SFMono-Regular', Consolas, 'Courier New', monospace;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.caching-animation .xray-hash-green {
+    fill: #2ecc71;
+}
+
+.caching-animation .xray-hash-blue {
+    fill: #3498db;
+}
+
+.caching-animation .xray-hash-orange {
+    fill: #e67e22;
+}
+
+.caching-animation .xray-shelf-label {
+    font-size: 12px;
+    font-weight: 700;
+    fill: #7f8c8d;
+}
+
+.caching-animation .xray-slot rect {
+    fill: #ffffff;
+    stroke: #bdc3c7;
+    stroke-width: 1.5;
+}
+
+.caching-animation .xray-slot-empty {
+    fill: none;
+    stroke: #d5dbdb;
+    stroke-width: 1.5;
+    stroke-dasharray: 6 5;
+}
+
+.caching-animation .xray-slot-type {
+    font-size: 11px;
+    fill: #7f8c8d;
+}
+
+.caching-animation .xray-hit-glow {
+    fill: rgba(39, 174, 96, 0.12);
+    stroke: #27ae60;
+    stroke-width: 3;
+}
+
+.caching-animation .xray-hit-note {
+    font-size: 12px;
+    font-weight: 700;
+    fill: #27ae60;
+}
+
+.caching-animation .xray-miss-flash rect {
+    fill: rgba(231, 76, 60, 0.08);
+    stroke: #e74c3c;
+    stroke-width: 3;
+}
+
+.caching-animation .xray-miss-note {
+    font-size: 12px;
+    font-weight: 700;
+    fill: #e74c3c;
+}
+
+.caching-animation .xray-gear {
+    font-size: 34px;
+    fill: #7f8c8d;
+    transform-box: fill-box;
+    transform-origin: center;
+}
+
+.caching-animation .xray-build-note {
+    font-size: 12px;
+    font-weight: 700;
+    fill: #e67e22;
+}
+
+.caching-animation .xray-outro-glow rect {
+    fill: none;
+    stroke: #3498db;
+    stroke-width: 3;
+}
+
+/* Animated elements share one 24s cycle; each keyframe block carves out its scene window */
+.caching-animation .xray-test-card-one {
+    opacity: 0;
+    animation: xrayTestCardOne 24s ease-in-out infinite;
+}
+
+.caching-animation .xray-beam {
+    opacity: 0;
+    animation: xrayBeam 24s linear infinite;
+}
+
+.caching-animation .xray-pill {
+    opacity: 0;
+}
+
+.caching-animation .xray-pill-1 { animation: xrayPillOne 24s ease-in-out infinite; }
+.caching-animation .xray-pill-2 { animation: xrayPillTwo 24s ease-in-out infinite; }
+.caching-animation .xray-pill-3 { animation: xrayPillThree 24s ease-in-out infinite; }
+.caching-animation .xray-pill-4 { animation: xrayPillFour 24s ease-in-out infinite; }
+.caching-animation .xray-pill-5 { animation: xrayPillFive 24s ease-in-out infinite; }
+.caching-animation .xray-pill-6 { animation: xrayPillSix 24s ease-in-out infinite; }
+
+.caching-animation .xray-fingerprint-one {
+    opacity: 0;
+    animation: xrayFingerprintOne 24s ease-in-out infinite;
+}
+
+.caching-animation .xray-fingerprint-two {
+    opacity: 0;
+    animation: xrayFingerprintTwo 24s ease-in-out infinite;
+}
+
+.caching-animation .xray-hit-glow,
+.caching-animation .xray-hit-note {
+    opacity: 0;
+    animation: xrayHitPulse 24s ease-in-out infinite;
+}
+
+.caching-animation .xray-miss-flash,
+.caching-animation .xray-miss-note {
+    opacity: 0;
+    animation: xrayMissFlash 24s ease-in-out infinite;
+}
+
+.caching-animation .xray-gear {
+    opacity: 0;
+    animation: xrayGear 24s linear infinite;
+}
+
+.caching-animation .xray-build-note {
+    opacity: 0;
+    animation: xrayBuildNote 24s ease-in-out infinite;
+}
+
+.caching-animation .xray-slot-three {
+    opacity: 0;
+    animation: xraySlotThree 24s ease-in-out infinite;
+}
+
+.caching-animation .xray-outro-glow {
+    opacity: 0;
+    animation: xrayOutroGlow 24s ease-in-out infinite;
+}
+
+@keyframes xrayTestCardOne {
+    0% { opacity: 0; transform: translateX(0); }
+    2%, 4% { opacity: 1; transform: translateX(0); }
+    13% { transform: translateX(275px); }
+    34% { opacity: 1; transform: translateX(275px); }
+    38%, 100% { opacity: 0; transform: translateX(275px); }
+}
+
+@keyframes xrayBeam {
+    0%, 15% { opacity: 0; transform: translateX(0); }
+    17% { opacity: 0.8; }
+    33% { opacity: 0.8; transform: translateX(148px); }
+    35%, 100% { opacity: 0; transform: translateX(148px); }
+}
+
+@keyframes xrayPillOne {
+    0%, 17% { opacity: 0; }
+    18.5%, 38% { opacity: 1; }
+    42%, 100% { opacity: 0; }
+}
+
+@keyframes xrayPillTwo {
+    0%, 20% { opacity: 0; }
+    21.5%, 38% { opacity: 1; }
+    42%, 100% { opacity: 0; }
+}
+
+@keyframes xrayPillThree {
+    0%, 23% { opacity: 0; }
+    24.5%, 38% { opacity: 1; }
+    42%, 100% { opacity: 0; }
+}
+
+@keyframes xrayPillFour {
+    0%, 26% { opacity: 0; }
+    27.5%, 38% { opacity: 1; }
+    42%, 100% { opacity: 0; }
+}
+
+@keyframes xrayPillFive {
+    0%, 29% { opacity: 0; }
+    30.5%, 38% { opacity: 1; }
+    42%, 100% { opacity: 0; }
+}
+
+@keyframes xrayPillSix {
+    0%, 32% { opacity: 0; }
+    33.5%, 38% { opacity: 1; }
+    42%, 100% { opacity: 0; }
+}
+
+@keyframes xrayFingerprintOne {
+    0%, 38% { opacity: 0; transform: translate(0, 0); }
+    42% { opacity: 1; }
+    50% { transform: translate(0, 0); }
+    55% { transform: translate(-170px, 26px); }
+    62% { opacity: 1; }
+    66%, 100% { opacity: 0; transform: translate(-170px, 26px); }
+}
+
+@keyframes xrayHitPulse {
+    0%, 54% { opacity: 0; }
+    56% { opacity: 1; }
+    58% { opacity: 0.35; }
+    60%, 64% { opacity: 1; }
+    67%, 100% { opacity: 0; }
+}
+
+@keyframes xrayFingerprintTwo {
+    0%, 66% { opacity: 0; transform: translate(0, 0); }
+    69% { opacity: 1; }
+    70% { transform: translate(0, 0); }
+    74% { transform: translate(170px, 26px); }
+    78% { opacity: 1; }
+    81%, 100% { opacity: 0; transform: translate(170px, 26px); }
+}
+
+@keyframes xrayMissFlash {
+    0%, 73% { opacity: 0; }
+    74.5% { opacity: 1; }
+    76% { opacity: 0.3; }
+    77.5%, 79% { opacity: 1; }
+    81%, 100% { opacity: 0; }
+}
+
+@keyframes xrayGear {
+    0%, 76% { opacity: 0; transform: rotate(0deg); }
+    78% { opacity: 1; }
+    82% { opacity: 1; transform: rotate(300deg); }
+    84%, 100% { opacity: 0; transform: rotate(360deg); }
+}
+
+@keyframes xrayBuildNote {
+    0%, 76% { opacity: 0; }
+    78%, 83% { opacity: 1; }
+    85%, 100% { opacity: 0; }
+}
+
+@keyframes xraySlotThree {
+    0%, 81% { opacity: 0; }
+    84%, 100% { opacity: 1; }
+}
+
+@keyframes xrayOutroGlow {
+    0%, 86% { opacity: 0; }
+    88% { opacity: 0.9; }
+    92% { opacity: 0.4; }
+    96% { opacity: 0.9; }
+    100% { opacity: 0; }
+}
+
+/* Captions cross-fade in sync with the scenes */
+.caching-animation-captions {
+    position: relative;
+    min-height: 48px;
+    margin-top: 12px;
+}
+
+.caching-animation-captions .xray-caption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: #2c3e50;
+    font-size: 14px;
+    line-height: 1.5;
+    opacity: 0;
+}
+
+.caching-animation-captions .xray-caption-1 { animation: xrayCaptionOne 24s ease-in-out infinite; }
+.caching-animation-captions .xray-caption-2 { animation: xrayCaptionTwo 24s ease-in-out infinite; }
+.caching-animation-captions .xray-caption-3 { animation: xrayCaptionThree 24s ease-in-out infinite; }
+.caching-animation-captions .xray-caption-4 { animation: xrayCaptionFour 24s ease-in-out infinite; }
+.caching-animation-captions .xray-caption-5 { animation: xrayCaptionFive 24s ease-in-out infinite; }
+.caching-animation-captions .xray-caption-6 { animation: xrayCaptionSix 24s ease-in-out infinite; }
+
+@keyframes xrayCaptionOne {
+    0% { opacity: 0; }
+    2%, 13% { opacity: 1; }
+    16%, 100% { opacity: 0; }
+}
+
+@keyframes xrayCaptionTwo {
+    0%, 15% { opacity: 0; }
+    18%, 33% { opacity: 1; }
+    36%, 100% { opacity: 0; }
+}
+
+@keyframes xrayCaptionThree {
+    0%, 35% { opacity: 0; }
+    38%, 48% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+@keyframes xrayCaptionFour {
+    0%, 50% { opacity: 0; }
+    53%, 63% { opacity: 1; }
+    66%, 100% { opacity: 0; }
+}
+
+@keyframes xrayCaptionFive {
+    0%, 65% { opacity: 0; }
+    68%, 82% { opacity: 1; }
+    85%, 100% { opacity: 0; }
+}
+
+@keyframes xrayCaptionSix {
+    0%, 85% { opacity: 0; }
+    88%, 98% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* Static fallback frame for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .caching-animation * {
+        animation: none !important;
+    }
+
+    .caching-animation .xray-fingerprint-one,
+    .caching-animation .xray-slot-three,
+    .caching-animation-captions .xray-caption-3 {
+        opacity: 1;
+    }
+}
+
+.execution-info {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.execution-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.execution-detail strong {
+    color: #7f8c8d;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.execution-detail span {
+    color: #2c3e50;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .execution-info {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .execution-detail {
+        flex-direction: row;
+        gap: 8px;
+    }
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.summary-card {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.summary-card h3 {
+    color: #7f8c8d;
+    font-size: 14px;
+    font-weight: normal;
+    margin-bottom: 10px;
+}
+
+.summary-card .value {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.summary-card.passed .value { color: #27ae60; }
+.summary-card.failed .value { color: #e74c3c; }
+.summary-card.disabled .value { color: #95a5a6; }
+.summary-card.aborted .value { color: #f39c12; }
+
+/* Info icon tooltip */
+.info-icon {
+    position: relative;
+    cursor: help;
+    font-size: 14px;
+    color: #bdc3c7;
+    margin-left: 4px;
+    vertical-align: middle;
+    transition: color 0.2s ease;
+}
+
+.info-icon:hover {
+    color: #3498db;
+}
+
+.info-icon:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #2c3e50;
+    color: #fff;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 1.4;
+    padding: 8px 12px;
+    border-radius: 6px;
+    white-space: normal;
+    width: 240px;
+    text-align: left;
+    z-index: 100;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+}
+
+.info-icon:hover::before {
+    content: '';
+    position: absolute;
+    bottom: calc(100% + 2px);
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: #2c3e50;
+    z-index: 100;
+    pointer-events: none;
+}
+
+/* Help card styles */
+.summary-card.help-card {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    border: none;
+}
+
+.summary-card.help-card h3 {
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.help-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60px;
+}
+
+.help-link {
+    color: #2c3e50;
+    background: white;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+    padding: 8px 12px;
+    border: 2px solid white;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    text-align: center;
+    display: inline-block;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.help-link:hover {
+    background: #f8f9fa;
+    border-color: #e9ecef;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    color: #1a252f;
+}
+
+.cache-stats {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.cache-metric {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+.cache-metric:last-child {
+    border-bottom: none;
+}
+
+.cache-metric .label {
+    font-weight: 500;
+}
+
+.cache-metric .value {
+    font-weight: bold;
+}
+
+.hit-rate {
+    color: #27ae60;
+}
+
+.cache-overview {
+    margin-bottom: 25px;
+    border-bottom: 2px solid #ecf0f1;
+    padding-bottom: 20px;
+}
+
+/* Annotation Filter Styles */
+.annotation-filter-container {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    border-left: 4px solid #9b59b6;
+}
+
+.annotation-filter-container h4 {
+    margin: 0 0 12px 0;
+    color: #2c3e50;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.annotation-filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.annotation-filter-btn {
+    padding: 6px 16px;
+    border: 2px solid #bdc3c7;
+    border-radius: 20px;
+    background: white;
+    color: #2c3e50;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+.annotation-filter-btn:hover {
+    border-color: #7f8c8d;
+    background: #ecf0f1;
+}
+
+.annotation-filter-btn.active {
+    color: white;
+    border-color: transparent;
+}
+
+.annotation-filter-btn.filter-all.active {
+    background: #2c3e50;
+    border-color: #2c3e50;
+}
+
+.annotation-filter-btn.filter-SpringBootTest.active {
+    background: #27ae60;
+    border-color: #27ae60;
+}
+
+.annotation-filter-btn.filter-WebMvcTest.active {
+    background: #3498db;
+    border-color: #3498db;
+}
+
+.annotation-filter-btn.filter-DataJpaTest.active {
+    background: #e67e22;
+    border-color: #e67e22;
+}
+
+.annotation-filter-btn.filter-DataMongoTest.active {
+    background: #8e44ad;
+    border-color: #8e44ad;
+}
+
+.annotation-filter-btn.filter-JdbcTest.active {
+    background: #16a085;
+    border-color: #16a085;
+}
+
+.annotation-filter-btn.filter-JsonTest.active {
+    background: #d35400;
+    border-color: #d35400;
+}
+
+.annotation-filter-btn.filter-RestClientTest.active {
+    background: #2980b9;
+    border-color: #2980b9;
+}
+
+.annotation-filter-btn.filter-WebFluxTest.active {
+    background: #1abc9c;
+    border-color: #1abc9c;
+}
+
+.annotation-filter-btn.filter-GraphQlTest.active {
+    background: #e91e63;
+    border-color: #e91e63;
+}
+
+.annotation-filter-btn.filter-ContextConfiguration.active {
+    background: #607d8b;
+    border-color: #607d8b;
+}
+
+.annotation-filter-btn.filter-Unknown.active {
+    background: #95a5a6;
+    border-color: #95a5a6;
+}
+
+.annotation-filter-summary {
+    font-size: 13px;
+    color: #7f8c8d;
+    font-style: italic;
+}
+
+/* Annotation Badge Styles */
+.annotation-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: none;
+    letter-spacing: 0.3px;
+}
+
+.annotation-SpringBootTest {
+    background: #d5f4e6;
+    color: #1e7e34;
+}
+
+.annotation-WebMvcTest {
+    background: #d6eaf8;
+    color: #1a5276;
+}
+
+.annotation-DataJpaTest {
+    background: #fde8d0;
+    color: #a04000;
+}
+
+.annotation-DataMongoTest {
+    background: #e8daef;
+    color: #6c3483;
+}
+
+.annotation-JdbcTest {
+    background: #d1f2eb;
+    color: #0e6655;
+}
+
+.annotation-JsonTest {
+    background: #f6ddcc;
+    color: #a04000;
+}
+
+.annotation-RestClientTest {
+    background: #d4e6f1;
+    color: #1a5276;
+}
+
+.annotation-WebFluxTest {
+    background: #d1f2eb;
+    color: #0b5345;
+}
+
+.annotation-GraphQlTest {
+    background: #fadbd8;
+    color: #943126;
+}
+
+.annotation-ContextConfiguration {
+    background: #d5d8dc;
+    color: #2c3e50;
+}
+
+.annotation-Unknown {
+    background: #eaecee;
+    color: #7f8c8d;
+}
+
+@media (max-width: 768px) {
+    .annotation-filter-buttons {
+        gap: 6px;
+    }
+
+    .annotation-filter-btn {
+        padding: 5px 12px;
+        font-size: 12px;
+    }
+}
+
+.context-cache-details h3 {
+    margin-bottom: 15px;
+    color: #2c3e50;
+    font-size: 18px;
+}
+
+.cache-entry {
+    background: #f8f9fa;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-left: 4px solid #3498db;
+}
+
+.cache-entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.cache-id {
+    color: #2c3e50;
+    font-family: monospace;
+    font-size: 14px;
+}
+
+.bean-count {
+    color: #7f8c8d;
+    font-size: 14px;
+}
+
+.context-stats {
+    margin: 10px 0;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.stat-row:last-child {
+    margin-bottom: 0;
+}
+
+.stat-label {
+    color: #34495e;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.stat-value {
+    color: #2c3e50;
+    font-size: 13px;
+    font-family: monospace;
+    font-weight: 600;
+}
+
+.test-classes {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.test-classes .test-class {
+    color: #34495e;
+    font-family: monospace;
+    font-size: 13px;
+}
+
+.test-class {
+    background: white;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.test-class-header {
+    padding: 15px 20px;
+    background: #34495e;
+    color: white;
+    border-radius: 8px 8px 0 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.test-class-header:hover {
+    background: #2c3e50;
+}
+
+.test-class-stats {
+    display: flex;
+    gap: 15px;
+    font-size: 14px;
+}
+
+.test-methods {
+    padding: 20px;
+    display: none;
+}
+
+.test-methods.show {
+    display: block;
+}
+
+.test-method {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-left: 4px solid;
+    background: #f8f9fa;
+}
+
+.test-method.passed {
+    border-color: #27ae60;
+}
+
+.test-method.failed {
+    border-color: #e74c3c;
+}
+
+.test-method.disabled {
+    border-color: #95a5a6;
+}
+
+.test-method.aborted {
+    border-color: #f39c12;
+}
+
+.test-method-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.test-method-name {
+    font-family: 'Courier New', monospace;
+    font-weight: 500;
+}
+
+.test-duration {
+    color: #7f8c8d;
+    font-size: 14px;
+}
+
+.execution-overview {
+    background: #e8f5e8;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-left: 4px solid #27ae60;
+}
+
+.sort-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #7f8c8d;
+}
+
+.sort-btn {
+    padding: 6px 14px;
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+    background: white;
+    color: #34495e;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.sort-btn:hover {
+    background: #ecf0f1;
+    border-color: #95a5a6;
+}
+
+.sort-btn.active {
+    background: #34495e;
+    color: white;
+    border-color: #34495e;
+}
+
+.test-class-package {
+    font-size: 12px;
+    color: #7f8c8d;
+    font-family: 'Courier New', monospace;
+}
+
+.context-info {
+    background: #f0f8ff;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-left: 4px solid #3498db;
+}
+
+.context-info h4 {
+    margin: 0 0 10px 0;
+    color: #2c3e50;
+    font-size: 14px;
+}
+
+.context-metrics {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.context-metric {
+    background: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 13px;
+    border: 1px solid #bdc3c7;
+}
+
+.test-method-info {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.test-status {
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    background: #ecf0f1;
+    color: #2c3e50;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.test-reason {
+    margin-top: 8px;
+    padding: 8px;
+    background: #fff3cd;
+    border-radius: 4px;
+    font-size: 13px;
+    border-left: 3px solid #ffc107;
+}
+
+.error-details {
+    margin-top: 10px;
+    padding: 10px;
+    background: #fee;
+    border-radius: 4px;
+    font-size: 12px;
+    border-left: 3px solid #e74c3c;
+}
+
+.error-details h5 {
+    margin: 0 0 8px 0;
+    color: #c0392b;
+    font-size: 13px;
+}
+
+.error-details pre {
+    margin: 0;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    white-space: pre-wrap;
+    overflow-x: auto;
+    line-height: 1.4;
+}
+
+.cache-keys-section {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.cache-key-item {
+    background: #f8f9fa;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-left: 4px solid #3498db;
+}
+
+.cache-key-name {
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 8px;
+}
+
+.cache-key-usage {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.cache-key-stat {
+    background: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 13px;
+    border: 1px solid #bdc3c7;
+}
+
+.test-classes-list {
+    margin-top: 10px;
+}
+
+.test-class-tag {
+    display: inline-block;
+    background: #e3f2fd;
+    color: #1976d2;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    margin: 2px 4px 2px 0;
+    border: 1px solid #bbdefb;
+}
+
+.context-configs-section {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.context-config-item {
+    border: 1px solid #ecf0f1;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 15px;
+    background: #f8f9fa;
+}
+
+.context-config-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 10px;
+}
+
+.context-config-id {
+    font-weight: bold;
+    color: #2c3e50;
+    font-size: 16px;
+}
+
+.context-config-test-count {
+    background: #3498db;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 14px;
+}
+
+.context-bean-count {
+    background: #9b59b6;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 14px;
+}
+
+.config-details {
+    background: white;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 10px 0;
+    font-family: monospace;
+    font-size: 12px;
+    overflow-x: auto;
+}
+
+.config-detail-item {
+    margin: 5px 0;
+    display: flex;
+    align-items: flex-start;
+}
+
+.config-detail-key {
+    font-weight: bold;
+    color: #7f8c8d;
+    min-width: 150px;
+    margin-right: 10px;
+}
+
+.config-detail-value {
+    color: #2c3e50;
+    word-break: break-word;
+    white-space: pre-line;
+}
+
+.context-test-classes {
+    margin-top: 10px;
+}
+
+.context-test-class {
+    display: inline-block;
+    background: #e8f4f8;
+    color: #2c3e50;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    font-family: monospace;
+}
+
+/* Context complexity analysis styles */
+.context-complexity {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 6px;
+    background-color: #f8f9fa;
+    border-left: 4px solid #bdc3c7;
+}
+
+.complexity-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+}
+
+/* Footer styles */
+.footer {
+    margin-top: 50px;
+    padding: 20px 0;
+    border-top: 2px solid #e9ecef;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    text-align: center;
+    font-size: 13px;
+    color: #6c757d;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-content p {
+    margin: 5px 0;
+    line-height: 1.6;
+}
+
+.footer a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: #2980b9;
+    text-decoration: underline;
+}
+
+/* Optimization Section Styles */
+.optimization-section {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.optimization-section h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.optimization-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #ecf0f1;
+}
+
+.optimization-metric {
+    background: #f8f9fa;
+    border-radius: 6px;
+    padding: 15px;
+    text-align: center;
+    border-left: 4px solid #3498db;
+}
+
+.optimization-metric.potential-savings {
+    border-left-color: #27ae60;
+    background: linear-gradient(135deg, #d5f4e6 0%, #f8f9fa 100%);
+}
+
+.optimization-metric.wasted-time {
+    border-left-color: #e74c3c;
+    background: linear-gradient(135deg, #fde8e8 0%, #f8f9fa 100%);
+}
+
+.optimization-metric .label {
+    display: block;
+    font-size: 14px;
+    color: #7f8c8d;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.optimization-metric .value {
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+.optimization-metric .value.large {
+    font-size: 32px;
+    color: #27ae60;
+}
+
+.optimization-metric .percentage {
+    display: block;
+    font-size: 12px;
+    color: #7f8c8d;
+    font-style: italic;
+}
+
+.optimization-opportunities h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.opportunities-list {
+    display: grid;
+    gap: 15px;
+}
+
+.opportunity-card {
+    background: #f8f9fa;
+    border-radius: 6px;
+    padding: 15px;
+    border-left: 4px solid #f39c12;
+}
+
+.opportunity-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.opportunity-header .test-class {
+    font-family: monospace;
+    font-size: 14px;
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.opportunity-header .load-time {
+    background: #e74c3c;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.opportunity-details {
+    margin-bottom: 10px;
+    color: #7f8c8d;
+    font-size: 13px;
+}
+
+.opportunity-recommendation {
+    color: #34495e;
+    font-size: 14px;
+    line-height: 1.5;
+    background: white;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.optimization-tips {
+    margin-top: 30px;
+}
+
+.optimization-tips h3 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.tip-card {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    border-left: 4px solid #3498db;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tip-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.tip-card .tip-icon {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.tip-card h4 {
+    color: #2c3e50;
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+.tip-card p {
+    color: #7f8c8d;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.impact-analysis {
+    margin-top: 30px;
+    background: linear-gradient(135deg, #e8f5e8 0%, #f8f9fa 100%);
+    border-radius: 8px;
+    padding: 20px;
+    border-left: 4px solid #27ae60;
+}
+
+.impact-analysis h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.impact-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.impact-metric {
+    text-align: center;
+    flex: 1;
+    min-width: 120px;
+}
+
+.impact-metric .impact-title {
+    font-size: 14px;
+    color: #7f8c8d;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.impact-metric .impact-value {
+    font-size: 20px;
+    font-weight: bold;
+    color: #27ae60;
+}
+
+.no-optimization-data {
+    text-align: center;
+    padding: 40px 20px;
+    color: #7f8c8d;
+    font-style: italic;
+}
+
+/* Responsive adjustments for optimization section */
+@media (max-width: 768px) {
+    .optimization-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .tips-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .impact-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .opportunity-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+}
+
+/* Timeline Section Styles */
+.timeline-section {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.timeline-section h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.timeline-summary {
+    display: flex;
+    justify-content: space-around;
+    background: #f8f9fa;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-left: 4px solid #9b59b6;
+}
+
+.timeline-metric {
+    text-align: center;
+}
+
+.timeline-metric .label {
+    display: block;
+    font-size: 14px;
+    color: #7f8c8d;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.timeline-metric .value {
+    font-size: 20px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.timeline-legend {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 6px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #2c3e50;
+}
+
+.legend-color {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+}
+
+.legend-color.creation {
+    background-color: #e74c3c;
+}
+
+.legend-color.active {
+    background-color: #27ae60;
+}
+
+.legend-color.cached {
+    background-color: #3498db;
+}
+
+.timeline-chart-container {
+    position: relative;
+    height: 400px;
+    margin-bottom: 30px;
+    background: white;
+    border: 1px solid #ecf0f1;
+    border-radius: 6px;
+    padding: 15px;
+}
+
+.timeline-details {
+    margin-bottom: 30px;
+}
+
+.timeline-details h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.timeline-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.timeline-table th {
+    background: #34495e;
+    color: white;
+    padding: 12px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.timeline-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #ecf0f1;
+    font-size: 14px;
+}
+
+.timeline-table tr:last-child td {
+    border-bottom: none;
+}
+
+.timeline-table tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.context-name {
+    font-family: monospace;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.phase-badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.phase-badge.phase-creation {
+    background-color: #fde8e8;
+    color: #e74c3c;
+}
+
+.phase-badge.phase-active {
+    background-color: #d5f4e6;
+    color: #27ae60;
+}
+
+.phase-badge.phase-cached {
+    background-color: #e8f4f8;
+    color: #3498db;
+}
+
+.time-value, .duration-value {
+    font-family: monospace;
+    color: #7f8c8d;
+    font-weight: 500;
+}
+
+.details {
+    color: #34495e;
+    font-style: italic;
+}
+
+.timeline-insights {
+    background: linear-gradient(135deg, #f8f4ff 0%, #f8f9fa 100%);
+    border-radius: 8px;
+    padding: 20px;
+    border-left: 4px solid #9b59b6;
+}
+
+.timeline-insights h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.insights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.insight-card {
+    background: white;
+    border-radius: 6px;
+    padding: 15px;
+    border-left: 4px solid #9b59b6;
+}
+
+.insight-card h4 {
+    color: #2c3e50;
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+.insight-card p {
+    color: #7f8c8d;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.no-timeline-data {
+    text-align: center;
+    padding: 40px 20px;
+    color: #7f8c8d;
+    font-style: italic;
+}
+
+/* Responsive adjustments for timeline section */
+@media (max-width: 768px) {
+    .timeline-legend {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+
+    .timeline-summary {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .insights-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .timeline-chart-container {
+        height: 300px;
+    }
+
+    .timeline-table {
+        font-size: 12px;
+    }
+
+    .timeline-table th,
+    .timeline-table td {
+        padding: 8px;
+    }
+}
+
+/* Context Comparison Visualizer Styles */
+.context-comparison-controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    flex-wrap: wrap;
+}
+
+.dropdown-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 250px;
+}
+
+.dropdown-container label {
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 14px;
+}
+
+.context-dropdown {
+    padding: 10px 12px;
+    border: 1px solid #bdc3c7;
+    border-radius: 6px;
+    font-size: 14px;
+    background: white;
+    color: #2c3e50;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+}
+
+.context-dropdown:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.1);
+}
+
+.context-dropdown:hover {
+    border-color: #3498db;
+}
+
+.vs-separator {
+    font-size: 18px;
+    font-weight: bold;
+    color: #7f8c8d;
+    margin: 0 10px;
+    align-self: flex-end;
+    margin-bottom: 8px;
+}
+
+.compare-button {
+    padding: 10px 20px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    align-self: flex-end;
+    margin-bottom: 8px;
+}
+
+.compare-button:hover:not(:disabled) {
+    background: #2980b9;
+    transform: translateY(-1px);
+}
+
+.compare-button:disabled {
+    background: #bdc3c7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.comparison-legend {
+    display: none;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 20px;
+    padding: 15px 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #2c3e50;
+}
+
+.legend-color {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1px solid #34495e;
+}
+
+.legend-color.same-config {
+    background-color: #27ae60;
+}
+
+.legend-color.different-values {
+    background-color: #e74c3c;
+}
+
+.legend-color.only-in-a {
+    background-color: #f39c12;
+}
+
+.legend-color.only-in-b {
+    background-color: #9b59b6;
+}
+
+.comparison-visualization {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    min-height: 400px;
+}
+
+.comparison-visualization svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+#test-classes-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+
+/* Responsive adjustments for context comparison */
+@media (max-width: 768px) {
+    .context-comparison-controls {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+    }
+
+    .dropdown-container {
+        min-width: unset;
+    }
+
+    .vs-separator {
+        align-self: center;
+        margin: 0;
+    }
+
+    .compare-button {
+        align-self: stretch;
+        margin: 0;
+    }
+
+    .comparison-legend {
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .comparison-visualization {
+        padding: 10px;
+        overflow-x: auto;
+    }
+
+}
+
+/* Enhanced Context Comparison Styles */
+.detailed-comparison-container {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin-top: 30px;
+    overflow: hidden;
+    border: 1px solid #e9ecef;
+}
+
+.detailed-comparison-title {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    margin: 0;
+    padding: 20px 30px;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    border-bottom: 3px solid #2980b9;
+}
+
+.detailed-comparison-content {
+    display: flex;
+    gap: 0;
+    min-height: 300px;
+}
+
+.context-detail-card {
+    flex: 1;
+    padding: 30px;
+    position: relative;
+}
+
+.context-detail-card:first-child {
+    border-right: 2px solid #ecf0f1;
+    background: linear-gradient(135deg, #f8f9fa, #ffffff);
+}
+
+.context-detail-card:last-child {
+    background: linear-gradient(135deg, #ffffff, #f8f9fa);
+}
+
+.context-detail-title {
+    color: #2c3e50;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 20px 0;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #3498db;
+    text-align: center;
+    position: relative;
+}
+
+.context-detail-title::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: #e74c3c;
+}
+
+.context-detail-value {
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #2c3e50;
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+    word-break: break-word;
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+.context-detail-value:empty {
+    color: #6c757d;
+    font-style: italic;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.context-detail-value:empty::before {
+    content: 'Click on an attribute circle above to see detailed comparison';
+}
+
+.context-detail-value pre {
+    margin: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-x: auto;
+    min-width: 0;
+}
+
+.context-detail-value .highlight-same {
+    background: #d4edda;
+    color: #155724;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-weight: 600;
+}
+
+.context-detail-value .highlight-different {
+    background: #f8d7da;
+    color: #721c24;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-weight: 600;
+}
+
+.context-detail-value .attribute-name {
+    font-weight: 700;
+    color: #495057;
+    display: block;
+    margin-bottom: 8px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #dee2e6;
+}
+
+/* Enhanced circle styles for clickable indicators */
+.comparison-visualization circle[data-clickable="true"] {
+    cursor: pointer;
+    transition: all 0.2s ease;
+    stroke-width: 2;
+}
+
+.comparison-visualization circle[data-clickable="true"]:hover {
+    stroke-width: 3;
+    filter: drop-shadow(0 0 8px rgba(52, 152, 219, 0.4));
+    transform: scale(1.05);
+}
+
+.comparison-visualization circle[data-clickable="true"].selected {
+    stroke: #f39c12;
+    stroke-width: 4;
+    filter: drop-shadow(0 0 12px rgba(243, 156, 18, 0.6));
+}
+
+/* Test Class Search Styles */
+.test-class-search-container {
+    margin-bottom: 25px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    border-left: 4px solid #3498db;
+}
+
+.test-class-search-container h4 {
+    margin: 0 0 15px 0;
+    color: #2c3e50;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.search-instructions {
+    margin: 10px 0 15px 0;
+    color: #6c757d;
+    font-size: 13px;
+    font-style: italic;
+}
+
+.search-input-container {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.test-class-search-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #dee2e6;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    transition: border-color 0.2s ease;
+    background: white;
+}
+
+.test-class-search-input:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.test-class-suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #dee2e6;
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    display: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.test-class-suggestions.show {
+    display: block;
+}
+
+.suggestion-item {
+    padding: 10px 16px;
+    cursor: pointer;
+    border-bottom: 1px solid #f1f3f4;
+    transition: background-color 0.2s ease;
+}
+
+.suggestion-item:hover {
+    background-color: #f8f9fa;
+}
+
+.suggestion-item:last-child {
+    border-bottom: none;
+}
+
+.suggestion-class-name {
+    font-weight: 600;
+    color: #2c3e50;
+    display: block;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 13px;
+}
+
+.suggestion-context-id {
+    font-size: 12px;
+    color: #6c757d;
+    margin-top: 2px;
+    display: block;
+}
+
+.test-class-search-results {
+    display: none;
+    background: white;
+    border-radius: 6px;
+    border: 1px solid #dee2e6;
+    padding: 15px;
+}
+
+.test-class-search-results.show {
+    display: block;
+}
+
+.search-results-header {
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 12px;
+    font-size: 14px;
+}
+
+.search-result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    background: #f8f9fa;
+    border-radius: 4px;
+    border-left: 3px solid #3498db;
+}
+
+.search-result-item:last-child {
+    margin-bottom: 0;
+}
+
+.search-result-class {
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.search-result-context {
+    font-size: 12px;
+    color: #6c757d;
+    background: #e9ecef;
+    padding: 3px 8px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.search-result-context:hover {
+    background-color: #dee2e6;
+}
+
+/* Responsive design for detailed comparison */
+@media (max-width: 768px) {
+    .detailed-comparison-content {
+        flex-direction: column;
+    }
+
+    .context-detail-card:first-child {
+        border-right: none;
+        border-bottom: 2px solid #ecf0f1;
+    }
+
+    .context-detail-card {
+        padding: 20px;
+    }
+
+    .detailed-comparison-title {
+        padding: 15px 20px;
+        font-size: 16px;
+    }
+
+    .test-class-search-container {
+        padding: 15px;
+    }
+
+    .search-result-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+}
+
+.diff-container {
+    border: 1px solid #d0d7de;
+    overflow: hidden;
+    font-size: 12px;
+}
+
+.difference-container {
+    display: flex;
+    gap: 20px;
+}
+
+.diff-column {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: #fefefe;
+    padding: 5px;
+    font-family: monospace;
+    flex: 1;
+}
+
+.symbol {
+    text-align: center;
+    font-weight: bold;
+}
+
+.num {
+    display: flex;
+    justify-content: flex-end;
+    width: 40px;
+    color: #656d76;
+    margin-right: 8px;
+    padding: 0 8px;
+    flex-shrink: 0;
+    border-right: 1px solid #d0d7de;
+    min-width: 30px;
+    text-align: right;
+}
+
+.code {
+    flex: 1;
+    padding: 2px 6px;
+}
+
+.same {
+    display: flex;
+    background-color: #f6f8fa;
+    border-left: 3px solid #d0d7de;
+    min-height: 20px;
+}
+
+.different {
+    display: flex;
+    align-items: center;
+    background-color: #f6f8fa;
+    border-left: 3px solid #d0d7de;
+    min-height: 20px;
+}
+
+.empty {
+    background: #fefefe;
+}
+
+.empty-line {
+    background-color: #f8f9fa;
+    border-left: 3px solid #dee2e6;
+    min-height: 20px;
+    display: flex;
+    gap: 8px;
+}
+</style>
 </head>
 <body>
 <div class="container">
@@ -32,7 +2537,7 @@
   <p>Understanding when and how many Spring ApplicationContexts are created in your test suite allows you to optimize
     build times by leveraging Spring TestContext's context caching feature, which reuses already started contexts.</p>
   <br/>
-  <div class="timestamp">Generated at: 2025-08-14 15:34:39</div>
+  <div class="timestamp">Generated at: 2026-07-23 14:17:30</div>
 
   <!-- Theory Section Fragment -->
   <div class="theory-section">
@@ -45,6 +2550,110 @@
         </div>
         <div class="theory-content" id="theory-content" style="display: none;">
             <p>Spring Test Framework provides <strong>context caching</strong> to improve test performance by reusing ApplicationContext instances across multiple test classes when they share the same configuration.</p>
+
+            <div class="caching-animation" aria-label="Animation showing how Spring builds a cache key from the test configuration and reuses matching ApplicationContexts">
+                <svg viewBox="0 0 760 340" role="img" focusable="false">
+                    <!-- X-ray scanner -->
+                    <text x="380" y="20" class="xray-scanner-label">SPRING X-RAY</text>
+                    <rect x="300" y="28" width="160" height="96" rx="10" class="xray-scanner-frame"/>
+
+                    <!-- Scene 1: test class card slides into the scanner -->
+                    <g class="xray-test-card-one">
+                        <rect x="30" y="48" width="150" height="56" rx="8"/>
+                        <text x="105" y="72" class="xray-card-annotation">@SpringBootTest</text>
+                        <text x="105" y="92" class="xray-card-name">OrderControllerTest</text>
+                    </g>
+
+                    <!-- Scene 2: scan beam -->
+                    <rect x="306" y="34" width="6" height="84" class="xray-beam"/>
+
+                    <!-- Scene 2: detected customization points -->
+                    <g class="xray-pill xray-pill-1">
+                        <rect x="80" y="138" width="150" height="24" rx="12"/>
+                        <text x="155" y="154">&#10003; Context Loader</text>
+                    </g>
+                    <g class="xray-pill xray-pill-2">
+                        <rect x="305" y="138" width="150" height="24" rx="12"/>
+                        <text x="380" y="154">&#10003; Config Classes</text>
+                    </g>
+                    <g class="xray-pill xray-pill-3">
+                        <rect x="530" y="138" width="150" height="24" rx="12"/>
+                        <text x="605" y="154">&#10003; Active Profiles</text>
+                    </g>
+                    <g class="xray-pill xray-pill-4">
+                        <rect x="80" y="170" width="150" height="24" rx="12"/>
+                        <text x="155" y="186">&#10003; Property Sources</text>
+                    </g>
+                    <g class="xray-pill xray-pill-5">
+                        <rect x="305" y="170" width="150" height="24" rx="12"/>
+                        <text x="380" y="186">&#10003; Initializers</text>
+                    </g>
+                    <g class="xray-pill xray-pill-6">
+                        <rect x="530" y="170" width="150" height="24" rx="12"/>
+                        <text x="605" y="186">&#10003; Customizers</text>
+                    </g>
+
+                    <!-- Scene 3 + 4: fingerprint card (cache hit) -->
+                    <g class="xray-fingerprint xray-fingerprint-one">
+                        <rect x="270" y="142" width="220" height="58" rx="8"/>
+                        <text x="380" y="166" class="xray-fingerprint-type">MergedContextConfiguration</text>
+                        <text x="380" y="188" class="xray-fingerprint-hash xray-hash-green">hashCode: #a3f19c</text>
+                    </g>
+
+                    <!-- Scene 5: second fingerprint card (cache miss) -->
+                    <g class="xray-fingerprint xray-fingerprint-two">
+                        <rect x="270" y="142" width="220" height="58" rx="8"/>
+                        <text x="380" y="166" class="xray-fingerprint-type">MergedContextConfiguration</text>
+                        <text x="380" y="188" class="xray-fingerprint-hash xray-hash-orange">hashCode: #f07d2b</text>
+                    </g>
+
+                    <!-- Context cache shelf -->
+                    <text x="380" y="228" class="xray-shelf-label">Context Cache</text>
+                    <g class="xray-slot">
+                        <rect x="135" y="240" width="150" height="54" rx="8"/>
+                        <text x="210" y="262" class="xray-slot-type">ApplicationContext</text>
+                        <text x="210" y="281" class="xray-slot-hash xray-hash-green">#a3f19c</text>
+                    </g>
+                    <g class="xray-slot">
+                        <rect x="305" y="240" width="150" height="54" rx="8"/>
+                        <text x="380" y="262" class="xray-slot-type">ApplicationContext</text>
+                        <text x="380" y="281" class="xray-slot-hash xray-hash-blue">#77d2e1</text>
+                    </g>
+                    <rect x="475" y="240" width="150" height="54" rx="8" class="xray-slot-empty"/>
+                    <g class="xray-slot xray-slot-three">
+                        <rect x="475" y="240" width="150" height="54" rx="8"/>
+                        <text x="550" y="262" class="xray-slot-type">ApplicationContext</text>
+                        <text x="550" y="281" class="xray-slot-hash xray-hash-orange">#f07d2b</text>
+                    </g>
+
+                    <!-- Scene 4: cache hit highlight -->
+                    <rect x="135" y="240" width="150" height="54" rx="8" class="xray-hit-glow"/>
+                    <text x="210" y="316" class="xray-hit-note">&#9889; reused instantly</text>
+
+                    <!-- Scene 5: cache miss flash and slow build -->
+                    <g class="xray-miss-flash">
+                        <rect x="135" y="240" width="150" height="54" rx="8"/>
+                        <rect x="305" y="240" width="150" height="54" rx="8"/>
+                    </g>
+                    <text x="380" y="316" class="xray-miss-note">&#10007; no match in cache</text>
+                    <text x="550" y="222" class="xray-gear">&#9881;</text>
+                    <text x="550" y="316" class="xray-build-note">&#128034; building new context&#8230;</text>
+
+                    <!-- Scene 6: outro pulse on both freshly used contexts -->
+                    <g class="xray-outro-glow">
+                        <rect x="135" y="240" width="150" height="54" rx="8"/>
+                        <rect x="475" y="240" width="150" height="54" rx="8"/>
+                    </g>
+                </svg>
+                <div class="caching-animation-captions">
+                    <span class="xray-caption xray-caption-1">Every Spring test needs an ApplicationContext - and starting one from scratch is expensive.</span>
+                    <span class="xray-caption xray-caption-2">Spring X-rays the test setup and collects every customization point that shapes the context.</span>
+                    <span class="xray-caption xray-caption-3">The result is a MergedContextConfiguration - its hashCode becomes the cache key.</span>
+                    <span class="xray-caption xray-caption-4">Same key already in the cache? The existing context is reused instantly.</span>
+                    <span class="xray-caption xray-caption-5">One tiny difference creates a new key - and a slow, brand-new context.</span>
+                    <span class="xray-caption xray-caption-6">Spring Test Profiler shows you how many contexts your suite creates - and why.</span>
+                </div>
+            </div>
 
             <h3>How Context Caching Works</h3>
             <p>Spring generates a <strong>cache key</strong> based on:</p>
@@ -83,9 +2692,9 @@
                     <li><a href="https://docs.spring.io/spring-framework/reference/testing/testcontext-framework/ctx-management/caching.html" target="_blank">Context Caching - Spring Framework Reference</a></li>
                     <li><a href="https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html" target="_blank">Testing Spring Boot Applications</a></li>
                     <li><a href="https://docs.spring.io/spring-framework/reference/testing/annotations/integration-spring/annotation-dirtiescontext.html" target="_blank">@DirtiesContext Annotation</a></li>
-                    <li><a href="https://rieckpil.de/improve-build-times-with-context-caching-from-spring-test/?utm_source=spring-test-profiler&amp;utm_medium=report&amp;utm_campaign=spring-test-profiler-v0.0.11-SNAPSHOT" target="_blank">Improve Build Times with Spring TestContext Context Caching</a></li>
+                    <li><a href="https://rieckpil.de/improve-build-times-with-context-caching-from-spring-test/?utm_source=spring-test-profiler&amp;utm_medium=report&amp;utm_campaign=spring-test-profiler-v0.1.3-SNAPSHOT" target="_blank">Improve Build Times with Spring TestContext Context Caching</a></li>
                     <li><a href="https://www.youtube.com/watch?v=c-GV2PxymoY" target="_blank">How fixing a broken window cut down our build time by 50% (Spring I/O talk)</a></li>
-                    <li><a href="https://rieckpil.de/testing-spring-boot-applications-masterclass/?utm_source=spring-test-profiler&amp;utm_medium=report&amp;utm_campaign=spring-test-profiler-v0.0.11-SNAPSHOT" target="_blank">Testing Spring Boot Applications Masterclass</a></li>
+                    <li><a href="https://rieckpil.de/testing-spring-boot-applications-masterclass/?utm_source=spring-test-profiler&amp;utm_medium=report&amp;utm_campaign=spring-test-profiler-v0.1.3-SNAPSHOT" target="_blank">Testing Spring Boot Applications Masterclass</a></li>
                 </ul>
             </div>
         </div>
@@ -100,7 +2709,7 @@
                 <strong>Executed via:</strong> <span>maven</span>
             </div>
             <div class="execution-detail">
-                <strong>Execution Time:</strong> <span>2025-08-14 15:34:39</span>
+                <strong>Execution Time:</strong> <span>2026-07-23 14:17:30</span>
             </div>
             <div class="execution-detail">
                 <strong>Time Zone:</strong> <span>Europe/Berlin</span>
@@ -108,45 +2717,41 @@
         </div>
         <div class="summary-grid">
             <div class="summary-card">
-                <h3>Test Classes</h3>
-                <div class="value">4</div>
+                <h3>Cache Size <span class="info-icon" data-tooltip="Number of Spring ApplicationContexts currently held in the test context cache.">&#9432;</span></h3>
+                <div class="value">6</div>
             </div>
             <div class="summary-card">
-                <h3>Total Tests</h3>
-                <div class="value">12</div>
-            </div>
-            <div class="summary-card passed">
-                <h3>Passed</h3>
-                <div class="value">12</div>
-            </div>
-            <div class="summary-card failed">
-                <h3>Failed</h3>
-                <div class="value">0</div>
-            </div>
-            <div class="summary-card disabled">
-                <h3>Disabled</h3>
-                <div class="value">0</div>
-            </div>
-            <div class="summary-card aborted">
-                <h3>Aborted</h3>
-                <div class="value">0</div>
+                <h3>Cache Hits <span class="info-icon" data-tooltip="Number of times a test reused an existing cached context instead of creating a new one.">&#9432;</span></h3>
+                <div class="value">9</div>
             </div>
             <div class="summary-card">
-                <h3>Total Runtime</h3>
-                <div class="value" style="font-size: 24px;">2.7s</div>
+                <h3>Cache Misses <span class="info-icon" data-tooltip="Number of times a new context had to be created because no matching cached context was found.">&#9432;</span></h3>
+                <div class="value">7</div>
             </div>
             <div class="summary-card">
-                <h3>Success Rate</h3>
-                <div class="value" style="font-size: 24px;">100.0%</div>
+                <h3>Cache Hit Rate <span class="info-icon" data-tooltip="Percentage of cache hits vs total cache accesses. Higher is better — 100% means every test reused an existing context.">&#9432;</span></h3>
+                <div class="value" style="font-size: 24px;">56.2%</div>
             </div>
             <div class="summary-card">
-                <h3>Available Processors</h3>
-                <div class="value">14</div>
+                <h3>Total Runtime <span class="info-icon" data-tooltip="Wall-clock time from the first test starting to the last test finishing. Includes context creation, test execution, setup/teardown, and everything in between.">&#9432;</span></h3>
+                <div class="value" style="font-size: 24px;">29.0s</div>
+            </div>
+            <div class="summary-card">
+                <h3>Test Classes <span class="info-icon" data-tooltip="Total number of test classes executed in this test run.">&#9432;</span></h3>
+                <div class="value">7</div>
+            </div>
+            <div class="summary-card">
+                <h3>Potential Time Savings <span class="info-icon" data-tooltip="Estimated time you could save by harmonizing similar Spring contexts. If two test classes use nearly identical configurations, merging them into one shared context eliminates the duplicate startup cost.">&#9432;</span></h3>
+                <div class="value" style="font-size: 24px;">21.1s</div>
+            </div>
+            <div class="summary-card">
+                <h3>Context Load Time <span class="info-icon" data-tooltip="Cumulative time spent creating all Spring ApplicationContexts. Compare this to Total Runtime to see how much of your build time goes to context startup vs actual test execution.">&#9432;</span></h3>
+                <div class="value" style="font-size: 24px;">28.0s</div>
             </div>
             <div class="summary-card help-card">
                 <h3>Need Help?</h3>
                 <div class="help-content">
-                    <a href="https://pragmatech.digital/?utm_source=spring-test-profiler&amp;utm_medium=report&amp;utm_campaign=spring-test-profiler-v0.0.11-SNAPSHOT" target="_blank" class="help-link">
+                    <a href="https://pragmatech.digital/?utm_source=spring-test-profiler&amp;utm_medium=report&amp;utm_campaign=spring-test-profiler-v0.1.3-SNAPSHOT" target="_blank" class="help-link">
                       Cut Your Test Execution Time in Half
                     </a>
                 </div>
@@ -162,11 +2767,11 @@
         <div class="cache-overview">
             <div class="cache-metric">
                 <span class="label">Cache Size:</span>
-                <span class="value">3 / 32</span>
+                <span class="value">6 / 32</span>
             </div>
             <div class="cache-metric">
                 <span class="label">Cache Hits:</span>
-                <span class="value">196</span>
+                <span class="value">9</span>
             </div>
             <div class="cache-metric">
                 <span class="label">Cache Misses:</span>
@@ -174,7 +2779,7 @@
             </div>
             <div class="cache-metric">
                 <span class="label">Cache Hit Rate:</span>
-                <span class="value hit-rate">96.6%</span>
+                <span class="value hit-rate">56.2%</span>
             </div>
         </div>
 
@@ -192,60 +2797,34 @@
                 <div id="test-class-search-results" class="test-class-search-results"></div>
             </div>
 
+            <!-- Annotation Type Filter (populated by JS when 2+ types exist) -->
+            <div id="annotation-filter-container" class="annotation-filter-container" style="display: none;">
+                <h4>Filter by Annotation Type</h4>
+                <div id="annotation-filter-buttons" class="annotation-filter-buttons"></div>
+                <div id="annotation-filter-summary" class="annotation-filter-summary"></div>
+            </div>
+
             <h3>Context Cache Entries</h3>
-            <div class="cache-entry">
+            <div class="sort-controls">
+                <span>Sort by:</span>
+                <button class="sort-btn active" onclick="sortCacheEntries('default')">Default</button>
+                <button class="sort-btn" onclick="sortCacheEntries('time')">Load Time</button>
+                <button class="sort-btn" onclick="sortCacheEntries('tests')">Number of Tests</button>
+            </div>
+            <div class="cache-entry" data-annotation-type="SpringBootTest" data-load-time-ms="5332" data-test-count="1">
                 <div class="cache-entry-header">
                     <span class="cache-id">Context ID: context-0</span>
-                    <span class="bean-count">248 beans</span>
+                    <span class="annotation-badge annotation-SpringBootTest">SpringBootTest</span>
+                    <span class="bean-count">370 beans</span>
                 </div>
                 <div class="context-stats">
                     <div class="stat-row">
                         <span class="stat-label">Load Time:</span>
-                        <span class="stat-value">1ms</span>
+                        <span class="stat-value">5332ms</span>
                     </div>
                     <div class="stat-row">
                         <span class="stat-label">Heap Memory:</span>
-                        <span class="stat-value">127.4MB</span>
-                    </div>
-                </div>
-                <div class="test-classes">
-                    <strong>Test Classes:</strong>
-                    <span class="test-class">digital.pragmatech.demo.BadThreeIT</span>
-                </div>
-            </div>
-            <div class="cache-entry">
-                <div class="cache-entry-header">
-                    <span class="cache-id">Context ID: context-1</span>
-                    <span class="bean-count">247 beans</span>
-                </div>
-                <div class="context-stats">
-                    <div class="stat-row">
-                        <span class="stat-label">Load Time:</span>
-                        <span class="stat-value">8ms</span>
-                    </div>
-                    <div class="stat-row">
-                        <span class="stat-label">Heap Memory:</span>
-                        <span class="stat-value">19.5MB</span>
-                    </div>
-                </div>
-                <div class="test-classes">
-                    <strong>Test Classes:</strong>
-                    <span class="test-class">digital.pragmatech.demo.BadTwoIT</span>
-                </div>
-            </div>
-            <div class="cache-entry">
-                <div class="cache-entry-header">
-                    <span class="cache-id">Context ID: context-2</span>
-                    <span class="bean-count">242 beans</span>
-                </div>
-                <div class="context-stats">
-                    <div class="stat-row">
-                        <span class="stat-label">Load Time:</span>
-                        <span class="stat-value">0ms</span>
-                    </div>
-                    <div class="stat-row">
-                        <span class="stat-label">Heap Memory:</span>
-                        <span class="stat-value">87.4MB</span>
+                        <span class="stat-value">80.0MB</span>
                     </div>
                 </div>
                 <div class="test-classes">
@@ -253,24 +2832,130 @@
                     <span class="test-class">digital.pragmatech.demo.GoodIT</span>
                 </div>
             </div>
-            <div class="cache-entry">
+            <div class="cache-entry" data-annotation-type="SpringBootTest" data-load-time-ms="5203" data-test-count="1">
                 <div class="cache-entry-header">
-                    <span class="cache-id">Context ID: context-3</span>
-                    <span class="bean-count">247 beans</span>
+                    <span class="cache-id">Context ID: context-1</span>
+                    <span class="annotation-badge annotation-SpringBootTest">SpringBootTest</span>
+                    <span class="bean-count">376 beans</span>
                 </div>
                 <div class="context-stats">
                     <div class="stat-row">
                         <span class="stat-label">Load Time:</span>
-                        <span class="stat-value">101ms</span>
+                        <span class="stat-value">5203ms</span>
                     </div>
                     <div class="stat-row">
                         <span class="stat-label">Heap Memory:</span>
-                        <span class="stat-value">90.5MB</span>
+                        <span class="stat-value">80.3MB</span>
+                    </div>
+                </div>
+                <div class="test-classes">
+                    <strong>Test Classes:</strong>
+                    <span class="test-class">digital.pragmatech.demo.BadThreeIT</span>
+                </div>
+            </div>
+            <div class="cache-entry" data-annotation-type="SpringBootTest" data-load-time-ms="6907" data-test-count="1">
+                <div class="cache-entry-header">
+                    <span class="cache-id">Context ID: context-2</span>
+                    <span class="annotation-badge annotation-SpringBootTest">SpringBootTest</span>
+                    <span class="bean-count">386 beans</span>
+                </div>
+                <div class="context-stats">
+                    <div class="stat-row">
+                        <span class="stat-label">Load Time:</span>
+                        <span class="stat-value">6907ms</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Heap Memory:</span>
+                        <span class="stat-value">41.8MB</span>
+                    </div>
+                </div>
+                <div class="test-classes">
+                    <strong>Test Classes:</strong>
+                    <span class="test-class">digital.pragmatech.demo.BadTwoIT</span>
+                </div>
+            </div>
+            <div class="cache-entry" data-annotation-type="WebMvcTest" data-load-time-ms="187" data-test-count="1">
+                <div class="cache-entry-header">
+                    <span class="cache-id">Context ID: context-3</span>
+                    <span class="annotation-badge annotation-WebMvcTest">WebMvcTest</span>
+                    <span class="bean-count">126 beans</span>
+                </div>
+                <div class="context-stats">
+                    <div class="stat-row">
+                        <span class="stat-label">Load Time:</span>
+                        <span class="stat-value">187ms</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Heap Memory:</span>
+                        <span class="stat-value">40.0MB</span>
+                    </div>
+                </div>
+                <div class="test-classes">
+                    <strong>Test Classes:</strong>
+                    <span class="test-class">digital.pragmatech.demo.BookControllerIT</span>
+                </div>
+            </div>
+            <div class="cache-entry" data-annotation-type="DataJpaTest" data-load-time-ms="57" data-test-count="1">
+                <div class="cache-entry-header">
+                    <span class="cache-id">Context ID: context-4</span>
+                    <span class="annotation-badge annotation-DataJpaTest">DataJpaTest</span>
+                    <span class="bean-count">81 beans</span>
+                </div>
+                <div class="context-stats">
+                    <div class="stat-row">
+                        <span class="stat-label">Load Time:</span>
+                        <span class="stat-value">57ms</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Heap Memory:</span>
+                        <span class="stat-value">93.2MB</span>
+                    </div>
+                </div>
+                <div class="test-classes">
+                    <strong>Test Classes:</strong>
+                    <span class="test-class">digital.pragmatech.demo.BookRepositoryIT</span>
+                </div>
+            </div>
+            <div class="cache-entry" data-annotation-type="SpringBootTest" data-load-time-ms="5172" data-test-count="1">
+                <div class="cache-entry-header">
+                    <span class="cache-id">Context ID: context-5</span>
+                    <span class="annotation-badge annotation-SpringBootTest">SpringBootTest</span>
+                    <span class="bean-count">375 beans</span>
+                </div>
+                <div class="context-stats">
+                    <div class="stat-row">
+                        <span class="stat-label">Load Time:</span>
+                        <span class="stat-value">5172ms</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Heap Memory:</span>
+                        <span class="stat-value">125.2MB</span>
                     </div>
                 </div>
                 <div class="test-classes">
                     <strong>Test Classes:</strong>
                     <span class="test-class">digital.pragmatech.demo.BadOneIT</span>
+                </div>
+            </div>
+            <div class="cache-entry" data-annotation-type="SpringBootTest" data-load-time-ms="5185" data-test-count="1">
+                <div class="cache-entry-header">
+                    <span class="cache-id">Context ID: context-6</span>
+                    <span class="annotation-badge annotation-SpringBootTest">SpringBootTest</span>
+                    <span class="bean-count">384 beans</span>
+                </div>
+                <div class="context-stats">
+                    <div class="stat-row">
+                        <span class="stat-label">Load Time:</span>
+                        <span class="stat-value">5185ms</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Heap Memory:</span>
+                        <span class="stat-value">72.5MB</span>
+                    </div>
+                </div>
+                <div class="test-classes">
+                    <strong>Test Classes:</strong>
+                    <span class="test-class">digital.pragmatech.demo.MigrationIT</span>
                 </div>
             </div>
         </div>
@@ -333,111 +3018,7 @@
 </div>
 
   <!-- Optimization Recommendations Fragment -->
-  <div class="optimization-section">
-        <h2>⚡ Build Time Optimization Recommendations</h2>
-        <p class="section-description">(this feature is highly work in progress)</p>
-        <div class="optimization-content">
-            <!-- Optimization Summary -->
-            <div class="optimization-summary">
-                <div class="optimization-metric potential-savings">
-                    <span class="label">Potential Time Savings:</span>
-                    <span class="value large">102ms</span>
-                    <span class="percentage">(92.7% of total context load time)</span>
-                </div>
-                <div class="optimization-metric total-time">
-                    <span class="label">Total Context Creation Time:</span>
-                    <span class="value">110ms</span>
-                </div>
-                <div class="optimization-metric wasted-time">
-                    <span class="label">Potentially Wasted Time:</span>
-                    <span class="value">0ms</span>
-                </div>
-                <div class="optimization-metric contexts-created">
-                    <span class="label">Unique Contexts Created:</span>
-                    <span class="value">4</span>
-                </div>
-            </div>
-
-            <!-- Optimization Opportunities -->
-            
-
-            <!-- Optimization Tips -->
-            <div class="optimization-tips">
-                <h3>💡 Optimization Tips</h3>
-                <div class="tips-grid">
-                    <div class="tip-card">
-                        <div class="tip-icon">🔄</div>
-                        <div class="tip-content">
-                            <h4>Harmonize Test Contexts</h4>
-                            <p>Reduce context variations by standardizing test configurations, profiles, and component scanning paths across similar test classes.</p>
-                        </div>
-                    </div>
-                    <div class="tip-card">
-                        <div class="tip-icon">🎯</div>
-                        <div class="tip-content">
-                            <h4>Use Slice Tests</h4>
-                            <p>Replace @SpringBootTest with slice tests like @WebMvcTest, @DataJpaTest when testing specific layers.</p>
-                        </div>
-                    </div>
-                    <div class="tip-card">
-                        <div class="tip-icon">⚙️</div>
-                        <div class="tip-content">
-                            <h4>Optimize Component Scanning</h4>
-                            <p>Limit component scanning scope using @ComponentScan(basePackages) or exclude unnecessary configurations.</p>
-                        </div>
-                    </div>
-                    <div class="tip-card">
-                        <div class="tip-icon">🧪</div>
-                        <div class="tip-content">
-                            <h4>Share Test Configuration</h4>
-                            <p>Create common @TestConfiguration classes that can be reused across multiple test classes.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Impact Analysis -->
-            
-        </div>
-
-        <!-- Static Analysis Recommendations -->
-        <div class="static-analysis-section">
-            <h3>🔍 Static Analysis Recommendations</h3>
-            <p class="section-description">Code analysis identified potential issues that may impact Spring context caching and test performance.</p>
-
-            <div class="optimization-records">
-                <div class="optimization-record-card">
-                    <div class="record-header">
-                        <div class="record-title-row">
-                            <span class="record-title">@DirtiesContext detected (class-level)</span>
-                            <span class="severity-badge severity-high">HIGH</span>
-                        </div>
-                        <div class="record-meta">
-                            <span class="test-class-name">digital.pragmatech.demo.BadOneIT</span>
-                            <span class="source-location">digital.pragmatech.demo.BadOneIT:class-level</span>
-                        </div>
-                    </div>
-
-                    <div class="record-content">
-                        <div class="record-description">The test class &#39;digital.pragmatech.demo.BadOneIT&#39; uses @DirtiesContext which prevents Spring context caching. This forces Spring to recreate the application context for each test, significantly increasing test execution time.</div>
-
-                        <div class="record-recommendation">
-                            <h4>💡 Recommendation:</h4>
-                            <div class="recommendation-text" style="white-space: pre-line;">  Consider the following alternatives:
-  • Remove @DirtiesContext and redesign tests to be more isolated
-  • Use @MockitoBean instead of modifying application state
-  • Move context-modifying operations to separate test classes
-  • Use @Transactional with @Rollback for database operations
-</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- No optimization data available -->
-        
-    </div>
+  <!--  <div th:replace="~{fragments/optimization :: optimization-section(${optimizationStats})}"></div>-->
 
   <!-- Timeline Visualization Fragment -->
   <!--  <div th:replace="~{fragments/timeline :: timeline-section(${timelineData}, ${jsonHelper})}"></div>-->
@@ -455,9 +3036,80 @@
     <div>
       <div class="context-config-item">
         <div class="context-config-header">
-          <div class="context-config-id">🔧 <span>config-3</span></div>
+          <div class="context-config-id">🔧 <span>config-6</span></div>
           <div class="context-config-test-count">1 test class</div>
-          <div class="context-bean-count">247 beans</div>
+          <div class="context-bean-count">384 beans</div>
+        </div>
+
+        <!-- Configuration details -->
+        <div class="config-details">
+          <div class="config-detail-item">
+            <div class="config-detail-key">configurationClasses:</div>
+            <div class="config-detail-value">[DemoApplication]</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">activeProfiles:</div>
+            <div class="config-detail-value">[]</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">contextLoader:</div>
+            <div class="config-detail-value">SpringBootContextLoader</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">properties:</div>
+            <div class="config-detail-value">3 properties</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">parentContext:</div>
+            <div class="config-detail-value"></div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">contextCustomizers:</div>
+            <div class="config-detail-value">DisableObservabilityContextCustomizer
+DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer
+DuplicateJsonObjectContextCustomizer
+DynamicPropertiesContextCustomizer
+ExcludeFilterContextCustomizer
+MockitoContextCustomizer
+OnFailureConditionReportContextCustomizer
+PropertyMappingContextCustomizer
+SpringBootTestAnnotation
+TestRestTemplateContextCustomizer
+WebDriverContextCustomizer</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">locations:</div>
+            <div class="config-detail-value"></div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">contextInitializers:</div>
+            <div class="config-detail-value">[]</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">beanDefinitionCount:</div>
+            <div class="config-detail-value">384</div>
+          </div>
+        </div>
+
+        <!-- Test classes using this configuration -->
+        <div class="context-test-classes">
+          <strong>Test classes using this configuration:</strong><br>
+          <span class="context-test-class">digital.pragmatech.demo.MigrationIT</span>
+        </div>
+
+        <!-- Context complexity analysis -->
+        <div class="context-complexity">
+          <div class="complexity-indicator">
+            <strong>Context Complexity:</strong>
+            <span>384</span> bean definitions
+          </div>
+        </div>
+      </div>
+      <div class="context-config-item">
+        <div class="context-config-header">
+          <div class="context-config-id">🔧 <span>config-5</span></div>
+          <div class="context-config-test-count">1 test class</div>
+          <div class="context-bean-count">375 beans</div>
         </div>
 
         <!-- Configuration details -->
@@ -484,7 +3136,17 @@
           </div>
           <div class="config-detail-item">
             <div class="config-detail-key">contextCustomizers:</div>
-            <div class="config-detail-value">[org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@68746f22, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@2eea88a1, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@7283d3eb, org.springframework.boot.test.web.reactor.netty.DisableReactorResourceFactoryGlobalResourcesContextCustomizerFactory$DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer@1169afe1, org.springframework.boot.test.autoconfigure.OnFailureConditionReportContextCustomizerFactory$OnFailureConditionReportContextCustomizer@70e38ce1, org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@1f, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer@27912e3, org.springframework.test.context.support.DynamicPropertiesContextCustomizer@0, org.springframework.boot.test.context.SpringBootTestAnnotation@c673baa8]</div>
+            <div class="config-detail-value">DisableObservabilityContextCustomizer
+DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer
+DuplicateJsonObjectContextCustomizer
+DynamicPropertiesContextCustomizer
+ExcludeFilterContextCustomizer
+MockitoContextCustomizer
+OnFailureConditionReportContextCustomizer
+PropertyMappingContextCustomizer
+SpringBootTestAnnotation
+TestRestTemplateContextCustomizer
+WebDriverContextCustomizer</div>
           </div>
           <div class="config-detail-item">
             <div class="config-detail-key">locations:</div>
@@ -496,7 +3158,7 @@
           </div>
           <div class="config-detail-item">
             <div class="config-detail-key">beanDefinitionCount:</div>
-            <div class="config-detail-value">247</div>
+            <div class="config-detail-value">375</div>
           </div>
         </div>
 
@@ -510,7 +3172,154 @@
         <div class="context-complexity">
           <div class="complexity-indicator">
             <strong>Context Complexity:</strong>
-            <span>247</span> bean definitions
+            <span>375</span> bean definitions
+          </div>
+        </div>
+      </div>
+      <div class="context-config-item">
+        <div class="context-config-header">
+          <div class="context-config-id">🔧 <span>config-4</span></div>
+          <div class="context-config-test-count">1 test class</div>
+          <div class="context-bean-count">81 beans</div>
+        </div>
+
+        <!-- Configuration details -->
+        <div class="config-details">
+          <div class="config-detail-item">
+            <div class="config-detail-key">configurationClasses:</div>
+            <div class="config-detail-value">[DemoApplication]</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">activeProfiles:</div>
+            <div class="config-detail-value">[]</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">contextLoader:</div>
+            <div class="config-detail-value">SpringBootContextLoader</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">properties:</div>
+            <div class="config-detail-value">1 properties</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">parentContext:</div>
+            <div class="config-detail-value"></div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">contextCustomizers:</div>
+            <div class="config-detail-value">DisableAutoConfigurationContextCustomizer
+DisableObservabilityContextCustomizer
+DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer
+DuplicateJsonObjectContextCustomizer
+DynamicPropertiesContextCustomizer
+ExcludeFilterContextCustomizer
+ImportsContextCustomizer
+MockitoContextCustomizer
+OnFailureConditionReportContextCustomizer
+PropertyMappingContextCustomizer
+SpringBootTestAnnotation
+TypeExcludeFiltersContextCustomizer
+WebDriverContextCustomizer</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">locations:</div>
+            <div class="config-detail-value"></div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">contextInitializers:</div>
+            <div class="config-detail-value">[]</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">beanDefinitionCount:</div>
+            <div class="config-detail-value">81</div>
+          </div>
+        </div>
+
+        <!-- Test classes using this configuration -->
+        <div class="context-test-classes">
+          <strong>Test classes using this configuration:</strong><br>
+          <span class="context-test-class">digital.pragmatech.demo.BookRepositoryIT</span>
+        </div>
+
+        <!-- Context complexity analysis -->
+        <div class="context-complexity">
+          <div class="complexity-indicator">
+            <strong>Context Complexity:</strong>
+            <span>81</span> bean definitions
+          </div>
+        </div>
+      </div>
+      <div class="context-config-item">
+        <div class="context-config-header">
+          <div class="context-config-id">🔧 <span>config-3</span></div>
+          <div class="context-config-test-count">1 test class</div>
+          <div class="context-bean-count">126 beans</div>
+        </div>
+
+        <!-- Configuration details -->
+        <div class="config-details">
+          <div class="config-detail-item">
+            <div class="config-detail-key">configurationClasses:</div>
+            <div class="config-detail-value">[DemoApplication]</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">activeProfiles:</div>
+            <div class="config-detail-value">[]</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">contextLoader:</div>
+            <div class="config-detail-value">SpringBootContextLoader</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">properties:</div>
+            <div class="config-detail-value">1 properties</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">parentContext:</div>
+            <div class="config-detail-value"></div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">contextCustomizers:</div>
+            <div class="config-detail-value">BeanOverrideContextCustomizer
+DisableAutoConfigurationContextCustomizer
+DisableObservabilityContextCustomizer
+DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer
+DuplicateJsonObjectContextCustomizer
+DynamicPropertiesContextCustomizer
+ExcludeFilterContextCustomizer
+ImportsContextCustomizer
+MockitoContextCustomizer
+OnFailureConditionReportContextCustomizer
+PropertyMappingContextCustomizer
+SpringBootTestAnnotation
+TypeExcludeFiltersContextCustomizer
+WebDriverContextCustomizer</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">locations:</div>
+            <div class="config-detail-value"></div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">contextInitializers:</div>
+            <div class="config-detail-value">[]</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">beanDefinitionCount:</div>
+            <div class="config-detail-value">126</div>
+          </div>
+        </div>
+
+        <!-- Test classes using this configuration -->
+        <div class="context-test-classes">
+          <strong>Test classes using this configuration:</strong><br>
+          <span class="context-test-class">digital.pragmatech.demo.BookControllerIT</span>
+        </div>
+
+        <!-- Context complexity analysis -->
+        <div class="context-complexity">
+          <div class="complexity-indicator">
+            <strong>Context Complexity:</strong>
+            <span>126</span> bean definitions
           </div>
         </div>
       </div>
@@ -518,7 +3327,150 @@
         <div class="context-config-header">
           <div class="context-config-id">🔧 <span>config-2</span></div>
           <div class="context-config-test-count">1 test class</div>
-          <div class="context-bean-count">242 beans</div>
+          <div class="context-bean-count">386 beans</div>
+        </div>
+
+        <!-- Configuration details -->
+        <div class="config-details">
+          <div class="config-detail-item">
+            <div class="config-detail-key">configurationClasses:</div>
+            <div class="config-detail-value">[DemoApplication]</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">activeProfiles:</div>
+            <div class="config-detail-value">[test, integration]</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">contextLoader:</div>
+            <div class="config-detail-value">SpringBootContextLoader</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">properties:</div>
+            <div class="config-detail-value">7 properties</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">parentContext:</div>
+            <div class="config-detail-value"></div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">contextCustomizers:</div>
+            <div class="config-detail-value">DisableObservabilityContextCustomizer
+DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer
+DuplicateJsonObjectContextCustomizer
+DynamicPropertiesContextCustomizer
+ExcludeFilterContextCustomizer
+MockitoContextCustomizer
+OnFailureConditionReportContextCustomizer
+PropertyMappingContextCustomizer
+SpringBootTestAnnotation
+TestRestTemplateContextCustomizer
+WebDriverContextCustomizer</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">locations:</div>
+            <div class="config-detail-value"></div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">contextInitializers:</div>
+            <div class="config-detail-value">[]</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">beanDefinitionCount:</div>
+            <div class="config-detail-value">386</div>
+          </div>
+        </div>
+
+        <!-- Test classes using this configuration -->
+        <div class="context-test-classes">
+          <strong>Test classes using this configuration:</strong><br>
+          <span class="context-test-class">digital.pragmatech.demo.BadTwoIT</span>
+        </div>
+
+        <!-- Context complexity analysis -->
+        <div class="context-complexity">
+          <div class="complexity-indicator">
+            <strong>Context Complexity:</strong>
+            <span>386</span> bean definitions
+          </div>
+        </div>
+      </div>
+      <div class="context-config-item">
+        <div class="context-config-header">
+          <div class="context-config-id">🔧 <span>config-1</span></div>
+          <div class="context-config-test-count">1 test class</div>
+          <div class="context-bean-count">376 beans</div>
+        </div>
+
+        <!-- Configuration details -->
+        <div class="config-details">
+          <div class="config-detail-item">
+            <div class="config-detail-key">configurationClasses:</div>
+            <div class="config-detail-value">[DemoApplication]</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">activeProfiles:</div>
+            <div class="config-detail-value">[test]</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">contextLoader:</div>
+            <div class="config-detail-value">SpringBootContextLoader</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">properties:</div>
+            <div class="config-detail-value">6 properties</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">parentContext:</div>
+            <div class="config-detail-value"></div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">contextCustomizers:</div>
+            <div class="config-detail-value">DisableObservabilityContextCustomizer
+DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer
+DuplicateJsonObjectContextCustomizer
+DynamicPropertiesContextCustomizer
+ExcludeFilterContextCustomizer
+ImportsContextCustomizer
+MockitoContextCustomizer
+OnFailureConditionReportContextCustomizer
+PropertyMappingContextCustomizer
+SpringBootTestAnnotation
+TestRestTemplateContextCustomizer
+WebDriverContextCustomizer</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">locations:</div>
+            <div class="config-detail-value"></div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">contextInitializers:</div>
+            <div class="config-detail-value">[]</div>
+          </div>
+          <div class="config-detail-item">
+            <div class="config-detail-key">beanDefinitionCount:</div>
+            <div class="config-detail-value">376</div>
+          </div>
+        </div>
+
+        <!-- Test classes using this configuration -->
+        <div class="context-test-classes">
+          <strong>Test classes using this configuration:</strong><br>
+          <span class="context-test-class">digital.pragmatech.demo.BadThreeIT</span>
+        </div>
+
+        <!-- Context complexity analysis -->
+        <div class="context-complexity">
+          <div class="complexity-indicator">
+            <strong>Context Complexity:</strong>
+            <span>376</span> bean definitions
+          </div>
+        </div>
+      </div>
+      <div class="context-config-item">
+        <div class="context-config-header">
+          <div class="context-config-id">🔧 <span>config-0</span></div>
+          <div class="context-config-test-count">1 test class</div>
+          <div class="context-bean-count">370 beans</div>
         </div>
 
         <!-- Configuration details -->
@@ -545,7 +3497,17 @@
           </div>
           <div class="config-detail-item">
             <div class="config-detail-key">contextCustomizers:</div>
-            <div class="config-detail-value">[org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@68746f22, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@2eea88a1, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@7283d3eb, org.springframework.boot.test.web.reactor.netty.DisableReactorResourceFactoryGlobalResourcesContextCustomizerFactory$DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer@1169afe1, org.springframework.boot.test.autoconfigure.OnFailureConditionReportContextCustomizerFactory$OnFailureConditionReportContextCustomizer@70e38ce1, org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@1f, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer@27912e3, org.springframework.test.context.support.DynamicPropertiesContextCustomizer@0, org.springframework.boot.test.context.SpringBootTestAnnotation@f232491a]</div>
+            <div class="config-detail-value">DisableObservabilityContextCustomizer
+DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer
+DuplicateJsonObjectContextCustomizer
+DynamicPropertiesContextCustomizer
+ExcludeFilterContextCustomizer
+MockitoContextCustomizer
+OnFailureConditionReportContextCustomizer
+PropertyMappingContextCustomizer
+SpringBootTestAnnotation
+TestRestTemplateContextCustomizer
+WebDriverContextCustomizer</div>
           </div>
           <div class="config-detail-item">
             <div class="config-detail-key">locations:</div>
@@ -557,7 +3519,7 @@
           </div>
           <div class="config-detail-item">
             <div class="config-detail-key">beanDefinitionCount:</div>
-            <div class="config-detail-value">242</div>
+            <div class="config-detail-value">370</div>
           </div>
         </div>
 
@@ -571,411 +3533,13 @@
         <div class="context-complexity">
           <div class="complexity-indicator">
             <strong>Context Complexity:</strong>
-            <span>242</span> bean definitions
-          </div>
-        </div>
-      </div>
-      <div class="context-config-item">
-        <div class="context-config-header">
-          <div class="context-config-id">🔧 <span>config-1</span></div>
-          <div class="context-config-test-count">1 test class</div>
-          <div class="context-bean-count">247 beans</div>
-        </div>
-
-        <!-- Configuration details -->
-        <div class="config-details">
-          <div class="config-detail-item">
-            <div class="config-detail-key">configurationClasses:</div>
-            <div class="config-detail-value">[DemoApplication]</div>
-          </div>
-          <div class="config-detail-item">
-            <div class="config-detail-key">activeProfiles:</div>
-            <div class="config-detail-value">[test, integration]</div>
-          </div>
-          <div class="config-detail-item">
-            <div class="config-detail-key">contextLoader:</div>
-            <div class="config-detail-value">SpringBootContextLoader</div>
-          </div>
-          <div class="config-detail-item">
-            <div class="config-detail-key">properties:</div>
-            <div class="config-detail-value">6 properties</div>
-          </div>
-          <div class="config-detail-item">
-            <div class="config-detail-key">parentContext:</div>
-            <div class="config-detail-value"></div>
-          </div>
-          <div class="config-detail-item">
-            <div class="config-detail-key">contextCustomizers:</div>
-            <div class="config-detail-value">[org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@68746f22, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@2eea88a1, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@7283d3eb, org.springframework.boot.test.web.reactor.netty.DisableReactorResourceFactoryGlobalResourcesContextCustomizerFactory$DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer@1169afe1, org.springframework.boot.test.autoconfigure.OnFailureConditionReportContextCustomizerFactory$OnFailureConditionReportContextCustomizer@70e38ce1, org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@1f, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer@27912e3, org.springframework.test.context.support.DynamicPropertiesContextCustomizer@0, org.springframework.boot.test.context.SpringBootTestAnnotation@e094b0af]</div>
-          </div>
-          <div class="config-detail-item">
-            <div class="config-detail-key">locations:</div>
-            <div class="config-detail-value"></div>
-          </div>
-          <div class="config-detail-item">
-            <div class="config-detail-key">contextInitializers:</div>
-            <div class="config-detail-value">[]</div>
-          </div>
-          <div class="config-detail-item">
-            <div class="config-detail-key">beanDefinitionCount:</div>
-            <div class="config-detail-value">247</div>
-          </div>
-        </div>
-
-        <!-- Test classes using this configuration -->
-        <div class="context-test-classes">
-          <strong>Test classes using this configuration:</strong><br>
-          <span class="context-test-class">digital.pragmatech.demo.BadTwoIT</span>
-        </div>
-
-        <!-- Context complexity analysis -->
-        <div class="context-complexity">
-          <div class="complexity-indicator">
-            <strong>Context Complexity:</strong>
-            <span>247</span> bean definitions
-          </div>
-        </div>
-      </div>
-      <div class="context-config-item">
-        <div class="context-config-header">
-          <div class="context-config-id">🔧 <span>config-0</span></div>
-          <div class="context-config-test-count">1 test class</div>
-          <div class="context-bean-count">248 beans</div>
-        </div>
-
-        <!-- Configuration details -->
-        <div class="config-details">
-          <div class="config-detail-item">
-            <div class="config-detail-key">configurationClasses:</div>
-            <div class="config-detail-value">[DemoApplication]</div>
-          </div>
-          <div class="config-detail-item">
-            <div class="config-detail-key">activeProfiles:</div>
-            <div class="config-detail-value">[test]</div>
-          </div>
-          <div class="config-detail-item">
-            <div class="config-detail-key">contextLoader:</div>
-            <div class="config-detail-value">SpringBootContextLoader</div>
-          </div>
-          <div class="config-detail-item">
-            <div class="config-detail-key">properties:</div>
-            <div class="config-detail-value">6 properties</div>
-          </div>
-          <div class="config-detail-item">
-            <div class="config-detail-key">parentContext:</div>
-            <div class="config-detail-value"></div>
-          </div>
-          <div class="config-detail-item">
-            <div class="config-detail-key">contextCustomizers:</div>
-            <div class="config-detail-value">[[ImportsContextCustomizer@3c02b068 key = [org.springframework.boot.autoconfigure.task.TaskExecutionAutoConfiguration, org.springframework.boot.autoconfigure.web.servlet.HttpEncodingAutoConfiguration, org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration, org.springframework.boot.autoconfigure.context.MessageSourceAutoConfiguration, org.springframework.boot.autoconfigure.hateoas.HypermediaAutoConfiguration, org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration, org.springframework.boot.autoconfigure.data.web.SpringDataWebAutoConfiguration, org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration, org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration, org.springframework.boot.autoconfigure.gson.GsonAutoConfiguration, org.springframework.boot.autoconfigure.jsonb.JsonbAutoConfiguration, org.springframework.boot.autoconfigure.freemarker.FreeMarkerAutoConfiguration, org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration, org.springframework.boot.autoconfigure.http.HttpMessageConvertersAutoConfiguration, org.springframework.boot.autoconfigure.groovy.template.GroovyTemplateAutoConfiguration, org.springframework.boot.autoconfigure.mustache.MustacheAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@68746f22, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@2eea88a1, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@7283d3eb, org.springframework.boot.test.web.reactor.netty.DisableReactorResourceFactoryGlobalResourcesContextCustomizerFactory$DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer@1169afe1, org.springframework.boot.test.autoconfigure.OnFailureConditionReportContextCustomizerFactory$OnFailureConditionReportContextCustomizer@70e38ce1, org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@1f, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer@27912e3, org.springframework.test.context.support.DynamicPropertiesContextCustomizer@0, org.springframework.boot.test.context.SpringBootTestAnnotation@c673baa8]</div>
-          </div>
-          <div class="config-detail-item">
-            <div class="config-detail-key">locations:</div>
-            <div class="config-detail-value"></div>
-          </div>
-          <div class="config-detail-item">
-            <div class="config-detail-key">contextInitializers:</div>
-            <div class="config-detail-value">[]</div>
-          </div>
-          <div class="config-detail-item">
-            <div class="config-detail-key">beanDefinitionCount:</div>
-            <div class="config-detail-value">248</div>
-          </div>
-        </div>
-
-        <!-- Test classes using this configuration -->
-        <div class="context-test-classes">
-          <strong>Test classes using this configuration:</strong><br>
-          <span class="context-test-class">digital.pragmatech.demo.BadThreeIT</span>
-        </div>
-
-        <!-- Context complexity analysis -->
-        <div class="context-complexity">
-          <div class="complexity-indicator">
-            <strong>Context Complexity:</strong>
-            <span>248</span> bean definitions
+            <span>370</span> bean definitions
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-  <!-- Test Execution Details Fragment -->
-  <div>
-        <h2>Test Execution Details</h2>
-        <div class="execution-overview">
-            <p>Click on any test class below to expand and see detailed information about individual test methods, including execution times and failure details.</p>
-        </div>
-        
-        <div class="test-class">
-            
-            <div class="test-class-header" 
-                 onclick="toggleClass(this)" 
-                 style="border-left: 4px solid #27ae60;">
-                <div>
-                    <div class="test-class-name">BadTwoIT</div>
-                    <div class="test-class-package">digital.pragmatech.demo</div>
-                </div>
-                <div class="test-class-stats">
-                    <span>⏱️ <span>1.8s</span></span>
-                    <span>📊 <span>3 tests</span></span>
-                    
-                    <span style="color: #27ae60;">
-                        ✅ <span>3</span>
-                    </span>
-                    
-                    <!-- Disabled and aborted tests would require additional counting logic -->
-                </div>
-            </div>
-            
-            <div class="test-methods">
-                <!-- Context info is now handled globally via cache statistics -->
-                
-                <!-- Test methods -->
-                <div class="test-method passed">
-                    
-                    <div class="test-method-header">
-                        <span class="test-method-name">
-                            <span>✅</span> 
-                            <span>testServiceCreateBook</span>
-                        </span>
-                        <div class="test-method-info">
-                            <span class="test-duration">1ms</span>
-                            <span class="test-status">PASSED</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="test-method passed">
-                    
-                    <div class="test-method-header">
-                        <span class="test-method-name">
-                            <span>✅</span> 
-                            <span>testServiceFindByAuthor</span>
-                        </span>
-                        <div class="test-method-info">
-                            <span class="test-duration">311ms</span>
-                            <span class="test-status">PASSED</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="test-method passed">
-                    
-                    <div class="test-method-header">
-                        <span class="test-method-name">
-                            <span>✅</span> 
-                            <span>testServiceCountByCategory</span>
-                        </span>
-                        <div class="test-method-info">
-                            <span class="test-duration">5ms</span>
-                            <span class="test-status">PASSED</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="test-class">
-            
-            <div class="test-class-header" 
-                 onclick="toggleClass(this)" 
-                 style="border-left: 4px solid #27ae60;">
-                <div>
-                    <div class="test-class-name">BadThreeIT</div>
-                    <div class="test-class-package">digital.pragmatech.demo</div>
-                </div>
-                <div class="test-class-stats">
-                    <span>⏱️ <span>400ms</span></span>
-                    <span>📊 <span>3 tests</span></span>
-                    
-                    <span style="color: #27ae60;">
-                        ✅ <span>3</span>
-                    </span>
-                    
-                    <!-- Disabled and aborted tests would require additional counting logic -->
-                </div>
-            </div>
-            
-            <div class="test-methods">
-                <!-- Context info is now handled globally via cache statistics -->
-                
-                <!-- Test methods -->
-                <div class="test-method passed">
-                    
-                    <div class="test-method-header">
-                        <span class="test-method-name">
-                            <span>✅</span> 
-                            <span>testGetBookCountViaRestApi</span>
-                        </span>
-                        <div class="test-method-info">
-                            <span class="test-duration">69ms</span>
-                            <span class="test-status">PASSED</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="test-method passed">
-                    
-                    <div class="test-method-header">
-                        <span class="test-method-name">
-                            <span>✅</span> 
-                            <span>testGetAllBooksViaRestApi</span>
-                        </span>
-                        <div class="test-method-info">
-                            <span class="test-duration">7ms</span>
-                            <span class="test-status">PASSED</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="test-method passed">
-                    
-                    <div class="test-method-header">
-                        <span class="test-method-name">
-                            <span>✅</span> 
-                            <span>testCreateBookViaRestApi</span>
-                        </span>
-                        <div class="test-method-info">
-                            <span class="test-duration">26ms</span>
-                            <span class="test-status">PASSED</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="test-class">
-            
-            <div class="test-class-header" 
-                 onclick="toggleClass(this)" 
-                 style="border-left: 4px solid #27ae60;">
-                <div>
-                    <div class="test-class-name">GoodIT</div>
-                    <div class="test-class-package">digital.pragmatech.demo</div>
-                </div>
-                <div class="test-class-stats">
-                    <span>⏱️ <span>158ms</span></span>
-                    <span>📊 <span>3 tests</span></span>
-                    
-                    <span style="color: #27ae60;">
-                        ✅ <span>3</span>
-                    </span>
-                    
-                    <!-- Disabled and aborted tests would require additional counting logic -->
-                </div>
-            </div>
-            
-            <div class="test-methods">
-                <!-- Context info is now handled globally via cache statistics -->
-                
-                <!-- Test methods -->
-                <div class="test-method passed">
-                    
-                    <div class="test-method-header">
-                        <span class="test-method-name">
-                            <span>✅</span> 
-                            <span>testRepositoryAndService</span>
-                        </span>
-                        <div class="test-method-info">
-                            <span class="test-duration">4ms</span>
-                            <span class="test-status">PASSED</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="test-method passed">
-                    
-                    <div class="test-method-header">
-                        <span class="test-method-name">
-                            <span>✅</span> 
-                            <span>testContextReuseAgain</span>
-                        </span>
-                        <div class="test-method-info">
-                            <span class="test-duration">2ms</span>
-                            <span class="test-status">PASSED</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="test-method passed">
-                    
-                    <div class="test-method-header">
-                        <span class="test-method-name">
-                            <span>✅</span> 
-                            <span>testAnotherOperationSameContext</span>
-                        </span>
-                        <div class="test-method-info">
-                            <span class="test-duration">3ms</span>
-                            <span class="test-status">PASSED</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="test-class">
-            
-            <div class="test-class-header" 
-                 onclick="toggleClass(this)" 
-                 style="border-left: 4px solid #27ae60;">
-                <div>
-                    <div class="test-class-name">BadOneIT</div>
-                    <div class="test-class-package">digital.pragmatech.demo</div>
-                </div>
-                <div class="test-class-stats">
-                    <span>⏱️ <span>326ms</span></span>
-                    <span>📊 <span>3 tests</span></span>
-                    
-                    <span style="color: #27ae60;">
-                        ✅ <span>3</span>
-                    </span>
-                    
-                    <!-- Disabled and aborted tests would require additional counting logic -->
-                </div>
-            </div>
-            
-            <div class="test-methods">
-                <!-- Context info is now handled globally via cache statistics -->
-                
-                <!-- Test methods -->
-                <div class="test-method passed">
-                    
-                    <div class="test-method-header">
-                        <span class="test-method-name">
-                            <span>✅</span> 
-                            <span>testCreateBook</span>
-                        </span>
-                        <div class="test-method-info">
-                            <span class="test-duration">1ms</span>
-                            <span class="test-status">PASSED</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="test-method passed">
-                    
-                    <div class="test-method-header">
-                        <span class="test-method-name">
-                            <span>✅</span> 
-                            <span>testFindByCategory</span>
-                        </span>
-                        <div class="test-method-info">
-                            <span class="test-duration">16ms</span>
-                            <span class="test-status">PASSED</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="test-method passed">
-                    
-                    <div class="test-method-header">
-                        <span class="test-method-name">
-                            <span>✅</span> 
-                            <span>testCountBooks</span>
-                        </span>
-                        <div class="test-method-info">
-                            <span class="test-duration">3ms</span>
-                            <span class="test-status">PASSED</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
 </div>
 
@@ -984,20 +3548,20 @@
   <div class="footer-content">
     <p>
       Get help with optimizing your Spring Boot test suite at
-      <a href="https://pragmatech.digital?utm_source=spring-test-profiler&amp;utm_medium=report&amp;utm_campaign=spring-test-profiler-v0.0.11-SNAPSHOT" target="_blank" rel="noopener noreferrer">
+      <a href="https://pragmatech.digital?utm_source=spring-test-profiler&amp;utm_medium=report&amp;utm_campaign=spring-test-profiler-v0.1.3-SNAPSHOT" target="_blank" rel="noopener noreferrer">
         PragmaTech GmbH
       </a>
     </p>
     <p>
-      Generated on <span>2025-08-14 15:34:39</span>
+      Generated on <span>2026-07-23 14:17:30</span>
       by <strong>Spring Test Profiler</strong>
-      <span>0.0.11-SNAPSHOT</span>
+      <span>0.1.3-SNAPSHOT</span>
     </p>
     <p>
       <a href="https://github.com/PragmaTech-GmbH/spring-test-profiler" target="_blank"
          rel="noopener noreferrer">GitHub</a>
       |
-      <a href="https://pragmatech.digital/products/?utm_source=spring-test-profiler&amp;utm_medium=report&amp;utm_campaign=spring-test-profiler-v0.0.11-SNAPSHOT" target="_blank" rel="noopener noreferrer">Documentation</a>
+      <a href="https://pragmatech.digital/products/spring-test-profiler?utm_source=spring-test-profiler&amp;utm_medium=report&amp;utm_campaign=spring-test-profiler-v0.1.3-SNAPSHOT" target="_blank" rel="noopener noreferrer">Documentation</a>
       |
       <a href="https://github.com/PragmaTech-GmbH/spring-test-profiler/issues" target="_blank"
          rel="noopener noreferrer">Submit a Bug or Feature Request</a>
@@ -1005,7 +3569,1031 @@
   </div>
 </footer>
 
-<script type="application/json" id="context-statistics-json">[{"contextKey":"context-0","contextConfiguration":{"parent":null,"classes":["digital.pragmatech.demo.DemoApplication"],"activeProfiles":["test"],"propertySourceLocations":[],"propertySourceProperties":["spring.datasource.url=jdbc:h2:mem:badtest3;DB_CLOSE_DELAY=-1","spring.jpa.hibernate.ddl-auto=create-drop","server.servlet.context-path=/api/v1","spring.jackson.property-naming-strategy=SNAKE_CASE","org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true","server.port=0"],"locations":[],"contextLoader":"org.springframework.boot.test.context.SpringBootContextLoader","testClass":"digital.pragmatech.demo.BadThreeIT","contextInitializerClasses":[],"contextCustomizers":["org.springframework.boot.test.context.ImportsContextCustomizer","org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer","org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer","org.springframework.boot.test.mock.mockito.MockitoContextCustomizer","org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer","org.springframework.boot.test.web.reactor.netty.DisableReactorResourceFactoryGlobalResourcesContextCustomizerFactory$DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer","org.springframework.boot.test.autoconfigure.OnFailureConditionReportContextCustomizerFactory$OnFailureConditionReportContextCustomizer","org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer","org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer","org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer","org.springframework.test.context.support.DynamicPropertiesContextCustomizer","org.springframework.boot.test.context.SpringBootTestAnnotation"]},"loadDuration":1,"initialLoadTime":1755178478,"lastUsedTime":1755178478,"testMethods":["digital.pragmatech.demo.BadThreeIT#testGetAllBooksViaRestApi","digital.pragmatech.demo.BadThreeIT#testCreateBookViaRestApi","digital.pragmatech.demo.BadThreeIT#testGetBookCountViaRestApi"],"testClasses":["digital.pragmatech.demo.BadThreeIT"],"numberOfBeans":248},{"contextKey":"context-1","contextConfiguration":{"parent":null,"classes":["digital.pragmatech.demo.DemoApplication"],"activeProfiles":["test","integration"],"propertySourceLocations":[],"propertySourceProperties":["server.port=8081","spring.datasource.url=jdbc:h2:mem:badtest2;DB_CLOSE_DELAY=-1","spring.jpa.hibernate.ddl-auto=create-drop","spring.jpa.show-sql=true","management.endpoints.web.exposure.include=health,info","org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true"],"locations":[],"contextLoader":"org.springframework.boot.test.context.SpringBootContextLoader","testClass":"digital.pragmatech.demo.BadTwoIT","contextInitializerClasses":[],"contextCustomizers":["org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer","org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer","org.springframework.boot.test.mock.mockito.MockitoContextCustomizer","org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer","org.springframework.boot.test.web.reactor.netty.DisableReactorResourceFactoryGlobalResourcesContextCustomizerFactory$DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer","org.springframework.boot.test.autoconfigure.OnFailureConditionReportContextCustomizerFactory$OnFailureConditionReportContextCustomizer","org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer","org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer","org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer","org.springframework.test.context.support.DynamicPropertiesContextCustomizer","org.springframework.boot.test.context.SpringBootTestAnnotation"]},"loadDuration":8,"initialLoadTime":1755178477,"lastUsedTime":1755178478,"testMethods":["digital.pragmatech.demo.BadTwoIT#testServiceFindByAuthor","digital.pragmatech.demo.BadTwoIT#testServiceCreateBook","digital.pragmatech.demo.BadTwoIT#testServiceCountByCategory"],"testClasses":["digital.pragmatech.demo.BadTwoIT"],"numberOfBeans":247},{"contextKey":"context-2","contextConfiguration":{"parent":null,"classes":["digital.pragmatech.demo.DemoApplication"],"activeProfiles":["test"],"propertySourceLocations":[],"propertySourceProperties":["org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true"],"locations":[],"contextLoader":"org.springframework.boot.test.context.SpringBootContextLoader","testClass":"digital.pragmatech.demo.GoodIT","contextInitializerClasses":[],"contextCustomizers":["org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer","org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer","org.springframework.boot.test.mock.mockito.MockitoContextCustomizer","org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer","org.springframework.boot.test.web.reactor.netty.DisableReactorResourceFactoryGlobalResourcesContextCustomizerFactory$DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer","org.springframework.boot.test.autoconfigure.OnFailureConditionReportContextCustomizerFactory$OnFailureConditionReportContextCustomizer","org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer","org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer","org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer","org.springframework.test.context.support.DynamicPropertiesContextCustomizer","org.springframework.boot.test.context.SpringBootTestAnnotation"]},"loadDuration":0,"initialLoadTime":1755178478,"lastUsedTime":1755178478,"testMethods":["digital.pragmatech.demo.GoodIT#testContextReuseAgain","digital.pragmatech.demo.GoodIT#testRepositoryAndService","digital.pragmatech.demo.GoodIT#testAnotherOperationSameContext"],"testClasses":["digital.pragmatech.demo.GoodIT"],"numberOfBeans":242},{"contextKey":"context-3","contextConfiguration":{"parent":null,"classes":["digital.pragmatech.demo.DemoApplication"],"activeProfiles":["test"],"propertySourceLocations":[],"propertySourceProperties":["spring.datasource.url=jdbc:h2:mem:badtest1;DB_CLOSE_DELAY=-1","spring.jpa.hibernate.ddl-auto=create-drop","logging.level.org.springframework.web=DEBUG","org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true","server.port=0"],"locations":[],"contextLoader":"org.springframework.boot.test.context.SpringBootContextLoader","testClass":"digital.pragmatech.demo.BadOneIT","contextInitializerClasses":[],"contextCustomizers":["org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer","org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer","org.springframework.boot.test.mock.mockito.MockitoContextCustomizer","org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer","org.springframework.boot.test.web.reactor.netty.DisableReactorResourceFactoryGlobalResourcesContextCustomizerFactory$DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer","org.springframework.boot.test.autoconfigure.OnFailureConditionReportContextCustomizerFactory$OnFailureConditionReportContextCustomizer","org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer","org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer","org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer","org.springframework.test.context.support.DynamicPropertiesContextCustomizer","org.springframework.boot.test.context.SpringBootTestAnnotation"]},"loadDuration":101,"initialLoadTime":1755178478,"lastUsedTime":1755178479,"testMethods":["digital.pragmatech.demo.BadOneIT#testCreateBook","digital.pragmatech.demo.BadOneIT#testFindByCategory","digital.pragmatech.demo.BadOneIT#testCountBooks"],"testClasses":["digital.pragmatech.demo.BadOneIT"],"numberOfBeans":247}]</script>
-<script src="static/js/report.js"></script>
+<script type="application/json" id="context-statistics-json">[{"contextKey":"context-0","contextConfiguration":{"parent":null,"classes":["digital.pragmatech.demo.DemoApplication"],"activeProfiles":["test"],"propertySourceLocations":[],"propertySourceProperties":["org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true"],"locations":[],"contextLoader":"org.springframework.boot.test.context.SpringBootContextLoader","testClass":"digital.pragmatech.demo.GoodIT","contextInitializerClasses":[],"contextCustomizers":["DisableObservabilityContextCustomizer","DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer","DuplicateJsonObjectContextCustomizer","DynamicPropertiesContextCustomizer","ExcludeFilterContextCustomizer","MockitoContextCustomizer","OnFailureConditionReportContextCustomizer","PropertyMappingContextCustomizer","SpringBootTestAnnotation","TestRestTemplateContextCustomizer","WebDriverContextCustomizer"]},"primaryAnnotationType":"SpringBootTest","loadDuration":5332,"initialLoadTime":1784809034,"testAnnotationTypes":["SpringBootTest"],"lastUsedTime":1784809034,"testMethods":["digital.pragmatech.demo.GoodIT#testContextReuseAgain","digital.pragmatech.demo.GoodIT#testRepositoryAndService","digital.pragmatech.demo.GoodIT#testAnotherOperationSameContext"],"testClasses":["digital.pragmatech.demo.GoodIT"],"numberOfBeans":370},{"contextKey":"context-1","contextConfiguration":{"parent":null,"classes":["digital.pragmatech.demo.DemoApplication"],"activeProfiles":["test"],"propertySourceLocations":[],"propertySourceProperties":["spring.datasource.url=jdbc:h2:mem:badtest3;DB_CLOSE_DELAY=-1","spring.jpa.hibernate.ddl-auto=create-drop","server.servlet.context-path=/api/v1","spring.jackson.property-naming-strategy=SNAKE_CASE","org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true","server.port=0"],"locations":[],"contextLoader":"org.springframework.boot.test.context.SpringBootContextLoader","testClass":"digital.pragmatech.demo.BadThreeIT","contextInitializerClasses":[],"contextCustomizers":["DisableObservabilityContextCustomizer","DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer","DuplicateJsonObjectContextCustomizer","DynamicPropertiesContextCustomizer","ExcludeFilterContextCustomizer","ImportsContextCustomizer","MockitoContextCustomizer","OnFailureConditionReportContextCustomizer","PropertyMappingContextCustomizer","SpringBootTestAnnotation","TestRestTemplateContextCustomizer","WebDriverContextCustomizer"]},"primaryAnnotationType":"SpringBootTest","loadDuration":5203,"initialLoadTime":1784809044,"testAnnotationTypes":["SpringBootTest"],"lastUsedTime":1784809044,"testMethods":["digital.pragmatech.demo.BadThreeIT#testGetAllBooksViaRestApi","digital.pragmatech.demo.BadThreeIT#testCreateBookViaRestApi","digital.pragmatech.demo.BadThreeIT#testGetBookCountViaRestApi"],"testClasses":["digital.pragmatech.demo.BadThreeIT"],"numberOfBeans":376},{"contextKey":"context-2","contextConfiguration":{"parent":null,"classes":["digital.pragmatech.demo.DemoApplication"],"activeProfiles":["test","integration"],"propertySourceLocations":[],"propertySourceProperties":["management.server.port=","spring.datasource.url=jdbc:h2:mem:badtest2;DB_CLOSE_DELAY=-1","spring.jpa.hibernate.ddl-auto=create-drop","spring.jpa.show-sql=true","management.endpoints.web.exposure.include=health,info","org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true","server.port=0"],"locations":[],"contextLoader":"org.springframework.boot.test.context.SpringBootContextLoader","testClass":"digital.pragmatech.demo.BadTwoIT","contextInitializerClasses":[],"contextCustomizers":["DisableObservabilityContextCustomizer","DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer","DuplicateJsonObjectContextCustomizer","DynamicPropertiesContextCustomizer","ExcludeFilterContextCustomizer","MockitoContextCustomizer","OnFailureConditionReportContextCustomizer","PropertyMappingContextCustomizer","SpringBootTestAnnotation","TestRestTemplateContextCustomizer","WebDriverContextCustomizer"]},"primaryAnnotationType":"SpringBootTest","loadDuration":6907,"initialLoadTime":1784809028,"testAnnotationTypes":["SpringBootTest"],"lastUsedTime":1784809028,"testMethods":["digital.pragmatech.demo.BadTwoIT#testServiceFindByAuthor","digital.pragmatech.demo.BadTwoIT#testServiceCreateBook","digital.pragmatech.demo.BadTwoIT#testServiceCountByCategory"],"testClasses":["digital.pragmatech.demo.BadTwoIT"],"numberOfBeans":386},{"contextKey":"context-3","contextConfiguration":{"parent":null,"classes":["digital.pragmatech.demo.DemoApplication"],"activeProfiles":[],"propertySourceLocations":[],"propertySourceProperties":["org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper=true"],"locations":[],"contextLoader":"org.springframework.boot.test.context.SpringBootContextLoader","testClass":"digital.pragmatech.demo.BookControllerIT","contextInitializerClasses":[],"contextCustomizers":["BeanOverrideContextCustomizer","DisableAutoConfigurationContextCustomizer","DisableObservabilityContextCustomizer","DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer","DuplicateJsonObjectContextCustomizer","DynamicPropertiesContextCustomizer","ExcludeFilterContextCustomizer","ImportsContextCustomizer","MockitoContextCustomizer","OnFailureConditionReportContextCustomizer","PropertyMappingContextCustomizer","SpringBootTestAnnotation","TypeExcludeFiltersContextCustomizer","WebDriverContextCustomizer"]},"primaryAnnotationType":"WebMvcTest","loadDuration":187,"initialLoadTime":1784809028,"testAnnotationTypes":["WebMvcTest"],"lastUsedTime":1784809028,"testMethods":["digital.pragmatech.demo.BookControllerIT#testGetAllBooks","digital.pragmatech.demo.BookControllerIT#testGetBookCount","digital.pragmatech.demo.BookControllerIT#testCreateBook"],"testClasses":["digital.pragmatech.demo.BookControllerIT"],"numberOfBeans":126},{"contextKey":"context-4","contextConfiguration":{"parent":null,"classes":["digital.pragmatech.demo.DemoApplication"],"activeProfiles":[],"propertySourceLocations":[],"propertySourceProperties":["org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTestContextBootstrapper=true"],"locations":[],"contextLoader":"org.springframework.boot.test.context.SpringBootContextLoader","testClass":"digital.pragmatech.demo.BookRepositoryIT","contextInitializerClasses":[],"contextCustomizers":["DisableAutoConfigurationContextCustomizer","DisableObservabilityContextCustomizer","DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer","DuplicateJsonObjectContextCustomizer","DynamicPropertiesContextCustomizer","ExcludeFilterContextCustomizer","ImportsContextCustomizer","MockitoContextCustomizer","OnFailureConditionReportContextCustomizer","PropertyMappingContextCustomizer","SpringBootTestAnnotation","TypeExcludeFiltersContextCustomizer","WebDriverContextCustomizer"]},"primaryAnnotationType":"DataJpaTest","loadDuration":57,"initialLoadTime":1784809044,"testAnnotationTypes":["DataJpaTest"],"lastUsedTime":1784809044,"testMethods":["digital.pragmatech.demo.BookRepositoryIT#testFindByCategory","digital.pragmatech.demo.BookRepositoryIT#testFindByIsbn"],"testClasses":["digital.pragmatech.demo.BookRepositoryIT"],"numberOfBeans":81},{"contextKey":"context-5","contextConfiguration":{"parent":null,"classes":["digital.pragmatech.demo.DemoApplication"],"activeProfiles":["test"],"propertySourceLocations":[],"propertySourceProperties":["spring.datasource.url=jdbc:h2:mem:badtest1;DB_CLOSE_DELAY=-1","spring.jpa.hibernate.ddl-auto=create-drop","logging.level.org.springframework.web=DEBUG","org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true","server.port=0"],"locations":[],"contextLoader":"org.springframework.boot.test.context.SpringBootContextLoader","testClass":"digital.pragmatech.demo.BadOneIT","contextInitializerClasses":[],"contextCustomizers":["DisableObservabilityContextCustomizer","DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer","DuplicateJsonObjectContextCustomizer","DynamicPropertiesContextCustomizer","ExcludeFilterContextCustomizer","MockitoContextCustomizer","OnFailureConditionReportContextCustomizer","PropertyMappingContextCustomizer","SpringBootTestAnnotation","TestRestTemplateContextCustomizer","WebDriverContextCustomizer"]},"primaryAnnotationType":"SpringBootTest","loadDuration":5172,"initialLoadTime":1784809049,"testAnnotationTypes":["SpringBootTest"],"lastUsedTime":1784809049,"testMethods":["digital.pragmatech.demo.BadOneIT#testCountBooks"],"testClasses":["digital.pragmatech.demo.BadOneIT"],"numberOfBeans":375},{"contextKey":"context-6","contextConfiguration":{"parent":null,"classes":["digital.pragmatech.demo.DemoApplication"],"activeProfiles":[],"propertySourceLocations":[],"propertySourceProperties":["management.server.port=","org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true","server.port=0"],"locations":[],"contextLoader":"org.springframework.boot.test.context.SpringBootContextLoader","testClass":"digital.pragmatech.demo.MigrationIT","contextInitializerClasses":[],"contextCustomizers":["DisableObservabilityContextCustomizer","DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer","DuplicateJsonObjectContextCustomizer","DynamicPropertiesContextCustomizer","ExcludeFilterContextCustomizer","MockitoContextCustomizer","OnFailureConditionReportContextCustomizer","PropertyMappingContextCustomizer","SpringBootTestAnnotation","TestRestTemplateContextCustomizer","WebDriverContextCustomizer"]},"primaryAnnotationType":"SpringBootTest","loadDuration":5185,"initialLoadTime":1784809039,"testAnnotationTypes":["SpringBootTest"],"lastUsedTime":1784809039,"testMethods":["digital.pragmatech.demo.MigrationIT#shouldReturnSuccessfulHealthCheckRestTemplate"],"testClasses":["digital.pragmatech.demo.MigrationIT"],"numberOfBeans":384}]</script>
+<script>// Spring Test Profiler Report JavaScript Functions
+
+// Initialize empty context statistics (will be populated by Thymeleaf injection)
+window.contextStatistics = [];
+
+/**
+ * Toggle visibility of test method details
+ * @param {HTMLElement} element - The clicked element
+ */
+function toggleClass(element) {
+  const methods = element.nextElementSibling;
+  if (methods) {
+    methods.classList.toggle('show');
+  }
+}
+
+/**
+ * Sort context cache entries by load time, number of tests, or default order
+ * @param {string} criteria - Sort criteria: 'default', 'time', or 'tests'
+ */
+function sortCacheEntries(criteria) {
+  const entries = Array.from(document.querySelectorAll('.cache-entry'));
+  if (entries.length === 0) return;
+
+  const parent = entries[0].parentNode;
+
+  if (!window.cacheEntryOriginalOrder) {
+    window.cacheEntryOriginalOrder = entries.map(el => el);
+  }
+
+  if (criteria === 'default') {
+    window.cacheEntryOriginalOrder.forEach(el => parent.appendChild(el));
+  } else {
+    entries.sort((a, b) => {
+      if (criteria === 'time') {
+        return (parseInt(b.dataset.loadTimeMs, 10) || 0) - (parseInt(a.dataset.loadTimeMs, 10) || 0);
+      }
+      return (parseInt(b.dataset.testCount, 10) || 0) - (parseInt(a.dataset.testCount, 10) || 0);
+    });
+    entries.forEach(el => parent.appendChild(el));
+  }
+
+  document.querySelectorAll('.sort-btn').forEach(btn => btn.classList.remove('active'));
+  const clickedBtn = document.querySelector(`.sort-btn[onclick="sortCacheEntries('${criteria}')"]`);
+  if (clickedBtn) clickedBtn.classList.add('active');
+}
+
+/**
+ * Toggle the theory section visibility
+ */
+function toggleTheorySection() {
+  const content = document.getElementById('theory-content');
+  const icon = document.getElementById('theory-toggle-icon');
+
+  if (!content || !icon) return;
+
+  // Check if content is currently hidden using computed style
+  const isHidden = window.getComputedStyle(content).display === 'none';
+
+  if (isHidden) {
+    // Content is hidden, so we're opening it - show down arrow
+    content.style.display = 'block';
+    icon.textContent = '▼';
+    icon.classList.add('expanded');
+  } else {
+    // Content is visible, so we're closing it - show right arrow
+    content.style.display = 'none';
+    icon.textContent = '▶';
+    icon.classList.remove('expanded');
+  }
+}
+
+/**
+ * Test Class Search functionality
+ */
+class TestClassSearcher {
+  constructor() {
+    this.contextData = window.contextStatistics || [];
+    this.searchInput = null;
+    this.suggestionsContainer = null;
+    this.resultsContainer = null;
+    this.currentSearchTerm = '';
+    this.init();
+  }
+
+  init() {
+    this.searchInput = document.getElementById('test-class-search');
+    this.suggestionsContainer = document.getElementById('test-class-suggestions');
+    this.resultsContainer = document.getElementById('test-class-search-results');
+
+    if (!this.searchInput || !this.suggestionsContainer || !this.resultsContainer) {
+      return;
+    }
+
+    this.bindEvents();
+  }
+
+  bindEvents() {
+    // Input event for real-time search
+    this.searchInput.addEventListener('input', (e) => {
+      const searchTerm = e.target.value.trim();
+      this.currentSearchTerm = searchTerm;
+
+      if (searchTerm.length >= 3) {
+        this.performSearch(searchTerm);
+        this.showSuggestions(searchTerm);
+      } else {
+        this.clearResults();
+        this.hideSuggestions();
+      }
+    });
+
+    // Focus events
+    this.searchInput.addEventListener('focus', () => {
+      if (this.currentSearchTerm.length >= 3) {
+        this.showSuggestions(this.currentSearchTerm);
+      }
+    });
+
+    // Hide suggestions when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!this.searchInput.contains(e.target) && !this.suggestionsContainer.contains(e.target)) {
+        this.hideSuggestions();
+      }
+    });
+
+    // Keyboard navigation for suggestions
+    this.searchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        this.hideSuggestions();
+        this.searchInput.blur();
+      }
+    });
+  }
+
+  performSearch(searchTerm) {
+    const matches = this.findMatches(searchTerm);
+    this.displayResults(matches, searchTerm);
+  }
+
+  findMatches(searchTerm) {
+    const searchTermLower = searchTerm.toLowerCase();
+    const matches = [];
+
+    this.contextData.forEach(context => {
+      if (context.testClasses && context.testClasses.length > 0) {
+        context.testClasses.forEach(testClass => {
+          const simpleClassName = testClass.split('.').pop();
+          const fullClassName = testClass;
+
+          // Check if search term matches either full name or simple name
+          if (fullClassName.toLowerCase().includes(searchTermLower) ||
+              simpleClassName.toLowerCase().includes(searchTermLower)) {
+            matches.push({
+              testClass: testClass,
+              simpleClassName: simpleClassName,
+              contextKey: context.contextKey,
+              contextBeans: context.numberOfBeans || 0
+            });
+          }
+        });
+      }
+    });
+
+    // Sort matches: exact simple class name matches first, then alphabetical
+    return matches.sort((a, b) => {
+      const aSimpleExact = a.simpleClassName.toLowerCase() === searchTermLower;
+      const bSimpleExact = b.simpleClassName.toLowerCase() === searchTermLower;
+
+      if (aSimpleExact && !bSimpleExact) return -1;
+      if (!aSimpleExact && bSimpleExact) return 1;
+
+      return a.simpleClassName.localeCompare(b.simpleClassName);
+    });
+  }
+
+  showSuggestions(searchTerm) {
+    const matches = this.findMatches(searchTerm);
+    const maxSuggestions = 5;
+
+    if (matches.length === 0) {
+      this.hideSuggestions();
+      return;
+    }
+
+    this.suggestionsContainer.innerHTML = '';
+
+    matches.slice(0, maxSuggestions).forEach(match => {
+      const suggestionItem = document.createElement('div');
+      suggestionItem.className = 'suggestion-item';
+
+      suggestionItem.innerHTML = `
+        <span class="suggestion-class-name">${match.simpleClassName}</span>
+        <span class="suggestion-context-id">${match.contextKey}</span>
+      `;
+
+      suggestionItem.addEventListener('click', () => {
+        this.searchInput.value = match.simpleClassName;
+        this.currentSearchTerm = match.simpleClassName;
+        this.performSearch(match.simpleClassName);
+        this.hideSuggestions();
+        this.scrollToContext(match.contextKey);
+      });
+
+      this.suggestionsContainer.appendChild(suggestionItem);
+    });
+
+    this.suggestionsContainer.classList.add('show');
+  }
+
+  hideSuggestions() {
+    this.suggestionsContainer.classList.remove('show');
+  }
+
+  displayResults(matches, searchTerm) {
+    if (matches.length === 0) {
+      this.resultsContainer.innerHTML = `
+        <div class="search-results-header">No test classes found matching "${searchTerm}"</div>
+      `;
+      this.resultsContainer.classList.add('show');
+      return;
+    }
+
+    const headerText = matches.length === 1
+      ? `Found 1 test class matching "${searchTerm}"`
+      : `Found ${matches.length} test classes matching "${searchTerm}"`;
+
+    let resultsHtml = `<div class="search-results-header">${headerText}</div>`;
+
+    matches.forEach(match => {
+      resultsHtml += `
+        <div class="search-result-item">
+          <span class="search-result-class" title="${match.testClass}">${match.simpleClassName}</span>
+          <span class="search-result-context" onclick="testClassSearcher.scrollToContext('${match.contextKey}')"
+                title="Click to scroll to context entry">${match.contextKey}</span>
+        </div>
+      `;
+    });
+
+    this.resultsContainer.innerHTML = resultsHtml;
+    this.resultsContainer.classList.add('show');
+  }
+
+  clearResults() {
+    this.resultsContainer.classList.remove('show');
+    this.resultsContainer.innerHTML = '';
+  }
+
+  scrollToContext(contextKey) {
+    // Find cache entry with matching context ID
+    const cacheEntries = document.querySelectorAll('.cache-entry');
+
+    for (const entry of cacheEntries) {
+      const cacheIdElement = entry.querySelector('.cache-id');
+      if (cacheIdElement && cacheIdElement.textContent.includes(contextKey.replace('context-', ''))) {
+        entry.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center',
+          inline: 'nearest'
+        });
+
+        // Highlight the entry briefly
+        entry.style.transition = 'background-color 0.3s ease';
+        entry.style.backgroundColor = '#e3f2fd';
+
+        setTimeout(() => {
+          entry.style.backgroundColor = '';
+        }, 2000);
+
+        break;
+      }
+    }
+  }
+}
+
+/**
+ * Annotation-based context filter for the caching section.
+ * Only renders when 2+ distinct annotation types exist.
+ */
+class AnnotationFilter {
+  constructor() {
+    this.contextData = window.contextStatistics || [];
+    this.annotationTypes = this.extractAnnotationTypes();
+    this.activeFilter = 'all';
+    this.init();
+  }
+
+  extractAnnotationTypes() {
+    const types = new Set();
+    this.contextData.forEach(context => {
+      if (context.primaryAnnotationType) {
+        types.add(context.primaryAnnotationType);
+      }
+    });
+    return Array.from(types).sort();
+  }
+
+  init() {
+    if (this.annotationTypes.length < 2) {
+      return;
+    }
+
+    const container = document.getElementById('annotation-filter-container');
+    const buttonsContainer = document.getElementById('annotation-filter-buttons');
+    if (!container || !buttonsContainer) {
+      return;
+    }
+
+    this.renderButtons(buttonsContainer);
+    container.style.display = 'block';
+    this.updateSummary();
+  }
+
+  renderButtons(container) {
+    // "All" button
+    const allBtn = document.createElement('button');
+    allBtn.className = 'annotation-filter-btn filter-all active';
+    allBtn.textContent = 'All';
+    allBtn.addEventListener('click', () => this.setFilter('all'));
+    container.appendChild(allBtn);
+
+    // One button per annotation type
+    this.annotationTypes.forEach(type => {
+      const btn = document.createElement('button');
+      btn.className = `annotation-filter-btn filter-${type}`;
+      btn.textContent = type;
+      btn.addEventListener('click', () => this.setFilter(type));
+      container.appendChild(btn);
+    });
+  }
+
+  setFilter(type) {
+    this.activeFilter = type;
+
+    // Update button states
+    document.querySelectorAll('.annotation-filter-btn').forEach(btn => {
+      btn.classList.remove('active');
+    });
+
+    if (type === 'all') {
+      document.querySelector('.annotation-filter-btn.filter-all').classList.add('active');
+    } else {
+      const targetBtn = document.querySelector(`.annotation-filter-btn.filter-${type}`);
+      if (targetBtn) {
+        targetBtn.classList.add('active');
+      }
+    }
+
+    this.applyFilter();
+    this.updateSummary();
+  }
+
+  applyFilter() {
+    const cacheEntries = document.querySelectorAll('.cache-entry[data-annotation-type]');
+
+    cacheEntries.forEach(entry => {
+      const entryType = entry.getAttribute('data-annotation-type');
+      if (this.activeFilter === 'all' || entryType === this.activeFilter) {
+        entry.style.display = '';
+      } else {
+        entry.style.display = 'none';
+      }
+    });
+  }
+
+  updateSummary() {
+    const summaryEl = document.getElementById('annotation-filter-summary');
+    if (!summaryEl) return;
+
+    const totalEntries = document.querySelectorAll('.cache-entry[data-annotation-type]').length;
+    const visibleEntries = document.querySelectorAll('.cache-entry[data-annotation-type]');
+    let visibleCount = 0;
+
+    visibleEntries.forEach(entry => {
+      if (entry.style.display !== 'none') {
+        visibleCount++;
+      }
+    });
+
+    if (this.activeFilter === 'all') {
+      summaryEl.textContent = `Showing all ${totalEntries} contexts`;
+    } else {
+      summaryEl.textContent = `Showing ${visibleCount} of ${totalEntries} contexts (${this.activeFilter})`;
+    }
+  }
+}
+
+/**
+ * Context Comparison Visualizer using D3.js
+ */
+class ContextComparator {
+  constructor() {
+    this.contextData = window.contextStatistics || [];
+    this.selectedContextA = null;
+    this.selectedContextB = null;
+    this.selectedAttribute = null;
+    this.init();
+  }
+
+  init() {
+    this.populateDropdowns();
+    this.bindEvents();
+    this.preselectDefaultContexts();
+  }
+
+  populateDropdowns() {
+    const contextASelect = document.getElementById('context-a-select');
+    const contextBSelect = document.getElementById('context-b-select');
+
+    if (!contextASelect || !contextBSelect) return;
+
+    this.contextData.forEach(context => {
+      const optionA = document.createElement('option');
+      optionA.value = context.contextKey;
+      optionA.textContent = `${context.contextKey} (${context.numberOfBeans} beans, ${context.testClasses.length} classes)`;
+      contextASelect.appendChild(optionA);
+
+      const optionB = document.createElement('option');
+      optionB.value = context.contextKey;
+      optionB.textContent = `${context.contextKey} (${context.numberOfBeans} beans, ${context.testClasses.length} classes)`;
+      contextBSelect.appendChild(optionB);
+    });
+  }
+
+  preselectDefaultContexts() {
+    if (this.contextData.length >= 2) {
+      const contextASelect = document.getElementById('context-a-select');
+      const contextBSelect = document.getElementById('context-b-select');
+
+      if (contextASelect && contextBSelect) {
+        // Select first context for A
+        contextASelect.value = this.contextData[0].contextKey;
+        this.selectedContextA = this.contextData[0];
+
+        // Select second context for B
+        contextBSelect.value = this.contextData[1].contextKey;
+        this.selectedContextB = this.contextData[1];
+
+        // Update compare button state and trigger comparison
+        this.updateCompareButton();
+        this.compareContexts();
+      }
+    }
+  }
+
+  bindEvents() {
+    const contextASelect = document.getElementById('context-a-select');
+    const contextBSelect = document.getElementById('context-b-select');
+    const compareBtn = document.getElementById('compare-contexts-btn');
+
+    if (!contextASelect || !contextBSelect || !compareBtn) return;
+
+    contextASelect.addEventListener('change', (e) => {
+      if (e.target.value) {
+        this.selectedContextA = this.contextData.find(ctx => ctx.contextKey === e.target.value);
+      } else {
+        this.selectedContextA = null;
+      }
+      this.updateCompareButton();
+    });
+
+    contextBSelect.addEventListener('change', (e) => {
+      if (e.target.value) {
+        this.selectedContextB = this.contextData.find(ctx => ctx.contextKey === e.target.value);
+      } else {
+        this.selectedContextB = null;
+      }
+      this.updateCompareButton();
+    });
+
+    compareBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (!compareBtn.disabled) {
+        this.compareContexts();
+      }
+    });
+  }
+
+  updateCompareButton() {
+    const compareBtn = document.getElementById('compare-contexts-btn');
+    if (!compareBtn) return;
+
+    const canCompare = this.selectedContextA && this.selectedContextB &&
+        this.selectedContextA.contextKey !== this.selectedContextB.contextKey;
+
+    compareBtn.disabled = !canCompare;
+  }
+
+  compareContexts() {
+    if (!this.selectedContextA || !this.selectedContextB) {
+      return;
+    }
+
+    const legend = document.getElementById('context-comparison-legend');
+    if (legend) {
+      legend.style.display = 'flex';
+    }
+
+    this.renderComparison();
+    this.autoSelectDifferentAttribute();
+  }
+
+  renderComparison() {
+    const container = d3.select('#context-comparison-visualization');
+    container.selectAll('*').remove();
+
+    const width = 1000;
+    const height = 600; // Increased height to accommodate bigger visualization
+    const contextWidth = 400;
+    const contextHeight = 400;
+
+    const svg = container.append('svg')
+      .attr('width', width)
+      .attr('height', height);
+
+    // Add title
+    svg.append('text')
+      .attr('x', width / 2)
+      .attr('y', 30)
+      .attr('text-anchor', 'middle')
+      .attr('class', 'comparison-title')
+      .style('font-size', '20px')
+      .style('font-weight', 'bold')
+      .text('Spring Test Context Comparison');
+
+    // Add subtitle
+    svg.append('text')
+      .attr('x', width / 2)
+      .attr('y', 60)
+      .attr('text-anchor', 'middle')
+      .attr('class', 'comparison-title')
+      .style('font-size', '14px')
+      .text('Click on any attribute circle (green/red) around the contexts below to see detailed differences.');
+
+    // Context A
+    this.renderContext(svg, this.selectedContextA, 50, 100, 'Test Context A');
+
+    // Context B
+    this.renderContext(svg, this.selectedContextB, 550, 100, 'Test Context B');
+  }
+
+  renderContext(svg, context, x, y, title) {
+    const group = svg.append('g').attr('transform', `translate(${x}, ${y})`);
+
+    // Title
+    group.append('text')
+      .attr('x', 200)
+      .attr('y', 0)
+      .attr('text-anchor', 'middle')
+      .style('font-size', '18px')
+      .style('font-weight', 'bold')
+      .text(title);
+
+    // Context Key (smaller subtitle)
+    group.append('text')
+      .attr('x', 200)
+      .attr('y', 25)
+      .attr('text-anchor', 'middle')
+      .style('font-size', '12px')
+      .style('font-weight', 'normal')
+      .style('fill', '#7f8c8d')
+      .text(context.contextKey);
+
+    // Central beans circle
+    const centerX = 200;
+    const centerY = 240; // Increased from 200 to provide more space below titles
+    const centralRadius = 80;
+
+    group.append('circle')
+      .attr('cx', centerX)
+      .attr('cy', centerY)
+      .attr('r', centralRadius)
+      .attr('fill', '#3498db')
+      .attr('stroke', '#2980b9')
+      .attr('stroke-width', 2);
+
+    group.append('text')
+      .attr('x', centerX)
+      .attr('y', centerY - 10)
+      .attr('text-anchor', 'middle')
+      .attr('fill', 'white')
+      .style('font-size', '16px')
+      .style('font-weight', 'bold')
+      .text('Beans');
+
+    group.append('text')
+      .attr('x', centerX)
+      .attr('y', centerY + 10)
+      .attr('text-anchor', 'middle')
+      .attr('fill', 'white')
+      .style('font-size', '18px')
+      .style('font-weight', 'bold')
+      .text(`(${context.numberOfBeans})`);
+
+    // Configuration features
+    const features = this.getContextFeatures(context);
+    const angleStep = (2 * Math.PI) / features.length;
+    const satelliteRadius = 180;
+
+    features.forEach((feature, i) => {
+      const angle = i * angleStep - Math.PI / 2;
+      const featureX = centerX + Math.cos(angle) * satelliteRadius;
+      const featureY = centerY + Math.sin(angle) * satelliteRadius;
+
+      const featureGroup = group.append('g')
+        .attr('transform', `translate(${featureX}, ${featureY})`);
+
+      // Feature circle
+      const circle = featureGroup.append('circle')
+        .attr('cx', 0)
+        .attr('cy', 0)
+        .attr('r', 25)
+        .attr('fill', this.getFeatureColor(feature))
+        .attr('stroke', '#34495e')
+        .attr('stroke-width', 1)
+        .attr('data-clickable', 'true')
+        .style('cursor', 'pointer')
+        .on('click', (event) => {
+          event.stopPropagation();
+          this.handleCircleClick(feature);
+        });
+
+      // Add selected class if this is the currently selected attribute
+      if (this.selectedAttribute && this.selectedAttribute.key === feature.key) {
+        circle.classed('selected', true);
+      }
+
+      // Feature label
+      featureGroup.append('text')
+        .attr('x', 0)
+        .attr('y', 35)
+        .attr('text-anchor', 'middle')
+        .style('font-size', '10px')
+        .style('font-weight', 'bold')
+        .text(feature.name);
+
+      // Connecting line
+      group.append('line')
+        .attr('x1', centerX + Math.cos(angle) * (centralRadius + 5))
+        .attr('y1', centerY + Math.sin(angle) * (centralRadius + 5))
+        .attr('x2', featureX - Math.cos(angle) * 30)
+        .attr('y2', featureY - Math.sin(angle) * 30)
+        .attr('stroke', '#bdc3c7')
+        .attr('stroke-width', 2)
+        .attr('stroke-dasharray', '5,5');
+    });
+  }
+
+  createTestClassesList(testClasses, fontSize = '12px') {
+    const list = document.createElement('ul');
+    list.style.cssText = `margin: 0; padding-left: 20px; font-family: monospace; font-size: ${fontSize}; line-height: 1.4;`;
+
+    if (testClasses.length === 0) {
+      const li = document.createElement('li');
+      li.textContent = 'No test classes found';
+      li.style.color = '#7f8c8d';
+      list.appendChild(li);
+    } else {
+      testClasses.forEach(testClass => {
+        const li = document.createElement('li');
+        li.textContent = testClass.split('.').pop(); // Show simple class name
+        li.title = testClass; // Full name on hover
+        li.style.cssText = 'margin-bottom: 2px; color: #34495e;';
+        list.appendChild(li);
+      });
+    }
+
+    return list;
+  }
+
+  createContextDiv(contextLetter, titleFontSize = '16px', listFontSize = '12px') {
+    const contextDiv = document.createElement('div');
+    contextDiv.style.cssText = 'flex: 1; background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 4px solid #3498db;';
+
+    const title = document.createElement('h4');
+    title.textContent = `Test Context ${contextLetter} - Test Classes`;
+    title.style.cssText = `margin: 0 0 10px 0; color: #2c3e50; font-size: ${titleFontSize};`;
+    contextDiv.appendChild(title);
+
+    const testClasses = contextLetter === 'A' ? this.selectedContextA.testClasses || [] : this.selectedContextB.testClasses || [];
+    const list = this.createTestClassesList(testClasses, listFontSize);
+    contextDiv.appendChild(list);
+
+    return contextDiv;
+  }
+
+  renderTestClassesLists() {
+    const container = document.getElementById('context-comparison-visualization');
+
+    // Create or update test classes container - append to same container as SVG, not parent
+    let testClassesContainer = document.getElementById('test-classes-container');
+    if (!testClassesContainer) {
+      testClassesContainer = document.createElement('div');
+      testClassesContainer.id = 'test-classes-container';
+      testClassesContainer.style.cssText = 'display: flex; justify-content: space-between; margin-top: 20px; gap: 40px;';
+      container.appendChild(testClassesContainer);
+    }
+    testClassesContainer.innerHTML = '';
+
+    // Create both context divs using the helper method
+    const contextADiv = this.createContextDiv('A', '16px', '12px');
+    const contextBDiv = this.createContextDiv('B', '16px', '12px');
+
+    testClassesContainer.appendChild(contextADiv);
+    testClassesContainer.appendChild(contextBDiv);
+  }
+
+  renderTestClassesInDetailedComparison(detailedContainer) {
+    // Remove any existing test classes container in detailed comparison
+    const existingTestClasses = detailedContainer.querySelector('.test-classes-comparison');
+    if (existingTestClasses) {
+      existingTestClasses.remove();
+    }
+
+    // Create test classes container for detailed comparison
+    const testClassesContainer = document.createElement('div');
+    testClassesContainer.className = 'test-classes-comparison';
+    testClassesContainer.style.cssText = 'margin-top: 20px; display: flex; gap: 20px;';
+
+    // Create both context divs using the helper method with smaller font
+    const contextADiv = this.createContextDiv('A', '14px', '11px');
+    const contextBDiv = this.createContextDiv('B', '14px', '11px');
+
+    testClassesContainer.appendChild(contextADiv);
+    testClassesContainer.appendChild(contextBDiv);
+
+    // Append to the detailed comparison container
+    detailedContainer.appendChild(testClassesContainer);
+  }
+
+  getContextFeatures(context) {
+    const config = context.contextConfiguration;
+    return [
+      { name: 'Locations', value: config.locations, key: 'locations' },
+      { name: 'Property Source Properties', value: config.propertySourceProperties, key: 'propertySourceProperties' },
+      { name: 'Classes', value: config.classes, key: 'classes' },
+      { name: 'Context Initializer Classes', value: config.contextInitializerClasses, key: 'contextInitializerClasses' },
+      { name: 'Active Profiles', value: config.activeProfiles, key: 'activeProfiles' },
+      { name: 'Property Source Locations', value: config.propertySourceLocations, key: 'propertySourceLocations' },
+      { name: 'Context Customizers', value: config.contextCustomizers, key: 'contextCustomizers' },
+      { name: 'Context Loader', value: [config.contextLoader], key: 'contextLoader' },
+      { name: 'Parent', value: config.parent ? [config.parent] : [], key: 'parent' }
+    ];
+  }
+
+  getFeatureColor(feature) {
+    if (!this.selectedContextA || !this.selectedContextB) return '#95a5a6';
+
+    const configA = this.selectedContextA.contextConfiguration;
+    const configB = this.selectedContextB.contextConfiguration;
+
+    const valueA = this.getFeatureValue(configA, feature.key);
+    const valueB = this.getFeatureValue(configB, feature.key);
+
+    const arrayA = Array.isArray(valueA) ? valueA : [valueA];
+    const arrayB = Array.isArray(valueB) ? valueB : [valueB];
+
+    if (this.arraysEqual(arrayA, arrayB)) {
+      return '#27ae60'; // Same - green
+    } else {
+      return '#e74c3c'; // Different - red
+    }
+  }
+
+  getFeatureValue(config, key) {
+    switch(key) {
+      case 'contextLoader': return config.contextLoader;
+      case 'parent': return config.parent;
+      default: return config[key] || [];
+    }
+  }
+
+  arraysEqual(a, b) {
+    if (a.length !== b.length) return false;
+    const sortedA = [...a].sort();
+    const sortedB = [...b].sort();
+    return sortedA.every((val, i) => val === sortedB[i]);
+  }
+
+  truncateString(str, maxLength = 200) {
+    if (!str || str.length <= maxLength) return str;
+    return str.substring(0, maxLength) + '...';
+  }
+
+  formatValueArray(valueArray, maxLength = 200) {
+    if (!valueArray || valueArray.length === 0) return 'None';
+
+    const joinedString = valueArray.join(', ');
+    return this.truncateString(joinedString, maxLength);
+  }
+
+  autoSelectDifferentAttribute() {
+    if (!this.selectedContextA || !this.selectedContextB) return;
+
+    const features = this.getContextFeatures(this.selectedContextA);
+
+    // Find the first different attribute (red circle)
+    for (const feature of features) {
+      const valueA = this.getFeatureValue(this.selectedContextA.contextConfiguration, feature.key);
+      const valueB = this.getFeatureValue(this.selectedContextB.contextConfiguration, feature.key);
+
+      const arrayA = Array.isArray(valueA) ? valueA : [valueA];
+      const arrayB = Array.isArray(valueB) ? valueB : [valueB];
+
+      if (!this.arraysEqual(arrayA, arrayB)) {
+        // Found a different attribute, select it
+        this.handleCircleClick(feature);
+        return;
+      }
+    }
+
+    // If no different attributes found, select the first one
+    if (features.length > 0) {
+      this.handleCircleClick(features[0]);
+    }
+  }
+
+  handleCircleClick(feature) {
+    // Update selected attribute
+    this.selectedAttribute = feature;
+
+    // Update visual selection state
+    this.updateCircleSelection();
+
+    // Show detailed comparison
+    this.showDetailedComparison(feature);
+  }
+
+  updateCircleSelection() {
+    // Remove selected class from all circles
+    d3.selectAll('.comparison-visualization circle[data-clickable="true"]')
+      .classed('selected', false);
+
+    // Add selected class to clicked attribute circles (both contexts)
+    if (this.selectedAttribute) {
+      const selectedFeatureName = this.selectedAttribute.name;
+
+      // Find and select circles that correspond to the same feature in both contexts
+      d3.selectAll('.comparison-visualization g g').each(function() {
+        const group = d3.select(this);
+        const textElement = group.select('text');
+        if (textElement.text() === selectedFeatureName) {
+          group.select('circle[data-clickable="true"]').classed('selected', true);
+        }
+      });
+    }
+  }
+
+  showDetailedComparison(feature) {
+    const detailedContainer = document.getElementById('context-detailed-comparison');
+    const contextADetail = detailedContainer.querySelector('.context-a-detail .context-detail-value');
+    const contextBDetail = detailedContainer.querySelector('.context-b-detail .context-detail-value');
+    const titleElement = detailedContainer.querySelector('.detailed-comparison-title');
+
+    if (!detailedContainer || !contextADetail || !contextBDetail) return;
+
+    // Update title
+    titleElement.textContent = `${feature.name} - Detailed Comparison`;
+
+    // Get values for both contexts
+    const valueA = this.getFeatureValue(this.selectedContextA.contextConfiguration, feature.key);
+    const valueB = this.getFeatureValue(this.selectedContextB.contextConfiguration, feature.key);
+
+    const arrayA = Array.isArray(valueA) ? valueA : [valueA];
+    const arrayB = Array.isArray(valueB) ? valueB : [valueB];
+
+    // Format and display values
+    const diffResult= this.formatDetailedValue(feature.name, arrayA, arrayB);
+
+    contextADetail.innerHTML = diffResult.leftHtml;
+    contextBDetail.innerHTML = diffResult.rightHtml;
+
+    // Add test classes lists to the detailed comparison
+    this.renderTestClassesInDetailedComparison(detailedContainer);
+
+    // Show the detailed comparison container
+    detailedContainer.style.display = 'block';
+  }
+
+  formatDetailedValue(attributeName, currentValues, comparisonValues) {
+
+    const isEmptyA = currentValues.length === 0 || (currentValues.length === 1 && !currentValues[0]);
+    const isEmptyB = comparisonValues.length === 0 || (comparisonValues.length === 1 && !comparisonValues[0]);
+
+    if (isEmptyA && isEmptyB) {
+      const noValuesHtml = `<div style="color: #6c757d; font-style: italic; text-align: center; padding: 20px;">No values configured</div>`;
+      return { leftHtml: noValuesHtml, rightHtml: noValuesHtml };
+    }
+
+    // Use diff.js to get the differences
+    // Normalise falsy single-element arrays so the diff library receives clean inputs
+    const effectiveCurrentValues = isEmptyA ? [] : currentValues;
+    const effectiveComparisonValues = isEmptyB ? [] : comparisonValues;
+    const diff = Diff.diffArrays(effectiveCurrentValues, effectiveComparisonValues);
+
+    // Create main container
+    let leftHtml = `<div class="attribute-name">${attributeName}</div><div class="diff-container">`;
+    let rightHtml = `<div class="attribute-name">${attributeName}</div><div class="diff-container">`;
+
+    let lineNumber = 1;
+    let differentLines = 0;
+
+    for (const part of diff) {
+      const lines = part.value.filter(line => line.length > 0);
+
+      for (const line of lines) {
+        if (part.added) {
+          //Line exists in this context
+          leftHtml += this.createEmptyLine(lineNumber);
+          rightHtml += this.createDiffLine(lineNumber, '+', line, '#d4f8d4', 'different');
+          differentLines++;
+        } else if (part.removed) {
+          //Line does not exist in this context - show empty span
+          leftHtml += this.createDiffLine(lineNumber, '+', line, '#d4f8d4', 'different');
+          rightHtml += this.createEmptyLine(lineNumber);
+          differentLines++;
+        } else {
+          // Identical line in both contexts
+          leftHtml += this.createDiffLine(lineNumber, ' ', line, '#f6f8fa', 'same');
+          rightHtml += this.createDiffLine(lineNumber, ' ', line, '#f6f8fa', 'same');
+        }
+        lineNumber += 1
+      }
+    }
+
+    leftHtml += `</div>`;
+    rightHtml += `</div>`;
+
+    leftHtml += this.createStatusBar(differentLines)
+    rightHtml += this.createStatusBar(differentLines)
+
+    return { leftHtml, rightHtml };
+  }
+
+  createDiffLine(lineNum, symbol, content, bgColor, containerClassName) {
+    const symbolColor = symbol === '+' ? '#2ea043' : (symbol === '-' ? '#d1242f' : '#656d76');
+    const formattedContent = this.escapeHtml(this.formatLongValue(content, ''));
+
+    return `
+    <div class="${containerClassName}">
+        <span class="num" style="background-color: ${bgColor};">${lineNum}</span>
+        <span class="symbol" style="color: ${symbolColor}; background-color: ${bgColor};">${symbol}</span>
+        <span class="code" style="flex: 1; background-color: ${bgColor}; white-space: pre-wrap; word-break: break-word;">${formattedContent}</span>
+    </div>`;
+  }
+
+  createEmptyLine(lineNumber) {
+    return `
+    <div class="empty-line" >
+        <span class="num" style="background-color: #f8f9fa;">${lineNumber}</span>
+        <span>&nbsp;</span>
+        <span class="code empty" style="background-color: #f8f9fa;">&nbsp;</span>
+    </div>`;
+  }
+
+  createStatusBar(differentLines) {
+    return `
+    <div style="margin-top: 10px; padding: 8px 12px; background: #f6f8fa; border-radius: 6px; font-size: 12px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
+        <span style="color: ${differentLines > 0 ? '#d1242f' : '#2ea043'}; font-weight: bold;">
+            ${differentLines > 0 ? '✗ Different from other context' : '✓ Same as other context'}
+        </span>
+    </div>`;
+  }
+
+  formatLongValue(value, attributeName) {
+    // For Context Customizers and other very long class names, add line breaks at package boundaries
+    if (attributeName === 'Context Customizers' && value.length > 80) {
+      // Insert line breaks before common package prefixes for better readability
+      return value.replace(/(org\.springframework\.|org\.junit\.|com\.)/g, '\n$1')
+                  .replace(/^[\s\n]+/, ''); // Remove leading whitespace/newlines
+    }
+
+    // For other long values, wrap at 120 characters maintaining word boundaries
+    if (value.length > 120) {
+      return value.replace(/(.{120})/g, '$1\n');
+    }
+
+    return value;
+  }
+
+  escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+}
+
+/**
+ * Initialize the report functionality when DOM is loaded
+ */
+function initializeReport() {
+  // Ensure JSON is parsed first
+  try {
+    const jsonScript = document.getElementById('context-statistics-json');
+    if (jsonScript) {
+      window.contextStatistics = JSON.parse(jsonScript.textContent || '[]');
+    }
+  } catch (e) {
+    console.error('Failed to parse context statistics JSON:', e);
+    window.contextStatistics = [];
+  }
+
+  // Initialize test class searcher, annotation filter, and context comparator
+  if (window.contextStatistics && window.contextStatistics.length > 0) {
+    window.testClassSearcher = new TestClassSearcher();
+    new AnnotationFilter();
+    new ContextComparator();
+  }
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', initializeReport);
+
+// Export functions for testing
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    toggleClass,
+    toggleTheorySection,
+    TestClassSearcher,
+    AnnotationFilter,
+    ContextComparator,
+    initializeReport
+  };
+}
+</script>
 </body>
 </html>
