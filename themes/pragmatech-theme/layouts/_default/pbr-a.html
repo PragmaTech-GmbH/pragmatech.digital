@@ -1,0 +1,178 @@
+{{ define "main" }}
+{{/* Variant A: long-form sales page, angle "AI writes faster than you can verify". data-variant="a" is the light-theme CSS hook, used by all PBR copy variants. */}}
+<div data-variant="a">
+
+<!-- Hero -->
+<section class="relative overflow-hidden bg-white border-b border-slate-200">
+    <div class="absolute inset-0 bg-gradient-to-br from-white via-brand-50/40 to-white pointer-events-none"></div>
+    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 text-center">
+        <span class="inline-flex items-center gap-2 px-4 py-1.5 mb-6 rounded-full bg-brand-50 border border-brand-100 text-[11px] font-bold tracking-[0.18em] uppercase text-brand-900">
+            Pipeline Baseline Report
+        </span>
+        <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-[1.05]">
+            KI schreibt schneller,
+            <span class="block mt-1 bg-gradient-to-r from-brand-600 to-accent-teal text-transparent bg-clip-text">als eure Pipeline verifiziert.</span>
+        </h1>
+        <p class="text-lg md:text-xl text-slate-600 mb-8 max-w-2xl mx-auto leading-relaxed">
+            In 5 Werktagen wisst ihr schwarz auf weiß, wie viel Entwicklerkapazität in eurer Build-Pipeline feststeckt - und was es kostet, sie freizulegen.
+        </p>
+        {{ partial "pbr/cta-button.html" (dict "ctx" .) }}
+        <p class="mt-4 text-sm text-slate-500">15 Minuten, kein Pitch - ihr bekommt direkt eine erste Einschätzung.</p>
+    </div>
+</section>
+
+<!-- Problem -->
+<section class="bg-slate-50 border-b border-slate-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+        <h2 class="font-heading text-3xl md:text-4xl font-bold text-slate-900 mb-6">Das Problem</h2>
+        <div class="space-y-5 text-lg text-slate-600 leading-relaxed">
+            <p>KI-Tools haben euren Code-Output vervielfacht - aber jede Zeile muss durch dieselbe Pipeline: bauen, testen, reviewen. Wenn die Build-Zeit 15, 20 oder 30 Minuten beträgt, verifiziert ihr langsamer, als die KI schreibt.</p>
+            <p>Eure Entwickler warten, wechseln den Kontext, verlieren den Flow. Das kostet real Geld - <span class="font-semibold text-slate-900">ihr wisst nur nicht, wie viel.</span></p>
+        </div>
+    </div>
+</section>
+
+<!-- Deliverables -->
+<section class="bg-white border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+        <h2 class="font-heading text-3xl md:text-4xl font-bold text-slate-900 mb-4">Das Ergebnis</h2>
+        <p class="text-lg text-slate-600 mb-10 max-w-3xl">Ein Report, den ihr direkt ans Management weiterreichen könnt:</p>
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-7 shadow-sm">
+                <div class="on-brand inline-flex items-center justify-center w-11 h-11 rounded-lg bg-brand-500 text-white shadow-sm shadow-brand-500/40 mb-4">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                </div>
+                <h3 class="font-heading text-xl font-bold text-slate-900 mb-2">Baseline schwarz auf weiß</h3>
+                <p class="text-slate-600 leading-relaxed">Build-Zeit-Median, Flaky-Rate, Pipeline-Läufe pro Tag und der Confidence-Score eures Teams: &bdquo;Wie sicher würdet ihr Freitagnachmittag deployen?&ldquo;</p>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-7 shadow-sm">
+                <div class="on-brand inline-flex items-center justify-center w-11 h-11 rounded-lg bg-brand-500 text-white shadow-sm shadow-brand-500/40 mb-4">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                </div>
+                <h3 class="font-heading text-xl font-bold text-slate-900 mb-2">Die Top-3-Produktivitätskiller</h3>
+                <p class="text-slate-600 leading-relaxed">Konkret benannt, mit Fundstellen im Code - nicht als Folien-Floskel.</p>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-7 shadow-sm">
+                <div class="on-brand inline-flex items-center justify-center w-11 h-11 rounded-lg bg-brand-500 text-white shadow-sm shadow-brand-500/40 mb-4">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <h3 class="font-heading text-xl font-bold text-slate-900 mb-2">Das Einsparpotenzial in Stunden und Euro</h3>
+                <p class="text-slate-600 leading-relaxed">Nachvollziehbar gerechnet mit euren Zahlen, nicht mit Musterwerten.</p>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-7 shadow-sm">
+                <div class="on-brand inline-flex items-center justify-center w-11 h-11 rounded-lg bg-brand-500 text-white shadow-sm shadow-brand-500/40 mb-4">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+                </div>
+                <h3 class="font-heading text-xl font-bold text-slate-900 mb-2">Der Maßnahmenplan mit Prognose</h3>
+                <p class="text-slate-600 leading-relaxed">Welche Reduktion in 30 Tagen realistisch ist - priorisiert nach Aufwand und Wirkung.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Process -->
+<section class="bg-slate-50 border-b border-slate-200">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+        <h2 class="font-heading text-3xl md:text-4xl font-bold text-slate-900 mb-4">Der Ablauf</h2>
+        <p class="text-lg text-slate-600 mb-10">5 Werktage, minimaler Aufwand für euer Team.</p>
+        {{ partial "pbr/process-table.html" . }}
+    </div>
+</section>
+
+<!-- Objections -->
+<section class="bg-white border-b border-slate-200">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+        <h2 class="font-heading text-3xl md:text-4xl font-bold text-slate-900 mb-4">&bdquo;Das können wir doch selbst analysieren&ldquo;</h2>
+        <p class="text-lg text-slate-600 mb-10 max-w-3xl">Theoretisch ja. Praktisch passiert es nicht - aus vier Gründen:</p>
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="border border-slate-200 rounded-xl p-7 bg-slate-50 shadow-sm">
+                <h3 class="font-heading text-lg font-bold text-slate-900 mb-2">Niemand budgetiert &bdquo;Tech Debt in Tests&ldquo;</h3>
+                <p class="text-slate-600 leading-relaxed">Eine saubere Pipeline-Analyse kostet ein bis zwei Wochen Fokuszeit eines Seniors. Diese Zeit verliert im Sprint immer gegen Features - seit Jahren. Ein Festpreis mit fixem Endtermin löst das.</p>
+            </div>
+            <div class="border border-slate-200 rounded-xl p-7 bg-slate-50 shadow-sm">
+                <h3 class="font-heading text-lg font-bold text-slate-900 mb-2">Betriebsblindheit ist real</h3>
+                <p class="text-slate-600 leading-relaxed">Euer Team hat die 20-Minuten-Builds längst normalisiert - man holt eben Kaffee. Von außen fällt sofort auf, was intern niemand mehr hinterfragt.</p>
+            </div>
+            <div class="border border-slate-200 rounded-xl p-7 bg-slate-50 shadow-sm">
+                <h3 class="font-heading text-lg font-bold text-slate-900 mb-2">Euch fehlt der Vergleichsmaßstab</h3>
+                <p class="text-slate-600 leading-relaxed">Ist eure Flaky-Rate normal? Sind 18 Minuten Build für eure Codebase-Größe gut oder schlecht? Das beantwortet nur der Blick über 10+ Engineering-Teams hinweg - den euer Team nicht haben kann.</p>
+            </div>
+            <div class="border border-slate-200 rounded-xl p-7 bg-slate-50 shadow-sm">
+                <h3 class="font-heading text-lg font-bold text-slate-900 mb-2">Ein neutraler Report überzeugt das Management</h3>
+                <p class="text-slate-600 leading-relaxed">&bdquo;Die Builds sind zu langsam&ldquo; klingt intern nach Beschwerde. Ein externer Report mit euren Zahlen, Fundstellen und Euro-Beträgen ist eine Entscheidungsvorlage.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Pricing -->
+<section class="bg-slate-50 border-b border-slate-200">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+        {{ partial "pbr/pricing-card.html" (dict "ctx" .) }}
+    </div>
+</section>
+
+<!-- About / Proof -->
+<section class="bg-white border-b border-slate-200">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+        <h2 class="font-heading text-3xl md:text-4xl font-bold text-slate-900 mb-4">Warum ich</h2>
+        <p class="text-lg text-slate-600 mb-10 max-w-3xl">10+ Jahre Spring Boot, 6 Jahre als Consultant in 10+ Engineering-Teams. Keine Theorie von Folien, sondern nachweisbare Ergebnisse:</p>
+        {{ partial "pbr/proof-bar.html" . }}
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="bg-slate-50 border-b border-slate-200">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+        <h2 class="font-heading text-3xl md:text-4xl font-bold text-slate-900 mb-10">Häufige Fragen</h2>
+        <div class="space-y-4">
+            <details class="group bg-white border border-slate-200 rounded-xl shadow-sm">
+                <summary class="cursor-pointer list-none flex items-center justify-between gap-4 p-6 font-heading font-bold text-slate-900">
+                    Was passiert nach dem Report?
+                    <svg class="w-5 h-5 shrink-0 text-brand-600 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <p class="px-6 pb-6 text-slate-600 leading-relaxed">Im Ergebnis-Call gehen wir den Report gemeinsam durch. Danach entscheidet ihr: Ihr setzt den Maßnahmenplan selbst um - der Report enthält alles dafür - oder ihr beauftragt mich mit der Umsetzung. Dann werden die 1.990&nbsp;&euro; voll angerechnet.</p>
+            </details>
+            <details class="group bg-white border border-slate-200 rounded-xl shadow-sm">
+                <summary class="cursor-pointer list-none flex items-center justify-between gap-4 p-6 font-heading font-bold text-slate-900">
+                    Warum braucht es erst einen Report - könnt ihr nicht direkt optimieren?
+                    <svg class="w-5 h-5 shrink-0 text-brand-600 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <p class="px-6 pb-6 text-slate-600 leading-relaxed">Ohne Baseline ist jede Empfehlung geraten. Jede Codebase, jede Pipeline und jede Team-Praxis ist anders - seriöse Hinweise, was bei euch die größte Wirkung hat, sind erst nach der Messung möglich. Deshalb steht der Report immer am Anfang.</p>
+            </details>
+            <details class="group bg-white border border-slate-200 rounded-xl shadow-sm">
+                <summary class="cursor-pointer list-none flex items-center justify-between gap-4 p-6 font-heading font-bold text-slate-900">
+                    Wir dürfen keinen externen Repo-Zugriff geben. Geht es trotzdem?
+                    <svg class="w-5 h-5 shrink-0 text-brand-600 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <p class="px-6 pb-6 text-slate-600 leading-relaxed">Ja. In der Remote-Variante führt euer Team Profiler und Analyse-Skripte nach meiner Anleitung selbst aus, ich werte nur die Ergebnisse aus. Etwas weniger Tiefe, gleicher Report. Eine unterschriftsfertige NDA-Vorlage liegt in beiden Varianten bei.</p>
+            </details>
+            <details class="group bg-white border border-slate-200 rounded-xl shadow-sm">
+                <summary class="cursor-pointer list-none flex items-center justify-between gap-4 p-6 font-heading font-bold text-slate-900">
+                    Für welche Teams passt das?
+                    <svg class="w-5 h-5 shrink-0 text-brand-600 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <p class="px-6 pb-6 text-slate-600 leading-relaxed">JVM-Teams mit Spring Boot und CI auf GitHub Actions oder GitLab CI. Ein Report deckt ein Team ab - eine Codebase, eine Pipeline. Ob euer Setup passt, klären wir im 15-Minuten-Call.</p>
+            </details>
+            <details class="group bg-white border border-slate-200 rounded-xl shadow-sm">
+                <summary class="cursor-pointer list-none flex items-center justify-between gap-4 p-6 font-heading font-bold text-slate-900">
+                    Wie funktioniert die Garantie genau?
+                    <svg class="w-5 h-5 shrink-0 text-brand-600 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <p class="px-6 pb-6 text-slate-600 leading-relaxed">Findet der Report kein Einsparpotenzial von mindestens 20.000&nbsp;&euro; pro Jahr - nachvollziehbar mit euren Zahlen gerechnet - zahlt ihr nichts. Das ist das Zehnfache des Report-Preises.</p>
+            </details>
+        </div>
+    </div>
+</section>
+
+<!-- Final CTA -->
+<section class="bg-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-center">
+        <h2 class="font-heading text-3xl md:text-4xl font-bold text-slate-900 mb-4">Nächster Schritt</h2>
+        <p class="text-lg text-slate-600 mb-8">15-Minuten-Call, kein Pitch: Wir klären, ob euer Setup passt, und ihr bekommt direkt eine erste Einschätzung.</p>
+        {{ partial "pbr/cta-button.html" (dict "ctx" . "label" "Jetzt 15-Minuten-Call buchen") }}
+    </div>
+</section>
+
+</div>
+{{ end }}

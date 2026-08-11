@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="{{ .Site.LanguageCode | default "en" }}" class="scroll-smooth">
+<html lang="{{ .Params.htmlLang | default (.Site.LanguageCode | default "en") }}" class="scroll-smooth">
 {{ partial "head.html" . }}
 <body class="bg-slate-900 text-slate-300 font-sans antialiased selection:bg-brand-500 selection:text-white">
+{{ if not .Params.hideNav }}
 {{ partial "header.html" . }}
 {{ if not .IsHome }}{{ partial "banner.html" . }}{{ end }}
+{{ end }}
 <main>
     {{ block "main" . }}{{ end }}
 </main>

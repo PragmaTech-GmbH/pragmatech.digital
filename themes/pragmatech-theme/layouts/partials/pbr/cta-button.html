@@ -1,0 +1,8 @@
+{{/* Usage: {{ partial "pbr/cta-button.html" (dict "ctx" . "label" "...") }} */}}
+<a href="{{ .ctx.Site.Params.scheduleCallUrl }}" target="_blank" rel="noopener"
+   class="cta-primary px-8 py-4 bg-brand-600 hover:bg-brand-500 text-white rounded-lg font-bold transition-all shadow-lg shadow-brand-500/25 inline-flex items-center gap-2 group">
+    {{ .label | default "15-Minuten-Gespräch buchen" }}
+    <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+    </svg>
+</a>

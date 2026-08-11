@@ -1,0 +1,86 @@
+{{ define "main" }}
+{{/* Variant B: short numbers-first page, hard cost/ROI angle. data-variant="a" is the light-theme CSS hook, used by all PBR copy variants. */}}
+<div data-variant="a">
+
+<!-- Hero: numbers-first -->
+<section class="relative overflow-hidden bg-white border-b border-slate-200">
+    <div class="absolute inset-0 bg-gradient-to-br from-white via-brand-50/40 to-white pointer-events-none"></div>
+    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 text-center">
+        <span class="inline-flex items-center gap-2 px-4 py-1.5 mb-6 rounded-full bg-brand-50 border border-brand-100 text-[11px] font-bold tracking-[0.18em] uppercase text-brand-900">
+            Pipeline Baseline Report
+        </span>
+        <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-8 leading-[1.05]">
+            Wie viel Entwicklerkapazität steckt
+            <span class="block mt-1 bg-gradient-to-r from-brand-600 to-accent-teal text-transparent bg-clip-text">in eurer Pipeline fest?</span>
+        </h1>
+
+        <!-- Illustrative pipeline math -->
+        <div class="max-w-2xl mx-auto mb-8 bg-slate-900 rounded-xl p-6 md:p-8 text-left font-mono text-sm md:text-base shadow-xl shadow-slate-900/20">
+            <div class="text-slate-400 mb-3">// Rechenbeispiel: Team mit 8 Entwicklern</div>
+            <div class="text-slate-300">20 Min Build <span class="text-slate-500">&times;</span> 30 Läufe/Tag</div>
+            <div class="text-slate-300">= <span class="text-white font-bold">10 Stunden Wartezeit. Pro Tag.</span></div>
+            <div class="mt-3 pt-3 border-t border-slate-700 text-brand-400 font-bold">&asymp; 50.000+ &euro; pro Jahr - konservativ gerechnet</div>
+        </div>
+
+        <p class="text-lg md:text-xl text-slate-600 mb-8 max-w-2xl mx-auto leading-relaxed">
+            Eure Zahlen kennt ihr nicht? Genau das ist das Problem. In 5 Werktagen liegt der Betrag schwarz auf weiß auf dem Tisch - management-tauglich gerechnet mit euren Daten.
+        </p>
+        {{ partial "pbr/cta-button.html" (dict "ctx" .) }}
+        <p class="mt-4 text-sm text-slate-500">15 Minuten, kein Pitch - mit erster Einschätzung direkt im Call.</p>
+    </div>
+</section>
+
+<!-- Compact deliverables -->
+<section class="bg-slate-50 border-b border-slate-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-16">
+        <h2 class="font-heading text-2xl md:text-3xl font-bold text-slate-900 mb-8">Der Report - in 5 Werktagen, ~2,5 Stunden Aufwand für euer Team</h2>
+        <ul class="space-y-4">
+            <li class="flex gap-4 bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+                <span class="font-heading font-bold text-brand-600 text-lg shrink-0">01</span>
+                <p class="text-slate-600"><span class="font-semibold text-slate-900">Baseline schwarz auf weiß</span> - Build-Zeit-Median, Flaky-Rate, Läufe pro Tag, Confidence-Score eures Teams</p>
+            </li>
+            <li class="flex gap-4 bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+                <span class="font-heading font-bold text-brand-600 text-lg shrink-0">02</span>
+                <p class="text-slate-600"><span class="font-semibold text-slate-900">Top-3-Produktivitätskiller</span> - konkret benannt, mit Fundstellen im Code</p>
+            </li>
+            <li class="flex gap-4 bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+                <span class="font-heading font-bold text-brand-600 text-lg shrink-0">03</span>
+                <p class="text-slate-600"><span class="font-semibold text-slate-900">Einsparpotenzial in Stunden und Euro</span> - gerechnet mit euren Zahlen, nicht mit Musterwerten</p>
+            </li>
+            <li class="flex gap-4 bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+                <span class="font-heading font-bold text-brand-600 text-lg shrink-0">04</span>
+                <p class="text-slate-600"><span class="font-semibold text-slate-900">30-Tage-Maßnahmenplan mit Prognose</span> - priorisiert nach Aufwand und Wirkung, umsetzbar von euch oder von mir</p>
+            </li>
+        </ul>
+        <p class="mt-6 text-slate-600">Euer Aufwand: Zugänge bereitstellen (~30 Min), zwei Gespräche (2&nbsp;&times;&nbsp;45 Min), Ergebnis-Call (60 Min). Remote-Variante für regulierte Umgebungen verfügbar.</p>
+    </div>
+</section>
+
+<!-- Why external + proof -->
+<section class="bg-white border-b border-slate-200">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-16">
+        <h2 class="font-heading text-2xl md:text-3xl font-bold text-slate-900 mb-8">Warum das intern nicht passiert</h2>
+        <div class="grid md:grid-cols-3 gap-5 mb-12">
+            <div class="border-l-4 border-brand-500 pl-5 py-1">
+                <p class="text-slate-600"><span class="font-semibold text-slate-900">Keine Fokuszeit:</span> &bdquo;Tech Debt in Tests&ldquo; verliert im Sprint immer gegen Features - seit Jahren.</p>
+            </div>
+            <div class="border-l-4 border-brand-500 pl-5 py-1">
+                <p class="text-slate-600"><span class="font-semibold text-slate-900">Betriebsblindheit:</span> Euer Team hat die Wartezeiten längst normalisiert.</p>
+            </div>
+            <div class="border-l-4 border-brand-500 pl-5 py-1">
+                <p class="text-slate-600"><span class="font-semibold text-slate-900">Kein Benchmark:</span> Ob eure Werte gut oder schlecht sind, zeigt nur der Vergleich über 10+ Teams.</p>
+            </div>
+        </div>
+        {{ partial "pbr/proof-bar.html" . }}
+    </div>
+</section>
+
+<!-- Pricing closes the page -->
+<section class="bg-slate-50">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20">
+        {{ partial "pbr/pricing-card.html" (dict "ctx" .) }}
+    </div>
+</section>
+
+</div>
+{{ end }}

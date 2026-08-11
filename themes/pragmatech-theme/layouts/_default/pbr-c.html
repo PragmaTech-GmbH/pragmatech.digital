@@ -1,0 +1,113 @@
+{{ define "main" }}
+{{/* Variant C: narrative timeline "Der Weg zum Report", risk-reversal/process angle. data-variant="a" is the light-theme CSS hook, used by all PBR copy variants. */}}
+<div data-variant="a">
+
+<!-- Hero: guarantee-led -->
+<section class="relative overflow-hidden bg-white border-b border-slate-200">
+    <div class="absolute inset-0 bg-gradient-to-br from-white via-brand-50/40 to-white pointer-events-none"></div>
+    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 text-center">
+        <span class="inline-flex items-center gap-2 px-4 py-1.5 mb-6 rounded-full bg-brand-50 border border-brand-100 text-[11px] font-bold tracking-[0.18em] uppercase text-brand-900">
+            Pipeline Baseline Report
+        </span>
+        <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-[1.05]">
+            Findet der Report keine 20.000&nbsp;&euro; Einsparpotenzial,
+            <span class="block mt-1 bg-gradient-to-r from-brand-600 to-accent-teal text-transparent bg-clip-text">zahlt ihr nichts.</span>
+        </h1>
+        <p class="text-lg md:text-xl text-slate-600 mb-8 max-w-2xl mx-auto leading-relaxed">
+            Die Standortbestimmung für eure Build-Pipeline: In 5 Werktagen wisst ihr, wie viel Entwicklerkapazität feststeckt - garantiert mindestens das Zehnfache des Report-Preises, sonst ist er kostenlos.
+        </p>
+        {{ partial "pbr/cta-button.html" (dict "ctx" .) }}
+        <p class="mt-4 text-sm text-slate-500">15 Minuten, kein Pitch - wir klären, ob euer Setup passt.</p>
+    </div>
+</section>
+
+<!-- Narrative timeline -->
+<section class="bg-slate-50 border-b border-slate-200">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+        <h2 class="font-heading text-3xl md:text-4xl font-bold text-slate-900 mb-4">Der Weg zum Report</h2>
+        <p class="text-lg text-slate-600 mb-12">5 Werktage. Kein Mitlaufen, keine Workshop-Serie, keine Meeting-Kaskade.</p>
+
+        <ol class="relative border-l-2 border-brand-200 ml-4 space-y-12">
+            <li class="pl-8 relative">
+                <span class="on-brand absolute -left-[21px] top-0 inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-500 text-white font-heading font-bold shadow-sm shadow-brand-500/40">1</span>
+                <h3 class="font-heading text-xl font-bold text-slate-900 mb-2">Tag 1 - Zugänge &amp; Datensammlung</h3>
+                <p class="text-slate-600 leading-relaxed">Ihr richtet Read-only-Zugang zum Repository ein (NDA-Vorlage liegt bei, unterschriftsfertig), exportiert die CI-Historie der letzten 90 Tage und stoßt einen Spring-Test-Profiler-Lauf an - alles nach Anleitung. <span class="font-semibold text-slate-900">Euer Aufwand: ~30 Minuten.</span></p>
+            </li>
+            <li class="pl-8 relative">
+                <span class="on-brand absolute -left-[21px] top-0 inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-500 text-white font-heading font-bold shadow-sm shadow-brand-500/40">2</span>
+                <h3 class="font-heading text-xl font-bold text-slate-900 mb-2">Tag 2 - Zwei Gespräche</h3>
+                <p class="text-slate-600 leading-relaxed">Je 45 Minuten mit dem Tech Lead und einem:einer Entwickler:in aus dem Team, dazu eine kurze anonyme Team-Umfrage mit 5 Fragen - unter anderem: &bdquo;Wie sicher würdet ihr Freitagnachmittag deployen?&ldquo; <span class="font-semibold text-slate-900">Euer Aufwand: 2&nbsp;&times;&nbsp;45 Minuten.</span></p>
+            </li>
+            <li class="pl-8 relative">
+                <span class="on-brand absolute -left-[21px] top-0 inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-500 text-white font-heading font-bold shadow-sm shadow-brand-500/40">3</span>
+                <h3 class="font-heading text-xl font-bold text-slate-900 mb-2">Tag 3-4 - Analyse &amp; Report-Erstellung</h3>
+                <p class="text-slate-600 leading-relaxed">Ich analysiere Pipeline-Historie, Testsuite und Profiler-Daten und schreibe den Report: Baseline-Metriken, Top-3-Produktivitätskiller mit Fundstellen im Code, Einsparpotenzial in Stunden und Euro, 30-Tage-Maßnahmenplan. <span class="font-semibold text-slate-900">Euer Aufwand: keiner.</span></p>
+            </li>
+            <li class="pl-8 relative">
+                <span class="on-brand absolute -left-[21px] top-0 inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-500 text-white font-heading font-bold shadow-sm shadow-brand-500/40">5</span>
+                <h3 class="font-heading text-xl font-bold text-slate-900 mb-2">Tag 5 - Ergebnis-Call</h3>
+                <p class="text-slate-600 leading-relaxed">60 Minuten Report-Walkthrough mit Prognose: welche Build-Zeit-Reduktion in 30 Tagen realistisch ist, priorisiert nach Aufwand und Wirkung. Den Report könnt ihr direkt ans Management weiterreichen. <span class="font-semibold text-slate-900">Euer Aufwand: 60 Minuten.</span></p>
+            </li>
+        </ol>
+
+        <div class="mt-14">
+            <h3 class="font-heading text-xl font-bold text-slate-900 mb-6">Auf einen Blick</h3>
+            {{ partial "pbr/process-table.html" . }}
+        </div>
+    </div>
+</section>
+
+<!-- Why measure first -->
+<section class="bg-white border-b border-slate-200">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+        <h2 class="font-heading text-3xl md:text-4xl font-bold text-slate-900 mb-6">Warum zuerst messen?</h2>
+        <div class="space-y-5 text-lg text-slate-600 leading-relaxed">
+            <p>Ohne Baseline ist jede Optimierungsempfehlung geraten. Jede Codebase, jede Pipeline und jede gewachsene Team-Praxis ist anders - was bei einem Team die Build-Zeit halbiert, bringt beim nächsten nichts.</p>
+            <p>Dazu kommt: Euer Team hat die Wartezeiten längst normalisiert, und &bdquo;Tech Debt in Tests&ldquo; bekommt intern nie Budget. Ein externer Report mit euren Zahlen und Fundstellen ist keine Beschwerde - <span class="font-semibold text-slate-900">er ist eine Entscheidungsvorlage fürs Management.</span></p>
+            <p>Deshalb ist der Report der verbindliche erste Schritt - erst danach sind seriöse Empfehlungen möglich.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Roadmap after the report -->
+<section class="bg-slate-50 border-b border-slate-200">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+        <h2 class="font-heading text-3xl md:text-4xl font-bold text-slate-900 mb-10">Und danach?</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-white border border-slate-200 rounded-xl p-7 shadow-sm">
+                <div class="font-heading text-sm font-bold tracking-[0.18em] uppercase text-brand-600 mb-3">Schritt 1</div>
+                <h3 class="font-heading text-xl font-bold text-slate-900 mb-2">Report</h3>
+                <p class="text-slate-600 leading-relaxed">Baseline, Produktivitätskiller, Einsparpotenzial, Maßnahmenplan - in 5 Werktagen.</p>
+            </div>
+            <div class="bg-white border border-slate-200 rounded-xl p-7 shadow-sm">
+                <div class="font-heading text-sm font-bold tracking-[0.18em] uppercase text-brand-600 mb-3">Schritt 2</div>
+                <h3 class="font-heading text-xl font-bold text-slate-900 mb-2">Ergebnis-Call</h3>
+                <p class="text-slate-600 leading-relaxed">Walkthrough mit Prognose: was in 30 Tagen realistisch ist und womit ihr anfangt.</p>
+            </div>
+            <div class="bg-white border border-slate-200 rounded-xl p-7 shadow-sm">
+                <div class="font-heading text-sm font-bold tracking-[0.18em] uppercase text-brand-600 mb-3">Schritt 3</div>
+                <h3 class="font-heading text-xl font-bold text-slate-900 mb-2">Umsetzung - ihr oder ich</h3>
+                <p class="text-slate-600 leading-relaxed">Ihr setzt den Plan selbst um, oder ihr beauftragt mich - dann werden die 1.990&nbsp;&euro; komplett angerechnet.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Proof -->
+<section class="bg-white border-b border-slate-200">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+        <h2 class="font-heading text-3xl md:text-4xl font-bold text-slate-900 mb-4">Nachweisbare Ergebnisse</h2>
+        <p class="text-lg text-slate-600 mb-10 max-w-3xl">10+ Jahre Spring Boot, 6 Jahre als Consultant in 10+ Engineering-Teams:</p>
+        {{ partial "pbr/proof-bar.html" . }}
+    </div>
+</section>
+
+<!-- Pricing + final CTA -->
+<section class="bg-slate-50">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+        {{ partial "pbr/pricing-card.html" (dict "ctx" .) }}
+    </div>
+</section>
+
+</div>
+{{ end }}

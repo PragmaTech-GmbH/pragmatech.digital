@@ -1,0 +1,63 @@
+{{/* 5-day process table + "Was ihr bereitstellt" for the Pipeline Baseline Report landing pages */}}
+<div class="overflow-x-auto rounded-xl border border-slate-200 shadow-sm bg-white">
+    <table class="w-full text-left text-sm md:text-base">
+        <thead>
+            <tr class="border-b border-slate-200 bg-slate-50">
+                <th class="px-5 py-4 font-heading font-semibold text-slate-900 whitespace-nowrap">Tag</th>
+                <th class="px-5 py-4 font-heading font-semibold text-slate-900">Was passiert</th>
+                <th class="px-5 py-4 font-heading font-semibold text-slate-900 whitespace-nowrap">Euer Aufwand</th>
+            </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-100">
+            <tr>
+                <td class="px-5 py-4 font-bold text-brand-600 whitespace-nowrap">1</td>
+                <td class="px-5 py-4 text-slate-600"><span class="font-semibold text-slate-900">Zugänge &amp; Datensammlung:</span> Read-only-Repo, CI-Historie (90 Tage), Spring-Test-Profiler-Lauf</td>
+                <td class="px-5 py-4 text-slate-600 whitespace-nowrap">~30 Min</td>
+            </tr>
+            <tr>
+                <td class="px-5 py-4 font-bold text-brand-600 whitespace-nowrap">2</td>
+                <td class="px-5 py-4 text-slate-600"><span class="font-semibold text-slate-900">Zwei Gespräche:</span> Tech Lead + ein:e Entwickler:in aus dem Team, kurze anonyme Team-Umfrage (5 Fragen)</td>
+                <td class="px-5 py-4 text-slate-600 whitespace-nowrap">2 &times; 45 Min</td>
+            </tr>
+            <tr>
+                <td class="px-5 py-4 font-bold text-brand-600 whitespace-nowrap">3&ndash;4</td>
+                <td class="px-5 py-4 text-slate-600"><span class="font-semibold text-slate-900">Analyse &amp; Report-Erstellung</span></td>
+                <td class="px-5 py-4 text-slate-600 whitespace-nowrap">keiner</td>
+            </tr>
+            <tr>
+                <td class="px-5 py-4 font-bold text-brand-600 whitespace-nowrap">5</td>
+                <td class="px-5 py-4 text-slate-600"><span class="font-semibold text-slate-900">Ergebnis-Call:</span> Report-Walkthrough + Prognose</td>
+                <td class="px-5 py-4 text-slate-600 whitespace-nowrap">60 Min</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<p class="mt-4 text-slate-600">Kein Mitlaufen, keine Workshop-Serie, keine Meeting-Kaskade. Ich brauche Lesezugriff und eure Pipeline-Historie - mehr nicht.</p>
+
+<div class="mt-10 grid md:grid-cols-2 gap-6">
+    <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+        <h3 class="font-heading text-lg font-bold text-slate-900 mb-4">Was ihr bereitstellt</h3>
+        <ul class="space-y-3 text-slate-600">
+            <li class="flex gap-3">
+                <svg class="w-5 h-5 text-brand-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>Read-only-Zugang zum Repository (NDA-Vorlage liegt bei - unterschriftsfertig)</span>
+            </li>
+            <li class="flex gap-3">
+                <svg class="w-5 h-5 text-brand-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>Export der CI-Historie der letzten 90 Tage (GitHub Actions / GitLab CI - Anleitung von mir)</span>
+            </li>
+            <li class="flex gap-3">
+                <svg class="w-5 h-5 text-brand-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>Einen Spring-Test-Profiler-Lauf, angestoßen von eurem Team (30 Min nach Anleitung)</span>
+            </li>
+            <li class="flex gap-3">
+                <svg class="w-5 h-5 text-brand-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>Zwei Gesprächspartner für je 45 Minuten</span>
+            </li>
+        </ul>
+    </div>
+    <div class="bg-slate-50 border border-slate-200 rounded-xl p-6 shadow-sm">
+        <h3 class="font-heading text-lg font-bold text-slate-900 mb-4">Regulierte Umgebung? Kein Problem.</h3>
+        <p class="text-slate-600 leading-relaxed">Kein externer Zugriff möglich (Bank, Versicherung, regulierte Umgebung)? Es gibt eine Remote-Variante: Euer Team führt Profiler und Analyse-Skripte nach meiner Anleitung selbst aus, ich werte die Ergebnisse aus. Etwas weniger Tiefe, gleicher Report.</p>
+    </div>
+</div>
