@@ -15,11 +15,11 @@
         </h1>
 
         <!-- Illustrative pipeline math -->
-        <div class="max-w-2xl mx-auto mb-8 bg-slate-900 rounded-xl p-6 md:p-8 text-left font-mono text-sm md:text-base shadow-xl shadow-slate-900/20">
+        <div class="max-w-2xl mx-auto mb-8 bg-[#0a0e16] rounded-xl p-6 md:p-8 text-left font-mono text-sm md:text-base shadow-xl shadow-slate-900/20">
             <div class="text-slate-400 mb-3">// Rechenbeispiel: Team mit 8 Entwicklern</div>
             <div class="text-slate-300">20 Min Build <span class="text-slate-500">&times;</span> 30 Läufe/Tag</div>
             <div class="text-slate-300">= <span class="text-white font-bold">10 Stunden Wartezeit. Pro Tag.</span></div>
-            <div class="mt-3 pt-3 border-t border-slate-700 text-brand-400 font-bold">&asymp; 50.000+ &euro; pro Jahr - konservativ gerechnet</div>
+            <div class="mt-3 pt-3 border-t border-slate-800 text-green-400 font-bold">&asymp; 50.000+ &euro; pro Jahr - konservativ gerechnet</div>
         </div>
 
         <p class="text-lg md:text-xl text-slate-600 mb-8 max-w-2xl mx-auto leading-relaxed">
@@ -52,7 +52,57 @@
                 <p class="text-slate-600"><span class="font-semibold text-slate-900">30-Tage-Maßnahmenplan mit Prognose</span> - priorisiert nach Aufwand und Wirkung, umsetzbar von euch oder von mir</p>
             </li>
         </ul>
-        <p class="mt-6 text-slate-600">Euer Aufwand: Zugänge bereitstellen (~30 Min), zwei Gespräche (2&nbsp;&times;&nbsp;45 Min), Ergebnis-Call (60 Min). Remote-Variante für regulierte Umgebungen verfügbar.</p>
+    </div>
+</section>
+
+<!-- Der Weg zum Report (timeline + overview, from variant C) -->
+<section class="bg-white border-b border-slate-200">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+        <h2 class="font-heading text-3xl md:text-4xl font-bold text-slate-900 mb-4">Der Weg zum Report</h2>
+        <p class="text-lg text-slate-600 mb-12">5 Werktage. Kein Mitlaufen, keine Workshop-Serie, keine Meeting-Kaskade.</p>
+
+        <ol class="relative border-l-2 border-brand-200 ml-4 space-y-12">
+            <li class="pl-8 relative">
+                <span class="on-brand absolute -left-[21px] top-0 inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-500 text-white font-heading font-bold shadow-sm shadow-brand-500/40">1</span>
+                <h3 class="font-heading text-xl font-bold text-slate-900 mb-2">Tag 1 - Zugänge &amp; Datensammlung</h3>
+                <p class="text-slate-600 leading-relaxed">Ihr richtet Read-only-Zugang zum Repository ein (NDA-Vorlage liegt bei, unterschriftsfertig), exportiert die CI-Historie der letzten 90 Tage und stoßt einen Spring-Test-Profiler-Lauf an - alles nach Anleitung. <span class="font-semibold text-slate-900">Euer Aufwand: ~30 Minuten.</span></p>
+            </li>
+            <li class="pl-8 relative">
+                <span class="on-brand absolute -left-[21px] top-0 inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-500 text-white font-heading font-bold shadow-sm shadow-brand-500/40">2</span>
+                <h3 class="font-heading text-xl font-bold text-slate-900 mb-2">Tag 2 - Zwei Gespräche</h3>
+                <p class="text-slate-600 leading-relaxed">Je 45 Minuten mit dem Tech Lead und einem:einer Entwickler:in aus dem Team, dazu eine kurze anonyme Team-Umfrage mit 5 Fragen - unter anderem: &bdquo;Wie sicher würdet ihr Freitagnachmittag deployen?&ldquo; <span class="font-semibold text-slate-900">Euer Aufwand: 2&nbsp;&times;&nbsp;45 Minuten.</span></p>
+            </li>
+            <li class="pl-8 relative">
+                <span class="on-brand absolute -left-[21px] top-0 inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-500 text-white font-heading font-bold shadow-sm shadow-brand-500/40">3</span>
+                <h3 class="font-heading text-xl font-bold text-slate-900 mb-2">Tag 3-4 - Analyse &amp; Report-Erstellung</h3>
+                <p class="text-slate-600 leading-relaxed">Ich analysiere Pipeline-Historie, Testsuite und Profiler-Daten und schreibe den Report: Baseline-Metriken, Top-3-Produktivitätskiller mit Fundstellen im Code, Einsparpotenzial in Stunden und Euro, 30-Tage-Maßnahmenplan. <span class="font-semibold text-slate-900">Euer Aufwand: keiner.</span></p>
+            </li>
+            <li class="pl-8 relative">
+                <span class="on-brand absolute -left-[21px] top-0 inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-500 text-white font-heading font-bold shadow-sm shadow-brand-500/40">5</span>
+                <h3 class="font-heading text-xl font-bold text-slate-900 mb-2">Tag 5 - Ergebnis-Call</h3>
+                <p class="text-slate-600 leading-relaxed">60 Minuten Report-Walkthrough mit Prognose: welche Build-Zeit-Reduktion in 30 Tagen realistisch ist, priorisiert nach Aufwand und Wirkung. Den Report könnt ihr direkt ans Management weiterreichen. <span class="font-semibold text-slate-900">Euer Aufwand: 60 Minuten.</span></p>
+            </li>
+        </ol>
+
+        <div class="mt-14">
+            <h3 class="font-heading text-xl font-bold text-slate-900 mb-6">Auf einen Blick</h3>
+            {{ partial "pbr/process-table.html" . }}
+        </div>
+    </div>
+</section>
+
+<!-- Guarantee statement band (from variant C). bg-[#0a0e16] keeps the panel dark inside data-variant="a". -->
+<section class="bg-[#0a0e16] border-b border-slate-800">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 text-center">
+        <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+            Findet der Report keine 20.000&nbsp;&euro; Einsparpotenzial,
+            <span class="block mt-1 bg-gradient-to-r from-brand-400 to-accent-teal text-transparent bg-clip-text">zahlt ihr nichts.</span>
+        </h2>
+        <p class="text-lg text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+            Die Standortbestimmung für eure Build-Pipeline: In 5 Werktagen wisst ihr, wie viel Entwicklerkapazität feststeckt - garantiert mindestens das Zehnfache des Report-Preises, sonst ist er kostenlos.
+        </p>
+        {{ partial "pbr/cta-button.html" (dict "ctx" .) }}
+        <p class="mt-4 text-sm text-slate-400">15 Minuten, kein Pitch - wir klären, ob euer Setup passt.</p>
     </div>
 </section>
 
