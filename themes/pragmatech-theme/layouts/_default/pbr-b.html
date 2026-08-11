@@ -71,7 +71,9 @@
                 <p class="text-slate-600"><span class="font-semibold text-slate-900">Kein Benchmark:</span> Ob eure Werte gut oder schlecht sind, zeigt nur der Vergleich über 10+ Teams.</p>
             </div>
         </div>
-        {{ partial "pbr/proof-bar.html" . }}
+        <h2 class="font-heading text-2xl md:text-3xl font-bold text-slate-900 mb-4">Was schnelles Feedback bringt - laut DORA und in echt</h2>
+        {{ partial "pbr/dora-cases.html" (dict "compact" true) }}
+        <p class="mt-6 text-sm text-slate-500">Umgesetzt von mir - 10+ Jahre Spring Boot, 6 Jahre Consultant in 10+ Engineering-Teams. 10.000+ Entwickler lesen meinen wöchentlichen Newsletter, 8.500+ lernen in der Testing-Academy.</p>
     </div>
 </section>
 
