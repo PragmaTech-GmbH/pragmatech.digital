@@ -1,25 +1,33 @@
 {{ define "main" }}
-{{/* Variant B: short numbers-first page, hard cost/ROI angle. data-variant="a" is the light-theme CSS hook, used by all PBR copy variants. */}}
+{{/* Variant B: "Die Pipeline" - the page reads as one continuous CI run. A vertical rail
+     connects all sections, each styled as a pipeline stage with a mono status header.
+     data-variant="a" is the light-theme CSS hook; bg-[#0a0e16] panels stay dark inside it. */}}
 <div data-variant="a">
 
-<!-- Hero: numbers-first -->
+<!-- Hero: pipeline run with a stalling build log -->
 <section class="relative overflow-hidden bg-white border-b border-slate-200">
     <div class="absolute inset-0 bg-gradient-to-br from-white via-brand-50/40 to-white pointer-events-none"></div>
     <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 text-center">
-        <span class="inline-flex items-center gap-2 px-4 py-1.5 mb-6 rounded-full bg-brand-50 border border-brand-100 text-[11px] font-bold tracking-[0.18em] uppercase text-brand-900">
-            Pipeline Baseline Report
+        <span class="inline-flex items-center gap-2.5 px-4 py-1.5 mb-6 rounded-full bg-[#0a0e16] font-mono text-xs text-slate-300">
+            <span class="w-2 h-2 rounded-full bg-yellow-400 animate-pulse"></span>
+            pipeline #4711 &middot; branch: main &middot; status: läuft
         </span>
         <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-8 leading-[1.05]">
             Wie viel Entwicklerkapazität steckt
             <span class="block mt-1 bg-gradient-to-r from-brand-600 to-accent-teal text-transparent bg-clip-text">in eurer Pipeline fest?</span>
         </h1>
 
-        <!-- Illustrative pipeline math -->
+        <!-- Build log: types itself out and stalls at the test job -->
         <div class="max-w-2xl mx-auto mb-8 bg-[#0a0e16] rounded-xl p-6 md:p-8 text-left font-mono text-sm md:text-base shadow-xl shadow-slate-900/20">
-            <div class="text-slate-400 mb-3">// Rechenbeispiel: Team mit 8 Entwicklern</div>
-            <div class="text-slate-300">20 Min Build <span class="text-slate-500">&times;</span> 30 Läufe/Tag</div>
-            <div class="text-slate-300">= <span class="text-white font-bold">10 Stunden Wartezeit. Pro Tag.</span></div>
-            <div class="mt-3 pt-3 border-t border-slate-800 text-green-400 font-bold">&asymp; 50.000+ &euro; pro Jahr - konservativ gerechnet</div>
+            <div class="pbr-log-line text-slate-500 mb-2">$ git push &amp;&amp; gh run watch</div>
+            <div class="pbr-log-line flex justify-between gap-4 text-slate-300"><span><span class="text-green-400">&#10003;</span> checkout</span><span class="text-slate-500">4s</span></div>
+            <div class="pbr-log-line flex justify-between gap-4 text-slate-300"><span><span class="text-green-400">&#10003;</span> compile</span><span class="text-slate-500">1m 02s</span></div>
+            <div class="pbr-log-line flex justify-between gap-4 text-slate-300"><span><span class="text-yellow-400">&#9679;</span> test <span class="text-yellow-400">&#9619;&#9619;&#9619;&#9619;&#9619;&#9619;&#9617;&#9617;&#9617;&#9617;</span></span><span class="text-yellow-400" id="pbr-log-timer">19:41</span></div>
+            <div class="pbr-log-line text-slate-500">&nbsp;&nbsp;&#9492;&#9472; euer Team wartet. Wieder.<span class="animate-pulse text-slate-300">&#9615;</span></div>
+            <div class="mt-4 pt-4 border-t border-slate-800">
+                <div class="pbr-log-line text-slate-300">= <span class="text-white font-bold">10 h Wartezeit. Pro Tag.</span> <span class="text-slate-500">(8 Entwickler, 30 Läufe)</span></div>
+                <div class="pbr-log-line text-green-400 font-bold">&asymp; 50.000+ &euro; pro Jahr - konservativ gerechnet</div>
+            </div>
         </div>
 
         <p class="text-lg md:text-xl text-slate-600 mb-8 max-w-2xl mx-auto leading-relaxed">
@@ -30,109 +38,193 @@
     </div>
 </section>
 
-<!-- Compact deliverables -->
+<!-- Stage 1: der-report -->
 <section class="bg-slate-50 border-b border-slate-200">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-16">
-        <h2 class="font-heading text-2xl md:text-3xl font-bold text-slate-900 mb-8">Der Report - in 5 Werktagen, ~2,5 Stunden Aufwand für euer Team</h2>
-        <ul class="space-y-4">
-            <li class="flex gap-4 bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
-                <span class="font-heading font-bold text-brand-600 text-lg shrink-0">01</span>
-                <p class="text-slate-600"><span class="font-semibold text-slate-900">Baseline schwarz auf weiß</span> - Build-Zeit-Median, Flaky-Rate, Läufe pro Tag, Confidence-Score eures Teams</p>
-            </li>
-            <li class="flex gap-4 bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
-                <span class="font-heading font-bold text-brand-600 text-lg shrink-0">02</span>
-                <p class="text-slate-600"><span class="font-semibold text-slate-900">Top-3-Produktivitätskiller</span> - konkret benannt, mit Fundstellen im Code</p>
-            </li>
-            <li class="flex gap-4 bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
-                <span class="font-heading font-bold text-brand-600 text-lg shrink-0">03</span>
-                <p class="text-slate-600"><span class="font-semibold text-slate-900">Einsparpotenzial in Stunden und Euro</span> - gerechnet mit euren Zahlen, nicht mit Musterwerten</p>
-            </li>
-            <li class="flex gap-4 bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
-                <span class="font-heading font-bold text-brand-600 text-lg shrink-0">04</span>
-                <p class="text-slate-600"><span class="font-semibold text-slate-900">30-Tage-Maßnahmenplan mit Prognose</span> - priorisiert nach Aufwand und Wirkung, umsetzbar von euch oder von mir</p>
-            </li>
-        </ul>
-    </div>
-</section>
-
-<!-- Der Weg zum Report (timeline + overview, from variant C) -->
-<section class="bg-white border-b border-slate-200">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
-        <h2 class="font-heading text-3xl md:text-4xl font-bold text-slate-900 mb-4">Der Weg zum Report</h2>
-        <p class="text-lg text-slate-600 mb-12">5 Werktage. Kein Mitlaufen, keine Workshop-Serie, keine Meeting-Kaskade.</p>
-
-        <ol class="relative border-l-2 border-brand-200 ml-4 space-y-12">
-            <li class="pl-8 relative">
-                <span class="on-brand absolute -left-[21px] top-0 inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-500 text-white font-heading font-bold shadow-sm shadow-brand-500/40">1</span>
-                <h3 class="font-heading text-xl font-bold text-slate-900 mb-2">Tag 1 - Zugänge &amp; Datensammlung</h3>
-                <p class="text-slate-600 leading-relaxed">Ihr richtet Read-only-Zugang zum Repository ein (NDA-Vorlage liegt bei, unterschriftsfertig), exportiert die CI-Historie der letzten 90 Tage und stoßt einen Spring-Test-Profiler-Lauf an - alles nach Anleitung. <span class="font-semibold text-slate-900">Euer Aufwand: ~30 Minuten.</span></p>
-            </li>
-            <li class="pl-8 relative">
-                <span class="on-brand absolute -left-[21px] top-0 inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-500 text-white font-heading font-bold shadow-sm shadow-brand-500/40">2</span>
-                <h3 class="font-heading text-xl font-bold text-slate-900 mb-2">Tag 2 - Zwei Gespräche</h3>
-                <p class="text-slate-600 leading-relaxed">Je 45 Minuten mit dem Tech Lead und einem:einer Entwickler:in aus dem Team, dazu eine kurze anonyme Team-Umfrage mit 5 Fragen - unter anderem: &bdquo;Wie sicher würdet ihr Freitagnachmittag deployen?&ldquo; <span class="font-semibold text-slate-900">Euer Aufwand: 2&nbsp;&times;&nbsp;45 Minuten.</span></p>
-            </li>
-            <li class="pl-8 relative">
-                <span class="on-brand absolute -left-[21px] top-0 inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-500 text-white font-heading font-bold shadow-sm shadow-brand-500/40">3</span>
-                <h3 class="font-heading text-xl font-bold text-slate-900 mb-2">Tag 3-4 - Analyse &amp; Report-Erstellung</h3>
-                <p class="text-slate-600 leading-relaxed">Ich analysiere Pipeline-Historie, Testsuite und Profiler-Daten und schreibe den Report: Baseline-Metriken, Top-3-Produktivitätskiller mit Fundstellen im Code, Einsparpotenzial in Stunden und Euro, 30-Tage-Maßnahmenplan. <span class="font-semibold text-slate-900">Euer Aufwand: keiner.</span></p>
-            </li>
-            <li class="pl-8 relative">
-                <span class="on-brand absolute -left-[21px] top-0 inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-500 text-white font-heading font-bold shadow-sm shadow-brand-500/40">5</span>
-                <h3 class="font-heading text-xl font-bold text-slate-900 mb-2">Tag 5 - Ergebnis-Call</h3>
-                <p class="text-slate-600 leading-relaxed">60 Minuten Report-Walkthrough mit Prognose: welche Build-Zeit-Reduktion in 30 Tagen realistisch ist, priorisiert nach Aufwand und Wirkung. Den Report könnt ihr direkt ans Management weiterreichen. <span class="font-semibold text-slate-900">Euer Aufwand: 60 Minuten.</span></p>
-            </li>
-        </ol>
-
-        <div class="mt-14">
-            <h3 class="font-heading text-xl font-bold text-slate-900 mb-6">Auf einen Blick</h3>
-            {{ partial "pbr/process-table.html" . }}
+        <div class="relative md:pl-14">
+            <div class="hidden md:block absolute left-[7px] -top-20 -bottom-20 w-px bg-slate-300" aria-hidden="true"></div>
+            <div class="relative flex items-center gap-3 mb-6 font-mono text-sm">
+                <span class="md:absolute md:-left-14 inline-flex items-center justify-center w-4 h-4 rounded-full bg-green-500 ring-4 ring-slate-50 shrink-0">
+                    <svg class="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                </span>
+                <span class="text-slate-500">stage 1/5</span>
+                <span class="text-slate-400">&middot;</span>
+                <span class="font-bold text-slate-900">der-report</span>
+                <span class="ml-auto text-slate-500 hidden sm:inline">5 Werktage</span>
+            </div>
+            <h2 class="font-heading text-2xl md:text-3xl font-bold text-slate-900 mb-8">Der Report - in 5 Werktagen, ~2,5 Stunden Aufwand für euer Team</h2>
+            <ul class="space-y-4">
+                <li class="flex gap-4 bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+                    <span class="font-heading font-bold text-brand-600 text-lg shrink-0">01</span>
+                    <p class="text-slate-600"><span class="font-semibold text-slate-900">Baseline schwarz auf weiß</span> - Build-Zeit-Median, Flaky-Rate, Läufe pro Tag, Confidence-Score eures Teams</p>
+                </li>
+                <li class="flex gap-4 bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+                    <span class="font-heading font-bold text-brand-600 text-lg shrink-0">02</span>
+                    <p class="text-slate-600"><span class="font-semibold text-slate-900">Top-3-Produktivitätskiller</span> - konkret benannt, mit Fundstellen im Code</p>
+                </li>
+                <li class="flex gap-4 bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+                    <span class="font-heading font-bold text-brand-600 text-lg shrink-0">03</span>
+                    <p class="text-slate-600"><span class="font-semibold text-slate-900">Einsparpotenzial in Stunden und Euro</span> - gerechnet mit euren Zahlen, nicht mit Musterwerten</p>
+                </li>
+                <li class="flex gap-4 bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+                    <span class="font-heading font-bold text-brand-600 text-lg shrink-0">04</span>
+                    <p class="text-slate-600"><span class="font-semibold text-slate-900">30-Tage-Maßnahmenplan mit Prognose</span> - priorisiert nach Aufwand und Wirkung, umsetzbar von euch oder von mir</p>
+                </li>
+            </ul>
         </div>
     </div>
 </section>
 
-<!-- Guarantee statement band (from variant C). bg-[#0a0e16] keeps the panel dark inside data-variant="a". -->
+<!-- Stage 2: der-ablauf (timeline + overview, from variant C) -->
+<section class="bg-white border-b border-slate-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-16">
+        <div class="relative md:pl-14">
+            <div class="hidden md:block absolute left-[7px] -top-20 -bottom-20 w-px bg-slate-300" aria-hidden="true"></div>
+            <div class="relative flex items-center gap-3 mb-6 font-mono text-sm">
+                <span class="md:absolute md:-left-14 inline-flex items-center justify-center w-4 h-4 rounded-full bg-green-500 ring-4 ring-white shrink-0">
+                    <svg class="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                </span>
+                <span class="text-slate-500">stage 2/5</span>
+                <span class="text-slate-400">&middot;</span>
+                <span class="font-bold text-slate-900">der-ablauf</span>
+                <span class="ml-auto text-slate-500 hidden sm:inline">Tag 1-5</span>
+            </div>
+            <h2 class="font-heading text-2xl md:text-3xl font-bold text-slate-900 mb-4">Der Weg zum Report</h2>
+            <p class="text-lg text-slate-600 mb-12">5 Werktage. Kein Mitlaufen, keine Workshop-Serie, keine Meeting-Kaskade.</p>
+
+            <ol class="relative border-l-2 border-brand-200 ml-4 space-y-12">
+                <li class="pl-8 relative">
+                    <span class="on-brand absolute -left-[21px] top-0 inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-500 text-white font-heading font-bold shadow-sm shadow-brand-500/40">1</span>
+                    <h3 class="font-heading text-xl font-bold text-slate-900 mb-2">Tag 1 - Zugänge &amp; Datensammlung</h3>
+                    <p class="text-slate-600 leading-relaxed">Ihr richtet Read-only-Zugang zum Repository ein (NDA-Vorlage liegt bei, unterschriftsfertig), exportiert die CI-Historie der letzten 90 Tage und stoßt einen Spring-Test-Profiler-Lauf an - alles nach Anleitung. <span class="font-semibold text-slate-900">Euer Aufwand: ~30 Minuten.</span></p>
+                </li>
+                <li class="pl-8 relative">
+                    <span class="on-brand absolute -left-[21px] top-0 inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-500 text-white font-heading font-bold shadow-sm shadow-brand-500/40">2</span>
+                    <h3 class="font-heading text-xl font-bold text-slate-900 mb-2">Tag 2 - Zwei Gespräche</h3>
+                    <p class="text-slate-600 leading-relaxed">Je 45 Minuten mit dem Tech Lead und einem:einer Entwickler:in aus dem Team, dazu eine kurze anonyme Team-Umfrage mit 5 Fragen - unter anderem: &bdquo;Wie sicher würdet ihr Freitagnachmittag deployen?&ldquo; <span class="font-semibold text-slate-900">Euer Aufwand: 2&nbsp;&times;&nbsp;45 Minuten.</span></p>
+                </li>
+                <li class="pl-8 relative">
+                    <span class="on-brand absolute -left-[21px] top-0 inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-500 text-white font-heading font-bold shadow-sm shadow-brand-500/40">3</span>
+                    <h3 class="font-heading text-xl font-bold text-slate-900 mb-2">Tag 3-4 - Analyse &amp; Report-Erstellung</h3>
+                    <p class="text-slate-600 leading-relaxed">Ich analysiere Pipeline-Historie, Testsuite und Profiler-Daten und schreibe den Report: Baseline-Metriken, Top-3-Produktivitätskiller mit Fundstellen im Code, Einsparpotenzial in Stunden und Euro, 30-Tage-Maßnahmenplan. <span class="font-semibold text-slate-900">Euer Aufwand: keiner.</span></p>
+                </li>
+                <li class="pl-8 relative">
+                    <span class="on-brand absolute -left-[21px] top-0 inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-500 text-white font-heading font-bold shadow-sm shadow-brand-500/40">5</span>
+                    <h3 class="font-heading text-xl font-bold text-slate-900 mb-2">Tag 5 - Ergebnis-Call</h3>
+                    <p class="text-slate-600 leading-relaxed">60 Minuten Report-Walkthrough mit Prognose: welche Build-Zeit-Reduktion in 30 Tagen realistisch ist, priorisiert nach Aufwand und Wirkung. Den Report könnt ihr direkt ans Management weiterreichen. <span class="font-semibold text-slate-900">Euer Aufwand: 60 Minuten.</span></p>
+                </li>
+            </ol>
+
+            <div class="mt-14">
+                <h3 class="font-heading text-xl font-bold text-slate-900 mb-6">Auf einen Blick</h3>
+                {{ partial "pbr/process-table.html" . }}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stage 3: garantie (dark band). bg-[#0a0e16] keeps the panel dark inside data-variant="a". -->
 <section class="bg-[#0a0e16] border-b border-slate-800">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 text-center">
-        <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
-            Findet der Report keine 20.000&nbsp;&euro; Einsparpotenzial,
-            <span class="block mt-1 bg-gradient-to-r from-brand-400 to-accent-teal text-transparent bg-clip-text">zahlt ihr nichts.</span>
-        </h2>
-        <p class="text-lg text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Die Standortbestimmung für eure Build-Pipeline: In 5 Werktagen wisst ihr, wie viel Entwicklerkapazität feststeckt - garantiert mindestens das Zehnfache des Report-Preises, sonst ist er kostenlos.
-        </p>
-        {{ partial "pbr/cta-button.html" (dict "ctx" .) }}
-        <p class="mt-4 text-sm text-slate-400">15 Minuten, kein Pitch - wir klären, ob euer Setup passt.</p>
-    </div>
-</section>
-
-<!-- Why external + proof -->
-<section class="bg-white border-b border-slate-200">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-16">
-        <h2 class="font-heading text-2xl md:text-3xl font-bold text-slate-900 mb-8">Warum das intern nicht passiert</h2>
-        <div class="grid md:grid-cols-3 gap-5 mb-12">
-            <div class="border-l-4 border-brand-500 pl-5 py-1">
-                <p class="text-slate-600"><span class="font-semibold text-slate-900">Keine Fokuszeit:</span> &bdquo;Tech Debt in Tests&ldquo; verliert im Sprint immer gegen Features - seit Jahren.</p>
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+        <div class="relative md:pl-14">
+            <div class="hidden md:block absolute left-[7px] -top-24 -bottom-24 w-px bg-slate-300" aria-hidden="true"></div>
+            <div class="relative flex items-center gap-3 mb-8 font-mono text-sm">
+                <span class="md:absolute md:-left-14 inline-flex items-center justify-center w-4 h-4 rounded-full bg-green-500 ring-4 ring-[#0f172a] shrink-0">
+                    <svg class="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                </span>
+                <span class="text-slate-500">stage 3/5</span>
+                <span class="text-slate-600">&middot;</span>
+                <span class="font-bold text-white">garantie</span>
+                <span class="ml-auto text-slate-500 hidden sm:inline">min. 20.000 &euro;/Jahr</span>
             </div>
-            <div class="border-l-4 border-brand-500 pl-5 py-1">
-                <p class="text-slate-600"><span class="font-semibold text-slate-900">Betriebsblindheit:</span> Euer Team hat die Wartezeiten längst normalisiert.</p>
-            </div>
-            <div class="border-l-4 border-brand-500 pl-5 py-1">
-                <p class="text-slate-600"><span class="font-semibold text-slate-900">Kein Benchmark:</span> Ob eure Werte gut oder schlecht sind, zeigt nur der Vergleich über 10+ Teams.</p>
+            <div class="text-center">
+                <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+                    Findet der Report keine 20.000&nbsp;&euro; Einsparpotenzial,
+                    <span class="block mt-1 bg-gradient-to-r from-brand-400 to-accent-teal text-transparent bg-clip-text">zahlt ihr nichts.</span>
+                </h2>
+                <p class="text-lg text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+                    Die Standortbestimmung für eure Build-Pipeline: In 5 Werktagen wisst ihr, wie viel Entwicklerkapazität feststeckt - garantiert mindestens das Zehnfache des Report-Preises, sonst ist er kostenlos.
+                </p>
+                {{ partial "pbr/cta-button.html" (dict "ctx" .) }}
+                <p class="mt-4 text-sm text-slate-400">15 Minuten, kein Pitch - wir klären, ob euer Setup passt.</p>
             </div>
         </div>
-        <h2 class="font-heading text-2xl md:text-3xl font-bold text-slate-900 mb-4">Was schnelles Feedback bringt - laut DORA und in echt</h2>
-        {{ partial "pbr/dora-cases.html" (dict "compact" true) }}
-        <p class="mt-6 text-sm text-slate-500">Umgesetzt von mir - 10+ Jahre Spring Boot, 6 Jahre Consultant in 10+ Engineering-Teams. 10.000+ Entwickler lesen meinen wöchentlichen Newsletter, 8.500+ lernen in der Testing-Academy.</p>
     </div>
 </section>
 
-<!-- Pricing closes the page -->
+<!-- Stage 4: selbst-machen (pending) + DORA proof -->
+<section class="bg-white border-b border-slate-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-16">
+        <div class="relative md:pl-14">
+            <div class="hidden md:block absolute left-[7px] -top-20 -bottom-20 w-px bg-slate-300" aria-hidden="true"></div>
+            <div class="relative flex items-center gap-3 mb-6 font-mono text-sm">
+                <span class="md:absolute md:-left-14 inline-flex w-4 h-4 rounded-full bg-yellow-400 ring-4 ring-white animate-pulse shrink-0"></span>
+                <span class="text-slate-500">stage 4/5</span>
+                <span class="text-slate-400">&middot;</span>
+                <span class="font-bold text-slate-900">selbst-machen</span>
+                <span class="ml-auto text-yellow-600 hidden sm:inline">pending seit Jahren</span>
+            </div>
+            <h2 class="font-heading text-2xl md:text-3xl font-bold text-slate-900 mb-8">Warum das intern nicht passiert</h2>
+            <div class="grid md:grid-cols-3 gap-5 mb-12">
+                <div class="border-l-4 border-brand-500 pl-5 py-1">
+                    <p class="text-slate-600"><span class="font-semibold text-slate-900">Keine Fokuszeit:</span> &bdquo;Tech Debt in Tests&ldquo; verliert im Sprint immer gegen Features - seit Jahren.</p>
+                </div>
+                <div class="border-l-4 border-brand-500 pl-5 py-1">
+                    <p class="text-slate-600"><span class="font-semibold text-slate-900">Betriebsblindheit:</span> Euer Team hat die Wartezeiten längst normalisiert.</p>
+                </div>
+                <div class="border-l-4 border-brand-500 pl-5 py-1">
+                    <p class="text-slate-600"><span class="font-semibold text-slate-900">Kein Benchmark:</span> Ob eure Werte gut oder schlecht sind, zeigt nur der Vergleich über 10+ Teams.</p>
+                </div>
+            </div>
+            <h2 class="font-heading text-2xl md:text-3xl font-bold text-slate-900 mb-4">Was schnelles Feedback bringt - laut DORA und in echt</h2>
+            {{ partial "pbr/dora-cases.html" (dict "compact" true) }}
+            <p class="mt-6 text-sm text-slate-500">Umgesetzt von mir - 10+ Jahre Spring Boot, 6 Jahre Consultant in 10+ Engineering-Teams. 10.000+ Entwickler lesen meinen wöchentlichen Newsletter, 8.500+ lernen in der Testing-Academy.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Stage 5: deploy (pricing + CTA closes the run) -->
 <section class="bg-slate-50">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20">
-        {{ partial "pbr/pricing-card.html" (dict "ctx" .) }}
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20">
+        <div class="relative md:pl-14">
+            <div class="hidden md:block absolute left-[7px] -top-20 bottom-1/2 w-px bg-slate-300" aria-hidden="true"></div>
+            <div class="relative flex items-center gap-3 mb-6 font-mono text-sm">
+                <span class="md:absolute md:-left-14 inline-flex items-center justify-center w-4 h-4 rounded-full bg-green-500 ring-4 ring-slate-50 shrink-0">
+                    <svg class="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                </span>
+                <span class="text-slate-500">stage 5/5</span>
+                <span class="text-slate-400">&middot;</span>
+                <span class="font-bold text-slate-900">deploy: 15-min-call</span>
+                <span class="ml-auto text-slate-500 hidden sm:inline">1.990 &euro; Festpreis</span>
+            </div>
+            {{ partial "pbr/pricing-card.html" (dict "ctx" .) }}
+        </div>
     </div>
 </section>
 
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) return;
+
+    var logLines = document.querySelectorAll('.pbr-log-line');
+    logLines.forEach(function (logLine) { logLine.style.visibility = 'hidden'; });
+    logLines.forEach(function (logLine, lineIndex) {
+        setTimeout(function () { logLine.style.visibility = 'visible'; }, 400 + 350 * lineIndex);
+    });
+
+    var timerElement = document.getElementById('pbr-log-timer');
+    if (timerElement) {
+        var stalledMinutes = 19;
+        var stalledSeconds = 41;
+        setInterval(function () {
+            stalledSeconds++;
+            if (stalledSeconds === 60) { stalledSeconds = 0; stalledMinutes++; }
+            timerElement.textContent = String(stalledMinutes).padStart(2, '0') + ':' + String(stalledSeconds).padStart(2, '0');
+        }, 1000);
+    }
+});
+</script>
 {{ end }}
