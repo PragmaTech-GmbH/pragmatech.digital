@@ -18,6 +18,14 @@ params:
     info: "info@pragmatech.digital"
     privacy: "info@pragmatech.digital"
     dpo: "info@pragmatech.digital"
+  mailchimp:
+    # Paste the full action URL from the Mailchimp embed form builder
+    # (Audience > Signup forms > Embedded forms), e.g.
+    # https://digital.usXX.list-manage.com/subscribe/post?u=XXXX&id=YYYY&f_id=ZZZZ
+    actionUrl: "https://REPLACE.usX.list-manage.com/subscribe/post?u=REPLACE_U&id=REPLACE_ID"
+    u: "REPLACE_U" # account hash, the u= query param of actionUrl
+    id: "REPLACE_ID" # audience id, the id= query param of actionUrl
+    tagId: "REPLACE_TAG_ID" # NUMERIC id of the tag "course-agentic-testing-interest"
 
 relativeURLs: true
 publishDir: "public"

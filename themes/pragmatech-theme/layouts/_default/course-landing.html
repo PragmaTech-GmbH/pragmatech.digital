@@ -1,0 +1,194 @@
+{{ define "main" }}
+{{ $mc := .Site.Params.mailchimp }}
+<section class="relative overflow-hidden bg-white border-b border-slate-200">
+    <div class="absolute inset-0 bg-gradient-to-br from-white via-brand-50/40 to-white pointer-events-none"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 lg:py-28">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+            <!-- Left: copy -->
+            <div>
+                <span class="inline-flex items-center gap-2 pl-2 pr-4 py-1.5 mb-6 rounded-full
+                             bg-brand-50 border border-brand-100
+                             text-[11px] font-bold tracking-[0.18em] uppercase text-brand-900
+                             shadow-sm shadow-brand-500/10">
+                    <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-brand-500 text-white shadow-sm shadow-brand-500/40">
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+                        </svg>
+                    </span>
+                    Currently planned · Get notified
+                </span>
+
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-[1.05]">
+                    <span class="bg-gradient-to-r from-brand-600 to-emerald-600 text-transparent bg-clip-text">Agentic Spring Boot Testing.</span>
+                    Reliable, meaningful test suites with AI agents.
+                </h1>
+
+                <p class="text-xl text-slate-600 mb-8 leading-relaxed">
+                    A hands-on, 2-hour online course. I share the custom agent skills I use every day
+                    to harness AI coding agents and make them write Spring Boot tests you can actually trust.
+                    You get the skills - and every future update.
+                </p>
+
+                <ul class="space-y-3 mb-8">
+                    <li class="flex items-start gap-3 text-slate-700">
+                        <span class="flex-shrink-0 inline-flex items-center justify-center w-6 h-6 rounded-full bg-emerald-100 text-emerald-600 mt-0.5">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                            </svg>
+                        </span>
+                        <span>2-hour live, hands-on online session - no slideware marathon.</span>
+                    </li>
+                    <li class="flex items-start gap-3 text-slate-700">
+                        <span class="flex-shrink-0 inline-flex items-center justify-center w-6 h-6 rounded-full bg-emerald-100 text-emerald-600 mt-0.5">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                            </svg>
+                        </span>
+                        <span>Access to my custom agent skills for reliable, meaningful test suites - including all future updates.</span>
+                    </li>
+                    <li class="flex items-start gap-3 text-slate-700">
+                        <span class="flex-shrink-0 inline-flex items-center justify-center w-6 h-6 rounded-full bg-emerald-100 text-emerald-600 mt-0.5">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                            </svg>
+                        </span>
+                        <span>Focus on agent harnessing and testing - guardrails that keep agents productive and tests trustworthy.</span>
+                    </li>
+                </ul>
+
+                <!-- Compact trust row -->
+                <div class="flex flex-wrap gap-3">
+                    <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-xs text-slate-700 shadow-sm">
+                        <svg class="w-4 h-4 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        Currently planned
+                    </span>
+                    <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-xs text-slate-700 shadow-sm">
+                        <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                        </svg>
+                        No spam, unsubscribe anytime
+                    </span>
+                </div>
+            </div>
+
+            <!-- Right: signup card -->
+            <div>
+                <div class="bg-white border border-slate-200 rounded-2xl p-6 md:p-8 lg:p-10 shadow-xl shadow-slate-200/60">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-3 text-center">Get notified at launch</h2>
+
+                    <p class="text-sm text-slate-600 mb-4 text-center">
+                        Drop your email and you will be the first to know when the course opens.
+                    </p>
+
+                    <p class="text-sm font-semibold text-emerald-700 bg-emerald-50 border border-emerald-100 rounded-lg px-3 py-2 mb-6 text-center">
+                        Early subscribers get a launch discount.
+                    </p>
+
+                    {{/* Mailchimp embedded signup. All identifiers come from
+                         params.mailchimp in hugo.yaml. The JS (course-signup.js)
+                         intercepts the submit and posts via JSONP for an inline
+                         success message; without JS the native POST falls back to
+                         Mailchimp's hosted confirmation page in a new tab. */}}
+                    <form id="course-signup-form"
+                          action="{{ $mc.actionUrl | safeURL }}"
+                          method="post"
+                          target="_blank"
+                          data-action-url="{{ $mc.actionUrl }}"
+                          data-tag-id="{{ $mc.tagId }}"
+                          data-honeypot="b_{{ $mc.u }}_{{ $mc.id }}"
+                          class="space-y-4"
+                          novalidate>
+                        <div>
+                            <label for="mce-EMAIL" class="block text-sm font-semibold text-slate-700 mb-2">Email address</label>
+                            <input id="mce-EMAIL" type="email" name="EMAIL" required autocomplete="email"
+                                   placeholder="you@company.com"
+                                   class="w-full px-4 py-3 rounded-lg border border-slate-300 bg-white text-slate-900
+                                          placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500
+                                          focus:border-brand-500 transition-colors">
+                        </div>
+
+                        <input type="hidden" name="tags" value="{{ $mc.tagId }}">
+
+                        {{/* Mailchimp bot honeypot - keep the exact b_<u>_<id> name,
+                             off-screen instead of display:none. */}}
+                        <div style="position:absolute; left:-5000px;" aria-hidden="true">
+                            <input type="text" name="b_{{ $mc.u }}_{{ $mc.id }}" tabindex="-1" value="" autocomplete="off">
+                        </div>
+
+                        <button type="submit" id="course-signup-submit"
+                                class="w-full inline-flex items-center justify-center gap-2
+                                       bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400
+                                       text-white px-6 py-3.5 rounded-lg font-bold shadow-lg shadow-brand-500/20
+                                       hover:shadow-xl hover:shadow-brand-500/30 hover:-translate-y-0.5 transition-all
+                                       disabled:opacity-60 disabled:cursor-not-allowed disabled:translate-y-0">
+                            Notify me at launch
+                        </button>
+                    </form>
+
+                    <p id="course-signup-success" class="hidden text-center text-emerald-700 font-semibold py-4">
+                        You are on the list! We will email you when the course launches - with your early-bird discount.
+                    </p>
+                    <p id="course-signup-error" class="hidden text-sm text-red-600 mt-3" role="alert"></p>
+
+                    <p class="text-xs text-slate-500 mt-4 text-center">
+                        One email when the course launches. Unsubscribe anytime.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- What you get -->
+<section class="bg-slate-50 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-10 text-center">What you get</h2>
+
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+                <span class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-brand-50 text-brand-600 mb-4">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </span>
+                <h3 class="text-lg font-bold text-slate-900 mb-2">2-hour hands-on course</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    A focused live online session - you work along, not just watch.
+                </p>
+            </div>
+
+            <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+                <span class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-emerald-50 text-emerald-600 mb-4">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                    </svg>
+                </span>
+                <h3 class="text-lg font-bold text-slate-900 mb-2">My custom agent skills</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    The exact skills I use to get reliable, meaningful Spring Boot tests from AI agents - yours to keep, with all future updates.
+                </p>
+            </div>
+
+            <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+                <span class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-amber-50 text-amber-600 mb-4">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </span>
+                <h3 class="text-lg font-bold text-slate-900 mb-2">Agent harnessing for testing</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    Guardrails and feedback loops that keep agents on track - so the tests they write actually catch bugs.
+                </p>
+            </div>
+        </div>
+
+        <p class="text-center text-slate-600 mt-10 max-w-2xl mx-auto">
+            For Spring Boot developers who want AI agents to write tests they can actually trust.
+        </p>
+    </div>
+</section>
+{{ end }}
