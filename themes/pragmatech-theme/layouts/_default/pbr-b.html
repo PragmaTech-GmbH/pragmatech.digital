@@ -52,25 +52,38 @@
                 <span class="font-bold text-slate-900">der-report</span>
                 <span class="ml-auto text-slate-500 hidden sm:inline">5 Werktage</span>
             </div>
-            <h2 class="font-heading text-2xl md:text-3xl font-bold text-slate-900 mb-8">Der Report - in 5 Werktagen, ~2,5 Stunden Aufwand für euer Team</h2>
-            <ul class="space-y-4">
-                <li class="flex gap-4 bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
-                    <span class="font-heading font-bold text-brand-600 text-lg shrink-0">01</span>
-                    <p class="text-slate-600"><span class="font-semibold text-slate-900">Baseline schwarz auf weiß</span> - Build-Zeit-Median, Flaky-Rate, Läufe pro Tag, Confidence-Score eures Teams</p>
-                </li>
-                <li class="flex gap-4 bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
-                    <span class="font-heading font-bold text-brand-600 text-lg shrink-0">02</span>
-                    <p class="text-slate-600"><span class="font-semibold text-slate-900">Top-3-Produktivitätskiller</span> - konkret benannt, mit Fundstellen im Code</p>
-                </li>
-                <li class="flex gap-4 bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
-                    <span class="font-heading font-bold text-brand-600 text-lg shrink-0">03</span>
-                    <p class="text-slate-600"><span class="font-semibold text-slate-900">Einsparpotenzial in Stunden und Euro</span> - gerechnet mit euren Zahlen, nicht mit Musterwerten</p>
-                </li>
-                <li class="flex gap-4 bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
-                    <span class="font-heading font-bold text-brand-600 text-lg shrink-0">04</span>
-                    <p class="text-slate-600"><span class="font-semibold text-slate-900">30-Tage-Maßnahmenplan mit Prognose</span> - priorisiert nach Aufwand und Wirkung, umsetzbar von euch oder von mir</p>
-                </li>
-            </ul>
+            <h2 class="font-heading text-2xl md:text-3xl font-bold text-slate-900 mb-4">Das Ergebnis</h2>
+            <p class="text-lg text-slate-600 mb-10 max-w-3xl">Ein Report, den ihr direkt ans Management weiterreichen könnt:</p>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white border border-slate-200 rounded-xl p-7 shadow-sm">
+                    <div class="on-brand inline-flex items-center justify-center w-11 h-11 rounded-lg bg-brand-500 text-white shadow-sm shadow-brand-500/40 mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-slate-900 mb-2">Baseline schwarz auf weiß</h3>
+                    <p class="text-slate-600 leading-relaxed">Build-Zeit-Median, Flaky-Rate, Pipeline-Läufe pro Tag und der Confidence-Score eures Teams: &bdquo;Wie sicher würdet ihr Freitagnachmittag deployen?&ldquo;</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded-xl p-7 shadow-sm">
+                    <div class="on-brand inline-flex items-center justify-center w-11 h-11 rounded-lg bg-brand-500 text-white shadow-sm shadow-brand-500/40 mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-slate-900 mb-2">Die Top-3-Produktivitätskiller</h3>
+                    <p class="text-slate-600 leading-relaxed">Konkret benannt, mit Fundstellen im Code - nicht als Folien-Floskel.</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded-xl p-7 shadow-sm">
+                    <div class="on-brand inline-flex items-center justify-center w-11 h-11 rounded-lg bg-brand-500 text-white shadow-sm shadow-brand-500/40 mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-slate-900 mb-2">Das Einsparpotenzial in Stunden und Euro</h3>
+                    <p class="text-slate-600 leading-relaxed">Nachvollziehbar gerechnet mit euren Zahlen, nicht mit Musterwerten.</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded-xl p-7 shadow-sm">
+                    <div class="on-brand inline-flex items-center justify-center w-11 h-11 rounded-lg bg-brand-500 text-white shadow-sm shadow-brand-500/40 mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-slate-900 mb-2">Der Maßnahmenplan mit Prognose</h3>
+                    <p class="text-slate-600 leading-relaxed">Welche Reduktion in 30 Tagen realistisch ist - priorisiert nach Aufwand und Wirkung.</p>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -89,36 +102,9 @@
                 <span class="font-bold text-slate-900">der-ablauf</span>
                 <span class="ml-auto text-slate-500 hidden sm:inline">Tag 1-5</span>
             </div>
-            <h2 class="font-heading text-2xl md:text-3xl font-bold text-slate-900 mb-4">Der Weg zum Report</h2>
-            <p class="text-lg text-slate-600 mb-12">5 Werktage. Kein Mitlaufen, keine Workshop-Serie, keine Meeting-Kaskade.</p>
-
-            <ol class="relative border-l-2 border-brand-200 ml-4 space-y-12">
-                <li class="pl-8 relative">
-                    <span class="on-brand absolute -left-[21px] top-0 inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-500 text-white font-heading font-bold shadow-sm shadow-brand-500/40">1</span>
-                    <h3 class="font-heading text-xl font-bold text-slate-900 mb-2">Tag 1 - Zugänge &amp; Datensammlung</h3>
-                    <p class="text-slate-600 leading-relaxed">Ihr richtet Read-only-Zugang zum Repository ein (NDA-Vorlage liegt bei, unterschriftsfertig), exportiert die CI-Historie der letzten 90 Tage und stoßt einen Spring-Test-Profiler-Lauf an - alles nach Anleitung. <span class="font-semibold text-slate-900">Euer Aufwand: ~30 Minuten.</span></p>
-                </li>
-                <li class="pl-8 relative">
-                    <span class="on-brand absolute -left-[21px] top-0 inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-500 text-white font-heading font-bold shadow-sm shadow-brand-500/40">2</span>
-                    <h3 class="font-heading text-xl font-bold text-slate-900 mb-2">Tag 2 - Zwei Gespräche</h3>
-                    <p class="text-slate-600 leading-relaxed">Je 45 Minuten mit dem Tech Lead und einem:einer Entwickler:in aus dem Team, dazu eine kurze anonyme Team-Umfrage mit 5 Fragen - unter anderem: &bdquo;Wie sicher würdet ihr Freitagnachmittag deployen?&ldquo; <span class="font-semibold text-slate-900">Euer Aufwand: 2&nbsp;&times;&nbsp;45 Minuten.</span></p>
-                </li>
-                <li class="pl-8 relative">
-                    <span class="on-brand absolute -left-[21px] top-0 inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-500 text-white font-heading font-bold shadow-sm shadow-brand-500/40">3</span>
-                    <h3 class="font-heading text-xl font-bold text-slate-900 mb-2">Tag 3-4 - Analyse &amp; Report-Erstellung</h3>
-                    <p class="text-slate-600 leading-relaxed">Ich analysiere Pipeline-Historie, Testsuite und Profiler-Daten und schreibe den Report: Baseline-Metriken, Top-3-Produktivitätskiller mit Fundstellen im Code, Einsparpotenzial in Stunden und Euro, 30-Tage-Maßnahmenplan. <span class="font-semibold text-slate-900">Euer Aufwand: keiner.</span></p>
-                </li>
-                <li class="pl-8 relative">
-                    <span class="on-brand absolute -left-[21px] top-0 inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-500 text-white font-heading font-bold shadow-sm shadow-brand-500/40">5</span>
-                    <h3 class="font-heading text-xl font-bold text-slate-900 mb-2">Tag 5 - Ergebnis-Call</h3>
-                    <p class="text-slate-600 leading-relaxed">60 Minuten Report-Walkthrough mit Prognose: welche Build-Zeit-Reduktion in 30 Tagen realistisch ist, priorisiert nach Aufwand und Wirkung. Den Report könnt ihr direkt ans Management weiterreichen. <span class="font-semibold text-slate-900">Euer Aufwand: 60 Minuten.</span></p>
-                </li>
-            </ol>
-
-            <div class="mt-14">
-                <h3 class="font-heading text-xl font-bold text-slate-900 mb-6">Auf einen Blick</h3>
-                {{ partial "pbr/process-table.html" . }}
-            </div>
+            <h2 class="font-heading text-2xl md:text-3xl font-bold text-slate-900 mb-4">Der Ablauf</h2>
+            <p class="text-lg text-slate-600 mb-10">5 Werktage, minimaler Aufwand für euer Team.</p>
+            {{ partial "pbr/process-table.html" . }}
         </div>
     </div>
 </section>
