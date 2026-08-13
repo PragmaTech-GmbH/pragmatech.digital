@@ -3,13 +3,14 @@
      CI run with a vertical rail and stage headers. All copy comes from data/pbr.yaml, selected
      by the `pageLang` frontmatter param (en|de). data-variant="a" is the light-theme CSS hook;
      bg-[#0a0e16] panels stay dark inside it. */}}
-{{ $t := index site.Data.pbr (.Params.pageLang | default "en") }}
+{{ $lang := .Params.pageLang | default "en" }}
+{{ $t := index site.Data.pbr $lang }}
 <div data-variant="a">
 
 <!-- Hero: pipeline run with a stalling build log -->
 <section class="relative overflow-hidden bg-white border-b border-slate-200">
     <div class="absolute inset-0 bg-gradient-to-br from-white via-brand-50/40 to-white pointer-events-none"></div>
-    <a href="{{ $t.langSwitch.url | relURL }}" class="absolute top-4 right-4 z-10 font-mono text-xs text-slate-500 hover:text-brand-600 underline underline-offset-4">{{ $t.langSwitch.label }}</a>
+    <a id="pbr-lang-switch" href="{{ $t.langSwitch.url | relURL }}" class="absolute top-4 right-4 z-10 font-mono text-xs text-slate-500 hover:text-brand-600 underline underline-offset-4">{{ $t.langSwitch.label }}</a>
     <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 text-center">
         <span class="on-brand inline-flex items-center gap-2.5 px-4 py-1.5 mb-6 rounded-full bg-[#0a0e16] font-mono text-xs text-white">
             <span class="w-2 h-2 rounded-full bg-yellow-400 animate-pulse"></span>
@@ -280,7 +281,24 @@
 </div>
 
 <script>
+{{ if eq $lang "en" }}
+// German-language browsers land on the German page once, unless they explicitly chose a language.
+try {
+    var browserLanguage = ((navigator.languages && navigator.languages[0]) || navigator.language || '').toLowerCase();
+    if (!localStorage.getItem('pbrLang') && browserLanguage.indexOf('de') === 0) {
+        window.location.replace('{{ $t.langSwitch.url | relURL }}');
+    }
+} catch (redirectError) {}
+{{ end }}
+
 document.addEventListener('DOMContentLoaded', function () {
+    var langSwitchLink = document.getElementById('pbr-lang-switch');
+    if (langSwitchLink) {
+        langSwitchLink.addEventListener('click', function () {
+            try { localStorage.setItem('pbrLang', '{{ if eq $lang "en" }}de{{ else }}en{{ end }}'); } catch (storeError) {}
+        });
+    }
+
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduceMotion) return;
 
