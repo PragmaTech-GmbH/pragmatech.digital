@@ -9,6 +9,7 @@
   if (!signupForm) return;
 
   var successMessage = document.getElementById('course-signup-success');
+  var alreadySubscribedMessage = document.getElementById('course-signup-already');
   var errorMessage = document.getElementById('course-signup-error');
   var submitButton = document.getElementById('course-signup-submit');
   var callbackCounter = 0;
@@ -53,7 +54,8 @@
         // link) - map known cases to our own copy and never inject it.
         var responseText = String(response.msg || '').replace(/^\d+\s*-\s*/, '');
         if (/already subscribed/i.test(responseText)) {
-          showError('You are already on the list - we will let you know when the course launches.');
+          signupForm.classList.add('hidden');
+          alreadySubscribedMessage.classList.remove('hidden');
         } else if (/invalid|enter a value/i.test(responseText)) {
           showError('Please enter a valid email address.');
         } else {
