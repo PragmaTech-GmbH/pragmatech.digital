@@ -22,11 +22,12 @@
             <div class="pbr-log-line text-slate-500 mb-2">$ git push &amp;&amp; gh run watch</div>
             <div class="pbr-log-line flex justify-between gap-4 text-slate-300"><span><span class="text-green-400">&#10003;</span> checkout</span><span class="text-slate-500">4s</span></div>
             <div class="pbr-log-line flex justify-between gap-4 text-slate-300"><span><span class="text-green-400">&#10003;</span> compile</span><span class="text-slate-500">1m 02s</span></div>
-            <div class="pbr-log-line flex justify-between gap-4 text-slate-300"><span><span class="text-yellow-400">&#9679;</span> test <span class="text-yellow-400">&#9619;&#9619;&#9619;&#9619;&#9619;&#9619;&#9617;&#9617;&#9617;&#9617;</span></span><span class="text-yellow-400" id="pbr-log-timer">19:41</span></div>
+            <div class="pbr-log-line flex justify-between gap-4 text-slate-300"><span><span class="text-yellow-400">&#9679;</span> test <span class="text-yellow-400">&#9619;&#9619;&#9619;&#9619;&#9619;&#9619;&#9619;&#9619;&#9617;&#9617;</span></span><span class="text-yellow-400" id="pbr-log-timer">25:41</span></div>
             <div class="pbr-log-line text-slate-500">&nbsp;&nbsp;&#9492;&#9472; euer Team wartet. Wieder.<span class="animate-pulse text-slate-300">&#9615;</span></div>
             <div class="mt-4 pt-4 border-t border-slate-800">
-                <div class="pbr-log-line text-slate-300">= <span class="text-white font-bold">10 h Wartezeit. Pro Tag.</span> <span class="text-slate-500">(8 Entwickler, 30 Läufe)</span></div>
-                <div class="pbr-log-line text-green-400 font-bold">&asymp; 50.000+ &euro; pro Jahr - konservativ gerechnet</div>
+                <div class="pbr-log-line text-slate-300">= bei ImmoScout24: Build <span class="text-white font-bold">26 &rarr; 12 Min</span> <span class="text-slate-500">(102k LoC)</span></div>
+                <div class="pbr-log-line text-slate-300">&nbsp;&nbsp;5 Devs &times; 3 Läufe/Tag &times; 14 Min gespart <span class="text-slate-500">&asymp; 840 h/Jahr</span></div>
+                <div class="pbr-log-line text-green-400 font-bold">&#10003; 84.000 &euro; Kapazität freigesetzt <span class="font-normal">(100 &euro; Vollkostensatz, konservativ)</span></div>
             </div>
         </div>
 
@@ -38,7 +39,64 @@
     </div>
 </section>
 
-<!-- Stage 1: der-report -->
+<!-- Stage 1: der-alltag (failed) - the daily pain -->
+<section class="bg-white border-b border-slate-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-16">
+        <div class="relative md:pl-14">
+            <div class="hidden md:block absolute left-[7px] -top-20 -bottom-20 w-px bg-slate-300" aria-hidden="true"></div>
+            <div class="relative flex items-center gap-3 mb-6 font-mono text-sm">
+                <span class="md:absolute md:-left-14 inline-flex items-center justify-center w-4 h-4 rounded-full bg-red-500 ring-4 ring-white shrink-0">
+                    <svg class="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                </span>
+                <span class="text-slate-500">stage 1/6</span>
+                <span class="text-slate-400">&middot;</span>
+                <span class="font-bold text-slate-900">der-alltag</span>
+                <span class="ml-auto text-red-600 hidden sm:inline">failed &middot; jeden Tag</span>
+            </div>
+            <h2 class="font-heading text-2xl md:text-3xl font-bold text-slate-900 mb-8">Der Alltag mit einer 26-Minuten-Pipeline</h2>
+            <div class="grid md:grid-cols-2 gap-5">
+                <div class="flex gap-4 bg-slate-50 border border-slate-200 rounded-xl p-6 shadow-sm">
+                    <span class="inline-flex items-center justify-center w-9 h-9 shrink-0 rounded-lg bg-red-50 border border-red-100">
+                        <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </span>
+                    <div>
+                        <h3 class="font-heading font-bold text-slate-900 mb-1">Ständiges Warten</h3>
+                        <p class="text-slate-600 leading-relaxed">Jeder Push heißt: 20+ Minuten warten, bis die Pipeline grün ist. Bei jedem Lauf, jeden Tag, für jeden im Team.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4 bg-slate-50 border border-slate-200 rounded-xl p-6 shadow-sm">
+                    <span class="inline-flex items-center justify-center w-9 h-9 shrink-0 rounded-lg bg-red-50 border border-red-100">
+                        <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                    </span>
+                    <div>
+                        <h3 class="font-heading font-bold text-slate-900 mb-1">Flaky Tests machen es schlimmer</h3>
+                        <p class="text-slate-600 leading-relaxed">Ein roter Build ohne echten Fehler heißt: nochmal von vorn. Die Wartezeit verdoppelt sich - und das Vertrauen in die Suite sinkt.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4 bg-slate-50 border border-slate-200 rounded-xl p-6 shadow-sm">
+                    <span class="inline-flex items-center justify-center w-9 h-9 shrink-0 rounded-lg bg-red-50 border border-red-100">
+                        <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
+                    </span>
+                    <div>
+                        <h3 class="font-heading font-bold text-slate-900 mb-1">Kontextwechsel statt Flow</h3>
+                        <p class="text-slate-600 leading-relaxed">Während der Build läuft, wechselt jeder zur nächsten Aufgabe - und braucht danach bis zu 20 Minuten zurück in den Fokus. Tiefes Arbeiten findet nicht mehr statt.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4 bg-slate-50 border border-slate-200 rounded-xl p-6 shadow-sm">
+                    <span class="inline-flex items-center justify-center w-9 h-9 shrink-0 rounded-lg bg-red-50 border border-red-100">
+                        <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </span>
+                    <div>
+                        <h3 class="font-heading font-bold text-slate-900 mb-1">Kein schnelles Feedback</h3>
+                        <p class="text-slate-600 leading-relaxed">Fehler fallen erst eine halbe Stunde später auf. Je länger die Schleife, desto teurer jede Korrektur - und desto seltener traut sich jemand an Refactorings.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stage 2: der-report -->
 <section class="bg-slate-50 border-b border-slate-200">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-16">
         <div class="relative md:pl-14">
@@ -47,7 +105,7 @@
                 <span class="md:absolute md:-left-14 inline-flex items-center justify-center w-4 h-4 rounded-full bg-green-500 ring-4 ring-slate-50 shrink-0">
                     <svg class="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                 </span>
-                <span class="text-slate-500">stage 1/5</span>
+                <span class="text-slate-500">stage 2/6</span>
                 <span class="text-slate-400">&middot;</span>
                 <span class="font-bold text-slate-900">der-report</span>
                 <span class="ml-auto text-slate-500 hidden sm:inline">5 Werktage</span>
@@ -97,7 +155,7 @@
                 <span class="md:absolute md:-left-14 inline-flex items-center justify-center w-4 h-4 rounded-full bg-green-500 ring-4 ring-white shrink-0">
                     <svg class="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                 </span>
-                <span class="text-slate-500">stage 2/5</span>
+                <span class="text-slate-500">stage 3/6</span>
                 <span class="text-slate-400">&middot;</span>
                 <span class="font-bold text-slate-900">der-ablauf</span>
                 <span class="ml-auto text-slate-500 hidden sm:inline">Tag 1-5</span>
@@ -118,7 +176,7 @@
                 <span class="md:absolute md:-left-14 inline-flex items-center justify-center w-4 h-4 rounded-full bg-green-500 ring-4 ring-[#0f172a] shrink-0">
                     <svg class="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                 </span>
-                <span class="text-slate-500">stage 3/5</span>
+                <span class="text-slate-500">stage 4/6</span>
                 <span class="text-slate-600">&middot;</span>
                 <span class="font-bold text-white">garantie</span>
                 <span class="ml-auto text-slate-500 hidden sm:inline">min. 20.000 &euro;/Jahr</span>
@@ -145,7 +203,7 @@
             <div class="hidden md:block absolute left-[7px] -top-20 -bottom-20 w-px bg-slate-300" aria-hidden="true"></div>
             <div class="relative flex items-center gap-3 mb-6 font-mono text-sm">
                 <span class="md:absolute md:-left-14 inline-flex w-4 h-4 rounded-full bg-yellow-400 ring-4 ring-white animate-pulse shrink-0"></span>
-                <span class="text-slate-500">stage 4/5</span>
+                <span class="text-slate-500">stage 5/6</span>
                 <span class="text-slate-400">&middot;</span>
                 <span class="font-bold text-slate-900">selbst-machen</span>
                 <span class="ml-auto text-yellow-600 hidden sm:inline">pending seit Jahren</span>
@@ -178,7 +236,7 @@
                 <span class="md:absolute md:-left-14 inline-flex items-center justify-center w-4 h-4 rounded-full bg-green-500 ring-4 ring-slate-50 shrink-0">
                     <svg class="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                 </span>
-                <span class="text-slate-500">stage 5/5</span>
+                <span class="text-slate-500">stage 6/6</span>
                 <span class="text-slate-400">&middot;</span>
                 <span class="font-bold text-slate-900">deploy: 15-min-call</span>
                 <span class="ml-auto text-slate-500 hidden sm:inline">1.990 &euro; Festpreis</span>
@@ -203,7 +261,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var timerElement = document.getElementById('pbr-log-timer');
     if (timerElement) {
-        var stalledMinutes = 19;
+        var stalledMinutes = 25;
         var stalledSeconds = 41;
         setInterval(function () {
             stalledSeconds++;
