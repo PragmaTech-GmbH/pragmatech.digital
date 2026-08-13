@@ -44,8 +44,15 @@
       clearTimeout(timeoutTimer);
       cleanup();
       if (response.result === 'success') {
+        // Mailchimp reports existing subscribers as success too, with
+        // "You're already subscribed, your profile has been updated." -
+        // the tag is applied, but the confirm-your-inbox copy would be wrong.
         signupForm.classList.add('hidden');
-        successMessage.classList.remove('hidden');
+        if (/already subscribed/i.test(String(response.msg || ''))) {
+          alreadySubscribedMessage.classList.remove('hidden');
+        } else {
+          successMessage.classList.remove('hidden');
+        }
         if (window._paq) {
           window._paq.push(['trackEvent', 'Course', 'Signup', 'agentic-spring-boot-testing']);
         }
