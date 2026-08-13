@@ -10,7 +10,7 @@
     <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 text-center">
         <span class="on-brand inline-flex items-center gap-2.5 px-4 py-1.5 mb-6 rounded-full bg-[#0a0e16] font-mono text-xs text-white">
             <span class="w-2 h-2 rounded-full bg-yellow-400 animate-pulse"></span>
-            pipeline #4711 &middot; branch: main &middot; status: läuft
+            eure pipeline läuft &middot; das Team wartet seit <span class="pbr-stall-timer text-yellow-400">25:41</span>
         </span>
         <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-8 leading-[1.05]">
             Wie viel Entwicklerkapazität steckt
@@ -22,7 +22,7 @@
             <div class="pbr-log-line text-slate-500 mb-2">$ git push &amp;&amp; gh run watch</div>
             <div class="pbr-log-line flex justify-between gap-4 text-slate-300"><span><span class="text-green-400">&#10003;</span> checkout</span><span class="text-slate-500">4s</span></div>
             <div class="pbr-log-line flex justify-between gap-4 text-slate-300"><span><span class="text-green-400">&#10003;</span> compile</span><span class="text-slate-500">1m 02s</span></div>
-            <div class="pbr-log-line flex justify-between gap-4 text-slate-300"><span><span class="text-yellow-400">&#9679;</span> test <span class="text-yellow-400">&#9619;&#9619;&#9619;&#9619;&#9619;&#9619;&#9619;&#9619;&#9617;&#9617;</span></span><span class="text-yellow-400" id="pbr-log-timer">25:41</span></div>
+            <div class="pbr-log-line flex justify-between gap-4 text-slate-300"><span><span class="text-yellow-400">&#9679;</span> test <span class="text-yellow-400">&#9619;&#9619;&#9619;&#9619;&#9619;&#9619;&#9619;&#9619;&#9617;&#9617;</span></span><span class="pbr-stall-timer text-yellow-400">25:41</span></div>
             <div class="pbr-log-line text-slate-500">&nbsp;&nbsp;&#9492;&#9472; euer Team wartet. Wieder.<span class="animate-pulse text-slate-300">&#9615;</span></div>
             <div class="mt-4 pt-4 border-t border-slate-800">
                 <div class="pbr-log-line text-slate-300">= bei ImmoScout24: Build <span class="text-white font-bold">26 &rarr; 12 Min</span> <span class="text-slate-500">(102k LoC)</span></div>
@@ -259,14 +259,15 @@ document.addEventListener('DOMContentLoaded', function () {
         setTimeout(function () { logLine.style.visibility = 'visible'; }, 400 + 350 * lineIndex);
     });
 
-    var timerElement = document.getElementById('pbr-log-timer');
-    if (timerElement) {
+    var timerElements = document.querySelectorAll('.pbr-stall-timer');
+    if (timerElements.length) {
         var stalledMinutes = 25;
         var stalledSeconds = 41;
         setInterval(function () {
             stalledSeconds++;
             if (stalledSeconds === 60) { stalledSeconds = 0; stalledMinutes++; }
-            timerElement.textContent = String(stalledMinutes).padStart(2, '0') + ':' + String(stalledSeconds).padStart(2, '0');
+            var stalledTime = String(stalledMinutes).padStart(2, '0') + ':' + String(stalledSeconds).padStart(2, '0');
+            timerElements.forEach(function (timerElement) { timerElement.textContent = stalledTime; });
         }, 1000);
     }
 });
