@@ -6,6 +6,7 @@ url: "/products/pipeline-baseline-report/de/"
 aliases:
   - "/pbr-roi/"
   - "/pbr-prozess/"
+share_image: "/images/products/pipeline-baseline-report-share.png"
 pageLang: "de"
 htmlLang: "de"
 hideNav: true

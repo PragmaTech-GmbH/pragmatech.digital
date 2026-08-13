@@ -5,6 +5,7 @@ layout: "pbr"
 url: "/products/pipeline-baseline-report/"
 aliases:
   - "/pipeline-baseline-report/"
+share_image: "/images/products/pipeline-baseline-report-share.png"
 pageLang: "en"
 htmlLang: "en"
 hideNav: true
