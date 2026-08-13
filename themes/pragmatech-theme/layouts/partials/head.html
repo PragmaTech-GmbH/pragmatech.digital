@@ -79,4 +79,12 @@
     {{ end }}
     <script src="{{ $homeJs.RelPermalink }}" defer></script>
     {{ end }}
+
+    {{ if eq .Layout "course-landing" }}
+    {{ $courseJs := resources.Get "js/course-signup.js" }}
+    {{ if hugo.IsProduction }}
+    {{ $courseJs = $courseJs | minify | fingerprint }}
+    {{ end }}
+    <script src="{{ $courseJs.RelPermalink }}" defer></script>
+    {{ end }}
 </head>

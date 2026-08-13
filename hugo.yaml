@@ -18,6 +18,13 @@ params:
     info: "info@pragmatech.digital"
     privacy: "info@pragmatech.digital"
     dpo: "info@pragmatech.digital"
+  mailchimp:
+    # Action URL from the Mailchimp embed form builder
+    # (Audience > Signup forms > Embedded forms)
+    actionUrl: "https://rieckpil.us20.list-manage.com/subscribe/post?u=0e1ba18c31aabbb76027a3e54&id=d60be7e492&f_id=007c7be0f0"
+    u: "0e1ba18c31aabbb76027a3e54" # account hash, the u= query param of actionUrl
+    id: "d60be7e492" # audience id, the id= query param of actionUrl
+    tagId: "1678391" # numeric id of the tag "course-agentic-testing-interest"
 
 relativeURLs: true
 publishDir: "public"
