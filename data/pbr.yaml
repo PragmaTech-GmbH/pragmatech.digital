@@ -1,0 +1,241 @@
+# Copy for the Pipeline Baseline Report landing page (layouts/_default/pbr.html).
+# Two full language trees; the page's `pageLang` frontmatter param selects one.
+# A few strings carry inline HTML (highlight spans) and are rendered with safeHTML.
+
+en:
+  langSwitch:
+    label: "Deutsche Version"
+    url: "/products/pipeline-baseline-report/de/"
+  hero:
+    badgePrefix: "your pipeline is running &middot; team waiting for"
+    headline1: "How much developer capacity"
+    headline2: "is stuck in your pipeline?"
+    logWaiting: "&#9492;&#9472; your team waits. Again."
+    logSummary1: '= at ImmoScout24: build <span class="text-white font-bold">26 &rarr; 12 min</span> <span class="text-slate-500">(102k LoC)</span>'
+    logSummary2: '&nbsp;&nbsp;5 devs &times; 3 runs/day &times; 14 min saved <span class="text-slate-500">&asymp; 840 h/year</span>'
+    logSummary3: '&#10003; &euro;84,000 of capacity unlocked <span class="font-normal">(&euro;100 full cost rate, conservative)</span>'
+    subline: "There is hidden productivity in your team - it is just waiting for the pipeline. The report shows you in 5 working days, in black and white, how to unlock it: without a single new hire."
+    cta: "Faster builds in 15 minutes"
+    ctaNote: "15 minutes, no pitch - you get a first assessment right on the call."
+  pain:
+    stage: "status-quo"
+    badge: "failed &middot; every day"
+    heading: "Daily life with a 26-minute pipeline"
+    items:
+      - title: "Constant waiting"
+        text: "Every push means 20+ minutes of waiting for a green pipeline. Every run, every day, for everyone on the team."
+        iconPath: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+      - title: "Flaky tests make it worse"
+        text: "A red build without a real failure means: start over. The wait doubles - and trust in the suite erodes."
+        iconPath: "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+      - title: "Context switching kills flow"
+        text: "While the build runs, everyone switches to the next task - and needs up to 20 minutes to get back into focus. Deep work stops happening."
+        iconPath: "M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"
+      - title: "No fast feedback"
+        text: "Mistakes surface half an hour later. The longer the loop, the more expensive every fix - and the fewer people dare to refactor."
+        iconPath: "M13 10V3L4 14h7v7l9-11h-7z"
+  assessment:
+    stage: "the-assessment"
+    badge: "5 working days"
+    heading: "The baseline assessment for your build pipeline"
+    intro: "I measure your pipeline, test suite, and team routine - the outcome is a report you can hand straight to management:"
+    cards:
+      - title: "Your baseline in black and white"
+        text: "Median build time, flaky rate, pipeline runs per day, and your team's confidence score: &ldquo;How confident would you be deploying on a Friday afternoon?&rdquo;"
+        iconPath: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+      - title: "The top 3 productivity killers"
+        text: "Named concretely, with locations in your code - not as slideware platitudes."
+        iconPath: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+      - title: "The savings potential in hours and euros"
+        text: "Calculated transparently with your numbers, not with sample values."
+        iconPath: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+      - title: "The action plan with a forecast"
+        text: "Which reduction is realistic within 30 days - prioritized by effort and impact."
+        iconPath: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
+  process:
+    stage: "the-process"
+    badge: "day 1-5"
+    heading: "The process"
+    intro: "5 working days, minimal effort for your team."
+    tableHead: { day: "Day", what: "What happens", effort: "Your effort" }
+    rows:
+      - day: "1"
+        what: '<span class="font-semibold text-slate-900">Access &amp; data collection:</span> read-only repo, CI history (90 days), Spring Test Profiler run'
+        effort: "~30 min"
+      - day: "2"
+        what: '<span class="font-semibold text-slate-900">Two conversations:</span> tech lead + one developer from the team, short anonymous team survey (5 questions)'
+        effort: "2 &times; 45 min"
+      - day: "3&ndash;4"
+        what: '<span class="font-semibold text-slate-900">Analysis &amp; report writing</span>'
+        effort: "none"
+      - day: "5"
+        what: '<span class="font-semibold text-slate-900">Results call:</span> report walkthrough + forecast'
+        effort: "60 min"
+    note: "No shadowing, no workshop series, no meeting cascade. I need read access and your pipeline history - nothing more."
+    provideHeading: "What you provide"
+    provideItems:
+      - "Read-only access to the repository (NDA template included - ready to sign)"
+      - "Export of the last 90 days of CI history (GitHub Actions / GitLab CI - instructions from me)"
+      - "One Spring Test Profiler run, triggered by your team (30 min following instructions)"
+      - "Two interview partners for 45 minutes each"
+    remoteHeading: "Regulated environment? No problem."
+    remoteText: "No external access possible (bank, insurance, regulated environment)? There is a remote option: your team runs the profiler and analysis scripts following my instructions, and I evaluate the results. Slightly less depth, same report."
+  guarantee:
+    stage: "guarantee"
+    badge: "min. &euro;20,000/year"
+    heading1: "If the report finds less than &euro;20,000 in savings potential,"
+    heading2: "you pay nothing."
+    text: "The baseline assessment for your build pipeline: within 5 working days you know how much developer capacity is stuck - guaranteed at least ten times the report's price, or it is free."
+    cta: "Book your 15-min quick check"
+    ctaNote: "15 minutes, no pitch - we check whether your setup is a fit."
+  diy:
+    stage: "do-it-yourself"
+    badge: "pending for years"
+    heading: "Why this never happens internally"
+    items:
+      - '<span class="font-semibold text-slate-900">No focus time:</span> &ldquo;tech debt in tests&rdquo; always loses against features in the sprint - and has for years.'
+      - '<span class="font-semibold text-slate-900">Operational blindness:</span> your team normalized the waiting long ago.'
+      - '<span class="font-semibold text-slate-900">No benchmark:</span> only a comparison across 10+ teams shows whether your numbers are good or bad.'
+    doraHeading: "What fast feedback delivers - per DORA and in real life"
+    doraText: 'DORA research (State of DevOps, &ldquo;Accelerate&rdquo;) shows: teams with a short <span class="font-semibold text-slate-900">lead time</span> and a high <span class="font-semibold text-slate-900">deployment frequency</span> are about twice as likely to meet their organizational goals. Both metrics hang directly on your build time - and both can be improved measurably:'
+    cases:
+      - name: "ImmoScout24"
+        before: "26"
+        after: "12 min"
+        text: "Test setup streamlined - 102k LoC, delivered in 3 weeks."
+      - name: "AboutBits"
+        before: "15"
+        after: "3 min"
+        text: "Test setup streamlined - 134k LoC, delivered in 2 weeks. Feedback in the length of a coffee break."
+    footnote: "Delivered by me - 10+ years of Spring Boot, 6 years as a consultant across 10+ engineering teams. 10,000+ developers read my weekly newsletter, 8,500+ learn in the Testing Academy."
+  pricing:
+    stage: "deploy: 15-min-call"
+    badge: "&euro;1,990 fixed price"
+    eyebrow: "Investment"
+    price: "&euro;1,990"
+    priceNote: "per team - fixed price, one team = one codebase/pipeline"
+    creditHeading: "Full credit"
+    creditText: "If you commission the implementation afterwards, the &euro;1,990 is fully credited. The report is then effectively free."
+    guaranteeHeading: "The report guarantee"
+    guaranteeText: "If the report finds less than &euro;20,000 in yearly savings potential - ten times its price - you pay nothing."
+    cta: "Book your 15-min quick check"
+    ctaNote: "15 minutes, no pitch: we check whether your setup is a fit, and you get a first assessment right away."
+
+de:
+  langSwitch:
+    label: "English version"
+    url: "/products/pipeline-baseline-report/"
+  hero:
+    badgePrefix: "eure pipeline läuft &middot; das Team wartet seit"
+    headline1: "Wie viel Entwicklerkapazität steckt"
+    headline2: "in eurer Pipeline fest?"
+    logWaiting: "&#9492;&#9472; euer Team wartet. Wieder."
+    logSummary1: '= bei ImmoScout24: Build <span class="text-white font-bold">26 &rarr; 12 Min</span> <span class="text-slate-500">(102k LoC)</span>'
+    logSummary2: '&nbsp;&nbsp;5 Devs &times; 3 Läufe/Tag &times; 14 Min gespart <span class="text-slate-500">&asymp; 840 h/Jahr</span>'
+    logSummary3: '&#10003; 84.000 &euro; Kapazität freigesetzt <span class="font-normal">(100 &euro; Vollkostensatz, konservativ)</span>'
+    subline: "In eurem Team steckt verborgene Produktivität - sie wartet nur auf die Pipeline. Der Report zeigt in 5 Werktagen schwarz auf weiß, wie ihr sie freisetzt: ohne eine einzige Neueinstellung."
+    cta: "In 15 Minuten zu schnelleren Builds"
+    ctaNote: "15 Minuten, kein Pitch - mit erster Einschätzung direkt im Call."
+  pain:
+    stage: "der-alltag"
+    badge: "failed &middot; jeden Tag"
+    heading: "Der Alltag mit einer 26-Minuten-Pipeline"
+    items:
+      - title: "Ständiges Warten"
+        text: "Jeder Push heißt: 20+ Minuten warten, bis die Pipeline grün ist. Bei jedem Lauf, jeden Tag, für jeden im Team."
+        iconPath: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+      - title: "Flaky Tests machen es schlimmer"
+        text: "Ein roter Build ohne echten Fehler heißt: nochmal von vorn. Die Wartezeit verdoppelt sich - und das Vertrauen in die Suite sinkt."
+        iconPath: "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+      - title: "Kontextwechsel statt Flow"
+        text: "Während der Build läuft, wechselt jeder zur nächsten Aufgabe - und braucht danach bis zu 20 Minuten zurück in den Fokus. Tiefes Arbeiten findet nicht mehr statt."
+        iconPath: "M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"
+      - title: "Kein schnelles Feedback"
+        text: "Fehler fallen erst eine halbe Stunde später auf. Je länger die Schleife, desto teurer jede Korrektur - und desto seltener traut sich jemand an Refactorings."
+        iconPath: "M13 10V3L4 14h7v7l9-11h-7z"
+  assessment:
+    stage: "standortbestimmung"
+    badge: "5 Werktage"
+    heading: "Die Standortbestimmung für eure Build-Pipeline"
+    intro: "Ich vermesse Pipeline, Testsuite und Team-Alltag - heraus kommt ein Report, den ihr direkt ans Management weiterreichen könnt:"
+    cards:
+      - title: "Baseline schwarz auf weiß"
+        text: "Build-Zeit-Median, Flaky-Rate, Pipeline-Läufe pro Tag und der Confidence-Score eures Teams: &bdquo;Wie sicher würdet ihr Freitagnachmittag deployen?&ldquo;"
+        iconPath: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+      - title: "Die Top-3-Produktivitätskiller"
+        text: "Konkret benannt, mit Fundstellen im Code - nicht als Folien-Floskel."
+        iconPath: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+      - title: "Das Einsparpotenzial in Stunden und Euro"
+        text: "Nachvollziehbar gerechnet mit euren Zahlen, nicht mit Musterwerten."
+        iconPath: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+      - title: "Der Maßnahmenplan mit Prognose"
+        text: "Welche Reduktion in 30 Tagen realistisch ist - priorisiert nach Aufwand und Wirkung."
+        iconPath: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
+  process:
+    stage: "der-ablauf"
+    badge: "Tag 1-5"
+    heading: "Der Ablauf"
+    intro: "5 Werktage, minimaler Aufwand für euer Team."
+    tableHead: { day: "Tag", what: "Was passiert", effort: "Euer Aufwand" }
+    rows:
+      - day: "1"
+        what: '<span class="font-semibold text-slate-900">Zugänge &amp; Datensammlung:</span> Read-only-Repo, CI-Historie (90 Tage), Spring-Test-Profiler-Lauf'
+        effort: "~30 Min"
+      - day: "2"
+        what: '<span class="font-semibold text-slate-900">Zwei Gespräche:</span> Tech Lead + ein:e Entwickler:in aus dem Team, kurze anonyme Team-Umfrage (5 Fragen)'
+        effort: "2 &times; 45 Min"
+      - day: "3&ndash;4"
+        what: '<span class="font-semibold text-slate-900">Analyse &amp; Report-Erstellung</span>'
+        effort: "keiner"
+      - day: "5"
+        what: '<span class="font-semibold text-slate-900">Ergebnis-Call:</span> Report-Walkthrough + Prognose'
+        effort: "60 Min"
+    note: "Kein Mitlaufen, keine Workshop-Serie, keine Meeting-Kaskade. Ich brauche Lesezugriff und eure Pipeline-Historie - mehr nicht."
+    provideHeading: "Was ihr bereitstellt"
+    provideItems:
+      - "Read-only-Zugang zum Repository (NDA-Vorlage liegt bei - unterschriftsfertig)"
+      - "Export der CI-Historie der letzten 90 Tage (GitHub Actions / GitLab CI - Anleitung von mir)"
+      - "Einen Spring-Test-Profiler-Lauf, angestoßen von eurem Team (30 Min nach Anleitung)"
+      - "Zwei Gesprächspartner für je 45 Minuten"
+    remoteHeading: "Regulierte Umgebung? Kein Problem."
+    remoteText: "Kein externer Zugriff möglich (Bank, Versicherung, regulierte Umgebung)? Es gibt eine Remote-Variante: Euer Team führt Profiler und Analyse-Skripte nach meiner Anleitung selbst aus, ich werte die Ergebnisse aus. Etwas weniger Tiefe, gleicher Report."
+  guarantee:
+    stage: "garantie"
+    badge: "min. 20.000 &euro;/Jahr"
+    heading1: "Findet der Report keine 20.000&nbsp;&euro; Einsparpotenzial,"
+    heading2: "zahlt ihr nichts."
+    text: "Die Standortbestimmung für eure Build-Pipeline: In 5 Werktagen wisst ihr, wie viel Entwicklerkapazität feststeckt - garantiert mindestens das Zehnfache des Report-Preises, sonst ist er kostenlos."
+    cta: "15-Min Quick Check buchen"
+    ctaNote: "15 Minuten, kein Pitch - wir klären, ob euer Setup passt."
+  diy:
+    stage: "selbst-machen"
+    badge: "pending seit Jahren"
+    heading: "Warum das intern nicht passiert"
+    items:
+      - '<span class="font-semibold text-slate-900">Keine Fokuszeit:</span> &bdquo;Tech Debt in Tests&ldquo; verliert im Sprint immer gegen Features - seit Jahren.'
+      - '<span class="font-semibold text-slate-900">Betriebsblindheit:</span> Euer Team hat die Wartezeiten längst normalisiert.'
+      - '<span class="font-semibold text-slate-900">Kein Benchmark:</span> Ob eure Werte gut oder schlecht sind, zeigt nur der Vergleich über 10+ Teams.'
+    doraHeading: "Was schnelles Feedback bringt - laut DORA und in echt"
+    doraText: 'Die DORA-Forschung (State of DevOps, &bdquo;Accelerate&ldquo;) zeigt: Teams mit kurzer <span class="font-semibold text-slate-900">Lead Time</span> und hoher <span class="font-semibold text-slate-900">Deployment Frequency</span> erreichen ihre Unternehmensziele rund doppelt so wahrscheinlich. Beide Metriken hängen direkt an eurer Build-Zeit - und beide lassen sich messbar verbessern:'
+    cases:
+      - name: "ImmoScout24"
+        before: "26"
+        after: "12 Min"
+        text: "Test-Setup gestreamlined - 102k LoC, umgesetzt in 3 Wochen."
+      - name: "AboutBits"
+        before: "15"
+        after: "3 Min"
+        text: "Test-Setup gestreamlined - 134k LoC, umgesetzt in 2 Wochen. Feedback in der Länge einer Kaffeepause."
+    footnote: "Umgesetzt von mir - 10+ Jahre Spring Boot, 6 Jahre Consultant in 10+ Engineering-Teams. 10.000+ Entwickler lesen meinen wöchentlichen Newsletter, 8.500+ lernen in der Testing-Academy."
+  pricing:
+    stage: "deploy: 15-min-call"
+    badge: "1.990 &euro; Festpreis"
+    eyebrow: "Investment"
+    price: "1.990&nbsp;&euro;"
+    priceNote: "pro Team - Festpreis, ein Team = eine Codebase/Pipeline"
+    creditHeading: "Volle Anrechnung"
+    creditText: "Beauftragt ihr im Anschluss die Umsetzung, werden die 1.990 &euro; komplett angerechnet. Der Report ist dann faktisch kostenlos."
+    guaranteeHeading: "Die Report-Garantie"
+    guaranteeText: "Findet der Report kein Einsparpotenzial von mindestens 20.000 &euro; pro Jahr - dem Zehnfachen seines Preises - zahlt ihr nichts."
+    cta: "15-Min Quick Check buchen"
+    ctaNote: "15 Minuten, kein Pitch: Wir klären, ob euer Setup passt, und ihr bekommt direkt eine erste Einschätzung."

@@ -1,0 +1,306 @@
+{{ define "main" }}
+{{/* Pipeline Baseline Report landing page - "Die Pipeline": the page reads as one continuous
+     CI run with a vertical rail and stage headers. All copy comes from data/pbr.yaml, selected
+     by the `pageLang` frontmatter param (en|de). data-variant="a" is the light-theme CSS hook;
+     bg-[#0a0e16] panels stay dark inside it. */}}
+{{ $t := index site.Data.pbr (.Params.pageLang | default "en") }}
+<div data-variant="a">
+
+<!-- Hero: pipeline run with a stalling build log -->
+<section class="relative overflow-hidden bg-white border-b border-slate-200">
+    <div class="absolute inset-0 bg-gradient-to-br from-white via-brand-50/40 to-white pointer-events-none"></div>
+    <a href="{{ $t.langSwitch.url | relURL }}" class="absolute top-4 right-4 z-10 font-mono text-xs text-slate-500 hover:text-brand-600 underline underline-offset-4">{{ $t.langSwitch.label }}</a>
+    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 text-center">
+        <span class="on-brand inline-flex items-center gap-2.5 px-4 py-1.5 mb-6 rounded-full bg-[#0a0e16] font-mono text-xs text-white">
+            <span class="w-2 h-2 rounded-full bg-yellow-400 animate-pulse"></span>
+            {{ $t.hero.badgePrefix | safeHTML }} <span class="pbr-stall-timer text-yellow-400">25:41</span>
+        </span>
+        <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-8 leading-[1.05]">
+            {{ $t.hero.headline1 }}
+            <span class="block mt-1 bg-gradient-to-r from-brand-600 to-accent-teal text-transparent bg-clip-text">{{ $t.hero.headline2 }}</span>
+        </h1>
+
+        <!-- Build log: types itself out and stalls at the test job -->
+        <div class="max-w-2xl mx-auto mb-8 bg-[#0a0e16] rounded-xl p-6 md:p-8 text-left font-mono text-sm md:text-base shadow-xl shadow-slate-900/20">
+            <div class="pbr-log-line text-slate-500 mb-2">$ git push &amp;&amp; gh run watch</div>
+            <div class="pbr-log-line flex justify-between gap-4 text-slate-300"><span><span class="text-green-400">&#10003;</span> checkout</span><span class="text-slate-500">4s</span></div>
+            <div class="pbr-log-line flex justify-between gap-4 text-slate-300"><span><span class="text-green-400">&#10003;</span> compile</span><span class="text-slate-500">1m 02s</span></div>
+            <div class="pbr-log-line flex justify-between gap-4 text-slate-300"><span><span class="text-yellow-400">&#9679;</span> test <span class="text-yellow-400">&#9619;&#9619;&#9619;&#9619;&#9619;&#9619;&#9619;&#9619;&#9617;&#9617;</span></span><span class="pbr-stall-timer text-yellow-400">25:41</span></div>
+            <div class="pbr-log-line text-slate-500">&nbsp;&nbsp;{{ $t.hero.logWaiting | safeHTML }}<span class="animate-pulse text-slate-300">&#9615;</span></div>
+            <div class="mt-4 pt-4 border-t border-slate-800">
+                <div class="pbr-log-line text-slate-300">{{ $t.hero.logSummary1 | safeHTML }}</div>
+                <div class="pbr-log-line text-slate-300">{{ $t.hero.logSummary2 | safeHTML }}</div>
+                <div class="pbr-log-line text-green-400 font-bold">{{ $t.hero.logSummary3 | safeHTML }}</div>
+            </div>
+        </div>
+
+        <p class="text-lg md:text-xl text-slate-600 mb-8 max-w-2xl mx-auto leading-relaxed">{{ $t.hero.subline }}</p>
+        {{ partial "pbr/cta-button.html" (dict "ctx" . "label" $t.hero.cta) }}
+        <p class="mt-4 text-sm text-slate-500">{{ $t.hero.ctaNote }}</p>
+    </div>
+</section>
+
+<!-- Stage 1: daily pain (failed) -->
+<section class="bg-white border-b border-slate-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-16">
+        <div class="relative md:pl-14">
+            <div class="hidden md:block absolute left-[7px] -top-20 -bottom-20 w-px bg-slate-300" aria-hidden="true"></div>
+            <div class="relative flex items-center gap-3 mb-6 font-mono text-sm">
+                <span class="md:absolute md:-left-14 inline-flex items-center justify-center w-4 h-4 rounded-full bg-red-500 ring-4 ring-white shrink-0">
+                    <svg class="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                </span>
+                <span class="text-slate-500">stage 1/6</span>
+                <span class="text-slate-400">&middot;</span>
+                <span class="font-bold text-slate-900">{{ $t.pain.stage }}</span>
+                <span class="ml-auto text-red-600 hidden sm:inline">{{ $t.pain.badge | safeHTML }}</span>
+            </div>
+            <h2 class="font-heading text-2xl md:text-3xl font-bold text-slate-900 mb-8">{{ $t.pain.heading }}</h2>
+            <div class="grid md:grid-cols-2 gap-5">
+                {{ range $t.pain.items }}
+                <div class="flex gap-4 bg-slate-50 border border-slate-200 rounded-xl p-6 shadow-sm">
+                    <span class="inline-flex items-center justify-center w-9 h-9 shrink-0 rounded-lg bg-red-50 border border-red-100">
+                        <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="{{ .iconPath }}"/></svg>
+                    </span>
+                    <div>
+                        <h3 class="font-heading font-bold text-slate-900 mb-1">{{ .title }}</h3>
+                        <p class="text-slate-600 leading-relaxed">{{ .text }}</p>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stage 2: the assessment -->
+<section class="bg-slate-50 border-b border-slate-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-16">
+        <div class="relative md:pl-14">
+            <div class="hidden md:block absolute left-[7px] -top-20 -bottom-20 w-px bg-slate-300" aria-hidden="true"></div>
+            <div class="relative flex items-center gap-3 mb-6 font-mono text-sm">
+                <span class="md:absolute md:-left-14 inline-flex items-center justify-center w-4 h-4 rounded-full bg-green-500 ring-4 ring-slate-50 shrink-0">
+                    <svg class="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                </span>
+                <span class="text-slate-500">stage 2/6</span>
+                <span class="text-slate-400">&middot;</span>
+                <span class="font-bold text-slate-900">{{ $t.assessment.stage }}</span>
+                <span class="ml-auto text-slate-500 hidden sm:inline">{{ $t.assessment.badge }}</span>
+            </div>
+            <h2 class="font-heading text-2xl md:text-3xl font-bold text-slate-900 mb-4">{{ $t.assessment.heading }}</h2>
+            <p class="text-lg text-slate-600 mb-10 max-w-3xl">{{ $t.assessment.intro }}</p>
+            <div class="grid md:grid-cols-2 gap-6">
+                {{ range $t.assessment.cards }}
+                <div class="bg-white border border-slate-200 rounded-xl p-7 shadow-sm">
+                    <div class="on-brand inline-flex items-center justify-center w-11 h-11 rounded-lg bg-brand-500 text-white shadow-sm shadow-brand-500/40 mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ .iconPath }}"/></svg>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-slate-900 mb-2">{{ .title }}</h3>
+                    <p class="text-slate-600 leading-relaxed">{{ .text | safeHTML }}</p>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stage 3: the process -->
+<section class="bg-white border-b border-slate-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-16">
+        <div class="relative md:pl-14">
+            <div class="hidden md:block absolute left-[7px] -top-20 -bottom-20 w-px bg-slate-300" aria-hidden="true"></div>
+            <div class="relative flex items-center gap-3 mb-6 font-mono text-sm">
+                <span class="md:absolute md:-left-14 inline-flex items-center justify-center w-4 h-4 rounded-full bg-green-500 ring-4 ring-white shrink-0">
+                    <svg class="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                </span>
+                <span class="text-slate-500">stage 3/6</span>
+                <span class="text-slate-400">&middot;</span>
+                <span class="font-bold text-slate-900">{{ $t.process.stage }}</span>
+                <span class="ml-auto text-slate-500 hidden sm:inline">{{ $t.process.badge }}</span>
+            </div>
+            <h2 class="font-heading text-2xl md:text-3xl font-bold text-slate-900 mb-4">{{ $t.process.heading }}</h2>
+            <p class="text-lg text-slate-600 mb-10">{{ $t.process.intro }}</p>
+
+            <div class="overflow-x-auto rounded-xl border border-slate-200 shadow-sm bg-white">
+                <table class="w-full text-left text-sm md:text-base">
+                    <thead>
+                        <tr class="border-b border-slate-200 bg-slate-50">
+                            <th class="px-5 py-4 font-heading font-semibold text-slate-900 whitespace-nowrap">{{ $t.process.tableHead.day }}</th>
+                            <th class="px-5 py-4 font-heading font-semibold text-slate-900">{{ $t.process.tableHead.what }}</th>
+                            <th class="px-5 py-4 font-heading font-semibold text-slate-900 whitespace-nowrap">{{ $t.process.tableHead.effort }}</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                        {{ range $t.process.rows }}
+                        <tr>
+                            <td class="px-5 py-4 font-bold text-brand-600 whitespace-nowrap">{{ .day | safeHTML }}</td>
+                            <td class="px-5 py-4 text-slate-600">{{ .what | safeHTML }}</td>
+                            <td class="px-5 py-4 text-slate-600 whitespace-nowrap">{{ .effort | safeHTML }}</td>
+                        </tr>
+                        {{ end }}
+                    </tbody>
+                </table>
+            </div>
+            <p class="mt-4 text-slate-600">{{ $t.process.note }}</p>
+
+            <div class="mt-10 grid md:grid-cols-2 gap-6">
+                <div class="bg-slate-50 border border-slate-200 rounded-xl p-6 shadow-sm">
+                    <h3 class="font-heading text-lg font-bold text-slate-900 mb-4">{{ $t.process.provideHeading }}</h3>
+                    <ul class="space-y-3 text-slate-600">
+                        {{ range $t.process.provideItems }}
+                        <li class="flex gap-3">
+                            <svg class="w-5 h-5 text-brand-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span>{{ . }}</span>
+                        </li>
+                        {{ end }}
+                    </ul>
+                </div>
+                <div class="bg-slate-50 border border-slate-200 rounded-xl p-6 shadow-sm">
+                    <h3 class="font-heading text-lg font-bold text-slate-900 mb-4">{{ $t.process.remoteHeading }}</h3>
+                    <p class="text-slate-600 leading-relaxed">{{ $t.process.remoteText }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stage 4: guarantee (dark band). bg-[#0a0e16] keeps the panel dark inside data-variant="a". -->
+<section class="bg-[#0a0e16] border-b border-slate-800">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+        <div class="relative md:pl-14">
+            <div class="hidden md:block absolute left-[7px] -top-24 -bottom-24 w-px bg-slate-300" aria-hidden="true"></div>
+            <div class="relative flex items-center gap-3 mb-8 font-mono text-sm">
+                <span class="md:absolute md:-left-14 inline-flex items-center justify-center w-4 h-4 rounded-full bg-green-500 ring-4 ring-[#0f172a] shrink-0">
+                    <svg class="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                </span>
+                <span class="text-slate-500">stage 4/6</span>
+                <span class="text-slate-600">&middot;</span>
+                <span class="font-bold text-white">{{ $t.guarantee.stage }}</span>
+                <span class="ml-auto text-slate-500 hidden sm:inline">{{ $t.guarantee.badge | safeHTML }}</span>
+            </div>
+            <div class="text-center">
+                <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+                    {{ $t.guarantee.heading1 | safeHTML }}
+                    <span class="block mt-1 bg-gradient-to-r from-brand-400 to-accent-teal text-transparent bg-clip-text">{{ $t.guarantee.heading2 }}</span>
+                </h2>
+                <p class="text-lg text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed">{{ $t.guarantee.text }}</p>
+                {{ partial "pbr/cta-button.html" (dict "ctx" . "label" $t.guarantee.cta) }}
+                <p class="mt-4 text-sm text-slate-400">{{ $t.guarantee.ctaNote }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stage 5: do-it-yourself (pending) + DORA proof -->
+<section class="bg-white border-b border-slate-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-16">
+        <div class="relative md:pl-14">
+            <div class="hidden md:block absolute left-[7px] -top-20 -bottom-20 w-px bg-slate-300" aria-hidden="true"></div>
+            <div class="relative flex items-center gap-3 mb-6 font-mono text-sm">
+                <span class="md:absolute md:-left-14 inline-flex w-4 h-4 rounded-full bg-yellow-400 ring-4 ring-white animate-pulse shrink-0"></span>
+                <span class="text-slate-500">stage 5/6</span>
+                <span class="text-slate-400">&middot;</span>
+                <span class="font-bold text-slate-900">{{ $t.diy.stage }}</span>
+                <span class="ml-auto text-yellow-600 hidden sm:inline">{{ $t.diy.badge }}</span>
+            </div>
+            <h2 class="font-heading text-2xl md:text-3xl font-bold text-slate-900 mb-8">{{ $t.diy.heading }}</h2>
+            <div class="grid md:grid-cols-3 gap-5 mb-12">
+                {{ range $t.diy.items }}
+                <div class="border-l-4 border-brand-500 pl-5 py-1">
+                    <p class="text-slate-600">{{ . | safeHTML }}</p>
+                </div>
+                {{ end }}
+            </div>
+            <h2 class="font-heading text-2xl md:text-3xl font-bold text-slate-900 mb-4">{{ $t.diy.doraHeading }}</h2>
+            <p class="text-slate-600 mb-6 max-w-3xl leading-relaxed">{{ $t.diy.doraText | safeHTML }}</p>
+            <div class="grid md:grid-cols-2 gap-5">
+                {{ range $t.diy.cases }}
+                <div class="bg-slate-50 border border-slate-200 rounded-xl p-6 shadow-sm">
+                    <div class="flex items-center justify-between gap-4 mb-2">
+                        <h3 class="font-heading text-lg font-bold text-slate-900">{{ .name }}</h3>
+                        <span class="font-heading text-xl font-bold whitespace-nowrap"><span class="text-slate-400 line-through">{{ .before }}</span> <span class="text-brand-600">&rarr; {{ .after }}</span></span>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed">{{ .text }}</p>
+                </div>
+                {{ end }}
+            </div>
+            <p class="mt-6 text-sm text-slate-500">{{ $t.diy.footnote }}</p>
+        </div>
+    </div>
+</section>
+
+<!-- Stage 6: deploy (pricing + CTA closes the run) -->
+<section class="bg-slate-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20">
+        <div class="relative md:pl-14">
+            <div class="hidden md:block absolute left-[7px] -top-20 bottom-1/2 w-px bg-slate-300" aria-hidden="true"></div>
+            <div class="relative flex items-center gap-3 mb-6 font-mono text-sm">
+                <span class="md:absolute md:-left-14 inline-flex items-center justify-center w-4 h-4 rounded-full bg-green-500 ring-4 ring-slate-50 shrink-0">
+                    <svg class="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="4" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                </span>
+                <span class="text-slate-500">stage 6/6</span>
+                <span class="text-slate-400">&middot;</span>
+                <span class="font-bold text-slate-900">{{ $t.pricing.stage }}</span>
+                <span class="ml-auto text-slate-500 hidden sm:inline">{{ $t.pricing.badge | safeHTML }}</span>
+            </div>
+            <div class="max-w-3xl mx-auto bg-white border border-slate-200 rounded-2xl shadow-xl shadow-slate-200/60 overflow-hidden">
+                <div class="p-8 md:p-10 text-center border-b border-slate-100">
+                    <div class="text-sm font-bold tracking-[0.18em] uppercase text-brand-600 mb-3">{{ $t.pricing.eyebrow }}</div>
+                    <div class="font-heading text-5xl md:text-6xl font-bold text-slate-900 mb-2">{{ $t.pricing.price | safeHTML }}</div>
+                    <p class="text-slate-600">{{ $t.pricing.priceNote }}</p>
+                </div>
+                <div class="p-8 md:p-10 space-y-6">
+                    <div class="flex gap-4">
+                        <span class="on-brand inline-flex items-center justify-center w-10 h-10 shrink-0 rounded-lg bg-brand-500 text-white shadow-sm shadow-brand-500/40">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                        </span>
+                        <div>
+                            <h3 class="font-heading font-bold text-slate-900 mb-1">{{ $t.pricing.creditHeading }}</h3>
+                            <p class="text-slate-600 leading-relaxed">{{ $t.pricing.creditText | safeHTML }}</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <span class="on-brand inline-flex items-center justify-center w-10 h-10 shrink-0 rounded-lg bg-brand-500 text-white shadow-sm shadow-brand-500/40">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                        </span>
+                        <div>
+                            <h3 class="font-heading font-bold text-slate-900 mb-1">{{ $t.pricing.guaranteeHeading }}</h3>
+                            <p class="text-slate-600 leading-relaxed">{{ $t.pricing.guaranteeText | safeHTML }}</p>
+                        </div>
+                    </div>
+                    <div class="pt-2 text-center">
+                        {{ partial "pbr/cta-button.html" (dict "ctx" . "label" $t.pricing.cta) }}
+                        <p class="mt-4 text-sm text-slate-500">{{ $t.pricing.ctaNote }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) return;
+
+    var logLines = document.querySelectorAll('.pbr-log-line');
+    logLines.forEach(function (logLine) { logLine.style.visibility = 'hidden'; });
+    logLines.forEach(function (logLine, lineIndex) {
+        setTimeout(function () { logLine.style.visibility = 'visible'; }, 400 + 350 * lineIndex);
+    });
+
+    var timerElements = document.querySelectorAll('.pbr-stall-timer');
+    if (timerElements.length) {
+        var stalledMinutes = 25;
+        var stalledSeconds = 41;
+        setInterval(function () {
+            stalledSeconds++;
+            if (stalledSeconds === 60) { stalledSeconds = 0; stalledMinutes++; }
+            var stalledTime = String(stalledMinutes).padStart(2, '0') + ':' + String(stalledSeconds).padStart(2, '0');
+            timerElements.forEach(function (timerElement) { timerElement.textContent = stalledTime; });
+        }, 1000);
+    }
+});
+</script>
+{{ end }}
