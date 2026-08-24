@@ -29,31 +29,3 @@ Philip Riecks
 ## Dispute resolution proceedings
 
 We are not willing or obliged to participate in dispute resolution proceedings in front of a consumer arbitration board.
-
----
-
-# Impressum (Deutsche Version)
-
-## Angaben gemäß § 5 DDG
-
-PragmaTech GmbH  
-Bamberger Straße 40B  
-91074 Herzogenaurach
-
-Geschäftsführer: Philip Riecks
-
-## Kontakt
-
-E-Mail: info@pragmatech.digital
-
-## Umsatzsteuer-ID
-
-Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz: DE368122664
-
-## Redaktionell verantwortlich
-
-Philip Riecks
-
-## Verbraucherstreitbeilegung
-
-Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
