@@ -75,6 +75,66 @@ The Netlify configuration in `netlify.toml` sets:
 - Hugo version and environment
 - Base URL for different deployment contexts
 
+## Purchase Power Parity (PPP) Pricing
+
+The course landing page (`content/agentic-spring-boot-testing-course.md`, layout
+`course-landing`) shows regional discounts. The moving parts:
+
+- `netlify/edge-functions/ppp.ts` - Netlify Edge Function, runs only for `GET /api/ppp`.
+  It maps the visitor country (Netlify geolocation, no external API) to a discount tier
+  and returns the coupon code for that tier as JSON.
+- `netlify/shared/ppp-country-tiers.ts` - generated country to tier map (public data).
+- `themes/pragmatech-theme/assets/js/ppp-pricing.js` - calls `/api/ppp` once per
+  session and adjusts prices, checkout links (`promocode=`), a note and a banner.
+- Base prices and product names live in the page frontmatter (`ppp.products`). Only
+  products with `ppp: true` (the Solo edition) get regional discounts; the Team
+  edition is sold at a fixed price with a quote request path.
+
+Coupon codes and CopeCart product IDs are not in the repository. Set them as Netlify
+environment variables (Project configuration > Environment variables):
+
+| Variable | Read by | Purpose |
+|---|---|---|
+| `PPP_PRODUCT_ID_SOLO`, `PPP_PRODUCT_ID_TEAM` | Hugo build (`os.Getenv`) | CopeCart product IDs for the checkout links (one per `ppp.products[].key`) |
+| `PPP_COUPON_TIER_2`, `PPP_COUPON_TIER_3`, `PPP_COUPON_TIER_4` | Edge function | Coupon codes for 30 / 50 / 70 % off (tier 1 has no coupon) |
+| `PPP_TEST_TOKEN` | Edge function | Optional. Enables `?country=xx&token=<value>` on production for QA |
+
+Without the product ID variables Hugo prints a warning and renders `#` as checkout
+link. Without a coupon variable the edge function answers with tier 1 (full price).
+
+### Local development
+
+```bash
+# One-time: local env vars for netlify dev (never commit .env)
+cp .env.example .env
+
+# Hugo dev server behind the Netlify CLI proxy with the edge function running locally.
+# Geolocation is mocked as Germany; open http://localhost:8888
+npm run dev:netlify
+
+# Switch the tier without restarting (override is free outside production)
+open "http://localhost:8888/agentic-spring-boot-testing-course/?country=in"
+curl -s "http://localhost:8888/api/ppp?country=br"
+```
+
+`npm run dev` (plain Hugo) still works: `/api/ppp` answers 404 and the page shows the
+base prices.
+
+Note: `netlify dev` resolves the project root by walking up to the first `.git`
+directory. Run it from a normal checkout, not from a git worktree nested inside another
+checkout (for example `.claude/worktrees/*`), otherwise it ignores `netlify/` and `.env`.
+
+### Tests
+
+```bash
+npm run test:unit         # edge function, Node test runner, no Netlify tooling needed
+npm run test:e2e          # Playwright against hugo serve, /api/ppp faked with page.route()
+npm run test:e2e:netlify  # Playwright against netlify dev with the real edge function (.env required)
+npm test                  # unit + e2e
+```
+
+One-time setup for Playwright: `npx playwright install chromium`.
+
 ## Performance Optimization
 
 The build process implements several performance optimizations:

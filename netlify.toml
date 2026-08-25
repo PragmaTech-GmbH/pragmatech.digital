@@ -3,7 +3,7 @@ publish = "public"
 command = "npm run build:netlify"
 
 [build.environment]
-NODE_VERSION = "22"
+NODE_VERSION = "24"
 NPM_VERSION = "10"
 HUGO_VERSION = "0.147.1"
 
@@ -22,6 +22,14 @@ command = "npm run build:netlify-preview -- -b $DEPLOY_PRIME_URL"
 
 [context.branch-deploy.environment]
 HUGO_ENV = "branch-deploy"
+
+# Local development with the edge function: `npm run dev:netlify`
+# (netlify dev proxies the Hugo dev server and runs netlify/edge-functions/ locally)
+[dev]
+command = "hugo serve -D --port 1313 --disableLiveReload"
+targetPort = 1313
+port = 8888
+framework = "#custom"
 
 # Redirects and headers are NGINX-style
 # For more information see:
