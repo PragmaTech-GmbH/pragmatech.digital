@@ -4,8 +4,9 @@
 import { test, expect, type Page, type Route } from "@playwright/test";
 
 const coursePath = "/agentic-spring-boot-testing-course/";
-const productKeys = ["small", "medium", "large"] as const;
-const basePrices: Record<(typeof productKeys)[number], number> = { small: 189, medium: 289, large: 489 };
+// Only the Solo edition carries the PPP contract; the Team edition is sold at a fixed price.
+const productKeys = ["solo"] as const;
+const basePrices: Record<(typeof productKeys)[number], number> = { solo: 490 };
 
 const tier4India = { country: "IN", countryName: "India", tier: 4, discountPercentage: 70, couponCode: "T70" };
 const tier1Germany = { country: "DE", countryName: "Germany", tier: 1, discountPercentage: 0, couponCode: null };
@@ -54,6 +55,18 @@ async function expectBasePricing(page: Page) {
   }
   await expect(page.locator("[data-ppp-note]")).toBeHidden();
   await expect(page.locator("[data-ppp-banner]")).toBeHidden();
+  await expectTeamUntouched(page);
+}
+
+async function expectTeamUntouched(page: Page) {
+  const teamCard = page.locator('[data-product="team"]');
+  await expect(teamCard).toHaveCount(1);
+  await expect(teamCard).not.toHaveAttribute("data-ppp-product", /.*/);
+  await expect(teamCard.locator("[data-product-price]")).toHaveText("3,990€");
+  await expect(teamCard.locator("[data-product-cta]")).toHaveAttribute(
+    "href",
+    "https://www.copecart.com/products/pid-team/checkout?locale=en",
+  );
 }
 
 test.describe("PPP pricing on the course landing page", () => {
@@ -86,6 +99,8 @@ test.describe("PPP pricing on the course landing page", () => {
     await expect(banner).toContainText("It looks like you are from India");
     await expect(banner.locator("[data-ppp-coupon-code]")).toHaveText("T70");
 
+    // The Team edition is never discounted.
+    await expectTeamUntouched(page);
     expect(pageErrors).toEqual([]);
   });
 
@@ -141,7 +156,7 @@ test.describe("PPP pricing on the course landing page", () => {
     expect(JSON.parse(cachedValue ?? "null")).toMatchObject({ tier: 4, couponCode: "T70" });
 
     await page.goto(coursePath);
-    await expect(page.locator('[data-ppp-product="small"] [data-ppp-price]')).toHaveText("57€");
+    await expect(page.locator('[data-ppp-product="solo"] [data-ppp-price]')).toHaveText("147€");
     expect(requestedUrls).toHaveLength(1);
   });
 
@@ -149,7 +164,7 @@ test.describe("PPP pricing on the course landing page", () => {
     const tier3Brazil = { country: "BR", countryName: "Brazil", tier: 3, discountPercentage: 50, couponCode: "T50" };
     const requestedUrls = await fakePppEndpoint(page, tier3Brazil);
     await page.goto(coursePath + "?country=br&token=abc");
-    await expect(page.locator('[data-ppp-product="small"] [data-ppp-price]')).toHaveText("95€");
+    await expect(page.locator('[data-ppp-product="solo"] [data-ppp-price]')).toHaveText("245€");
 
     expect(requestedUrls).toHaveLength(1);
     const requestUrl = new URL(requestedUrls[0]);
@@ -170,7 +185,7 @@ test.describe("PPP pricing on the course landing page", () => {
     await expect(page.locator("[data-ppp-banner]")).toBeHidden();
 
     await page.reload();
-    await expect(page.locator('[data-ppp-product="small"] [data-ppp-price]')).toHaveText("57€");
+    await expect(page.locator('[data-ppp-product="solo"] [data-ppp-price]')).toHaveText("147€");
     await expect(page.locator("[data-ppp-note]")).toBeVisible();
     await expect(page.locator("[data-ppp-banner]")).toBeHidden();
   });

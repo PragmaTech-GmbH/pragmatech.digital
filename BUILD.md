@@ -86,14 +86,16 @@ The course landing page (`content/agentic-spring-boot-testing-course.md`, layout
 - `netlify/shared/ppp-country-tiers.ts` - generated country to tier map (public data).
 - `themes/pragmatech-theme/assets/js/ppp-pricing.js` - calls `/api/ppp` once per
   session and adjusts prices, checkout links (`promocode=`), a note and a banner.
-- Base prices and product names live in the page frontmatter (`ppp.products`).
+- Base prices and product names live in the page frontmatter (`ppp.products`). Only
+  products with `ppp: true` (the Solo edition) get regional discounts; the Team
+  edition is sold at a fixed price with a quote request path.
 
 Coupon codes and CopeCart product IDs are not in the repository. Set them as Netlify
 environment variables (Project configuration > Environment variables):
 
 | Variable | Read by | Purpose |
 |---|---|---|
-| `PPP_PRODUCT_ID_SMALL`, `PPP_PRODUCT_ID_MEDIUM`, `PPP_PRODUCT_ID_LARGE` | Hugo build (`os.Getenv`) | CopeCart product IDs for the checkout links |
+| `PPP_PRODUCT_ID_SOLO`, `PPP_PRODUCT_ID_TEAM` | Hugo build (`os.Getenv`) | CopeCart product IDs for the checkout links (one per `ppp.products[].key`) |
 | `PPP_COUPON_TIER_2`, `PPP_COUPON_TIER_3`, `PPP_COUPON_TIER_4` | Edge function | Coupon codes for 30 / 50 / 70 % off (tier 1 has no coupon) |
 | `PPP_TEST_TOKEN` | Edge function | Optional. Enables `?country=xx&token=<value>` on production for QA |
 

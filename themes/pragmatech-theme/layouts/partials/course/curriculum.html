@@ -56,6 +56,20 @@
             </div>
             {{ end }}
         </div>
+
+        {{ with .concepts }}
+        <div class="mt-12">
+            <p class="text-xs font-bold uppercase tracking-widest text-slate-500 text-center mb-6">{{ $.Params.curriculum.conceptsLabel | default "Concepts" }}</p>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {{ range . }}
+                <div class="bg-white border border-slate-200 rounded-xl px-5 py-4 shadow-sm" data-concept>
+                    <p class="font-bold text-slate-900 mb-1">{{ .term }}</p>
+                    <p class="text-sm text-slate-600 leading-relaxed">{{ .text }}</p>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+        {{ end }}
     </div>
 </section>
 {{ end }}

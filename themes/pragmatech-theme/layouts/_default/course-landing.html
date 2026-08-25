@@ -1,19 +1,26 @@
 {{ define "main" }}
 {{/* Course sales landing page. All copy lives in the content frontmatter; the
      sections are partials under layouts/partials/course/. Order follows the
-     persuasion flow: promise -> pain -> before/after -> proof (demo) -> offer
-     (included, skills, curriculum) -> trust (instructor, testimonials) -> price ->
-     objections (FAQ) -> final CTA -> secondary conversion (preview lesson). */}}
+     persuasion flow: promise -> story -> pain -> before/after -> proof (demo) ->
+     positioning -> offer (included, skills, curriculum) -> trust (instructor,
+     testimonials) -> audience -> price -> team -> objections (FAQ) -> final CTA ->
+     secondary conversion (preview lesson). */}}
 {{ partial "course/hero.html" . }}
+{{ partial "course/story.html" . }}
 {{ partial "course/pains.html" . }}
+{{ partial "course/quote.html" (dict "quote" .Params.spotlights.afterPains "tone" "white") }}
 {{ partial "course/status-quo.html" . }}
 {{ partial "course/demo-terminal.html" . }}
+{{ partial "course/callout.html" . }}
+{{ partial "course/quote.html" (dict "quote" .Params.spotlights.afterDemo "tone" "slate") }}
 {{ partial "course/included.html" . }}
 {{ partial "course/skills.html" . }}
 {{ partial "course/curriculum.html" . }}
 {{ partial "course/instructor.html" . }}
 {{ partial "course/testimonials.html" . }}
+{{ partial "course/audience.html" . }}
 {{ partial "course/pricing.html" . }}
+{{ partial "course/team.html" . }}
 {{ partial "course/faq.html" . }}
 {{ partial "course/cta.html" . }}
 {{ partial "course/signup.html" . }}

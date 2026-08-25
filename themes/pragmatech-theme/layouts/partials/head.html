@@ -91,5 +91,10 @@
     {{ $pppJs = $pppJs | minify | fingerprint }}
     {{ end }}
     <script src="{{ $pppJs.RelPermalink }}" defer></script>
+    {{ $demoJs := resources.Get "js/demo-terminal.js" }}
+    {{ if hugo.IsProduction }}
+    {{ $demoJs = $demoJs | minify | fingerprint }}
+    {{ end }}
+    <script src="{{ $demoJs.RelPermalink }}" defer></script>
     {{ end }}
 </head>

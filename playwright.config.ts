@@ -59,9 +59,8 @@ export default defineConfig({
         reuseExistingServer: true,
         timeout: 120_000,
         env: {
-          PPP_PRODUCT_ID_SMALL: "pid-small",
-          PPP_PRODUCT_ID_MEDIUM: "pid-medium",
-          PPP_PRODUCT_ID_LARGE: "pid-large",
+          PPP_PRODUCT_ID_SOLO: "pid-solo",
+          PPP_PRODUCT_ID_TEAM: "pid-team",
         },
       },
 });

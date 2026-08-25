@@ -36,14 +36,14 @@ test.describe("PPP edge function under netlify dev", () => {
 
   test("the landing page shows discounted prices with ?country=in", async ({ page }) => {
     await page.goto(coursePath + "?country=in");
-    await expect(page.locator('[data-ppp-product="small"] [data-ppp-price]')).toHaveText("57€");
+    await expect(page.locator('[data-ppp-product="solo"] [data-ppp-price]')).toHaveText("147€");
     await expect(page.locator("[data-ppp-banner]")).toBeVisible();
-    await expect(page.locator('[data-ppp-product="small"] [data-ppp-cta]')).toHaveAttribute("href", /promocode=/);
+    await expect(page.locator('[data-ppp-product="solo"] [data-ppp-cta]')).toHaveAttribute("href", /promocode=/);
   });
 
   test("the landing page shows base prices for the mocked German visitor", async ({ page }) => {
     await page.goto(coursePath);
-    await expect(page.locator('[data-ppp-product="small"] [data-ppp-price]')).toHaveText("189€");
+    await expect(page.locator('[data-ppp-product="solo"] [data-ppp-price]')).toHaveText("490€");
     await expect(page.locator("[data-ppp-banner]")).toBeHidden();
   });
 });
