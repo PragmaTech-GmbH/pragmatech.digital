@@ -1,0 +1,64 @@
+{{/* Two terminal panels: Claude Code on PetClinic without vs. with the skills, plus
+     stat tiles. Copy: params.demo. Line colors are chosen by `type`; every type value
+     must occur in the YAML at least once so Tailwind (hugo_stats.json) emits the class. */}}
+{{ with .Params.demo }}
+<section id="demo" class="bg-slate-50 border-b border-slate-200 scroll-mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4 text-center">{{ .headline }}</h2>
+        <p class="text-slate-600 text-center mb-10 max-w-2xl mx-auto">{{ .intro }}</p>
+
+        <div class="grid lg:grid-cols-2 gap-6">
+            {{ range .panels }}
+            <div class="bg-slate-900 border border-slate-700 rounded-2xl shadow-xl shadow-slate-300/40 overflow-hidden" data-demo-panel="{{ .key }}">
+                <div class="flex items-center gap-2 px-5 py-3 border-b border-slate-700 bg-slate-800/60">
+                    <span class="w-3 h-3 rounded-full bg-red-400/80"></span>
+                    <span class="w-3 h-3 rounded-full bg-amber-400/80"></span>
+                    <span class="w-3 h-3 rounded-full bg-emerald-400/80"></span>
+                    <span class="ml-3 text-xs font-mono text-slate-400 truncate">{{ .title }}</span>
+                    <span class="ml-auto flex-shrink-0 text-[10px] font-semibold uppercase tracking-wider border rounded-full px-2 py-0.5 {{ if eq .tone "bad" }}text-red-400 border-red-400/40{{ else }}text-emerald-400 border-emerald-400/40{{ end }}">{{ .badge }}</span>
+                </div>
+                <div class="p-5 font-mono text-[13px] leading-6 overflow-x-auto">
+                    {{ range .lines }}
+                    {{ if eq .type "prompt" }}
+                    <div class="text-slate-200 whitespace-nowrap"><span class="text-emerald-400 select-none">$ </span>{{ .text }}</div>
+                    {{ else if eq .type "agent" }}
+                    <div class="text-slate-200 whitespace-nowrap"><span class="text-brand-400 select-none">&gt; </span>{{ .text }}</div>
+                    {{ else if eq .type "ok" }}
+                    <div class="text-emerald-400 whitespace-nowrap">{{ .text }}</div>
+                    {{ else if eq .type "err" }}
+                    <div class="text-red-400 whitespace-nowrap">{{ .text }}</div>
+                    {{ else if eq .type "warn" }}
+                    <div class="text-amber-400 whitespace-nowrap">{{ .text }}</div>
+                    {{ else if eq .type "muted" }}
+                    <div class="text-slate-500 whitespace-nowrap">{{ .text }}</div>
+                    {{ else }}
+                    <div class="text-slate-300 whitespace-nowrap">{{ .text }}</div>
+                    {{ end }}
+                    {{ end }}
+                </div>
+                <div class="px-5 py-3 border-t border-slate-700 bg-slate-800/60 text-xs font-mono {{ if eq .tone "bad" }}text-red-400{{ else }}text-emerald-400{{ end }}">
+                    # {{ .footer }}
+                </div>
+            </div>
+            {{ end }}
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+            {{ range .stats }}
+            <div class="bg-white border border-slate-200 rounded-xl p-5 text-center shadow-sm" data-demo-stat>
+                <p class="text-xs uppercase tracking-wide text-slate-500 mb-2">{{ .label }}</p>
+                <p class="flex items-center justify-center gap-2">
+                    <span class="text-lg font-mono text-slate-400 line-through whitespace-nowrap">{{ .before }}</span>
+                    <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                    </svg>
+                    <span class="text-2xl font-bold text-emerald-700">{{ .after }}</span>
+                </p>
+            </div>
+            {{ end }}
+        </div>
+
+        <p class="text-xs text-slate-500 text-center mt-4 italic">{{ .caption }}</p>
+    </div>
+</section>
+{{ end }}

@@ -1,0 +1,78 @@
+{{/* Pricing with Purchase Power Parity (PPP). Base prices come from the page
+     frontmatter (params.ppp), CopeCart product IDs from the PPP_PRODUCT_ID_* env vars
+     at build time. ppp-pricing.js calls /api/ppp (Netlify Edge Function) and, for a
+     discounted tier, rewrites the prices, appends promocode= to the checkout links and
+     unhides the note, the strike-through prices and the banner. All of that markup is
+     pre-rendered hidden here so Tailwind emits its classes (hugo_stats.json).
+     Keep every data-ppp-* attribute: ppp-pricing.js and tests/e2e depend on them. */}}
+{{ with .Params.ppp }}
+{{ $currency := .currency | default "€" }}
+<section id="pricing" class="bg-white border-b border-slate-200 scroll-mt-20" data-ppp-root>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4 text-center">{{ .headline | default "Pricing" }}</h2>
+        <p class="text-slate-600 text-center mb-4 max-w-2xl mx-auto">{{ .intro }}</p>
+
+        <p class="hidden text-sm font-semibold text-emerald-700 bg-emerald-50 border border-emerald-100 rounded-lg px-4 py-3 mb-10 text-center max-w-2xl mx-auto" data-ppp-note>
+            <span data-ppp-flag></span>
+            <span data-ppp-discount-percentage></span>% Purchase Power Parity discount for
+            <span data-ppp-country-name></span> applied - coupon <code class="font-mono" data-ppp-coupon-code></code> is pre-filled at checkout.
+        </p>
+
+        <div class="grid md:grid-cols-3 gap-6 mt-10">
+            {{ range .products }}
+            {{ $productKey := upper .key }}
+            {{ $productId := os.Getenv (printf "PPP_PRODUCT_ID_%s" $productKey) }}
+            {{ if not $productId }}{{ warnf "PPP: env var PPP_PRODUCT_ID_%s not set - rendering a placeholder checkout link" $productKey }}{{ end }}
+            <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm flex flex-col{{ if .highlight }} ring-2 ring-brand-500 relative{{ end }}"
+                 data-ppp-product="{{ .key }}">
+                {{ if .highlight }}
+                <span class="absolute -top-3 left-1/2 -translate-x-1/2 inline-flex items-center rounded-full bg-brand-600 px-3 py-1 text-xs font-semibold text-white">Most popular</span>
+                {{ end }}
+                <h3 class="text-lg font-bold text-slate-900">{{ .name }}</h3>
+                <p class="text-slate-600 text-sm mb-4">{{ .tagline }}</p>
+                <p class="mb-1">
+                    <span class="hidden text-lg text-slate-400 line-through mr-2" data-ppp-original-price>{{ .price }}{{ $currency }}</span>
+                    <span class="text-4xl font-bold text-slate-900"
+                          data-ppp-price
+                          data-ppp-base-price="{{ .price }}"
+                          data-ppp-currency="{{ $currency }}">{{ .price }}{{ $currency }}</span>
+                </p>
+                {{ with .license }}
+                <p class="text-xs text-slate-500 mb-5">{{ . }} license, one-time payment</p>
+                {{ end }}
+                <ul class="text-sm text-slate-600 mb-6 space-y-2 flex-1">
+                    {{ range .features }}
+                    <li class="flex items-start gap-2">
+                        <svg class="w-4 h-4 mt-0.5 text-brand-600 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                        <span>{{ . }}</span>
+                    </li>
+                    {{ end }}
+                </ul>
+                <a href="{{ if $productId }}https://www.copecart.com/products/{{ $productId }}/checkout?locale=en{{ else }}#{{ end }}"
+                   target="_blank" rel="noopener"
+                   class="inline-flex w-full justify-center items-center rounded-lg bg-brand-600 px-4 py-3 text-white font-semibold hover:bg-brand-500 transition-colors"
+                   data-ppp-cta>Buy now</a>
+            </div>
+            {{ end }}
+        </div>
+
+        {{ with .companyNote }}
+        <p class="text-sm text-slate-600 text-center mt-10 max-w-2xl mx-auto">
+            {{ . }}
+            <a href="mailto:{{ $.Site.Params.emails.contact }}" class="text-brand-600 font-semibold underline decoration-brand-300 underline-offset-4 hover:text-brand-500 transition-colors">{{ $.Site.Params.emails.contact }}</a>
+        </p>
+        {{ end }}
+    </div>
+</section>
+
+<div class="hidden fixed bottom-0 inset-x-0 z-40 bg-slate-900 text-slate-100 px-4 py-3 text-sm shadow-lg" role="status" data-ppp-banner>
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+        <p>
+            Hey! It looks like you are from <span data-ppp-country-name></span> <span data-ppp-flag></span>.
+            We support Purchase Power Parity. The price you see is <span data-ppp-discount-percentage></span>% off the base price.
+            Use the coupon code <code class="font-mono bg-slate-800 px-1.5 py-0.5 rounded" data-ppp-coupon-code></code> during checkout.
+        </p>
+        <button type="button" class="text-slate-400 hover:text-white text-xl leading-none flex-shrink-0" aria-label="Dismiss" data-ppp-banner-close>&times;</button>
+    </div>
+</div>
+{{ end }}

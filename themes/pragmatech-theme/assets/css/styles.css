@@ -452,3 +452,7 @@
    the class sits on, not all descendants - nested buttons keep their own text colours. */
 [data-variant="a"] .on-brand,
 [data-variant="a"] .on-brand > svg { color: #ffffff !important; stroke: #ffffff !important; }
+
+/* Native <details> FAQ (course landing page): hide the default marker in WebKit,
+   the chevron in the summary replaces it. */
+summary::-webkit-details-marker { display: none; }

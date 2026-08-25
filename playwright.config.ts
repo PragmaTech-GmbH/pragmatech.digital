@@ -37,7 +37,7 @@ export default defineConfig({
   projects: [
     {
       name: "hugo",
-      use: { baseURL: "http://localhost:1313" },
+      use: { baseURL: "http://localhost:1316" },
       testIgnore: /ppp-netlify\.spec\.ts$/,
     },
     {
@@ -54,8 +54,8 @@ export default defineConfig({
         timeout: 180_000,
       }
     : {
-        command: "hugo serve -D --port 1313 --disableLiveReload",
-        url: "http://localhost:1313" + coursePath,
+        command: "hugo serve -D --port 1316 --disableLiveReload",
+        url: "http://localhost:1316" + coursePath,
         reuseExistingServer: true,
         timeout: 120_000,
         env: {

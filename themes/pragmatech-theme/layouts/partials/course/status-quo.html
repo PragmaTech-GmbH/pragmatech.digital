@@ -1,0 +1,42 @@
+{{/* Before / after the course. Copy: params.statusQuo */}}
+{{ with .Params.statusQuo }}
+<section class="bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-10 text-center">{{ .headline }}</h2>
+
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-6">
+                <p class="text-xs font-bold uppercase tracking-widest text-slate-500 mb-4">{{ .beforeLabel }}</p>
+                <ul class="space-y-3">
+                    {{ range .before }}
+                    <li class="flex items-start gap-3 text-slate-700">
+                        <span class="flex-shrink-0 inline-flex items-center justify-center w-6 h-6 rounded-full bg-red-100 text-red-600 mt-0.5">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                        </span>
+                        <span>{{ . }}</span>
+                    </li>
+                    {{ end }}
+                </ul>
+            </div>
+
+            <div class="bg-emerald-50/50 border border-emerald-100 rounded-xl p-6">
+                <p class="text-xs font-bold uppercase tracking-widest text-emerald-700 mb-4">{{ .afterLabel }}</p>
+                <ul class="space-y-3">
+                    {{ range .after }}
+                    <li class="flex items-start gap-3 text-slate-700">
+                        <span class="flex-shrink-0 inline-flex items-center justify-center w-6 h-6 rounded-full bg-emerald-100 text-emerald-600 mt-0.5">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                            </svg>
+                        </span>
+                        <span>{{ . }}</span>
+                    </li>
+                    {{ end }}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+{{ end }}
