@@ -86,5 +86,10 @@
     {{ $courseJs = $courseJs | minify | fingerprint }}
     {{ end }}
     <script src="{{ $courseJs.RelPermalink }}" defer></script>
+    {{ $pppJs := resources.Get "js/ppp-pricing.js" }}
+    {{ if hugo.IsProduction }}
+    {{ $pppJs = $pppJs | minify | fingerprint }}
+    {{ end }}
+    <script src="{{ $pppJs.RelPermalink }}" defer></script>
     {{ end }}
 </head>

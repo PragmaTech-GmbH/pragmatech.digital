@@ -35,6 +35,26 @@ theme: "pragmatech-theme"
 # Align trailing slashes in URLs
 canonifyURLs: true
 
+# Allow templates to read PPP_* env vars (CopeCart product IDs) at build time.
+# Setting `security` replaces Hugo's defaults, so the exec allow-list is repeated here:
+# Hugo's documented default plus `node` (Hugo >= 0.160 runs Tailwind through node).
+# See https://gohugo.io/configuration/security/
+security:
+  exec:
+    allow:
+      - '^(dart-)?sass(-embedded)?$'
+      - '^go$'
+      - '^git$'
+      - '^node$'
+      - '^npx$'
+      - '^postcss$'
+      - '^tailwindcss$'
+  funcs:
+    getenv:
+      - '^HUGO_'
+      - '^CI$'
+      - '^PPP_'
+
 # Content types configuration
 archetypeDir: "archetypes"
 contentDir: "content"
