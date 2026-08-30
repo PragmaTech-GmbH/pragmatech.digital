@@ -4,6 +4,7 @@
     <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | PragmaTech GmbH{{ end }}</title>
     <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Summary }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}{{ end }}">
     <link rel="canonical" href="{{ .Permalink }}">
+    {{ if .Params.noindex }}<meta name="robots" content="noindex,nofollow">{{ end }}
     <link rel="icon" href="{{ "favicon.ico" | relURL }}">
 
 
