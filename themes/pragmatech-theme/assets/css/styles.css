@@ -150,6 +150,25 @@
         @apply bg-transparent border-2 border-blue-600 text-blue-600 hover:bg-blue-50;
     }
 
+    /* Email draft (convince-your-manager page) */
+    .email-draft__placeholder {
+        @apply rounded px-0.5 font-medium text-amber-900;
+        background-color: #fef3c7;
+        box-shadow: inset 0 0 0 1px #fde68a;
+    }
+
+    .email-draft__body {
+        @apply whitespace-pre-wrap break-words font-sans text-[15px] md:text-base leading-relaxed text-slate-800;
+    }
+
+    .email-draft__copy-btn.is-copied {
+        @apply bg-emerald-600 border-emerald-600 text-white;
+    }
+
+    .email-draft__copy-btn.is-error {
+        @apply bg-red-50 border-red-300 text-red-700;
+    }
+
     /* Premium button styles */
     .premium-btn-primary {
         @apply inline-flex items-center justify-center;

@@ -87,4 +87,12 @@
     {{ end }}
     <script src="{{ $courseJs.RelPermalink }}" defer></script>
     {{ end }}
+
+    {{ if eq .Layout "convince-your-manager" }}
+    {{ $copyJs := resources.Get "js/copy-email.js" }}
+    {{ if hugo.IsProduction }}
+    {{ $copyJs = $copyJs | minify | fingerprint }}
+    {{ end }}
+    <script src="{{ $copyJs.RelPermalink }}" defer></script>
+    {{ end }}
 </head>
