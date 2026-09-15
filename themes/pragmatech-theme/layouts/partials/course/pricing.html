@@ -5,20 +5,40 @@
      /api/ppp (Netlify Edge Function). CopeCart product IDs come from the
      PPP_PRODUCT_ID_<KEY> env vars at build time. Discount markup is pre-rendered
      hidden so Tailwind emits its classes (hugo_stats.json).
+     Early bird (`earlyBird`): while the campaign runs at build time, the early bird price
+     and coupon (PPP_COUPON_EARLY_BIRD_TIER_1) are pre-rendered for no-JS visitors.
+     ppp-pricing.js re-evaluates the deadline in the browser, so a page built before the
+     deadline switches back to the list price without a new deploy.
      Keep every data-ppp-* attribute: ppp-pricing.js and tests/e2e depend on them. */}}
 {{ with .Params.ppp }}
 {{ $currency := .currency | default "€" }}
 {{ $everyEdition := .everyEdition }}
 {{ $guarantee := .guarantee }}
 {{ $pppScope := .pppScope | default "Solo edition" }}
-<section id="pricing" class="bg-white border-b border-slate-200 scroll-mt-20" data-ppp-root>
+{{ $earlyBird := .earlyBird }}
+{{ $earlyBirdCoupon := "" }}
+{{ $earlyBirdActive := false }}
+{{ with $earlyBird }}
+{{ $earlyBirdCoupon = os.Getenv "PPP_COUPON_EARLY_BIRD_TIER_1" }}
+{{ if $earlyBirdCoupon }}
+{{ $earlyBirdActive = now.Before (time.AsTime .endsAt) }}
+{{ else }}
+{{ warnf "PPP: env var PPP_COUPON_EARLY_BIRD_TIER_1 not set - early bird pricing is not pre-rendered" }}
+{{ end }}
+{{ end }}
+<section id="pricing" class="bg-white border-b border-slate-200 scroll-mt-20" data-ppp-root
+         {{- if $earlyBirdCoupon }}
+         data-ppp-early-bird-percentage="{{ $earlyBird.discountPercentage }}"
+         data-ppp-early-bird-ends-at="{{ $earlyBird.endsAt }}"
+         data-ppp-early-bird-coupon="{{ $earlyBirdCoupon }}"
+         {{- end }}>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
         <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4 text-center">{{ .headline | default "Pricing" }}</h2>
         <p class="text-slate-600 text-center mb-4 max-w-2xl mx-auto">{{ .intro }}</p>
 
         <p class="hidden text-sm font-semibold text-emerald-700 bg-emerald-50 border border-emerald-100 rounded-lg px-4 py-3 mb-4 text-center max-w-2xl mx-auto" data-ppp-note>
             <span data-ppp-flag></span>
-            <span data-ppp-discount-percentage></span>% Purchase Power Parity discount for
+            <span data-ppp-discount-percentage></span>% <span class="hidden" data-ppp-early-bird-only>early bird and </span>Purchase Power Parity discount for
             <span data-ppp-country-name></span> applied to the {{ $pppScope }} - coupon <code class="font-mono" data-ppp-coupon-code></code> is pre-filled at checkout.
         </p>
 
@@ -49,6 +69,14 @@
             {{ $pppEnabled := ne .ppp false }}
             {{ $checkoutUrl := "#" }}
             {{ if $productId }}{{ $checkoutUrl = printf "https://www.copecart.com/products/%s/checkout?locale=en" $productId }}{{ end }}
+            {{ $showEarlyBird := and $pppEnabled $earlyBirdActive }}
+            {{ $displayPrice := float .price }}
+            {{ if $showEarlyBird }}
+            {{ $displayPrice = div (mul $displayPrice (sub 100 $earlyBird.discountPercentage)) 100 }}
+            {{ if $productId }}{{ $checkoutUrl = printf "%s&promocode=%s" $checkoutUrl (urlquery $earlyBirdCoupon) }}{{ end }}
+            {{ end }}
+            {{ $displayPriceDecimals := 2 }}
+            {{ if eq (math.Floor $displayPrice) $displayPrice }}{{ $displayPriceDecimals = 0 }}{{ end }}
             <div class="bg-white border border-slate-200 rounded-xl p-6 md:p-8 shadow-sm flex flex-col{{ if .highlight }} ring-2 ring-brand-500 relative{{ end }}"
                  data-product="{{ .key }}"{{ if $pppEnabled }} data-ppp-product="{{ .key }}"{{ end }}>
                 {{ with .audience }}
@@ -57,13 +85,18 @@
                 <h3 class="text-2xl font-bold text-slate-900">{{ .name }}</h3>
                 <p class="text-slate-600 text-sm mt-1 mb-5">{{ .tagline }}</p>
 
+                {{ if and $pppEnabled $earlyBird }}
+                <p class="{{ if not $showEarlyBird }}hidden {{ end }}mb-3" data-ppp-early-bird-badge>
+                    <span class="inline-block rounded-full bg-amber-50 border border-amber-200 px-3 py-1 text-xs font-bold text-amber-800">Early bird: {{ $earlyBird.discountPercentage }}% off until {{ $earlyBird.endsAtLabel }}</span>
+                </p>
+                {{ end }}
                 <p class="mb-1">
                     {{ if $pppEnabled }}
-                    <span class="hidden text-lg text-slate-400 line-through mr-2" data-ppp-original-price>{{ lang.FormatNumberCustom 0 .price }}{{ $currency }}</span>
+                    <span class="{{ if not $showEarlyBird }}hidden {{ end }}text-lg text-slate-400 line-through mr-2" data-ppp-original-price>{{ lang.FormatNumberCustom 0 .price }}{{ $currency }}</span>
                     <span class="text-4xl font-bold text-slate-900"
                           data-ppp-price
                           data-ppp-base-price="{{ .price }}"
-                          data-ppp-currency="{{ $currency }}">{{ lang.FormatNumberCustom 0 .price }}{{ $currency }}</span>
+                          data-ppp-currency="{{ $currency }}">{{ lang.FormatNumberCustom $displayPriceDecimals $displayPrice }}{{ $currency }}</span>
                     {{ else }}
                     <span class="text-4xl font-bold text-slate-900" data-product-price>{{ lang.FormatNumberCustom 0 .price }}{{ $currency }}</span>
                     {{ end }}
@@ -142,7 +175,7 @@
     <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
         <p>
             Hey! It looks like you are from <span data-ppp-country-name></span> <span data-ppp-flag></span>.
-            We support Purchase Power Parity. The {{ $pppScope }} price you see is <span data-ppp-discount-percentage></span>% off the base price.
+            We support Purchase Power Parity. The {{ $pppScope }} price you see is <span data-ppp-discount-percentage></span>% off the base price<span class="hidden" data-ppp-early-bird-only>, early bird included</span>.
             Use the coupon code <code class="font-mono bg-slate-800 px-1.5 py-0.5 rounded" data-ppp-coupon-code></code> during checkout.
         </p>
         <button type="button" class="text-slate-400 hover:text-white text-xl leading-none flex-shrink-0" aria-label="Dismiss" data-ppp-banner-close>&times;</button>

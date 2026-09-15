@@ -1,6 +1,8 @@
 // End-to-end tests for PPP pricing against plain `hugo serve`. The edge function is
 // faked with page.route(), so every response shape (discount, no discount, errors,
-// timeouts, malformed data) is under test control.
+// timeouts, malformed data) is under test control. The browser clock is set per
+// test (page.clock), because the pricing script decides the early bird campaign from
+// the current time. hugo serve pre-renders the campaign with the coupon EB33.
 import { test, expect, type Page, type Route } from "@playwright/test";
 
 const coursePath = "/agentic-spring-boot-testing-course/";
@@ -10,6 +12,12 @@ const basePrices: Record<(typeof productKeys)[number], number> = { solo: 490 };
 
 const tier4India = { country: "IN", countryName: "India", tier: 4, discountPercentage: 70, couponCode: "T70" };
 const tier1Germany = { country: "DE", countryName: "Germany", tier: 1, discountPercentage: 0, couponCode: null };
+
+const earlyBirdEndsAt = "2026-10-02T00:00:00+02:00";
+const duringEarlyBird = new Date("2026-10-01T23:00:00+02:00");
+const afterEarlyBird = new Date(earlyBirdEndsAt);
+const earlyBirdGermany = { ...tier1Germany, discountPercentage: 33, couponCode: "EB33", earlyBird: true, earlyBirdEndsAt };
+const earlyBirdIndia = { ...tier4India, discountPercentage: 80, couponCode: "EB80", earlyBird: true, earlyBirdEndsAt };
 
 type FakeOptions = { status?: number; delayMs?: number; abort?: boolean };
 
@@ -53,6 +61,23 @@ async function expectBasePricing(page: Page) {
       `https://www.copecart.com/products/pid-${productKey}/checkout?locale=en`,
     );
   }
+  await expect(page.locator("[data-ppp-early-bird-badge]")).toBeHidden();
+  await expect(page.locator("[data-ppp-note]")).toBeHidden();
+  await expect(page.locator("[data-ppp-banner]")).toBeHidden();
+  await expectTeamUntouched(page);
+}
+
+async function expectEarlyBirdPricing(page: Page) {
+  const soloCard = page.locator('[data-ppp-product="solo"]');
+  await expect(soloCard.locator("[data-ppp-price]")).toHaveText("328.30€");
+  await expect(soloCard.locator("[data-ppp-original-price]")).toBeVisible();
+  await expect(soloCard.locator("[data-ppp-original-price]")).toHaveText("490€");
+  await expect(soloCard.locator("[data-ppp-early-bird-badge]")).toBeVisible();
+  await expect(soloCard.locator("[data-ppp-early-bird-badge]")).toHaveText("Early bird: 33% off until 1 October 2026, 23:59 CEST");
+  await expect(soloCard.locator("[data-ppp-cta]")).toHaveAttribute(
+    "href",
+    "https://www.copecart.com/products/pid-solo/checkout?locale=en&promocode=EB33",
+  );
   await expect(page.locator("[data-ppp-note]")).toBeHidden();
   await expect(page.locator("[data-ppp-banner]")).toBeHidden();
   await expectTeamUntouched(page);
@@ -69,7 +94,11 @@ async function expectTeamUntouched(page: Page) {
   );
 }
 
-test.describe("PPP pricing on the course landing page", () => {
+test.describe("PPP pricing on the course landing page after the early bird campaign", () => {
+  test.beforeEach(async ({ page }) => {
+    await page.clock.setSystemTime(afterEarlyBird);
+  });
+
   test("applies a tier 4 discount to prices, links, note and banner", async ({ page }) => {
     const pageErrors = collectPageErrors(page);
     await fakePppEndpoint(page, tier4India);
@@ -98,6 +127,8 @@ test.describe("PPP pricing on the course landing page", () => {
     await expect(banner).toBeVisible();
     await expect(banner).toContainText("It looks like you are from India");
     await expect(banner.locator("[data-ppp-coupon-code]")).toHaveText("T70");
+    await expect(page.locator("[data-ppp-early-bird-only]").first()).toBeHidden();
+    await expect(page.locator("[data-ppp-early-bird-badge]")).toBeHidden();
 
     // The Team edition is never discounted.
     await expectTeamUntouched(page);
@@ -135,7 +166,7 @@ test.describe("PPP pricing on the course landing page", () => {
     expect(pageErrors).toEqual([]);
   });
 
-  test("treats malformed responses as no discount", async ({ page }) => {
+  test("ignores malformed responses", async ({ page }) => {
     await fakePppEndpoint(page, {
       country: "IN",
       tier: 9,
@@ -152,7 +183,7 @@ test.describe("PPP pricing on the course landing page", () => {
     await expect(page.locator("[data-ppp-banner]")).toBeVisible();
     expect(requestedUrls).toHaveLength(1);
 
-    const cachedValue = await page.evaluate(() => window.sessionStorage.getItem("ppp:v1"));
+    const cachedValue = await page.evaluate(() => window.sessionStorage.getItem("ppp:v2"));
     expect(JSON.parse(cachedValue ?? "null")).toMatchObject({ tier: 4, couponCode: "T70" });
 
     await page.goto(coursePath);
@@ -172,7 +203,7 @@ test.describe("PPP pricing on the course landing page", () => {
     expect(requestUrl.searchParams.get("country")).toBe("br");
     expect(requestUrl.searchParams.get("token")).toBe("abc");
 
-    const cachedValue = await page.evaluate(() => window.sessionStorage.getItem("ppp:v1"));
+    const cachedValue = await page.evaluate(() => window.sessionStorage.getItem("ppp:v2"));
     expect(cachedValue).toBeNull();
   });
 
@@ -196,5 +227,91 @@ test.describe("PPP pricing on the course landing page", () => {
     await expect(page.locator("body")).toBeVisible();
     await expect(page.locator('script[src*="ppp-pricing"]')).toHaveCount(0);
     expect(requestedUrls).toHaveLength(0);
+  });
+});
+
+test.describe("early bird campaign on the course landing page", () => {
+  test.beforeEach(async ({ page }) => {
+    await page.clock.setSystemTime(duringEarlyBird);
+  });
+
+  test("shows the early bird price for tier 1 visitors", async ({ page }) => {
+    const pageErrors = collectPageErrors(page);
+    await fakePppEndpoint(page, earlyBirdGermany);
+    await page.goto(coursePath);
+    await expectEarlyBirdPricing(page);
+    expect(pageErrors).toEqual([]);
+  });
+
+  test("stacks early bird and PPP for tier 4 visitors", async ({ page }) => {
+    await fakePppEndpoint(page, earlyBirdIndia);
+    await page.goto(coursePath);
+
+    const soloCard = page.locator('[data-ppp-product="solo"]');
+    await expect(soloCard.locator("[data-ppp-price]")).toHaveText("98€");
+    await expect(soloCard.locator("[data-ppp-original-price]")).toHaveText("490€");
+    await expect(soloCard.locator("[data-ppp-early-bird-badge]")).toBeVisible();
+    await expect(soloCard.locator("[data-ppp-cta]")).toHaveAttribute(
+      "href",
+      "https://www.copecart.com/products/pid-solo/checkout?locale=en&promocode=EB80",
+    );
+
+    const note = page.locator("[data-ppp-note]");
+    await expect(note).toBeVisible();
+    await expect(note).toContainText("80% early bird and Purchase Power Parity discount for India");
+    await expect(note.locator("[data-ppp-coupon-code]")).toHaveText("EB80");
+
+    const banner = page.locator("[data-ppp-banner]");
+    await expect(banner).toBeVisible();
+    await expect(banner).toContainText("80% off the base price, early bird included.");
+    await expectTeamUntouched(page);
+  });
+
+  test("keeps the early bird price when the endpoint fails", async ({ page }) => {
+    const pageErrors = collectPageErrors(page);
+    await fakePppEndpoint(page, null, { abort: true });
+    await page.goto(coursePath);
+    await expectEarlyBirdPricing(page);
+    expect(pageErrors).toEqual([]);
+  });
+
+  test("follows the endpoint when it reports no campaign", async ({ page }) => {
+    await fakePppEndpoint(page, tier1Germany);
+    await page.goto(coursePath);
+    await expectBasePricing(page);
+  });
+
+  test("drops a cached early bird answer after the deadline", async ({ page }) => {
+    let pppResponse: unknown = earlyBirdGermany;
+    const requestedUrls: string[] = [];
+    await page.route("**/api/ppp*", async (route) => {
+      requestedUrls.push(route.request().url());
+      await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify(pppResponse) });
+    });
+
+    await page.goto(coursePath);
+    await expectEarlyBirdPricing(page);
+    expect(requestedUrls).toHaveLength(1);
+
+    await page.clock.setSystemTime(afterEarlyBird);
+    pppResponse = tier1Germany;
+    await page.reload();
+    await expectBasePricing(page);
+    expect(requestedUrls).toHaveLength(2);
+  });
+
+  test("forwards ?now to the endpoint and uses it as the clock", async ({ page }) => {
+    const requestedUrls = await fakePppEndpoint(page, null, { abort: true });
+    await page.goto(coursePath + "?now=2026-10-01T22:00:00Z");
+    await expectBasePricing(page);
+    expect(new URL(requestedUrls[0]).searchParams.get("now")).toBe("2026-10-01T22:00:00Z");
+  });
+
+  test("pre-renders the early bird price for visitors without JavaScript", async ({ request }) => {
+    test.skip(Date.now() >= afterEarlyBird.getTime(), "hugo serve only pre-renders the campaign before the deadline");
+    const html = await (await request.get(coursePath)).text();
+    expect(html).toMatch(/data-ppp-price[^>]*>328\.30€</);
+    expect(html).toContain("/checkout?locale=en&amp;promocode=EB33");
+    expect(html).toMatch(/data-ppp-early-bird-ends-at="2026-10-02T00:00:00(\+|&#43;)02:00"/);
   });
 });

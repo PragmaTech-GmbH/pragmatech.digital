@@ -317,6 +317,13 @@ ppp:
   headline: "Pricing"
   intro: "Two editions, identical content. They differ in seats, the implementation workshop, support and the update window."
   pppScope: "Solo edition"
+  # Early bird launch price for products with `ppp: true`. `endsAt` is exclusive and
+  # must match netlify/shared/ppp-early-bird.ts. The checkout coupon comes from the
+  # PPP_COUPON_EARLY_BIRD_TIER_1 env var, see BUILD.md.
+  earlyBird:
+    discountPercentage: 33
+    endsAt: "2026-10-02T00:00:00+02:00"
+    endsAtLabel: "1 October 2026, 23:59 CEST"
   guarantee: "14-day money-back guarantee, no questions asked"
   renewal: "Every purchase includes its skill update window. After that, renew for 129€ per year or keep everything from your purchase window forever."
   quoteSubject: "Agentic Spring Boot Testing - Team edition quote"

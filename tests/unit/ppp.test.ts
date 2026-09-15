@@ -3,8 +3,13 @@
 // Request and a fake edge context, and the `Netlify.env` global is stubbed.
 import { test, describe, beforeEach } from "node:test";
 import assert from "node:assert/strict";
-import handler from "../../netlify/edge-functions/ppp.ts";
+import { readFileSync } from "node:fs";
+import handler, { handlePppRequest, TIERS } from "../../netlify/edge-functions/ppp.ts";
 import { COUNTRY_TIERS } from "../../netlify/shared/ppp-country-tiers.ts";
+import { EARLY_BIRD_DISCOUNT_PERCENTAGE, EARLY_BIRD_ENDS_AT } from "../../netlify/shared/ppp-early-bird.ts";
+
+const DURING_EARLY_BIRD = Date.parse("2026-10-01T23:59:59+02:00");
+const AFTER_EARLY_BIRD = Date.parse("2026-10-02T00:00:00+02:00");
 
 const envStore = new Map<string, string>();
 
@@ -15,14 +20,19 @@ function callHandler(
   geo: FakeGeo = { country: { code: "DE", name: "Germany" } },
   deployContext = "production",
   method = "GET",
+  currentTime = AFTER_EARLY_BIRD,
 ): Response {
   const request = new Request("https://pragmatech.digital/api/ppp" + query, { method });
   const context = { geo, deploy: { context: deployContext } } as any;
-  return handler(request, context);
+  return handlePppRequest(request, context, currentTime);
 }
 
-async function callJson(query?: string, geo?: FakeGeo, deployContext?: string) {
-  return callHandler(query, geo, deployContext).json();
+async function callJson(query?: string, geo?: FakeGeo, deployContext?: string, currentTime?: number) {
+  return callHandler(query, geo, deployContext, "GET", currentTime).json();
+}
+
+async function callJsonDuringEarlyBird(geo: FakeGeo) {
+  return callJson("", geo, "production", DURING_EARLY_BIRD);
 }
 
 beforeEach(() => {
@@ -30,6 +40,10 @@ beforeEach(() => {
   envStore.set("PPP_COUPON_TIER_2", "T30");
   envStore.set("PPP_COUPON_TIER_3", "T50");
   envStore.set("PPP_COUPON_TIER_4", "T70");
+  envStore.set("PPP_COUPON_EARLY_BIRD_TIER_1", "EB33");
+  envStore.set("PPP_COUPON_EARLY_BIRD_TIER_2", "EB53");
+  envStore.set("PPP_COUPON_EARLY_BIRD_TIER_3", "EB67");
+  envStore.set("PPP_COUPON_EARLY_BIRD_TIER_4", "EB80");
   (globalThis as any).Netlify = { env: { get: (name: string) => envStore.get(name) } };
 });
 
@@ -41,6 +55,8 @@ describe("tier resolution from geolocation", () => {
     assert.equal(body.tier, 1);
     assert.equal(body.discountPercentage, 0);
     assert.equal(body.couponCode, null);
+    assert.equal(body.earlyBird, false);
+    assert.equal(body.earlyBirdEndsAt, null);
     assert.equal(body.overridden, false);
     assert.deepEqual(body.warnings, []);
   });
@@ -124,7 +140,7 @@ describe("country override", () => {
 
   test("falls back to the CONTEXT env var when deploy context is missing", async () => {
     envStore.set("CONTEXT", "dev");
-    const request = new Request("https://pragmatech.digital/api/ppp?country=in");
+    const request = new Request("https://pragmatech.digital/api/ppp?country=in&now=2026-10-02T00:00:00%2B02:00");
     const body = await handler(request, { geo: { country: { code: "DE", name: "Germany" } } } as any).json();
     assert.equal(body.tier, 4);
     assert.equal(body.overridden, true);
@@ -176,6 +192,95 @@ describe("robustness", () => {
     assert.equal(response.headers.get("Content-Type"), "application/json; charset=utf-8");
     assert.equal(response.headers.get("Cache-Control"), "private, no-store");
     assert.equal(response.headers.get("X-Robots-Tag"), "noindex");
+  });
+});
+
+describe("early bird campaign", () => {
+  test("Germany gets the 33 % early bird coupon until the deadline", async () => {
+    const body = await callJsonDuringEarlyBird({ country: { code: "DE", name: "Germany" } });
+    assert.equal(body.tier, 1);
+    assert.equal(body.discountPercentage, 33);
+    assert.equal(body.couponCode, "EB33");
+    assert.equal(body.earlyBird, true);
+    assert.equal(body.earlyBirdEndsAt, EARLY_BIRD_ENDS_AT);
+    assert.deepEqual(body.warnings, []);
+  });
+
+  test("PPP tiers get the stacked early bird coupons", async () => {
+    const mexico = await callJsonDuringEarlyBird({ country: { code: "MX", name: "Mexico" } });
+    assert.deepEqual([mexico.tier, mexico.discountPercentage, mexico.couponCode, mexico.earlyBird], [2, 53, "EB53", true]);
+
+    const brazil = await callJsonDuringEarlyBird({ country: { code: "BR", name: "Brazil" } });
+    assert.deepEqual([brazil.tier, brazil.discountPercentage, brazil.couponCode, brazil.earlyBird], [3, 67, "EB67", true]);
+
+    const india = await callJsonDuringEarlyBird({ country: { code: "IN", name: "India" } });
+    assert.deepEqual([india.tier, india.discountPercentage, india.couponCode, india.earlyBird], [4, 80, "EB80", true]);
+  });
+
+  test("ends exactly at the deadline", async () => {
+    const germany = await callJson("", { country: { code: "DE", name: "Germany" } }, "production", AFTER_EARLY_BIRD);
+    assert.equal(germany.earlyBird, false);
+    assert.equal(germany.couponCode, null);
+
+    const india = await callJson("", { country: { code: "IN", name: "India" } }, "production", AFTER_EARLY_BIRD);
+    assert.deepEqual([india.tier, india.discountPercentage, india.couponCode, india.earlyBird], [4, 70, "T70", false]);
+  });
+
+  test("the default handler uses the real clock", async () => {
+    const request = new Request("https://pragmatech.digital/api/ppp");
+    const body = await handler(request, { geo: { country: { code: "DE", name: "Germany" } }, deploy: { context: "production" } } as any).json();
+    assert.equal(body.earlyBird, Date.now() < Date.parse(EARLY_BIRD_ENDS_AT));
+  });
+
+  test("?now= switches the campaign outside production", async () => {
+    const during = await callJson("?now=2026-09-20T10:00:00Z", { country: { code: "DE", name: "Germany" } }, "dev");
+    assert.equal(during.earlyBird, true);
+    assert.equal(during.overridden, true);
+
+    const after = await callJson("?now=2026-10-01T22:00:00Z", { country: { code: "DE", name: "Germany" } }, "dev", DURING_EARLY_BIRD);
+    assert.equal(after.earlyBird, false);
+    assert.equal(after.couponCode, null);
+  });
+
+  test("?now= is ignored in production without token and rejected when malformed", async () => {
+    const production = await callJson("?now=2026-09-20T10:00:00Z", { country: { code: "DE", name: "Germany" } }, "production");
+    assert.equal(production.earlyBird, false);
+    assert.equal(production.overridden, false);
+    assert.ok(production.warnings.includes("country override ignored"));
+
+    const malformed = await callJson("?now=soon", { country: { code: "DE", name: "Germany" } }, "dev");
+    assert.equal(malformed.earlyBird, false);
+    assert.ok(malformed.warnings.includes("now override invalid"));
+  });
+
+  test("missing early bird coupon falls back to the next best offer", async () => {
+    envStore.delete("PPP_COUPON_EARLY_BIRD_TIER_4");
+    const india = await callJsonDuringEarlyBird({ country: { code: "IN", name: "India" } });
+    assert.deepEqual([india.tier, india.discountPercentage, india.couponCode, india.earlyBird], [4, 70, "T70", false]);
+    assert.deepEqual(india.warnings, ["PPP_COUPON_EARLY_BIRD_TIER_4 not set"]);
+
+    envStore.delete("PPP_COUPON_EARLY_BIRD_TIER_2");
+    const mexico = await callJsonDuringEarlyBird({ country: { code: "MX", name: "Mexico" } });
+    assert.deepEqual([mexico.tier, mexico.discountPercentage, mexico.couponCode, mexico.earlyBird], [1, 33, "EB33", true]);
+
+    envStore.delete("PPP_COUPON_EARLY_BIRD_TIER_1");
+    const germany = await callJsonDuringEarlyBird({ country: { code: "DE", name: "Germany" } });
+    assert.deepEqual([germany.tier, germany.discountPercentage, germany.couponCode, germany.earlyBird], [1, 0, null, false]);
+    assert.deepEqual(germany.warnings, ["PPP_COUPON_EARLY_BIRD_TIER_1 not set"]);
+  });
+
+  test("stacked percentages follow 100 - (100 - early bird) * (100 - PPP) / 100, rounded", () => {
+    for (const pricing of Object.values(TIERS)) {
+      const expectedPercentage = Math.round(100 - ((100 - EARLY_BIRD_DISCOUNT_PERCENTAGE) * (100 - pricing.discountPercentage)) / 100);
+      assert.equal(pricing.earlyBirdDiscountPercentage, expectedPercentage);
+    }
+  });
+
+  test("matches ppp.earlyBird in the course landing page frontmatter", () => {
+    const landingPage = readFileSync(new URL("../../content/agentic-spring-boot-testing-course.md", import.meta.url), "utf8");
+    const earlyBirdBlock = landingPage.match(/^  earlyBird:\n((?:    .*\n)+)/m)?.[1] ?? "";
+    assert.match(earlyBirdBlock, new RegExp(`discountPercentage: ${EARLY_BIRD_DISCOUNT_PERCENTAGE}\\n`));
+    assert.ok(earlyBirdBlock.includes(`endsAt: "${EARLY_BIRD_ENDS_AT}"`), "endsAt differs from netlify/shared/ppp-early-bird.ts");
   });
 });
 

@@ -61,6 +61,7 @@ export default defineConfig({
         env: {
           PPP_PRODUCT_ID_SOLO: "pid-solo",
           PPP_PRODUCT_ID_TEAM: "pid-team",
+          PPP_COUPON_EARLY_BIRD_TIER_1: "EB33",
         },
       },
 });
