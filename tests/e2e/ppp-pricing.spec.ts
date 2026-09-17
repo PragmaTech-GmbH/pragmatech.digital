@@ -6,9 +6,15 @@
 import { test, expect, type Page, type Route } from "@playwright/test";
 
 const coursePath = "/agentic-spring-boot-testing-course/";
-// Only the Solo edition carries the PPP contract; the Team edition is sold at a fixed price.
-const productKeys = ["solo"] as const;
-const basePrices: Record<(typeof productKeys)[number], number> = { solo: 490 };
+// The Course and Bundle editions carry the PPP contract; Team is sold at a fixed price.
+const productKeys = ["course_edition", "bundle_edition"] as const;
+const basePrices: Record<(typeof productKeys)[number], number> = { course_edition: 329, bundle_edition: 490 };
+
+// Prices as the page formats them: whole amounts without decimals, others with cents.
+function formatPrice(basePrice: number, discountPercentage: number): string {
+  const cents = Math.round((basePrice * (100 - discountPercentage)) / 100 * 100);
+  return cents % 100 === 0 ? String(cents / 100) : (cents / 100).toFixed(2);
+}
 
 const tier4India = { country: "IN", countryName: "India", tier: 4, discountPercentage: 70, couponCode: "T70" };
 const tier1Germany = { country: "DE", countryName: "Germany", tier: 1, discountPercentage: 0, couponCode: null };
@@ -56,41 +62,43 @@ async function expectBasePricing(page: Page) {
     const productCard = page.locator(`[data-ppp-product="${productKey}"]`);
     await expect(productCard.locator("[data-ppp-price]")).toHaveText(`${basePrices[productKey]}€`);
     await expect(productCard.locator("[data-ppp-original-price]")).toBeHidden();
+    await expect(productCard.locator("[data-ppp-early-bird-badge]")).toBeHidden();
     await expect(productCard.locator("[data-ppp-cta]")).toHaveAttribute(
       "href",
       `https://www.copecart.com/products/pid-${productKey}/checkout?locale=en`,
     );
   }
-  await expect(page.locator("[data-ppp-early-bird-badge]")).toBeHidden();
   await expect(page.locator("[data-ppp-note]")).toBeHidden();
   await expect(page.locator("[data-ppp-banner]")).toBeHidden();
-  await expectTeamUntouched(page);
+  await expectTeamEditionUntouched(page);
 }
 
 async function expectEarlyBirdPricing(page: Page) {
-  const soloCard = page.locator('[data-ppp-product="solo"]');
-  await expect(soloCard.locator("[data-ppp-price]")).toHaveText("328.30€");
-  await expect(soloCard.locator("[data-ppp-original-price]")).toBeVisible();
-  await expect(soloCard.locator("[data-ppp-original-price]")).toHaveText("490€");
-  await expect(soloCard.locator("[data-ppp-early-bird-badge]")).toBeVisible();
-  await expect(soloCard.locator("[data-ppp-early-bird-badge]")).toHaveText("Early bird: 33% off until 1 October 2026, 23:59 CEST");
-  await expect(soloCard.locator("[data-ppp-cta]")).toHaveAttribute(
-    "href",
-    "https://www.copecart.com/products/pid-solo/checkout?locale=en&promocode=EB33",
-  );
+  for (const productKey of productKeys) {
+    const productCard = page.locator(`[data-ppp-product="${productKey}"]`);
+    await expect(productCard.locator("[data-ppp-price]")).toHaveText(`${formatPrice(basePrices[productKey], 33)}€`);
+    await expect(productCard.locator("[data-ppp-original-price]")).toBeVisible();
+    await expect(productCard.locator("[data-ppp-original-price]")).toHaveText(`${basePrices[productKey]}€`);
+    await expect(productCard.locator("[data-ppp-early-bird-badge]")).toBeVisible();
+    await expect(productCard.locator("[data-ppp-early-bird-badge]")).toHaveText("Early bird: 33% off until 1 October 2026, 23:59 CEST");
+    await expect(productCard.locator("[data-ppp-cta]")).toHaveAttribute(
+      "href",
+      `https://www.copecart.com/products/pid-${productKey}/checkout?locale=en&promocode=EB33`,
+    );
+  }
   await expect(page.locator("[data-ppp-note]")).toBeHidden();
   await expect(page.locator("[data-ppp-banner]")).toBeHidden();
-  await expectTeamUntouched(page);
+  await expectTeamEditionUntouched(page);
 }
 
-async function expectTeamUntouched(page: Page) {
-  const teamCard = page.locator('[data-product="team"]');
+async function expectTeamEditionUntouched(page: Page) {
+  const teamCard = page.locator('[data-product="team_edition"]');
   await expect(teamCard).toHaveCount(1);
   await expect(teamCard).not.toHaveAttribute("data-ppp-product", /.*/);
   await expect(teamCard.locator("[data-product-price]")).toHaveText("3,990€");
   await expect(teamCard.locator("[data-product-cta]")).toHaveAttribute(
     "href",
-    "https://www.copecart.com/products/pid-team/checkout?locale=en",
+    "https://www.copecart.com/products/pid-team_edition/checkout?locale=en",
   );
 }
 
@@ -106,8 +114,7 @@ test.describe("PPP pricing on the course landing page after the early bird campa
 
     for (const productKey of productKeys) {
       const productCard = page.locator(`[data-ppp-product="${productKey}"]`);
-      const expectedPrice = Math.round(basePrices[productKey] * 0.3);
-      await expect(productCard.locator("[data-ppp-price]")).toHaveText(`${expectedPrice}€`);
+      await expect(productCard.locator("[data-ppp-price]")).toHaveText(`${formatPrice(basePrices[productKey], 70)}€`);
       await expect(productCard.locator("[data-ppp-original-price]")).toBeVisible();
       await expect(productCard.locator("[data-ppp-original-price]")).toHaveText(`${basePrices[productKey]}€`);
       await expect(productCard.locator("[data-ppp-cta]")).toHaveAttribute(
@@ -128,10 +135,10 @@ test.describe("PPP pricing on the course landing page after the early bird campa
     await expect(banner).toContainText("It looks like you are from India");
     await expect(banner.locator("[data-ppp-coupon-code]")).toHaveText("T70");
     await expect(page.locator("[data-ppp-early-bird-only]").first()).toBeHidden();
-    await expect(page.locator("[data-ppp-early-bird-badge]")).toBeHidden();
+    await expect(page.locator("[data-ppp-early-bird-badge]").first()).toBeHidden();
 
     // The Team edition is never discounted.
-    await expectTeamUntouched(page);
+    await expectTeamEditionUntouched(page);
     expect(pageErrors).toEqual([]);
   });
 
@@ -187,7 +194,7 @@ test.describe("PPP pricing on the course landing page after the early bird campa
     expect(JSON.parse(cachedValue ?? "null")).toMatchObject({ tier: 4, couponCode: "T70" });
 
     await page.goto(coursePath);
-    await expect(page.locator('[data-ppp-product="solo"] [data-ppp-price]')).toHaveText("147€");
+    await expect(page.locator('[data-ppp-product="bundle_edition"] [data-ppp-price]')).toHaveText("147€");
     expect(requestedUrls).toHaveLength(1);
   });
 
@@ -195,7 +202,7 @@ test.describe("PPP pricing on the course landing page after the early bird campa
     const tier3Brazil = { country: "BR", countryName: "Brazil", tier: 3, discountPercentage: 50, couponCode: "T50" };
     const requestedUrls = await fakePppEndpoint(page, tier3Brazil);
     await page.goto(coursePath + "?country=br&token=abc");
-    await expect(page.locator('[data-ppp-product="solo"] [data-ppp-price]')).toHaveText("245€");
+    await expect(page.locator('[data-ppp-product="bundle_edition"] [data-ppp-price]')).toHaveText("245€");
 
     expect(requestedUrls).toHaveLength(1);
     const requestUrl = new URL(requestedUrls[0]);
@@ -216,7 +223,7 @@ test.describe("PPP pricing on the course landing page after the early bird campa
     await expect(page.locator("[data-ppp-banner]")).toBeHidden();
 
     await page.reload();
-    await expect(page.locator('[data-ppp-product="solo"] [data-ppp-price]')).toHaveText("147€");
+    await expect(page.locator('[data-ppp-product="bundle_edition"] [data-ppp-price]')).toHaveText("147€");
     await expect(page.locator("[data-ppp-note]")).toBeVisible();
     await expect(page.locator("[data-ppp-banner]")).toBeHidden();
   });
@@ -247,14 +254,16 @@ test.describe("early bird campaign on the course landing page", () => {
     await fakePppEndpoint(page, earlyBirdIndia);
     await page.goto(coursePath);
 
-    const soloCard = page.locator('[data-ppp-product="solo"]');
-    await expect(soloCard.locator("[data-ppp-price]")).toHaveText("98€");
-    await expect(soloCard.locator("[data-ppp-original-price]")).toHaveText("490€");
-    await expect(soloCard.locator("[data-ppp-early-bird-badge]")).toBeVisible();
-    await expect(soloCard.locator("[data-ppp-cta]")).toHaveAttribute(
-      "href",
-      "https://www.copecart.com/products/pid-solo/checkout?locale=en&promocode=EB80",
-    );
+    for (const productKey of productKeys) {
+      const productCard = page.locator(`[data-ppp-product="${productKey}"]`);
+      await expect(productCard.locator("[data-ppp-price]")).toHaveText(`${formatPrice(basePrices[productKey], 80)}€`);
+      await expect(productCard.locator("[data-ppp-original-price]")).toHaveText(`${basePrices[productKey]}€`);
+      await expect(productCard.locator("[data-ppp-early-bird-badge]")).toBeVisible();
+      await expect(productCard.locator("[data-ppp-cta]")).toHaveAttribute(
+        "href",
+        `https://www.copecart.com/products/pid-${productKey}/checkout?locale=en&promocode=EB80`,
+      );
+    }
 
     const note = page.locator("[data-ppp-note]");
     await expect(note).toBeVisible();
@@ -264,7 +273,7 @@ test.describe("early bird campaign on the course landing page", () => {
     const banner = page.locator("[data-ppp-banner]");
     await expect(banner).toBeVisible();
     await expect(banner).toContainText("80% off the base price, early bird included.");
-    await expectTeamUntouched(page);
+    await expectTeamEditionUntouched(page);
   });
 
   test("keeps the early bird price when the endpoint fails", async ({ page }) => {

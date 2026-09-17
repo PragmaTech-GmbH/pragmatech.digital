@@ -48,21 +48,21 @@ test.describe("PPP edge function under netlify dev", () => {
 
   test("the landing page shows discounted prices with ?country=in", async ({ page }) => {
     await page.goto(coursePath + "?country=in&" + afterEarlyBird);
-    await expect(page.locator('[data-ppp-product="solo"] [data-ppp-price]')).toHaveText("147€");
+    await expect(page.locator('[data-ppp-product="bundle_edition"] [data-ppp-price]')).toHaveText("147€");
     await expect(page.locator("[data-ppp-banner]")).toBeVisible();
-    await expect(page.locator('[data-ppp-product="solo"] [data-ppp-cta]')).toHaveAttribute("href", /promocode=/);
+    await expect(page.locator('[data-ppp-product="bundle_edition"] [data-ppp-cta]')).toHaveAttribute("href", /promocode=/);
   });
 
   test("the landing page shows base prices for the mocked German visitor", async ({ page }) => {
     await page.goto(coursePath + "?" + afterEarlyBird);
-    await expect(page.locator('[data-ppp-product="solo"] [data-ppp-price]')).toHaveText("490€");
+    await expect(page.locator('[data-ppp-product="bundle_edition"] [data-ppp-price]')).toHaveText("490€");
     await expect(page.locator("[data-ppp-banner]")).toBeHidden();
   });
 
   test("the landing page shows the early bird price for the mocked German visitor", async ({ page }) => {
     await page.goto(coursePath + "?" + duringEarlyBird);
-    await expect(page.locator('[data-ppp-product="solo"] [data-ppp-price]')).toHaveText("328.30€");
-    await expect(page.locator('[data-ppp-product="solo"] [data-ppp-early-bird-badge]')).toBeVisible();
+    await expect(page.locator('[data-ppp-product="bundle_edition"] [data-ppp-price]')).toHaveText("328.30€");
+    await expect(page.locator('[data-ppp-product="bundle_edition"] [data-ppp-early-bird-badge]')).toBeVisible();
     await expect(page.locator("[data-ppp-banner]")).toBeHidden();
   });
 });

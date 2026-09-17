@@ -1,5 +1,7 @@
-{{/* Pricing v2: Solo and Team. Content is identical across editions; they differ in
-     seats, the implementation workshop, support and the update window.
+{{/* Pricing v2: Course, Bundle and Team editions. Bundle and Team carry the same content
+     and differ in seats, the implementation workshop, support and the update window; the
+     Course Edition is for students who already own the bundled courses
+     (`everyEdition: false`).
      Purchase Power Parity (PPP) applies to products with `ppp: true` only: those cards
      carry the data-ppp-* attributes that ppp-pricing.js rewrites after calling
      /api/ppp (Netlify Edge Function). CopeCart product IDs come from the
@@ -14,7 +16,7 @@
 {{ $currency := .currency | default "€" }}
 {{ $everyEdition := .everyEdition }}
 {{ $guarantee := .guarantee }}
-{{ $pppScope := .pppScope | default "Solo edition" }}
+{{ $pppScope := .pppScope | default "Course and Bundle editions" }}
 {{ $earlyBird := .earlyBird }}
 {{ $earlyBirdCoupon := "" }}
 {{ $earlyBirdActive := false }}
@@ -61,7 +63,9 @@
         </div>
         {{ end }}
 
-        <div class="grid md:grid-cols-2 gap-6 mt-10 max-w-5xl mx-auto">
+        {{/* One column per product from three cards on, so the grid never leaves a gap. */}}
+        {{ $productColumns := cond (ge (len .products) 3) "lg:grid-cols-3 max-w-6xl" "md:grid-cols-2 max-w-5xl" }}
+        <div class="grid md:grid-cols-2 {{ $productColumns }} gap-6 mt-10 mx-auto">
             {{ range .products }}
             {{ $productKey := upper .key }}
             {{ $productId := os.Getenv (printf "PPP_PRODUCT_ID_%s" $productKey) }}
@@ -105,7 +109,8 @@
                     {{ with .seats }}<span class="font-semibold text-slate-700">{{ . }}</span>{{ end }}{{ with .license }} · {{ . }}{{ end }}{{ with .perSeat }} · {{ . }}{{ end }}
                 </p>
 
-                {{ with $everyEdition }}
+                {{/* `everyEdition: false` on a product leaves out the bundled-course strip. */}}
+                {{ with (cond (eq .everyEdition false) false $everyEdition) }}
                 <div class="rounded-lg bg-emerald-50/50 border border-emerald-100 px-3 py-2.5 mb-5 space-y-1.5" data-ppp-card-base>
                     <p class="text-[11px] font-bold uppercase tracking-widest text-emerald-700 mb-1">{{ .cardLabel | default .label }}</p>
                     {{ range .items }}
@@ -136,16 +141,6 @@
                        target="_blank" rel="noopener"
                        class="inline-flex flex-1 justify-center items-center rounded-lg bg-brand-600 px-4 py-3 text-white font-semibold hover:bg-brand-500 transition-colors"
                        {{ if $pppEnabled }}data-ppp-cta{{ else }}data-product-cta{{ end }}>{{ .buyLabel | default "Buy now" }}</a>
-                    {{ with .quoteLabel }}
-                    <a href="mailto:{{ $.Site.Params.emails.contact }}?subject={{ $.Params.ppp.quoteSubject | default "Quote request" | urlquery }}"
-                       class="inline-flex flex-1 justify-center items-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-700 font-semibold hover:bg-slate-50 hover:border-slate-400 transition-colors"
-                       data-quote-cta>
-                        <svg class="w-4 h-4 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                        </svg>
-                        {{ . }}
-                    </a>
-                    {{ end }}
                 </div>
 
                 {{ if and $guarantee (ne .guarantee false) }}

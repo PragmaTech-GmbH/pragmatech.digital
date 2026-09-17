@@ -1,5 +1,5 @@
 // Structure tests for the course landing page (sections, CTAs, curriculum totals,
-// FAQ accordion, signup form ids). Runs against plain `hugo serve` (project "hugo").
+// FAQ accordion). Runs against plain `hugo serve` (project "hugo").
 import { test, expect, type Page } from "@playwright/test";
 
 const coursePath = "/agentic-spring-boot-testing-course/";
@@ -21,7 +21,7 @@ test.describe("course landing page structure", () => {
     await expect(page.locator("[data-hero-secondary-cta]")).toHaveAttribute("href", "#curriculum");
     await expect(page.locator("[data-final-cta]")).toHaveAttribute("href", "#pricing");
 
-    for (const anchor of ["#demo", "#skills", "#curriculum", "#pricing", "#faq", "#signup"]) {
+    for (const anchor of ["#demo", "#skills", "#curriculum", "#pricing", "#faq"]) {
       await expect(page.locator(anchor)).toHaveCount(1);
     }
     expect(pageErrors).toEqual([]);
@@ -65,18 +65,6 @@ test.describe("course landing page structure", () => {
     await expect(firstItem).not.toHaveAttribute("open", "");
   });
 
-  test("signup form keeps the ids that course-signup.js relies on", async ({ page }) => {
-    await page.goto(coursePath);
-    const form = page.locator("#course-signup-form");
-    await expect(form).toHaveCount(1);
-    await expect(form).toHaveAttribute("data-action-url", /list-manage\.com/);
-    await expect(form).toHaveAttribute("data-tag-id", /\d+/);
-    await expect(form.locator('input[name="EMAIL"]')).toBeVisible();
-    await expect(page.locator("#course-signup-submit")).toBeVisible();
-    await expect(page.locator("#course-signup-success")).toBeHidden();
-    await expect(page.locator("#course-signup-already")).toBeHidden();
-    await expect(page.locator("#course-signup-error")).toBeHidden();
-  });
 
   test("shows the course + skill set diagram and the every-edition pricing strip", async ({ page }) => {
     await page.goto(coursePath);
@@ -89,7 +77,7 @@ test.describe("course landing page structure", () => {
 
     const everyEdition = page.locator("[data-ppp-every-edition]");
     await expect(everyEdition).toBeVisible();
-    await expect(everyEdition).toContainText("Both editions include");
+    await expect(everyEdition).toContainText("Bundle and Team editions include");
     await expect(page.locator("[data-ppp-card-base]")).toHaveCount(2);
     await expect(page.locator("[data-ppp-card-base]").first()).toContainText("full skill library");
     await expect(page.locator("[data-ppp-card-base]").first()).toContainText("Masterclass");
@@ -105,7 +93,7 @@ test.describe("course landing page structure", () => {
     await expect(page.locator("[data-concept]")).toHaveCount(6);
     await expect(page.locator("[data-concept]").first()).toContainText("Context starvation");
     await expect(page.locator("[data-audience]")).toHaveCount(2);
-    await expect(page.locator("[data-ppp-guarantee]")).toHaveCount(1);
+    await expect(page.locator("[data-ppp-guarantee]")).toHaveCount(2);
     await expect(page.locator("[data-ppp-guarantee]").first()).toContainText("money-back");
     await expect(page.locator("#team")).toHaveCount(1);
     await expect(page.locator("[data-team-cta]")).toHaveAttribute("href", /^mailto:info@pragmatech\.digital\?subject=/);
@@ -114,20 +102,26 @@ test.describe("course landing page structure", () => {
     await expect(page.locator("[data-testimonial]", { hasText: "Mudi Lukman" })).toHaveCount(0);
   });
 
-  test("pricing has a Solo card with the PPP contract and a fixed-price Team card", async ({ page }) => {
+  test("pricing has Course and Bundle edition cards with the PPP contract and a fixed-price Team card", async ({ page }) => {
     await page.goto(coursePath);
-    const soloCard = page.locator('[data-ppp-product="solo"]');
-    await expect(soloCard).toHaveCount(1);
-    await expect(soloCard.locator("[data-ppp-price]")).toHaveAttribute("data-ppp-base-price", "490");
-    await expect(soloCard.locator("[data-ppp-cta]")).toHaveAttribute("href", /copecart\.com/);
+    const courseEditionCard = page.locator('[data-ppp-product="course_edition"]');
+    await expect(courseEditionCard).toHaveCount(1);
+    await expect(courseEditionCard.locator("[data-ppp-price]")).toHaveAttribute("data-ppp-base-price", "329");
+    // The Course Edition is for students who already own the bundled courses.
+    await expect(courseEditionCard.locator("[data-ppp-card-base]")).toHaveCount(0);
 
-    const teamCard = page.locator('[data-product="team"]');
+    const bundleEditionCard = page.locator('[data-ppp-product="bundle_edition"]');
+    await expect(bundleEditionCard).toHaveCount(1);
+    await expect(bundleEditionCard.locator("[data-ppp-price]")).toHaveAttribute("data-ppp-base-price", "490");
+    await expect(bundleEditionCard.locator("[data-ppp-cta]")).toHaveAttribute("href", /copecart\.com/);
+
+    const teamCard = page.locator('[data-product="team_edition"]');
     await expect(teamCard).toHaveCount(1);
     await expect(teamCard).not.toHaveAttribute("data-ppp-product", /.*/);
     await expect(teamCard.locator("[data-product-price]")).toHaveText("3,990€");
-    await expect(teamCard.locator("[data-quote-cta]")).toHaveAttribute("href", /^mailto:info@pragmatech\.digital\?subject=/);
+    await expect(teamCard.locator("[data-quote-cta]")).toHaveCount(0);
     await expect(teamCard.locator("[data-product-note]")).toContainText("Larger team");
-    await expect(page.locator("[data-ppp-product]")).toHaveCount(1);
+    await expect(page.locator("[data-ppp-product]")).toHaveCount(2);
     await expect(page.locator("[data-ppp-renewal]")).toContainText("129€");
     await expect(page.locator("[data-team-overflow]")).toContainText("Larger team");
     await expect(page.locator("[data-ppp-banner]")).toBeHidden();

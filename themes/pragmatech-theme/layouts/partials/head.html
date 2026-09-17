@@ -81,11 +81,6 @@
     {{ end }}
 
     {{ if eq .Layout "course-landing" }}
-    {{ $courseJs := resources.Get "js/course-signup.js" }}
-    {{ if hugo.IsProduction }}
-    {{ $courseJs = $courseJs | minify | fingerprint }}
-    {{ end }}
-    <script src="{{ $courseJs.RelPermalink }}" defer></script>
     {{ $pppJs := resources.Get "js/ppp-pricing.js" }}
     {{ if hugo.IsProduction }}
     {{ $pppJs = $pppJs | minify | fingerprint }}

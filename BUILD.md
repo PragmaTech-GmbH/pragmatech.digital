@@ -89,14 +89,18 @@ The course landing page (`content/agentic-spring-boot-testing-course.md`, layout
   session and adjusts prices, checkout links (`promocode=`), the early bird badge, a
   note and a banner.
 - Base prices and product names live in the page frontmatter (`ppp.products`). Only
-  products with `ppp: true` (the Solo edition) get regional discounts; the Team
-  edition is sold at a fixed price with a quote request path.
+  products with `ppp: true` (the Course and Bundle editions) get regional discounts;
+  the Team Edition is sold at a fixed price. `everyEdition: false` on a product (Course
+  Edition) leaves out the bundled-course strip, because that edition is for students who
+  already own those courses.
 
 ### Early bird campaign
 
-Until 1 October 2026, 23:59 CEST the Solo edition costs 33 % less, and PPP stacks on
-top. CopeCart accepts one coupon per checkout, so every coupon is a percentage off the
-list price (490€):
+Until 1 October 2026, 23:59 CEST the Course Edition (329€) and the Bundle Edition
+(490€) cost 33 % less, and PPP stacks on top. CopeCart accepts one coupon per checkout,
+so every coupon is a percentage off the list price. The prices below are for the Bundle
+Edition; the Course Edition follows the same percentages. Every coupon must be enabled
+for both products in CopeCart:
 
 | Visitor | Early bird coupon | Price | After the campaign | Price |
 |---|---|---|---|---|
@@ -124,7 +128,7 @@ environment variables (Project configuration > Environment variables):
 
 | Variable | Read by | Purpose |
 |---|---|---|
-| `PPP_PRODUCT_ID_SOLO`, `PPP_PRODUCT_ID_TEAM` | Hugo build (`os.Getenv`) | CopeCart product IDs for the checkout links (one per `ppp.products[].key`) |
+| `PPP_PRODUCT_ID_COURSE_EDITION`, `PPP_PRODUCT_ID_BUNDLE_EDITION`, `PPP_PRODUCT_ID_TEAM_EDITION` | Hugo build (`os.Getenv`) | CopeCart product IDs for the checkout links (one per `ppp.products[].key`) |
 | `PPP_COUPON_TIER_2`, `PPP_COUPON_TIER_3`, `PPP_COUPON_TIER_4` | Edge function | Coupon codes for 30 / 50 / 70 % off (tier 1 has no coupon) |
 | `PPP_COUPON_EARLY_BIRD_TIER_1` | Hugo build and edge function | Early bird coupon, 33 % off |
 | `PPP_COUPON_EARLY_BIRD_TIER_2`, `_TIER_3`, `_TIER_4` | Edge function | Early bird + PPP coupons, 53 / 67 / 80 % off |
