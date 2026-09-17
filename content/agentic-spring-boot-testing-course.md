@@ -254,7 +254,6 @@ skillAnatomy:
 curriculum:
   headline: "Curriculum"
   intro: "Six modules, about two hours. Every lesson is hands-on in Spring PetClinic with Claude Code, with notes for GitHub Copilot and Cursor."
-  freeLabel: "Free preview"
   conceptsLabel: "Concepts you will take with you"
   concepts:
     - { term: "Context starvation", text: "why an agent without your test strategy defaults to @SpringBootTest and mocks everywhere" }

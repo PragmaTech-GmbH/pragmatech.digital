@@ -40,15 +40,16 @@ test.describe("course landing page structure", () => {
     await expect(page.locator("[data-endorsement]")).toHaveCount(3);
   });
 
-  test("curriculum totals are computed from the lessons", async ({ page }) => {
+  test("curriculum shows module titles only, with totals from the lessons", async ({ page }) => {
     await page.goto(coursePath);
     const summary = page.locator("[data-curriculum-summary]");
     await expect(summary).toContainText("6 modules");
     await expect(summary).toContainText("25 lessons");
     await expect(summary).toContainText("2h 0m");
-    await expect(summary).toContainText("2 free previews");
     await expect(page.locator("[data-curriculum-module]")).toHaveCount(6);
-    await expect(page.locator("[data-lesson-free]")).toHaveCount(2);
+    // Single lessons and their durations are not listed.
+    await expect(page.locator("[data-lesson-free]")).toHaveCount(0);
+    await expect(page.locator("[data-curriculum-module]").first()).not.toContainText("min");
   });
 
   test("FAQ items open and close without JavaScript", async ({ page }) => {
