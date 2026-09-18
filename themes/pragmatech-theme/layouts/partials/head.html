@@ -4,6 +4,7 @@
     <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | PragmaTech GmbH{{ end }}</title>
     <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Summary }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}{{ end }}">
     <link rel="canonical" href="{{ .Permalink }}">
+    {{ with .Params.robots }}<meta name="robots" content="{{ . }}">{{ end }}
     <link rel="icon" href="{{ "favicon.ico" | relURL }}">
 
 
@@ -91,6 +92,14 @@
     {{ $demoJs = $demoJs | minify | fingerprint }}
     {{ end }}
     <script src="{{ $demoJs.RelPermalink }}" defer></script>
+    {{ end }}
+
+    {{ if eq .Layout "course-interest" }}
+    {{ $courseJs := resources.Get "js/course-signup.js" }}
+    {{ if hugo.IsProduction }}
+    {{ $courseJs = $courseJs | minify | fingerprint }}
+    {{ end }}
+    <script src="{{ $courseJs.RelPermalink }}" defer></script>
     {{ end }}
 
     {{ if eq .Layout "convince-your-manager" }}
