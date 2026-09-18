@@ -1,0 +1,22 @@
+{{/* FAQ with native details/summary (no JS). Copy: params.faqs */}}
+{{ with .Params.faqs }}
+<section id="faq" class="bg-white border-b border-slate-200 scroll-mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-10 text-center">{{ .headline }}</h2>
+
+        <div class="max-w-3xl mx-auto space-y-3">
+            {{ range .items }}
+            <details class="group bg-white border border-slate-200 rounded-xl shadow-sm open:border-brand-100" data-faq-item>
+                <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 font-semibold text-slate-900 hover:text-brand-600 transition-colors">
+                    <span>{{ .question }}</span>
+                    <svg class="w-5 h-5 flex-shrink-0 text-slate-400 transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </summary>
+                <div class="px-6 pb-6 text-slate-600 leading-relaxed">{{ .answer }}</div>
+            </details>
+            {{ end }}
+        </div>
+    </div>
+</section>
+{{ end }}

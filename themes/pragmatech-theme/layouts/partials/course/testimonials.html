@@ -1,0 +1,42 @@
+{{/* Student testimonials with initials avatars, plus expert endorsements. Copy: params.testimonials */}}
+{{ with .Params.testimonials }}
+<section class="bg-slate-50 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4 text-center">{{ .headline }}</h2>
+        <p class="text-slate-600 text-center mb-10 max-w-2xl mx-auto">{{ .intro }}</p>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {{ range .students }}
+            <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm flex flex-col" data-testimonial>
+                <blockquote class="text-slate-700 leading-relaxed flex-1 mb-5">&ldquo;{{ .text }}&rdquo;</blockquote>
+                <div class="flex items-center gap-3">
+                    <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-50 border border-brand-100 text-brand-900 font-bold text-sm" aria-hidden="true">{{ .initials }}</span>
+                    <div>
+                        <p class="text-sm font-semibold text-slate-900">{{ .person }}</p>
+                        <p class="text-xs text-slate-500">{{ .position }}</p>
+                    </div>
+                </div>
+            </div>
+            {{ end }}
+        </div>
+
+        <div class="mt-12">
+            <p class="text-xs font-bold uppercase tracking-widest text-slate-500 text-center mb-6">{{ .expertsLabel }}</p>
+            <div class="grid md:grid-cols-3 gap-6">
+                {{ range .experts }}
+                <div class="bg-white border border-brand-100 rounded-xl p-5" data-endorsement>
+                    <p class="text-sm text-slate-700 leading-relaxed mb-4">&ldquo;{{ .text }}&rdquo;</p>
+                    <div class="flex items-center gap-3">
+                        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-50 border border-brand-100 text-brand-900 font-bold text-sm" aria-hidden="true">{{ .initials }}</span>
+                        <div>
+                            <p class="text-sm font-semibold text-slate-900">{{ .person }}</p>
+                            <p class="text-xs text-slate-500">{{ .position }}</p>
+                        </div>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</section>
+{{ end }}

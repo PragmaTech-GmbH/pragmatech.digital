@@ -13,6 +13,10 @@ params:
   defaultShareImage: "/images/pragmatech-social-banner.png"
   socialTitle: "PragmaTech GmbH - Build & Ship Software w/ Confidence"
   bannerText: "Our new open-source project [Spring Test Profiler](/products/spring-test-profiler/) is available! Try it now to speed up your Spring Boot builds."
+  # Early bird banner for the agentic course at the top of the homepage hero.
+  # Set to true to show it; it also needs the campaign in the course frontmatter
+  # (ppp.earlyBird) to still be running.
+  showCourseBanner: false
   emails:
     contact: "info@pragmatech.digital"
     info: "info@pragmatech.digital"
@@ -34,6 +38,26 @@ theme: "pragmatech-theme"
 
 # Align trailing slashes in URLs
 canonifyURLs: true
+
+# Allow templates to read PPP_* env vars (CopeCart product IDs) at build time.
+# Setting `security` replaces Hugo's defaults, so the exec allow-list is repeated here:
+# Hugo's documented default plus `node` (Hugo >= 0.160 runs Tailwind through node).
+# See https://gohugo.io/configuration/security/
+security:
+  exec:
+    allow:
+      - '^(dart-)?sass(-embedded)?$'
+      - '^go$'
+      - '^git$'
+      - '^node$'
+      - '^npx$'
+      - '^postcss$'
+      - '^tailwindcss$'
+  funcs:
+    getenv:
+      - '^HUGO_'
+      - '^CI$'
+      - '^PPP_'
 
 # Content types configuration
 archetypeDir: "archetypes"

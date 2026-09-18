@@ -8,9 +8,9 @@
       "tailwindcss": "project"
     }
   },
-  "dependencies": {},
   "description": "PragmaTech GmbH",
   "devDependencies": {
+    "@playwright/test": "^1.62.1",
     "@tailwindcss/cli": "^4.1.4",
     "@tailwindcss/typography": "^0.5.10",
     "tailwindcss": "^4.1.4"
@@ -31,11 +31,19 @@
     "clean:generated": "rm -rf static/generated",
     "create:placeholders": "bash scripts/create-placeholder-images.sh",
     "dev": "hugo serve -D",
+    "dev:netlify": "npx netlify-cli dev --no-open --geo=mock --country=DE",
     "dev:watch": "hugo serve -D --navigateToChanged",
     "lint": "postcss assets/css/styles.css --check",
     "optimize:images": "bash scripts/convert-to-webp.sh",
     "setup": "npm install && npm run create:placeholders && npm run optimize:images",
-    "start": "hugo serve"
+    "start": "hugo serve",
+    "test": "npm run test:unit && npm run test:e2e",
+    "test:e2e": "playwright test --project=hugo",
+    "test:e2e:netlify": "PPP_E2E_NETLIFY=1 playwright test --project=netlify",
+    "test:unit": "node --test tests/unit/*.test.ts"
   },
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=24"
+  }
 }
