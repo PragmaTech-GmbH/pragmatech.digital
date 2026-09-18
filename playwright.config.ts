@@ -9,7 +9,7 @@ import { defineConfig } from "@playwright/test";
 // Browser: Playwright's own bundled Chromium (installed with `npx playwright install
 // chromium`), headless, with a throwaway profile per test. No `channel` is set on
 // purpose, so the system browsers (Chrome, Firefox, Safari) are never used or touched.
-const coursePath = "/agentic-spring-boot-testing-course/";
+const coursePath = "/agentic-spring-boot-testing-course-new/";
 const useNetlifyDev = Boolean(process.env.PPP_E2E_NETLIFY);
 
 const chromiumLaunchArgs = [

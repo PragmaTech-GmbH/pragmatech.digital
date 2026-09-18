@@ -277,7 +277,7 @@ describe("early bird campaign", () => {
   });
 
   test("matches ppp.earlyBird in the course landing page frontmatter", () => {
-    const landingPage = readFileSync(new URL("../../content/agentic-spring-boot-testing-course.md", import.meta.url), "utf8");
+    const landingPage = readFileSync(new URL("../../content/agentic-spring-boot-testing-course-new.md", import.meta.url), "utf8");
     const earlyBirdBlock = landingPage.match(/^  earlyBird:\n((?:    .*\n)+)/m)?.[1] ?? "";
     assert.match(earlyBirdBlock, new RegExp(`discountPercentage: ${EARLY_BIRD_DISCOUNT_PERCENTAGE}\\n`));
     assert.ok(earlyBirdBlock.includes(`endsAt: "${EARLY_BIRD_ENDS_AT}"`), "endsAt differs from netlify/shared/ppp-early-bird.ts");

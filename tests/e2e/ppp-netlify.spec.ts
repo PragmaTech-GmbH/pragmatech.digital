@@ -3,7 +3,7 @@
 // PPP_E2E_NETLIFY=1 so playwright.config.ts starts `netlify dev --geo=mock --country=DE`.
 import { test, expect } from "@playwright/test";
 
-const coursePath = "/agentic-spring-boot-testing-course/";
+const coursePath = "/agentic-spring-boot-testing-course-new/";
 // `?now=` pins the campaign clock (free outside production): before and after the early bird deadline.
 const duringEarlyBird = "now=2026-09-20T10:00:00Z";
 const afterEarlyBird = "now=2026-10-01T22:00:00Z";

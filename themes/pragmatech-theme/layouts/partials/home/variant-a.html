@@ -22,7 +22,7 @@
              frontmatter (ppp.earlyBird), so it also disappears by itself with the first
              build after the deadline. */}}
         {{ if site.Params.showCourseBanner }}
-        {{ with site.GetPage "/agentic-spring-boot-testing-course" }}
+        {{ with site.GetPage "/agentic-spring-boot-testing-course-new" }}
         {{ $earlyBird := .Params.ppp.earlyBird }}
         {{ if and $earlyBird (now.Before (time.AsTime $earlyBird.endsAt)) }}
         <a href="{{ .RelPermalink }}" class="relative block border-b border-amber-200 bg-amber-50 hover:bg-amber-100 transition-colors" data-home-early-bird>

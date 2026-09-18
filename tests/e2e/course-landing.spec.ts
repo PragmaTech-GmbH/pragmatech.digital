@@ -2,7 +2,7 @@
 // FAQ accordion). Runs against plain `hugo serve` (project "hugo").
 import { test, expect, type Page } from "@playwright/test";
 
-const coursePath = "/agentic-spring-boot-testing-course/";
+const coursePath = "/agentic-spring-boot-testing-course-new/";
 
 function collectPageErrors(page: Page): Error[] {
   const pageErrors: Error[] = [];
