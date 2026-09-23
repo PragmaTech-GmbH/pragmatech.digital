@@ -23,7 +23,7 @@ hero:
   headlineAccent: "Agentic Spring Boot Testing."
   headline: "Reliable, meaningful test suites with AI agents."
   bullets:
-    - "Seven agent skill templates - tailor them to your project."
+    - "Online Course & Skill Library - six hands-on modules plus seven agent skills you tailor to your project."
     - "Agent harnessing for testing - the setup that makes agents choose the right test type before writing a line."
     - "Don't just press Tab and Enter - learn how to build and maintain a fast, comprehensive test suite with your agent."
   trust:
