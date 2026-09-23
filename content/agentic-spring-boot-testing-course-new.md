@@ -484,15 +484,13 @@ faqs:
     - question: "Does it work with Maven and Gradle?"
       answer: "Yes. PetClinic uses Maven in the lessons, and the skills contain the Gradle equivalents for parallel execution, test tasks and Testcontainers reuse."
     - question: "Which Spring Boot and Java versions are covered?"
-      answer: "Recorded with Spring Boot 4 and Java 21. The skills handle the differences to Spring Boot 3.x, for example @MockBean versus @MockitoBean. Spring Boot 2.x is not covered."
+      answer: "Recorded with Spring Boot 4 and Java 21. The skills handle the differences to Spring Boot 3.x, for example @MockBean versus @MockitoBean."
     - question: "How long do I have access, and what happens after the update window?"
       answer: "The lessons of all four courses stay yours forever. Skill updates are included for 12 months (Course and Bundle editions) or 24 months (Team Edition). After that you renew for 129€ per year to keep receiving updates, or you keep the version from your purchase window and nothing is taken away."
     - question: "Can I pay from a company training budget or buy for a team?"
       answer: "Yes. Every edition comes with an invoice for your employer on request, and 490€ fits most no-approval training budgets. For teams, the Team Edition has 10 seats, a 2-hour implementation workshop on your codebase and 30 days of async Q&A. Email me if you need a purchase order or a custom invoice."
     - question: "What if the course is not for me?"
       answer: "Email me within 60 days of getting access and you get a full refund, no questions asked. For the Team Edition the guarantee ends once the implementation workshop has taken place."
-    - question: "When does the course launch?"
-      answer: "It is available now. You get access to all lessons, the bundled courses and the skills right after checkout, and an email whenever new content lands."
 
 finalCta:
   headline: "Give your agent the testing judgment it is missing"
