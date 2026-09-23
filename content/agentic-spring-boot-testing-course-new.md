@@ -184,7 +184,7 @@ diagram:
 callout:
   eyebrow: "To be clear"
   title: "This is not a prompt-engineering course"
-  text: "You will not learn magic prompts or yet another framework. You will learn the harness that makes any coding agent test like a senior Spring Boot engineer: skills, a test strategy file, and a reviewer loop. And you get that harness as files you own, not as a tool you rent."
+  text: "You will not learn magic prompts or yet another framework. You will learn how to harness any coding agent so it tests like a senior Spring Boot engineer: an online course that teaches the testing decisions, and a skill library that brings them into your project. And the skills are files you own, not a tool you rent."
   bullets:
     - "Works with Claude Code, GitHub Copilot and Cursor"
     - "Plain Markdown, no vendor lock-in, no subscription"
@@ -209,14 +209,14 @@ included:
   format:
     - "25 video lessons, about 2 hours"
     - "Written summary and code for every lesson"
-    - "Skills and templates with 12 months of access to changes, 24 for teams"
+    - "Skill library with 12 months of access to changes, 24 for teams"
     - "Finish in one evening, apply the next morning"
   items:
     - { icon: code,      title: "Seven agent skills, maintained",         text: "unit-testing, slice-testing, slice-testing-webmvc, integration-testing, e2e-testing, testcontainers-setup and test-setup-reviewer as SKILL.md files. Updates for 12 months, 24 for teams." }
     - { icon: play,      title: "The 2-hour Agentic Testing course",       text: "25 lessons in 6 modules, recorded on Spring PetClinic. Watch how the skills are built and applied, then code along." }
     - { icon: refresh,   title: "Three more courses included*",            text: "Testing Spring Boot Applications Masterclass, TDD with Spring Boot Done Right and Hands-On Mocking with Mockito. Your complete testing education. *Bundle and Team editions only." }
     - { icon: beaker,    title: "The PetClinic reference test suite",      text: "The complete before-and-after test suite from the course, so you can diff what the skills changed." }
-    - { icon: document,  title: "Harness templates",                      text: "CLAUDE.md, AGENTS.md and a test-strategy file, plus the equivalent setup for GitHub Copilot and Cursor." }
+    - { icon: document,  title: "My agentic development setup",          text: "The CLAUDE.md, AGENTS.md and agent configuration I use in my own Spring Boot projects, plus the equivalent setup for GitHub Copilot and Cursor." }
     - { icon: badge,     title: "Certificate of completion",              text: "A certificate for your training records once you finish all lessons." }
     - { icon: subtitles, title: "Lessons stay yours",                     text: "All video lessons remain accessible after the update window. English subtitles for every lesson." }
 
@@ -283,7 +283,7 @@ curriculum:
       summary: "The project files that turn a generic agent into one that tests the way your team does."
       lessons:
         - { title: "CLAUDE.md and AGENTS.md: what belongs in, what does not", duration: 5 }
-        - { title: "A test strategy file the agent actually reads", duration: 5 }
+        - { title: "My agentic development setup: how I work with coding agents day to day", duration: 5 }
         - { title: "Skills vs. rules vs. prompts: where each instruction lives", duration: 4 }
         - { title: "Installing the seven skills in PetClinic for Claude Code, Copilot and Cursor", duration: 6 }
     - title: "The seven skills applied to Spring PetClinic"
@@ -360,7 +360,7 @@ audience:
     - title: "You have let agents write tests and stopped trusting the result"
       text: "You know the green-but-empty test class. This course gives you the harness that turns the same agent into one that writes tests you would accept in review, plus a reviewer skill that catches the rest."
     - title: "You have not let agents touch your tests yet"
-      text: "Good instinct. Start with the guardrails in place: install the skills, set the test strategy, and let the agent work inside them from the first prompt. You skip the cleanup phase most teams are in right now. If you still need the testing foundations, the bundled Masterclass covers them."
+      text: "Good instinct. Start with the guardrails in place: install the skills, adopt my agentic development setup, and let the agent work inside them from the first prompt. You skip the cleanup phase most teams are in right now. If you still need the testing foundations, the bundled Masterclass covers them."
 
 # Pricing v2: Course, Bundle and Team editions. `key` selects the CopeCart product ID env var
 # PPP_PRODUCT_ID_<KEY>. Purchase Power Parity applies only to products with
