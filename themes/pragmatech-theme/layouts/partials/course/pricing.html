@@ -1,7 +1,7 @@
 {{/* Pricing v2: Course, Bundle and Team editions. Bundle and Team carry the same content
      and differ in seats, the implementation workshop, support and the update window; the
-     Course Edition is for students who already own the bundled courses
-     (`everyEdition: false`).
+     Course Edition is for students who already own the bundled courses. The Bundle card
+     shows its bundled courses as a green `addOns` box.
      Purchase Power Parity (PPP) applies to products with `ppp: true` only: those cards
      carry the data-ppp-* attributes that ppp-pricing.js rewrites after calling
      /api/ppp (Netlify Edge Function). CopeCart product IDs come from the
@@ -14,7 +14,6 @@
      Keep every data-ppp-* attribute: ppp-pricing.js and tests/e2e depend on them. */}}
 {{ with .Params.ppp }}
 {{ $currency := .currency | default "€" }}
-{{ $everyEdition := .everyEdition }}
 {{ $guarantee := .guarantee }}
 {{ $pppScope := .pppScope | default "Course and Bundle editions" }}
 {{ $earlyBird := .earlyBird }}
@@ -38,30 +37,27 @@
         <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4 text-center">{{ .headline | default "Pricing" }}</h2>
         <p class="text-slate-600 text-center mb-4 max-w-2xl mx-auto">{{ .intro }}</p>
 
+        {{ if and $earlyBird $earlyBird.countdownHeadline (now.Before (time.AsTime $earlyBird.endsAt)) }}
+        <div class="max-w-3xl mx-auto mt-8 mb-10 rounded-2xl border border-amber-200 bg-amber-50 px-6 py-6 text-center"
+             data-early-bird-countdown data-ends-at="{{ $earlyBird.endsAt }}">
+            <p class="text-lg font-bold text-amber-900">{{ $earlyBird.countdownHeadline }}</p>
+            <p class="text-sm text-amber-800 mt-1 mb-5 max-w-xl mx-auto">{{ $earlyBird.countdownText }}</p>
+            <div class="flex justify-center gap-3" role="timer" aria-live="off">
+                {{ range slice "days" "hours" "minutes" "seconds" }}
+                <div class="w-20 rounded-xl bg-white border border-amber-200 py-3 shadow-sm">
+                    <span class="block text-3xl font-bold text-slate-900 tabular-nums" data-countdown-{{ . }}>--</span>
+                    <span class="block text-[11px] font-bold uppercase tracking-widest text-amber-700 mt-1">{{ . }}</span>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+        {{ end }}
+
         <p class="hidden text-sm font-semibold text-emerald-700 bg-emerald-50 border border-emerald-100 rounded-lg px-4 py-3 mb-4 text-center max-w-2xl mx-auto" data-ppp-note>
             <span data-ppp-flag></span>
             <span data-ppp-discount-percentage></span>% <span class="hidden" data-ppp-early-bird-only>early bird and </span>Purchase Power Parity discount for
             <span data-ppp-country-name></span> applied to the {{ $pppScope }} - coupon <code class="font-mono" data-ppp-coupon-code></code> is pre-filled at checkout.
         </p>
-
-        {{ with $everyEdition }}
-        <div class="max-w-4xl mx-auto mt-8 rounded-xl border border-emerald-100 bg-emerald-50/50 px-5 py-5" data-ppp-every-edition>
-            <p class="text-xs font-bold uppercase tracking-widest text-emerald-700 mb-3 text-center">{{ .label }}</p>
-            <div class="grid sm:grid-cols-2 gap-3">
-                {{ range .items }}
-                <span class="inline-flex items-start gap-2 px-3 py-2 rounded-lg bg-white border border-emerald-100 text-sm font-semibold text-slate-800 shadow-sm">
-                    <svg class="w-5 h-5 text-emerald-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
-                    </svg>
-                    <span>{{ . }}</span>
-                </span>
-                {{ end }}
-            </div>
-            {{ with .principle }}
-            <p class="text-xs text-slate-600 text-center mt-4">{{ . }}</p>
-            {{ end }}
-        </div>
-        {{ end }}
 
         {{/* One column per product from three cards on, so the grid never leaves a gap. */}}
         {{ $productColumns := cond (ge (len .products) 3) "lg:grid-cols-3 max-w-6xl" "md:grid-cols-2 max-w-5xl" }}
@@ -109,10 +105,12 @@
                     {{ with .seats }}<span class="font-semibold text-slate-700">{{ . }}</span>{{ end }}{{ with .license }} · {{ . }}{{ end }}{{ with .perSeat }} · {{ . }}{{ end }}
                 </p>
 
-                {{/* `everyEdition: false` on a product leaves out the bundled-course strip. */}}
-                {{ with (cond (eq .everyEdition false) false $everyEdition) }}
+                {{/* `addOns`: what this edition adds on top of the one before, as a green box. */}}
+                {{ with .addOns }}
+                {{ with .label }}
+                <p class="text-[11px] font-bold uppercase tracking-widest text-slate-500 mb-2" data-addons-label>{{ . }}</p>
+                {{ end }}
                 <div class="rounded-lg bg-emerald-50/50 border border-emerald-100 px-3 py-2.5 mb-5 space-y-1.5" data-ppp-card-base>
-                    <p class="text-[11px] font-bold uppercase tracking-widest text-emerald-700 mb-1">{{ .cardLabel | default .label }}</p>
                     {{ range .items }}
                     <p class="flex items-start gap-2 text-xs font-semibold text-emerald-800">
                         <svg class="w-4 h-4 mt-px text-emerald-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -160,8 +158,28 @@
             {{ end }}
         </div>
 
-        {{ with .renewal }}
-        <p class="text-sm text-slate-600 text-center mt-10 max-w-2xl mx-auto" data-ppp-renewal>{{ . }}</p>
+        {{ with .managerTemplate }}
+        <div class="mt-10 max-w-3xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-white px-6 py-5 shadow-sm" data-manager-template>
+            <div class="flex items-start gap-4 text-center sm:text-left">
+                <span class="hidden sm:inline-flex flex-shrink-0 items-center justify-center w-10 h-10 rounded-full bg-brand-50 text-brand-600">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                </span>
+                <div>
+                    <p class="font-bold text-slate-900">{{ .headline }}</p>
+                    <p class="text-sm text-slate-600">{{ .text }}</p>
+                </div>
+            </div>
+            <a href="{{ .href }}"
+               class="flex-shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-bold border border-brand-100 bg-brand-50 text-brand-600 hover:bg-brand-100 transition-colors"
+               data-manager-template-link>
+                {{ .label }}
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+            </a>
+        </div>
         {{ end }}
     </div>
 </section>
@@ -176,4 +194,33 @@
         <button type="button" class="text-slate-400 hover:text-white text-xl leading-none flex-shrink-0" aria-label="Dismiss" data-ppp-banner-close>&times;</button>
     </div>
 </div>
+{{ if and $earlyBird $earlyBird.countdownHeadline (now.Before (time.AsTime $earlyBird.endsAt)) }}
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const countdownElement = document.querySelector('[data-early-bird-countdown]');
+        if (!countdownElement) return;
+        const endsAtMillis = Date.parse(countdownElement.getAttribute('data-ends-at'));
+        const unitElements = {
+            days: countdownElement.querySelector('[data-countdown-days]'),
+            hours: countdownElement.querySelector('[data-countdown-hours]'),
+            minutes: countdownElement.querySelector('[data-countdown-minutes]'),
+            seconds: countdownElement.querySelector('[data-countdown-seconds]'),
+        };
+        const updateCountdown = () => {
+            const remainingSeconds = Math.floor((endsAtMillis - Date.now()) / 1000);
+            if (remainingSeconds <= 0) {
+                countdownElement.hidden = true;
+                clearInterval(countdownTimer);
+                return;
+            }
+            unitElements.days.textContent = Math.floor(remainingSeconds / 86400);
+            unitElements.hours.textContent = String(Math.floor(remainingSeconds % 86400 / 3600)).padStart(2, '0');
+            unitElements.minutes.textContent = String(Math.floor(remainingSeconds % 3600 / 60)).padStart(2, '0');
+            unitElements.seconds.textContent = String(remainingSeconds % 60).padStart(2, '0');
+        };
+        const countdownTimer = setInterval(updateCountdown, 1000);
+        updateCountdown();
+    });
+</script>
+{{ end }}
 {{ end }}

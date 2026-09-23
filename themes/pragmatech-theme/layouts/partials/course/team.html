@@ -18,14 +18,16 @@
                     </li>
                     {{ end }}
                 </ul>
-                <a href="mailto:{{ $.Site.Params.emails.contact }}?subject={{ .mailSubject | default "Team license" | urlquery }}"
+                {{ with .ctaLabel }}
+                <a href="mailto:{{ $.Site.Params.emails.contact }}?subject={{ $.Params.team.mailSubject | default "Team license" | urlquery }}"
                    class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg font-bold border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 hover:border-slate-400 transition-colors"
                    data-team-cta>
                     <svg class="w-5 h-5 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                     </svg>
-                    {{ .ctaLabel }}
+                    {{ . }}
                 </a>
+                {{ end }}
                 {{ with .overflow }}
                 <p class="mt-4 text-sm text-slate-500" data-team-overflow>{{ . }}</p>
                 {{ end }}

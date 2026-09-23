@@ -8,8 +8,8 @@ import handler, { handlePppRequest, TIERS } from "../../netlify/edge-functions/p
 import { COUNTRY_TIERS } from "../../netlify/shared/ppp-country-tiers.ts";
 import { EARLY_BIRD_DISCOUNT_PERCENTAGE, EARLY_BIRD_ENDS_AT } from "../../netlify/shared/ppp-early-bird.ts";
 
-const DURING_EARLY_BIRD = Date.parse("2026-10-01T23:59:59+02:00");
-const AFTER_EARLY_BIRD = Date.parse("2026-10-02T00:00:00+02:00");
+const DURING_EARLY_BIRD = Date.parse("2026-10-02T08:59:59+02:00");
+const AFTER_EARLY_BIRD = Date.parse("2026-10-02T09:00:00+02:00");
 
 const envStore = new Map<string, string>();
 
@@ -140,7 +140,7 @@ describe("country override", () => {
 
   test("falls back to the CONTEXT env var when deploy context is missing", async () => {
     envStore.set("CONTEXT", "dev");
-    const request = new Request("https://pragmatech.digital/api/ppp?country=in&now=2026-10-02T00:00:00%2B02:00");
+    const request = new Request("https://pragmatech.digital/api/ppp?country=in&now=2026-10-02T09:00:00%2B02:00");
     const body = await handler(request, { geo: { country: { code: "DE", name: "Germany" } } } as any).json();
     assert.equal(body.tier, 4);
     assert.equal(body.overridden, true);
@@ -237,7 +237,7 @@ describe("early bird campaign", () => {
     assert.equal(during.earlyBird, true);
     assert.equal(during.overridden, true);
 
-    const after = await callJson("?now=2026-10-01T22:00:00Z", { country: { code: "DE", name: "Germany" } }, "dev", DURING_EARLY_BIRD);
+    const after = await callJson("?now=2026-10-02T07:00:00Z", { country: { code: "DE", name: "Germany" } }, "dev", DURING_EARLY_BIRD);
     assert.equal(after.earlyBird, false);
     assert.equal(after.couponCode, null);
   });

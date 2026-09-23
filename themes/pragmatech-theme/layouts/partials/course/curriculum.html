@@ -1,15 +1,6 @@
-{{/* Curriculum: module titles only. The lessons stay in params.curriculum.modules
-     because the totals (lessons, running time) are computed from them, but single
-     lessons and their durations are not shown. Copy: params.curriculum */}}
+{{/* Curriculum: module titles only. Lesson count and running time are not shown
+     until the recording is finished. Copy: params.curriculum */}}
 {{ with .Params.curriculum }}
-{{ $totalMinutes := 0 }}
-{{ $lessonCount := 0 }}
-{{ range .modules }}
-    {{ range .lessons }}
-        {{ $totalMinutes = add $totalMinutes .duration }}
-        {{ $lessonCount = add $lessonCount 1 }}
-    {{ end }}
-{{ end }}
 <section id="curriculum" class="bg-slate-50 border-b border-slate-200 scroll-mt-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
         <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4 text-center">{{ .headline }}</h2>
@@ -17,8 +8,6 @@
 
         <div class="flex flex-wrap justify-center gap-2 mb-10" data-curriculum-summary>
             <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-xs text-slate-700 shadow-sm">{{ len .modules }} modules</span>
-            <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-xs text-slate-700 shadow-sm">{{ $lessonCount }} lessons</span>
-            <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-xs text-slate-700 shadow-sm">{{ div $totalMinutes 60 }}h {{ mod $totalMinutes 60 }}m</span>
         </div>
 
         <div class="grid md:grid-cols-2 gap-6">

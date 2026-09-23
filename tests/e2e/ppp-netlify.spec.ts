@@ -6,7 +6,7 @@ import { test, expect } from "@playwright/test";
 const coursePath = "/agentic-spring-boot-testing-course-new/";
 // `?now=` pins the campaign clock (free outside production): before and after the early bird deadline.
 const duringEarlyBird = "now=2026-09-20T10:00:00Z";
-const afterEarlyBird = "now=2026-10-01T22:00:00Z";
+const afterEarlyBird = "now=2026-10-02T07:00:00Z";
 
 test.describe("PPP edge function under netlify dev", () => {
   test.skip(!process.env.PPP_E2E_NETLIFY, "set PPP_E2E_NETLIFY=1 to run against netlify dev");

@@ -19,8 +19,8 @@ function formatPrice(basePrice: number, discountPercentage: number): string {
 const tier4India = { country: "IN", countryName: "India", tier: 4, discountPercentage: 70, couponCode: "T70" };
 const tier1Germany = { country: "DE", countryName: "Germany", tier: 1, discountPercentage: 0, couponCode: null };
 
-const earlyBirdEndsAt = "2026-10-02T00:00:00+02:00";
-const duringEarlyBird = new Date("2026-10-01T23:00:00+02:00");
+const earlyBirdEndsAt = "2026-10-02T09:00:00+02:00";
+const duringEarlyBird = new Date("2026-10-02T08:00:00+02:00");
 const afterEarlyBird = new Date(earlyBirdEndsAt);
 const earlyBirdGermany = { ...tier1Germany, discountPercentage: 33, couponCode: "EB33", earlyBird: true, earlyBirdEndsAt };
 const earlyBirdIndia = { ...tier4India, discountPercentage: 80, couponCode: "EB80", earlyBird: true, earlyBirdEndsAt };
@@ -80,7 +80,7 @@ async function expectEarlyBirdPricing(page: Page) {
     await expect(productCard.locator("[data-ppp-original-price]")).toBeVisible();
     await expect(productCard.locator("[data-ppp-original-price]")).toHaveText(`${basePrices[productKey]}€`);
     await expect(productCard.locator("[data-ppp-early-bird-badge]")).toBeVisible();
-    await expect(productCard.locator("[data-ppp-early-bird-badge]")).toHaveText("Early bird: 33% off until 1 October 2026, 23:59 CEST");
+    await expect(productCard.locator("[data-ppp-early-bird-badge]")).toHaveText("Early bird: 33% off until course launch at 2 October 2026, 09:00 CEST");
     await expect(productCard.locator("[data-ppp-cta]")).toHaveAttribute(
       "href",
       `https://www.copecart.com/products/pid-${productKey}/checkout?locale=en&promocode=EB33`,
@@ -311,9 +311,9 @@ test.describe("early bird campaign on the course landing page", () => {
 
   test("forwards ?now to the endpoint and uses it as the clock", async ({ page }) => {
     const requestedUrls = await fakePppEndpoint(page, null, { abort: true });
-    await page.goto(coursePath + "?now=2026-10-01T22:00:00Z");
+    await page.goto(coursePath + "?now=2026-10-02T07:00:00Z");
     await expectBasePricing(page);
-    expect(new URL(requestedUrls[0]).searchParams.get("now")).toBe("2026-10-01T22:00:00Z");
+    expect(new URL(requestedUrls[0]).searchParams.get("now")).toBe("2026-10-02T07:00:00Z");
   });
 
   test("pre-renders the early bird price for visitors without JavaScript", async ({ request }) => {
@@ -321,6 +321,6 @@ test.describe("early bird campaign on the course landing page", () => {
     const html = await (await request.get(coursePath)).text();
     expect(html).toMatch(/data-ppp-price[^>]*>328\.30€</);
     expect(html).toContain("/checkout?locale=en&amp;promocode=EB33");
-    expect(html).toMatch(/data-ppp-early-bird-ends-at="2026-10-02T00:00:00(\+|&#43;)02:00"/);
+    expect(html).toMatch(/data-ppp-early-bird-ends-at="2026-10-02T09:00:00(\+|&#43;)02:00"/);
   });
 });

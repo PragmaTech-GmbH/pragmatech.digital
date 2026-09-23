@@ -90,13 +90,13 @@ The course landing page (`content/agentic-spring-boot-testing-course-new.md`, la
   note and a banner.
 - Base prices and product names live in the page frontmatter (`ppp.products`). Only
   products with `ppp: true` (the Course and Bundle editions) get regional discounts;
-  the Team Edition is sold at a fixed price. `everyEdition: false` on a product (Course
-  Edition) leaves out the bundled-course strip, because that edition is for students who
-  already own those courses.
+  the Team Edition is sold at a fixed price. The editions build on each other: `addOns`
+  on a product (Bundle Edition) renders a green box with what it adds to the edition
+  before it.
 
 ### Early bird campaign
 
-Until 1 October 2026, 23:59 CEST the Course Edition (329€) and the Bundle Edition
+Until 2 October 2026, 09:00 CEST the Course Edition (329€) and the Bundle Edition
 (490€) cost 33 % less, and PPP stacks on top. CopeCart accepts one coupon per checkout,
 so every coupon is a percentage off the list price. The prices below are for the Bundle
 Edition; the Course Edition follows the same percentages. Every coupon must be enabled
