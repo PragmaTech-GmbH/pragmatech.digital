@@ -475,3 +475,10 @@
 /* Native <details> FAQ (course landing page): hide the default marker in WebKit,
    the chevron in the summary replaces it. */
 summary::-webkit-details-marker { display: none; }
+
+/* PPP pricing (partials/course/pricing.html): ppp-pricing.js sets data-ppp-loading on the
+   pricing root while it waits for /api/ppp. Plain CSS, because Tailwind only generates
+   classes it finds in the rendered HTML. */
+[data-ppp-price-spinner] { display: none; }
+[data-ppp-loading] [data-ppp-price-spinner] { display: flex; }
+[data-ppp-loading] [data-ppp-price-values] { visibility: hidden; }

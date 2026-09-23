@@ -90,13 +90,23 @@
                     <span class="inline-block rounded-full bg-amber-50 border border-amber-200 px-3 py-1 text-xs font-bold text-amber-800">Early bird: {{ $earlyBird.discountPercentage }}% off until {{ $earlyBird.endsAtLabel }}</span>
                 </p>
                 {{ end }}
-                <p class="mb-1">
+                <p class="relative mb-1">
                     {{ if $pppEnabled }}
+                    {{/* Hidden by CSS while ppp-pricing.js waits for /api/ppp (data-ppp-loading on the root). */}}
+                    <span data-ppp-price-values>
                     <span class="{{ if not $showEarlyBird }}hidden {{ end }}text-lg text-slate-400 line-through mr-2" data-ppp-original-price>{{ lang.FormatNumberCustom 0 .price }}{{ $currency }}</span>
                     <span class="text-4xl font-bold text-slate-900"
                           data-ppp-price
                           data-ppp-base-price="{{ .price }}"
                           data-ppp-currency="{{ $currency }}">{{ lang.FormatNumberCustom $displayPriceDecimals $displayPrice }}{{ $currency }}</span>
+                    </span>
+                    <span class="absolute inset-0 items-center gap-2 text-sm text-slate-500" data-ppp-price-spinner aria-hidden="true">
+                        <svg class="w-6 h-6 text-brand-600 animate-spin" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                        </svg>
+                        Loading your price
+                    </span>
                     {{ else }}
                     <span class="text-4xl font-bold text-slate-900" data-product-price>{{ lang.FormatNumberCustom 0 .price }}{{ $currency }}</span>
                     {{ end }}
@@ -184,14 +194,15 @@
     </div>
 </section>
 
-<div class="hidden fixed bottom-0 inset-x-0 z-40 bg-slate-900 text-slate-100 px-4 py-3 text-sm shadow-lg" role="status" data-ppp-banner>
-    <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+{{/* PPP banner: top right below the sticky navbar (h-20), shown by ppp-pricing.js once the visitor scrolls. */}}
+<div class="hidden fixed top-24 inset-x-4 sm:inset-x-auto sm:right-6 sm:max-w-md z-40 rounded-xl bg-slate-900 border border-slate-700 text-white text-base leading-relaxed px-5 py-4 shadow-2xl" role="status" data-ppp-banner>
+    <div class="flex items-start justify-between gap-4">
         <p>
             Hey! It looks like you are from <span data-ppp-country-name></span> <span data-ppp-flag></span>.
             We support Purchase Power Parity. The {{ $pppScope }} price you see is <span data-ppp-discount-percentage></span>% off the base price<span class="hidden" data-ppp-early-bird-only>, early bird included</span>.
-            Use the coupon code <code class="font-mono bg-slate-800 px-1.5 py-0.5 rounded" data-ppp-coupon-code></code> during checkout.
+            Use the coupon code <code class="font-mono font-semibold text-white bg-slate-700 px-1.5 py-0.5 rounded" data-ppp-coupon-code></code> during checkout.
         </p>
-        <button type="button" class="text-slate-400 hover:text-white text-xl leading-none flex-shrink-0" aria-label="Dismiss" data-ppp-banner-close>&times;</button>
+        <button type="button" class="text-white/70 hover:text-white text-2xl leading-none flex-shrink-0" aria-label="Dismiss" data-ppp-banner-close>&times;</button>
     </div>
 </div>
 {{ if and $earlyBird $earlyBird.countdownHeadline (now.Before (time.AsTime $earlyBird.endsAt)) }}

@@ -1,7 +1,8 @@
 // Purchase Power Parity pricing for course landing pages (layout: course-landing).
 // Calls the Netlify Edge Function at /api/ppp once per session and renders the
 // pricing cards from its answer: prices, checkout links (promocode), the early bird
-// badge, a note and a banner.
+// badge, a note and a banner. While the request runs, a spinner covers the prices.
+// The banner shows top right once the visitor scrolls.
 // Early bird: the pricing root carries the campaign (percentage, deadline, coupon).
 // Before the endpoint answers, the script renders the early bird price while the
 // deadline has not passed and the list price afterwards, so a page built before the
@@ -17,6 +18,7 @@
   var REQUEST_TIMEOUT_MS = 3000;
   var COUPON_PATTERN = /^[A-Za-z0-9_-]{1,64}$/;
   var COUNTRY_PATTERN = /^[A-Z]{2}$/;
+  var BANNER_SCROLL_THRESHOLD_PX = 80;
 
   var pageParams = new URLSearchParams(window.location.search);
   var testCountry = pageParams.get('country');
@@ -27,11 +29,15 @@
 
   var bannerElement = document.querySelector('[data-ppp-banner]');
   var bannerCloseButton = document.querySelector('[data-ppp-banner-close]');
+  var isBannerEligible = false;
   if (bannerElement && bannerCloseButton) {
     bannerCloseButton.addEventListener('click', function () {
-      bannerElement.classList.add('hidden');
       writeStorage(BANNER_DISMISSED_KEY, '1');
+      updateBannerVisibility();
     });
+  }
+  if (bannerElement) {
+    window.addEventListener('scroll', updateBannerVisibility, { passive: true });
   }
 
   renderPricing(localPricing());
@@ -47,6 +53,9 @@
   if (testNow) apiParams.set('now', testNow);
   if (testToken) apiParams.set('token', testToken);
   var apiUrl = '/api/ppp' + (apiParams.toString() ? '?' + apiParams.toString() : '');
+
+  // The spinner covers the prices until the endpoint answers, fails or times out.
+  setLoading(true);
 
   var abortController = new AbortController();
   var timeoutTimer = setTimeout(function () {
@@ -77,7 +86,25 @@
     })
     .finally(function () {
       clearTimeout(timeoutTimer);
+      setLoading(false);
     });
+
+  function setLoading(isLoading) {
+    if (isLoading) {
+      pricingRoot.setAttribute('data-ppp-loading', '');
+      pricingRoot.setAttribute('aria-busy', 'true');
+    } else {
+      pricingRoot.removeAttribute('data-ppp-loading');
+      pricingRoot.removeAttribute('aria-busy');
+    }
+  }
+
+  function updateBannerVisibility() {
+    if (!bannerElement) return;
+    var hasScrolled = window.scrollY > BANNER_SCROLL_THRESHOLD_PX;
+    var isDismissed = readStorage(BANNER_DISMISSED_KEY) === '1';
+    bannerElement.classList.toggle('hidden', !(isBannerEligible && hasScrolled && !isDismissed));
+  }
 
   function noDiscount(country) {
     return {
@@ -192,9 +219,8 @@
     var noteElement = pricingRoot.querySelector('[data-ppp-note]');
     if (noteElement) noteElement.classList.toggle('hidden', !hasPppDiscount);
 
-    if (bannerElement) {
-      bannerElement.classList.toggle('hidden', !hasPppDiscount || readStorage(BANNER_DISMISSED_KEY) === '1');
-    }
+    isBannerEligible = hasPppDiscount;
+    updateBannerVisibility();
 
     if (!hasPppDiscount) return;
 

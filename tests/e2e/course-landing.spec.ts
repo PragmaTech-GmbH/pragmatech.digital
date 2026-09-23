@@ -55,7 +55,7 @@ test.describe("course landing page structure", () => {
   test("FAQ items open and close without JavaScript", async ({ page }) => {
     await page.goto(coursePath);
     const faqItems = page.locator("[data-faq-item]");
-    await expect(faqItems).toHaveCount(9);
+    await expect(faqItems).toHaveCount(8);
 
     const firstItem = faqItems.first();
     await expect(firstItem).not.toHaveAttribute("open", "");

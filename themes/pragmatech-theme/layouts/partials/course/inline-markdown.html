@@ -1,0 +1,4 @@
+{{/* Renders inline Markdown from frontmatter copy (links, emphasis). External links open in a new tab. */}}
+{{ $html := . | markdownify | string }}
+{{ $html = replaceRE `<a href="(https?://[^"]+)"` `<a href="$1" target="_blank" rel="noopener"` $html }}
+{{ return (safeHTML $html) }}

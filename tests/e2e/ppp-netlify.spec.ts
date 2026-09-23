@@ -1,9 +1,15 @@
 // Opt-in end-to-end tests against the real edge function under `netlify dev`
 // (project "netlify"). Requires a filled .env (see .env.example) and
 // PPP_E2E_NETLIFY=1 so playwright.config.ts starts `netlify dev --geo=mock --country=DE`.
-import { test, expect } from "@playwright/test";
+import { test, expect, type Page } from "@playwright/test";
 
 const coursePath = "/agentic-spring-boot-testing-course-new/";
+
+// The banner shows only once the visitor scrolls (see ppp-pricing.js).
+async function scrollDown(page: Page) {
+  await page.evaluate(() => window.scrollTo(0, 400));
+}
+
 // `?now=` pins the campaign clock (free outside production): before and after the early bird deadline.
 const duringEarlyBird = "now=2026-09-20T10:00:00Z";
 const afterEarlyBird = "now=2026-10-02T07:00:00Z";
@@ -49,6 +55,7 @@ test.describe("PPP edge function under netlify dev", () => {
   test("the landing page shows discounted prices with ?country=in", async ({ page }) => {
     await page.goto(coursePath + "?country=in&" + afterEarlyBird);
     await expect(page.locator('[data-ppp-product="bundle_edition"] [data-ppp-price]')).toHaveText("147€");
+    await scrollDown(page);
     await expect(page.locator("[data-ppp-banner]")).toBeVisible();
     await expect(page.locator('[data-ppp-product="bundle_edition"] [data-ppp-cta]')).toHaveAttribute("href", /promocode=/);
   });

@@ -23,7 +23,7 @@ hero:
   headlineAccent: "Agentic Spring Boot Testing."
   headline: "Reliable, meaningful test suites with AI agents."
   bullets:
-    - "Seven agent skill templates - tailor them to your project."
+    - "Online Course & Skill Library - six hands-on modules plus seven agent skills you tailor to your project."
     - "Agent harnessing for testing - the setup that makes agents choose the right test type before writing a line."
     - "Don't just press Tab and Enter - learn how to build and maintain a fast, comprehensive test suite with your agent."
   trust:
@@ -184,7 +184,7 @@ diagram:
 callout:
   eyebrow: "To be clear"
   title: "This is not a prompt-engineering course"
-  text: "You will not learn magic prompts or yet another framework. You will learn the harness that makes any coding agent test like a senior Spring Boot engineer: skills, a test strategy file, and a reviewer loop. And you get that harness as files you own, not as a tool you rent."
+  text: "You will not learn magic prompts or yet another framework. You will learn how to harness any coding agent so it tests like a senior Spring Boot engineer: an online course that teaches the testing decisions, and a skill library that brings them into your project. And the skills are files you own, not a tool you rent."
   bullets:
     - "Works with Claude Code, GitHub Copilot and Cursor"
     - "Plain Markdown, no vendor lock-in, no subscription"
@@ -209,14 +209,14 @@ included:
   format:
     - "25 video lessons, about 2 hours"
     - "Written summary and code for every lesson"
-    - "Skills and templates with 12 months of access to changes, 24 for teams"
+    - "Skill library with 12 months of access to changes, 24 for teams"
     - "Finish in one evening, apply the next morning"
   items:
     - { icon: code,      title: "Seven agent skills, maintained",         text: "unit-testing, slice-testing, slice-testing-webmvc, integration-testing, e2e-testing, testcontainers-setup and test-setup-reviewer as SKILL.md files. Updates for 12 months, 24 for teams." }
     - { icon: play,      title: "The 2-hour Agentic Testing course",       text: "25 lessons in 6 modules, recorded on Spring PetClinic. Watch how the skills are built and applied, then code along." }
     - { icon: refresh,   title: "Three more courses included*",            text: "Testing Spring Boot Applications Masterclass, TDD with Spring Boot Done Right and Hands-On Mocking with Mockito. Your complete testing education. *Bundle and Team editions only." }
     - { icon: beaker,    title: "The PetClinic reference test suite",      text: "The complete before-and-after test suite from the course, so you can diff what the skills changed." }
-    - { icon: document,  title: "Harness templates",                      text: "CLAUDE.md, AGENTS.md and a test-strategy file, plus the equivalent setup for GitHub Copilot and Cursor." }
+    - { icon: document,  title: "My agentic development setup",          text: "The CLAUDE.md, AGENTS.md and agent configuration I use in my own Spring Boot projects, plus the equivalent setup for GitHub Copilot and Cursor." }
     - { icon: badge,     title: "Certificate of completion",              text: "A certificate for your training records once you finish all lessons." }
     - { icon: subtitles, title: "Lessons stay yours",                     text: "All video lessons remain accessible after the update window. English subtitles for every lesson." }
 
@@ -283,7 +283,7 @@ curriculum:
       summary: "The project files that turn a generic agent into one that tests the way your team does."
       lessons:
         - { title: "CLAUDE.md and AGENTS.md: what belongs in, what does not", duration: 5 }
-        - { title: "A test strategy file the agent actually reads", duration: 5 }
+        - { title: "My agentic development setup: how I work with coding agents day to day", duration: 5 }
         - { title: "Skills vs. rules vs. prompts: where each instruction lives", duration: 4 }
         - { title: "Installing the seven skills in PetClinic for Claude Code, Copilot and Cursor", duration: 6 }
     - title: "The seven skills applied to Spring PetClinic"
@@ -317,19 +317,20 @@ curriculum:
         - { title: "Certificate and course resources", duration: 3 }
 
 instructor:
+  # `intro` and `bullets` accept inline Markdown links (external links open in a new tab).
   headline: "Your instructor"
   name: "Philip Riecks"
   role: "Founder of PragmaTech GmbH and rieckpil.de"
   image: "/images/rieckpil-speaker.jpeg"
   imageAlt: "Philip Riecks speaking at a conference"
   imageCaption: "Philip Riecks - international speaker and Spring Boot testing expert"
-  intro: "I started developing Java applications in 2015. Since 2017 I have published Spring Boot testing content on rieckpil.de, and since 2018 on YouTube. As a consultant I spend my days inside client teams fixing slow and flaky Spring Boot test suites. The seven skills in this course are the ones I use in that work every day."
+  intro: "I started developing Java applications in 2015. Since 2017 I have published Spring Boot testing content on [rieckpil.de](https://rieckpil.de/), and since 2018 on [YouTube](https://www.youtube.com/@rieckpil). As a consultant I spend my days inside client teams fixing slow and flaky Spring Boot test suites. The seven skills in this course are the ones I use in that work every day."
   bullets:
     - "10+ years on the developer frontlines, 6 years as a consultant inside the engine rooms of 10+ Spring Boot teams"
     - "10,000+ students across my Spring Boot testing courses, including the Testing Spring Boot Applications Masterclass"
     - "20+ conference talks in the USA, Belgium, Spain, Germany and Switzerland"
     - "Author of Testing Spring Boot Applications Demystified, Stratospheric and the Java Testing Toolbox"
-    - "Creator of the Spring Test Profiler and a weekly testing newsletter read by 10,000 developers"
+    - "Creator of the [Spring Test Profiler](https://github.com/PragmaTech-GmbH/spring-test-profiler) and a weekly testing newsletter read by 10,000 developers"
   talksLabel: "Spoken at"
   talks: ["Devoxx Belgium", "Spring I/O", "JCON Europe", "SpringOne"]
 
@@ -360,7 +361,7 @@ audience:
     - title: "You have let agents write tests and stopped trusting the result"
       text: "You know the green-but-empty test class. This course gives you the harness that turns the same agent into one that writes tests you would accept in review, plus a reviewer skill that catches the rest."
     - title: "You have not let agents touch your tests yet"
-      text: "Good instinct. Start with the guardrails in place: install the skills, set the test strategy, and let the agent work inside them from the first prompt. You skip the cleanup phase most teams are in right now. If you still need the testing foundations, the bundled Masterclass covers them."
+      text: "Good instinct. Start with the guardrails in place: install the skills, adopt my agentic development setup, and let the agent work inside them from the first prompt. You skip the cleanup phase most teams are in right now. If you still need the testing foundations, the bundled Masterclass covers them."
 
 # Pricing v2: Course, Bundle and Team editions. `key` selects the CopeCart product ID env var
 # PPP_PRODUCT_ID_<KEY>. Purchase Power Parity applies only to products with
@@ -483,15 +484,13 @@ faqs:
     - question: "Does it work with Maven and Gradle?"
       answer: "Yes. PetClinic uses Maven in the lessons, and the skills contain the Gradle equivalents for parallel execution, test tasks and Testcontainers reuse."
     - question: "Which Spring Boot and Java versions are covered?"
-      answer: "Recorded with Spring Boot 4 and Java 21. The skills handle the differences to Spring Boot 3.x, for example @MockBean versus @MockitoBean. Spring Boot 2.x is not covered."
+      answer: "Recorded with Spring Boot 4 and Java 21. The skills handle the differences to Spring Boot 3.x, for example @MockBean versus @MockitoBean."
     - question: "How long do I have access, and what happens after the update window?"
       answer: "The lessons of all four courses stay yours forever. Skill updates are included for 12 months (Course and Bundle editions) or 24 months (Team Edition). After that you renew for 129€ per year to keep receiving updates, or you keep the version from your purchase window and nothing is taken away."
     - question: "Can I pay from a company training budget or buy for a team?"
       answer: "Yes. Every edition comes with an invoice for your employer on request, and 490€ fits most no-approval training budgets. For teams, the Team Edition has 10 seats, a 2-hour implementation workshop on your codebase and 30 days of async Q&A. Email me if you need a purchase order or a custom invoice."
     - question: "What if the course is not for me?"
       answer: "Email me within 60 days of getting access and you get a full refund, no questions asked. For the Team Edition the guarantee ends once the implementation workshop has taken place."
-    - question: "When does the course launch?"
-      answer: "It is available now. You get access to all lessons, the bundled courses and the skills right after checkout, and an email whenever new content lands."
 
 finalCta:
   headline: "Give your agent the testing judgment it is missing"
