@@ -3,7 +3,7 @@
 // PPP_E2E_NETLIFY=1 so playwright.config.ts starts `netlify dev --geo=mock --country=DE`.
 import { test, expect, type Page } from "@playwright/test";
 
-const coursePath = "/agentic-spring-boot-testing-course-new/";
+const coursePath = "/agentic-spring-boot-testing-course/";
 
 // The banner shows only once the visitor scrolls (see ppp-pricing.js).
 async function scrollDown(page: Page) {

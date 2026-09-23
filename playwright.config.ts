@@ -9,7 +9,7 @@ import { defineConfig } from "@playwright/test";
 // Browser: Playwright's own bundled Chromium (installed with `npx playwright install
 // chromium`), headless, with a throwaway profile per test. No `channel` is set on
 // purpose, so the system browsers (Chrome, Firefox, Safari) are never used or touched.
-const coursePath = "/agentic-spring-boot-testing-course-new/";
+const coursePath = "/agentic-spring-boot-testing-course/";
 const useNetlifyDev = Boolean(process.env.PPP_E2E_NETLIFY);
 // netlify dev port, default 8888. Override when 8888 is taken: PPP_E2E_NETLIFY_PORT=8889.
 const netlifyDevPort = process.env.PPP_E2E_NETLIFY_PORT ?? "8888";
