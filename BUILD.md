@@ -87,7 +87,9 @@ The course landing page (`content/agentic-spring-boot-testing-course-new.md`, la
 - `netlify/shared/ppp-early-bird.ts` - early bird percentage and deadline.
 - `themes/pragmatech-theme/assets/js/ppp-pricing.js` - calls `/api/ppp` once per
   session and adjusts prices, checkout links (`promocode=`), the early bird badge, a
-  note and a banner.
+  note and a banner. A spinner covers the prices until the call answers, fails or
+  times out (3 s); on failure the page keeps the default (early bird or list) price.
+  The banner shows top right below the navbar once the visitor scrolls.
 - Base prices and product names live in the page frontmatter (`ppp.products`). Only
   products with `ppp: true` (the Course and Bundle editions) get regional discounts;
   the Team Edition is sold at a fixed price. The editions build on each other: `addOns`

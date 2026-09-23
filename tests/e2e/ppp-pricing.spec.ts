@@ -51,6 +51,11 @@ async function fakePppEndpoint(page: Page, body: unknown, options: FakeOptions =
   return requestedUrls;
 }
 
+// The banner shows only once the visitor scrolls (see ppp-pricing.js).
+async function scrollDown(page: Page) {
+  await page.evaluate(() => window.scrollTo(0, 400));
+}
+
 function collectPageErrors(page: Page): Error[] {
   const pageErrors: Error[] = [];
   page.on("pageerror", (error) => pageErrors.push(error));
@@ -131,6 +136,7 @@ test.describe("PPP pricing on the course landing page after the early bird campa
     await expect(note.locator("[data-ppp-flag]")).toHaveText("\u{1F1EE}\u{1F1F3}");
 
     const banner = page.locator("[data-ppp-banner]");
+    await scrollDown(page);
     await expect(banner).toBeVisible();
     await expect(banner).toContainText("It looks like you are from India");
     await expect(banner.locator("[data-ppp-coupon-code]")).toHaveText("T70");
@@ -168,9 +174,35 @@ test.describe("PPP pricing on the course landing page after the early bird campa
     const pageErrors = collectPageErrors(page);
     await fakePppEndpoint(page, tier4India, { delayMs: 4500 });
     await page.goto(coursePath);
+    await expect(page.locator("[data-ppp-price-spinner]").first()).toBeVisible();
     await page.waitForTimeout(5000);
+    await expect(page.locator("[data-ppp-price-spinner]").first()).toBeHidden();
     await expectBasePricing(page);
     expect(pageErrors).toEqual([]);
+  });
+
+  test("shows a spinner over the prices until the endpoint answers", async ({ page }) => {
+    await fakePppEndpoint(page, tier4India, { delayMs: 1500 });
+    await page.goto(coursePath);
+    const bundlePrice = page.locator('[data-ppp-product="bundle_edition"] [data-ppp-price]');
+    await expect(page.locator("[data-ppp-price-spinner]")).toHaveCount(2);
+    await expect(page.locator("[data-ppp-price-spinner]").first()).toBeVisible();
+    await expect(bundlePrice).toBeHidden();
+
+    await expect(bundlePrice).toHaveText("147€");
+    await expect(bundlePrice).toBeVisible();
+    await expect(page.locator("[data-ppp-price-spinner]").first()).toBeHidden();
+  });
+
+  test("shows the banner only after the visitor scrolls", async ({ page }) => {
+    await fakePppEndpoint(page, tier4India);
+    await page.goto(coursePath);
+    await expect(page.locator("[data-ppp-note]")).toBeVisible();
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await expect(page.locator("[data-ppp-banner]")).toBeHidden();
+
+    await scrollDown(page);
+    await expect(page.locator("[data-ppp-banner]")).toBeVisible();
   });
 
   test("ignores malformed responses", async ({ page }) => {
@@ -187,6 +219,7 @@ test.describe("PPP pricing on the course landing page after the early bird campa
   test("caches the response in sessionStorage for the session", async ({ page }) => {
     const requestedUrls = await fakePppEndpoint(page, tier4India);
     await page.goto(coursePath);
+    await scrollDown(page);
     await expect(page.locator("[data-ppp-banner]")).toBeVisible();
     expect(requestedUrls).toHaveLength(1);
 
@@ -217,6 +250,7 @@ test.describe("PPP pricing on the course landing page after the early bird campa
   test("dismisses the banner for the session but keeps the discount", async ({ page }) => {
     await fakePppEndpoint(page, tier4India);
     await page.goto(coursePath);
+    await scrollDown(page);
     await expect(page.locator("[data-ppp-banner]")).toBeVisible();
 
     await page.locator("[data-ppp-banner-close]").click();
@@ -271,6 +305,7 @@ test.describe("early bird campaign on the course landing page", () => {
     await expect(note.locator("[data-ppp-coupon-code]")).toHaveText("EB80");
 
     const banner = page.locator("[data-ppp-banner]");
+    await scrollDown(page);
     await expect(banner).toBeVisible();
     await expect(banner).toContainText("80% off the base price, early bird included.");
     await expectTeamEditionUntouched(page);
