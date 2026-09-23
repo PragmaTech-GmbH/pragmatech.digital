@@ -1,0 +1,93 @@
+{{ define "main" }}
+{{/* Landing page CopeCart redirects to after a successful purchase of the
+     Agentic Spring Boot Testing course. Tracking pixels / analytics events go below. */}}
+<section class="relative bg-white border-b border-slate-200 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-white via-brand-50/40 to-white pointer-events-none"></div>
+
+    <div class="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-20 md:pt-16 md:pb-24">
+
+        <div class="text-center mb-12">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-emerald-50 border border-emerald-100 text-emerald-600 mb-6 shadow-sm shadow-emerald-500/10">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+            </div>
+
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-4 leading-[1.1]">{{ .Title }}</h1>
+
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+                Welcome to <strong class="text-slate-900">Agentic Spring Boot Testing</strong>.
+                Here is what happens next.
+            </p>
+        </div>
+
+        <!-- Next steps -->
+        <ol class="space-y-4 mb-10">
+            <li class="flex gap-4 bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 shadow-sm">
+                <span class="flex-shrink-0 inline-flex items-center justify-center w-10 h-10 rounded-xl bg-brand-50 border border-brand-100 text-brand-600">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                </span>
+                <div>
+                    <h2 class="text-base font-bold text-slate-900 mb-1">Check your inbox</h2>
+                    <p class="text-slate-600 leading-relaxed">
+                        We send all emails to the <strong class="text-slate-900">email address you used during checkout</strong>.
+                        The emails should arrive within a few minutes. If you don't see them, check your spam or promotions folder.
+                    </p>
+                </div>
+            </li>
+            <li class="flex gap-4 bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 shadow-sm">
+                <span class="flex-shrink-0 inline-flex items-center justify-center w-10 h-10 rounded-xl bg-brand-50 border border-brand-100 text-brand-600">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/>
+                    </svg>
+                </span>
+                <div>
+                    <h2 class="text-base font-bold text-slate-900 mb-1">Get your course access</h2>
+                    <p class="text-slate-600 leading-relaxed">
+                        If you already have an account in the <a href="https://rieckpil.de/courses" class="text-brand-600 hover:text-brand-500 font-semibold underline underline-offset-2">course academy</a> with this email address, we add the course to your existing account.
+                        If not, we create a new account for you and send you the login details.
+                    </p>
+                </div>
+            </li>
+            <li class="flex gap-4 bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 shadow-sm">
+                <span class="flex-shrink-0 inline-flex items-center justify-center w-10 h-10 rounded-xl bg-brand-50 border border-brand-100 text-brand-600">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                    </svg>
+                </span>
+                <div>
+                    <h2 class="text-base font-bold text-slate-900 mb-1">Payment confirmation from CopeCart</h2>
+                    <p class="text-slate-600 leading-relaxed">
+                        <strong class="text-slate-900">CopeCart GmbH</strong> processes your payment.
+                        You will get a separate email from CopeCart with your payment confirmation and invoice.
+                    </p>
+                </div>
+            </li>
+        </ol>
+
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+            <a href="https://rieckpil.de/courses" class="cta-primary inline-flex items-center justify-center gap-2
+                      bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400
+                      text-white px-6 py-3 rounded-lg font-bold
+                      shadow-lg shadow-brand-500/20 hover:shadow-xl hover:shadow-brand-500/30
+                      hover:-translate-y-0.5 transition-all">
+                Go to the course academy
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+            </a>
+            <a href="/" class="inline-flex items-center justify-center gap-2
+                      bg-white border border-slate-300 text-slate-700 hover:border-brand-500 hover:text-brand-600
+                      px-6 py-3 rounded-lg font-semibold transition-all">
+                Back to home
+            </a>
+        </div>
+
+        <p class="text-sm text-slate-500 text-center mt-10">
+            No email after 30 minutes? <a href="/contact" class="text-brand-600 hover:text-brand-500 font-semibold underline underline-offset-2">Contact us</a> and we will help you.
+        </p>
+    </div>
+</section>
+{{ end }}
