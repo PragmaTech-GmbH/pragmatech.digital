@@ -317,19 +317,20 @@ curriculum:
         - { title: "Certificate and course resources", duration: 3 }
 
 instructor:
+  # `intro` and `bullets` accept inline Markdown links (external links open in a new tab).
   headline: "Your instructor"
   name: "Philip Riecks"
   role: "Founder of PragmaTech GmbH and rieckpil.de"
   image: "/images/rieckpil-speaker.jpeg"
   imageAlt: "Philip Riecks speaking at a conference"
   imageCaption: "Philip Riecks - international speaker and Spring Boot testing expert"
-  intro: "I started developing Java applications in 2015. Since 2017 I have published Spring Boot testing content on rieckpil.de, and since 2018 on YouTube. As a consultant I spend my days inside client teams fixing slow and flaky Spring Boot test suites. The seven skills in this course are the ones I use in that work every day."
+  intro: "I started developing Java applications in 2015. Since 2017 I have published Spring Boot testing content on [rieckpil.de](https://rieckpil.de/), and since 2018 on [YouTube](https://www.youtube.com/@rieckpil). As a consultant I spend my days inside client teams fixing slow and flaky Spring Boot test suites. The seven skills in this course are the ones I use in that work every day."
   bullets:
     - "10+ years on the developer frontlines, 6 years as a consultant inside the engine rooms of 10+ Spring Boot teams"
     - "10,000+ students across my Spring Boot testing courses, including the Testing Spring Boot Applications Masterclass"
     - "20+ conference talks in the USA, Belgium, Spain, Germany and Switzerland"
     - "Author of Testing Spring Boot Applications Demystified, Stratospheric and the Java Testing Toolbox"
-    - "Creator of the Spring Test Profiler and a weekly testing newsletter read by 10,000 developers"
+    - "Creator of the [Spring Test Profiler](https://github.com/PragmaTech-GmbH/spring-test-profiler) and a weekly testing newsletter read by 10,000 developers"
   talksLabel: "Spoken at"
   talks: ["Devoxx Belgium", "Spring I/O", "JCON Europe", "SpringOne"]
 

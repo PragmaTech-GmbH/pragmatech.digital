@@ -14,7 +14,7 @@
             <div class="lg:col-span-3">
                 <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-2">{{ .headline }}</h2>
                 <p class="text-brand-600 font-semibold mb-6">{{ .name }} - {{ .role }}</p>
-                <p class="text-lg text-slate-600 mb-6 leading-relaxed">{{ .intro }}</p>
+                <p class="text-lg text-slate-600 mb-6 leading-relaxed [&_a]:text-brand-600 [&_a]:underline [&_a]:decoration-brand-300 [&_a]:underline-offset-2 hover:[&_a]:text-brand-500">{{ partial "course/inline-markdown.html" .intro }}</p>
 
                 <ul class="space-y-3 mb-8">
                     {{ range .bullets }}
@@ -24,7 +24,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
                             </svg>
                         </span>
-                        <span>{{ . }}</span>
+                        <span class="[&_a]:text-brand-600 [&_a]:underline [&_a]:decoration-brand-300 [&_a]:underline-offset-2 hover:[&_a]:text-brand-500">{{ partial "course/inline-markdown.html" . }}</span>
                     </li>
                     {{ end }}
                 </ul>
