@@ -176,6 +176,13 @@ npm test                  # unit + e2e
 
 One-time setup for Playwright: `npx playwright install chromium`.
 
+`test:e2e:netlify` uses port 8888. When that port is taken, set another one:
+`PPP_E2E_NETLIFY_PORT=8889 npm run test:e2e:netlify`.
+
+GitHub Actions (`.github/workflows/tests.yml`) runs a Hugo build and all three test
+suites on every pull request and push to `main`. The netlify dev tests use the fake
+coupons from `.env.example`.
+
 ## Performance Optimization
 
 The build process implements several performance optimizations:

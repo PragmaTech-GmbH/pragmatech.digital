@@ -11,6 +11,8 @@ import { defineConfig } from "@playwright/test";
 // purpose, so the system browsers (Chrome, Firefox, Safari) are never used or touched.
 const coursePath = "/agentic-spring-boot-testing-course-new/";
 const useNetlifyDev = Boolean(process.env.PPP_E2E_NETLIFY);
+// netlify dev port, default 8888. Override when 8888 is taken: PPP_E2E_NETLIFY_PORT=8889.
+const netlifyDevPort = process.env.PPP_E2E_NETLIFY_PORT ?? "8888";
 
 const chromiumLaunchArgs = [
   "--no-first-run",
@@ -42,14 +44,14 @@ export default defineConfig({
     },
     {
       name: "netlify",
-      use: { baseURL: "http://localhost:8888" },
+      use: { baseURL: `http://localhost:${netlifyDevPort}` },
       testMatch: /ppp-netlify\.spec\.ts$/,
     },
   ],
   webServer: useNetlifyDev
     ? {
-        command: "npx netlify-cli dev --no-open --geo=mock --country=DE",
-        url: "http://localhost:8888" + coursePath,
+        command: `npx netlify-cli dev --no-open --geo=mock --country=DE --port ${netlifyDevPort}`,
+        url: `http://localhost:${netlifyDevPort}` + coursePath,
         reuseExistingServer: true,
         timeout: 180_000,
       }
