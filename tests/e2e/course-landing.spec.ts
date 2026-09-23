@@ -17,8 +17,8 @@ test.describe("course landing page structure", () => {
     await page.goto(coursePath);
 
     await expect(page.locator("h1")).toContainText("Agentic Spring Boot Testing");
-    await expect(page.locator("[data-hero-primary-cta]")).toHaveAttribute("href", "#pricing");
-    await expect(page.locator("[data-hero-secondary-cta]")).toHaveAttribute("href", "#curriculum");
+    await expect(page.locator("[data-hero-primary-cta]")).toHaveCount(0);
+    await expect(page.locator("[data-hero-secondary-cta]")).toHaveCount(0);
     await expect(page.locator("[data-final-cta]")).toHaveAttribute("href", "#pricing");
 
     for (const anchor of ["#demo", "#skills", "#curriculum", "#pricing", "#faq"]) {
@@ -40,12 +40,12 @@ test.describe("course landing page structure", () => {
     await expect(page.locator("[data-endorsement]")).toHaveCount(3);
   });
 
-  test("curriculum shows module titles only, with totals from the lessons", async ({ page }) => {
+  test("curriculum shows module titles only, without lesson count and running time", async ({ page }) => {
     await page.goto(coursePath);
     const summary = page.locator("[data-curriculum-summary]");
     await expect(summary).toContainText("6 modules");
-    await expect(summary).toContainText("25 lessons");
-    await expect(summary).toContainText("2h 0m");
+    await expect(summary).not.toContainText("lessons");
+    await expect(summary).not.toContainText("h 0m");
     await expect(page.locator("[data-curriculum-module]")).toHaveCount(6);
     // Single lessons and their durations are not listed.
     await expect(page.locator("[data-lesson-free]")).toHaveCount(0);
@@ -67,7 +67,7 @@ test.describe("course landing page structure", () => {
   });
 
 
-  test("shows the course + skill set diagram and the every-edition pricing strip", async ({ page }) => {
+  test("shows the course + skill set diagram and the pricing add-on box", async ({ page }) => {
     await page.goto(coursePath);
     const diagram = page.locator("[data-course-diagram]");
     await expect(diagram).toHaveCount(1);
@@ -76,12 +76,14 @@ test.describe("course landing page structure", () => {
     await expect(diagram).toContainText("Your project");
     await expect(diagram).toContainText("test-setup-reviewer");
 
-    const everyEdition = page.locator("[data-ppp-every-edition]");
-    await expect(everyEdition).toBeVisible();
-    await expect(everyEdition).toContainText("Bundle and Team editions include");
-    await expect(page.locator("[data-ppp-card-base]")).toHaveCount(2);
-    await expect(page.locator("[data-ppp-card-base]").first()).toContainText("full skill library");
-    await expect(page.locator("[data-ppp-card-base]").first()).toContainText("Masterclass");
+    // No bundled-course box above the cards, the Bundle card shows its add-on courses itself.
+    await expect(page.locator("[data-ppp-every-edition]")).toHaveCount(0);
+    // Cards build on each other, so no card repeats the bundled-course strip.
+    const bundleAddOns = page.locator('[data-product="bundle_edition"] [data-ppp-card-base]');
+    await expect(page.locator('[data-product="bundle_edition"] [data-addons-label]')).toHaveText("Everything in Course Edition, plus");
+    await expect(bundleAddOns).toContainText("Masterclass");
+    await expect(page.locator("[data-ppp-card-base]")).toHaveCount(1);
+    await expect(page.locator('[data-product="team_edition"]')).toContainText("Everything in Bundle Edition, plus");
   });
 
   test("renders story, callout, spotlights, concepts, format, audience, team and guarantee", async ({ page }) => {
@@ -97,7 +99,7 @@ test.describe("course landing page structure", () => {
     await expect(page.locator("[data-ppp-guarantee]")).toHaveCount(2);
     await expect(page.locator("[data-ppp-guarantee]").first()).toContainText("money-back");
     await expect(page.locator("#team")).toHaveCount(1);
-    await expect(page.locator("[data-team-cta]")).toHaveAttribute("href", /^mailto:info@pragmatech\.digital\?subject=/);
+    await expect(page.locator("[data-team-cta]")).toHaveCount(0);
     // The two spotlight students do not repeat in the grid.
     await expect(page.locator("[data-testimonial]")).toHaveCount(6);
     await expect(page.locator("[data-testimonial]", { hasText: "Mudi Lukman" })).toHaveCount(0);
@@ -123,7 +125,7 @@ test.describe("course landing page structure", () => {
     await expect(teamCard.locator("[data-quote-cta]")).toHaveCount(0);
     await expect(teamCard.locator("[data-product-note]")).toContainText("Larger team");
     await expect(page.locator("[data-ppp-product]")).toHaveCount(2);
-    await expect(page.locator("[data-ppp-renewal]")).toContainText("129€");
+    await expect(page.locator("[data-manager-template-link]")).toHaveAttribute("href", /agentic-spring-boot-testing-course\/convince-your-manager\/$/);
     await expect(page.locator("[data-team-overflow]")).toContainText("Larger team");
     await expect(page.locator("[data-ppp-banner]")).toBeHidden();
   });

@@ -9,6 +9,8 @@ share_image: "/images/courses/agentic-testing-course-thumbnail.png"
 robots: "noindex, nofollow"
 sitemap:
   disable: true
+# Hides the site-wide announcement banner (hugo.yaml bannerText) on this page.
+hideBanner: true
 
 # All copy for the landing page lives in this frontmatter. The layout
 # (themes/pragmatech-theme/layouts/_default/course-landing.html) only renders it via
@@ -16,24 +18,28 @@ sitemap:
 
 hero:
   eyebrow: "Now available - on-demand course"
+  # Shown instead of `eyebrow` while ppp.earlyBird runs (checked at build time).
+  eyebrowEarlyBird: "Early-Bird - Get 33% Off"
   headlineAccent: "Agentic Spring Boot Testing."
   headline: "Reliable, meaningful test suites with AI agents."
-  intro: "Your coding agent is missing the testing judgment of a senior Spring Boot engineer. This course gives it that judgment as seven skills you install in your project and keep updated, plus the complete testing education behind them: this 2-hour course and my three existing testing courses. The videos are the manual, the skills are the tool."
   bullets:
-    - "Seven agent skills as plain SKILL.md files - copy them into your project, adapt them, get 12 months of updates."
+    - "Seven agent skill templates - tailor them to your project."
     - "Agent harnessing for testing - the setup that makes agents choose the right test type before writing a line."
-    - "Four courses in one purchase: this one plus the Masterclass, TDD with Spring Boot Done Right and Hands-On Mocking with Mockito."
-  primaryCta: { label: "Enroll now", href: "#pricing" }
-  secondaryCta: { label: "See curriculum", href: "#curriculum" }
+    - "Don't just press Tab and Enter - learn how to build and maintain a fast, comprehensive test suite with your agent."
   trust:
-    - "490€ once, 12 months of skill updates"
+    - "12 months of skill updates"
     - "Team Edition: 10 seats + implementation workshop"
     - "Works with Claude Code, Copilot, Cursor"
+  # Rendered with Remotion, source: remotion/src/NoiseToTests.tsx
+  video:
+    webm: "/videos/noise-to-tests.webm?v=2"
+    mp4: "/videos/noise-to-tests.mp4?v=2"
+    poster: "/generated/images/courses/agentic-testing-hero-poster.webp"
+    label: "Animation: a coding agent without skills generates hundreds of noisy tests, with skills it writes a small, fast suite across all test types."
   facts:
+    - { value: "10+", label: "years of Spring Boot testing knowledge" }
     - { value: "7", label: "agent skills" }
-    - { value: "4", label: "courses" }
-    - { value: "25", label: "new lessons" }
-    - { value: "12", label: "months of updates" }
+    - { value: "1", label: "course" }
 
 story:
   eyebrow: "Sound familiar?"
@@ -46,8 +52,8 @@ pains:
   headline: "Does this sound like your test suite since the agents arrived?"
   intro: "None of this is a developer problem. It is what every coding agent produces when nobody tells it how your project tests."
   items:
-    - title: "Forty tests, nothing asserted"
-      text: "The agent delivers a full test class in seconds and every test is green. Look closer and most of them call a method, catch nothing, and assert nothing."
+    - title: "Forty green tests, few meaningful assertions"
+      text: "The agent delivers a full test class in seconds and every test is green. Look closer and many of them check only a status code or a non-null result, not the behavior that matters."
     - title: "@SpringBootTest for a utility class"
       text: "A date formatter gets a complete application context because that is the annotation the agent has seen most often. A plain JUnit test would run in milliseconds."
     - title: "Twelve contexts, twenty minutes"
@@ -73,7 +79,7 @@ statusQuo:
   after:
     - "A harness that makes the agent pick the right test type before writing a line."
     - "Seven skills that encode unit, slice, integration, end-to-end and Testcontainers decisions the way I make them."
-    - "Two or three cached contexts per build and tests running in parallel forks."
+    - "A test suite focused on speed and fast feedback."
     - "Every test asserts behavior, with mocks only at real boundaries."
     - "A reviewer skill that flags anti-patterns before you open the PR."
     - "A test suite you trust enough to let agents refactor."
@@ -155,7 +161,7 @@ demo:
 diagram:
   courseLabel: "Part 1"
   courseTitle: "Online course"
-  courseText: "Six modules, 25 lessons, two hours of hands-on lessons on Spring PetClinic. Plus the Masterclass, TDD Done Right and Hands-On Mocking as the foundation."
+  courseText: "A pragmatic, hands-on course that teaches what you need to know: six modules, recorded on Spring PetClinic."
   skillsLabel: "Part 2"
   skillsTitle: "Skill library"
   skills:
@@ -166,10 +172,8 @@ diagram:
     - "e2e-testing"
     - "testcontainers-setup"
     - "test-setup-reviewer"
-  skillsText: "Seven SKILL.md files as a Git repository, maintained: 12 months of updates included, 24 for teams."
   projectLabel: "Result"
   projectTitle: "Your project"
-  projectFiles: ["CLAUDE.md", "AGENTS.md", "test-strategy.md", ".claude/skills/"]
   outcomes:
     - "The agent picks the right test type before writing a line"
     - "A fast, parallel suite with cached contexts"
@@ -205,12 +209,12 @@ included:
   format:
     - "25 video lessons, about 2 hours"
     - "Written summary and code for every lesson"
-    - "Skills and templates as a Git repository"
+    - "Skills and templates with 12 months of access to changes, 24 for teams"
     - "Finish in one evening, apply the next morning"
   items:
     - { icon: code,      title: "Seven agent skills, maintained",         text: "unit-testing, slice-testing, slice-testing-webmvc, integration-testing, e2e-testing, testcontainers-setup and test-setup-reviewer as SKILL.md files. Updates for 12 months, 24 for teams." }
     - { icon: play,      title: "The 2-hour Agentic Testing course",       text: "25 lessons in 6 modules, recorded on Spring PetClinic. Watch how the skills are built and applied, then code along." }
-    - { icon: refresh,   title: "Three more courses included",             text: "Testing Spring Boot Applications Masterclass, TDD with Spring Boot Done Right and Hands-On Mocking with Mockito. Your complete testing education." }
+    - { icon: refresh,   title: "Three more courses included*",            text: "Testing Spring Boot Applications Masterclass, TDD with Spring Boot Done Right and Hands-On Mocking with Mockito. Your complete testing education. *Bundle and Team editions only." }
     - { icon: beaker,    title: "The PetClinic reference test suite",      text: "The complete before-and-after test suite from the course, so you can diff what the skills changed." }
     - { icon: document,  title: "Harness templates",                      text: "CLAUDE.md, AGENTS.md and a test-strategy file, plus the equivalent setup for GitHub Copilot and Cursor." }
     - { icon: badge,     title: "Certificate of completion",              text: "A certificate for your training records once you finish all lessons." }
@@ -258,7 +262,7 @@ skillAnatomy:
 
 curriculum:
   headline: "Curriculum"
-  intro: "Six modules, about two hours. Every lesson is hands-on in Spring PetClinic with Claude Code, with notes for GitHub Copilot and Cursor."
+  intro: "Six modules. Every lesson is hands-on in Spring PetClinic with Claude Code, with notes for GitHub Copilot and Cursor."
   conceptsLabel: "Concepts you will take with you"
   concepts:
     - { term: "Context starvation", text: "why an agent without your test strategy defaults to @SpringBootTest and mocks everywhere" }
@@ -319,7 +323,7 @@ instructor:
   image: "/images/rieckpil-speaker.jpeg"
   imageAlt: "Philip Riecks speaking at a conference"
   imageCaption: "Philip Riecks - international speaker and Spring Boot testing expert"
-  intro: "I have written Java since 2015, published Spring Boot testing content on rieckpil.de since 2017 and on YouTube since 2018. As a consultant I spend my days inside client teams fixing slow and flaky Spring Boot test suites. The seven skills in this course are the ones I use in that work every day."
+  intro: "I started developing Java applications in 2015. Since 2017 I have published Spring Boot testing content on rieckpil.de, and since 2018 on YouTube. As a consultant I spend my days inside client teams fixing slow and flaky Spring Boot test suites. The seven skills in this course are the ones I use in that work every day."
   bullets:
     - "10+ years on the developer frontlines, 6 years as a consultant inside the engine rooms of 10+ Spring Boot teams"
     - "10,000+ students across my Spring Boot testing courses, including the Testing Spring Boot Applications Masterclass"
@@ -332,18 +336,23 @@ instructor:
 testimonials:
   headline: "What students say about my testing courses"
   intro: "Feedback from the Testing Spring Boot Applications Masterclass, the course this one builds on."
+  photo:
+    webp: "/generated/images/webinar/philip-presenting.webp"
+    src: "/images/webinar/philip-presenting.jpg"
+    alt: "Philip Riecks speaking at the Java User Group Zürich"
+    caption: "Speaking at the Java User Group Zürich"
   students:
-    - { text: "Philip has made a fantastic overview of the full testing landscape of Spring.", person: "Wim Deblauwe", position: "Software Engineer", initials: "WD" }
-    - { text: "I find it wonderful for learning how to test Spring Boot applications leveraging modern testing frameworks and libraries.", person: "Siva", position: "Software Engineer, AtomicJar", initials: "S" }
-    - { text: "After watching the Testing Spring Boot Applications Masterclass course I feel more confident in writing different types of tests for my apps.", person: "Anton Ždanov", position: "Full Stack Developer", initials: "AZ" }
+    - { text: "Philip has made a fantastic overview of the full testing landscape of Spring.", person: "Wim Deblauwe", photo: "wim-deblauwe", position: "Software Engineer", initials: "WD" }
+    - { text: "I find it wonderful for learning how to test Spring Boot applications leveraging modern testing frameworks and libraries.", person: "Siva", photo: "siva", position: "Software Engineer, AtomicJar", initials: "S" }
+    - { text: "After watching the Testing Spring Boot Applications Masterclass course I feel more confident in writing different types of tests for my apps.", person: "Anton Ždanov", photo: "anton-zdanov", position: "Full Stack Developer", initials: "AZ" }
     - { text: "The depth and completeness of the content truly stands out. Exceptional content with comprehensive coverage and rich examples.", person: "Xavier Escudero", position: "Course Student", initials: "XE" }
     - { text: "Your courses are genuinely excellent. Very focused and hands-on, far more so than many of the other resources on the internet or YouTube that essentially stop at Hello World. I've been a Java and Spring developer for many years, and I learned a lot from you, especially about integration testing.", person: "Oli", position: "Course Student", initials: "O" }
     - { text: "This is probably the best resource that I got in this regard for real-world TDD examples with Spring.", person: "Siddharth Goel", position: "Course Student", initials: "SG" }
   expertsLabel: "Endorsed by"
   experts:
-    - { text: "Philip transfers this knowledge to you and his courses leave you smarter than before.", person: "Tom Hombergs", position: "Founder, reflectoring.io", initials: "TH" }
-    - { text: "Philip managed to publish high quality articles and videos covering a wide range of topics.", person: "Vlad Mihalcea", position: "Founder, vladmihalcea.com", initials: "VM" }
-    - { text: "Tons of actionable tutorials and content across the Spring universes. Highly recommended!", person: "Marco Behler", position: "Founder, marcobehler.com", initials: "MB" }
+    - { text: "Philip transfers this knowledge to you and his courses leave you smarter than before.", person: "Tom Hombergs", photo: "tom-hombergs", position: "Founder, reflectoring.io", initials: "TH" }
+    - { text: "Philip managed to publish high quality articles and videos covering a wide range of topics.", person: "Vlad Mihalcea", photo: "vlad-mihalcea", position: "Founder, vladmihalcea.com", initials: "VM" }
+    - { text: "Tons of actionable tutorials and content across the Spring universes. Highly recommended!", person: "Marco Behler", photo: "marco-behler", position: "Founder, marcobehler.com", initials: "MB" }
 
 audience:
   headline: "Is this course for you?"
@@ -366,22 +375,19 @@ ppp:
   # PPP_COUPON_EARLY_BIRD_TIER_1 env var, see BUILD.md.
   earlyBird:
     discountPercentage: 33
-    endsAt: "2026-10-02T00:00:00+02:00"
-    endsAtLabel: "1 October 2026, 23:59 CEST"
+    endsAt: "2026-10-02T09:00:00+02:00"
+    endsAtLabel: "course launch at 2 October 2026, 09:00 CEST"
+    countdownHeadline: "Pre-sale: 33% off until the launch"
+    countdownText: "The course launches on 2 October 2026, 09:00 CEST. Buy the Course or Bundle Edition now at 33% off, and you get access to all lessons and skills on launch day. The pre-sale price ends when the countdown reaches zero."
   guarantee: "60-day money-back guarantee, no questions asked"
-  renewal: "Every purchase includes its skill update window. After that, renew for 129€ per year or keep everything from your purchase window forever."
-  everyEdition:
-    label: "Bundle and Team editions include"
-    cardLabel: "Included"
-    principle: "The Bundle and Team editions carry the same content. The Course Edition has the same course and skill library, without the three courses you already own."
-    items:
-      - "Agentic Spring Boot Testing course and the full skill library"
-      - "Testing Spring Boot Applications Masterclass"
-      - "TDD with Spring Boot Done Right"
-      - "Hands-On Mocking with Mockito"
+  managerTemplate:
+    headline: "Need approval from your manager?"
+    text: "Use my ready-to-send email template. Copy the subject and body, fill in the placeholders and send it."
+    label: "Get the email template"
+    href: "/agentic-spring-boot-testing-course/convince-your-manager/"
   products:
-    # `everyEdition: false` - the Course Edition leaves out the three bundled courses,
-    # because it is for students who already own them.
+    # Each edition builds on the one before: the Course Edition lists the base items,
+    # Bundle and Team list only what they add. `addOns` renders as a green box in the card.
     - key: course_edition
       name: "Course Edition"
       audience: "For my students"
@@ -389,14 +395,15 @@ ppp:
       seats: "1 seat"
       license: "one-time payment"
       ppp: true
-      everyEdition: false
       tagline: "The skill library and the new course, without the three courses you already own."
-      featuresLabel: "Course Edition specifics"
+      featuresLabel: "What you get"
       features:
         - "Agentic Spring Boot Testing course and the full skill library"
         - "Skill updates for 12 months"
-        - "Invoice for your employer on request"
-        - "Purchase Power Parity pricing for your country"
+        - "Access to the on-demand online course"
+        - "Offline access (paid)"
+        - "Q&A via comments in the course"
+        - "Invoice for your employer"
     - key: bundle_edition
       name: "Bundle Edition"
       audience: "For one developer"
@@ -404,13 +411,17 @@ ppp:
       seats: "1 seat"
       license: "one-time payment"
       ppp: true
-      tagline: "The encoded testing judgment your agent is missing, maintained for a year. The videos are the manual."
-      featuresLabel: "Bundle Edition specifics"
+      tagline: "The new course plus my entire Spring Boot testing academy."
+      addOns:
+        label: "Everything in Course Edition, plus"
+        items:
+          - "Testing Spring Boot Applications Masterclass"
+          - "TDD with Spring Boot Done Right"
+          - "Hands-On Mocking with Mockito"
       features:
-        - "Skill updates for 12 months"
-        - "Invoice for your employer on request"
-        - "Convince-your-manager email template"
-        - "Purchase Power Parity pricing for your country"
+        - "More than 16 additional hours of Spring Boot testing content"
+        - "160+ additional course lessons"
+        - "Understand the fundamentals behind every skill"
     - key: team_edition
       name: "Team Edition"
       audience: "For teams"
@@ -421,10 +432,10 @@ ppp:
       ppp: false
       guarantee: false
       tagline: "Your whole team on the same skills, with a 2-hour implementation workshop on your codebase."
-      featuresLabel: "Team Edition specifics"
+      featuresLabel: "Everything in Bundle Edition, plus"
       features:
-        - "10 seats, every bundled course for all seats"
-        - "Skill updates for 24 months"
+        - "10 seats, every course for all seats"
+        - "Skill updates for 24 months instead of 12"
         - "2-hour implementation workshop on your codebase"
         - "30 days of async Q&A support"
         - "Quote or purchase order on request"
@@ -441,8 +452,6 @@ guarantee:
       text: "No form, no reason, no phone call. Write from the address you bought with and the refund goes back the same way you paid."
     - title: "One exception: the Team Edition"
       text: "For the Team Edition the guarantee ends once the 2-hour implementation workshop has taken place, because that time is already spent on your codebase."
-  contactLabel: "Refund requests and questions:"
-  signature: "Philip Riecks, PragmaTech GmbH"
 
 team:
   headline: "Team Edition: your whole team on the same skills"
@@ -451,8 +460,6 @@ team:
     - "10 seats, 399€ per seat, one invoice for your training budget"
     - "2-hour implementation workshop on your codebase, not on a demo project"
     - "30 days of async Q&A support and 24 months of skill updates"
-  ctaLabel: "Request a quote"
-  mailSubject: "Agentic Spring Boot Testing - Team Edition quote"
   overflow: "Larger team or need more hands-on time? Email me."
   card:
     label: "Team Edition"
@@ -484,7 +491,7 @@ faqs:
     - question: "What if the course is not for me?"
       answer: "Email me within 60 days of getting access and you get a full refund, no questions asked. For the Team Edition the guarantee ends once the implementation workshop has taken place."
     - question: "When does the course launch?"
-      answer: "It is available now. You get access to all lessons, the bundled courses and the skills repository right after checkout, and an email whenever new content lands."
+      answer: "It is available now. You get access to all lessons, the bundled courses and the skills right after checkout, and an email whenever new content lands."
 
 finalCta:
   headline: "Give your agent the testing judgment it is missing"

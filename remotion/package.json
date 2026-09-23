@@ -1,0 +1,21 @@
+{
+  "name": "pragmatech-remotion",
+  "private": true,
+  "description": "Remotion animations for the PragmaTech website",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "render:hero": "npm run render:hero:mp4 && npm run render:hero:webm && npm run render:hero:poster",
+    "render:hero:mp4": "remotion render src/index.ts NoiseToTests out/noise-to-tests.mp4 --codec=h264 --crf=33",
+    "render:hero:webm": "remotion render src/index.ts NoiseToTests out/noise-to-tests.webm --codec=vp9 --crf=50",
+    "render:hero:poster": "remotion still src/index.ts NoiseToTests out/noise-to-tests-poster.png --frame=299"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.527",
+    "@remotion/google-fonts": "4.0.527",
+    "@types/react": "19.3.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "remotion": "4.0.527",
+    "typescript": "7.0.2"
+  }
+}
