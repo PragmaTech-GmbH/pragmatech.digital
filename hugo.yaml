@@ -16,7 +16,7 @@ params:
   # Early bird banner for the agentic course at the top of the homepage hero.
   # Set to true to show it; it also needs the campaign in the course frontmatter
   # (ppp.earlyBird) to still be running.
-  showCourseBanner: false
+  showCourseBanner: true
   emails:
     contact: "info@pragmatech.digital"
     info: "info@pragmatech.digital"

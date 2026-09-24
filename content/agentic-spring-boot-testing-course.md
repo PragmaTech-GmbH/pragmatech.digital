@@ -236,18 +236,16 @@ skillAnatomy:
   fileLines:
     - { type: meta,    text: "---" }
     - { type: meta,    text: "name: unit-testing" }
-    - { type: meta,    text: "description: plain JUnit tests for logic without Spring" }
+    - { type: meta,    text: "description: <when the agent picks this skill>" }
     - { type: meta,    text: "---" }
-    - { type: heading, text: "## When to use this skill" }
-    - { type: body,    text: "No Spring bean needed, no I/O, no framework annotation." }
-    - { type: heading, text: "## Decision rules" }
-    - { type: body,    text: "1. Constructor injection over field injection in the test." }
-    - { type: body,    text: "2. Mock only at real boundaries, never the class under test." }
-    - { type: body,    text: "3. Assert behavior, never only the status or a non-null check." }
+    - { type: heading, text: "## Hard requirements" }
+    - { type: body,    text: "<rules every unit test must follow>" }
+    - { type: heading, text: "## Parallel by default" }
+    - { type: body,    text: "<how to keep tests isolated and parallelizable>" }
+    - { type: heading, text: "## Example" }
+    - { type: body,    text: "<a sample unit test to copy from>" }
     - { type: heading, text: "## References" }
-    - { type: body,    text: "JUnit 5 assertions, AssertJ, Mockito strictness docs" }
-    - { type: heading, text: "## Examples" }
-    - { type: body,    text: "good: OwnerValidatorTest - bad: OwnerServiceSpringBootTest" }
+    - { type: body,    text: "<docs the rules build on>" }
   fit:
     label: "Fit for your project"
     items:
