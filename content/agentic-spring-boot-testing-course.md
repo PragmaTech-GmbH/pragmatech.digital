@@ -389,7 +389,7 @@ ppp:
       seats: "1 seat"
       license: "one-time payment"
       ppp: true
-      tagline: "The skill library and the new course, without the three courses you already own."
+      tagline: "The brand new online course and the skill library."
       featuresLabel: "What you get"
       features:
         - "Agentic Spring Boot Testing course and the full skill library"
@@ -471,7 +471,7 @@ faqs:
     - question: "Do I need the Testing Spring Boot Applications Masterclass first?"
       answer: "No, and you do not need to buy it: the Masterclass is included in both editions. This course assumes you have written Spring Boot tests before and know what @SpringBootTest and @WebMvcTest do. Start with the Masterclass modules if you want the foundations first."
     - question: "I already own the Masterclass or one of the bundled courses. Do I pay twice?"
-      answer: "No. Take the Course Edition for 329€: it is this course plus the skill library, without the three courses you already own."
+      answer: "No. Take the Course Edition for 329€: it is this course plus the skill library, without the three bundled courses."
     - question: "Which coding agents are supported?"
       answer: "The lessons use Claude Code. The skills are plain Markdown, and module 2 shows how to wire them into GitHub Copilot and Cursor. Any agent that reads project files and supports skills or rules works."
     - question: "Does it work with Maven and Gradle?"
