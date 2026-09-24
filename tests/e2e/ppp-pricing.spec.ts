@@ -5,7 +5,7 @@
 // the current time. hugo serve pre-renders the campaign with the coupon EB33.
 import { test, expect, type Page, type Route } from "@playwright/test";
 
-const coursePath = "/agentic-spring-boot-testing-course-new/";
+const coursePath = "/agentic-spring-boot-testing-course/";
 // The Course and Bundle editions carry the PPP contract; Team is sold at a fixed price.
 const productKeys = ["course_edition", "bundle_edition"] as const;
 const basePrices: Record<(typeof productKeys)[number], number> = { course_edition: 329, bundle_edition: 490 };

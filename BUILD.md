@@ -77,7 +77,7 @@ The Netlify configuration in `netlify.toml` sets:
 
 ## Purchase Power Parity (PPP) Pricing
 
-The course landing page (`content/agentic-spring-boot-testing-course-new.md`, layout
+The course landing page (`content/agentic-spring-boot-testing-course.md`, layout
 `course-landing`) shows regional discounts. The moving parts:
 
 - `netlify/edge-functions/ppp.ts` - Netlify Edge Function, runs only for `GET /api/ppp`.
@@ -151,11 +151,11 @@ cp .env.example .env
 npm run dev:netlify
 
 # Switch the tier without restarting (override is free outside production)
-open "http://localhost:8888/agentic-spring-boot-testing-course-new/?country=in"
+open "http://localhost:8888/agentic-spring-boot-testing-course/?country=in"
 curl -s "http://localhost:8888/api/ppp?country=br"
 
 # Preview the page before or after the early bird deadline
-open "http://localhost:8888/agentic-spring-boot-testing-course-new/?now=2026-10-01T22:00:00Z"
+open "http://localhost:8888/agentic-spring-boot-testing-course/?now=2026-10-01T22:00:00Z"
 ```
 
 `npm run dev` (plain Hugo) still works: `/api/ppp` answers 404 and the page shows the

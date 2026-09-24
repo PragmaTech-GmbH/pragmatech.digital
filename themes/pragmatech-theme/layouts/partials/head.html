@@ -94,14 +94,6 @@
     <script src="{{ $demoJs.RelPermalink }}" defer></script>
     {{ end }}
 
-    {{ if eq .Layout "course-interest" }}
-    {{ $courseJs := resources.Get "js/course-signup.js" }}
-    {{ if hugo.IsProduction }}
-    {{ $courseJs = $courseJs | minify | fingerprint }}
-    {{ end }}
-    <script src="{{ $courseJs.RelPermalink }}" defer></script>
-    {{ end }}
-
     {{ if eq .Layout "convince-your-manager" }}
     {{ $copyJs := resources.Get "js/copy-email.js" }}
     {{ if hugo.IsProduction }}

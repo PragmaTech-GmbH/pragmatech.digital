@@ -35,6 +35,13 @@ framework = "#custom"
 # For more information see:
 # https://docs.netlify.com/routing/redirects/
 
+# The course landing page was previewed under -new before the launch
+[[redirects]]
+  from = "/agentic-spring-boot-testing-course-new/*"
+  to = "/agentic-spring-boot-testing-course/"
+  status = 301
+  force = true
+
 # Specific asset caching
 [[headers]]
   for = "*.js"
