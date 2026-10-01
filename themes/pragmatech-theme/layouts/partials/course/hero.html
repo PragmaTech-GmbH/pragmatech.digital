@@ -17,8 +17,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
                         </svg>
                     </span>
-                    {{ $earlyBird := $.Params.ppp.earlyBird }}
-                    {{ if and .eyebrowEarlyBird $earlyBird (now.Before (time.AsTime $earlyBird.endsAt)) }}{{ .eyebrowEarlyBird }}{{ else }}{{ .eyebrow }}{{ end }}
+                    {{ .eyebrow }}
                 </span>
 
                 <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-8 leading-[1.05]">
