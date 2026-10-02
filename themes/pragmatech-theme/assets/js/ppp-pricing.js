@@ -1,19 +1,15 @@
 // Purchase Power Parity pricing for course landing pages (layout: course-landing).
 // Calls the Netlify Edge Function at /api/ppp once per session and renders the
-// pricing cards from its answer: prices, checkout links (promocode), the early bird
-// badge, a note and a banner. While the request runs, a spinner covers the prices.
-// The banner shows top right once the visitor scrolls.
-// Early bird: the pricing root carries the campaign (percentage, deadline, coupon).
-// Before the endpoint answers, the script renders the early bird price while the
-// deadline has not passed and the list price afterwards, so a page built before the
-// deadline needs no new deploy. A valid endpoint answer always wins; when the endpoint
-// fails, this local pricing stays. Nothing from the response is injected as HTML -
-// only textContent and URL parameters.
+// pricing cards from its answer: prices, checkout links (promocode), a note and a
+// banner. While the request runs, a spinner covers the prices. The banner shows top
+// right once the visitor scrolls. Before the endpoint answers, the page shows the list
+// price; when the endpoint fails, the list price stays. Nothing from the response is
+// injected as HTML - only textContent and URL parameters.
 (function () {
   var pricingRoot = document.querySelector('[data-ppp-root]');
   if (!pricingRoot) return;
 
-  var CACHE_KEY = 'ppp:v2';
+  var CACHE_KEY = 'ppp:v3';
   var BANNER_DISMISSED_KEY = 'ppp:bannerDismissed';
   var REQUEST_TIMEOUT_MS = 3000;
   var COUPON_PATTERN = /^[A-Za-z0-9_-]{1,64}$/;
@@ -22,10 +18,8 @@
 
   var pageParams = new URLSearchParams(window.location.search);
   var testCountry = pageParams.get('country');
-  var testNow = pageParams.get('now');
   var testToken = pageParams.get('token');
-  var isTestMode = Boolean(testCountry || testNow);
-  var currentTime = testNow && !isNaN(Date.parse(testNow)) ? Date.parse(testNow) : Date.now();
+  var isTestMode = Boolean(testCountry);
 
   var bannerElement = document.querySelector('[data-ppp-banner]');
   var bannerCloseButton = document.querySelector('[data-ppp-banner-close]');
@@ -40,7 +34,7 @@
     window.addEventListener('scroll', updateBannerVisibility, { passive: true });
   }
 
-  renderPricing(localPricing());
+  renderPricing(noDiscount());
 
   var cachedData = isTestMode ? null : readCachedData();
   if (cachedData) {
@@ -50,7 +44,6 @@
 
   var apiParams = new URLSearchParams();
   if (testCountry) apiParams.set('country', testCountry);
-  if (testNow) apiParams.set('now', testNow);
   if (testToken) apiParams.set('token', testToken);
   var apiUrl = '/api/ppp' + (apiParams.toString() ? '?' + apiParams.toString() : '');
 
@@ -76,7 +69,7 @@
       if (!pricingData) return;
       if (!isTestMode) writeStorage(CACHE_KEY, JSON.stringify(pricingData));
       if (window._paq) {
-        var eventName = 'tier-' + pricingData.tier + (pricingData.earlyBird ? '-early-bird' : '');
+        var eventName = 'tier-' + pricingData.tier;
         window._paq.push(['trackEvent', 'PPP', eventName, pricingData.country || 'unknown']);
       }
       renderPricing(pricingData);
@@ -112,29 +105,12 @@
       countryName: '',
       tier: 1,
       discountPercentage: 0,
-      couponCode: null,
-      earlyBird: false,
-      earlyBirdEndsAt: null
+      couponCode: null
     };
-  }
-
-  // Early bird pricing from the pre-rendered campaign attributes, list price otherwise.
-  function localPricing() {
-    var earlyBirdPricing = {
-      country: '',
-      countryName: '',
-      tier: 1,
-      discountPercentage: Number(pricingRoot.getAttribute('data-ppp-early-bird-percentage')),
-      couponCode: pricingRoot.getAttribute('data-ppp-early-bird-coupon'),
-      earlyBird: true,
-      earlyBirdEndsAt: pricingRoot.getAttribute('data-ppp-early-bird-ends-at')
-    };
-    return isValidDiscount(earlyBirdPricing) && !isExpired(earlyBirdPricing) ? earlyBirdPricing : noDiscount();
   }
 
   // Validates the endpoint response. A valid "no discount" answer resets to the list
-  // price; anything unexpected or an expired early bird returns null and keeps the
-  // local pricing.
+  // price; anything unexpected returns null and keeps the list price.
   function normalizeData(rawData) {
     if (!rawData || typeof rawData !== 'object') return null;
 
@@ -149,11 +125,9 @@
       countryName: typeof rawData.countryName === 'string' ? rawData.countryName : '',
       tier: tier,
       discountPercentage: rawData.discountPercentage,
-      couponCode: rawData.couponCode,
-      earlyBird: rawData.earlyBird === true,
-      earlyBirdEndsAt: rawData.earlyBird === true ? rawData.earlyBirdEndsAt : null
+      couponCode: rawData.couponCode
     };
-    if (!isValidDiscount(pricingData) || isExpired(pricingData)) return null;
+    if (!isValidDiscount(pricingData)) return null;
     return pricingData;
   }
 
@@ -161,28 +135,19 @@
     var discountPercentage = pricingData.discountPercentage;
     var isValidPercentage = typeof discountPercentage === 'number' && discountPercentage > 0 && discountPercentage <= 100;
     var isValidCoupon = typeof pricingData.couponCode === 'string' && COUPON_PATTERN.test(pricingData.couponCode);
-    // Tier 1 visitors only get a discount during the early bird campaign.
-    var isValidCampaign = pricingData.earlyBird
-      ? typeof pricingData.earlyBirdEndsAt === 'string' && !isNaN(Date.parse(pricingData.earlyBirdEndsAt))
-      : pricingData.tier > 1;
-    return isValidPercentage && isValidCoupon && isValidCampaign;
-  }
-
-  function isExpired(pricingData) {
-    return pricingData.earlyBird && currentTime >= Date.parse(pricingData.earlyBirdEndsAt);
+    // Only PPP tiers (2-4) carry a discount.
+    return isValidPercentage && isValidCoupon && pricingData.tier > 1;
   }
 
   function renderPricing(pricingData) {
     var hasDiscount = pricingData.discountPercentage > 0 && Boolean(pricingData.couponCode);
     var hasPppDiscount = hasDiscount && pricingData.tier > 1;
-    var isEarlyBird = hasDiscount && pricingData.earlyBird;
     var discountPercentage = hasDiscount ? pricingData.discountPercentage : 0;
     var productCards = pricingRoot.querySelectorAll('[data-ppp-product]');
 
     Array.prototype.forEach.call(productCards, function (productCard) {
       var priceElement = productCard.querySelector('[data-ppp-price]');
       var originalPriceElement = productCard.querySelector('[data-ppp-original-price]');
-      var earlyBirdBadge = productCard.querySelector('[data-ppp-early-bird-badge]');
       var ctaLink = productCard.querySelector('[data-ppp-cta]');
 
       if (priceElement) {
@@ -194,7 +159,6 @@
       }
 
       if (originalPriceElement) originalPriceElement.classList.toggle('hidden', !hasDiscount);
-      if (earlyBirdBadge) earlyBirdBadge.classList.toggle('hidden', !isEarlyBird);
 
       if (ctaLink) {
         var href = ctaLink.getAttribute('href');
@@ -209,11 +173,6 @@
           }
         }
       }
-    });
-
-    var earlyBirdSlots = document.querySelectorAll('[data-ppp-early-bird-only]');
-    Array.prototype.forEach.call(earlyBirdSlots, function (slot) {
-      slot.classList.toggle('hidden', !(hasPppDiscount && isEarlyBird));
     });
 
     var noteElement = pricingRoot.querySelector('[data-ppp-note]');

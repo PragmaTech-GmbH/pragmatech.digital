@@ -64,7 +64,6 @@ export default defineConfig({
           PPP_PRODUCT_ID_COURSE_EDITION: "pid-course_edition",
           PPP_PRODUCT_ID_BUNDLE_EDITION: "pid-bundle_edition",
           PPP_PRODUCT_ID_TEAM_EDITION: "pid-team_edition",
-          PPP_COUPON_EARLY_BIRD_TIER_1: "EB33",
         },
       },
 });

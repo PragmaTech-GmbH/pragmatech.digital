@@ -13,8 +13,6 @@ hideBanner: true
 
 hero:
   eyebrow: "Now available - on-demand course"
-  # Shown instead of `eyebrow` while ppp.earlyBird runs (checked at build time).
-  eyebrowEarlyBird: "Early-Bird - Get 33% Off"
   headlineAccent: "Agentic Spring Boot Testing."
   headline: "Reliable, meaningful test suites with AI agents."
   bullets:
@@ -364,15 +362,6 @@ ppp:
   headline: "Pricing"
   intro: "Three editions. The Course Edition is for students who already own my testing courses. The Bundle and Team editions add the full course library, and differ in seats, the implementation workshop, support and the update window."
   pppScope: "Course and Bundle editions"
-  # Early bird launch price for products with `ppp: true`. `endsAt` is exclusive and
-  # must match netlify/shared/ppp-early-bird.ts. The checkout coupon comes from the
-  # PPP_COUPON_EARLY_BIRD_TIER_1 env var, see BUILD.md.
-  earlyBird:
-    discountPercentage: 33
-    endsAt: "2026-10-02T09:00:00+02:00"
-    endsAtLabel: "course launch at 2 October 2026, 09:00 CEST"
-    countdownHeadline: "Pre-sale: 33% off until the launch"
-    countdownText: "The course launches on 2 October 2026, 09:00 CEST. Buy the Course or Bundle Edition now at 33% off, and you get access to all lessons and skills on launch day. The pre-sale price ends when the countdown reaches zero."
   guarantee: "60-day money-back guarantee, no questions asked"
   managerTemplate:
     headline: "Need approval from your manager?"
