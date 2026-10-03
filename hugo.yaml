@@ -27,9 +27,7 @@ params:
     u: "0e1ba18c31aabbb76027a3e54" # account hash, the u= query param of actionUrl
     id: "d60be7e492" # audience id, the id= query param of actionUrl
     tagId: "1678391" # numeric id of the tag "course-agentic-testing-interest"
-    # numeric id of the tag "lp-devoxx-belgium-2026" - it triggers the welcome automation.
-    # TODO: create the tag in Mailchimp (Audience > Tags) and paste the id here.
-    devoxxTagId: ""
+    devoxxTagId: "1678426" # numeric id of the tag "lp-devoxx-belgium-2026", triggers the email automation
 
 relativeURLs: true
 publishDir: "public"
