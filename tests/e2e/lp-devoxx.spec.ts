@@ -24,7 +24,7 @@ test.describe("devoxx lead magnet page", () => {
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", "noindex, nofollow");
     await expect(page.locator('input[name="FNAME"]')).toBeVisible();
     await expect(page.locator('input[name="EMAIL"]')).toBeVisible();
-    await expect(page.locator('[data-lp="email-note"]')).toContainText("arrive by email");
+    await expect(page.locator('[data-lp="email-note"]')).toContainText("arrives by email");
     await expect(page.locator('[data-lp="deadline"]')).toContainText("10 October 2026, 3 PM CEST");
   });
 
