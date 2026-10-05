@@ -12,16 +12,14 @@ sitemap:
 
 campaign: "devoxx-belgium-2026"
 
-intro: "You will get three emails from me. The first one needs a click from you - without it, the other two do not arrive."
+intro: "You will get two emails from me. The first one needs a click from you - without it, the second one does not arrive."
 sender: "Philip from PragmaTech (info@pragmatech.digital)"
 
 steps:
   - title: "1. Confirm your email (right now)"
     text: "Check your inbox for the email with the subject \"Please confirm your email\". Click the confirmation button in it. This is a double opt-in: it protects your inbox and keeps me GDPR compliant."
-  - title: "2. Welcome email (after you confirm)"
-    text: "A short welcome email arrives straight after your confirmation. It tells you what to expect from me."
-  - title: "3. Your 33% coupon (a few minutes later)"
-    text: "The last email contains your 33% coupon code for the Agentic Spring Boot Testing course. The coupon is valid until 10 October 2026, 3 PM CEST."
+  - title: "2. Welcome email with your 33% coupon (after you confirm)"
+    text: "The welcome email arrives straight after your confirmation. It already contains your 33% coupon code for the Agentic Spring Boot Testing course. The coupon is valid until 9 October 2026, 3 PM CEST."
 
 help:
   title: "Nothing in your inbox after 10 minutes?"
