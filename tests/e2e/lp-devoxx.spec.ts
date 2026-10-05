@@ -76,15 +76,14 @@ test.describe("devoxx lead magnet page", () => {
 });
 
 test.describe("devoxx thank-you page", () => {
-  test("explains the double opt-in and the two follow-up emails", async ({ page }) => {
+  test("explains the double opt-in and the welcome email with the coupon", async ({ page }) => {
     await page.goto(thankYouPath);
 
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", "noindex, nofollow");
     const steps = page.locator('[data-lp="steps"] li');
-    await expect(steps).toHaveCount(3);
+    await expect(steps).toHaveCount(2);
     await expect(steps.nth(0)).toContainText("Confirm your email");
-    await expect(steps.nth(1)).toContainText("Welcome email");
-    await expect(steps.nth(2)).toContainText("33% coupon");
+    await expect(steps.nth(1)).toContainText("Welcome email with your 33% coupon");
   });
 
   test("both pages stay out of the sitemap", async ({ request }) => {
