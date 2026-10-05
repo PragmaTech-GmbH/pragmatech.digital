@@ -25,7 +25,7 @@ test.describe("devoxx lead magnet page", () => {
     await expect(page.locator('input[name="FNAME"]')).toBeVisible();
     await expect(page.locator('input[name="EMAIL"]')).toBeVisible();
     await expect(page.locator('[data-lp="email-note"]')).toContainText("arrives by email");
-    await expect(page.locator('[data-lp="deadline"]')).toContainText("10 October 2026, 3 PM CEST");
+    await expect(page.locator('[data-lp="deadline"]')).toContainText("9 October 2026, 3 PM CEST");
   });
 
   test("blocks an empty name and an invalid email", async ({ page }) => {

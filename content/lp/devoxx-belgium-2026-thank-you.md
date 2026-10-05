@@ -21,7 +21,7 @@ steps:
   - title: "2. Welcome email (after you confirm)"
     text: "A short welcome email arrives straight after your confirmation. It tells you what to expect from me."
   - title: "3. Your 33% coupon (a few minutes later)"
-    text: "The last email contains your 33% coupon code for the Agentic Spring Boot Testing course. The coupon is valid until 10 October 2026, 3 PM CEST."
+    text: "The last email contains your 33% coupon code for the Agentic Spring Boot Testing course. The coupon is valid until 9 October 2026, 3 PM CEST."
 
 help:
   title: "Nothing in your inbox after 10 minutes?"

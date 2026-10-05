@@ -105,6 +105,7 @@
                     <p id="lead-signup-error" class="hidden text-sm text-red-600 mt-3" role="alert"></p>
 
                     <p class="text-xs text-slate-500 mt-4 text-center">{{ .note }}</p>
+                    {{ with .newsletterNote }}<p data-lp="newsletter-note" class="text-xs text-slate-500 mt-2 text-center">{{ . }}</p>{{ end }}
                 </div>
             </div>
             {{ end }}
