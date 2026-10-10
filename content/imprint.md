@@ -8,11 +8,11 @@ last_updated: "August 24, 2026"
 
 ## Information pursuant to Sect. 5 German Digital Services Act (DDG)
 
-PragmaTech GmbH  
-Bamberger Straße 40B  
-91074 Herzogenaurach
+{{< company "name" >}}  
+{{< company "street" >}}  
+{{< company "zip" >}} {{< company "city" >}}
 
-Managing Director: Philip Riecks
+Managing Director: {{< company "managingDirector" >}}
 
 ## Contact
 
@@ -20,7 +20,7 @@ E-mail: info@pragmatech.digital
 
 ## VAT ID
 
-Sales tax identification number according to Sect. 27 a of the Sales Tax Law: DE368122664
+Sales tax identification number according to Sect. 27 a of the Sales Tax Law: {{< company "vatId" >}}
 
 ## Person responsible for editorial
 

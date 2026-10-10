@@ -15,6 +15,15 @@ params:
   bannerText: "Our new open-source project [Spring Test Profiler](/products/spring-test-profiler/) is available! Try it now to speed up your Spring Boot builds."
   # Banner for the agentic course at the top of the homepage hero. Set to true to show it.
   showCourseBanner: true
+  # Company master data, used by the imprint (shortcode "company") and the /hotel page
+  company:
+    name: "PragmaTech GmbH"
+    street: "Bamberger Straße 40B"
+    zip: "91074"
+    city: "Herzogenaurach"
+    country: "Germany"
+    vatId: "DE368122664"
+    managingDirector: "Philip Riecks"
   emails:
     contact: "info@pragmatech.digital"
     info: "info@pragmatech.digital"
