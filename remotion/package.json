@@ -7,7 +7,15 @@
     "render:hero": "npm run render:hero:mp4 && npm run render:hero:webm && npm run render:hero:poster",
     "render:hero:mp4": "remotion render src/index.ts NoiseToTests out/noise-to-tests.mp4 --codec=h264 --crf=33",
     "render:hero:webm": "remotion render src/index.ts NoiseToTests out/noise-to-tests.webm --codec=vp9 --crf=50",
-    "render:hero:poster": "remotion still src/index.ts NoiseToTests out/noise-to-tests-poster.png --frame=299"
+    "render:hero:poster": "remotion still src/index.ts NoiseToTests out/noise-to-tests-poster.png --frame=299",
+    "render:attention-bottleneck": "npm run render:attention-bottleneck:mp4 && npm run render:attention-bottleneck:webm && npm run render:attention-bottleneck:poster",
+    "render:attention-bottleneck:mp4": "remotion render src/index.ts AttentionBottleneck out/attention-bottleneck.mp4 --codec=h264 --crf=33",
+    "render:attention-bottleneck:webm": "remotion render src/index.ts AttentionBottleneck out/attention-bottleneck.webm --codec=vp9 --crf=50",
+    "render:attention-bottleneck:poster": "remotion still src/index.ts AttentionBottleneck out/attention-bottleneck-poster.png --frame=269",
+    "render:feedback-engine": "npm run render:feedback-engine:mp4 && npm run render:feedback-engine:webm && npm run render:feedback-engine:poster",
+    "render:feedback-engine:mp4": "remotion render src/index.ts FeedbackEngine out/feedback-engine.mp4 --codec=h264 --crf=33",
+    "render:feedback-engine:webm": "remotion render src/index.ts FeedbackEngine out/feedback-engine.webm --codec=vp9 --crf=50",
+    "render:feedback-engine:poster": "remotion still src/index.ts FeedbackEngine out/feedback-engine-poster.png --frame=55"
   },
   "dependencies": {
     "@remotion/cli": "4.0.527",
