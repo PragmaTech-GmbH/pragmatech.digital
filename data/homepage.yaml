@@ -179,6 +179,14 @@ faqSection:
     - question: "Which Java versions do you support?"
       answer: "All of them - from Java 8 to the latest release."
 
+# Sticky side card next to the story on wide screens
+railCTA:
+  badge: "15 minutes"
+  title: "We find one thing to improve in your build"
+  text: "We walk through your pipeline together. You leave with one concrete optimization you can ship next week."
+  button: "Book your 15 minutes"
+  note: "Zero pitch. No commitment."
+
 finalCTA:
   headline: "Let's Analyze Your Situation"
   subheadline: "No sales pitch. A 15-minute walkthrough of where your pipeline currently stands."
