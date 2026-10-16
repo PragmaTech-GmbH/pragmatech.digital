@@ -777,3 +777,56 @@ summary::-webkit-details-marker { display: none; }
 [data-variant="a"] .pain-card__category {
     color: #dc2626 !important;
 }
+
+/* Home - customer case: prominent before -> after result */
+.case-result {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.08), rgba(16, 185, 129, 0.1));
+    border: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+.case-result__label {
+    margin: 0 0 0.25rem;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.case-result__label--before { color: #f87171; }
+.case-result__label--after { color: #34d399; }
+
+.case-result__value {
+    margin: 0;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.02em;
+}
+
+.case-result__value--before {
+    color: #f87171;
+    text-decoration: line-through;
+    text-decoration-thickness: 3px;
+    text-decoration-color: rgba(248, 113, 113, 0.6);
+}
+
+.case-result__value--after { color: #34d399; }
+
+.case-result__arrow {
+    width: 2.75rem;
+    height: 1.5rem;
+    color: #94a3b8;
+    flex-shrink: 0;
+}
+
+.case-result__delta {
+    margin-left: auto;
+    padding: 0.5rem 0.9rem;
+    border-radius: 9999px;
+    background: #10b981;
+    color: #052e1f;
+    font-size: 0.85rem;
+    font-weight: 700;
+    white-space: nowrap;
+}

@@ -617,19 +617,25 @@
                         </div>
                         <div class="md:col-span-9 space-y-6">
                             {{ with .metrics }}
+                            {{ if and .before .after }}
+                            {{ $beforeMinutes := float (index (findRE `\d+` .before 1) 0) }}
+                            {{ $afterMinutes := float (index (findRE `\d+` .after 1) 0) }}
+                            <div class="case-result flex flex-wrap items-center gap-x-5 gap-y-3 rounded-2xl p-5 sm:p-6">
+                                <div class="case-result__side">
+                                    <p class="case-result__label case-result__label--before">Before</p>
+                                    <p class="case-result__value case-result__value--before">{{ .before }}</p>
+                                </div>
+                                <svg class="case-result__arrow" viewBox="0 0 48 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12h42M34 3l10 9-10 9"/></svg>
+                                <div class="case-result__side">
+                                    <p class="case-result__label case-result__label--after">After</p>
+                                    <p class="case-result__value case-result__value--after">{{ .after }}</p>
+                                </div>
+                                {{ if gt $beforeMinutes 0.0 }}
+                                <span class="case-result__delta">-{{ math.Round (div (mul (sub $beforeMinutes $afterMinutes) 100.0) $beforeMinutes) | int }}% build time</span>
+                                {{ end }}
+                            </div>
+                            {{ end }}
                             <div class="flex flex-wrap gap-2">
-                                {{ with .before }}
-                                <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-red-50 border border-red-100 text-xs shadow-sm">
-                                    <span class="text-[9px] tracking-[0.18em] uppercase text-red-700 font-bold">Before</span>
-                                    <span class="text-slate-900 font-bold">{{ . }}</span>
-                                </span>
-                                {{ end }}
-                                {{ with .after }}
-                                <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-50 border border-emerald-100 text-xs shadow-sm">
-                                    <span class="text-[9px] tracking-[0.18em] uppercase text-emerald-700 font-bold">After</span>
-                                    <span class="text-slate-900 font-bold">{{ . }}</span>
-                                </span>
-                                {{ end }}
                                 {{ with .codeSize }}
                                 <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-brand-50 border border-brand-100 text-xs shadow-sm">
                                     <span class="text-[9px] tracking-[0.18em] uppercase text-brand-700 font-bold">Codebase</span>
