@@ -214,10 +214,10 @@
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
                 {{ range $i, $pain := $home.painPoints }}
                 <article class="pain-card group relative bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">
-                    <div class="w-11 h-11 rounded-xl bg-brand-50 text-brand-600 ring-1 ring-brand-100 flex items-center justify-center mb-5">
+                    <div class="pain-card__icon w-11 h-11 rounded-xl flex items-center justify-center mb-5">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">{{ if eq $pain.icon "clock" }}<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a10 10 0 11-20 0 10 10 0 0120 0z"/>{{ else if eq $pain.icon "shield" }}<path stroke-linecap="round" stroke-linejoin="round" d="M12 3l8 3v6c0 4.5-3.2 8-8 9-4.8-1-8-4.5-8-9V6l8-3zm-2.5 7.5l5 5m0-5l-5 5"/>{{ else if eq $pain.icon "loop" }}<path stroke-linecap="round" stroke-linejoin="round" d="M4 12a8 8 0 0113.7-5.7L20 8m0-4v4h-4m4 4a8 8 0 01-13.7 5.7L4 16m0 4v-4h4"/>{{ else if eq $pain.icon "coins" }}<path stroke-linecap="round" stroke-linejoin="round" d="M12 6c-4.4 0-8-1-8-2.5S7.6 1 12 1s8 1 8 2.5S16.4 6 12 6zm8 2.5V12c0 1.5-3.6 2.5-8 2.5S4 13.5 4 12V8.5M20 12v3.5c0 1.5-3.6 2.5-8 2.5s-8-1-8-2.5V12m16 3.5V19c0 1.5-3.6 2.5-8 2.5S4 20.5 4 19v-3.5" transform="translate(0 1)"/>{{ else if eq $pain.icon "eye" }}<path stroke-linecap="round" stroke-linejoin="round" d="M3 3l18 18M10.6 10.6a2 2 0 002.8 2.8M9.9 5.1A9.7 9.7 0 0112 5c4.5 0 8.3 3 9.5 7a10 10 0 01-2.3 3.8M6.2 6.3A10 10 0 002.5 12c1.2 4 5 7 9.5 7a9.7 9.7 0 004.1-.9"/>{{ else if eq $pain.icon "trend-down" }}<path stroke-linecap="round" stroke-linejoin="round" d="M3 7l6 6 4-4 8 8m0 0v-6m0 6h-6"/>{{ end }}</svg>
                     </div>
-                    <p class="text-[11px] font-bold tracking-[0.18em] uppercase text-brand-600 mb-2">{{ $pain.category }}</p>
+                    <p class="pain-card__category text-[11px] font-bold tracking-[0.18em] uppercase mb-2">{{ $pain.category }}</p>
                     <h3 class="text-lg font-bold text-slate-900 mb-2">{{ $pain.title }}</h3>
                     <p class="text-slate-600 leading-relaxed text-[15px]">{{ $pain.description }}</p>
                 </article>

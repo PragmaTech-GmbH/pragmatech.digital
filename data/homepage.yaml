@@ -181,11 +181,11 @@ faqSection:
 
 # Sticky side card next to the story on wide screens
 railCTA:
-  badge: "15 minutes"
-  title: "We find one thing to improve in your build"
-  text: "We walk through your setup together. You leave with one concrete optimization you can ship next week."
-  button: "Book your 15 minutes"
-  note: "Zero pitch. No commitment."
+  badge: "15 minutes, zero fluff"
+  title: "Your build is slower than it needs to be. Let's prove it."
+  text: "We review your setup and find the biggest time-waster in your build. You get one concrete fix to ship next week."
+  button: "Find my time-waster"
+  note: "No pitch. Worst case, your build gets faster anyway."
 
 finalCTA:
   headline: "Let's Analyze Your Situation"

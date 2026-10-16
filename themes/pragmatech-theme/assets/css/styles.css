@@ -766,3 +766,14 @@ summary::-webkit-details-marker { display: none; }
 [data-variant="a"] .pain-card p:last-child {
     color: #475569 !important;
 }
+
+/* Home - pain cards: red accents for icon and category */
+[data-variant="a"] .pain-card__icon {
+    background-color: #fef2f2;
+    color: #dc2626;
+    box-shadow: inset 0 0 0 1px #fecaca;
+}
+
+[data-variant="a"] .pain-card__category {
+    color: #dc2626 !important;
+}
