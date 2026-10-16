@@ -17,6 +17,7 @@
     field. Yet it still provides real-world examples. The content is
     absolutely awesome. A good investment of money and time.
   person: "Sergei Sukhoborov"
+  linkedin: "https://www.linkedin.com/in/sergei-sukhoborov/"
   position: "Course Student"
   context: "via LinkedIn DM"
 
@@ -24,8 +25,11 @@
     The session was very insightful and easy to follow. Already 2 months
     later we've been able to cut test execution time in half!
   person: "Ludvik Bjørklund"
+  photo: "ludvik-bjorklund.webp"
+  linkedin: "https://www.linkedin.com/in/ludvik-bjorklund/"
   position: "Backend Developer"
   company: "Team Payments"
+  logo: "clients/entur.webp"
   context: "Session at Entur"
 
 - text: >
@@ -35,8 +39,11 @@
     sparked plenty of internal discussion and motivates dev teams to rethink
     parts of their testing strategy. A truly valuable talk.
   person: "Dustin Hütter"
+  photo: "dustin-huetter.webp"
+  linkedin: "https://www.linkedin.com/in/dustin-h%C3%BCtter-5a29a3176/"
   position: "Engineer"
   company: "REWE Digital"
+  logo: "clients/rewegroup.webp"
   context: "Spring Boot CoP"
 
 - text: >
@@ -45,8 +52,11 @@
     for the various types of tests. We'll use this as a starting point for
     further discussion, drawing on the very good material Philip provides.
   person: "Stefan Scheidt"
+  photo: "stefan-scheidt.webp"
+  linkedin: "https://www.linkedin.com/in/stefanscheidt/"
   position: "Engineer"
   company: "REWE Digital"
+  logo: "clients/rewegroup.webp"
   context: "Spring Boot CoP"
 
 - text: >
@@ -55,6 +65,9 @@
     introduction was very easy to follow and helped surface existing gaps and
     topics worth exploring more deeply. Thank you, Philip!
   person: "Aaron Budick"
+  photo: "aaron-budick.webp"
+  linkedin: "https://www.linkedin.com/in/aaron-budick-abb180152/"
   position: "Engineer"
   company: "Nürnberger Versicherung"
+  logo: "clients/nuernberger.webp"
   context: "Internal Tech Talk"

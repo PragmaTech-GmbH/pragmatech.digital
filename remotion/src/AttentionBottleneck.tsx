@@ -17,6 +17,9 @@ export const ATTENTION_BOTTLENECK_DURATION = 270;
 
 const CENTER_Y = 340;
 const SOURCE_X = 90;
+const HUMAN_X = 90;
+const HUMAN_Y = 440;
+const AI_Y = 240;
 const SPAWN_X = 160;
 const GATE_X = 700;
 const QUEUE_HEAD_X = GATE_X - 46;
@@ -29,6 +32,13 @@ const FRAMES_PER_REVIEW = 12;
 const PARTICLE_COUNT = 52;
 const LANE_OFFSETS = [-64, 0, 64];
 const WAIT_FRAMES_UNTIL_ROSE = 110;
+
+// A few rushed reviews let a bug through: the shipped change takes production down.
+const OUTAGE_PARTICLES = [3, 8, 12];
+const OUTAGE_X = 940;
+const OUTAGE_EVENT_FRAMES = 40;
+const outageFrameOf = (particleIndex: number) =>
+  passFrameOf(particleIndex) + (OUTAGE_X - QUEUE_HEAD_X) / OUTBOUND_SPEED;
 
 // Spawn rate accelerates: the supply of AI generated code keeps growing.
 const spawnFrameOf = (particleIndex: number) =>
@@ -59,11 +69,15 @@ const particleStateAt = (particleIndex: number, frame: number): ParticleState =>
   }
   if (x > CANVAS_WIDTH - 60) return null;
 
-  const y = CENTER_Y + LANE_OFFSETS[particleIndex % 3] * laneSpread(x);
+  const originY = particleIndex % 2 === 0 ? AI_Y : HUMAN_Y;
+  const laneY = CENTER_Y + LANE_OFFSETS[particleIndex % 3] * laneSpread(x);
+  const y = originY + (laneY - originY) * smoothstep(SPAWN_X, 340, x);
 
   let color: string;
   if (hasPassed) {
-    color = colors.emerald;
+    color = OUTAGE_PARTICLES.includes(particleIndex)
+      ? mixColors(colors.emerald, colors.rose, smoothstep(OUTAGE_X - 60, OUTAGE_X, x))
+      : colors.emerald;
   } else {
     const waitProgress = clamp01((frame - spawnFrame) / WAIT_FRAMES_UNTIL_ROSE);
     color =
@@ -94,6 +108,10 @@ export const AttentionBottleneck: React.FC = () => {
   const sceneOpacity = interpolate(frame, [0, 12], [0, 1], { extrapolateRight: 'clamp' });
   const backlogOpacity = smoothstep(2, 8, backlog);
 
+  const outageEvents = OUTAGE_PARTICLES.map((index) => (frame - outageFrameOf(index)) / OUTAGE_EVENT_FRAMES).filter(
+    (progress) => progress >= 0 && progress <= 1,
+  );
+
   const gateTopHeight = CENTER_Y - GATE_GAP / 2 - 120;
   const gateBottomY = CENTER_Y + GATE_GAP / 2;
 
@@ -111,11 +129,19 @@ export const AttentionBottleneck: React.FC = () => {
         <rect width={CANVAS_WIDTH} height={CANVAS_HEIGHT} fill="url(#dots)" />
 
         {/* AI source */}
-        <circle cx={SOURCE_X} cy={CENTER_Y} r={pulseRadius} fill="none" stroke={colors.brand} opacity={pulseOpacity} strokeWidth={2} />
-        <circle cx={SOURCE_X} cy={CENTER_Y} r={30} fill={colors.panel} stroke={colors.brandLight} strokeWidth={3} />
-        <circle cx={SOURCE_X} cy={CENTER_Y} r={9} fill={colors.brandLight} />
-        <text x={SOURCE_X} y={CENTER_Y + 76} textAnchor="middle" fontFamily={monoFont} fontSize={20} fill={colors.textMuted}>
+        <circle cx={SOURCE_X} cy={AI_Y} r={pulseRadius} fill="none" stroke={colors.brand} opacity={pulseOpacity} strokeWidth={2} />
+        <circle cx={SOURCE_X} cy={AI_Y} r={30} fill={colors.panel} stroke={colors.brandLight} strokeWidth={3} />
+        <circle cx={SOURCE_X} cy={AI_Y} r={9} fill={colors.brandLight} />
+        <text x={SOURCE_X} y={AI_Y + 76} textAnchor="middle" fontFamily={monoFont} fontSize={20} fill={colors.textMuted}>
           AI AGENTS
+        </text>
+
+        {/* Human developers ship code too */}
+        <circle cx={HUMAN_X} cy={HUMAN_Y} r={30} fill={colors.panel} stroke={colors.brandLight} strokeWidth={3} />
+        <circle cx={HUMAN_X} cy={HUMAN_Y - 8} r={7} fill={colors.brandLight} />
+        <path d={`M ${HUMAN_X - 14} ${HUMAN_Y + 15} C ${HUMAN_X - 14} ${HUMAN_Y + 1}, ${HUMAN_X + 14} ${HUMAN_Y + 1}, ${HUMAN_X + 14} ${HUMAN_Y + 15} Z`} fill={colors.brandLight} />
+        <text x={HUMAN_X} y={HUMAN_Y + 76} textAnchor="middle" fontFamily={monoFont} fontSize={20} fill={colors.textMuted}>
+          HUMAN
         </text>
 
         {/* Review gate */}
@@ -144,6 +170,17 @@ export const AttentionBottleneck: React.FC = () => {
           );
         })}
 
+        {/* Production outage events */}
+        {outageEvents.map((progress, eventIndex) => (
+          <g key={eventIndex}>
+            <circle cx={OUTAGE_X + 20} cy={CENTER_Y} r={20 + 70 * progress} fill="none" stroke={colors.rose} strokeWidth={4} opacity={1 - progress} />
+            <circle cx={OUTAGE_X + 20} cy={CENTER_Y} r={12} fill={colors.rose} opacity={1 - smoothstep(0.6, 1, progress)} />
+            <text x={OUTAGE_X + 20} y={CENTER_Y - 110} textAnchor="middle" fontFamily={monoFont} fontSize={22} fontWeight={700} fill={colors.rose} opacity={smoothstep(0, 0.15, progress) * (1 - smoothstep(0.75, 1, progress))}>
+              PRODUCTION OUTAGE
+            </text>
+          </g>
+        ))}
+
         {/* Counters */}
         <text x={48} y={64} fontFamily={monoFont} fontSize={24} fill={colors.textMuted}>
           code changes <tspan fill={colors.brandLight} fontWeight={700}>{opened}</tspan>
@@ -151,16 +188,14 @@ export const AttentionBottleneck: React.FC = () => {
         <text x={CANVAS_WIDTH - 48} y={64} textAnchor="end" fontFamily={monoFont} fontSize={24} fill={colors.textMuted}>
           reviewed <tspan fill={colors.emerald} fontWeight={700}>{reviewed}</tspan>
         </text>
-        <text
-          x={48}
-          y={CANVAS_HEIGHT - 52}
-          fontFamily={monoFont}
-          fontSize={26}
-          fill={colors.textMuted}
-          opacity={backlogOpacity}
-        >
-          waiting <tspan fill={mixColors(colors.amber, colors.rose, stress)} fontWeight={700}>{backlog}</tspan>
-        </text>
+        <g opacity={backlogOpacity}>
+          <text x={260} y={CANVAS_HEIGHT - 96} fontFamily={monoFont} fontSize={72} fontWeight={700} fill={mixColors(colors.amber, colors.rose, stress)}>
+            {backlog}
+          </text>
+          <text x={262} y={CANVAS_HEIGHT - 56} fontFamily={monoFont} fontSize={24} fill={colors.textMuted}>
+            PRs waiting
+          </text>
+        </g>
       </svg>
     </AbsoluteFill>
   );

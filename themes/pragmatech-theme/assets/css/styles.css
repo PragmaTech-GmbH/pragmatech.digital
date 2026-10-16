@@ -540,13 +540,13 @@ summary::-webkit-details-marker { display: none; }
 /* Home - white trust band under the hero */
 .home-trust {
     background-color: #ffffff;
-    border-bottom: 1px solid #e2e8f0;
+    border-bottom: 1px solid #f1f5f9;
 }
 
 .home-trust__inner {
     max-width: 80rem;
     margin-inline: auto;
-    padding: 1.25rem 1rem;
+    padding: clamp(0.75rem, 1.8vh, 1.25rem) 1rem clamp(1.25rem, 3.2vh, 2rem);
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -732,6 +732,12 @@ summary::-webkit-details-marker { display: none; }
         border-top: 0;
     }
 
+    [data-variant="a"] .home-layout__main > section.home-cta-center > div[class*="max-w-"] {
+        max-width: 48rem !important;
+        margin-inline: auto !important;
+        text-align: center !important;
+    }
+
     .home-layout__main > section > div[class*="max-w-"] {
         max-width: none !important;
         margin-inline: 0 !important;
@@ -742,6 +748,10 @@ summary::-webkit-details-marker { display: none; }
         text-align: left;
     }
 
+    [data-variant="a"] .home-layout__main > section.home-cta-center .text-center {
+        text-align: center;
+    }
+
     .home-layout__main section .mx-auto {
         margin-left: 0;
         margin-right: auto;
@@ -750,4 +760,9 @@ summary::-webkit-details-marker { display: none; }
     .home-layout__main #faq-a .flex-col.items-center {
         align-items: flex-start;
     }
+}
+
+/* Home - pain cards: keep description text readable on the light surface */
+[data-variant="a"] .pain-card p:last-child {
+    color: #475569 !important;
 }

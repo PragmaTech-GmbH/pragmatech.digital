@@ -14,7 +14,7 @@
     <!-- ============================================================ -->
     <!-- 1. HERO                                                      -->
     <!-- ============================================================ -->
-    <section class="home-hero hero-pattern relative overflow-hidden border-b border-slate-800">
+    <section class="home-hero hero-pattern relative overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-900/50 to-brand-900/20 pointer-events-none"></div>
 
         {{/* Course banner (site param `showCourseBanner`): overlays the top of the hero and takes no layout space. */}}
@@ -22,7 +22,7 @@
             {{ if site.Params.showCourseBanner }}
             {{ with site.GetPage "/agentic-spring-boot-testing-course" }}
             <a href="{{ .RelPermalink }}" class="relative block border-b border-amber-200 bg-amber-50 hover:bg-amber-100 transition-colors" data-home-course-banner>
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-7 grid md:grid-cols-[minmax(0,14rem)_1fr] gap-5 md:gap-7 items-center">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-5 grid md:grid-cols-[minmax(0,11rem)_1fr] gap-4 md:gap-6 items-center">
                     {{/* .Params.image is the .webp (static/generated), .Params.share_image the .png fallback. */}}
                     {{ with .Params.image }}
                     <picture>
@@ -37,16 +37,13 @@
                         <span class="inline-flex items-center gap-1.5 rounded-full bg-amber-400 px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-widest text-amber-950">
                             Now available - on-demand course
                         </span>
-                        <p class="mt-3 text-xl md:text-2xl font-bold text-amber-950">
+                        <p class="mt-2 text-xl md:text-2xl font-bold text-amber-950">
                             Stop shipping AI-written tests you cannot trust
                         </p>
-                        <p class="mt-2 text-sm md:text-base text-amber-900 max-w-3xl">
-                            Your agent has no testing judgment. That is why it hands you 40 green tests that prove nothing
-                            and a build that takes 20 minutes. Agentic Spring Boot Testing gives it that judgment:
-                            the agent setup and seven skills you install today and keep updated for a year, so every test it
-                            writes from now on is one you would approve in review.
+                        <p class="mt-2 text-sm md:text-base text-amber-900 max-w-2xl">
+                            Get a dedicated <strong class="font-bold">Agentic Skill Library</strong> for Spring Boot Testing: fast, comprehensive tests that give you confidence.
                         </p>
-                        <span class="mt-4 inline-flex items-center gap-2 rounded-lg bg-amber-500 px-4 py-2 text-sm font-bold text-amber-950 shadow-sm">
+                        <span class="mt-3 inline-flex items-center gap-2 rounded-lg bg-amber-500 px-4 py-2 text-sm font-bold text-amber-950 shadow-sm">
                             Get the course
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -214,20 +211,16 @@
                     <source src="/videos/attention-bottleneck.mp4" type="video/mp4">
                 </video>
             </figure>
-            <div class="bg-white border border-slate-200 rounded-xl overflow-hidden font-mono text-sm shadow-sm">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
                 {{ range $i, $pain := $home.painPoints }}
-                <div class="grid grid-cols-[auto_auto_1fr] gap-3 sm:gap-4 px-4 sm:px-6 py-5 border-b border-slate-200 last:border-b-0 hover:bg-slate-50 transition-colors">
-                    <span class="text-slate-400 select-none hidden sm:inline">{{ printf "%02d" (add $i 1) }}</span>
-                    <span class="px-2 h-fit text-[11px] font-bold rounded
-                        {{ if le $i 1 }}bg-red-50 text-red-700 border border-red-200{{ else if le $i 3 }}bg-amber-50 text-amber-800 border border-amber-200{{ else }}bg-orange-50 text-orange-800 border border-orange-200{{ end }}
-                    ">
-                        {{ if le $i 1 }}FAIL{{ else if le $i 3 }}WARN{{ else }}DEBT{{ end }}
-                    </span>
-                    <div>
-                        <p class="text-slate-900 font-bold mb-1">{{ $pain.title }} <span class="text-slate-500 font-normal">- {{ $pain.category }}</span></p>
-                        <p class="text-slate-700 leading-relaxed" style="font-family: 'Inter', sans-serif;">{{ $pain.description }}</p>
+                <article class="pain-card group relative bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">
+                    <div class="w-11 h-11 rounded-xl bg-brand-50 text-brand-600 ring-1 ring-brand-100 flex items-center justify-center mb-5">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">{{ if eq $pain.icon "clock" }}<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a10 10 0 11-20 0 10 10 0 0120 0z"/>{{ else if eq $pain.icon "shield" }}<path stroke-linecap="round" stroke-linejoin="round" d="M12 3l8 3v6c0 4.5-3.2 8-8 9-4.8-1-8-4.5-8-9V6l8-3zm-2.5 7.5l5 5m0-5l-5 5"/>{{ else if eq $pain.icon "loop" }}<path stroke-linecap="round" stroke-linejoin="round" d="M4 12a8 8 0 0113.7-5.7L20 8m0-4v4h-4m4 4a8 8 0 01-13.7 5.7L4 16m0 4v-4h4"/>{{ else if eq $pain.icon "coins" }}<path stroke-linecap="round" stroke-linejoin="round" d="M12 6c-4.4 0-8-1-8-2.5S7.6 1 12 1s8 1 8 2.5S16.4 6 12 6zm8 2.5V12c0 1.5-3.6 2.5-8 2.5S4 13.5 4 12V8.5M20 12v3.5c0 1.5-3.6 2.5-8 2.5s-8-1-8-2.5V12m16 3.5V19c0 1.5-3.6 2.5-8 2.5S4 20.5 4 19v-3.5" transform="translate(0 1)"/>{{ else if eq $pain.icon "eye" }}<path stroke-linecap="round" stroke-linejoin="round" d="M3 3l18 18M10.6 10.6a2 2 0 002.8 2.8M9.9 5.1A9.7 9.7 0 0112 5c4.5 0 8.3 3 9.5 7a10 10 0 01-2.3 3.8M6.2 6.3A10 10 0 002.5 12c1.2 4 5 7 9.5 7a9.7 9.7 0 004.1-.9"/>{{ else if eq $pain.icon "trend-down" }}<path stroke-linecap="round" stroke-linejoin="round" d="M3 7l6 6 4-4 8 8m0 0v-6m0 6h-6"/>{{ end }}</svg>
                     </div>
-                </div>
+                    <p class="text-[11px] font-bold tracking-[0.18em] uppercase text-brand-600 mb-2">{{ $pain.category }}</p>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">{{ $pain.title }}</h3>
+                    <p class="text-slate-600 leading-relaxed text-[15px]">{{ $pain.description }}</p>
+                </article>
                 {{ end }}
             </div>
         </div>
@@ -471,7 +464,7 @@
     <!-- 5a. METHODOLOGY CTA - light band                             -->
     <!-- ============================================================ -->
     {{ with $home.methodology.cta }}
-    <section class="relative overflow-hidden bg-white border-b border-slate-200">
+    <section class="home-cta-center relative overflow-hidden bg-white border-b border-slate-200">
         <div class="absolute inset-0 bg-gradient-to-br from-white via-brand-50/30 to-white pointer-events-none"></div>
         <div class="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 text-center">
             <p class="text-xl md:text-2xl font-bold text-slate-900 mb-6">{{ .headline }}</p>
@@ -504,17 +497,26 @@
                 {{ range $leaderQuotes }}
                 {{ $initials := "" }}
                 {{ range $i, $part := split .person " " }}{{ if and (lt $i 2) (gt (len $part) 0) }}{{ $initials = printf "%s%s" $initials (substr $part 0 1) }}{{ end }}{{ end }}
-                <article class="relative bg-slate-900/60 border border-slate-800 rounded-2xl p-8 flex flex-col">
+                <article class="relative bg-slate-900/60 border border-slate-800 rounded-2xl p-8 flex flex-col md:[&:last-child:nth-child(odd)]:col-span-2">
                     <svg class="w-8 h-8 text-brand-500/30 mb-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z"/>
                     </svg>
                     <blockquote class="text-slate-300 leading-relaxed mb-6 flex-1">{{ .text | safeHTML }}</blockquote>
                     <div class="flex items-center gap-3 pt-5 border-t border-slate-800">
-                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-brand-500 to-emerald-500 text-white font-bold flex items-center justify-center text-xs flex-shrink-0">{{ $initials | upper }}</div>
+                        {{ if .photo }}
+                        <img src="/generated/images/testimonials/{{ .photo }}" alt="{{ .person }}" width="48" height="48" class="w-12 h-12 rounded-full object-cover flex-shrink-0 ring-2 ring-slate-700" loading="lazy">
+                        {{ else }}
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-brand-500 to-emerald-500 text-white font-bold flex items-center justify-center text-xs flex-shrink-0">{{ $initials | upper }}</div>
+                        {{ end }}
                         <div class="flex-1 min-w-0">
                             <div class="text-white font-semibold text-sm">{{ .person }}</div>
-                            <div class="text-xs text-slate-400">{{ .position }} · {{ .company }}</div>
+                            {{ if or .position .company }}<div class="text-xs text-slate-400">{{ with .position }}{{ . }}{{ end }}{{ if and .position .company }} · {{ end }}{{ with .company }}{{ . }}{{ end }}</div>{{ end }}
                         </div>
+                        {{ if .logo }}
+                        <span class="flex items-center flex-shrink-0">
+                            <img src="/generated/images/{{ if eq .logo "widdix.png" }}testimonials/widdix-logo.webp{{ else }}{{ replaceRE `\.[a-z]+$` `.webp` .logo }}{{ end }}" alt="{{ .company }}" class="h-6 w-auto max-w-[6.5rem] object-contain" loading="lazy">
+                        </span>
+                        {{ end }}
                         {{ if .linkedin }}
                         <a href="{{ .linkedin }}" target="_blank" rel="noopener" class="text-slate-500 hover:text-brand-400 transition-colors flex-shrink-0" aria-label="LinkedIn profile of {{ .person }}">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
@@ -536,14 +538,28 @@
                 <!-- Compact accent-bordered cards, driven by data/testimonials/training-comments.yaml -->
                 <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
                     {{ range $trainingQuotes }}
+                    {{ $quote := . }}
                     <figure class="bg-slate-900/60 border border-slate-800 border-l-2 border-l-brand-500/60 rounded-r-xl rounded-l-sm p-6 flex flex-col">
                         <blockquote class="text-slate-300 text-sm leading-relaxed mb-5 flex-1">&ldquo;{{ .text | safeHTML }}&rdquo;</blockquote>
-                        <figcaption class="pt-4 border-t border-slate-800/80">
-                            <div class="text-white font-semibold text-sm">{{ .person }}</div>
-                            <div class="text-xs text-slate-400">
-                                {{ with .position }}{{ . }}{{ end }}{{ with .company }} · {{ . }}{{ end }}
+                        <figcaption class="pt-4 border-t border-slate-800/80 flex items-center gap-3">
+                            {{ if .photo }}
+                            <img src="/generated/images/testimonials/{{ .photo }}" alt="{{ .person }}" width="40" height="40" class="w-10 h-10 rounded-full object-cover flex-shrink-0 ring-2 ring-slate-700" loading="lazy">
+                            {{ end }}
+                            <div class="min-w-0 flex-1">
+                                <div class="text-white font-semibold text-sm">{{ .person }}</div>
+                                <div class="text-xs text-slate-400">
+                                    {{ with .position }}{{ . }}{{ end }}{{ with .company }} · {{ . }}{{ end }}
+                                </div>
+                                {{ with .context }}<div class="text-[11px] text-brand-400/80 mt-1">{{ . }}</div>{{ end }}
                             </div>
-                            {{ with .context }}<div class="text-[11px] text-brand-400/80 mt-1">{{ . }}</div>{{ end }}
+                            {{ with .logo }}
+                            <img src="/generated/images/{{ . }}" alt="{{ $quote.company }}" class="h-6 w-auto max-w-[4.5rem] object-contain flex-shrink-0" loading="lazy">
+                            {{ end }}
+                            {{ with .linkedin }}
+                            <a href="{{ . }}" target="_blank" rel="noopener" class="text-slate-500 hover:text-brand-400 transition-colors flex-shrink-0" aria-label="LinkedIn profile of {{ $quote.person }}">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                            </a>
+                            {{ end }}
                         </figcaption>
                     </figure>
                     {{ end }}
