@@ -11,6 +11,7 @@
   timestamp: "2025-01-01"
   linkedin: "https://www.linkedin.com/in/shayneclausson"
   logo: "extenda.webp"
+  photo: "shayne-clausson.webp"
 
 - text: >
     From the moment we engaged with PragmaTech, it was evident that their
@@ -25,3 +26,15 @@
   timestamp: "2025-01-01"
   linkedin: "https://www.linkedin.com/in/michael-wittig"
   logo: "widdix.png"
+  photo: "michael-wittig.webp"
+
+- text: >
+    Philip lives and breathes Spring. A genuine guy and Spring expert. I would
+    highly recommend any Spring "shop" to talk to Philip about how to 10x your
+    teams testing capabilities.
+  person: "Declan Butler"
+  company: "EY"
+  timestamp: "2025-01-01"
+  linkedin: "https://www.linkedin.com/in/declanbutler/"
+  logo: "ey.webp"
+  photo: "declan-butler.webp"
