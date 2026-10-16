@@ -100,7 +100,7 @@ authority:
       link: "https://leanpub.com/testing-spring-boot-applications-demystified"
     - title: "Java Testing Toolbox"
       subtitle: "30 Testing Tools Every Java Developer Must Know"
-      cover: "/images/books/java-testing-toolbox.jpg"
+      cover: "/images/books/java-testing-toolbox.png"
       link: "https://leanpub.com/java-testing-toolbox/"
 
 fastFeedback:

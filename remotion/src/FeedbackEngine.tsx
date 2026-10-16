@@ -122,7 +122,7 @@ export const FeedbackEngine: React.FC = () => {
         {/* Source */}
         <circle cx={SOURCE_X} cy={CENTER_Y} r={30} fill={colors.panel} stroke={colors.brandLight} strokeWidth={3} />
         <circle cx={SOURCE_X} cy={CENTER_Y} r={9} fill={colors.brandLight} />
-        <text x={SOURCE_X} y={CENTER_Y + 76} textAnchor="middle" fontFamily={monoFont} fontSize={20} fill={colors.textMuted}>
+        <text x={SOURCE_X} y={CENTER_Y + 76} textAnchor="middle" fontFamily={monoFont} fontSize={20} fill={colors.white}>
           AI AGENTS
         </text>
 
@@ -136,13 +136,13 @@ export const FeedbackEngine: React.FC = () => {
         </g>
         <circle cx={ENGINE_X} cy={CENTER_Y} r={64 * corePulse} fill={colors.panel} stroke={colors.brand} strokeWidth={4} />
         <circle cx={ENGINE_X} cy={CENTER_Y} r={22 * corePulse} fill={colors.brandLight} />
-        <text x={ENGINE_X} y={CENTER_Y + 205} textAnchor="middle" fontFamily={monoFont} fontSize={20} fill={colors.textMuted}>
+        <text x={ENGINE_X} y={CENTER_Y + 205} textAnchor="middle" fontFamily={monoFont} fontSize={20} fill={colors.white}>
           FEEDBACK ENGINE
         </text>
 
         {/* Outcome */}
         <circle cx={OUTCOME_PATH[OUTCOME_PATH.length - 1][0]} cy={OUTCOME_PATH[OUTCOME_PATH.length - 1][1]} r={18} fill={colors.emerald} opacity={0.5} filter="url(#glow)" />
-        <text x={CANVAS_WIDTH - 48} y={CANVAS_HEIGHT - 52} textAnchor="end" fontFamily={monoFont} fontSize={20} fill={colors.textMuted}>
+        <text x={CANVAS_WIDTH - 48} y={CANVAS_HEIGHT - 52} textAnchor="end" fontFamily={monoFont} fontSize={20} fill={colors.white}>
           VALUE SHIPPED
         </text>
         <text x={(ENGINE_X + LANE_START_X) / 2} y={52} textAnchor="middle" fontFamily={monoFont} fontSize={20} fill={colors.rose} opacity={0.85}>

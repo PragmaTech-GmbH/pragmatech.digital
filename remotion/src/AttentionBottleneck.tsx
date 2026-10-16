@@ -132,7 +132,7 @@ export const AttentionBottleneck: React.FC = () => {
         <circle cx={SOURCE_X} cy={AI_Y} r={pulseRadius} fill="none" stroke={colors.brand} opacity={pulseOpacity} strokeWidth={2} />
         <circle cx={SOURCE_X} cy={AI_Y} r={30} fill={colors.panel} stroke={colors.brandLight} strokeWidth={3} />
         <circle cx={SOURCE_X} cy={AI_Y} r={9} fill={colors.brandLight} />
-        <text x={SOURCE_X} y={AI_Y + 76} textAnchor="middle" fontFamily={monoFont} fontSize={20} fill={colors.textMuted}>
+        <text x={SOURCE_X} y={AI_Y + 76} textAnchor="middle" fontFamily={monoFont} fontSize={20} fill={colors.white}>
           AI AGENTS
         </text>
 
@@ -140,7 +140,7 @@ export const AttentionBottleneck: React.FC = () => {
         <circle cx={HUMAN_X} cy={HUMAN_Y} r={30} fill={colors.panel} stroke={colors.brandLight} strokeWidth={3} />
         <circle cx={HUMAN_X} cy={HUMAN_Y - 8} r={7} fill={colors.brandLight} />
         <path d={`M ${HUMAN_X - 14} ${HUMAN_Y + 15} C ${HUMAN_X - 14} ${HUMAN_Y + 1}, ${HUMAN_X + 14} ${HUMAN_Y + 1}, ${HUMAN_X + 14} ${HUMAN_Y + 15} Z`} fill={colors.brandLight} />
-        <text x={HUMAN_X} y={HUMAN_Y + 76} textAnchor="middle" fontFamily={monoFont} fontSize={20} fill={colors.textMuted}>
+        <text x={HUMAN_X} y={HUMAN_Y + 76} textAnchor="middle" fontFamily={monoFont} fontSize={20} fill={colors.white}>
           HUMAN
         </text>
 
@@ -148,7 +148,7 @@ export const AttentionBottleneck: React.FC = () => {
         <rect x={GATE_X - 90} y={120} width={180} height={CANVAS_HEIGHT - 240} rx={20} fill={gateColor} opacity={0.05 + 0.1 * stress} filter="url(#glow)" />
         <rect x={GATE_X - 7} y={120} width={14} height={gateTopHeight} rx={7} fill={gateColor} />
         <rect x={GATE_X - 7} y={gateBottomY} width={14} height={CANVAS_HEIGHT - 120 - gateBottomY - 40} rx={7} fill={gateColor} />
-        <text x={GATE_X} y={CANVAS_HEIGHT - 52} textAnchor="middle" fontFamily={monoFont} fontSize={20} fill={colors.textMuted}>
+        <text x={GATE_X} y={CANVAS_HEIGHT - 52} textAnchor="middle" fontFamily={monoFont} fontSize={20} fill={colors.white}>
           HUMAN REVIEW
         </text>
 
@@ -182,17 +182,17 @@ export const AttentionBottleneck: React.FC = () => {
         ))}
 
         {/* Counters */}
-        <text x={48} y={64} fontFamily={monoFont} fontSize={24} fill={colors.textMuted}>
+        <text x={48} y={64} fontFamily={monoFont} fontSize={24} fill={colors.white}>
           code changes <tspan fill={colors.brandLight} fontWeight={700}>{opened}</tspan>
         </text>
-        <text x={CANVAS_WIDTH - 48} y={64} textAnchor="end" fontFamily={monoFont} fontSize={24} fill={colors.textMuted}>
+        <text x={CANVAS_WIDTH - 48} y={64} textAnchor="end" fontFamily={monoFont} fontSize={24} fill={colors.white}>
           reviewed <tspan fill={colors.emerald} fontWeight={700}>{reviewed}</tspan>
         </text>
         <g opacity={backlogOpacity}>
           <text x={260} y={CANVAS_HEIGHT - 96} fontFamily={monoFont} fontSize={72} fontWeight={700} fill={mixColors(colors.amber, colors.rose, stress)}>
             {backlog}
           </text>
-          <text x={262} y={CANVAS_HEIGHT - 56} fontFamily={monoFont} fontSize={24} fill={colors.textMuted}>
+          <text x={262} y={CANVAS_HEIGHT - 56} fontFamily={monoFont} fontSize={24} fill={colors.white}>
             PRs waiting
           </text>
         </g>
