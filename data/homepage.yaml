@@ -183,7 +183,7 @@ faqSection:
 railCTA:
   badge: "15 minutes"
   title: "We find one thing to improve in your build"
-  text: "We walk through your pipeline together. You leave with one concrete optimization you can ship next week."
+  text: "We walk through your setup together. You leave with one concrete optimization you can ship next week."
   button: "Book your 15 minutes"
   note: "Zero pitch. No commitment."
 
