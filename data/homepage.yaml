@@ -69,13 +69,13 @@ authority:
     - title: "Global Recognition"
       text: "International speaker with over 20 talks in the USA, Belgium, Spain, Germany, and Switzerland."
     - title: "Massive Community Trust"
-      text: "Founder of a leading testing academy (8,500+ users) and a weekly newsletter trusted blindly by 10,000 developers."
+      text: "Founder of a leading testing academy (10,000+ students) and a weekly newsletter trusted blindly by 10,000 developers."
     - title: "The Niche Pioneer"
       text: "Running a highly recognized Spring Boot blog for over 5 years - long before the AI hype started."
   kpis:
     - { value: "10+",   label: "Years JVM Experience" }
     - { value: "10K",   label: "Newsletter Readers" }
-    - { value: "8,500", label: "Academy Members" }
+    - { value: "10,000", label: "Academy Members" }
     - { value: "20+",   label: "International Talks" }
   socials:
     - { platform: "youtube",  label: "YouTube",  url: "https://www.youtube.com/rieckpil" }

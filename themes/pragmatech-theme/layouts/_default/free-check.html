@@ -1,0 +1,53 @@
+{{ define "main" }}
+{{/* Free Agentic Test Check landing page: own page so clicks and UTM parameters are measurable,
+     the download itself lives in the public GitHub repo (site param freeCheckRepoUrl). */}}
+{{ $repoUrl := .Site.Params.freeCheckRepoUrl }}
+<section class="bg-slate-900 border-b border-slate-800">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-center">
+        <p class="text-xs sm:text-sm font-bold uppercase tracking-widest text-brand-400 mb-4">Free Agentic Test Check</p>
+        <h1 class="text-4xl md:text-5xl font-bold text-white leading-tight">How much test debt are your agents producing right now?</h1>
+        <p class="mt-6 text-lg text-slate-300 max-w-2xl mx-auto">Run the free reviewer skill on your Spring Boot repo and see exactly which patterns your agents are spreading. No form, no account.</p>
+        <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+            <a href="{{ $repoUrl }}" target="_blank" rel="noopener" data-track="cta_free_check_download" data-track-position="free-check"
+               class="inline-flex justify-center items-center rounded-lg bg-brand-600 hover:bg-brand-500 px-6 py-3.5 text-white font-bold shadow-lg shadow-brand-500/20 transition-colors">Get the free reviewer skill</a>
+            <a href="{{ .Site.Params.scheduleCallUrl }}" target="_blank" rel="noopener" data-track="cta_book_call" data-track-position="free-check"
+               class="inline-flex justify-center items-center rounded-lg border border-slate-600 hover:border-brand-400 hover:text-white px-6 py-3.5 text-slate-200 font-semibold transition-colors">Book the 15-minute review</a>
+        </div>
+    </div>
+</section>
+
+<section class="bg-slate-50 border-b border-slate-200">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+        <h2 class="text-3xl font-bold text-slate-900 text-center mb-10">Three steps, under 10 minutes</h2>
+        <ol class="grid md:grid-cols-3 gap-5">
+            {{ range $index, $step := .Params.steps }}
+            <li class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+                <span class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-brand-600 text-white font-bold mb-4">{{ add $index 1 }}</span>
+                <h3 class="text-lg font-bold text-slate-900 mb-2">{{ $step.title }}</h3>
+                <p class="text-slate-600 leading-relaxed">{{ $step.text }}</p>
+            </li>
+            {{ end }}
+        </ol>
+        <p class="mt-8 text-center text-slate-600">Want to know what to fix first? Let's go through the results together in 15 minutes.</p>
+    </div>
+</section>
+
+<section class="bg-white border-b border-slate-200">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+        <h2 class="text-2xl font-bold text-slate-900 text-center mb-8">Free check vs. paid reviewer</h2>
+        <div class="overflow-hidden rounded-xl border border-slate-200">
+            <table class="w-full text-left text-sm sm:text-base">
+                <thead class="bg-slate-100 text-slate-700">
+                    <tr><th class="px-4 py-3"><span class="sr-only">Feature</span></th><th class="px-4 py-3">Free check</th><th class="px-4 py-3 text-brand-600">Paid reviewer</th></tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200">
+                    {{ range .Params.compare }}
+                    <tr><th scope="row" class="px-4 py-3 font-medium text-slate-700">{{ .label }}</th><td class="px-4 py-3 text-slate-600">{{ .free }}</td><td class="px-4 py-3 font-semibold text-slate-900">{{ .paid }}</td></tr>
+                    {{ end }}
+                </tbody>
+            </table>
+        </div>
+        <p class="mt-6 text-center"><a href="{{ "/" | relURL }}#pricing" class="font-semibold text-brand-600 hover:text-brand-500">See the Skill Library</a></p>
+    </div>
+</section>
+{{ end }}

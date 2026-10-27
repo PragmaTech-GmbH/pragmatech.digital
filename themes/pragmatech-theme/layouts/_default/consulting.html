@@ -130,6 +130,63 @@
     </div>
 </section>
 
+<!-- Blueprint: 50% faster builds in 30 days (moved from the homepage) -->
+{{ with .Site.Data.homepage.methodology }}
+<section id="blueprint" class="py-16 bg-slate-800/50 scroll-mt-20">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-4 text-white">{{ .headline }}</h2>
+            <p class="text-xl text-slate-400 max-w-2xl mx-auto">{{ .subheadline }}</p>
+        </div>
+        <ol class="max-w-3xl mx-auto space-y-4">
+            {{ range $index, $step := .steps }}
+            <li class="flex items-start gap-4 bg-slate-900 border border-slate-700 rounded-xl p-5">
+                <span class="flex-shrink-0 w-9 h-9 rounded-full bg-brand-600 text-white font-bold flex items-center justify-center">{{ add $index 1 }}</span>
+                <div>
+                    <h3 class="text-lg font-bold text-white">{{ $step.title }}</h3>
+                    <p class="text-slate-400 mt-1">{{ $step.description }}</p>
+                </div>
+            </li>
+            {{ end }}
+        </ol>
+    </div>
+</section>
+{{ end }}
+
+<!-- Consulting guarantee (applies to consulting only, not to the course) -->
+{{ range where .Site.Data.homepage.offer.pillars "tag" "Skin in the game" }}
+<section id="guarantee" class="py-16 bg-slate-900 scroll-mt-20">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl text-center">
+        <p class="text-xs font-bold uppercase tracking-widest text-brand-400 mb-3">{{ .tag }}</p>
+        <h2 class="text-3xl font-bold mb-4 text-white">{{ .title }}</h2>
+        <p class="text-lg text-slate-300">{{ .description }}</p>
+    </div>
+</section>
+{{ end }}
+
+<!-- Customer cases -->
+<section id="cases" class="py-16 bg-slate-800/50 scroll-mt-20">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold mb-12 text-center text-white">Real Teams. Real Numbers.</h2>
+        <div class="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            {{ range index .Site.Data.testimonials "customer-cases" }}
+            <article class="bg-slate-900 border border-slate-700 rounded-xl p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-xl font-bold text-white">{{ .company }}</h3>
+                    <span class="text-sm font-mono text-emerald-400">{{ .metrics.before }} &rarr; {{ .metrics.after }}</span>
+                </div>
+                <p class="text-xs text-slate-500 mb-4">{{ .metrics.codeSize }} · {{ .metrics.duration }}</p>
+                <dl class="space-y-3 text-sm">
+                    <div><dt class="text-[10px] uppercase tracking-widest text-slate-500">Challenge</dt><dd class="text-slate-300">{{ .challenge }}</dd></div>
+                    <div><dt class="text-[10px] uppercase tracking-widest text-slate-500">Solution</dt><dd class="text-slate-300">{{ .solution }}</dd></div>
+                    <div><dt class="text-[10px] uppercase tracking-widest text-brand-400">Result</dt><dd class="text-white font-semibold">{{ .result }}</dd></div>
+                </dl>
+            </article>
+            {{ end }}
+        </div>
+    </div>
+</section>
+
 <!-- Testimonials -->
 {{ if index .Site.Data.testimonials "consulting-comments" }}
 <section class="py-16 bg-slate-900">

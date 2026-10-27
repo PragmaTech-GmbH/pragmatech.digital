@@ -1,0 +1,513 @@
+{{/*
+    Homepage: Spring Boot Testing Skill Library (product page).
+    Copy: content/_index.md frontmatter. Section order and anchors:
+    hero, logos, #problem, #why-now, #skills, #proof, #pricing, #check, #about, #faq.
+    CTA logic: the filled accent button is always the Team Edition, the outline button
+    always the free check. Only the pricing section shows three CTAs.
+    Tracking: elements with data-track fire a Matomo event (assets/js/home-tracking.js).
+*/}}
+{{ $home := .Params }}
+{{ $siteData := .Site.Data }}
+{{ $bookUrl := .Site.Params.scheduleCallUrl }}
+{{ $checkUrl := .Site.Params.freeCheckUrl }}
+{{ $courseUrl := "/agentic-spring-boot-testing-course/" | relURL }}
+{{ $teamProductId := os.Getenv "PPP_PRODUCT_ID_TEAM_EDITION" }}
+{{ $teamCheckoutUrl := "" }}
+{{ if $teamProductId }}{{ $teamCheckoutUrl = printf "https://www.copecart.com/products/%s/checkout?locale=en" $teamProductId }}{{ end }}
+{{ $demo := (site.GetPage "/agentic-spring-boot-testing-course").Params.demo }}
+
+<div data-home="skill-library">
+
+    <!-- ============================================================ -->
+    <!-- 1. HERO                                                      -->
+    <!-- ============================================================ -->
+    {{ with $home.hero }}
+    <section class="relative overflow-hidden bg-slate-900 border-b border-slate-800">
+        <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-900 to-brand-900/30 pointer-events-none"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-16 lg:pt-16 lg:pb-20">
+            <p class="text-xs sm:text-sm font-bold uppercase tracking-widest text-brand-400 mb-5">{{ .eyebrow }}</p>
+            <h1 class="max-w-5xl text-4xl sm:text-5xl xl:text-[3.25rem] font-bold text-white leading-[1.1] tracking-tight">{{ .headline }}</h1>
+            <div class="mt-10 grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+            <div class="lg:col-span-6">
+                <p class="text-lg text-slate-300 leading-relaxed max-w-xl">{{ .subline }}</p>
+                <div class="mt-8 flex flex-col sm:flex-row gap-3">
+                    <a href="#pricing" data-track="cta_team_edition" data-track-position="hero"
+                       class="inline-flex justify-center items-center gap-2 rounded-lg bg-brand-600 hover:bg-brand-500 px-6 py-3.5 text-white font-bold shadow-lg shadow-brand-500/20 transition-colors">
+                        {{ .primaryCta }}
+                    </a>
+                    <a href="{{ $checkUrl }}" target="_blank" rel="noopener" data-track="cta_free_check" data-track-position="hero"
+                       class="inline-flex justify-center items-center gap-2 rounded-lg border border-slate-600 hover:border-brand-400 hover:text-white px-6 py-3.5 text-slate-200 font-semibold transition-colors">
+                        {{ .secondaryCta }}
+                    </a>
+                </div>
+                <p class="mt-6 text-sm text-slate-400">{{ .trust }}</p>
+            </div>
+
+            <!-- Remotion animation: agents flood the human review gate -->
+            {{ with $home.hero.video }}
+            <figure class="lg:col-span-6">
+                <video class="w-full h-auto block rounded-2xl ring-1 ring-slate-700 shadow-2xl"
+                       width="1200" height="675"
+                       autoplay muted loop playsinline preload="auto"
+                       poster="{{ .poster }}" aria-label="{{ .label }}" data-hero-video>
+                    <source src="{{ .webm }}" type="video/webm">
+                    <source src="{{ .mp4 }}" type="video/mp4">
+                </video>
+            </figure>
+            {{ end }}
+            </div>
+        </div>
+    </section>
+
+    {{ end }}
+
+    <!-- ============================================================ -->
+    <!-- 3. PROBLEM                                                   -->
+    <!-- ============================================================ -->
+    {{ with $home.problem }}
+    <section id="problem" class="bg-slate-50 border-b border-slate-200 scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+            {{ with .hook }}
+            <div class="max-w-4xl mx-auto mb-16">
+                <p class="text-xs font-bold uppercase tracking-widest text-slate-500 text-center mb-4">{{ .label }}</p>
+                <div class="rounded-2xl bg-slate-900 border border-slate-700 shadow-xl overflow-hidden font-mono text-sm sm:text-base">
+                    <div class="flex items-center gap-2 px-5 py-3 border-b border-slate-700 bg-slate-800/60">
+                        <span class="w-3 h-3 rounded-full bg-red-400/80"></span>
+                        <span class="w-3 h-3 rounded-full bg-amber-400/80"></span>
+                        <span class="w-3 h-3 rounded-full bg-emerald-400/80"></span>
+                        <span class="ml-3 text-xs text-slate-400">claude</span>
+                    </div>
+                    <div class="p-5 sm:p-6 leading-7">
+                        <p class="text-white text-lg sm:text-2xl font-semibold"><span class="text-brand-400 select-none">&gt; </span>{{ .prompt }}</p>
+                        <ul class="mt-4 space-y-1 text-slate-400">
+                            {{ range .reply }}<li><span class="text-emerald-400 select-none">&#10003; </span>{{ . }}</li>{{ end }}
+                        </ul>
+                    </div>
+                </div>
+                <p class="mt-5 text-center text-lg text-slate-700 max-w-2xl mx-auto">{{ .caption }}</p>
+                <p class="mt-2 text-center text-xs text-slate-500 italic">{{ .exaggeration }}</p>
+            </div>
+            {{ end }}
+            <div class="max-w-3xl mx-auto text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">{{ .headline }}</h2>
+                <p class="text-lg text-slate-600">{{ .intro }}</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+                {{ range $index, $card := .cards }}
+                <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+                    <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-slate-100 text-slate-500 text-sm font-bold mb-4">{{ add $index 1 }}</span>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">{{ $card.title }}</h3>
+                    <p class="text-slate-600 leading-relaxed">{{ $card.text }}</p>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </section>
+    {{ end }}
+
+    <!-- ============================================================ -->
+    <!-- 4. WHY NOW: fast and comprehensive                           -->
+    <!-- ============================================================ -->
+    {{ with $home.whyNow }}
+    <section id="why-now" class="bg-white border-b border-slate-200 scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">{{ .headline }}</h2>
+                <div class="space-y-4 text-lg text-slate-600 leading-relaxed">
+                    {{ range first 1 .paragraphs }}<p>{{ . }}</p>{{ end }}
+                    {{ range after 1 .paragraphs }}<p>{{ . }}</p>{{ end }}
+                    <ul class="space-y-2">
+                        {{ range .needs }}
+                        <li class="flex items-start gap-3">
+                            <span class="mt-1 flex-shrink-0 inline-flex items-center justify-center w-6 h-6 rounded-full bg-brand-100 text-brand-600">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                            </span>
+                            <span><strong class="text-slate-900">{{ .label }},</strong> {{ .text }}</span>
+                        </li>
+                        {{ end }}
+                    </ul>
+                    <p>{{ .closing }}</p>
+                </div>
+                <p class="mt-6 text-sm text-slate-500 italic">{{ .footnote }}</p>
+            </div>
+
+            <!-- 2x2: only the top right field carries the accent color -->
+            {{ with .chart }}
+            <figure class="w-full" aria-label="{{ .title }}">
+                <figcaption class="text-base md:text-lg font-bold text-slate-900 mb-4">{{ .title }}</figcaption>
+                <div class="flex gap-2">
+                    <div class="flex flex-col justify-between text-[11px] sm:text-xs text-slate-500 w-5 flex-shrink-0 items-center" aria-hidden="true">
+                        <span class="[writing-mode:vertical-rl] rotate-180">Comprehensive</span>
+                        <span class="[writing-mode:vertical-rl] rotate-180 text-slate-700 font-medium">{{ .yAxis }}</span>
+                        <span class="[writing-mode:vertical-rl] rotate-180">Shallow</span>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="relative aspect-square sm:aspect-[4/3] grid grid-cols-2 grid-rows-2 border border-slate-300 bg-white text-slate-900">
+                            <div class="border-r border-b border-slate-300 p-2.5 sm:p-4">
+                                <p class="text-xs sm:text-base font-bold leading-tight">{{ .quadrants.topLeft.title }}</p>
+                                <p class="text-[11px] sm:text-sm text-slate-600 mt-1 leading-snug">{{ .quadrants.topLeft.text }}</p>
+                            </div>
+                            <div class="-m-px border-2 border-brand-600 bg-brand-100/70 p-2.5 sm:p-4">
+                                <p class="text-xs sm:text-base font-bold leading-tight">{{ .quadrants.topRight.title }}</p>
+                                <p class="text-[11px] sm:text-sm text-slate-600 mt-1 leading-snug">{{ .quadrants.topRight.text }}</p>
+                            </div>
+                            <div class="border-r border-slate-300 p-2.5 sm:p-4">
+                                <p class="text-xs sm:text-base font-bold leading-tight">{{ .quadrants.bottomLeft.title }}</p>
+                                <p class="text-[11px] sm:text-sm text-slate-600 mt-1 leading-snug">{{ .quadrants.bottomLeft.text }}</p>
+                            </div>
+                            <div class="p-2.5 sm:p-4">
+                                <p class="text-xs sm:text-base font-bold leading-tight">{{ .quadrants.bottomRight.title }}</p>
+                                <p class="text-[11px] sm:text-sm text-slate-600 mt-1 leading-snug">{{ .quadrants.bottomRight.text }}</p>
+                            </div>
+
+                            <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 400 300" preserveAspectRatio="none" aria-hidden="true">
+                                <defs>
+                                    <marker id="why-now-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                                        <path d="M0 0 L10 5 L0 10 z" fill="#0284c7"/>
+                                    </marker>
+                                </defs>
+                                <line x1="100" y1="232" x2="308" y2="106" stroke="#0284c7" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#why-now-arrow)"/>
+                            </svg>
+                            <span class="absolute w-3 h-3 sm:w-3.5 sm:h-3.5 rounded-full bg-slate-400 -translate-x-1/2 -translate-y-1/2" style="left:19%;top:80%"></span>
+                            <span class="absolute text-[11px] sm:text-sm font-medium text-slate-800 -translate-x-1/2 whitespace-nowrap" style="left:19%;top:84%">{{ .from }}</span>
+                            <span class="absolute w-3 h-3 sm:w-3.5 sm:h-3.5 rounded-full bg-brand-600 -translate-x-1/2 -translate-y-1/2" style="left:81%;top:35%"></span>
+                            <span class="absolute text-[11px] sm:text-sm font-bold text-slate-900 -translate-y-full whitespace-nowrap" style="right:4%;top:32%">{{ .to }}</span>
+                        </div>
+                        <div class="flex justify-between text-[11px] sm:text-xs text-slate-500 mt-1.5" aria-hidden="true">
+                            <span>Slow</span>
+                            <span class="text-slate-700 font-medium">{{ .xAxis }}</span>
+                            <span>Fast</span>
+                        </div>
+                    </div>
+                </div>
+            </figure>
+            {{ end }}
+        </div>
+        {{ with $home.perfectWorld }}
+        <div class="border-t border-slate-200 bg-slate-900">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+                <div class="max-w-3xl mb-10">
+                    <p class="text-xs sm:text-sm font-bold uppercase tracking-widest text-brand-400 mb-3">{{ .eyebrow }}</p>
+                    <h3 class="text-3xl md:text-4xl font-bold text-white mb-5">{{ .headline }}</h3>
+                    <p class="text-lg text-slate-300 leading-relaxed">{{ .intro }}</p>
+                </div>
+                {{ with .video }}
+                <figure class="max-w-4xl">
+                    <video class="w-full h-auto block rounded-xl ring-1 ring-slate-700 shadow-2xl" width="1200" height="675"
+                           muted loop playsinline preload="metadata" poster="{{ .poster }}" aria-label="{{ .label }}" data-scroll-video>
+                        <source src="{{ .webm }}" type="video/webm">
+                        <source src="{{ .mp4 }}" type="video/mp4">
+                    </video>
+                </figure>
+                {{ end }}
+                <div class="mt-10 grid md:grid-cols-3 gap-5">
+                    {{ range .points }}
+                    <div class="rounded-xl border border-slate-700 bg-slate-800/50 p-6">
+                        <h4 class="text-lg font-bold text-white mb-2">{{ .title }}</h4>
+                        <p class="text-slate-300 leading-relaxed">{{ .text }}</p>
+                    </div>
+                    {{ end }}
+                </div>
+                <p class="mt-6 text-sm text-slate-500 italic">{{ .footnote }}</p>
+            </div>
+        </div>
+        {{ end }}
+    </section>
+    {{ end }}
+
+    <!-- ============================================================ -->
+    <!-- 5. SOLUTION: Skill Library                                   -->
+    <!-- ============================================================ -->
+    {{ with $home.solution }}
+    <section id="skills" class="bg-slate-900 border-b border-slate-800 scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+            <div class="max-w-3xl">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">{{ .headline }}</h2>
+                <div class="space-y-4 text-lg text-slate-300 leading-relaxed">
+                    {{ range .paragraphs }}<p>{{ . }}</p>{{ end }}
+                </div>
+            </div>
+            {{ with .video }}
+            <figure class="mt-12 max-w-4xl">
+                <video class="w-full h-auto block rounded-xl ring-1 ring-slate-700 shadow-2xl" width="1200" height="800"
+                       muted playsinline preload="metadata" poster="{{ .poster }}" aria-label="{{ .label }}" data-scroll-video>
+                    <source src="{{ .webm }}" type="video/webm">
+                    <source src="{{ .mp4 }}" type="video/mp4">
+                </video>
+            </figure>
+            {{ end }}
+            <div class="mt-12 grid md:grid-cols-3 gap-5">
+                {{ range .points }}
+                <div class="rounded-xl border border-slate-700 bg-slate-800/50 p-6">
+                    <h3 class="text-lg font-bold text-white mb-2">{{ .title }}</h3>
+                    <p class="text-slate-300 leading-relaxed">{{ .text }}</p>
+                </div>
+                {{ end }}
+            </div>
+            <ul class="mt-8 flex flex-wrap gap-2" aria-label="The seven agent skills">
+                {{ range .skillNames }}
+                <li class="rounded-full border border-brand-500/40 bg-brand-500/10 px-3 py-1 font-mono text-xs text-brand-100">{{ . }}</li>
+                {{ end }}
+            </ul>
+            {{ with .link }}
+            <a href="{{ .href | relURL }}" class="mt-8 inline-flex items-center gap-2 font-semibold text-brand-400 hover:text-brand-100 transition-colors">
+                {{ .label }}
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+            {{ end }}
+        </div>
+    </section>
+    {{ end }}
+
+    <!-- ============================================================ -->
+    <!-- 6. PROOF                                                     -->
+    <!-- ============================================================ -->
+    {{ with $home.proof }}
+    <section id="proof" class="bg-slate-50 border-b border-slate-200 scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-10 text-center">{{ .headline }}</h2>
+
+            {{/* Desktop: animated terminal comparison (shared with the course page). Mobile: static table. */}}
+            <div class="hidden lg:block">
+                {{ partial "course/demo-terminal.html" (dict "demo" $demo "bare" true) }}
+            </div>
+            <div class="lg:hidden max-w-xl mx-auto">
+                <div class="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+                    <table class="w-full text-left text-sm sm:text-base">
+                        <thead>
+                            <tr class="bg-slate-100 text-slate-700">
+                                <th class="px-4 py-3 font-semibold"><span class="sr-only">Metric</span></th>
+                                <th class="px-4 py-3 font-semibold">Without skills</th>
+                                <th class="px-4 py-3 font-semibold text-brand-600">With skills</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200">
+                            {{ range .rows }}
+                            <tr>
+                                <th scope="row" class="px-4 py-3 font-medium text-slate-700">{{ .label }}</th>
+                                <td class="px-4 py-3 text-slate-600">{{ .without }}</td>
+                                <td class="px-4 py-3 font-bold text-slate-900">{{ .with }}</td>
+                            </tr>
+                            {{ end }}
+                        </tbody>
+                    </table>
+                </div>
+                <p class="mt-3 text-xs text-slate-500 text-center italic">{{ .caption }}</p>
+            </div>
+
+            <div class="mt-16 max-w-4xl mx-auto">
+                <h3 class="text-xl md:text-2xl font-bold text-slate-900 text-center mb-6">{{ .casesHeadline }}</h3>
+                <div class="grid sm:grid-cols-2 gap-5">
+                    {{ range .cases }}
+                    <div class="flex items-center gap-4 bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+                        <img src="{{ .logo }}" alt="{{ .company }}" class="h-8 w-auto max-w-[6rem] object-contain flex-shrink-0" loading="lazy">
+                        <p class="text-slate-700"><strong class="text-slate-900">{{ .company }}:</strong> {{ .text }}</p>
+                    </div>
+                    {{ end }}
+                </div>
+                {{ with .usedBy }}<p class="mt-6 text-center text-lg font-bold text-slate-900">{{ . }}</p>{{ end }}
+                <p class="mt-4 text-center text-slate-600">{{ .closing }}</p>
+            </div>
+        </div>
+    </section>
+    {{ end }}
+
+    <!-- ============================================================ -->
+    <!-- 7. PRICING: three ways to work together                      -->
+    <!-- ============================================================ -->
+    {{ with $home.pricing }}
+    <section id="pricing" class="bg-white border-b border-slate-200 scroll-mt-20" data-track-visible="scroll_pricing">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-12 text-center">{{ .headline }}</h2>
+            {{ $badge := .badge }}
+            {{ $consultingLink := .consultingLink }}
+            {{/* Mobile order: Team Edition first (flex order), desktop: Course, Team, Done for you. */}}
+            <div class="grid lg:grid-cols-3 gap-6 max-w-6xl mx-auto items-stretch">
+                {{ range .tiers }}
+                {{ $isTeam := eq .key "team" }}
+                <div class="relative flex flex-col rounded-2xl bg-white p-7 md:p-8 {{ if $isTeam }}order-first lg:order-none border-2 border-brand-600 shadow-xl shadow-brand-500/10{{ else }}border border-slate-200 shadow-sm{{ end }}">
+                    {{ if $isTeam }}
+                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-brand-600 px-3 py-1 text-xs font-bold uppercase tracking-wider text-white">{{ $badge }}</span>
+                    {{ end }}
+                    <p class="text-[11px] font-bold uppercase tracking-widest text-brand-600 mb-2">{{ .audience }}</p>
+                    <h3 class="text-2xl font-bold text-slate-900">{{ .name }}</h3>
+                    <p class="mt-4 text-slate-600 leading-relaxed flex-1">{{ .offer }}</p>
+                    <p class="mt-6 text-3xl font-bold text-slate-900">{{ .price }}</p>
+                    <p class="text-sm text-slate-500 mb-6 min-h-[1.25rem]">{{ .priceNote }}</p>
+
+                    {{ if or (eq .key "course") $isTeam }}
+                    {{ $ctaUrl := .href | relURL }}
+                    {{ if and $isTeam $teamCheckoutUrl }}{{ $ctaUrl = $teamCheckoutUrl }}{{ end }}
+                    <a href="{{ $ctaUrl }}" {{ if and $isTeam $teamCheckoutUrl }}target="_blank" rel="noopener" data-checkout{{ end }} data-track="{{ .track }}" data-track-position="pricing"
+                       class="inline-flex justify-center items-center rounded-lg {{ if $isTeam }}bg-brand-600 hover:bg-brand-500 font-bold text-white{{ else }}border border-slate-300 hover:border-brand-500 hover:text-brand-600 font-semibold text-slate-800{{ end }} px-4 py-3 transition-colors">{{ .cta }}</a>
+                    {{ with .guarantee }}<p class="mt-3 text-xs text-slate-500 text-center">{{ . }}</p>{{ end }}
+                    {{ else }}
+                    <a href="{{ $bookUrl }}" target="_blank" rel="noopener" data-track="{{ .track }}" data-track-position="pricing"
+                       class="inline-flex justify-center items-center rounded-lg border border-slate-300 hover:border-brand-500 hover:text-brand-600 px-4 py-3 font-semibold text-slate-800 transition-colors">{{ .cta }}</a>
+                    <a href="{{ $consultingLink.href | relURL }}" class="mt-3 text-sm text-center text-brand-600 font-semibold hover:text-brand-500">{{ $consultingLink.label }}</a>
+                    {{ end }}
+                </div>
+                {{ end }}
+            </div>
+            <p class="mt-10 text-center text-sm text-slate-600">
+                {{ .purchaseOrder }}
+                <a href="mailto:{{ site.Params.emails.contact }}" class="font-semibold text-brand-600 underline decoration-brand-100 underline-offset-4">{{ site.Params.emails.contact }}</a>
+                ·
+                <a href="{{ .managerTemplate.href | relURL }}" class="font-semibold text-brand-600 underline decoration-brand-100 underline-offset-4">{{ .managerTemplate.label }}</a>
+            </p>
+        </div>
+    </section>
+    {{ end }}
+
+    <!-- ============================================================ -->
+    <!-- 8. FREE AGENTIC TEST CHECK (full-width band)                 -->
+    <!-- ============================================================ -->
+    {{ with $home.check }}
+    <section id="check" class="bg-brand-900 scroll-mt-20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-5">{{ .headline }}</h2>
+            <p class="text-lg text-brand-100 leading-relaxed max-w-3xl mx-auto">{{ .text }}</p>
+            <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+                <a href="{{ $checkUrl }}" target="_blank" rel="noopener" data-track="cta_free_check" data-track-position="check"
+                   class="inline-flex justify-center items-center rounded-lg bg-white hover:bg-brand-50 px-6 py-3.5 font-bold text-brand-900 transition-colors">{{ .primaryCta }}</a>
+                <a href="{{ $bookUrl }}" target="_blank" rel="noopener" data-track="cta_book_call" data-track-position="check"
+                   class="inline-flex justify-center items-center rounded-lg border border-brand-100/50 hover:border-white px-6 py-3.5 font-semibold text-white transition-colors">{{ .secondaryCta }}</a>
+            </div>
+        </div>
+    </section>
+    {{ end }}
+
+    <!-- ============================================================ -->
+    <!-- 9. ABOUT: track record + testimonials                        -->
+    <!-- ============================================================ -->
+    {{ with $home.about }}
+    <section id="about" class="bg-slate-50 border-b border-slate-200 scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+            {{ with $siteData.homepage }}
+            <div class="mb-14 flex flex-col lg:flex-row items-center gap-5 lg:gap-10">
+                <p class="text-xs font-bold uppercase tracking-widest text-slate-500 whitespace-nowrap">{{ $home.about.logosLabel }}</p>
+                <div class="flex flex-wrap items-center justify-center lg:justify-between gap-x-6 gap-y-4 flex-1 lg:flex-nowrap">
+                    {{ range .trustLogos }}
+                    {{ if not (in (slice "vmware.webp" "widdix.webp") .file) }}
+                    <img src="/generated/images/{{ .file }}" alt="{{ .name }}" class="h-7 lg:h-6 xl:h-7 w-auto" loading="lazy">
+                    {{ end }}
+                    {{ end }}
+                </div>
+            </div>
+            {{ end }}
+            <div class="grid lg:grid-cols-12 gap-10 items-center mb-16">
+                <div class="lg:col-span-4">
+                    <picture>
+                        <source srcset="/generated/images/rieckpil-speaker.webp" type="image/webp">
+                        <img src="/images/rieckpil-speaker.jpeg" alt="{{ .imageAlt }}" class="w-full h-auto rounded-2xl border border-slate-200 shadow-lg" loading="lazy">
+                    </picture>
+                    <p class="mt-3 text-sm text-slate-500 text-center italic">{{ .imageCaption }}</p>
+                </div>
+                <div class="lg:col-span-8">
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-8">{{ .headline }}</h2>
+                    <dl class="grid grid-cols-2 gap-4">
+                        {{ range .kpis }}
+                        <div class="rounded-xl bg-white border border-slate-200 p-5 shadow-sm">
+                            <dt class="text-3xl font-bold text-brand-600">{{ .value }}</dt>
+                            <dd class="mt-1 text-slate-600">{{ .label }}</dd>
+                        </div>
+                        {{ end }}
+                    </dl>
+                </div>
+            </div>
+
+            <h3 class="text-xl md:text-2xl font-bold text-slate-900 text-center mb-8">{{ .testimonialsHeadline }}</h3>
+            {{ $leaderQuotes := index $siteData.testimonials "consulting-comments" }}
+            {{ $trainingQuotes := index $siteData.testimonials "training-comments" }}
+            {{/* Leaders from consulting, plus REWE (instead of the generic Widdix quote) and a team quote from a training session. */}}
+            {{ $quotes := slice }}
+            {{ range $leaderQuotes }}{{ if ne .person "Michael Wittig" }}{{ $quotes = $quotes | append . }}{{ end }}{{ end }}
+            {{ range $trainingQuotes }}{{ if in (slice "Dustin Hütter" "Ludvik Bjørklund") .person }}{{ $quotes = $quotes | append . }}{{ end }}{{ end }}
+            <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-5">
+                {{ range $quotes }}
+                <figure class="flex flex-col bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+                    <blockquote class="text-slate-700 leading-relaxed flex-1 text-[15px]">&ldquo;{{ .text | strings.TrimSpace }}&rdquo;</blockquote>
+                    <figcaption class="mt-5 flex items-center gap-3">
+                        {{ if .photo }}
+                        <img src="/generated/images/testimonials/{{ .photo }}" alt="{{ .person }}" width="44" height="44" class="w-11 h-11 rounded-full object-cover flex-shrink-0" loading="lazy">
+                        {{ end }}
+                        <span class="text-sm">
+                            <span class="block font-bold text-slate-900">{{ .person }}</span>
+                            <span class="block text-slate-500">{{ with .position }}{{ . }}, {{ end }}{{ .company }}</span>
+                        </span>
+                    </figcaption>
+                </figure>
+                {{ end }}
+            </div>
+
+            {{ with (site.GetPage "/agentic-spring-boot-testing-course").Params.testimonials }}
+            <div class="mt-20">
+                <h3 class="text-xl md:text-2xl font-bold text-slate-900 text-center mb-3">{{ $home.about.studentsHeadline }}</h3>
+                <p class="text-slate-600 text-center mb-8 max-w-2xl mx-auto">{{ $home.about.studentsIntro }}</p>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    {{ range .students }}
+                    <figure class="flex flex-col bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+                        <blockquote class="text-slate-700 leading-relaxed flex-1 text-[15px]">&ldquo;{{ .text }}&rdquo;</blockquote>
+                        <figcaption class="mt-5 flex items-center gap-3">
+                            {{ partial "course/testimonial-avatar.html" . }}
+                            <span class="text-sm">
+                                <span class="block font-bold text-slate-900">{{ .person }}</span>
+                                <span class="block text-slate-500">{{ .position }}</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                    {{ end }}
+                </div>
+                <div class="mt-8 grid md:grid-cols-3 gap-5">
+                    {{ range .experts }}
+                    <figure class="bg-white border border-brand-100 rounded-xl p-5">
+                        <blockquote class="text-sm text-slate-700 leading-relaxed mb-4">&ldquo;{{ .text }}&rdquo;</blockquote>
+                        <figcaption class="flex items-center gap-3">
+                            {{ partial "course/testimonial-avatar.html" . }}
+                            <span class="text-sm">
+                                <span class="block font-bold text-slate-900">{{ .person }}</span>
+                                <span class="block text-slate-500">{{ .position }}</span>
+                            </span>
+                        </figcaption>
+                    </figure>
+                    {{ end }}
+                </div>
+            </div>
+            {{ end }}
+        </div>
+    </section>
+    {{ end }}
+
+    <!-- ============================================================ -->
+    <!-- 10. FAQ + FINAL CTA                                          -->
+    <!-- ============================================================ -->
+    <section id="faq" class="bg-slate-900 scroll-mt-20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+            {{ with $home.faq }}
+            <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-10">{{ .headline }}</h2>
+            {{ $faqs := slice }}
+            {{ range .items }}{{ $faqs = $faqs | append (dict "question" .question "answer" .answer) }}{{ end }}
+            {{ partial "home/faq-accordion.html" (dict "faqs" $faqs "style" "default" "id" "faq") }}
+            {{ end }}
+
+            {{ with $home.finalCta }}
+            <div class="mt-20 pt-16 border-t border-slate-800 text-center">
+                <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">{{ .headline }}</h2>
+                <p class="text-lg text-slate-400 max-w-2xl mx-auto">{{ .text }}</p>
+                <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+                    <a href="#pricing" data-track="cta_team_edition" data-track-position="closing"
+                       class="inline-flex justify-center items-center rounded-lg bg-brand-600 hover:bg-brand-500 px-6 py-3.5 text-white font-bold shadow-lg shadow-brand-500/20 transition-colors">{{ .primaryCta }}</a>
+                    <a href="{{ $checkUrl }}" target="_blank" rel="noopener" data-track="cta_free_check" data-track-position="closing"
+                       class="inline-flex justify-center items-center rounded-lg border border-slate-600 hover:border-brand-400 hover:text-white px-6 py-3.5 text-slate-200 font-semibold transition-colors">{{ .secondaryCta }}</a>
+                </div>
+            </div>
+            {{ end }}
+        </div>
+    </section>
+
+    {{/* Sticky Team Edition button on mobile, shown from the problem section on (home-tracking.js). */}}
+    <div class="hidden fixed inset-x-0 bottom-0 z-40 md:hidden border-t border-slate-700 bg-slate-900/95 backdrop-blur px-4 py-3" data-sticky-cta>
+        <a href="#pricing" data-track="cta_team_edition" data-track-position="sticky"
+           class="flex justify-center items-center rounded-lg bg-brand-600 px-4 py-3 font-bold text-white">{{ $home.hero.primaryCta }}</a>
+    </div>
+</div>

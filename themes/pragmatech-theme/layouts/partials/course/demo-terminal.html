@@ -4,11 +4,19 @@
      section scrolls into view (skipped for prefers-reduced-motion, nothing to do
      without JavaScript). Line markers and colors are chosen by `type`; every type
      value must occur in the YAML at least once so Tailwind emits its classes. */}}
-{{ with .Params.demo }}
-<section id="demo" class="bg-slate-50 border-b border-slate-200 scroll-mt-20" data-demo-root>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+{{/* Called with the course page, it renders the full section. Called with
+     (dict "demo" <demo params> "bare" true), it renders only the panels and the caption,
+     so another page (the homepage) can embed it under its own headline. */}}
+{{ $demo := "" }}
+{{ $bare := false }}
+{{ if reflect.IsMap . }}{{ $demo = .demo }}{{ $bare = .bare | default false }}{{ else }}{{ $demo = .Params.demo }}{{ end }}
+{{ with $demo }}
+<section {{ if not $bare }}id="demo" {{ end }}class="{{ if not $bare }}bg-slate-50 border-b border-slate-200 scroll-mt-20{{ end }}" data-demo-root>
+    <div class="{{ if not $bare }}max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20{{ end }}">
+        {{ if not $bare }}
         <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4 text-center">{{ .headline }}</h2>
         <p class="text-slate-600 text-center mb-10 max-w-2xl mx-auto">{{ .intro }}</p>
+        {{ end }}
 
         <div class="grid lg:grid-cols-2 gap-6">
             {{ range .panels }}
@@ -55,6 +63,7 @@
             {{ end }}
         </div>
 
+        {{ if not $bare }}
         {{ with .focusLabel }}
         <p class="text-xs font-bold uppercase tracking-widest text-slate-500 text-center mt-12 mb-6">{{ . }}</p>
         {{ end }}
@@ -79,6 +88,7 @@
             </div>
             {{ end }}
         </div>
+        {{ end }}
 
         <div class="flex flex-col items-center gap-3 mt-6">
             {{/* `hidden` lives on the wrapper: a `hidden inline-flex` button would stay visible

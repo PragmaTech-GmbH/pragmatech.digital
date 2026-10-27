@@ -1,7 +1,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | PragmaTech GmbH{{ end }}</title>
+    <title>{{ if .IsHome }}{{ .Params.seoTitle | default .Site.Title }}{{ else }}{{ .Title }} | PragmaTech GmbH{{ end }}</title>
     <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Summary }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}{{ end }}">
     <link rel="canonical" href="{{ .Permalink }}">
     {{ with .Params.robots }}<meta name="robots" content="{{ . }}">{{ end }}
@@ -20,7 +20,7 @@
     {{ $shareImage := .Params.share_image | default "/images/pragmatech-social-banner.png" }}
     {{ $imagePrefix := strings.TrimSuffix "/" .Site.BaseURL }}
     {{ $fullImagePath := printf "%s%s" $imagePrefix $shareImage }}
-    {{ $pageTitle := cond .IsHome .Site.Title .Title }}
+    {{ $pageTitle := cond .IsHome (.Params.seoTitle | default .Site.Title) .Title }}
     {{ $desc := .Description | default .Summary | default .Site.Params.description }}
     
     <!-- Open Graph / Facebook -->
@@ -79,6 +79,19 @@
     {{ $homeJs = $homeJs | minify | fingerprint }}
     {{ end }}
     <script src="{{ $homeJs.RelPermalink }}" defer></script>
+    {{ $homeDemoJs := resources.Get "js/demo-terminal.js" }}
+    {{ if hugo.IsProduction }}
+    {{ $homeDemoJs = $homeDemoJs | minify | fingerprint }}
+    {{ end }}
+    <script src="{{ $homeDemoJs.RelPermalink }}" defer></script>
+    {{ end }}
+
+    {{ if or .IsHome (eq .Layout "free-check") }}
+    {{ $homeTrackingJs := resources.Get "js/home-tracking.js" }}
+    {{ if hugo.IsProduction }}
+    {{ $homeTrackingJs = $homeTrackingJs | minify | fingerprint }}
+    {{ end }}
+    <script src="{{ $homeTrackingJs.RelPermalink }}" defer></script>
     {{ end }}
 
     {{ if eq .Layout "course-landing" }}
