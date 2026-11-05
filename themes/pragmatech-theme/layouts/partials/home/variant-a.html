@@ -612,8 +612,15 @@
                             <p class="text-[10px] tracking-[0.25em] uppercase text-brand-400 font-bold mb-3">Customer</p>
                             {{ with .person }}<div class="text-white font-bold">{{ . }}</div>{{ end }}
                             {{ with .position }}<div class="text-sm text-slate-400 mt-1">{{ . }}</div>{{ end }}
-                            <div class="text-sm {{ if .person }}text-slate-500{{ else }}text-white font-bold text-base{{ end }}">{{ .company }}</div>
-                            {{ if .logo }}<img src="{{ printf "/%s" .logo | relURL }}" alt="{{ .company }}" class="h-8 mt-4 opacity-80">{{ end }}
+                            {{ $companyClass := cond (not (not .person)) "text-slate-500" "text-white font-bold text-base" }}
+                            {{ if .url }}
+                            <a href="{{ .url }}" target="_blank" rel="noopener" class="block text-sm {{ $companyClass }} hover:text-brand-400 transition-colors">{{ .company }}</a>
+                            {{ else }}
+                            <div class="text-sm {{ $companyClass }}">{{ .company }}</div>
+                            {{ end }}
+                            {{ if .logo }}
+                            {{ if .url }}<a href="{{ .url }}" target="_blank" rel="noopener" class="inline-block" aria-label="Visit {{ .company }}">{{ end }}<img src="{{ printf "/%s" .logo | relURL }}" alt="{{ .company }}" class="h-8 mt-4 opacity-80 hover:opacity-100 transition-opacity">{{ if .url }}</a>{{ end }}
+                            {{ end }}
                         </div>
                         <div class="md:col-span-9 space-y-6">
                             {{ with .metrics }}
