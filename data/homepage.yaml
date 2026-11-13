@@ -2,13 +2,19 @@
 # All three variants (A/B/C) read from this file - only layout differs.
 
 hero:
-  preHeadline: "Unlock Your Superpower in the AI Era"
-  headlineLead: "Guaranteed Developer Productivity Boost:"
-  headlineAccent: "50% Faster Spring Boot Builds in 30 Days"
-  subheadline: "Stop letting AI-generated code turn your team into exhausted auditors. Get blazingly fast feedback loops to deploy with zero fear."
-  primaryCTA: "Speed Up Your Builds Now"
-  secondaryCTA: "See the Methodology"
-  guaranteeNote: "100% risk-free • 30-day guarantee • Money-back if we miss"
+  tailoredLabel: "Tailored for"
+  tailoredTech: "Spring Boot"
+  worksWithLabel: "works with"
+  headlineLead: "Your"
+  headlineAccent: "Life Insurance"
+  headlineTail: "in the Agentic Era"
+  subheadlineLead: "A comprehensive & blazing fast"
+  subheadlineMid: "safety net for"
+  subheadlineAccent: "confident"
+  subheadlineTail: "feature delivery."
+  primaryCTA: "Book a Free Call"
+  secondaryCTA: "See How the Safety Net Works"
+  guaranteeNote: "Catch bugs, regressions and outages before your users do"
   trustLabel: "Trusted by developers at"
 
 # Logos for the trust strip (filenames live in /static/generated/images/)

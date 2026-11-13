@@ -491,20 +491,10 @@ summary::-webkit-details-marker { display: none; }
     min-height: calc(100svh - 5rem);
 }
 
+/* Course banner sits in normal flow below the hero, so it never takes space from the hero */
 .home-hero__banner {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 20;
-    box-shadow: 0 14px 30px -14px rgba(15, 23, 42, 0.45);
-}
-
-/* The course banner is too tall to overlay the hero on phones, so it is hidden there */
-@media (max-width: 767px) {
-    .home-hero__banner {
-        display: none;
-    }
+    position: relative;
+    z-index: 1;
 }
 
 .home-hero__content {
@@ -536,6 +526,27 @@ summary::-webkit-details-marker { display: none; }
 [data-variant="a"] .home-hero .border-slate-700 { border-color: #475569 !important; }
 [data-variant="a"] .home-hero svg .text-slate-800 { color: #1e293b !important; }
 [data-variant="a"] .home-hero .shadow-2xl { box-shadow: 0 24px 60px -20px rgba(2, 6, 23, 0.7); }
+
+/* Home hero - "Tailored for Spring Boot / works with" row */
+.home-hero__works-with {
+    @apply flex flex-wrap items-center gap-x-8 gap-y-3 mb-8 text-sm md:text-base;
+}
+.home-hero__works-with-item {
+    @apply inline-flex items-center gap-2.5 text-slate-400;
+}
+.home-hero__works-with-item strong {
+    @apply text-white font-bold;
+}
+.home-hero__ai-logo {
+    width: 1.75rem;
+    height: 1.75rem;
+    background-color: var(--logo-color, #f8fafc);
+    -webkit-mask: var(--logo-url) center / contain no-repeat;
+    mask: var(--logo-url) center / contain no-repeat;
+}
+.home-hero__ai-logos {
+    @apply inline-flex items-center gap-3;
+}
 
 /* Home - white trust band under the hero */
 .home-trust {
