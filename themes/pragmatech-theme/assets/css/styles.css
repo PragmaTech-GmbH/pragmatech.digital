@@ -537,6 +537,20 @@ summary::-webkit-details-marker { display: none; }
 [data-variant="a"] .home-hero svg .text-slate-800 { color: #1e293b !important; }
 [data-variant="a"] .home-hero .shadow-2xl { box-shadow: 0 24px 60px -20px rgba(2, 6, 23, 0.7); }
 
+/* Home hero - "Tailored for Spring Boot / works with" row */
+.home-hero__works-with {
+    @apply flex flex-wrap items-center gap-x-8 gap-y-3 mb-8 text-sm md:text-base;
+}
+.home-hero__works-with-item {
+    @apply inline-flex items-center gap-2.5 text-slate-400;
+}
+.home-hero__works-with-item strong {
+    @apply text-white font-bold;
+}
+.home-hero__ai-logos {
+    @apply inline-flex items-center gap-3;
+}
+
 /* Home - white trust band under the hero */
 .home-trust {
     background-color: #ffffff;

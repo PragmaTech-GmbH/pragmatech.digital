@@ -3,6 +3,7 @@ import { Composition } from 'remotion';
 import { NoiseToTests, NOISE_TO_TESTS_DURATION } from './NoiseToTests';
 import { AttentionBottleneck, ATTENTION_BOTTLENECK_DURATION } from './AttentionBottleneck';
 import { FeedbackEngine, FEEDBACK_ENGINE_DURATION } from './FeedbackEngine';
+import { SafetyNet, SAFETY_NET_DURATION } from './SafetyNet';
 import { CANVAS_HEIGHT, CANVAS_WIDTH } from './theme';
 
 export const RemotionRoot: React.FC = () => {
@@ -28,6 +29,14 @@ export const RemotionRoot: React.FC = () => {
         id="FeedbackEngine"
         component={FeedbackEngine}
         durationInFrames={FEEDBACK_ENGINE_DURATION}
+        fps={30}
+        width={CANVAS_WIDTH}
+        height={CANVAS_HEIGHT}
+      />
+      <Composition
+        id="SafetyNet"
+        component={SafetyNet}
+        durationInFrames={SAFETY_NET_DURATION}
         fps={30}
         width={CANVAS_WIDTH}
         height={CANVAS_HEIGHT}
