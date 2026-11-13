@@ -491,20 +491,10 @@ summary::-webkit-details-marker { display: none; }
     min-height: calc(100svh - 5rem);
 }
 
+/* Course banner sits in normal flow below the hero, so it never takes space from the hero */
 .home-hero__banner {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 20;
-    box-shadow: 0 14px 30px -14px rgba(15, 23, 42, 0.45);
-}
-
-/* The course banner is too tall to overlay the hero on phones, so it is hidden there */
-@media (max-width: 767px) {
-    .home-hero__banner {
-        display: none;
-    }
+    position: relative;
+    z-index: 1;
 }
 
 .home-hero__content {
@@ -546,6 +536,13 @@ summary::-webkit-details-marker { display: none; }
 }
 .home-hero__works-with-item strong {
     @apply text-white font-bold;
+}
+.home-hero__ai-logo {
+    width: 1.75rem;
+    height: 1.75rem;
+    background-color: var(--logo-color, #f8fafc);
+    -webkit-mask: var(--logo-url) center / contain no-repeat;
+    mask: var(--logo-url) center / contain no-repeat;
 }
 .home-hero__ai-logos {
     @apply inline-flex items-center gap-3;
