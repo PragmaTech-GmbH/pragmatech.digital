@@ -25,15 +25,40 @@ async function fillForm(page: Page, company = "Acme Inc.") {
 }
 
 test.describe("webinar signup page", () => {
-  test("shows the format, the three fields and the no-recording note", async ({ page }) => {
+  test("shows the three fields, the format and the no-recording note", async ({ page }) => {
     await page.goto(leadPath);
 
     await expect(page.locator('input[name="FNAME"]')).toBeVisible();
     await expect(page.locator("#mce-COMPANY")).toBeVisible();
     await expect(page.locator('input[name="EMAIL"]')).toBeVisible();
-    await expect(page.locator('[data-lp="copy"]')).toContainText("45 minutes of talk and 15 minutes of Q&A");
+    await expect(page.locator('[data-lp="copy"]')).toContainText("45 min talk + 15 min Q&A");
     await expect(page.locator('[data-lp="copy"]')).toContainText("no recording", { ignoreCase: true });
   });
+
+  test("shows date, Zoom with the seat limit, host and the four takeaways", async ({ page }) => {
+    await page.goto(leadPath);
+
+    await expect(page.locator("h1")).toContainText("blazing fast & comprehensive");
+    await expect(page.locator('[data-lp="facts"]')).toContainText("17:00 CET");
+    await expect(page.locator('[data-lp="zoom"]')).toContainText("Max. 50 seats");
+    await expect(page.locator('[data-lp="zoom"] img[alt="Zoom"]')).toBeVisible();
+    await expect(page.locator('[data-lp="host"]')).toContainText("Philip Riecks");
+    await expect(page.locator('[data-lp="takeaways"] > li')).toHaveCount(4);
+  });
+
+  // The hero fills the screen below the header: nothing important may be cut off.
+  for (const [width, height] of [[1280, 720], [1440, 800], [1920, 1080]]) {
+    test(`hero fits the screen below the header at ${width}x${height}`, async ({ page }) => {
+      await page.setViewportSize({ width, height });
+      await page.goto(leadPath);
+
+      const heroBottom = await page.locator("main section").first().evaluate(
+        (element) => element.getBoundingClientRect().bottom,
+      );
+      expect(heroBottom).toBeLessThanOrEqual(height + 1);
+      await expect(page.locator("#lead-signup-submit")).toBeInViewport();
+    });
+  }
 
   test("requires first name, company and a valid email", async ({ page }) => {
     await page.goto(leadPath);

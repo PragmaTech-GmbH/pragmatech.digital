@@ -1,32 +1,52 @@
 ---
-title: "Free Webinar - Spring Boot Testing in the Agentic Era"
-description: "Free live webinar: 45 minutes of talk, 15 minutes of Q&A. Learn how to prompt tests, keep your pipeline fast and test Spring Boot apps with AI agents. No recording."
-layout: "lp-lead-magnet"
+title: "Free Webinar - A Blazing Fast & Comprehensive Spring Boot Test Suite"
+description: "Free live webinar on 1 December 2026, 17:00 CET: 45 minutes of talk, 15 minutes of Q&A. Learn how to prompt tests, keep the pipeline fast and build a blazing fast and comprehensive test suite with AI agents. No recording."
+layout: "lp-webinar"
 image: "/generated/images/courses/agentic-testing-course-thumbnail.webp"
 share_image: "/images/courses/agentic-testing-course-thumbnail.png"
 hideBanner: true
+compactForm: true
 
 campaign: "webinar-agentic-testing-2026-12"
 tagKey: "webinarTagId"
 thankYouUrl: "/lp/agentic-testing-webinar/thank-you/"
 
 hero:
-  badge: "Free live webinar"
-  title: "Spring Boot Testing"
-  highlight: "in the Agentic Era"
-  subtitle: "45 minutes of talk and 15 minutes of Q&A. Learn how to test Spring Boot applications when AI agents write the code."
-  deadline: "Live only - there is no recording. Date and time: TO BE ANNOUNCED."
+  title: "Build a blazing fast & comprehensive"
+  highlight: "Spring Boot test suite in the agentic era"
 
-bullets:
-  - "How to prompt an AI agent so it writes useful Spring Boot tests, not just tests that pass."
-  - "How to keep your build pipeline fast while the number of tests grows."
-  - "Which tests to trust, which to review by hand and where agents often go wrong."
-  - "15 minutes of live Q&A: bring your own questions."
-  - "No recording. Join live or you miss it."
+webinarDate:
+  month: "Dec"
+  day: "01"
+  weekday: "Tue"
+  time: "17:00 CET"
+  utc: "16:00 UTC"
+  format: "45 min talk + 15 min Q&A"
+  note: "Live only - no recording"
+
+hostedOn:
+  label: "Hosted on"
+  seats: "Max. 50 seats"
+
+takeaways:
+  - title: "Prompts that produce good tests"
+    text: "Stop tests that only mirror the code."
+  - title: "A pipeline that stays fast"
+    text: "Right test slice, fast feedback."
+  - title: "Tests you can trust"
+    text: "Spot weak assertions in agent output."
+  - title: "A repeatable agent setup"
+    text: "Skills, MCP servers and rules that stick."
+
+host:
+  name: "Philip Riecks"
+  role: "Founder of PragmaTech, Spring Boot testing trainer"
+  image: "/images/rieckpil-speaker.jpeg"
+  imageWebp: "/generated/images/rieckpil-speaker.webp"
 
 form:
   title: "Save my seat"
-  intro: "Free. Enter your details and I send the webinar link by email."
+  intro: "Free, but only 50 seats. Enter your details and I send the Zoom link by email."
   newsletterNote: "With this form you also subscribe to my Spring Boot Testing Blog Newsletter (rieckpil). You can unsubscribe anytime."
   firstNameLabel: "First name"
   firstNamePlaceholder: "Jane"

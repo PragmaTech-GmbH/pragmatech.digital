@@ -37,7 +37,7 @@ params:
     id: "d60be7e492" # audience id, the id= query param of actionUrl
     tagId: "1678391" # numeric id of the tag "course-agentic-testing-interest"
     devoxxTagId: "1678426" # numeric id of the tag "lp-devoxx-belgium-2026", triggers the email automation
-    webinarTagId: "REPLACE_WITH_TAG_ID" # numeric id of the tag "webinar-agentic-testing-2026-12"
+    webinarTagId: "1678476" # numeric id of the tag "webinar-signup-2026-12-01", triggers the webinar email automation
     companyField: "COMPANY" # Mailchimp merge tag of the custom "Company" audience field
 
 relativeURLs: true
