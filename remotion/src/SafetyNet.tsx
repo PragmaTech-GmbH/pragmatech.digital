@@ -6,7 +6,7 @@ import { CANVAS_HEIGHT, CANVAS_WIDTH, clamp01, colors, lerp, mixColors, smoothst
 const { fontFamily: monoFont } = loadMonoFont('normal', { weights: ['400', '700'], subsets: ['latin'] });
 
 // Seamless loop: five changes fall in turn. Healthy ones slip through the net and turn green,
-// broken ones are blocked, turn red and stay in the net for a while before they fade out.
+// broken ones are blocked, turn green (caught) and stay in the net for a while before they fade out.
 export const SAFETY_NET_DURATION = 150;
 
 const NET_LEFT_X = 60;
@@ -22,7 +22,6 @@ const SEGMENT_COUNT = 48;
 
 const GRAY = { fill: '#1e293b', stroke: '#94a3b8', text: '#cbd5e1' };
 const GREEN = { fill: '#0c2a24', stroke: colors.emerald, text: colors.white };
-const RED = { fill: '#341822', stroke: colors.rose, text: '#fecdd3' };
 
 type ChangeEvent = {
   x: number;
@@ -136,8 +135,8 @@ export const SafetyNet: React.FC = () => {
             y1={0}
             x2={event.x}
             y2={event.kind === 'pass' ? CHECK_Y - 28 : netTopAt(event.x, 0)}
-            stroke={event.kind === 'pass' ? colors.emerald : colors.rose}
-            strokeOpacity={event.kind === 'pass' ? 0.6 : 0.4}
+            stroke={event.kind === 'pass' ? colors.emerald : '#94a3b8'}
+            strokeOpacity={event.kind === 'pass' ? 0.6 : 0.35}
             strokeWidth={3}
             strokeDasharray="7 9"
           />
@@ -190,7 +189,7 @@ export const SafetyNet: React.FC = () => {
             );
           }
 
-          const redProgress = smoothstep(FALL_FRAMES, FALL_FRAMES + 6, localFrame);
+          const caughtProgress = smoothstep(FALL_FRAMES, FALL_FRAMES + 6, localFrame);
           const settleProgress = smoothstep(FALL_FRAMES + 2, FALL_FRAMES + 16, localFrame);
           const restingY = netTopAt(event.x, frame) + NET_THICKNESS / 2;
           const slopeY = netTopAt(event.x + 10, frame) - netTopAt(event.x - 10, frame);
@@ -207,7 +206,7 @@ export const SafetyNet: React.FC = () => {
               x={event.x}
               y={pillY}
               label={label}
-              palette={mixPalette(GRAY, RED, redProgress)}
+              palette={mixPalette(GRAY, GREEN, caughtProgress)}
               rotation={rotation}
               opacity={pillOpacity}
             />
