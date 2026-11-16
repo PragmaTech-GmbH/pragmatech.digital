@@ -15,8 +15,6 @@ hero:
   primaryCTA: "Get Your Free Safety Net Check"
   ctaNote: "15-min call · no pitch · one concrete quick win"
   secondaryCTA: "See how it works"
-  proofStrong: "Build times cut from 15 to 3 minutes"
-  proofRest: "at AboutBits"
   trustLabel: "Trusted by developers at"
 
 # Logos for the trust strip (filenames live in /static/generated/images/)

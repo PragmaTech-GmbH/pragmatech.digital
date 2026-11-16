@@ -553,12 +553,6 @@ summary::-webkit-details-marker { display: none; }
 .home-hero__text-link:hover {
     @apply text-white underline;
 }
-.home-hero__proof {
-    @apply flex items-start gap-2.5 text-sm md:text-base text-slate-300;
-}
-.home-hero__proof strong {
-    @apply text-white font-bold;
-}
 .home-hero__ai-logos {
     @apply inline-flex items-center gap-3;
 }
