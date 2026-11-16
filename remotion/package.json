@@ -15,7 +15,11 @@
     "render:feedback-engine": "npm run render:feedback-engine:mp4 && npm run render:feedback-engine:webm && npm run render:feedback-engine:poster",
     "render:feedback-engine:mp4": "remotion render src/index.ts FeedbackEngine out/feedback-engine.mp4 --codec=h264 --crf=33",
     "render:feedback-engine:webm": "remotion render src/index.ts FeedbackEngine out/feedback-engine.webm --codec=vp9 --crf=50",
-    "render:feedback-engine:poster": "remotion still src/index.ts FeedbackEngine out/feedback-engine-poster.png --frame=55"
+    "render:feedback-engine:poster": "remotion still src/index.ts FeedbackEngine out/feedback-engine-poster.png --frame=55",
+    "render:safety-net": "npm run render:safety-net:mp4 && npm run render:safety-net:webm && npm run render:safety-net:poster",
+    "render:safety-net:mp4": "remotion render src/index.ts SafetyNet out/safety-net.mp4 --codec=h264 --crf=33",
+    "render:safety-net:webm": "remotion render src/index.ts SafetyNet out/safety-net.webm --codec=vp9 --crf=50",
+    "render:safety-net:poster": "remotion still src/index.ts SafetyNet out/safety-net-poster.png --frame=70"
   },
   "dependencies": {
     "@remotion/cli": "4.0.527",
