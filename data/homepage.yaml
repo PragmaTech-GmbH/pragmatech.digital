@@ -12,11 +12,6 @@ hero:
   subheadlineMid: "a comprehensive & blazing fast test suite that makes every build"
   subheadlineAccent: "trustworthy"
   subheadlineTail: "."
-  promiseLead: "We get your Spring Boot project there:"
-  promises:
-    - "Improve your existing test suite - close the gaps, remove flaky tests"
-    - "Speed up your builds and feedback loops"
-    - "Keep it that way, even when AI agents write the code"
   primaryCTA: "Get Your Free Safety Net Check"
   secondaryCTA: "See How the Safety Net Works"
   guaranteeNote: "Catch bugs, regressions and outages before your users do"
