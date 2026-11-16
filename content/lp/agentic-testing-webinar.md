@@ -28,6 +28,8 @@ hostedOn:
   label: "Hosted on"
   seats: "Max. 50 seats"
 
+takeawaysLabel: "What you'll learn"
+
 takeaways:
   - title: "Prompts that produce good tests"
     text: "Stop tests that only mirror the code."
@@ -39,6 +41,7 @@ takeaways:
     text: "Skills, MCP servers and rules that stick."
 
 host:
+  label: "Your host"
   name: "Philip Riecks"
   role: "Founder of PragmaTech, Spring Boot testing trainer"
   image: "/images/rieckpil-speaker.jpeg"
