@@ -1,5 +1,6 @@
 <head>
     <meta charset="utf-8">
+    {{ if eq .Kind "404" }}<base href="&#47;">{{ end }}
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | PragmaTech GmbH{{ end }}</title>
     <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Summary }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}{{ end }}">
