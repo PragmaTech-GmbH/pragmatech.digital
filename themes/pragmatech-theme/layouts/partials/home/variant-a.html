@@ -41,8 +41,9 @@
                     </h1>
                     <p class="text-base md:text-xl 2xl:text-2xl text-slate-300 mb-6 md:mb-8 max-w-2xl leading-relaxed">
                         <strong class="text-white">{{ $home.hero.subheadlineLead }}</strong>
+                        <br class="hidden md:block">
                         {{ $home.hero.subheadlineMid }}
-                        <strong class="text-emerald-400">{{ $home.hero.subheadlineAccent }}</strong>
+                        <strong class="text-emerald-400 whitespace-nowrap">{{ $home.hero.subheadlineAccent }}</strong>
                         {{ $home.hero.subheadlineTail }}
                     </p>
                     <div class="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 mb-3">
