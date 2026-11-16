@@ -559,6 +559,12 @@ summary::-webkit-details-marker { display: none; }
 .home-hero__promise-list li svg {
     margin-top: 0.125rem;
 }
+.home-hero__outcome {
+    @apply mt-3 md:mt-4 pl-3 border-l-2 border-emerald-400 text-sm md:text-base text-slate-200 leading-snug;
+}
+.home-hero__outcome strong {
+    @apply text-emerald-400 font-bold;
+}
 .home-hero__ai-logos {
     @apply inline-flex items-center gap-3;
 }
