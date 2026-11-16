@@ -106,13 +106,19 @@ test.describe("webinar signup page", () => {
 });
 
 test.describe("webinar thank-you page", () => {
-  test("explains the double opt-in and the webinar details email", async ({ page }) => {
+  test("explains the next steps: info email, Zoom calendar invite and reminder", async ({ page }) => {
     await page.goto(thankYouPath);
 
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", "noindex, nofollow");
     const steps = page.locator('[data-lp="steps"] li');
-    await expect(steps).toHaveCount(2);
+    await expect(page.locator("h1")).toContainText("Thanks for signing up");
+    await expect(page.locator("main")).toContainText("1 December 2026 at 17:00 CET");
+    await expect(steps).toHaveCount(4);
     await expect(steps.nth(0)).toContainText("Confirm your email");
-    await expect(steps.nth(1)).toContainText("Webinar details");
+    await expect(steps.nth(0)).toContainText("Already on my newsletter");
+    await expect(steps.nth(1)).toContainText("more info");
+    await expect(steps.nth(2)).toContainText("Zoom link");
+    await expect(steps.nth(2)).toContainText("calendar");
+    await expect(steps.nth(3)).toContainText("reminder", { ignoreCase: true });
   });
 });
