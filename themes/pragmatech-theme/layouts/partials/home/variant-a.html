@@ -46,6 +46,17 @@
                         <strong class="text-emerald-400">{{ $home.hero.subheadlineAccent }}</strong>
                         {{ $home.hero.subheadlineTail }}
                     </p>
+                    <div class="home-hero__promise">
+                        <p class="home-hero__promise-lead">{{ $home.hero.promiseLead }}</p>
+                        <ul class="home-hero__promise-list">
+                            {{ range $home.hero.promises }}
+                            <li>
+                                <svg class="w-5 h-5 flex-shrink-0 text-emerald-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                                <span>{{ . }}</span>
+                            </li>
+                            {{ end }}
+                        </ul>
+                    </div>
                     <div class="flex flex-col sm:flex-row sm:flex-wrap gap-3 md:gap-4 mb-4 md:mb-6">
                         <a href="{{ $bookUrl }}" target="_blank" rel="noopener"
                            class="cta-primary inline-flex items-center justify-center gap-2

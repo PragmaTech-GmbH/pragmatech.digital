@@ -544,6 +544,21 @@ summary::-webkit-details-marker { display: none; }
     -webkit-mask: var(--logo-url) center / contain no-repeat;
     mask: var(--logo-url) center / contain no-repeat;
 }
+.home-hero__promise {
+    @apply mb-6 md:mb-8 max-w-2xl;
+}
+.home-hero__promise-lead {
+    @apply text-sm md:text-base font-semibold text-white mb-2;
+}
+.home-hero__promise-list {
+    @apply space-y-1.5 md:space-y-2;
+}
+.home-hero__promise-list li {
+    @apply flex items-start gap-2.5 text-sm md:text-base text-slate-300 leading-snug;
+}
+.home-hero__promise-list li svg {
+    margin-top: 0.125rem;
+}
 .home-hero__ai-logos {
     @apply inline-flex items-center gap-3;
 }
@@ -554,7 +569,7 @@ summary::-webkit-details-marker { display: none; }
         min-height: 0;
     }
     .home-hero__content {
-        padding-block: 1rem 1.75rem;
+        padding-block: 50px 1.75rem;
     }
     .home-hero__video {
         aspect-ratio: 1200 / 520;
