@@ -39,12 +39,17 @@
                         {{ $home.hero.headlineLead }}
                         <span class="bg-gradient-to-r from-brand-400 to-emerald-400 text-transparent bg-clip-text">{{ $home.hero.headlineAccent }}</span>{{ with $home.hero.headlineTail }} {{ . }}{{ end }}
                     </h1>
-                    <p class="text-lg md:text-2xl text-slate-300 mb-5 md:mb-8 max-w-2xl leading-relaxed">
+                    <p class="text-lg md:text-2xl text-slate-300 mb-3 md:mb-4 max-w-2xl leading-relaxed">
                         <strong class="text-white">{{ $home.hero.subheadlineLead }}</strong>
                         {{ $home.hero.subheadlineMid }}
                         <strong class="text-emerald-400">{{ $home.hero.subheadlineAccent }}</strong>{{ $home.hero.subheadlineTail }}
                     </p>
-                    <p class="home-hero__insurance">{{ $home.hero.insuranceLine }}</p>
+                    <p class="text-lg md:text-2xl text-slate-300 mb-5 md:mb-8 max-w-2xl leading-relaxed">
+                        <strong class="text-white">{{ $home.hero.insuranceLead }}</strong>
+                        {{ $home.hero.insuranceMid }}
+                        <strong class="text-emerald-400">{{ $home.hero.insuranceAccent }}</strong>
+                        {{ $home.hero.insuranceTail }}
+                    </p>
                     <div class="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 mb-3">
                         <a href="{{ $bookUrl }}" target="_blank" rel="noopener"
                            class="cta-primary inline-flex items-center justify-center gap-2

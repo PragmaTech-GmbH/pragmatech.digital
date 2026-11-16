@@ -544,9 +544,6 @@ summary::-webkit-details-marker { display: none; }
     -webkit-mask: var(--logo-url) center / contain no-repeat;
     mask: var(--logo-url) center / contain no-repeat;
 }
-.home-hero__insurance {
-    @apply mb-5 md:mb-6 max-w-2xl pl-3 border-l-2 border-emerald-400 text-base md:text-lg font-medium text-slate-200 leading-snug;
-}
 .home-hero__ai-tool {
     @apply inline-flex items-center gap-1.5 text-slate-300;
 }
