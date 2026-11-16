@@ -94,7 +94,7 @@
     <script src="{{ $demoJs.RelPermalink }}" defer></script>
     {{ end }}
 
-    {{ if eq .Layout "lp-lead-magnet" }}
+    {{ if in (slice "lp-lead-magnet" "lp-webinar") .Layout }}
     {{ $leadJs := resources.Get "js/lead-signup.js" }}
     {{ if hugo.IsProduction }}
     {{ $leadJs = $leadJs | minify | fingerprint }}

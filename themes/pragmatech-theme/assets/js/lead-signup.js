@@ -23,6 +23,13 @@
       showError('Please enter your first name.');
       return;
     }
+    var companyField = signupForm.dataset.companyField;
+    var companyInput = signupForm.querySelector('#mce-COMPANY');
+    var companyValue = companyInput ? companyInput.value.trim() : '';
+    if (companyInput && !companyValue) {
+      showError('Please enter your company.');
+      return;
+    }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue)) {
       showError('Please enter a valid email address.');
       return;
@@ -36,6 +43,7 @@
     var requestUrl = signupForm.dataset.actionUrl.replace('/subscribe/post?', '/subscribe/post-json?')
       + '&FNAME=' + encodeURIComponent(firstNameValue)
       + '&EMAIL=' + encodeURIComponent(emailValue)
+      + (companyInput ? '&' + encodeURIComponent(companyField) + '=' + encodeURIComponent(companyValue) : '')
       + (signupForm.dataset.tagId ? '&tags=' + encodeURIComponent(signupForm.dataset.tagId) : '')
       + '&' + encodeURIComponent(signupForm.dataset.honeypot) + '='
       + '&c=' + callbackName;
