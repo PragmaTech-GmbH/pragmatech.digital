@@ -42,19 +42,6 @@ framework = "#custom"
   status = 301
   force = true
 
-# The /lp/ list page is not rendered, send visitors to the homepage
-[[redirects]]
-  from = "/lp"
-  to = "/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/lp/"
-  to = "/"
-  status = 301
-  force = true
-
 # Specific asset caching
 [[headers]]
   for = "*.js"
