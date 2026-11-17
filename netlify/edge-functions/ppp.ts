@@ -24,6 +24,24 @@ export const TIERS: Readonly<Record<Tier, TierPricing>> = {
   4: { discountPercentage: 70, couponEnvVar: "PPP_COUPON_TIER_4" },
 };
 
+// Black Friday 2026 campaign: 30 % off the base price on top of Purchase Power Parity.
+// CopeCart applies one coupon per checkout, so every tier needs its own combined coupon
+// (PPP and Black Friday multiplied): 1 - (1 - PPP) * (1 - 0.30). Each coupon code lives in an
+// env var and must carry the same validity window in CopeCart. Remove this block after the campaign.
+export const BLACK_FRIDAY = {
+  name: "black-friday-2026",
+  startsAt: "2026-11-27T08:00:00Z",
+  endsAt: "2026-11-27T23:59:59Z",
+  discountPercentage: 30,
+} as const;
+
+export const BLACK_FRIDAY_TIERS: Readonly<Record<Tier, TierPricing>> = {
+  1: { discountPercentage: 30, couponEnvVar: "BLACK_FRIDAY_COUPON_TIER_1" },
+  2: { discountPercentage: 51, couponEnvVar: "BLACK_FRIDAY_COUPON_TIER_2" },
+  3: { discountPercentage: 65, couponEnvVar: "BLACK_FRIDAY_COUPON_TIER_3" },
+  4: { discountPercentage: 79, couponEnvVar: "BLACK_FRIDAY_COUPON_TIER_4" },
+};
+
 const COUNTRY_CODE_PATTERN = /^[A-Z]{2}$/;
 
 const JSON_HEADERS = {
@@ -74,6 +92,24 @@ export function handlePppRequest(request: Request, context: Context): Response {
     }
   }
 
+  // `?now=<ISO date>` simulates the clock for QA, guarded like the country override.
+  let currentTime = Date.now();
+  const requestedNow = requestUrl.searchParams.get("now");
+  if (requestedNow) {
+    const deployContext = context.deploy?.context ?? Netlify.env.get("CONTEXT");
+    const testToken = Netlify.env.get("PPP_TEST_TOKEN");
+    const nowOverrideAllowed =
+      deployContext !== "production" || (!!testToken && requestUrl.searchParams.get("token") === testToken);
+    const requestedTime = Date.parse(requestedNow);
+    if (!nowOverrideAllowed) {
+      warnings.push("now override ignored");
+    } else if (Number.isNaN(requestedTime)) {
+      warnings.push("now override invalid");
+    } else {
+      currentTime = requestedTime;
+    }
+  }
+
   const pppTier: Tier = COUNTRY_TIERS[country] ?? 1;
   const pricing = TIERS[pppTier];
 
@@ -92,12 +128,31 @@ export function handlePppRequest(request: Request, context: Context): Response {
     }
   }
 
+  // Black Friday window: the combined coupon of the visitor's tier replaces the PPP coupon.
+  // A missing env var ends the campaign for that visitor, who keeps the PPP offer.
+  let campaign: { name: string; endsAt: string } | null = null;
+  const pppDiscountPercentage = discountPercentage;
+  const isInsideWindow = currentTime >= Date.parse(BLACK_FRIDAY.startsAt) && currentTime <= Date.parse(BLACK_FRIDAY.endsAt);
+  if (isInsideWindow) {
+    const blackFridayPricing = BLACK_FRIDAY_TIERS[selectedTier];
+    const blackFridayCoupon = Netlify.env.get(blackFridayPricing.couponEnvVar ?? "")?.trim();
+    if (!blackFridayCoupon) {
+      warnings.push(`${blackFridayPricing.couponEnvVar} not set`);
+    } else {
+      campaign = { name: BLACK_FRIDAY.name, endsAt: BLACK_FRIDAY.endsAt };
+      discountPercentage = blackFridayPricing.discountPercentage;
+      couponCode = blackFridayCoupon;
+    }
+  }
+
   const responseBody = {
     country,
     countryName,
     tier: selectedTier,
     discountPercentage,
+    pppDiscountPercentage,
     couponCode,
+    campaign,
     overridden,
     warnings,
   };

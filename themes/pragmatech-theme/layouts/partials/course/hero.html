@@ -4,6 +4,31 @@
     <div class="absolute inset-0 bg-gradient-to-br from-white via-brand-50/40 to-white pointer-events-none"></div>
 
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 lg:py-28">
+        {{/* Black Friday teaser, full width above the two columns: hidden until ppp-pricing.js sees a
+             `campaign` (shared with the banner in the pricing section). Copy: params.ppp.blackFriday */}}
+        {{ with $.Params.ppp.blackFriday }}
+        <div class="hidden mb-10 lg:mb-14" data-bf-hero>
+            <a href="#pricing" class="group flex flex-col md:flex-row md:items-center md:justify-between gap-5 rounded-2xl bg-slate-900 border-2 border-amber-400 px-6 py-5 text-white shadow-lg hover:bg-slate-800 transition-colors">
+                <div class="text-center md:text-left">
+                    <p class="text-[11px] font-bold uppercase tracking-widest text-amber-300 mb-1">{{ .heroBadge | default "Black Friday" }}</p>
+                    <p class="text-xl md:text-2xl font-bold">{{ .heroText }}</p>
+                </div>
+                <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-8 flex-shrink-0">
+                    <div class="text-center">
+                        <p class="text-[11px] font-bold uppercase tracking-widest text-slate-400 mb-1">{{ .countdownLabel | default "Offer ends in" }}</p>
+                        <p class="font-mono text-3xl md:text-4xl font-bold tabular-nums" aria-live="off">
+                            <span data-bf-hours>--</span>:<span data-bf-minutes>--</span>:<span data-bf-seconds>--</span>
+                        </p>
+                    </div>
+                    <span class="inline-flex items-center gap-2 rounded-lg bg-amber-400 px-5 py-3 font-bold text-slate-900 group-hover:bg-amber-300 transition-colors">
+                        {{ .heroCta | default "See the deal" }}
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </span>
+                </div>
+            </a>
+        </div>
+        {{ end }}
+
         <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
             <!-- Left: copy -->

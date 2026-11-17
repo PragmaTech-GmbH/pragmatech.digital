@@ -116,11 +116,34 @@ environment variables (Project configuration > Environment variables):
 |---|---|---|
 | `PPP_PRODUCT_ID_COURSE_EDITION`, `PPP_PRODUCT_ID_BUNDLE_EDITION`, `PPP_PRODUCT_ID_TEAM_EDITION` | Hugo build (`os.Getenv`) | CopeCart product IDs for the checkout links (one per `ppp.products[].key`) |
 | `PPP_COUPON_TIER_2`, `PPP_COUPON_TIER_3`, `PPP_COUPON_TIER_4` | Edge function | Coupon codes for 30 / 50 / 70 % off (tier 1 has no coupon) |
-| `PPP_TEST_TOKEN` | Edge function | Optional. Enables `?country=xx&token=<value>` on production for QA |
+| `BLACK_FRIDAY_COUPON_TIER_1` to `_4` | Edge function | Combined Black Friday coupon codes (30 / 51 / 65 / 79 %), active only inside the campaign window |
+| `PPP_TEST_TOKEN` | Edge function | Optional. Enables `?country=xx&now=...&token=<value>` on production for QA |
 
 Without the product ID variables Hugo prints a warning and renders `#` as checkout
 link. Without a coupon variable the edge function answers with the next best offer,
 down to tier 1 (full price).
+
+### Black Friday 2026 campaign
+
+30 % off the base price for everyone, on top of PPP, on 2026-11-27 from 08:00 to 23:59 UTC
+(Course and Bundle editions). CopeCart takes one coupon per checkout, so every tier has a
+combined coupon, PPP and Black Friday multiplied (`BLACK_FRIDAY_TIERS` in
+`netlify/edge-functions/ppp.ts`):
+
+| Visitor | Env var | CopeCart discount | Bundle | Course |
+|---|---|---|---|---|
+| Tier 1 | `BLACK_FRIDAY_COUPON_TIER_1` | 30 % | 343.00€ | 230.30€ |
+| Tier 2 | `BLACK_FRIDAY_COUPON_TIER_2` | 51 % | 240.10€ | 161.21€ |
+| Tier 3 | `BLACK_FRIDAY_COUPON_TIER_3` | 65 % | 171.50€ | 115.15€ |
+| Tier 4 | `BLACK_FRIDAY_COUPON_TIER_4` | 79 % | 102.90€ | 69.09€ |
+
+Every coupon needs the same validity window in CopeCart and must be enabled for both products.
+Inside the window `/api/ppp` returns a `campaign` object, and the page shows the banner in the
+pricing section, a bonus label on the Course and Bundle cards (1-hour 1:1 consulting call,
+Black Friday purchases only) and a countdown. The copy lives in `ppp.blackFriday` in the course
+page frontmatter. QA: `?now=2026-11-27T12:00:00Z` simulates the clock (free outside production,
+needs `&token=` on production). After the campaign delete the `BLACK_FRIDAY` constants, the
+frontmatter block and the env vars.
 
 ### Local development
 

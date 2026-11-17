@@ -190,12 +190,54 @@ test.describe("PPP pricing on the course landing page", () => {
     await expect(page.locator("[data-ppp-banner]")).toBeVisible();
     expect(requestedUrls).toHaveLength(1);
 
-    const cachedValue = await page.evaluate(() => window.sessionStorage.getItem("ppp:v3"));
-    expect(JSON.parse(cachedValue ?? "null")).toMatchObject({ tier: 4, couponCode: "T70" });
+    const cachedValue = await page.evaluate(() => window.sessionStorage.getItem("ppp:v4"));
+    expect(JSON.parse(cachedValue ?? "null").data).toMatchObject({ tier: 4, couponCode: "T70" });
 
     await page.goto(coursePath);
     await expect(page.locator('[data-ppp-product="bundle_edition"] [data-ppp-price]')).toHaveText("147€");
     expect(requestedUrls).toHaveLength(1);
+  });
+
+  test("Black Friday: tier 1 visitor sees 30 % off, banner, bonus labels and a running countdown", async ({ page }) => {
+    const endsAt = new Date(Date.now() + 3 * 3600 * 1000 + 5000).toISOString();
+    await fakePppEndpoint(page, { ...tier1Germany, discountPercentage: 30, couponCode: "BF30", campaign: { name: "black-friday-2026", endsAt } });
+    await page.goto(coursePath);
+
+    const banner = page.locator("[data-bf-banner]");
+    await expect(banner).toBeVisible();
+    await expect(banner).toContainText("1-hour 1:1 consulting call");
+    await expect(banner.locator("[data-bf-hours]")).toHaveText("03");
+    await expect(page.locator('[data-ppp-product="bundle_edition"] [data-ppp-price]')).toHaveText(`${formatPrice(490, 30)}€`);
+    await expect(page.locator('[data-ppp-product="bundle_edition"] [data-ppp-cta]')).toHaveAttribute("href", /promocode=BF30/);
+    await expect(page.locator('[data-ppp-product="course_edition"] [data-bf-bonus]')).toBeVisible();
+    // Team Edition has no PPP contract and no bonus label.
+    await expect(page.locator('[data-product="team_edition"] [data-bf-bonus]')).toHaveCount(0);
+    // The PPP note and the floating banner stay hidden for a non-PPP visitor.
+    await expect(page.locator("[data-ppp-note]")).toBeHidden();
+    await expect(banner.locator("[data-bf-ppp-hint]")).toBeHidden();
+
+    const firstSeconds = await banner.locator("[data-bf-seconds]").textContent();
+    await expect(banner.locator("[data-bf-seconds]")).not.toHaveText(firstSeconds ?? "");
+  });
+
+  test("Black Friday: a PPP visitor gets the combined discount and the PPP note shows the PPP share", async ({ page }) => {
+    const endsAt = new Date(Date.now() + 3600 * 1000).toISOString();
+    await fakePppEndpoint(page, { ...tier4India, discountPercentage: 79, pppDiscountPercentage: 70, couponCode: "BF79", campaign: { name: "black-friday-2026", endsAt } });
+    await page.goto(coursePath);
+
+    await expect(page.locator("[data-bf-banner]")).toBeVisible();
+    await expect(page.locator("[data-bf-ppp-hint]")).toBeVisible();
+    await expect(page.locator('[data-ppp-product="bundle_edition"] [data-ppp-price]')).toHaveText(`${formatPrice(490, 79)}€`);
+    await expect(page.locator('[data-ppp-product="bundle_edition"] [data-ppp-cta]')).toHaveAttribute("href", /promocode=BF79/);
+    await expect(page.locator("[data-ppp-note] [data-ppp-discount-percentage]")).toHaveText("70");
+  });
+
+  test("Black Friday: an ended campaign shows no banner", async ({ page }) => {
+    const endsAt = new Date(Date.now() - 1000).toISOString();
+    await fakePppEndpoint(page, { ...tier1Germany, campaign: { name: "black-friday-2026", endsAt } });
+    await page.goto(coursePath);
+    await expect(page.locator('[data-ppp-product="bundle_edition"] [data-ppp-price]')).toHaveText("490€");
+    await expect(page.locator("[data-bf-banner]")).toBeHidden();
   });
 
   test("forwards ?country and skips the cache in test mode", async ({ page }) => {
@@ -210,7 +252,7 @@ test.describe("PPP pricing on the course landing page", () => {
     expect(requestUrl.searchParams.get("country")).toBe("br");
     expect(requestUrl.searchParams.get("token")).toBe("abc");
 
-    const cachedValue = await page.evaluate(() => window.sessionStorage.getItem("ppp:v3"));
+    const cachedValue = await page.evaluate(() => window.sessionStorage.getItem("ppp:v4"));
     expect(cachedValue).toBeNull();
   });
 

@@ -84,9 +84,12 @@
 
     {{ if eq .Layout "course-landing" }}
     {{ $pppJs := resources.Get "js/ppp-pricing.js" }}
+    {{/* Always fingerprint: the file is served with a 1 year immutable cache, so deploy previews
+         would otherwise keep serving a stale copy to browsers that loaded an earlier build. */}}
     {{ if hugo.IsProduction }}
-    {{ $pppJs = $pppJs | minify | fingerprint }}
+    {{ $pppJs = $pppJs | minify }}
     {{ end }}
+    {{ $pppJs = $pppJs | fingerprint }}
     <script src="{{ $pppJs.RelPermalink }}" defer></script>
     {{ $demoJs := resources.Get "js/demo-terminal.js" }}
     {{ if hugo.IsProduction }}
