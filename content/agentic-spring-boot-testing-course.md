@@ -368,12 +368,14 @@ ppp:
   blackFriday:
     badge: "Black Friday deal"
     headline: "30% off the Course and Bundle editions, on top of any regional discount"
-    bonusTag: "Bonus - only 20 spots"
+    bonusTag: "Free bonus - only 20 spots"
+    bonusValue: "199€"
+    bonusValueLabel: "Worth"
     bonusTitle: "1-hour 1:1 consulting call with me"
-    bonus: "For setup help or any testing question. Included for the first 20 Black Friday buyers of the Course and Bundle editions."
+    bonus: "We look at your setup, fix a problem you have at work, talk through your test strategy, or whatever helps you most. Included for the first 20 Black Friday buyers of the Course and Bundle editions."
     pppHint: "Your regional (PPP) discount is already included on top of Black Friday."
     countdownLabel: "Deal ends in"
-    cardBonus: "Black Friday bonus: 1-hour 1:1 consulting call with me (first 20 buyers)"
+    cardBonus: "Free Black Friday bonus: 1-hour 1:1 consulting call with me, worth 199€ (first 20 buyers)"
   managerTemplate:
     headline: "Need approval from your manager?"
     text: "Use my ready-to-send email template. Copy the subject and body, fill in the placeholders and send it."

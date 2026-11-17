@@ -45,13 +45,19 @@
             {{ with .bonusTitle }}
             <div class="mt-5 flex flex-col sm:flex-row items-center sm:items-start gap-4 rounded-xl border-2 border-amber-400 bg-amber-400/10 px-5 py-4 text-center sm:text-left" data-bf-bonus-box>
                 <span class="flex-shrink-0 inline-flex items-center justify-center w-12 h-12 rounded-full bg-amber-400 text-slate-900" aria-hidden="true">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.86 9.86 0 01-4-.8L3 20l1.3-3.9A7.6 7.6 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"/></svg>
                 </span>
                 <div>
                     <p class="text-[11px] font-bold uppercase tracking-widest text-amber-300 mb-1">{{ $blackFriday.bonusTag }}</p>
                     <p class="text-xl font-bold text-white">{{ . }}</p>
                     <p class="text-sm text-slate-200 mt-1">{{ $blackFriday.bonus }}</p>
                 </div>
+                {{ with $blackFriday.bonusValue }}
+                <div class="flex-shrink-0 sm:ml-auto rounded-lg bg-amber-400 text-slate-900 px-4 py-2 text-center" data-bf-bonus-value>
+                    <p class="text-[11px] font-bold uppercase tracking-widest">{{ $blackFriday.bonusValueLabel | default "Value" }}</p>
+                    <p class="text-2xl font-extrabold leading-tight">{{ . }}</p>
+                </div>
+                {{ end }}
             </div>
             {{ end }}
         </div>
