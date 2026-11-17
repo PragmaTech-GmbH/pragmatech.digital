@@ -363,6 +363,15 @@ ppp:
   intro: "Three editions. The Course Edition is for students who already own my testing courses. The Bundle and Team editions add the full course library, and differ in seats, the implementation workshop, support and the update window."
   pppScope: "Course and Bundle editions"
   guarantee: "60-day money-back guarantee, no questions asked"
+  # Black Friday 2026 (27 Nov, 08:00-23:59 UTC). Shown only while /api/ppp returns a `campaign`;
+  # the discount and window live in netlify/edge-functions/ppp.ts. Delete this block after the campaign.
+  blackFriday:
+    badge: "Black Friday deal"
+    headline: "30% off the Course and Bundle editions, on top of any regional discount"
+    bonus: "Bonus for the first 20 Black Friday buyers only: a 1-hour 1:1 consulting call with me for setup help or any testing question. Included with the Course and Bundle editions."
+    pppHint: "Your regional (PPP) discount is already included on top of Black Friday."
+    countdownLabel: "Deal ends in"
+    cardBonus: "Black Friday bonus: 1-hour 1:1 consulting call with me (first 20 buyers)"
   managerTemplate:
     headline: "Need approval from your manager?"
     text: "Use my ready-to-send email template. Copy the subject and body, fill in the placeholders and send it."

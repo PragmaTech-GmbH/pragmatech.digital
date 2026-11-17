@@ -30,6 +30,10 @@ beforeEach(() => {
   envStore.set("PPP_COUPON_TIER_2", "T30");
   envStore.set("PPP_COUPON_TIER_3", "T50");
   envStore.set("PPP_COUPON_TIER_4", "T70");
+  envStore.set("BLACK_FRIDAY_COUPON_TIER_1", "BF30");
+  envStore.set("BLACK_FRIDAY_COUPON_TIER_2", "BF51");
+  envStore.set("BLACK_FRIDAY_COUPON_TIER_3", "BF65");
+  envStore.set("BLACK_FRIDAY_COUPON_TIER_4", "BF79");
   (globalThis as any).Netlify = { env: { get: (name: string) => envStore.get(name) } };
 });
 
@@ -203,5 +207,50 @@ describe("COUNTRY_TIERS data", () => {
     assert.equal(COUNTRY_TIERS.IN, 4);
     assert.equal(COUNTRY_TIERS.TR, 4);
     assert.equal(COUNTRY_TIERS.PK, 4);
+  });
+});
+
+describe("Black Friday campaign", () => {
+  const insideWindow = "?now=2026-11-27T12:00:00Z";
+  const germany = { country: { code: "DE", name: "Germany" } };
+
+  test("outside the window there is no campaign", async () => {
+    const before = await callJson("?now=2026-11-27T07:59:59Z", germany, "deploy-preview");
+    assert.equal(before.campaign, null);
+    assert.equal(before.couponCode, null);
+    const after = await callJson("?now=2026-11-28T00:00:00Z", germany, "deploy-preview");
+    assert.equal(after.campaign, null);
+  });
+
+  test("tier 1 gets the 30 % Black Friday coupon and the campaign end time", async () => {
+    const body = await callJson(insideWindow, germany, "deploy-preview");
+    assert.equal(body.discountPercentage, 30);
+    assert.equal(body.couponCode, "BF30");
+    assert.equal(body.tier, 1);
+    assert.deepEqual(body.campaign, { name: "black-friday-2026", endsAt: "2026-11-27T23:59:59Z" });
+  });
+
+  test("Black Friday stacks with PPP: each tier gets its combined coupon", async () => {
+    const tier2 = await callJson(insideWindow, { country: { code: "ES", name: "Spain" } }, "deploy-preview");
+    assert.deepEqual([tier2.tier, tier2.discountPercentage, tier2.pppDiscountPercentage, tier2.couponCode], [2, 51, 30, "BF51"]);
+    const tier3 = await callJson(insideWindow, { country: { code: "BR", name: "Brazil" } }, "deploy-preview");
+    assert.deepEqual([tier3.tier, tier3.discountPercentage, tier3.pppDiscountPercentage, tier3.couponCode], [3, 65, 50, "BF65"]);
+    const tier4 = await callJson(insideWindow, { country: { code: "IN", name: "India" } }, "deploy-preview");
+    assert.deepEqual([tier4.tier, tier4.discountPercentage, tier4.pppDiscountPercentage, tier4.couponCode], [4, 79, 70, "BF79"]);
+    assert.ok(tier4.campaign);
+  });
+
+  test("a missing tier coupon keeps the PPP offer and warns", async () => {
+    envStore.delete("BLACK_FRIDAY_COUPON_TIER_4");
+    const body = await callJson(insideWindow, { country: { code: "IN", name: "India" } }, "deploy-preview");
+    assert.equal(body.campaign, null);
+    assert.equal(body.couponCode, "T70");
+    assert.ok(body.warnings.includes("BLACK_FRIDAY_COUPON_TIER_4 not set"));
+  });
+
+  test("the ?now override is ignored on production without a valid token", async () => {
+    const body = await callJson(insideWindow, germany, "production");
+    assert.equal(body.campaign, null);
+    assert.ok(body.warnings.includes("now override ignored"));
   });
 });
