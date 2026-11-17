@@ -250,7 +250,7 @@
 
   function renderCampaign(pricingData) {
     var campaign = pricingData.campaign;
-    var bannerElements = document.querySelectorAll('[data-bf-banner], [data-bf-bonus]');
+    var bannerElements = document.querySelectorAll('[data-bf-banner], [data-bf-bonus], [data-bf-hero]');
     Array.prototype.forEach.call(bannerElements, function (element) {
       element.classList.toggle('hidden', !campaign);
     });

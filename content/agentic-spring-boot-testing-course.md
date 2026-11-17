@@ -367,6 +367,9 @@ ppp:
   # the discount and window live in netlify/edge-functions/ppp.ts. Delete this block after the campaign.
   blackFriday:
     badge: "Black Friday deal"
+    heroBadge: "Black Friday"
+    heroText: "30% off + free 1:1 call, ends in"
+    heroCta: "See the deal"
     headline: "30% off the Course and Bundle editions, on top of any regional discount"
     bonusTag: "Free bonus - only 20 spots"
     bonusValue: "199€"
