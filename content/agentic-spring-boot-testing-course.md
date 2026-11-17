@@ -368,7 +368,9 @@ ppp:
   blackFriday:
     badge: "Black Friday deal"
     headline: "30% off the Course and Bundle editions, on top of any regional discount"
-    bonus: "Bonus for the first 20 Black Friday buyers only: a 1-hour 1:1 consulting call with me for setup help or any testing question. Included with the Course and Bundle editions."
+    bonusTag: "Bonus - only 20 spots"
+    bonusTitle: "1-hour 1:1 consulting call with me"
+    bonus: "For setup help or any testing question. Included for the first 20 Black Friday buyers of the Course and Bundle editions."
     pppHint: "Your regional (PPP) discount is already included on top of Black Friday."
     countdownLabel: "Deal ends in"
     cardBonus: "Black Friday bonus: 1-hour 1:1 consulting call with me (first 20 buyers)"
