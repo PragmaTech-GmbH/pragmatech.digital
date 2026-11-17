@@ -368,7 +368,7 @@ ppp:
   blackFriday:
     badge: "Black Friday deal"
     heroBadge: "Black Friday"
-    heroText: "30% off + free 1:1 call, ends in"
+    heroText: "30% off + a free 1:1 call with me (worth 199€)"
     heroCta: "See the deal"
     headline: "30% off the Course and Bundle editions, on top of any regional discount"
     bonusTag: "Free bonus - only 20 spots"
