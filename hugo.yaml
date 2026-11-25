@@ -32,7 +32,7 @@ params:
   # Header link to the lead magnet bundle (copy of the page: data/lead_bundle.yaml)
   leadBundle:
     path: "lp/agentic-readiness-bundle/"
-    navLabel: "Are You AI-Ready?"
+    navLabel: "Agentic Development Readiness Bundle"
     navBadge: "Free"
   mailchimp:
     # Action URL from the Mailchimp embed form builder

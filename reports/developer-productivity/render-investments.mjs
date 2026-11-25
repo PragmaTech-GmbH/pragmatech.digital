@@ -1,4 +1,4 @@
-// Renders the 3-page "Top 5 Investments Before You Scale AI Agents" lead-magnet PDF.
+// Renders the 3-page "Top 5 Investments Before You Scale Agentic Coding" lead-magnet PDF.
 // Reads template/investments.html + data/investments.json, prints with headless
 // Chromium and writes the PDF to output/ and static/documents/lead-bundle/.
 

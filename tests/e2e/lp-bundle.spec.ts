@@ -11,15 +11,15 @@ test.beforeEach(async ({ page }) => {
   await page.route(/mailerlite\.com|mlcdn\.com|analytics\.rieckpil\.de/, (route) => route.abort());
 });
 
-async function mockMailerLite(page: Page, responseBody: unknown): Promise<URL[]> {
-  const subscribeRequests: URL[] = [];
+async function mockMailerLite(page: Page, responseBody: unknown): Promise<URLSearchParams[]> {
+  const subscribeRequests: URLSearchParams[] = [];
   await page.route(subscribePattern, (route) => {
-    const requestUrl = new URL(route.request().url());
-    subscribeRequests.push(requestUrl);
+    subscribeRequests.push(new URLSearchParams(route.request().postData() ?? ""));
     route.fulfill({
       status: 200,
-      contentType: "application/javascript",
-      body: `${requestUrl.searchParams.get("callback")}(${JSON.stringify(responseBody)});`,
+      contentType: "application/json",
+      headers: { "access-control-allow-origin": "*" },
+      body: JSON.stringify(responseBody),
     });
   });
   return subscribeRequests;
@@ -91,7 +91,7 @@ test.describe("bundle landing page", () => {
     await page.goto("/");
     await expect(page.getByRole("link", { name: "Get the three free PDFs for engineering leaders" })).toBeVisible();
     await expect(page.locator('[data-lp="footer-covers"] img')).toHaveCount(3);
-    const headerLink = page.locator("#navbar").getByRole("link", { name: /Are You AI-Ready\?/ }).first();
+    const headerLink = page.locator("#navbar").getByRole("link", { name: /Agentic Development Readiness Bundle/ }).first();
     await headerLink.click();
     await expect(page).toHaveURL(new RegExp(`${publicPath}$`));
   });
@@ -136,7 +136,7 @@ test.describe("bundle signup", () => {
     await page.locator("#lead-bundle-submit").click();
 
     await expect(page).toHaveURL(new RegExp(`${thankYouPath}$`));
-    const parameters = subscribeRequests[0].searchParams;
+    const parameters = subscribeRequests[0];
     expect(parameters.get("fields[name]")).toBe("Jane Doe");
     expect(parameters.get("fields[company]")).toBe("Acme");
     expect(parameters.get("fields[email]")).toBe("jane@example.com");

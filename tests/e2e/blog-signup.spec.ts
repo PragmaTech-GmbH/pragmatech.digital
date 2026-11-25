@@ -11,12 +11,12 @@ test.beforeEach(async ({ page }) => {
 test("signs up below a blog post and opens the thank-you page", async ({ page }) => {
   const subscribedEmails: (string | null)[] = [];
   await page.route("**/jsonp/1613864/forms/187358602568140384/subscribe*", (route) => {
-    const requestUrl = new URL(route.request().url());
-    subscribedEmails.push(requestUrl.searchParams.get("fields[email]"));
+    subscribedEmails.push(new URLSearchParams(route.request().postData() ?? "").get("fields[email]"));
     route.fulfill({
       status: 200,
-      contentType: "application/javascript",
-      body: `${requestUrl.searchParams.get("callback")}({"success":true});`,
+      contentType: "application/json",
+      headers: { "access-control-allow-origin": "*" },
+      body: JSON.stringify({ success: true }),
     });
   });
   await page.goto(postPath);
