@@ -35,11 +35,11 @@
                             </span>
                         </span>
                     </div>
-                    <h1 class="text-4xl md:text-5xl 2xl:text-6xl font-bold text-white mb-4 md:mb-6 leading-[1.05]">
+                    <h1 class="home-hero__title text-4xl md:text-5xl 2xl:text-6xl font-bold text-white mb-4 md:mb-6 leading-[1.05]">
                         {{ $home.hero.headlineLead }}
                         <span class="bg-gradient-to-r from-brand-400 to-emerald-400 text-transparent bg-clip-text">{{ $home.hero.headlineAccent }}</span>{{ with $home.hero.headlineTail }} {{ . }}{{ end }}
                     </h1>
-                    <p class="text-base md:text-xl 2xl:text-2xl text-slate-300 mb-6 md:mb-8 max-w-2xl leading-relaxed">
+                    <p class="home-hero__lead text-base md:text-xl 2xl:text-2xl text-slate-300 mb-6 md:mb-8 max-w-2xl leading-relaxed">
                         <strong class="text-white">{{ $home.hero.subheadlineLead }}</strong>
                         <br class="hidden md:block">
                         {{ $home.hero.subheadlineMid }}
@@ -48,7 +48,7 @@
                     </p>
                     <div class="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 mb-3">
                         <a href="{{ $bookUrl }}" target="_blank" rel="noopener"
-                           class="cta-primary inline-flex items-center justify-center gap-2
+                           class="home-hero__cta cta-primary inline-flex items-center justify-center gap-2
                                   bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400
                                   text-white px-6 md:px-8 py-3 md:py-4 rounded-lg font-bold text-base md:text-lg
                                   shadow-lg shadow-brand-500/20 hover:shadow-xl hover:shadow-brand-500/30
@@ -61,7 +61,7 @@
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
                         </a>
                     </div>
-                    <p class="text-sm text-slate-400 mb-5 md:mb-6">{{ $home.hero.ctaNote }}</p>
+                    <p class="home-hero__cta-note text-sm text-slate-400 mb-5 md:mb-6">{{ $home.hero.ctaNote }}</p>
                 </div>
 
                 <!-- Right: safety net animation -->

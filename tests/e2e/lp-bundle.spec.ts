@@ -49,6 +49,17 @@ test.describe("bundle landing page", () => {
     expect(widthRatio).toBeLessThan(2.3);
   });
 
+  test("shows the covers between the copy and the form on mobile", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto(publicPath);
+
+    const copyBox = (await page.locator('[data-lp="copy"]').boundingBox())!;
+    const coversBox = (await page.locator('[data-lp="covers"]').boundingBox())!;
+    const formBox = (await page.locator("#lead-bundle-form").boundingBox())!;
+    expect(coversBox.y).toBeGreaterThan(copyBox.y + copyBox.height - 1);
+    expect(formBox.y).toBeGreaterThan(coversBox.y + coversBox.height - 1);
+  });
+
   test("targets Java and Spring teams with badges below the headline", async ({ page }) => {
     await page.goto(publicPath);
 
