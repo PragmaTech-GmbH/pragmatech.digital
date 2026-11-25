@@ -14,7 +14,7 @@ techBadges:
     icon: "fa-solid fa-leaf"
     color: "text-emerald-600"
 headline: "Know what to fix"
-highlight: "before you scale AI agents."
+highlight: "before you scale agentic development for your Java team."
 subheadline: "Three PDFs for engineering leaders, tech leads and heads of engineering: how Java teams test with AI in 2026, where it hurts, and where to invest first."
 bullets:
   - "What 614 developers said about Spring Boot testing and AI in 26 sessions"
