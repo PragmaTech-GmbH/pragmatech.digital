@@ -22,7 +22,24 @@
 
         {{ $titleImage := $titleLayer.Filter (images.Text $title (dict
             "color" "#ffffff" "size" $fontSize "linespacing" 14 "x" 0 "y" 0 "font" $titleFont)) }}
-        {{ $card := $background.Filter (images.Overlay $titleImage 80 200) }}
+
+        {{/* The author row has a fixed position: the title canvas above it holds two lines (or three at the
+             smallest size). A title that needs more lines is cut off, so warn about very long ones. */}}
+        {{ if gt (strings.RuneCount $title) 100 }}
+            {{ warnf "Social image title is too long, set a shorter shareTitle: %s" .File.Path }}
+        {{ end }}
+        {{ $author := index site.Data.authors (.Params.author | default "philip") }}
+        {{ $filters := slice (images.Overlay $titleImage 80 180) }}
+        {{ $authorTextX := 80 }}
+        {{ with $author.shareAvatar }}
+            {{ $filters = $filters | append (images.Overlay (resources.Get .) 80 400) }}
+            {{ $authorTextX = 200 }}
+        {{ end }}
+        {{ $filters = $filters | append
+            (images.Text $author.name (dict "color" "#ffffff" "size" 34 "x" $authorTextX "y" 410 "font" $titleFont))
+            (images.Text $author.role (dict "color" "#94a3b8" "size" 24 "x" $authorTextX "y" 458 "font" $titleFont)) }}
+
+        {{ $card := $background.Filter $filters }}
         {{ $sharePath = $card.RelPermalink }}
     {{ else }}
         {{ $sharePath = site.Params.defaultShareImage }}
