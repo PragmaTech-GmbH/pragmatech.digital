@@ -1,0 +1,43 @@
+{{/* MailerLite signup of the bundle. lead-bundle.js submits it with JSONP and enables
+     the button, so a visitor without JavaScript never sees MailerLite's raw JSON response.
+     MailerLite's webforms.min.js is left out on purpose: it writes to localStorage. */}}
+{{ $form := .bundle.form }}
+<div class="w-full bg-white border border-slate-200 rounded-2xl p-6 md:p-8 shadow-xl shadow-slate-200/60">
+    <h2 class="text-2xl font-bold text-slate-900 mb-2 text-center">{{ $form.title }}</h2>
+    <p class="text-sm text-slate-600 mb-5 text-center">{{ $form.intro }}</p>
+
+    <form id="lead-bundle-form" class="space-y-4" novalidate
+          action="{{ .bundle.mailerLiteActionUrl }}" method="post"
+          data-campaign="{{ .bundle.campaign }}"
+          data-thank-you-url="{{ strings.TrimPrefix "/" .bundle.thankYouPath | relURL }}"
+          data-pending-label="{{ $form.pendingButton }}">
+        {{ range slice
+            (dict "name" "name" "type" "text" "label" $form.nameLabel "placeholder" $form.namePlaceholder "autocomplete" "name")
+            (dict "name" "company" "type" "text" "label" $form.companyLabel "placeholder" $form.companyPlaceholder "autocomplete" "organization")
+            (dict "name" "email" "type" "email" "label" $form.emailLabel "placeholder" $form.emailPlaceholder "autocomplete" "email") }}
+        <div>
+            <label for="bundle-{{ .name }}" class="block text-sm font-semibold text-slate-700 mb-2">{{ .label }}</label>
+            <input id="bundle-{{ .name }}" type="{{ .type }}" name="fields[{{ .name }}]" required
+                   autocomplete="{{ .autocomplete }}" placeholder="{{ .placeholder }}"
+                   class="w-full px-4 py-3 rounded-lg border border-slate-300 bg-white text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors">
+        </div>
+        {{ end }}
+        <input type="hidden" name="ml-submit" value="1">
+        <input type="hidden" name="anticsrf" value="true">
+
+        <button type="submit" id="lead-bundle-submit" disabled
+                class="w-full bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400 text-white px-6 py-3.5 rounded-lg font-bold shadow-lg shadow-brand-500/20 transition-all disabled:opacity-60 disabled:cursor-not-allowed">{{ $form.button }}</button>
+    </form>
+
+    <p id="lead-bundle-error" class="hidden text-sm text-red-600 mt-3" role="alert"></p>
+    <p id="lead-bundle-fallback" class="hidden text-sm text-slate-600 mt-1">
+        Does it fail again? Write to <a class="underline" href="mailto:{{ .bundle.contactEmail }}">{{ .bundle.contactEmail }}</a> and I send the PDFs manually.
+    </p>
+    <noscript>
+        <p class="text-sm text-slate-700 mt-3">This form needs JavaScript. Write to <a class="underline" href="mailto:{{ .bundle.contactEmail }}">{{ .bundle.contactEmail }}</a> and I send you the three PDFs.</p>
+    </noscript>
+
+    <p class="text-xs text-slate-500 mt-3 text-center">
+        {{ $form.note }} <a class="underline" href="{{ "privacy" | relURL }}">{{ $form.privacyLabel }}</a>
+    </p>
+</div>

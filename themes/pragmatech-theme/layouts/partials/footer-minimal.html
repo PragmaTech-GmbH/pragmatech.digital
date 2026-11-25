@@ -1,0 +1,7 @@
+{{/* One-line footer of standalone lead capture pages. The legal links must stay:
+     German law requires the imprint and privacy policy to be easy to reach. */}}
+<footer class="bg-slate-950 min-h-16 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 px-4 py-4 text-sm text-slate-400">
+    <span>&copy; {{ now.Year }} {{ site.Params.company.name }}</span>
+    <a href="{{ "imprint" | relURL }}" class="hover:text-brand-400 transition-colors">Imprint</a>
+    <a href="{{ "privacy" | relURL }}" class="hover:text-brand-400 transition-colors">Privacy Policy</a>
+</footer>

@@ -1,0 +1,25 @@
+{{/* Headline, technology badges and bullets. Call with the lead_bundle data. */}}
+<div data-lp="copy">
+    <p class="inline-block px-4 py-1.5 mb-5 rounded-full bg-brand-50 border border-brand-100 text-[11px] font-bold tracking-[0.18em] uppercase text-brand-900">{{ .badge }}</p>
+    <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mb-5 leading-[1.08]">
+        {{ .headline }}
+        <span class="bg-gradient-to-r from-brand-600 to-emerald-600 text-transparent bg-clip-text">{{ .highlight }}</span>
+    </h1>
+    <ul data-lp="tech-badges" aria-label="Technologies" class="flex flex-wrap gap-2 mb-5">
+        {{ range .techBadges }}
+        <li class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-slate-200 shadow-sm text-sm font-semibold text-slate-800">
+            <span class="{{ .color }}" aria-hidden="true"><i class="{{ .icon }}"></i></span>
+            {{ .label }}
+        </li>
+        {{ end }}
+    </ul>
+    <p class="text-lg text-slate-600 mb-6 leading-relaxed">{{ .subheadline }}</p>
+    <ul class="space-y-2">
+        {{ range .bullets }}
+        <li class="flex items-start gap-3 text-slate-700">
+            <span class="flex-shrink-0 inline-flex items-center justify-center w-6 h-6 rounded-full bg-emerald-100 text-emerald-600" aria-hidden="true">&#10003;</span>
+            <span>{{ . }}</span>
+        </li>
+        {{ end }}
+    </ul>
+</div>

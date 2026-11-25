@@ -1,0 +1,54 @@
+{
+  "title": "Top 5 Investments Before You Scale AI Agents",
+  "subtitle": "A three-page guide for engineering leaders, tech leads and heads of engineering",
+  "why": "AI agents multiply the output of your delivery system. They also multiply its weak points. If feedback is slow, tests prove little and conventions live in people's heads, more generated code means more waiting and more risk. This guide shows the five areas to invest in first.",
+  "dataNote": "Data points come from live polls in 26 talks, workshops and webinars in 2026 with 614 voters. Not every voter answered every question. The sample is self-selected: developers who chose a Spring Boot testing session. It is not a random sample and not a survey of engineering leaders. The five investments are PragmaTech's recommendations, not survey results.",
+  "investments": [
+    {
+      "title": "Fast feedback",
+      "risk": "An agent works in a loop of change, test and correction. A slow build makes every loop slow, and parallel agents queue on the same pipeline.",
+      "evidence": "58% have a CI run longer than 10 minutes. 63% lose one hour or more per week to builds and flaky tests.",
+      "firstStep": "Measure your build. Find the slowest tests and the most frequent Spring context starts. Fix the largest one first.",
+      "measure": "Median time from push to CI result."
+    },
+    {
+      "title": "Tests you can trust",
+      "risk": "An agent can write code and tests that agree with each other and are both wrong. A green build then proves very little.",
+      "evidence": "22% do not really trust their test suite to catch a real regression.",
+      "firstStep": "Select one critical module. Run mutation testing on it and add tests for the mutations that survive.",
+      "measure": "Mutation score of critical modules and the number of defects that reach production."
+    },
+    {
+      "title": "Written testing conventions",
+      "risk": "An agent copies what it finds. If your codebase shows five testing styles, you get all five, faster.",
+      "evidence": "About 31% of the grouped free-text challenges are about what to test: overlap between unit and integration tests, coverage chasing, missing conventions and lack of time.",
+      "firstStep": "Write one page: which test type answers which question, with one good example each. Add it to the context file that your agents read.",
+      "measure": "Share of review comments about test style or test level."
+    },
+    {
+      "title": "Reproducible environments and test data",
+      "risk": "An agent cannot verify a change that needs a shared test system, manual data setup or an external service that is not available.",
+      "evidence": "About 21% of the grouped free-text challenges are about environments and data: Kafka, test data, SAP, external APIs and end-to-end setups.",
+      "firstStep": "Take your most important integration. Make it run locally and in CI with a container or a stub, with test data created by code.",
+      "measure": "Share of tests that run on a clean machine with one command."
+    },
+    {
+      "title": "Review capacity and automated gates",
+      "risk": "Agents can produce changes faster than people can read them. Review then becomes the bottleneck, or a formality.",
+      "evidence": "70% say AI wrote their tests last week: 51% review and adjust them, 20% barely check them. 27% name understanding AI-generated code as their top AI frustration.",
+      "firstStep": "Move every repeatable review comment into an automated check. Limit the size of agent pull requests.",
+      "measure": "Time to first review and the share of changes that need rework after merge."
+    }
+  ],
+  "selfCheck": [
+    "Our CI gives a result in less than 10 minutes.",
+    "We trust a green build enough to deploy on a Friday afternoon.",
+    "Our testing conventions are written down, and our agents read them.",
+    "A new developer or agent can run all tests with one command.",
+    "Our automated checks reject the problems that we saw before."
+  ],
+  "ctaTitle": "Find your first investment in 15 minutes",
+  "ctaText": "A free call about your current setup. You leave with at least one improvement that you can start next week.",
+  "ctaUrl": "https://www.cal.eu/pragmatech/pragmatech-discovery",
+  "ctaLabel": "cal.eu/pragmatech/pragmatech-discovery"
+}

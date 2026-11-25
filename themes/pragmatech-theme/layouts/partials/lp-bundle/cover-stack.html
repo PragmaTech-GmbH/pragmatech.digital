@@ -1,0 +1,14 @@
+{{/* The three PDF covers as one overlapping fan, the guide in front. Used by the bundle
+     landing page and the site footer. Call with (dict "covers" ... "class" "max-w-.." "loading" "eager"|"lazy").
+     Explicit <picture> on purpose: partials/picture.html builds a wrong WebP path. */}}
+<div class="flex items-center justify-center w-full mx-auto py-3 {{ .class }}">
+    {{ $loading := .loading }}
+    {{ range $index, $cover := .covers }}
+    <picture class="block {{ if eq $index 1 }}relative z-10 w-[40%]{{ else if eq $index 0 }}w-[35%] -mr-[7%] -rotate-6 translate-y-1{{ else }}w-[35%] -ml-[7%] rotate-6 translate-y-1{{ end }}">
+        <source srcset="{{ printf "generated/images/reports/lead-bundle/%s.webp" $cover.key | relURL }}" type="image/webp">
+        <img src="{{ printf "images/reports/lead-bundle/%s.png" $cover.key | relURL }}"
+             alt="Cover of {{ $cover.title }}" width="600" height="849" loading="{{ $loading }}" decoding="async"
+             class="block w-full h-auto rounded-md ring-1 ring-white/20 shadow-xl shadow-black/40">
+    </picture>
+    {{ end }}
+</div>

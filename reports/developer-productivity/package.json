@@ -5,7 +5,8 @@
   "description": "Renders the Spring Boot Developer Productivity Survey 2026 PDF lead magnet.",
   "type": "module",
   "scripts": {
-    "build": "node render.mjs"
+    "build": "node render.mjs",
+    "build:investments": "node render-investments.mjs"
   },
   "devDependencies": {
     "puppeteer": "^23.0.0"

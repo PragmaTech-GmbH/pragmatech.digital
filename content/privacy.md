@@ -69,6 +69,10 @@ This data is not merged with other data sources.
 
 If you submit inquiries to us via our contact form, the information provided in the contact form as well as any contact information provided therein will be stored by us in order to handle your inquiry and in the event that we have further questions. We will not share this information without your consent.
 
+### Download of free reports
+
+If you request our free reports, we collect your name, company and email address. We transmit this data to our email service provider MailerLite to send you the reports. The legal basis is your consent (Art. 6 (1) (a) GDPR). You can withdraw your consent at any time, for example with the unsubscribe link in our emails.
+
 ## 5. Plugins and Tools
 
 ### Matomo (formerly Piwik)

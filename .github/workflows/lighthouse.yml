@@ -1,0 +1,52 @@
+name: Lighthouse
+
+# Only for pull requests that target main.
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lighthouse-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      # Same Hugo version as netlify.toml (HUGO_VERSION).
+      - uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: "0.147.1"
+          extended: true
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build the site
+        run: hugo --gc --minify
+
+      # Pages, runs and score limits: lighthouserc.json. Lighthouse CI is not a package.json
+      # dependency, so that Netlify does not install it on every build.
+      # Lighthouse uses the runner's preinstalled Google Chrome on purpose: Ubuntu's AppArmor
+      # rules block the sandbox of a downloaded Chromium (such as Playwright's).
+      - name: Lighthouse (homepage, agentic testing course, bundle landing page)
+        run: npx --yes @lhci/cli@0.16.1 autorun
+
+      - name: Upload Lighthouse reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-report
+          path: lighthouse-report/
+          retention-days: 14

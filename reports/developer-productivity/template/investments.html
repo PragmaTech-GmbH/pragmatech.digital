@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>{{title}} - PragmaTech</title>
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="styles-editorial.css" />
+  <style>
+    .guide-cover { background: var(--slate-900); color: #fff; display: flex; flex-direction: column; }
+    .guide-cover .eyebrow { margin-top: 24mm; }
+    .guide-cover h1 { font-size: 58pt; line-height: 1.04; color: #fff; margin: 7mm 0 10mm; }
+    .guide-cover h1 span { color: var(--brand-400); }
+    .guide-cover .sub { font-size: 14pt; color: var(--slate-300); max-width: 150mm; }
+    .guide-cover .why { font-size: 11pt; color: var(--slate-300); margin-top: auto; padding-top: 6mm; border-top: 0.3mm solid var(--slate-700); }
+    .guide-brand { display: flex; align-items: center; gap: 2.5mm; font-weight: 700; margin-bottom: 14mm; }
+    .guide-brand img { height: 7mm; }
+    .investment { border-left: 1.2mm solid var(--brand-500); background: var(--slate-50); padding: 4mm 5mm; margin-bottom: 4mm; }
+    .investment h3 { font-size: 14pt; margin-bottom: 2.5mm; }
+    .investment dl { display: grid; grid-template-columns: 30mm 1fr; row-gap: 1.8mm; font-size: 9.2pt; line-height: 1.4; }
+    .investment dt { font-weight: 700; color: var(--brand-700); text-transform: uppercase; font-size: 7.5pt; letter-spacing: 0.1em; padding-top: 0.6mm; }
+    .data-note { font-size: 7.5pt; color: var(--slate-500); line-height: 1.4; margin-top: 3mm; }
+    .check { list-style: none; margin: 2mm 0 4mm; font-size: 9.5pt; }
+    .check li { padding: 1.2mm 0 1.2mm 7mm; position: relative; }
+    .check li::before { content: ''; position: absolute; left: 0; top: 2mm; width: 3.2mm; height: 3.2mm; border: 0.4mm solid var(--slate-700); }
+    .guide-cta { background: var(--slate-900); color: #fff; border-radius: 1.5mm; padding: 5mm 6mm; }
+    .guide-cta h3 { color: #fff; margin-bottom: 1.5mm; }
+    .guide-cta p { color: var(--slate-300); font-size: 9.5pt; }
+    .guide-cta a { color: var(--brand-400); font-weight: 700; }
+  </style>
+</head>
+<body>
+
+<section class="page guide-cover">
+  <div class="guide-brand"><img src="{{logoDataUri}}" alt="" />PragmaTech</div>
+  <div class="eyebrow">Guide - 2026</div>
+  <h1>Top 5 investments <span>before you scale AI agents</span> for Spring Boot Java teams</h1>
+  <p class="sub">{{subtitle}}</p>
+  <p class="why">{{why}}</p>
+</section>
+
+<section class="page">
+  <div class="eyebrow" style="margin-bottom: 3mm;">Investments 1 to 3</div>
+  {{firstInvestmentsHtml}}
+  <p class="data-note">{{dataNote}}</p>
+  <div class="runner-bot"><span>{{title}}</span><span class="folio">02 / 03</span></div>
+</section>
+
+<section class="page">
+  <div class="eyebrow" style="margin-bottom: 3mm;">Investments 4 and 5</div>
+  {{lastInvestmentsHtml}}
+  <h3 style="margin-top: 3mm;">Self-check: are you ready to scale?</h3>
+  <ul class="check">{{selfCheckHtml}}</ul>
+  <div class="guide-cta">
+    <h3>{{ctaTitle}}</h3>
+    <p>{{ctaText}}</p>
+    <p><a href="{{ctaUrl}}">{{ctaLabel}}</a></p>
+  </div>
+  <div class="runner-bot"><span>{{title}}</span><span class="folio">03 / 03</span></div>
+</section>
+
+</body>
+</html>

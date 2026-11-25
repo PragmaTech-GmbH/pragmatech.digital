@@ -1,0 +1,46 @@
+{{ define "main" }}
+{{/* 3-PDF bundle landing page: copy and covers in the left two thirds, signup form in the
+     right third. All copy lives in data/lead_bundle.yaml. */}}
+{{ $bundle := site.Data.lead_bundle }}
+<section class="relative overflow-hidden bg-white min-h-[calc(100dvh-4rem)] flex flex-col justify-center">
+    <div class="absolute inset-0 bg-gradient-to-br from-white via-brand-50/40 to-white pointer-events-none"></div>
+
+    {{/* Brand mark without a link: the only way forward on this page is the form. */}}
+    <div data-lp="brand" class="relative flex items-center justify-center gap-3 pt-6">
+        <img src="{{ "images/logo.png" | relURL }}" alt="" class="h-8 w-auto">
+        <span class="font-bold text-lg text-slate-900 tracking-tight">Pragma<span class="text-brand-500">Tech</span></span>
+    </div>
+
+    {{/* DOM order copy, form, covers is the mobile order. */}}
+    <div class="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10 my-auto grid lg:grid-cols-3 gap-x-12 gap-y-8">
+        <div class="lg:col-span-2 lg:row-start-1">
+            {{ partial "lp-bundle/copy.html" $bundle }}
+        </div>
+        <div class="lg:col-start-3 lg:row-start-1 lg:row-span-2 lg:self-center">
+            {{ partial "lp-bundle/form.html" (dict "bundle" $bundle) }}
+        </div>
+        <div class="lg:col-span-2 lg:row-start-2">
+            {{ partial "lp-bundle/covers.html" $bundle }}
+        </div>
+    </div>
+
+    <section data-lp="sources" aria-labelledby="sources-title" class="relative w-full border-t border-slate-200 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 text-center">
+            <h2 id="sources-title" class="text-2xl font-bold text-slate-900 mb-2">{{ $bundle.sources.title }}</h2>
+            <p class="text-slate-600 max-w-3xl mx-auto mb-6">{{ $bundle.sources.intro }}</p>
+            <p data-lp="mission" class="mb-8">
+                <span class="block text-[11px] font-bold tracking-[0.18em] uppercase text-slate-500 mb-1">{{ $bundle.sources.missionLabel }}</span>
+                <strong class="text-lg sm:text-xl text-slate-900">&ldquo;{{ $bundle.sources.mission }}&rdquo;</strong>
+            </p>
+            <ul class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                {{ range $bundle.sources.items }}
+                <li class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-5">
+                    <span class="block text-2xl sm:text-3xl font-bold text-brand-600 mb-1">{{ .value }}</span>
+                    <span class="block text-sm text-slate-600 leading-snug">{{ .label }}</span>
+                </li>
+                {{ end }}
+            </ul>
+        </div>
+    </section>
+</section>
+{{ end }}

@@ -27,12 +27,12 @@
                         </svg>
                         Spring Test Profiler
                     </a>
-                    <a href="{{ "spring-boot-developer-productivity-survey" | relURL }}" class="relative flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white pl-3 pr-4 py-2 rounded-lg text-sm font-bold whitespace-nowrap transition-all shadow-md hover:shadow-lg">
+                    <a href="{{ .Site.Params.leadBundle.path | relURL }}" class="relative flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white pl-3 pr-4 py-2 rounded-lg text-sm font-bold whitespace-nowrap transition-all shadow-md hover:shadow-lg">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-6m4 6V7m4 10v-4M5 21h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2z" />
                         </svg>
-                        AI Productivity Report
-                        <span class="absolute -top-2 -right-2 bg-yellow-400 text-yellow-900 text-[10px] font-bold px-1.5 py-0.5 rounded-full shadow-sm">2026</span>
+                        {{ .Site.Params.leadBundle.navLabel }}
+                        <span class="absolute -top-2 -right-2 bg-yellow-400 text-yellow-900 text-[10px] font-bold px-1.5 py-0.5 rounded-full shadow-sm">{{ .Site.Params.leadBundle.navBadge }}</span>
                     </a>
                 </div>
             </div>
@@ -77,12 +77,12 @@
                 </svg>
                 Spring Test Profiler
             </a>
-            <a href="{{ "spring-boot-developer-productivity-survey" | relURL }}" class="relative flex items-center justify-center gap-2 mt-2 bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-lg text-base font-bold shadow-md">
+            <a href="{{ .Site.Params.leadBundle.path | relURL }}" class="relative flex items-center justify-center gap-2 mt-2 bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-lg text-base font-bold shadow-md">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-6m4 6V7m4 10v-4M5 21h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2z" />
                 </svg>
-                AI Productivity Report
-                <span class="absolute -top-2 -right-2 bg-yellow-400 text-yellow-900 text-[10px] font-bold px-1.5 py-0.5 rounded-full shadow-sm">2026</span>
+                {{ .Site.Params.leadBundle.navLabel }}
+                <span class="absolute -top-2 -right-2 bg-yellow-400 text-yellow-900 text-[10px] font-bold px-1.5 py-0.5 rounded-full shadow-sm">{{ .Site.Params.leadBundle.navBadge }}</span>
             </a>
 
             <a href="{{ .Site.Params.scheduleCallUrl | default "/contact" | relURL }}" class="flex items-center justify-center gap-2 mt-4 bg-gradient-to-r from-brand-600 to-brand-500 text-white px-4 py-2 rounded-lg text-base font-bold shadow-md hover:from-brand-500 hover:to-brand-400">
