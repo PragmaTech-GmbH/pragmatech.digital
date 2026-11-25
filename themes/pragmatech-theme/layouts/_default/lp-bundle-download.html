@@ -4,6 +4,7 @@
      here as downloads. Not access protection: everyone with the URL can open it. */}}
 {{ $bundle := site.Data.lead_bundle }}
 {{ $page := $bundle.download }}
+{{ if .Params.confirmationPage }}{{ $page = merge $page $bundle.confirmed }}{{ end }}
 <section class="relative overflow-hidden bg-white border-b border-slate-200">
     <div class="absolute inset-0 bg-gradient-to-br from-white via-brand-50/40 to-white pointer-events-none"></div>
 
@@ -39,4 +40,12 @@
         </aside>
     </div>
 </section>
+{{ if .Params.confirmationPage }}
+{{/* Only this event is custom. Page view, PDF downloads and the call click come from
+     partials/analytics.html (trackPageView, enableLinkTracking). */}}
+<script>
+    window._paq = window._paq || [];
+    window._paq.push(['trackEvent', 'LeadMagnet', 'Confirmed', {{ $bundle.campaign }}]);
+</script>
+{{ end }}
 {{ end }}

@@ -65,6 +65,12 @@ form:
   note: "Free. Unsubscribe anytime."
   privacyLabel: "Privacy policy"
 
+# Confirmation page after the double opt-in. All other texts come from "download".
+confirmed:
+  badge: "Email confirmed"
+  headline: "Your email is confirmed - here are your three PDFs"
+  intro: "Open or save each PDF below. We also send you the link to your PDFs by email."
+
 download:
   badge: "Your bundle"
   headline: "Your three PDFs are ready"

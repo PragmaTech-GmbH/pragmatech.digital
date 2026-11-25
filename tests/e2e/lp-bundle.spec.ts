@@ -223,6 +223,44 @@ test.describe("bundle download page", () => {
   });
 });
 
+const leadMagnetEvents = (page: Page) =>
+  page.evaluate(() => ((window as any)._paq as unknown[][]).filter((entry) => entry[1] === "LeadMagnet"));
+
+test.describe("bundle confirmation page", () => {
+  const confirmedPath = "/lp/agentic-readiness-bundle/confirmed/";
+
+  test("confirms the email and offers all three PDFs and the call", async ({ page }) => {
+    await page.goto(confirmedPath);
+
+    await expect(page.locator("h1")).toHaveText("Your email is confirmed - here are your three PDFs");
+    await expect(page.locator('[data-lp="downloads"] a')).toHaveCount(3);
+    await expect(page.locator('[data-lp="call"]')).toHaveAttribute("href", /cal\.eu\/pragmatech/);
+  });
+
+  test("sends one Confirmed event, with page view and link tracking", async ({ page }) => {
+    await page.goto(confirmedPath);
+
+    expect(await leadMagnetEvents(page)).toEqual([["trackEvent", "LeadMagnet", "Confirmed", "agentic-readiness-bundle"]]);
+    const trackerCommands = await page.evaluate(() => ((window as any)._paq as unknown[][]).map((entry) => entry[0]));
+    expect(trackerCommands).toEqual(expect.arrayContaining(["disableCookies", "trackPageView", "enableLinkTracking"]));
+  });
+
+  test("the download page from the email sends no Confirmed event", async ({ page }) => {
+    await page.goto("/lp/agentic-readiness-bundle/download/");
+
+    await expect(page.locator("h1")).toHaveText("Your three PDFs are ready");
+    expect(await leadMagnetEvents(page)).toEqual([]);
+  });
+
+  test("is not indexed and not in the sitemap", async ({ page, request }) => {
+    await page.goto(confirmedPath);
+
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", "noindex, nofollow");
+    const sitemap = await (await request.get("/sitemap.xml")).text();
+    expect(sitemap).not.toContain(confirmedPath);
+  });
+});
+
 test("the thank-you page explains both steps and is not indexed", async ({ page }) => {
   await page.goto(thankYouPath);
 
