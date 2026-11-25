@@ -1,0 +1,13 @@
+{{/* Teaser of the 3-PDF bundle in the sticky right bar: text and covers, no form. It links to the
+     landing page. Copy and covers: data/lead_bundle.yaml */}}
+{{ $bundle := site.Data.lead_bundle }}
+<div class="blog-promo">
+    <p class="blog-promo__eyebrow">{{ $bundle.badge }}</p>
+    <p class="blog-promo__title">{{ $bundle.blog.sidebar.title }}</p>
+    {{/* The same grouped covers as in the site footer */}}
+    <div class="blog-promo__covers">
+        {{ partial "lp-bundle/cover-stack.html" (dict "covers" $bundle.covers "class" "max-w-[15rem]" "loading" "lazy") }}
+    </div>
+    <p class="blog-promo__text">{{ $bundle.blog.sidebar.text }}</p>
+    <a href="{{ site.Params.leadBundle.path | relURL }}" class="blog-promo__button">{{ $bundle.blog.sidebar.button }}</a>
+</div>

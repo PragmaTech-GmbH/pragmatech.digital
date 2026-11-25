@@ -24,7 +24,7 @@ jobs:
       # Same Hugo version as netlify.toml (HUGO_VERSION).
       - uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: "0.147.1"
+          hugo-version: "0.170.1"
           extended: true
 
       - name: Install dependencies

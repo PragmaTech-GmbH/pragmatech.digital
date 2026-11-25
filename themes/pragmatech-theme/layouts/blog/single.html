@@ -1,0 +1,46 @@
+{{ define "main" }}
+{{ $author := index site.Data.authors (.Params.author | default "philip") }}
+<div class="blog">
+    <div class="blog-post">
+        <article class="blog-post__article">
+            <header class="blog-post__header">
+                <a href="{{ "blog/" | relURL }}" class="blog-post__back">&larr; All articles</a>
+                <h1 class="blog-post__title">{{ .Title }}</h1>
+
+                <div class="blog-byline">
+                    <picture>
+                        {{ with $author.imageWebp }}<source srcset="{{ . }}" type="image/webp">{{ end }}
+                        <img src="{{ $author.image }}" alt="{{ $author.name }}" class="blog-byline__avatar" width="52" height="52">
+                    </picture>
+                    <div>
+                        <p class="blog-byline__name">{{ $author.name }}</p>
+                        <p class="blog-byline__meta">
+                            <span>Published <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time></span>
+                            <span aria-hidden="true">·</span>
+                            <span>Updated <time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod.Format "January 2, 2006" }}</time></span>
+                            <span aria-hidden="true">·</span>
+                            <span>{{ .ReadingTime }} min read</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="blog-post__course-banner">
+                    {{ partial "course-banner.html" (dict "linkClass" "block rounded-lg border border-amber-200" "innerClass" "p-4 md:p-5") }}
+                </div>
+            </header>
+
+            <div class="blog-prose">
+                {{ .Content }}
+            </div>
+
+            {{ partial "blog/signup.html" . }}
+        </article>
+
+        <aside class="blog-post__aside" aria-label="Recommended resources">
+            <div class="blog-post__sidebar">
+                {{ partial "blog/sidebar.html" . }}
+            </div>
+        </aside>
+    </div>
+</div>
+{{ end }}

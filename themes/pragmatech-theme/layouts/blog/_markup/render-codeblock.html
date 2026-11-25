@@ -1,0 +1,10 @@
+{{- $language := .Type | default "text" -}}
+{{- $labels := dict "java" "Java" "xml" "XML" "yaml" "YAML" "bash" "Shell" "kotlin" "Kotlin" "json" "JSON" "properties" "Properties" "sql" "SQL" "text" "Text" -}}
+<figure class="blog-code">
+    <figcaption class="blog-code__toolbar">
+        <span class="blog-code__filename">{{ with .Attributes.title }}{{ . }}{{ end }}</span>
+        <span class="blog-code__language">{{ index $labels $language | default $language }}</span>
+        <button type="button" class="blog-code__copy">Copy</button>
+    </figcaption>
+    {{ transform.Highlight (.Inner | strings.TrimSuffix "\n") $language "noClasses=false,lineNos=true,lineNumbersInTable=false" }}
+</figure>

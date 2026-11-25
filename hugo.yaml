@@ -32,7 +32,7 @@ params:
   # Header link to the lead magnet bundle (copy of the page: data/lead_bundle.yaml)
   leadBundle:
     path: "lp/agentic-readiness-bundle/"
-    navLabel: "AI Readiness Bundle"
+    navLabel: "Are You AI-Ready?"
     navBadge: "Free"
   mailchimp:
     # Action URL from the Mailchimp embed form builder
@@ -73,6 +73,26 @@ security:
       - '^HUGO_'
       - '^CI$'
       - '^PPP_'
+
+# robots.txt from layouts/robots.txt, with the sitemap reference
+enableRobotsTXT: true
+
+# llms.txt (https://llmstxt.org) is a text overview of the site for AI tools. Blog posts also get a
+# Markdown copy through the "markdown" output format, see content/blog/_index.md.
+outputFormats:
+  llms:
+    mediaType: "text/plain"
+    baseName: "llms"
+    isPlainText: true
+    notAlternative: true
+
+outputs:
+  home: ["html", "rss", "llms"]
+
+# A manual "lastmod" in the front matter wins over the Git date (Netlify sets
+# HUGO_ENABLEGITINFO), so the "Updated" date of a blog post is under author control.
+frontmatter:
+  lastmod: ["lastmod", ":git", ":default"]
 
 # Content types configuration
 archetypeDir: "archetypes"

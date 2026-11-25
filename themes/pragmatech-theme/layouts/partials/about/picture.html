@@ -1,0 +1,8 @@
+{{/* Image with its WebP version from static/generated.
+     Call with (dict "src" "/images/..." "alt" "..." "class" "..."). */}}
+{{ $path := strings.TrimPrefix "/" .src }}
+{{ $webpPath := printf "generated/%s.webp" (strings.TrimSuffix (path.Ext $path) $path) }}
+<picture>
+    <source srcset="{{ $webpPath | relURL }}" type="image/webp">
+    <img src="{{ $path | relURL }}" alt="{{ .alt }}" class="{{ .class }}" loading="lazy">
+</picture>

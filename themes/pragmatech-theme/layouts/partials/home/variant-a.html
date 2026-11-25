@@ -94,41 +94,7 @@
 
     {{/* Course banner (site param `showCourseBanner`): sits in normal flow below the hero so it never covers hero content. */}}
     <div class="home-hero__banner">
-        {{ if site.Params.showCourseBanner }}
-        {{ with site.GetPage "/agentic-spring-boot-testing-course" }}
-        <a href="{{ .RelPermalink }}" class="relative block border-b border-amber-200 bg-amber-50 hover:bg-amber-100 transition-colors" data-home-course-banner>
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-5 grid md:grid-cols-[minmax(0,11rem)_1fr] gap-4 md:gap-6 items-center">
-                {{/* .Params.image is the .webp (static/generated), .Params.share_image the .png fallback. */}}
-                {{ with .Params.image }}
-                <picture>
-                    <source srcset="{{ . | relURL }}" type="image/webp">
-                    <img src="{{ $.Params.share_image | default . | relURL }}"
-                         alt="Agentic Spring Boot Testing course"
-                         loading="lazy" decoding="async"
-                         class="w-full max-w-xs md:max-w-none rounded-lg border border-amber-200 shadow-sm">
-                </picture>
-                {{ end }}
-                <div>
-                    <span class="inline-flex items-center gap-1.5 rounded-full bg-amber-400 px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-widest text-amber-950">
-                        Now available - on-demand course
-                    </span>
-                    <p class="mt-2 text-xl md:text-2xl font-bold text-amber-950">
-                        Stop shipping AI-written tests you cannot trust
-                    </p>
-                    <p class="mt-2 text-sm md:text-base text-amber-900 max-w-2xl">
-                        Get a dedicated <strong class="font-bold">Agentic Skill Library</strong> for Spring Boot Testing: fast, comprehensive tests that give you confidence.
-                    </p>
-                    <span class="mt-3 inline-flex items-center gap-2 rounded-lg bg-amber-500 px-4 py-2 text-sm font-bold text-amber-950 shadow-sm">
-                        Get the course
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                        </svg>
-                    </span>
-                </div>
-            </div>
-        </a>
-        {{ end }}
-        {{ end }}
+        {{ partial "course-banner.html" (dict "linkClass" "relative block border-b border-amber-200" "innerClass" "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-5") }}
     </div>
 
 

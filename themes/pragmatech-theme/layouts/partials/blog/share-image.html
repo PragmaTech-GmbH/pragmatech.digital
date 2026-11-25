@@ -1,0 +1,48 @@
+{{/*
+  Returns the social preview image path (LinkedIn, X, Slack, JSON-LD) of a blog page.
+
+  1. Front matter "share_image" wins, for a hand-made image.
+  2. Otherwise Hugo draws the title on the themed template during the build: no extra pipeline step.
+
+  Template files in assets/og: blog-card.png (1200x630 background with logo and footer),
+  blog-title-layer.png (transparent 1040x340 canvas, its width limits the line length) and the font.
+*/}}
+{{ $sharePath := .Params.share_image }}
+{{ if not $sharePath }}
+    {{ if .IsPage }}
+        {{ $background := resources.Get "og/blog-card.png" }}
+        {{ $titleLayer := resources.Get "og/blog-title-layer.png" }}
+        {{ $titleFont := resources.Get "og/Lato-Bold.ttf" }}
+
+        {{/* "shareTitle" is an optional shorter title for the image. Long titles get a smaller font. */}}
+        {{ $title := .Params.shareTitle | default .Title }}
+        {{ $fontSize := 76 }}
+        {{ if gt (strings.RuneCount $title) 45 }}{{ $fontSize = 66 }}{{ end }}
+        {{ if gt (strings.RuneCount $title) 70 }}{{ $fontSize = 56 }}{{ end }}
+
+        {{ $titleImage := $titleLayer.Filter (images.Text $title (dict
+            "color" "#ffffff" "size" $fontSize "linespacing" 14 "x" 0 "y" 0 "font" $titleFont)) }}
+
+        {{/* The author row has a fixed position: the title canvas above it holds two lines (or three at the
+             smallest size). A title that needs more lines is cut off, so warn about very long ones. */}}
+        {{ if gt (strings.RuneCount $title) 100 }}
+            {{ warnf "Social image title is too long, set a shorter shareTitle: %s" .File.Path }}
+        {{ end }}
+        {{ $author := index site.Data.authors (.Params.author | default "philip") }}
+        {{ $filters := slice (images.Overlay $titleImage 80 180) }}
+        {{ $authorTextX := 80 }}
+        {{ with $author.shareAvatar }}
+            {{ $filters = $filters | append (images.Overlay (resources.Get .) 80 400) }}
+            {{ $authorTextX = 200 }}
+        {{ end }}
+        {{ $filters = $filters | append
+            (images.Text $author.name (dict "color" "#ffffff" "size" 34 "x" $authorTextX "y" 410 "font" $titleFont))
+            (images.Text $author.role (dict "color" "#94a3b8" "size" 24 "x" $authorTextX "y" 458 "font" $titleFont)) }}
+
+        {{ $card := $background.Filter $filters }}
+        {{ $sharePath = $card.RelPermalink }}
+    {{ else }}
+        {{ $sharePath = site.Params.defaultShareImage }}
+    {{ end }}
+{{ end }}
+{{ return $sharePath }}

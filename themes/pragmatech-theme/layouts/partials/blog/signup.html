@@ -1,0 +1,15 @@
+{{/*
+  MailerLite signup of the 3-PDF bundle below every blog post. All copy lives in data/lead_bundle.yaml,
+  the covers and the form are the same partials as on the bundle landing page (layout: lp-bundle).
+  assets/js/lead-bundle.js finds the form through the lead-bundle-* ids: use only one form per page.
+*/}}
+{{ $bundle := site.Data.lead_bundle }}
+<section class="blog-signup" id="blog-signup" aria-labelledby="blog-signup-title">
+    <h2 class="blog-signup__title" id="blog-signup-title"><span>{{ $bundle.blog.signup.title }}</span></h2>
+    <p class="blog-signup__text">{{ $bundle.blog.signup.text }}</p>
+
+    <div class="blog-signup__body">
+        {{ partial "lp-bundle/covers.html" $bundle }}
+        {{ partial "lp-bundle/form.html" (dict "bundle" $bundle) }}
+    </div>
+</section>
