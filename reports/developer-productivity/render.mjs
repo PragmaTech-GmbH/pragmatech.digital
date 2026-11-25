@@ -1,6 +1,6 @@
 // Renders the PragmaTech "AI Productivity Paradox 2026" lead-magnet PDF.
 // Reads template/report.html + data/sample.json, fills placeholders, prints
-// with headless Chromium, and writes the PDF to output/ AND static/documents/.
+// with headless Chromium, and writes the PDF to output/ AND static/documents/lead-bundle/.
 
 import { readFile, writeFile, unlink, mkdir, stat } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
@@ -13,7 +13,7 @@ const TEMPLATE_DIR = join(HERE, 'template');
 const TEMPLATE_FILE = join(TEMPLATE_DIR, 'report.html');
 const DATA_FILE = join(HERE, 'data', 'sample.json');
 const OUTPUT_DIR = join(HERE, 'output');
-const PUBLIC_DIR = resolve(HERE, '..', '..', 'static', 'documents');
+const PUBLIC_DIR = resolve(HERE, '..', '..', 'static', 'documents', 'lead-bundle');
 const LOGO_FILE = resolve(HERE, '..', '..', 'static', 'images', 'logo.png');
 const SPEAKER_FILE = resolve(HERE, '..', '..', 'static', 'images', 'rieckpil-speaker.jpeg');
 

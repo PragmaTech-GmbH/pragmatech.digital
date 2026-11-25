@@ -25,7 +25,7 @@ The source-of-truth visual reference for the report lives at
 into data + template + renderer for this pipeline.
 
 The renderer is **independent of Hugo**. Run it whenever the source data or template
-changes, then commit the resulting PDF in `static/documents/`.
+changes, then commit the resulting PDF in `static/documents/lead-bundle/`.
 
 ## Render
 
@@ -38,8 +38,8 @@ npm run build          # produces the PDF
 Outputs:
 
 - `output/report.pdf` - local working copy (gitignored).
-- `../../static/documents/PragmaTech-Spring-Boot-Developer-Productivity-Report-2026.pdf` -
-  the committed lead magnet served by Hugo at `/documents/...pdf`.
+- `../../static/documents/lead-bundle/PragmaTech-Spring-Boot-Developer-Productivity-Report-2026.pdf` -
+  the committed lead magnet served by Hugo at `/documents/lead-bundle/...pdf`.
 
 ## Edit
 

@@ -82,7 +82,7 @@ test.describe("bundle landing page", () => {
       "PragmaTech-Spring-Boot-Testing-AI-Survey-2026.pdf",
       "PragmaTech-Top-5-Investments-Before-Scaling-AI-Agents.pdf",
     ]) {
-      const response = await request.get(`/documents/${fileName}`);
+      const response = await request.get(`/documents/lead-bundle/${fileName}`);
       expect(response.status(), fileName).toBe(200);
     }
   });
@@ -208,7 +208,7 @@ test.describe("bundle download page", () => {
     await expect(downloadLinks).toHaveCount(3);
     for (const downloadLink of await downloadLinks.all()) {
       const linkTarget = await downloadLink.evaluate((anchor: HTMLAnchorElement) => anchor.href);
-      expect(new URL(linkTarget).pathname).toMatch(/^\/documents\/.+\.pdf$/);
+      expect(new URL(linkTarget).pathname).toMatch(/^\/documents\/lead-bundle\/.+\.pdf$/);
       expect((await request.get(new URL(linkTarget).pathname)).status(), linkTarget).toBe(200);
     }
     await expect(page.locator('[data-lp="call"]')).toHaveAttribute("href", /cal\.eu\/pragmatech/);

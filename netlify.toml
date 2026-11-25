@@ -55,6 +55,25 @@ framework = "#custom"
   status = 301
   force = true
 
+# The bundle PDFs moved to a subfolder. Sent emails still link to the old paths.
+[[redirects]]
+  from = "/documents/PragmaTech-Spring-Boot-Developer-Productivity-Report-2026.pdf"
+  to = "/documents/lead-bundle/PragmaTech-Spring-Boot-Developer-Productivity-Report-2026.pdf"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/documents/PragmaTech-Spring-Boot-Testing-AI-Survey-2026.pdf"
+  to = "/documents/lead-bundle/PragmaTech-Spring-Boot-Testing-AI-Survey-2026.pdf"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/documents/PragmaTech-Top-5-Investments-Before-Scaling-AI-Agents.pdf"
+  to = "/documents/lead-bundle/PragmaTech-Top-5-Investments-Before-Scaling-AI-Agents.pdf"
+  status = 301
+  force = true
+
 # Specific asset caching
 [[headers]]
   for = "*.js"

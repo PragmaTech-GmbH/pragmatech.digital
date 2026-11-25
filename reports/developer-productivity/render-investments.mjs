@@ -1,6 +1,6 @@
 // Renders the 3-page "Top 5 Investments Before You Scale AI Agents" lead-magnet PDF.
 // Reads template/investments.html + data/investments.json, prints with headless
-// Chromium and writes the PDF to output/ and static/documents/.
+// Chromium and writes the PDF to output/ and static/documents/lead-bundle/.
 
 import { readFile, writeFile, unlink, mkdir } from 'node:fs/promises';
 import { fileURLToPath, pathToFileURL } from 'node:url';
@@ -10,7 +10,7 @@ import puppeteer from 'puppeteer';
 const baseDirectory = dirname(fileURLToPath(import.meta.url));
 const templateDirectory = join(baseDirectory, 'template');
 const outputDirectory = join(baseDirectory, 'output');
-const publicDirectory = resolve(baseDirectory, '..', '..', 'static', 'documents');
+const publicDirectory = resolve(baseDirectory, '..', '..', 'static', 'documents', 'lead-bundle');
 const publicName = 'PragmaTech-Top-5-Investments-Before-Scaling-AI-Agents.pdf';
 
 const [template, rawData, logoBytes] = await Promise.all([
