@@ -3,7 +3,7 @@ title: "Imprint"
 description: "Legal information about the operator of this website"
 date: 2023-05-05T11:40:13+02:00
 layout: "imprint"
-last_updated: "August 24, 2026"
+last_updated: "November 25, 2026"
 ---
 
 ## Information pursuant to Sect. 5 German Digital Services Act (DDG)

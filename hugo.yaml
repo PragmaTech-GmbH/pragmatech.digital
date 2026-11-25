@@ -18,7 +18,7 @@ params:
   # Company master data, used by the imprint (shortcode "company") and the /hotel page
   company:
     name: "PragmaTech GmbH"
-    street: "Bamberger Straße 40B"
+    street: "Wolfsberger Straße 3"
     zip: "91074"
     city: "Herzogenaurach"
     country: "Germany"

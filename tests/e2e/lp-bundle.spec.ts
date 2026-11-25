@@ -145,6 +145,35 @@ test.describe("bundle signup", () => {
     expect(parameters.get("ajax")).toBe("1");
   });
 
+  test("sends the UTM values, the referrer host and the signup page", async ({ page }) => {
+    const subscribeRequests = await mockMailerLite(page, { success: true });
+    await page.goto(`${publicPath}?utm_source=linkedin&utm_medium=social&utm_campaign=winter%20launch`, {
+      referer: "http://localhost:1316/blog/?private=value",
+    });
+    await fillForm(page);
+    await page.locator("#lead-bundle-submit").click();
+
+    await expect(page).toHaveURL(new RegExp(`${thankYouPath}$`));
+    const parameters = subscribeRequests[0];
+    expect(parameters.get("fields[utm_source]")).toBe("linkedin");
+    expect(parameters.get("fields[utm_medium]")).toBe("social");
+    expect(parameters.get("fields[utm_campaign]")).toBe("winter launch");
+    expect(parameters.get("fields[referrer]")).toBe("localhost");
+    expect(parameters.get("fields[signup_page]")).toBe(publicPath);
+  });
+
+  test("sends empty strings when there are no UTM values and no referrer", async ({ page }) => {
+    const subscribeRequests = await mockMailerLite(page, { success: true });
+    await page.goto(publicPath);
+    await fillForm(page);
+    await page.locator("#lead-bundle-submit").click();
+
+    await expect(page).toHaveURL(new RegExp(`${thankYouPath}$`));
+    for (const fieldName of ["utm_source", "utm_medium", "utm_campaign", "referrer"]) {
+      expect(subscribeRequests[0].get(`fields[${fieldName}]`)).toBe("");
+    }
+  });
+
   test("sends the Signup event to the tracker that matomo.js installs after page load", async ({ page }) => {
     await mockMailerLite(page, { success: true });
     const trackedEntries: unknown[][] = [];
