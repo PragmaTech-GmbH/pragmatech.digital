@@ -106,11 +106,14 @@
     <script src="{{ $leadJs.RelPermalink }}" defer></script>
     {{ end }}
 
-    {{ if eq .Layout "lp-bundle" }}
+    {{ if in (slice "lp-bundle" "course-landing") .Layout }}
     {{/* Preload the fonts: a late font swap moves the page content (layout shift). */}}
     {{ range slice "Inter-Regular" "Inter-Bold" }}
     <link rel="preload" href="{{ printf "fonts/inter/%s.woff2" . | relURL }}" as="font" type="font/woff2" crossorigin>
     {{ end }}
+    {{ end }}
+
+    {{ if eq .Layout "lp-bundle" }}
     {{ $bundleJs := resources.Get "js/lead-bundle.js" }}
     {{ if hugo.IsProduction }}
     {{ $bundleJs = $bundleJs | minify }}
