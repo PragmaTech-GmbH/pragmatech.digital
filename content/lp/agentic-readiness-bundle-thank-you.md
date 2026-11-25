@@ -17,7 +17,7 @@ steps:
   - title: "1. Confirm your email, if we ask you to"
     text: "New subscribers get a confirmation email first. Click the confirmation button in it. This is a double opt-in: it protects your inbox."
   - title: "2. Get your three PDFs"
-    text: "The email links to your download page with The AI Productivity Paradox report, the Spring Boot Testing & AI Survey 2026 and the Top 5 Investments Before You Scale AI Agents."
+    text: "The email links to your download page with The AI Productivity Paradox report, the Spring Boot Testing & AI Survey 2026 and the Top 5 Investments Before You Scale Agentic Coding."
 
 help:
   title: "Nothing in your inbox after 10 minutes?"

@@ -3,7 +3,7 @@
 Generates two of the three PDFs of the lead magnet bundle at
 `/lp/agentic-readiness-bundle/` (`/content/lp/agentic-readiness-bundle.md`).
 
-The 3-page guide **Top 5 Investments Before You Scale AI Agents** has its own renderer:
+The 3-page guide **Top 5 Investments Before You Scale Agentic Coding** has its own renderer:
 `npm run build:investments` reads `data/investments.json` and `template/investments.html`.
 The MailerLite email links to the download page
 `/lp/agentic-readiness-bundle/download/`, not to the PDF files, so that Matomo counts the downloads.

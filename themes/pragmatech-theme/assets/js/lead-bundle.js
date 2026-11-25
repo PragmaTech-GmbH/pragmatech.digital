@@ -1,6 +1,7 @@
 // MailerLite signup of the 3-PDF bundle landing page (layout: lp-bundle).
-// Submits with JSONP, so we can read MailerLite's {success, errors} response and redirect
-// only after a real success. Nothing is stored on the visitor's device.
+// Submits with fetch, so we can read MailerLite's {success, errors} response and redirect
+// only after a real success. JSONP does not work: MailerLite answers with plain JSON, and
+// browsers block that as a script (ERR_BLOCKED_BY_ORB). Nothing is stored on the visitor's device.
 document.addEventListener('DOMContentLoaded', () => {
   const signupForm = document.getElementById('lead-bundle-form');
   if (!signupForm) return;
@@ -11,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const buttonLabel = submitButton.textContent;
   const requestTimeoutMillis = 10000;
   const trackingTimeoutMillis = 800;
-  let callbackCounter = 0;
+  const maxAttributionLength = 255;
 
   submitButton.disabled = false;
 
@@ -32,45 +33,66 @@ document.addEventListener('DOMContentLoaded', () => {
     subscribe();
   });
 
-  function subscribe() {
-    callbackCounter += 1;
-    const callbackName = `leadBundleCallback${callbackCounter}`;
-    const queryParameters = new URLSearchParams(new FormData(signupForm));
-    queryParameters.set('ajax', '1');
-    queryParameters.set('callback', callbackName);
-
-    const jsonpScript = document.createElement('script');
-    const timeoutTimer = setTimeout(() => fail(), requestTimeoutMillis);
-
-    const cleanUp = () => {
-      clearTimeout(timeoutTimer);
-      jsonpScript.remove();
-      // A late response after a timeout must find a harmless function.
-      window[callbackName] = () => {};
-    };
+  async function subscribe() {
+    const requestBody = new URLSearchParams(new FormData(signupForm));
+    requestBody.set('ajax', '1');
+    Object.entries(readAttribution()).forEach(([fieldName, value]) => {
+      requestBody.set(`fields[${fieldName}]`, value);
+    });
+    const abortController = new AbortController();
+    const timeoutTimer = setTimeout(() => abortController.abort(), requestTimeoutMillis);
 
     const fail = (message) => {
-      cleanUp();
       submitButton.disabled = false;
       submitButton.textContent = buttonLabel;
       showError(message || 'Something went wrong - please try again.');
       fallbackMessage.classList.remove('hidden');
     };
 
-    window[callbackName] = (response) => {
-      if (response && response.success === true) {
-        cleanUp();
+    try {
+      const response = await fetch(signupForm.action, {
+        method: 'POST',
+        body: requestBody,
+        credentials: 'omit',
+        signal: abortController.signal,
+      });
+      // A body that is not JSON counts as a failed signup, not as a network error.
+      const result = await response.json().catch(() => null);
+      if (result && result.success === true) {
         trackSignupAndRedirect();
         return;
       }
       // Never inject MailerLite's own error markup, map it to our copy.
-      const fieldErrors = response && response.errors && response.errors.fields;
+      const fieldErrors = result && result.errors && result.errors.fields;
       fail(fieldErrors && fieldErrors.email ? 'Please enter a valid email address.' : undefined);
-    };
+    } catch (error) {
+      fail(error.name === 'AbortError' ? undefined : 'Network error - please try again.');
+    } finally {
+      clearTimeout(timeoutTimer);
+    }
+  }
 
-    jsonpScript.onerror = () => fail('Network error - please try again.');
-    jsonpScript.src = `${signupForm.action}?${queryParameters.toString()}`;
-    document.body.appendChild(jsonpScript);
+  // Where the signup comes from. Read from the current page only, so nothing has to be stored
+  // on the device. A missing value is sent as an empty string.
+  function readAttribution() {
+    const pageParameters = new URLSearchParams(window.location.search);
+    const readParameter = (parameterName) => (pageParameters.get(parameterName) || '').slice(0, maxAttributionLength);
+    return {
+      utm_source: readParameter('utm_source'),
+      utm_medium: readParameter('utm_medium'),
+      utm_campaign: readParameter('utm_campaign'),
+      referrer: readReferrerHost(),
+      signup_page: window.location.pathname.slice(0, maxAttributionLength),
+    };
+  }
+
+  // Only the host name: the path and query of another site's URL can hold personal data.
+  function readReferrerHost() {
+    try {
+      return new URL(document.referrer).hostname.slice(0, maxAttributionLength);
+    } catch (error) {
+      return '';
+    }
   }
 
   function trackSignupAndRedirect() {

@@ -3,7 +3,7 @@ title: "Privacy Policy"
 description: "Information about how we collect, process, and protect your personal data"
 date: 2023-05-05T11:40:13+02:00
 layout: "privacy"
-last_updated: "April 15, 2025"
+last_updated: "November 25, 2026"
 show_toc: false
 ---
 
@@ -34,7 +34,7 @@ Host: Netlify, Inc. ("Netlify"), 2325 3rd Street, Suite 215, San Francisco, 9410
 The data processing controller on this website is:
 
 PragmaTech GmbH  
-Bamberger Straße 40B  
+Wolfsberger Straße 3  
 91074 Herzogenaurach
 
 E-mail: info@pragmatech.digital
@@ -45,7 +45,7 @@ Our designated Data Protection Officer is:
 
 Data Protection Officer  
 PragmaTech GmbH  
-Bamberger Straße 40B  
+Wolfsberger Straße 3  
 91074 Herzogenaurach  
 
 E-mail: info@pragmatech.digital
@@ -71,7 +71,7 @@ If you submit inquiries to us via our contact form, the information provided in 
 
 ### Download of free reports
 
-If you request our free reports, we collect your name, company and email address. We transmit this data to our email service provider MailerLite to send you the reports. The legal basis is your consent (Art. 6 (1) (a) GDPR). You can withdraw your consent at any time, for example with the unsubscribe link in our emails.
+If you request our free reports, we collect your name, company and email address. With your request, we also collect where your signup comes from: the campaign parameters in the address of the page with the signup form (utm_source, utm_medium and utm_campaign), the host name of the website that referred you to this page (not the full address), and the path of the page with the form. If a value is not available, it stays empty. We do not use cookies or other storage on your device for this. We use this data to understand which channels lead to signups. We transmit all of this data to our email service provider MailerLite, which stores it with your subscriber record, to send you the reports. The legal basis is your consent (Art. 6 (1) (a) GDPR). You can withdraw your consent at any time, for example with the unsubscribe link in our emails.
 
 ## 5. Plugins and Tools
 
