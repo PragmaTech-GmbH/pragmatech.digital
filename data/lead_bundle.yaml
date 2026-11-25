@@ -50,15 +50,15 @@ blog:
 
 covers:
   - key: "cover-productivity-report"
-    file: "documents/PragmaTech-Spring-Boot-Developer-Productivity-Report-2026.pdf"
+    file: "documents/lead-bundle/PragmaTech-Spring-Boot-Developer-Productivity-Report-2026.pdf"
     title: "The AI Productivity Paradox"
     meta: "Industry report - 11 pages"
   - key: "cover-top-investments"
-    file: "documents/PragmaTech-Top-5-Investments-Before-Scaling-AI-Agents.pdf"
+    file: "documents/lead-bundle/PragmaTech-Top-5-Investments-Before-Scaling-AI-Agents.pdf"
     title: "Top 5 Investments Before You Scale AI Agents"
     meta: "Leader guide - 3 pages"
   - key: "cover-testing-survey"
-    file: "documents/PragmaTech-Spring-Boot-Testing-AI-Survey-2026.pdf"
+    file: "documents/lead-bundle/PragmaTech-Spring-Boot-Testing-AI-Survey-2026.pdf"
     title: "Spring Boot Testing & AI Survey 2026"
     meta: "Live poll results - 4 pages"
 
@@ -75,6 +75,12 @@ form:
   pendingButton: "Sending..."
   note: "Free. Unsubscribe anytime."
   privacyLabel: "Privacy policy"
+
+# Confirmation page after the double opt-in. All other texts come from "download".
+confirmed:
+  badge: "Email confirmed"
+  headline: "Your email is confirmed - here are your three PDFs"
+  intro: "Open or save each PDF below. We also send you the link to your PDFs by email."
 
 download:
   badge: "Your bundle"
