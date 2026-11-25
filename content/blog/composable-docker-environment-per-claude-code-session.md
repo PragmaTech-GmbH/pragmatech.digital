@@ -6,7 +6,7 @@ date: 2026-11-25
 lastmod: 2026-11-25
 author: "philip"
 share_image: "/images/blog/parallel-claude-code-sessions-share.png"
-draft: true
+draft: false
 ---
 
 I usually work on several things in parallel: a feature in one Claude Code session, a bug fix in another and an experiment in a third. [Git worktrees](https://code.claude.com/docs/en/worktrees) give each session its own copy of the code.
