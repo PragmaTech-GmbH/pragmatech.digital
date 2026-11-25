@@ -11,16 +11,17 @@
         <span class="font-bold text-lg text-slate-900 tracking-tight">Pragma<span class="text-brand-500">Tech</span></span>
     </div>
 
-    {{/* DOM order copy, form, covers is the mobile order. */}}
+    {{/* DOM order copy, covers, form is the mobile order. On large screens the grid classes
+         place the form in the right third. */}}
     <div class="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10 my-auto grid lg:grid-cols-3 gap-x-12 gap-y-8">
         <div class="lg:col-span-2 lg:row-start-1">
             {{ partial "lp-bundle/copy.html" $bundle }}
         </div>
-        <div class="lg:col-start-3 lg:row-start-1 lg:row-span-2 lg:self-center">
-            {{ partial "lp-bundle/form.html" (dict "bundle" $bundle) }}
-        </div>
         <div class="lg:col-span-2 lg:row-start-2">
             {{ partial "lp-bundle/covers.html" $bundle }}
+        </div>
+        <div class="lg:col-start-3 lg:row-start-1 lg:row-span-2 lg:self-center">
+            {{ partial "lp-bundle/form.html" (dict "bundle" $bundle) }}
         </div>
     </div>
 
