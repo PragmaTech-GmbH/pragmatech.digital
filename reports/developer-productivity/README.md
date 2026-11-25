@@ -1,7 +1,18 @@
 # Developer Productivity Report — Renderer
 
-Generates the lead-magnet PDF promised by the survey landing page at
-`/content/spring-boot-developer-productivity-survey.md`.
+Generates two of the three PDFs of the lead magnet bundle at
+`/lp/agentic-readiness-bundle/` (`/content/lp/agentic-readiness-bundle.md`).
+
+The 3-page guide **Top 5 Investments Before You Scale AI Agents** has its own renderer:
+`npm run build:investments` reads `data/investments.json` and `template/investments.html`.
+The MailerLite email links to the download page
+`/lp/agentic-readiness-bundle/download/`, not to the PDF files, so that Matomo counts the downloads.
+
+The third PDF of the bundle (`PragmaTech-Spring-Boot-Testing-AI-Survey-2026.pdf`) is
+created outside this repository.
+
+The covers on the landing page are page 1 of each PDF, saved as 600x849 PNG files in
+`static/images/reports/lead-bundle/` with WebP versions in `static/generated/`.
 
 As of May 2026, the rendered report is **_The AI Productivity Paradox 2026_** —
 the survey results from 92 Spring Boot engineers, framed around the productivity

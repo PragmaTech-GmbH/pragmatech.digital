@@ -17,8 +17,8 @@ const PUBLIC_DIR = resolve(HERE, '..', '..', 'static', 'documents');
 const LOGO_FILE = resolve(HERE, '..', '..', 'static', 'images', 'logo.png');
 const SPEAKER_FILE = resolve(HERE, '..', '..', 'static', 'images', 'rieckpil-speaker.jpeg');
 
-// Single editorial variant — fills the canonical lead-magnet filename that
-// Hugo's header/footer/report-success layouts already link to.
+// Single editorial variant - fills the canonical lead-magnet filename that
+// the MailerLite email links to.
 const VARIANTS = [
   {
     key: 'editorial',

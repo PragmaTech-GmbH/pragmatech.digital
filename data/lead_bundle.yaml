@@ -1,0 +1,75 @@
+# Lead magnet "3-PDF bundle": copy of the landing and download page.
+campaign: "agentic-readiness-bundle"
+thankYouPath: "/lp/agentic-readiness-bundle/thank-you/"
+mailerLiteActionUrl: "https://assets.mailerlite.com/jsonp/1613864/forms/187358602568140384/subscribe"
+contactEmail: "info@pragmatech.digital"
+
+badge: "Free bundle for engineering leaders"
+# Technology badges: they tell Java and Spring teams that this bundle is for them.
+techBadges:
+  - label: "Java"
+    icon: "fa-brands fa-java"
+    color: "text-orange-600"
+  - label: "Spring Framework"
+    icon: "fa-solid fa-leaf"
+    color: "text-emerald-600"
+headline: "Know what to fix"
+highlight: "before you scale AI agents."
+subheadline: "Three PDFs for engineering leaders, tech leads and heads of engineering: how Java teams test with AI in 2026, where it hurts, and where to invest first."
+bullets:
+  - "What 614 developers said about Spring Boot testing and AI in 26 sessions"
+  - "What 92 engineers say AI is doing to their pipelines and reviews"
+  - "Five investments to make first, each with a step for the next 30 days"
+
+# Where the content comes from. Shown below the signup on the landing page.
+sources:
+  title: "Where our data and insights come from"
+  intro: "PragmaTech focuses on developer experience, with years of hands-on work with Java and Spring teams. This bundle builds on that work. Each survey PDF is based on its own group of respondents."
+  missionLabel: "Our mission"
+  mission: "Enable Clients to Ship with Confidence in Every Commit"
+  items:
+    - value: "Consulting"
+      label: "Our company consulting work with software teams"
+    - value: "Speaking"
+      label: "Conference talks, user groups, workshops and webinars"
+    - value: "9,000"
+      label: "People in our course academy"
+    - value: "10,000"
+      label: "People who read our Spring Boot testing newsletter"
+
+covers:
+  - key: "cover-productivity-report"
+    file: "documents/PragmaTech-Spring-Boot-Developer-Productivity-Report-2026.pdf"
+    title: "The AI Productivity Paradox"
+    meta: "Industry report - 11 pages"
+  - key: "cover-top-investments"
+    file: "documents/PragmaTech-Top-5-Investments-Before-Scaling-AI-Agents.pdf"
+    title: "Top 5 Investments Before You Scale AI Agents"
+    meta: "Leader guide - 3 pages"
+  - key: "cover-testing-survey"
+    file: "documents/PragmaTech-Spring-Boot-Testing-AI-Survey-2026.pdf"
+    title: "Spring Boot Testing & AI Survey 2026"
+    meta: "Live poll results - 4 pages"
+
+form:
+  title: "Get the results in your inbox"
+  intro: "All three PDFs, sent to your email address."
+  nameLabel: "Name"
+  namePlaceholder: "Jane Doe"
+  companyLabel: "Company"
+  companyPlaceholder: "Acme Inc."
+  emailLabel: "Work email"
+  emailPlaceholder: "you@company.com"
+  button: "Send the 3 reports to my inbox"
+  pendingButton: "Sending..."
+  note: "Free. Unsubscribe anytime."
+  privacyLabel: "Privacy policy"
+
+download:
+  badge: "Your bundle"
+  headline: "Your three PDFs are ready"
+  intro: "Thank you for your interest. Open or save each PDF below."
+  button: "Download PDF"
+  callTitle: "Find your first investment in 15 minutes"
+  callText: "A free call about your current setup. You leave with at least one improvement that you can start next week."
+  callButton: "Book your free call"

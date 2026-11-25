@@ -106,6 +106,20 @@
     <script src="{{ $leadJs.RelPermalink }}" defer></script>
     {{ end }}
 
+    {{ if eq .Layout "lp-bundle" }}
+    {{/* Preload the fonts: a late font swap moves the page content (layout shift). */}}
+    {{ range slice "Inter-Regular" "Inter-Bold" }}
+    <link rel="preload" href="{{ printf "fonts/inter/%s.woff2" . | relURL }}" as="font" type="font/woff2" crossorigin>
+    {{ end }}
+    {{ $bundleJs := resources.Get "js/lead-bundle.js" }}
+    {{ if hugo.IsProduction }}
+    {{ $bundleJs = $bundleJs | minify }}
+    {{ end }}
+    {{/* Always fingerprint: JS is served with a 1 year immutable cache. */}}
+    {{ $bundleJs = $bundleJs | fingerprint }}
+    <script src="{{ $bundleJs.RelPermalink }}" defer></script>
+    {{ end }}
+
     {{ if eq .Layout "convince-your-manager" }}
     {{ $copyJs := resources.Get "js/copy-email.js" }}
     {{ if hugo.IsProduction }}

@@ -1,0 +1,13 @@
+{{/* Cover stack of the landing page with the three titles below, in the same order.
+     Call with the lead_bundle data. */}}
+<div data-lp="covers" class="mx-auto max-w-lg">
+    {{ partial "lp-bundle/cover-stack.html" (dict "covers" .covers "class" "max-w-md" "loading" "eager") }}
+    <ul class="grid grid-cols-3 gap-3 mt-3 text-center">
+        {{ range .covers }}
+        <li>
+            <span class="block font-bold text-slate-900 leading-snug text-xs sm:text-sm">{{ .title }}</span>
+            <span class="block text-xs text-slate-500 mt-1">{{ .meta }}</span>
+        </li>
+        {{ end }}
+    </ul>
+</div>

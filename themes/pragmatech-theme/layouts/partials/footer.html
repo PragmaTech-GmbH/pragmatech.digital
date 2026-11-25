@@ -33,36 +33,29 @@
             <!-- Column 3: Report teaser -->
             <div>
                 <p class="text-[10px] tracking-[0.25em] uppercase text-brand-400 font-bold mb-3">For Tech Leads</p>
-                <h4 class="text-white font-semibold mb-3 leading-snug">What AI is really doing to Spring Boot teams in 2026</h4>
+                <h4 class="text-white font-semibold mb-3 leading-snug">What to fix before you scale AI agents</h4>
                 <p class="text-sm text-slate-400 leading-relaxed">
-                    92 engineers told us how AI is reshaping their test pipelines, reviews, and
-                    development workflow. The full 11-page report is out now - free, no fluff.
+                    Three free PDFs: 2026 data on Spring Boot testing and AI, and five
+                    investments to make first.
                 </p>
             </div>
 
             <!-- Column 4: Productivity Report lead-gen card -->
             <div>
-                <a href="{{ "spring-boot-developer-productivity-survey" | relURL }}" class="group block" aria-label="Get the 2026 Spring Boot Developer Productivity Report">
-                    <!-- Real cover thumbnail (matches the one on the lead-gen page) -->
-                    <div class="relative mx-auto mb-4" style="max-width: 110px;">
-                        <img src="{{ "images/reports/ai-productivity-paradox-2026/cover-sm.png" | relURL }}"
-                             alt="Cover of The AI Productivity Paradox - Industry Report 2026"
-                             width="360" height="509"
-                             loading="lazy" decoding="async"
-                             class="block w-full h-auto rounded-md border border-slate-700
-                                    shadow-2xl shadow-black/40
-                                    transform -rotate-2 group-hover:rotate-0 group-hover:-translate-y-0.5
-                                    transition-all duration-500 ease-out" />
+                <a href="{{ .Site.Params.leadBundle.path | relURL }}" class="group block" aria-label="Get the three free PDFs for engineering leaders">
+                    <!-- The same grouped covers as on the bundle landing page -->
+                    <div data-lp="footer-covers" class="mb-3 transform group-hover:-translate-y-0.5 transition-transform duration-500 ease-out">
+                        {{ partial "lp-bundle/cover-stack.html" (dict "covers" site.Data.lead_bundle.covers "class" "max-w-[15rem]" "loading" "lazy") }}
                     </div>
 
-                    <!-- CTA link below the thumbnail -->
+                    <!-- CTA link below the covers -->
                     <div class="flex items-center justify-center gap-2 text-sm font-semibold text-slate-300 group-hover:text-brand-400 transition-colors">
                         <span class="inline-flex items-center justify-center w-6 h-6 rounded-md bg-emerald-600 group-hover:bg-emerald-500 text-white transition-colors">
                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 17v-6m4 6V7m4 10v-4M5 21h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2z"/>
                             </svg>
                         </span>
-                        <span>Get the 2026 report</span>
+                        <span>Get the 3 free PDFs</span>
                         <svg class="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                         </svg>

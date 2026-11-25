@@ -42,6 +42,19 @@ framework = "#custom"
   status = 301
   force = true
 
+# The 3-PDF bundle replaced the single-report landing page and its success page
+[[redirects]]
+  from = "/spring-boot-developer-productivity-survey/*"
+  to = "/lp/agentic-readiness-bundle/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/report-success/*"
+  to = "/lp/agentic-readiness-bundle/thank-you/"
+  status = 301
+  force = true
+
 # Specific asset caching
 [[headers]]
   for = "*.js"

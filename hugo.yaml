@@ -29,6 +29,11 @@ params:
     info: "info@pragmatech.digital"
     privacy: "info@pragmatech.digital"
     dpo: "info@pragmatech.digital"
+  # Header link to the lead magnet bundle (copy of the page: data/lead_bundle.yaml)
+  leadBundle:
+    path: "lp/agentic-readiness-bundle/"
+    navLabel: "AI Readiness Bundle"
+    navBadge: "Free"
   mailchimp:
     # Action URL from the Mailchimp embed form builder
     # (Audience > Signup forms > Embedded forms)
