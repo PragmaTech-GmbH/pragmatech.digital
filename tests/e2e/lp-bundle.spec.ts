@@ -91,7 +91,7 @@ test.describe("bundle landing page", () => {
     await page.goto("/");
     await expect(page.getByRole("link", { name: "Get the three free PDFs for engineering leaders" })).toBeVisible();
     await expect(page.locator('[data-lp="footer-covers"] img')).toHaveCount(3);
-    const headerLink = page.locator("#navbar").getByRole("link", { name: /AI Readiness Bundle/ }).first();
+    const headerLink = page.locator("#navbar").getByRole("link", { name: /Are You AI-Ready\?/ }).first();
     await headerLink.click();
     await expect(page).toHaveURL(new RegExp(`${publicPath}$`));
   });

@@ -17,11 +17,9 @@
   signupForm.addEventListener('submit', function (event) {
     event.preventDefault();
 
-    // The first name is optional: the signup below blog posts only asks for the email.
-    var firstNameInput = signupForm.elements['FNAME'];
-    var firstNameValue = firstNameInput ? firstNameInput.value.trim() : '';
+    var firstNameValue = signupForm.elements['FNAME'].value.trim();
     var emailValue = signupForm.elements['EMAIL'].value.trim();
-    if (firstNameInput && !firstNameValue) {
+    if (!firstNameValue) {
       showError('Please enter your first name.');
       return;
     }
@@ -43,7 +41,7 @@
     callbackCounter += 1;
     var callbackName = 'mcLeadSignupCallback' + callbackCounter;
     var requestUrl = signupForm.dataset.actionUrl.replace('/subscribe/post?', '/subscribe/post-json?')
-      + (firstNameInput ? '&FNAME=' + encodeURIComponent(firstNameValue) : '')
+      + '&FNAME=' + encodeURIComponent(firstNameValue)
       + '&EMAIL=' + encodeURIComponent(emailValue)
       + (companyInput ? '&' + encodeURIComponent(companyField) + '=' + encodeURIComponent(companyValue) : '')
       + (signupForm.dataset.tagId ? '&tags=' + encodeURIComponent(signupForm.dataset.tagId) : '')

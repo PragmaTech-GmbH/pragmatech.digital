@@ -217,14 +217,13 @@
     margin-top: 1.75rem;
 }
 
-/* ---------- Sidebar placeholder ---------- */
+/* ---------- Sidebar teaser ---------- */
 .blog-promo {
     padding: 1.5rem;
-    border: 2px dashed var(--blogBorder);
+    border: 1px solid var(--blogBorder);
     border-radius: 0.75rem;
     background: var(--blogSurface);
     font-family: var(--blogUiFont);
-    text-align: center;
 }
 
 .blog-promo__eyebrow {
@@ -244,20 +243,12 @@
     color: var(--blogHeading);
 }
 
-.blog-promo__visual {
-    display: grid;
-    place-items: center;
-    aspect-ratio: 4 / 3;
-    margin-top: 1rem;
-    border: 1px solid var(--blogBorder);
-    border-radius: 0.5rem;
-    background: var(--blogBackground);
-    font-size: 0.85rem;
-    color: var(--blogMuted);
+.blog-promo__covers {
+    margin-top: 0.75rem;
 }
 
 .blog-promo__text {
-    margin-top: 1rem;
+    margin-top: 0.75rem;
     font-size: 0.95rem;
     line-height: 1.6;
 }
@@ -269,17 +260,11 @@
     border-radius: 0.5rem;
     background: linear-gradient(to right, var(--color-brand-600), var(--color-brand-500));
     font-weight: 700;
+    text-align: center;
     color: #ffffff;
 }
 
-.blog-promo__image {
-    width: 100%;
-    height: auto;
-    margin-top: 1rem;
-    border-radius: 0.5rem;
-}
-
-/* ---------- Signup box below the article ---------- */
+/* ---------- Bundle signup below the article ---------- */
 .blog-signup {
     margin-top: 3.5rem;
     padding: 2rem 1.25rem;
@@ -304,120 +289,29 @@
     text-decoration-skip-ink: none;
 }
 
+.blog-signup__text {
+    max-width: 38rem;
+    margin: 1rem auto 0;
+    line-height: 1.7;
+    text-align: center;
+}
+
 .blog-signup__body {
     display: grid;
     gap: 1.5rem;
+    align-items: center;
     margin-top: 1.5rem;
-}
-
-.blog-signup__media {
-    width: 100%;
-    max-width: 13rem;
-    margin-inline: auto;
-}
-
-.blog-signup__image {
-    width: 100%;
-    height: auto;
-}
-
-.blog-signup__placeholder {
-    display: grid;
-    place-items: center;
-    aspect-ratio: 2 / 3;
-    border: 2px dashed #d4d4d4;
-    background: #ffffff;
-    font-size: 0.85rem;
-    color: var(--blogMuted);
-}
-
-.blog-signup__text {
-    line-height: 1.7;
-}
-
-.blog-signup__text p + p {
-    margin-top: 0.75rem;
-}
-
-.blog-signup__text a,
-.blog-signup__note a {
-    color: var(--blogLink);
-    text-decoration: underline;
-}
-
-.blog-signup__form {
-    display: grid;
-    gap: 0.75rem;
-    margin-top: 1.25rem;
-}
-
-.blog-signup__input {
-    width: 100%;
-    padding: 0.85rem 1rem;
-    border: 1px solid #d4d4d4;
-    border-radius: 0.375rem;
-    background: #ffffff;
-    font-size: 1rem;
-}
-
-.blog-signup__honeypot {
-    position: absolute;
-    left: -5000px;
-}
-
-.blog-signup__button {
-    padding: 0.85rem 1rem;
-    border-radius: 0.375rem;
-    /* Same gradient as the "Speed Up Your Builds" button in the navbar */
-    background: linear-gradient(to right, var(--color-brand-600), var(--color-brand-500));
-    font-size: 1.125rem;
-    font-weight: 700;
-    color: #ffffff;
-    cursor: pointer;
-}
-
-.blog-signup__button:hover {
-    background: var(--color-brand-600);
-}
-
-.blog-signup__button:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-}
-
-.blog-signup__message {
-    margin-top: 1.25rem;
-    font-weight: 700;
-    color: #047857;
-}
-
-.blog-signup__error {
-    margin-top: 0.75rem;
-    font-size: 0.9rem;
-    color: #dc2626;
-}
-
-.blog-signup__note {
-    margin-top: 0.75rem;
-    font-size: 0.8rem;
-    color: var(--blogMuted);
 }
 
 @media (min-width: 768px) {
     .blog-signup {
-        padding: 2rem 2.5rem 2.5rem;
+        padding: 2rem 2rem 2.5rem;
     }
 
     .blog-signup__body {
-        grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
-        align-items: center;
-        gap: 2.5rem;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 2rem;
     }
-}
-
-/* The message paragraphs and the form are toggled with Tailwind's "hidden" by lead-signup.js */
-.blog-signup .hidden {
-    display: none;
 }
 
 /* ---------- Article typography ---------- */

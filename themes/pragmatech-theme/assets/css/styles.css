@@ -3,6 +3,7 @@
 @import "components/content-sections.css";
 @import "components/fonts.css";
 @import "components/blog.css";
+@import "components/about.css";
 
 @source "hugo_stats.json";
 

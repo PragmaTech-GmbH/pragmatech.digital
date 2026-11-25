@@ -1,0 +1,83 @@
+{{/*
+  The managing director on the About page. Track record, numbers, conferences, profiles and books come
+  from the "authority" block in data/homepage.yaml, so the homepage and this page stay in sync.
+  The label above the headline comes from data/about.yaml.
+*/}}
+{{ $director := site.Data.about.director }}
+{{ with site.Data.homepage.authority }}
+<section class="py-16 md:py-20 bg-white" aria-labelledby="director-title" data-about="director">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center mb-12">
+            <p class="text-[11px] font-bold tracking-[0.25em] uppercase text-brand-600 mb-3">{{ $director.eyebrow }}</p>
+            <h2 id="director-title" class="text-3xl font-bold text-slate-900">{{ .headline }}</h2>
+        </div>
+
+        <div class="grid lg:grid-cols-12 gap-10 items-start">
+            <div class="lg:col-span-4 w-full max-w-sm mx-auto">
+                {{ partial "about/picture.html" (dict "src" "/images/rieckpil-speaker.jpeg" "alt" .imageAlt "class" "w-full h-auto rounded-2xl border border-slate-200 shadow-lg") }}
+                <ul class="mt-5 flex justify-center gap-3">
+                    {{ range .socials }}
+                    <li>
+                        <a href="{{ .url }}" target="_blank" rel="noopener" aria-label="{{ .label }}" title="{{ .label }}"
+                           class="inline-flex items-center justify-center w-11 h-11 rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition-colors hover:border-brand-500 hover:text-brand-600">
+                            <i class="fa-brands fa-{{ .platform }} text-lg" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    {{ end }}
+                </ul>
+            </div>
+
+            <ul class="lg:col-span-8 space-y-5">
+                {{ range .bullets }}
+                <li class="flex items-start gap-4">
+                    <i class="fas fa-check-circle text-brand-600 mt-1.5" aria-hidden="true"></i>
+                    <p class="text-slate-600 leading-relaxed"><strong class="text-slate-900">{{ .title }}:</strong> {{ .text }}</p>
+                </li>
+                {{ end }}
+            </ul>
+        </div>
+
+        <!-- Numbers and the MVP badge -->
+        <ul class="mt-14 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+            {{ range .kpis }}
+            <li class="rounded-xl border border-slate-200 bg-slate-50 px-4 py-5 text-center">
+                <span class="block text-3xl font-bold text-brand-600">{{ .value }}</span>
+                <span class="block mt-1 text-xs uppercase tracking-widest text-slate-500">{{ .label }}</span>
+            </li>
+            {{ end }}
+            {{ with .mvpBadge }}
+            <li class="flex flex-col items-center justify-center rounded-xl border border-slate-200 bg-slate-50 px-4 py-5 text-center">
+                <a href="{{ .url }}" target="_blank" rel="noopener">
+                    {{ partial "about/picture.html" (dict "src" .image "alt" .alt "class" "h-10 w-auto") }}
+                </a>
+                <span class="block mt-2 text-xs uppercase tracking-widest text-slate-500">{{ .label }}</span>
+            </li>
+            {{ end }}
+        </ul>
+
+        <!-- Conferences -->
+        <p class="mt-12 mb-5 text-xs uppercase tracking-widest text-slate-500 text-center">{{ .conferencesLabel }}</p>
+        <ul class="flex flex-wrap justify-center gap-4">
+            {{ range .conferences }}
+            <li class="flex items-center justify-center w-40 h-20 px-5 rounded-xl border border-slate-200 bg-white">
+                <img src="{{ strings.TrimPrefix "/" .file | relURL }}" alt="{{ .name }} logo" loading="lazy" class="max-h-12 max-w-full w-auto object-contain">
+            </li>
+            {{ end }}
+        </ul>
+
+        <!-- Books -->
+        <h3 class="mt-14 mb-8 text-2xl font-bold text-slate-900 text-center">{{ .booksSectionHeadline }}</h3>
+        <ul class="grid sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            {{ range .books }}
+            <li>
+                <a href="{{ .link }}" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center text-center">
+                    {{ partial "about/picture.html" (dict "src" .cover "alt" .title "class" "h-52 w-auto object-contain drop-shadow-lg transition-transform group-hover:-translate-y-1") }}
+                    <span class="mt-4 font-bold text-slate-900 leading-snug group-hover:text-brand-600">{{ .title }}</span>
+                    <span class="mt-1 text-xs text-slate-500 max-w-[16rem]">{{ .subtitle }}</span>
+                </a>
+            </li>
+            {{ end }}
+        </ul>
+    </div>
+</section>
+{{ end }}

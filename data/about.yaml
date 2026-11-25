@@ -1,0 +1,100 @@
+# Copy of the About page (layout: themes/pragmatech-theme/layouts/_default/about.html).
+
+hero:
+  eyebrow: "About PragmaTech"
+  headline: "Confidence in Every Commit"
+  intro: "We help Java and Spring Boot teams improve their software development lifecycle, so that they can ship without fear."
+  missionLabel: "Our mission"
+  mission: "Enable Clients to Ship with Confidence in Every Commit"
+
+# The visualization: the path of a commit, with the north star above it.
+northStar:
+  title: "From Commit to Production"
+  intro: "Confidence is not a final gate before the release. Each step of your lifecycle adds to it or takes it away."
+  label: "Our North Star"
+  value: "Confidence in Every Commit"
+  questionLabel: "Your team asks"
+  focusLabel: "We improve"
+  loop: "What you learn in production goes back into the next commit."
+  stages:
+    - name: "Code"
+      icon: "fa-solid fa-code"
+      question: "Can we trust a change, whether a person or an AI agent wrote it?"
+      focus: "Shared testing conventions and agent skills for Spring Boot"
+    - name: "Test"
+      icon: "fa-solid fa-vial-circle-check"
+      question: "Does a green test suite mean that the application works?"
+      focus: "Unit tests, Spring Boot test slices and integration tests with Testcontainers"
+    - name: "Build"
+      icon: "fa-solid fa-gauge-high"
+      question: "How long do we wait for feedback?"
+      focus: "Spring context caching, parallel test runs and faster Maven or Gradle builds"
+    - name: "Review"
+      icon: "fa-solid fa-code-pull-request"
+      question: "Do we know what we merge?"
+      focus: "Tests that explain behavior and quality checks that the team trusts"
+    - name: "Ship"
+      icon: "fa-solid fa-rocket"
+      question: "Can we deploy on any day of the week?"
+      focus: "A reliable pipeline that makes a release a routine step"
+
+help:
+  title: "How We Help Your Team"
+  intro: "Start where it hurts the most."
+  items:
+    - title: "Test Maturity Assessment"
+      stages: "Whole lifecycle"
+      text: "An analysis of your current testing approach with a clear roadmap for improvement."
+      path: "services/test-maturity-assessment/"
+    - title: "Test Automation Kickstarter"
+      stages: "Code and Test"
+      text: "A strong foundation for maintainable and effective automated tests."
+      path: "services/test-automation-kickstarter/"
+    - title: "Build Pipeline Acceleration"
+      stages: "Build and Ship"
+      text: "Turn slow and unreliable builds into fast feedback loops."
+      path: "services/build-pipeline-acceleration/"
+    - title: "Workshops"
+      stages: "Team skills"
+      text: "Hands-on training in testing, Spring Boot and AWS deployment."
+      path: "workshops/"
+
+# The rest of this section comes from the "authority" block in data/homepage.yaml.
+director:
+  eyebrow: "Meet Our Managing Director"
+
+story:
+  title: "Why PragmaTech Exists"
+  paragraphs:
+    - "Our founder, Philip Riecks, saw the same pattern while consulting for different companies: development teams struggled with unreliable tests, slow feedback cycles and little confidence when they deployed to production."
+    - "What started with blog posts and conference talks is now consulting, workshops, courses and tools that address these problems."
+
+principles:
+  title: "How We Work"
+  items:
+    - title: "Pragmatic Approach"
+      icon: "fa-solid fa-search"
+      text: "We prefer practical solutions to theoretical perfection. Our recommendations come from real project experience and proven patterns."
+    - title: "Continuous Learning"
+      icon: "fa-solid fa-graduation-cap"
+      text: "Technology changes quickly. We keep up with good practices and share what we learn openly."
+    - title: "Honest Partnership"
+      icon: "fa-solid fa-handshake"
+      text: "We build relationships on trust and transparency, and we recommend what is best for your needs."
+
+clients:
+  title: "Companies We Have Worked With"
+  items:
+    - { name: "Adevinta", image: "images/clients/adevinta.png" }
+    - { name: "Deloitte", image: "images/clients/deloitte.png" }
+    - { name: "Scout24", image: "images/clients/scout24.png" }
+    - { name: "Extenda", image: "images/clients/extenda.webp" }
+    - { name: "VMware", image: "images/clients/vmware.webp" }
+
+sponsorships:
+  title: "Giving Back to Open Source"
+  intro: "We support the communities and tools that we believe in."
+  items:
+    - "GitHub Sponsorship: Testcontainers, Jeremy Long, Johan Haleby"
+    - "JUnit 5 Backer"
+    - "Open Source Java Conference Sponsorship"

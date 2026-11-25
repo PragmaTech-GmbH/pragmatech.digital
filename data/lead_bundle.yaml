@@ -37,6 +37,17 @@ sources:
     - value: "10,000"
       label: "People who read our Spring Boot testing newsletter"
 
+# The two teasers on blog posts. Each one has its own copy, so a reader does not see the same
+# headline twice on one page. The site footer has a third headline (partials/footer.html).
+blog:
+  sidebar:
+    title: "Is Your Spring Boot Codebase Ready for AI Agents?"
+    text: "Five investments for Java teams to make before they scale AI agents, each with a step for the next 30 days."
+    button: "See What Is Inside"
+  signup:
+    title: "How Do Java Teams Test with AI in 2026?"
+    text: "See what 614 developers said about Spring Boot testing and AI, and what 92 engineers say AI is doing to their pipelines and reviews."
+
 covers:
   - key: "cover-productivity-report"
     file: "documents/PragmaTech-Spring-Boot-Developer-Productivity-Report-2026.pdf"

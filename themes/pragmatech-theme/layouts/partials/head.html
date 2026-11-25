@@ -100,8 +100,7 @@
     <script src="{{ $demoJs.RelPermalink }}" defer></script>
     {{ end }}
 
-    {{/* Blog posts: the signup below the article uses the same script as the landing pages */}}
-    {{ if or (in (slice "lp-lead-magnet" "lp-webinar") .Layout) (and (eq .Section "blog") .IsPage) }}
+    {{ if in (slice "lp-lead-magnet" "lp-webinar") .Layout }}
     {{ $leadJs := resources.Get "js/lead-signup.js" }}
     {{ if hugo.IsProduction }}
     {{ $leadJs = $leadJs | minify | fingerprint }}
@@ -116,7 +115,8 @@
     {{ end }}
     {{ end }}
 
-    {{ if eq .Layout "lp-bundle" }}
+    {{/* Blog posts show the bundle signup below the article, see partials/blog/signup.html */}}
+    {{ if or (eq .Layout "lp-bundle") (and (eq .Section "blog") .IsPage) }}
     {{ $bundleJs := resources.Get "js/lead-bundle.js" }}
     {{ if hugo.IsProduction }}
     {{ $bundleJs = $bundleJs | minify }}
