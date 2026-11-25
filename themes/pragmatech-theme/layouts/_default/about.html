@@ -70,13 +70,10 @@
         </div>
         <ul class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {{ range .items }}
-            <li>
-                <a href="{{ .path | relURL }}" class="group flex h-full flex-col rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-colors hover:border-brand-500">
-                    <span class="text-[11px] font-bold tracking-[0.18em] uppercase text-brand-600 mb-3">{{ .stages }}</span>
-                    <span class="text-lg font-bold text-slate-900 mb-2">{{ .title }}</span>
-                    <span class="text-sm text-slate-600 leading-relaxed">{{ .text }}</span>
-                    <span class="mt-auto pt-4 text-sm font-semibold text-brand-600" aria-hidden="true">Learn more &rarr;</span>
-                </a>
+            <li class="flex flex-col rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+                <span class="text-[11px] font-bold tracking-[0.18em] uppercase text-brand-600 mb-3">{{ .stages }}</span>
+                <h3 class="text-lg font-bold text-slate-900 mb-2">{{ .title }}</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">{{ .text }}</p>
             </li>
             {{ end }}
         </ul>
