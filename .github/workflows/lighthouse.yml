@@ -36,15 +36,12 @@ jobs:
       - name: Build the site
         run: hugo --gc --minify
 
-      - name: Install Playwright Chromium
-        run: npx playwright install --with-deps chromium
-
       # Pages, runs and score limits: lighthouserc.json. Lighthouse CI is not a package.json
       # dependency, so that Netlify does not install it on every build.
+      # Lighthouse uses the runner's preinstalled Google Chrome on purpose: Ubuntu's AppArmor
+      # rules block the sandbox of a downloaded Chromium (such as Playwright's).
       - name: Lighthouse (homepage, agentic testing course, bundle landing page)
-        run: |
-          export CHROME_PATH="$(node -e "console.log(require('@playwright/test').chromium.executablePath())")"
-          npx --yes @lhci/cli@0.16.1 autorun
+        run: npx --yes @lhci/cli@0.16.1 autorun
 
       - name: Upload Lighthouse reports
         if: always()
