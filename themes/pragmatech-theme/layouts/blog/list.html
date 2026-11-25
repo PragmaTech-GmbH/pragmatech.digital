@@ -1,0 +1,41 @@
+{{ define "main" }}
+<div class="blog">
+    <div class="blog-archive">
+        <header class="blog-archive__header">
+            <h1 class="blog-archive__title">{{ .Title }}</h1>
+            {{ with .Description }}<p class="blog-archive__description">{{ . }}</p>{{ end }}
+        </header>
+
+        {{ range .RegularPages.GroupByDate "2006" }}
+        <section class="blog-archive__year">
+            <h2 class="blog-archive__year-title">{{ .Key }}<sup class="blog-archive__count">{{ len .Pages }}</sup></h2>
+
+            {{ range .Pages.GroupByDate "January" }}
+            <div class="blog-archive__month">
+                <h3 class="blog-archive__month-title">{{ .Key }}<sup class="blog-archive__count">{{ len .Pages }}</sup></h3>
+
+                <ul class="blog-archive__entries">
+                    {{ range .Pages }}
+                    {{ $author := index site.Data.authors (.Params.author | default "philip") }}
+                    <li>
+                        <article class="blog-entry">
+                            <h4 class="blog-entry__title"><a href="{{ .RelPermalink }}" class="blog-entry__link">{{ .Title }}</a></h4>
+                            <p class="blog-entry__summary">{{ .Params.summary | default (.Summary | plainify | truncate 180) }}</p>
+                            <p class="blog-entry__meta">
+                                <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+                                <span aria-hidden="true">·</span> {{ .ReadingTime }} min
+                                <span aria-hidden="true">·</span> {{ $author.name }}
+                            </p>
+                        </article>
+                    </li>
+                    {{ end }}
+                </ul>
+            </div>
+            {{ end }}
+        </section>
+        {{ else }}
+        <p class="blog-archive__empty">The first articles are on the way.</p>
+        {{ end }}
+    </div>
+</div>
+{{ end }}

@@ -1,0 +1,31 @@
+{{/*
+  Returns the social preview image path (LinkedIn, X, Slack, JSON-LD) of a blog page.
+
+  1. Front matter "share_image" wins, for a hand-made image.
+  2. Otherwise Hugo draws the title on the themed template during the build: no extra pipeline step.
+
+  Template files in assets/og: blog-card.png (1200x630 background with logo and footer),
+  blog-title-layer.png (transparent 1040x340 canvas, its width limits the line length) and the font.
+*/}}
+{{ $sharePath := .Params.share_image }}
+{{ if not $sharePath }}
+    {{ if .IsPage }}
+        {{ $background := resources.Get "og/blog-card.png" }}
+        {{ $titleLayer := resources.Get "og/blog-title-layer.png" }}
+        {{ $titleFont := resources.Get "og/Lato-Bold.ttf" }}
+
+        {{/* "shareTitle" is an optional shorter title for the image. Long titles get a smaller font. */}}
+        {{ $title := .Params.shareTitle | default .Title }}
+        {{ $fontSize := 76 }}
+        {{ if gt (strings.RuneCount $title) 45 }}{{ $fontSize = 66 }}{{ end }}
+        {{ if gt (strings.RuneCount $title) 70 }}{{ $fontSize = 56 }}{{ end }}
+
+        {{ $titleImage := $titleLayer.Filter (images.Text $title (dict
+            "color" "#ffffff" "size" $fontSize "linespacing" 14 "x" 0 "y" 0 "font" $titleFont)) }}
+        {{ $card := $background.Filter (images.Overlay $titleImage 80 200) }}
+        {{ $sharePath = $card.RelPermalink }}
+    {{ else }}
+        {{ $sharePath = site.Params.defaultShareImage }}
+    {{ end }}
+{{ end }}
+{{ return $sharePath }}

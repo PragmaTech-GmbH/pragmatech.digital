@@ -2,6 +2,7 @@
 @import "components/markdown.css";
 @import "components/content-sections.css";
 @import "components/fonts.css";
+@import "components/blog.css";
 
 @source "hugo_stats.json";
 

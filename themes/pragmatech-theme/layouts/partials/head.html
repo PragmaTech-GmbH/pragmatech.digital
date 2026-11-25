@@ -19,6 +19,7 @@
     
     <!-- Social Sharing Meta Tags -->
     {{ $shareImage := .Params.share_image | default "/images/pragmatech-social-banner.png" }}
+    {{ if eq .Section "blog" }}{{ $shareImage = partial "blog/share-image.html" . }}{{ end }}
     {{ $imagePrefix := strings.TrimSuffix "/" .Site.BaseURL }}
     {{ $fullImagePath := printf "%s%s" $imagePrefix $shareImage }}
     {{ $pageTitle := cond .IsHome .Site.Title .Title }}
@@ -27,6 +28,7 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
     <meta property="og:url" content="{{ .Permalink }}">
+    <meta property="og:site_name" content="{{ .Site.Params.company.name }}">
     <meta property="og:title" content="{{ $pageTitle }}">
     <meta property="og:description" content="{{ $desc }}">
     <meta property="og:image" content="{{ $fullImagePath }}">
@@ -98,7 +100,8 @@
     <script src="{{ $demoJs.RelPermalink }}" defer></script>
     {{ end }}
 
-    {{ if in (slice "lp-lead-magnet" "lp-webinar") .Layout }}
+    {{/* Blog posts: the signup below the article uses the same script as the landing pages */}}
+    {{ if or (in (slice "lp-lead-magnet" "lp-webinar") .Layout) (and (eq .Section "blog") .IsPage) }}
     {{ $leadJs := resources.Get "js/lead-signup.js" }}
     {{ if hugo.IsProduction }}
     {{ $leadJs = $leadJs | minify | fingerprint }}
@@ -121,6 +124,17 @@
     {{/* Always fingerprint: JS is served with a 1 year immutable cache. */}}
     {{ $bundleJs = $bundleJs | fingerprint }}
     <script src="{{ $bundleJs.RelPermalink }}" defer></script>
+    {{ end }}
+
+    {{ if eq .Section "blog" }}
+    {{ partial "blog/seo.html" . }}
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;1,400&family=Lato:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    {{ $blogJs := resources.Get "js/blog.js" }}
+    {{ if hugo.IsProduction }}
+    {{ $blogJs = $blogJs | minify }}
+    {{ end }}
+    {{ $blogJs = $blogJs | fingerprint }}
+    <script src="{{ $blogJs.RelPermalink }}" defer></script>
     {{ end }}
 
     {{ if eq .Layout "convince-your-manager" }}

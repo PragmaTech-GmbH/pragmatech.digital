@@ -1,0 +1,70 @@
+{{/*
+  Newsletter signup below every blog post. Content: data/blogSignup.yaml, key "footer".
+  The submit handling is shared with the landing pages (assets/js/lead-signup.js), which finds the
+  form through the lead-signup-* ids. Use only one such form per page.
+*/}}
+{{ with site.Data.blogSignup.footer }}
+{{ if or .enabled hugo.IsDevelopment }}
+{{ $mailchimp := site.Params.mailchimp }}
+{{ $tagId := "" }}
+{{ with .tagKey }}{{ $tagId = index $mailchimp . }}{{ end }}
+{{ if and .enabled (not $tagId) }}
+    {{ errorf "data/blogSignup.yaml: footer is enabled, but tagKey does not match a tag id in params.mailchimp (hugo.yaml)" }}
+{{ end }}
+<section class="blog-signup" id="blog-signup" aria-labelledby="blog-signup-title">
+    <h2 class="blog-signup__title" id="blog-signup-title"><span>{{ .title }}</span></h2>
+
+    <div class="blog-signup__body">
+        <div class="blog-signup__media">
+            {{ if .image }}
+            <picture>
+                {{ with .imageWebp }}<source srcset="{{ . }}" type="image/webp">{{ end }}
+                <img src="{{ .image }}" alt="{{ .imageAlt }}" class="blog-signup__image" loading="lazy">
+            </picture>
+            {{ else }}
+            <div class="blog-signup__placeholder" aria-hidden="true">Cover image</div>
+            {{ end }}
+        </div>
+
+        <div class="blog-signup__content">
+            <div class="blog-signup__text">{{ .text | markdownify }}</div>
+
+            <form class="blog-signup__form"
+                  {{ if .enabled }}
+                  id="lead-signup-form"
+                  action="{{ $mailchimp.actionUrl | safeURL }}"
+                  method="post"
+                  target="_blank"
+                  data-action-url="{{ $mailchimp.actionUrl }}"
+                  data-tag-id="{{ $tagId }}"
+                  data-honeypot="b_{{ $mailchimp.u }}_{{ $mailchimp.id }}"
+                  data-campaign="{{ .campaign }}"
+                  data-thank-you-url="{{ .thankYouUrl }}"
+                  {{ end }}
+                  novalidate>
+                <label for="blog-signup-email" class="sr-only">Email address</label>
+                <input type="email" name="EMAIL" id="blog-signup-email" class="blog-signup__input" required autocomplete="email" placeholder="{{ .emailPlaceholder }}">
+
+                {{ if .enabled }}
+                <input type="hidden" name="tags" value="{{ $tagId }}">
+                {{/* Mailchimp bot honeypot: keep the exact b_<u>_<id> name, off-screen instead of display:none. */}}
+                <div class="blog-signup__honeypot" aria-hidden="true">
+                    <input type="text" name="b_{{ $mailchimp.u }}_{{ $mailchimp.id }}" tabindex="-1" value="" autocomplete="off">
+                </div>
+                {{ end }}
+
+                <button class="blog-signup__button" {{ if .enabled }}type="submit" id="lead-signup-submit"{{ else }}type="button"{{ end }}>{{ .button }}</button>
+            </form>
+
+            {{ if .enabled }}
+            <p id="lead-signup-success" class="hidden blog-signup__message" role="status">{{ .success }}</p>
+            <p id="lead-signup-already" class="hidden blog-signup__message" role="status">{{ .already }}</p>
+            <p id="lead-signup-error" class="hidden blog-signup__error" role="alert"></p>
+            {{ end }}
+
+            {{ with .note }}<p class="blog-signup__note">{{ . | markdownify }}</p>{{ end }}
+        </div>
+    </div>
+</section>
+{{ end }}
+{{ end }}

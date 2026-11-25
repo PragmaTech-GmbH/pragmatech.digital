@@ -86,6 +86,12 @@ framework = "#custom"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+# The Markdown copies of blog posts are for AI tools, search engines must index the HTML page only
+[[headers]]
+  for = "/blog/:slug/index.md"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
 # General security headers for all other pages (least specific)
 [[headers]]
   for = "/*"

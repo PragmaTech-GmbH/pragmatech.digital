@@ -1,0 +1,615 @@
+/*
+ * Blog: archive, post layout, article typography and IntelliJ code highlighting.
+ * The rules are unlayered on purpose, so they win over the global h1-h6 base styles.
+ */
+
+.blog {
+    --blogBackground: #ffffff;
+    --blogSurface: #f8fafc;
+    --blogBorder: #e5e7eb;
+    --blogText: #262626;
+    --blogHeading: #0a0a0a;
+    --blogMuted: #64748b;
+    --blogLink: #0369a1;
+    --blogHeadingFont: 'Lato', system-ui, sans-serif;
+    --blogBodyFont: 'Lato', system-ui, sans-serif;
+    --blogUiFont: 'Lato', system-ui, sans-serif;
+    --blogCodeFont: 'JetBrains Mono', ui-monospace, monospace;
+    --blogBodySize: 1.125rem;
+    --blogBodyLineHeight: 1.75;
+
+    /* IntelliJ Light */
+    --codeBackground: #fdfdfd;
+    --codeToolbar: #f4f4f4;
+    --codeBorder: #dcdcdc;
+    --codeText: #000000;
+    --codeLineNumber: #767676;
+    --codeKeyword: #000080;
+    --codeString: #008000;
+    --codeNumber: #0828fb;
+    --codeComment: #808080;
+    --codeAnnotation: #808000;
+    --codeTag: #000080;
+    --codeAttribute: #0000ff;
+    --codeProperty: #000080;
+
+    background: var(--blogBackground);
+    color: var(--blogText);
+    font-family: var(--blogBodyFont);
+    letter-spacing: normal;
+}
+
+.blog :is(h1, h2, h3, h4) {
+    font-family: var(--blogHeadingFont);
+    color: var(--blogHeading);
+    letter-spacing: -0.01em;
+}
+
+/* ---------- Archive ---------- */
+.blog-archive {
+    max-width: 56rem;
+    margin: 0 auto;
+    padding: 3.5rem 1.5rem 5rem;
+}
+
+.blog-archive__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.blog-archive__description,
+.blog-archive__empty {
+    margin-top: 0.5rem;
+    color: var(--blogMuted);
+}
+
+.blog-archive__year {
+    margin-top: 3rem;
+}
+
+.blog-archive__year-title {
+    font-size: 1.875rem;
+    font-weight: 700;
+}
+
+.blog-archive__count {
+    margin-left: 0.4rem;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--blogMuted);
+}
+
+.blog-archive__month {
+    display: grid;
+    gap: 0.75rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--blogBorder);
+}
+
+.blog-archive__month-title {
+    font-size: 1.35rem;
+    font-weight: 400;
+}
+
+.blog-archive__entries {
+    display: grid;
+    gap: 2rem;
+}
+
+.blog-entry {
+    position: relative;
+}
+
+.blog-entry__title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+/* Stretched link: the whole entry is clickable, the heading stays the link text. */
+.blog-entry__link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+}
+
+.blog-entry:hover .blog-entry__link {
+    color: var(--blogLink);
+}
+
+.blog-entry__summary {
+    margin-top: 0.4rem;
+    font-size: 1rem;
+    line-height: 1.65;
+}
+
+.blog-entry__meta {
+    margin-top: 0.5rem;
+    font-family: var(--blogUiFont);
+    font-size: 0.875rem;
+    color: var(--blogMuted);
+}
+
+@media (min-width: 768px) {
+    .blog-archive__month {
+        grid-template-columns: 10rem minmax(0, 1fr);
+    }
+}
+
+/* ---------- Post layout: 3/4 article, 1/4 sticky sidebar ---------- */
+.blog-post {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 3rem;
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem 5rem;
+}
+
+@media (min-width: 1024px) {
+    .blog-post {
+        grid-template-columns: minmax(0, 3fr) minmax(0, 1fr);
+        padding-inline: 2rem;
+    }
+
+    /* 80px navbar plus spacing. The aside stretches over the row, so the box can stick. */
+    .blog-post__sidebar {
+        position: sticky;
+        top: 6.5rem;
+        max-height: calc(100vh - 8rem);
+        overflow-y: auto;
+    }
+}
+
+.blog-post__header {
+    margin-bottom: 2.5rem;
+}
+
+.blog-post__back {
+    font-family: var(--blogUiFont);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--blogLink);
+}
+
+.blog .blog-post__title {
+    margin-top: 0.75rem;
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.blog-byline {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    margin-top: 1.25rem;
+    font-family: var(--blogUiFont);
+}
+
+.blog-byline picture {
+    flex-shrink: 0;
+}
+
+.blog-byline__avatar {
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: 9999px;
+    object-fit: cover;
+}
+
+.blog-byline__name {
+    font-weight: 700;
+    color: var(--blogHeading);
+    line-height: 1.4;
+}
+
+.blog-byline__meta {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 0.4rem;
+    font-size: 0.875rem;
+    color: var(--blogMuted);
+}
+
+/* Course banner between the author byline and the article text */
+.blog-post__course-banner {
+    margin-top: 1.75rem;
+}
+
+/* ---------- Sidebar placeholder ---------- */
+.blog-promo {
+    padding: 1.5rem;
+    border: 2px dashed var(--blogBorder);
+    border-radius: 0.75rem;
+    background: var(--blogSurface);
+    font-family: var(--blogUiFont);
+    text-align: center;
+}
+
+.blog-promo__eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--blogLink);
+}
+
+.blog-promo__title {
+    margin-top: 0.5rem;
+    font-family: var(--blogHeadingFont);
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--blogHeading);
+}
+
+.blog-promo__visual {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 4 / 3;
+    margin-top: 1rem;
+    border: 1px solid var(--blogBorder);
+    border-radius: 0.5rem;
+    background: var(--blogBackground);
+    font-size: 0.85rem;
+    color: var(--blogMuted);
+}
+
+.blog-promo__text {
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.blog-promo__button {
+    display: block;
+    margin-top: 1rem;
+    padding: 0.7rem 1rem;
+    border-radius: 0.5rem;
+    background: linear-gradient(to right, var(--color-brand-600), var(--color-brand-500));
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.blog-promo__image {
+    width: 100%;
+    height: auto;
+    margin-top: 1rem;
+    border-radius: 0.5rem;
+}
+
+/* ---------- Signup box below the article ---------- */
+.blog-signup {
+    margin-top: 3.5rem;
+    padding: 2rem 1.25rem;
+    border-radius: 0.5rem;
+    background: #f7f7f7;
+    scroll-margin-top: 6rem;
+}
+
+.blog .blog-signup__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.5;
+    text-align: center;
+}
+
+/* Brand blue underline that follows each line of the title */
+.blog-signup__title span {
+    text-decoration: underline;
+    text-decoration-color: var(--color-brand-500);
+    text-decoration-thickness: 3px;
+    text-underline-offset: 6px;
+    text-decoration-skip-ink: none;
+}
+
+.blog-signup__body {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.blog-signup__media {
+    width: 100%;
+    max-width: 13rem;
+    margin-inline: auto;
+}
+
+.blog-signup__image {
+    width: 100%;
+    height: auto;
+}
+
+.blog-signup__placeholder {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 2 / 3;
+    border: 2px dashed #d4d4d4;
+    background: #ffffff;
+    font-size: 0.85rem;
+    color: var(--blogMuted);
+}
+
+.blog-signup__text {
+    line-height: 1.7;
+}
+
+.blog-signup__text p + p {
+    margin-top: 0.75rem;
+}
+
+.blog-signup__text a,
+.blog-signup__note a {
+    color: var(--blogLink);
+    text-decoration: underline;
+}
+
+.blog-signup__form {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+}
+
+.blog-signup__input {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 1px solid #d4d4d4;
+    border-radius: 0.375rem;
+    background: #ffffff;
+    font-size: 1rem;
+}
+
+.blog-signup__honeypot {
+    position: absolute;
+    left: -5000px;
+}
+
+.blog-signup__button {
+    padding: 0.85rem 1rem;
+    border-radius: 0.375rem;
+    /* Same gradient as the "Speed Up Your Builds" button in the navbar */
+    background: linear-gradient(to right, var(--color-brand-600), var(--color-brand-500));
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.blog-signup__button:hover {
+    background: var(--color-brand-600);
+}
+
+.blog-signup__button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.blog-signup__message {
+    margin-top: 1.25rem;
+    font-weight: 700;
+    color: #047857;
+}
+
+.blog-signup__error {
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+    color: #dc2626;
+}
+
+.blog-signup__note {
+    margin-top: 0.75rem;
+    font-size: 0.8rem;
+    color: var(--blogMuted);
+}
+
+@media (min-width: 768px) {
+    .blog-signup {
+        padding: 2rem 2.5rem 2.5rem;
+    }
+
+    .blog-signup__body {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+        align-items: center;
+        gap: 2.5rem;
+    }
+}
+
+/* The message paragraphs and the form are toggled with Tailwind's "hidden" by lead-signup.js */
+.blog-signup .hidden {
+    display: none;
+}
+
+/* ---------- Article typography ---------- */
+.blog-prose {
+    font-size: var(--blogBodySize);
+    line-height: var(--blogBodyLineHeight);
+    overflow-wrap: break-word;
+}
+
+.blog-prose > * + * {
+    margin-top: 1.25rem;
+}
+
+.blog .blog-prose h2 {
+    margin-top: 2.75rem;
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.3;
+    scroll-margin-top: 6rem;
+}
+
+.blog .blog-prose h3 {
+    margin-top: 2rem;
+    font-size: 1.375rem;
+    font-weight: 700;
+    line-height: 1.35;
+    scroll-margin-top: 6rem;
+}
+
+.blog-prose a {
+    color: var(--blogLink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.blog-prose strong {
+    color: var(--blogHeading);
+}
+
+.blog-prose a strong {
+    color: inherit;
+}
+
+.blog-prose ul {
+    list-style: disc;
+    padding-left: 1.75rem;
+}
+
+.blog-prose ol {
+    list-style: decimal;
+    padding-left: 1.75rem;
+}
+
+.blog-prose li + li {
+    margin-top: 0.4rem;
+}
+
+.blog-prose blockquote {
+    padding: 0.25rem 0 0.25rem 1.25rem;
+    border-left: 4px solid var(--blogLink);
+    font-style: italic;
+    color: var(--blogMuted);
+}
+
+.blog-prose img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+}
+
+.blog-prose table {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    font-family: var(--blogUiFont);
+    font-size: 0.95rem;
+}
+
+.blog-prose :is(th, td) {
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--blogBorder);
+    text-align: left;
+}
+
+.blog-prose th {
+    background: var(--blogSurface);
+    color: var(--blogHeading);
+}
+
+.blog-prose :not(pre) > code {
+    padding: 0.1rem 0.35rem;
+    border: 1px solid var(--blogBorder);
+    border-radius: 0.3rem;
+    background: var(--blogSurface);
+    font-family: var(--blogCodeFont);
+    font-size: 0.85em;
+    color: var(--blogHeading);
+}
+
+/* ---------- Code blocks ---------- */
+.blog-code {
+    overflow: hidden;
+    border: 1px solid var(--codeBorder);
+    border-radius: 0.5rem;
+    background: var(--codeBackground);
+}
+
+.blog-code__toolbar {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.35rem 0.75rem;
+    border-bottom: 1px solid var(--codeBorder);
+    background: var(--codeToolbar);
+    font-family: var(--blogCodeFont);
+    font-size: 0.8rem;
+    line-height: 1.6;
+    color: var(--codeText);
+}
+
+.blog-code__filename {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.blog-code__language {
+    color: var(--codeLineNumber);
+}
+
+.blog-code__copy {
+    padding: 0.05rem 0.55rem;
+    border: 1px solid var(--codeBorder);
+    border-radius: 0.3rem;
+    background: var(--codeBackground);
+    cursor: pointer;
+}
+
+.blog-code pre {
+    margin: 0;
+    padding: 0; /* no gap: the line number gutter runs from the toolbar to the bottom edge */
+    overflow-x: auto;
+    background: var(--codeBackground);
+    color: var(--codeText);
+    font-family: var(--blogCodeFont);
+    font-size: 0.85rem;
+    line-height: 1.375rem; /* whole pixels, so the gutter rows join without seams */
+    tab-size: 4;
+}
+
+.blog-code pre code {
+    display: block;
+    width: max-content;
+    min-width: 100%;
+    font-family: inherit;
+    font-variant-ligatures: none;
+}
+
+.blog-code .line {
+    display: flex;
+}
+
+.blog-code .cl {
+    padding-right: 1rem;
+}
+
+.blog-code .ln {
+    position: sticky;
+    left: 0;
+    flex-shrink: 0;
+    min-width: 3.25rem;
+    margin-right: 0.75rem;
+    padding-right: 0.75rem;
+    background: var(--codeToolbar);
+    color: var(--codeLineNumber);
+    text-align: right;
+    user-select: none;
+}
+
+/* Chroma token classes mapped to the IntelliJ palette */
+.blog-code .chroma :is(.k, .kc, .kd, .kn, .kp, .kr, .kt) { color: var(--codeKeyword); font-weight: 700; }
+.blog-code .chroma :is(.s, .sa, .sb, .sc, .dl, .sd, .s2, .se, .sh, .si, .sx, .sr, .s1, .ss) { color: var(--codeString); }
+.blog-code .chroma :is(.m, .mb, .mf, .mh, .mi, .il, .mo) { color: var(--codeNumber); }
+.blog-code .chroma :is(.c, .ch, .cm, .c1, .cs, .cp, .cpf) { color: var(--codeComment); }
+.blog-code .chroma .nd { color: var(--codeAnnotation); font-style: italic; }
+.blog-code .chroma .nt { color: var(--codeTag); font-weight: 700; }
+.blog-code .chroma .na { color: var(--codeAttribute); }
+
+/* Java: the Chroma lexer marks method calls as .na, IntelliJ keeps them plain */
+.blog-code .chroma .language-java .na { color: inherit; }
+
+/* YAML keys are .nt: IntelliJ shows them like properties */
+.blog-code .chroma .language-yaml .nt { color: var(--codeProperty); }

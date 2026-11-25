@@ -1,0 +1,20 @@
+# {{ site.Params.company.name }}
+
+> {{ site.Params.description }}
+
+PragmaTech GmbH helps teams test Java and Spring Boot applications, speed up their builds and work with AI coding agents. Founder: {{ site.Params.company.managingDirector }}.
+
+## Offerings
+
+{{ range slice "/agentic-spring-boot-testing-course" "/workshops" "/services" "/products/spring-test-profiler" "/about" -}}
+{{ with site.GetPage . -}}
+- [{{ .Title }}]({{ .Permalink }}){{ with .Description }}: {{ . }}{{ end }}
+{{ end -}}
+{{ end }}
+## Blog
+
+{{ range (where site.RegularPages "Section" "blog").ByDate.Reverse -}}
+{{ $url := .Permalink -}}
+{{ with .OutputFormats.Get "markdown" }}{{ $url = .Permalink }}{{ end -}}
+- [{{ .Title }}]({{ $url }}) ({{ .Date.Format "2006-01-02" }}): {{ .Description | default .Params.summary }}
+{{ end -}}

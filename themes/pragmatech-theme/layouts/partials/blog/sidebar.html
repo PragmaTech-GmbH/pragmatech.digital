@@ -1,0 +1,19 @@
+{{/* Lead magnet box in the sticky right bar. Content: data/blogSignup.yaml, key "sidebar". */}}
+{{ with site.Data.blogSignup.sidebar }}
+{{ if or .enabled hugo.IsDevelopment }}
+<div class="blog-promo">
+    {{ with .eyebrow }}<p class="blog-promo__eyebrow">{{ . }}</p>{{ end }}
+    <p class="blog-promo__title">{{ .title }}</p>
+    {{ if .image }}
+    <picture>
+        {{ with .imageWebp }}<source srcset="{{ . }}" type="image/webp">{{ end }}
+        <img src="{{ .image }}" alt="{{ .imageAlt }}" class="blog-promo__image" loading="lazy">
+    </picture>
+    {{ else }}
+    <div class="blog-promo__visual" aria-hidden="true">Cover image</div>
+    {{ end }}
+    <p class="blog-promo__text">{{ .text }}</p>
+    <a href="{{ .url }}" class="blog-promo__button">{{ .button }}</a>
+</div>
+{{ end }}
+{{ end }}

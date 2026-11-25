@@ -1,0 +1,10 @@
+philip:
+  name: "Philip Riecks"
+  role: "Founder of PragmaTech"
+  image: "/images/authors/philip-riecks.jpeg"
+  imageWebp: "/generated/images/authors/philip-riecks.webp"
+  # Used for the structured data (JSON-LD) of blog posts: who the author is across the web.
+  url: "https://rieckpil.de/"
+  sameAs:
+    - "https://rieckpil.de/"
+    - "https://www.youtube.com/@rieckpil"
