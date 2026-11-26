@@ -1,0 +1,41 @@
+{{ define "main" }}
+{{/* Landing page of the skills blueprint: hero with signup form, a drawing of the blueprint
+     and a toolbox of the skills. All copy lives in data/lead_skills_blueprint.yaml. */}}
+{{ $data := site.Data.lead_skills_blueprint }}
+
+<section class="blueprint-grid">
+    {{/* Brand mark without a link: the only way forward on this page is the form. */}}
+    <div data-lp="brand" class="flex items-center justify-center gap-3 pt-6">
+        <img src="{{ "images/logo.png" | relURL }}" alt="" class="h-8 w-auto">
+        <span class="font-bold text-lg text-white tracking-tight">Pragma<span class="text-brand-400">Tech</span></span>
+    </div>
+
+    {{/* DOM order copy, form is the mobile order: visitors from a talk reach the form early. */}}
+    <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16 grid lg:grid-cols-3 gap-x-12 gap-y-8 items-center">
+        <div data-lp="copy" class="lg:col-span-2">
+            <p class="inline-block px-4 py-1.5 mb-5 rounded-full bg-brand-500/10 border border-brand-500/30 text-[11px] font-bold tracking-[0.18em] uppercase text-brand-400">{{ $data.badge }}</p>
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-5 leading-[1.08] text-balance">
+                {{ $data.headline }}
+                <span class="text-brand-400">{{ $data.highlight }}</span>
+            </h1>
+            <p class="text-lg text-slate-300 mb-6 leading-relaxed">{{ $data.subheadline }}</p>
+            <ul class="space-y-2 mb-8">
+                {{ range $data.bullets }}
+                <li class="flex items-start gap-3 text-slate-200">
+                    <span class="flex-shrink-0 inline-flex items-center justify-center w-6 h-6 rounded-full bg-emerald-500/15 text-emerald-400" aria-hidden="true">&#10003;</span>
+                    <span>{{ . }}</span>
+                </li>
+                {{ end }}
+            </ul>
+            <p class="text-[11px] font-bold tracking-[0.18em] uppercase text-slate-400 mb-3">{{ $data.worksWithLabel }}</p>
+            {{ partial "lp-blueprint/tool-icons.html" (dict "tools" $data.tools "class" "text-white") }}
+        </div>
+        <div id="get-blueprint" class="scroll-mt-6">
+            {{ partial "lp-bundle/form.html" (dict "bundle" $data) }}
+        </div>
+    </div>
+</section>
+
+{{ partial "lp-blueprint/drawing.html" $data }}
+{{ partial "lp-blueprint/toolbox.html" $data }}
+{{ end }}

@@ -69,9 +69,9 @@ This data is not merged with other data sources.
 
 If you submit inquiries to us via our contact form, the information provided in the contact form as well as any contact information provided therein will be stored by us in order to handle your inquiry and in the event that we have further questions. We will not share this information without your consent.
 
-### Download of free reports
+### Download of free reports and other resources
 
-If you request our free reports, we collect your name, company and email address. With your request, we also collect where your signup comes from: the campaign parameters in the address of the page with the signup form (utm_source, utm_medium and utm_campaign), the host name of the website that referred you to this page (not the full address), and the path of the page with the form. If a value is not available, it stays empty. We do not use cookies or other storage on your device for this. We use this data to understand which channels lead to signups. We transmit all of this data to our email service provider MailerLite, which stores it with your subscriber record, to send you the reports. The legal basis is your consent (Art. 6 (1) (a) GDPR). You can withdraw your consent at any time, for example with the unsubscribe link in our emails.
+If you request our free reports or other free resources, for example a blueprint, we collect your name and email address, and your company if the signup form asks for it. With your request, we also collect where your signup comes from: the campaign parameters in the address of the page with the signup form (utm_source, utm_medium and utm_campaign), the host name of the website that referred you to this page (not the full address), and the path of the page with the form. If a value is not available, it stays empty. We do not use cookies or other storage on your device for this. We use this data to understand which channels lead to signups. We transmit all of this data to our email service provider MailerLite, which stores it with your subscriber record, to send you the requested documents and related emails about our services. The legal basis is your consent (Art. 6 (1) (a) GDPR). You can withdraw your consent at any time, for example with the unsubscribe link in our emails.
 
 ## 5. Plugins and Tools
 

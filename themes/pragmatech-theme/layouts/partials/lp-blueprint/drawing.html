@@ -1,0 +1,48 @@
+{{/* The blueprint as a drawing: base decisions, anatomy of one skill, the set of skills.
+     Call with the lead_skills_blueprint data. */}}
+{{ $drawing := .blueprint }}
+<section data-lp="blueprint" aria-labelledby="blueprint-title" class="bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20">
+        <div class="text-center max-w-3xl mx-auto mb-10">
+            <p class="text-[11px] font-bold tracking-[0.18em] uppercase text-brand-900 mb-3">{{ $drawing.eyebrow }}</p>
+            <h2 id="blueprint-title" class="text-3xl md:text-4xl font-bold text-slate-900 mb-3 text-balance">{{ $drawing.title }}</h2>
+            <p class="text-lg text-slate-600">{{ $drawing.intro }}</p>
+        </div>
+
+        <ol class="lp-blueprint__steps">
+            <li class="lp-blueprint__step">
+                <h3 class="lp-blueprint__step-title"><span class="lp-blueprint__step-number">1</span>{{ $drawing.decisionsTitle }}</h3>
+                <ul class="grid grid-cols-2 gap-2">
+                    {{ range $drawing.decisions }}
+                    <li class="rounded-md border border-dashed border-brand-500/60 bg-white px-3 py-2 text-xs font-semibold text-slate-700">{{ . }}</li>
+                    {{ end }}
+                </ul>
+                <p class="lp-blueprint__step-note">{{ $drawing.decisionsNote }}</p>
+            </li>
+            <li class="lp-blueprint__step">
+                <h3 class="lp-blueprint__step-title"><span class="lp-blueprint__step-number">2</span>{{ $drawing.anatomyTitle }}</h3>
+                <div class="rounded-lg bg-slate-900 p-4 font-mono text-xs leading-7 text-slate-200 overflow-x-auto">
+                    <div>{{ $drawing.anatomyFolder }}</div>
+                    <div class="whitespace-pre">├── <span class="font-bold text-brand-400">SKILL.md</span></div>
+                    <div class="whitespace-pre">└── references/</div>
+                    {{ $lastFileIndex := sub (len $drawing.anatomyFiles) 1 }}
+                    {{ range $fileIndex, $fileName := $drawing.anatomyFiles }}
+                    <div class="whitespace-pre">    {{ if eq $fileIndex $lastFileIndex }}└──{{ else }}├──{{ end }} {{ $fileName }}</div>
+                    {{ end }}
+                </div>
+                <p class="lp-blueprint__step-note">{{ $drawing.anatomyNote }}</p>
+            </li>
+            <li class="lp-blueprint__step">
+                <h3 class="lp-blueprint__step-title"><span class="lp-blueprint__step-number">3</span>{{ $drawing.patternTitle }}</h3>
+                <div class="rounded-md bg-slate-900 px-3 py-2 text-center font-mono text-xs font-bold text-brand-400">{{ $drawing.router }}</div>
+                <div class="mx-auto h-4 w-0 border-l-2 border-dashed border-brand-500/60" aria-hidden="true"></div>
+                <ul data-lp="skills" class="space-y-1.5">
+                    {{ range .skills }}
+                    <li class="rounded-md border px-3 py-1.5 font-mono text-xs {{ if eq . "integration-testing" }}border-brand-500 bg-brand-100 font-bold text-brand-900{{ else }}border-slate-200 bg-white text-slate-700{{ end }}">{{ . }}</li>
+                    {{ end }}
+                </ul>
+                <p class="lp-blueprint__step-note">{{ $drawing.patternNote }}</p>
+            </li>
+        </ol>
+    </div>
+</section>

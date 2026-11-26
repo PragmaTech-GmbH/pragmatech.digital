@@ -74,6 +74,13 @@ framework = "#custom"
   status = 301
   force = true
 
+# Short link for talk slides. Netlify keeps the query string, for example utm parameters.
+[[redirects]]
+  from = "/blueprint"
+  to = "/lp/spring-boot-testing-skills-blueprint/"
+  status = 302
+  force = true
+
 # Specific asset caching
 [[headers]]
   for = "*.js"

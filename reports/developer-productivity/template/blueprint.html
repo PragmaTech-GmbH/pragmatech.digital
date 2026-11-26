@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>The Spring Boot Testing Skills Blueprint - PragmaTech</title>
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="styles-editorial.css" />
+  <style>
+    h2.title { font-size: 25pt; margin: 2mm 0 3mm; line-height: 1.05; }
+    .intro { font-size: 10.5pt; color: var(--slate-600); max-width: 168mm; }
+    .grid-paper {
+      background-color: var(--slate-900);
+      background-image:
+        linear-gradient(rgba(56,189,248,0.09) 0.25mm, transparent 0.25mm),
+        linear-gradient(90deg, rgba(56,189,248,0.09) 0.25mm, transparent 0.25mm);
+      background-size: 6mm 6mm;
+    }
+
+    /* cover */
+    .bp-cover { color: #fff; display: flex; flex-direction: column; }
+    .bp-brand { display: flex; align-items: center; gap: 2.5mm; font-weight: 700; margin-bottom: 11mm; }
+    .bp-brand img { height: 7mm; }
+    .bp-cover h1 { font-size: 40pt; line-height: 1.04; color: #fff; margin: 4mm 0 5mm; }
+    .bp-cover h1 span { color: var(--brand-400); }
+    .bp-cover .sub { font-size: 12.5pt; color: var(--slate-300); max-width: 158mm; }
+    .definition { border: 0.4mm solid var(--brand-500); background: rgba(14,165,233,0.12); border-radius: 1.5mm; padding: 4.5mm 5mm; margin-top: 6mm; }
+    .definition p { font-size: 10.5pt; color: #fff; }
+    .definition .eyebrow { margin-bottom: 1.5mm; color: var(--brand-400); }
+    .cover-path { display: grid; grid-template-columns: 1fr 7mm 1fr 7mm 1fr; align-items: stretch; margin-top: 8mm; }
+    .cover-path .node { border: 0.4mm dashed var(--brand-400); border-radius: 1.5mm; padding: 3.5mm; background: var(--slate-900); }
+    .cover-path .node b { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 11pt; margin-bottom: 1mm; }
+    .cover-path .node span { display: block; font-size: 8.5pt; color: var(--slate-300); line-height: 1.4; }
+    .cover-path .arrow { display: flex; align-items: center; justify-content: center; color: var(--brand-400); font-size: 14pt; }
+    .tool-row { margin-top: auto; padding-top: 5mm; border-top: 0.3mm solid var(--slate-700); display: flex; align-items: center; gap: 7mm; font-size: 9pt; color: var(--slate-300); }
+    .tool-row .tool { display: flex; align-items: center; gap: 2mm; color: #fff; font-weight: 600; }
+    .tool-row img { width: 5mm; height: 5mm; }
+
+    .schematic { width: 100%; margin-top: 11mm; }
+    .schematic text { fill: #e2e8f0; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; text-anchor: middle; }
+
+    /* decision sheet */
+    table.decisions { font-size: 8.4pt; margin-top: 4mm; }
+    table.decisions td { padding: 2.05mm 2.5mm; vertical-align: top; line-height: 1.35; }
+    table.decisions th { padding: 1.5mm 2.5mm; }
+    table.decisions td.what { width: 48mm; font-weight: 700; }
+    table.decisions td.why { width: 82mm; color: var(--slate-600); }
+    table.decisions td.choice { background: var(--brand-50); border-left: 0.3mm solid var(--brand-200); border-bottom-color: var(--brand-200); }
+    table.decisions tr.group td { font-family: 'JetBrains Mono', monospace; font-size: 7pt; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--brand-700); padding: 2.5mm 2.5mm 1mm; border-bottom: 0.3mm solid var(--slate-700); }
+
+    .tip { border-left: 1.2mm solid var(--brand-500); background: var(--slate-50); padding: 3mm 4mm; margin-top: 4mm; font-size: 9pt; line-height: 1.45; }
+
+    /* skill anatomy */
+    .anatomy { display: grid; grid-template-columns: 1fr; gap: 0; margin-top: 4mm; border: 0.3mm solid var(--slate-200); border-radius: 1.5mm; overflow: hidden; }
+    .anatomy .row { display: grid; grid-template-columns: 70mm 1fr; border-bottom: 0.2mm solid var(--slate-700); }
+    .anatomy .row:last-child { border-bottom: 0; }
+    .anatomy .code { background: var(--slate-900); color: var(--slate-100); font-family: 'JetBrains Mono', monospace; font-size: 7.4pt; line-height: 1.5; padding: 1.7mm 3.5mm; white-space: pre-wrap; }
+    .anatomy .code em { font-style: normal; color: var(--brand-400); }
+    .anatomy .code i { font-style: normal; color: var(--slate-400); }
+    .anatomy .note { padding: 1.7mm 4mm; font-size: 8.3pt; line-height: 1.38; color: var(--slate-600); background: #fff; }
+    .anatomy .note b { color: var(--slate-900); }
+
+    .files { display: grid; grid-template-columns: 70mm 1fr; gap: 5mm; margin-top: 4mm; }
+    .tree { background: var(--slate-900); color: var(--slate-100); border-radius: 1.5mm; padding: 4mm; font-family: 'JetBrains Mono', monospace; font-size: 7.6pt; line-height: 1.75; white-space: pre; }
+    .tree em { font-style: normal; color: var(--brand-400); }
+    .file-list { font-size: 8.3pt; line-height: 1.38; }
+    .file-list dt { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 7.8pt; color: var(--brand-700); }
+    .file-list dd { color: var(--slate-600); margin-bottom: 1.4mm; }
+    .rule-example { background: var(--slate-50); border: 0.3mm dashed var(--slate-400); border-radius: 1.5mm; padding: 2.5mm 3.5mm; margin-top: 3mm; font-family: 'JetBrains Mono', monospace; font-size: 7.5pt; line-height: 1.55; }
+    .rule-example span { display: block; font-family: 'Inter', sans-serif; font-size: 7pt; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--slate-500); margin-bottom: 1mm; }
+
+    /* skill set */
+    .library { margin-top: 5mm; }
+    .router { border-radius: 1.5mm; background: var(--slate-900); color: #fff; padding: 3.5mm 5mm; text-align: center; }
+    .router b { font-family: 'JetBrains Mono', monospace; font-size: 10.5pt; color: var(--brand-400); }
+    .router span { display: block; font-size: 8.5pt; color: var(--slate-300); margin-top: 1mm; }
+    .connector { height: 5mm; width: 0; border-left: 0.5mm dashed var(--brand-500); margin: 0 auto; }
+    .skills { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; border-top: 0.5mm dashed var(--brand-500); padding-top: 4mm; }
+    .skill { border: 0.4mm solid var(--slate-200); border-radius: 1.5mm; padding: 3mm 3.5mm; }
+    .skill b { font-family: 'JetBrains Mono', monospace; font-size: 9pt; display: block; margin-bottom: 1mm; }
+    .skill span { display: block; font-size: 8.4pt; color: var(--slate-600); line-height: 1.38; }
+    .skill.sample { border-color: var(--brand-500); background: var(--brand-50); }
+    .skill.pattern { border-style: dashed; background: var(--slate-50); display: flex; flex-direction: column; justify-content: center; }
+    .encode { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; margin-top: 2mm; }
+    .encode div { border-left: 1.2mm solid var(--brand-500); background: var(--slate-50); padding: 2.5mm 3.5mm; font-size: 8.5pt; line-height: 1.4; color: var(--slate-600); }
+    .encode b { display: block; color: var(--slate-900); margin-bottom: 0.5mm; }
+
+    /* setup and pitch */
+    ol.steps { list-style: none; counter-reset: step; margin-top: 3mm; }
+    ol.steps li { counter-increment: step; display: grid; grid-template-columns: 9mm 1fr; padding: 1.3mm 0; border-bottom: 0.2mm solid var(--slate-200); font-size: 8.8pt; line-height: 1.38; }
+    ol.steps li::before { content: counter(step); font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 13pt; color: var(--brand-500); line-height: 1.1; }
+    .scope { display: grid; grid-template-columns: 1.25fr 1fr; gap: 3mm; margin-top: 3.5mm; }
+    .scope div { border-radius: 1.5mm; padding: 3mm 3.5mm; font-size: 8.5pt; line-height: 1.4; }
+    .scope .project { border: 0.4mm solid var(--brand-500); background: var(--brand-50); }
+    .scope .global { border: 0.4mm solid var(--slate-200); }
+    .scope b { display: block; font-size: 9.5pt; margin-bottom: 1mm; }
+    table.paths { font-size: 7.8pt; margin-top: 3mm; }
+    table.paths td, table.paths th { padding: 1.1mm 2mm; }
+    table.paths code { font-size: 7.4pt; }
+    .paths-note { font-size: 7.5pt; color: var(--slate-500); margin-top: 1.5mm; }
+    .pitch { border-radius: 1.5mm; color: #fff; padding: 9mm 8mm; position: absolute; left: 18mm; right: 18mm; bottom: 20mm; }
+    .pitch h3 { color: #fff; font-size: 18pt; line-height: 1.15; margin-bottom: 3.5mm; }
+    .pitch p { color: var(--slate-300); font-size: 10.5pt; }
+    .pitch ul { list-style: none; margin: 4mm 0 6mm; font-size: 10pt; }
+    .pitch li { padding: 0.6mm 0 0.6mm 5mm; position: relative; }
+    .pitch li::before { content: '\2713'; position: absolute; left: 0; color: var(--emerald-400); font-weight: 700; }
+    .pitch a { display: inline-block; background: var(--brand-500); color: #fff; border-radius: 1mm; padding: 2.5mm 5mm; font-weight: 700; font-size: 10pt; }
+  </style>
+</head>
+<body>
+
+<!-- 1: cover -->
+<section class="page bp-cover grid-paper">
+  <div class="bp-brand"><img src="{{logoDataUri}}" alt="" />PragmaTech</div>
+  <div class="eyebrow">Blueprint for developers</div>
+  <h1>The Spring Boot Testing <span>Skills Blueprint</span></h1>
+  <p class="sub">How I structure my agentic skills for Spring Boot testing in Claude Code, GitHub Copilot, Cursor and Codex.</p>
+
+  <div class="definition">
+    <div class="eyebrow">What is a skill?</div>
+    <p>A skill is a folder with a <strong>SKILL.md</strong> file and supporting Markdown files that your coding agent loads when a task matches. It adds more determinism to agentic coding: the agent follows your team's written decisions instead of making a new guess in every session.</p>
+  </div>
+
+  <p class="sub" style="margin-top: 7mm; font-size: 10.5pt;">This blueprint shows the structure, not a finished skill. Use it to put your own company and industry best practices into skills that your whole team can read, review and improve. The output of an agent still varies, so keep reviewing it.</p>
+
+  <div class="cover-path">
+    <div class="node"><b>1. Decide</b><span>Make the base decisions for one demanding sample: integration testing.</span></div>
+    <div class="arrow">&rarr;</div>
+    <div class="node"><b>2. Structure one skill</b><span>SKILL.md for the essentials, reference files for the detail.</span></div>
+    <div class="arrow">&rarr;</div>
+    <div class="node"><b>3. Repeat the pattern</b><span>My usual set: seven testing skills with a router in front.</span></div>
+  </div>
+
+  <svg class="schematic" viewBox="0 0 694 160" role="img" aria-label="A router skill connected to seven testing skills">
+    <g fill="none" stroke="#38bdf8" stroke-width="1.2">
+      <path d="M347 40 V76 M47 76 H647" />
+      <rect x="247" y="4" width="200" height="36" rx="4" fill="#0f172a" />
+      <text stroke="none" x="347" y="27">spring-boot-testing</text>
+      <path d="M47 76 V104" />
+      <rect x="2" y="104" width="90" height="46" rx="4" fill="#0f172a" stroke-dasharray="4 3" />
+      <text stroke="none" x="47" y="131">unit</text>
+      <path d="M147 76 V104" />
+      <rect x="102" y="104" width="90" height="46" rx="4" fill="#0f172a" stroke-dasharray="4 3" />
+      <text stroke="none" x="147" y="131">slice</text>
+      <path d="M247 76 V104" />
+      <rect x="202" y="104" width="90" height="46" rx="4" fill="#0f172a" stroke-dasharray="4 3" />
+      <text stroke="none" x="247" y="131">slice-web</text>
+      <path d="M347 76 V104" />
+      <rect x="302" y="104" width="90" height="46" rx="4" fill="#0c4a6e" stroke-dasharray="0" />
+      <text stroke="none" x="347" y="131">integration</text>
+      <path d="M447 76 V104" />
+      <rect x="402" y="104" width="90" height="46" rx="4" fill="#0f172a" stroke-dasharray="4 3" />
+      <text stroke="none" x="447" y="131">testcontainers</text>
+      <path d="M547 76 V104" />
+      <rect x="502" y="104" width="90" height="46" rx="4" fill="#0f172a" stroke-dasharray="4 3" />
+      <text stroke="none" x="547" y="131">e2e-ui</text>
+      <path d="M647 76 V104" />
+      <rect x="602" y="104" width="90" height="46" rx="4" fill="#0f172a" stroke-dasharray="4 3" />
+      <text stroke="none" x="647" y="131">review</text>
+    </g>
+  </svg>
+
+  <div class="tool-row">
+    <span class="tool"><img src="{{claudeIconDataUri}}" alt="" />Claude Code</span>
+    <span class="tool"><img src="{{copilotIconDataUri}}" alt="" />GitHub Copilot</span>
+    <span class="tool"><img src="{{cursorIconDataUri}}" alt="" />Cursor</span>
+    <span class="tool"><img src="{{codexIconDataUri}}" alt="" />Codex</span>
+  </div>
+</section>
+
+<!-- 2: base decisions -->
+<section class="page">
+  <div class="eyebrow">Sample skill: integration-testing - Part 1</div>
+  <h2 class="title">Make the base decisions first</h2>
+  <p class="intro">Integration tests are the hardest sample: the whole application starts, real infrastructure is involved, and every team does it a bit differently. What you do not write down here, the agent has to guess. Fill in the last column with your team.</p>
+
+  <table class="decisions">
+    <thead><tr><th>Decision</th><th>Why the skill needs it</th><th>Our choice</th></tr></thead>
+    <tbody>
+      <tr class="group"><td colspan="3">Foundation</td></tr>
+      <tr><td class="what">Abstract base class</td><td class="why">Which class does every integration test extend? What does it provide, and when is a second one allowed?</td><td class="choice"></td></tr>
+      <tr><td class="what">Spring Boot version</td><td class="why">Imports, annotations and test clients differ between versions.</td><td class="choice"></td></tr>
+      <tr><td class="what">HTTP test client</td><td class="why">For example RestTestClient, WebTestClient, TestRestTemplate or REST Assured. Choose one.</td><td class="choice"></td></tr>
+      <tr><td class="what">Naming and location</td><td class="why">How a test is named and found, and which build phase picks it up.</td><td class="choice"></td></tr>
+      <tr><td class="what">Build commands</td><td class="why">How the agent runs one class and the whole suite to check its own work.</td><td class="choice"></td></tr>
+      <tr class="group"><td colspan="3">Environment</td></tr>
+      <tr><td class="what">Infrastructure</td><td class="why">Which containers the application needs, and the one place where they are wired.</td><td class="choice"></td></tr>
+      <tr><td class="what">External systems</td><td class="why">How calls to other teams and vendors are stubbed, and where stub data lives.</td><td class="choice"></td></tr>
+      <tr><td class="what">Authentication</td><td class="why">How a test gets a user and its credentials.</td><td class="choice"></td></tr>
+      <tr class="group"><td colspan="3">Data and speed</td></tr>
+      <tr><td class="what">Test data setup</td><td class="why">Who creates the data and how each test owns it. This decides whether tests can run in parallel.</td><td class="choice"></td></tr>
+      <tr><td class="what">Context variants</td><td class="why">How many Spring contexts the suite may start, and who can add one.</td><td class="choice"></td></tr>
+      <tr><td class="what">Parallel execution</td><td class="why">What runs at the same time, and what that forbids in test code.</td><td class="choice"></td></tr>
+      <tr><td class="what">Asynchronous outcomes</td><td class="why">How a test waits for a result without guessing a duration.</td><td class="choice"></td></tr>
+      <tr class="group"><td colspan="3">Team</td></tr>
+      <tr><td class="what">Code format</td><td class="why">Generated tests must pass the same formatter as your own code.</td><td class="choice"></td></tr>
+      <tr><td class="what">Disabled rules</td><td class="why">Rules your team does not follow, each with a reason.</td><td class="choice"></td></tr>
+    </tbody>
+  </table>
+
+  <div class="tip"><strong>Keep these decisions in one table near the top of the skill.</strong> A team that adopts the skill then changes this table, and the rest of the text refers to it. Decisions that several skills share belong in one common place.</div>
+
+  <div class="runner-bot"><span>Spring Boot Testing Skills Blueprint</span><span class="folio">02 / 05</span></div>
+</section>
+
+<!-- 3: anatomy -->
+<section class="page">
+  <div class="eyebrow">Sample skill: integration-testing - Part 2</div>
+  <h2 class="title">The anatomy of the skill</h2>
+  <p class="intro">On the left is the outline of my <code>SKILL.md</code>, on the right what each part is for. The description is a new example for this blueprint.</p>
+
+  <div class="anatomy">
+    <div class="row"><div class="code">---
+<em>name:</em> integration-testing
+<em>description:</em> &lt;what it does&gt;.
+  Use when &lt;your trigger words&gt;.
+  Not for &lt;neighbor skill's job&gt;.
+---</div><div class="note"><b>The trigger.</b> The agent reads name and description to decide whether to load the skill. Say what it does, when to use it, and what belongs to another skill.</div></div>
+    <div class="row"><div class="code"># &lt;Title&gt; + short intro</div><div class="note"><b>The goal.</b> Define the test type in your words and name the goals that every later rule serves.</div></div>
+    <div class="row"><div class="code">## Adapt this template</div><div class="note"><b>Your base decisions</b> from page 2, in one table.</div></div>
+    <div class="row"><div class="code">## Scope</div><div class="note"><b>The right tool?</b> Tell the agent when a cheaper test type is the better answer.</div></div>
+    <div class="row"><div class="code">## Non-negotiables</div><div class="note"><b>The short list</b> that holds for every test. Detail and reasons stay in the references.</div></div>
+    <div class="row"><div class="code">## Workflow: write a test</div><div class="note"><b>Ordered steps.</b> Start with "find the base class" and end with a check that the agent runs itself.</div></div>
+    <div class="row"><div class="code">## Journey anatomy</div><div class="note"><b>One complete example</b> from your domain. Agents copy examples closely, so make it your best test.</div></div>
+    <div class="row"><div class="code">## External systems,
+   infrastructure, config
+## Fast integration tests
+## Parallel and independent</div><div class="note"><b>The hard topics.</b> This is where your project knowledge goes: what the application needs to start, what makes the suite slow, and what each test must own.</div></div>
+    <div class="row"><div class="code">## Workflow: review tests</div><div class="note"><b>The second use.</b> The same standards check existing tests and report findings in a fixed format.</div></div>
+    <div class="row"><div class="code">## Reference files</div><div class="note"><b>The index.</b> Each file with one line on what it holds, so the agent knows what to open.</div></div>
+  </div>
+
+  <div class="files">
+    <div>
+      <div class="tree">integration-testing/
+├── <em>SKILL.md</em>
+└── references/
+    ├── testing-standards.md
+    ├── examples.md
+    ├── project-setup.md
+    ├── base-class.md
+    └── external-systems.md</div>
+      <div class="rule-example"><span>Rule format - made-up example</span>[X1-H] Name every test after
+the business outcome.
+Why: a failure reads like a
+bug report.
+In Java: ...</div>
+    </div>
+    <dl class="file-list">
+      <dt>testing-standards.md</dt><dd>Your coding best practices. Each rule has an ID, a severity, the reason and what it means in Java, so findings can point to it.</dd>
+      <dt>examples.md</dt><dd>Good and bad pairs for the rules that need code to be clear.</dd>
+      <dt>project-setup.md</dt><dd>The project configuration that the rules depend on: build, dependencies, logging, CI.</dd>
+      <dt>base-class.md</dt><dd>The base class and its shared configuration, and what must stay out of the test classes.</dd>
+      <dt>external-systems.md</dt><dd>Stubs, containers, start-time configuration and where test data files live.</dd>
+      <dt>Layering</dt><dd>The agent sees the description first, then loads <code>SKILL.md</code>, then opens a reference file only when it needs it. Essentials go up, detail goes down.</dd>
+    </dl>
+  </div>
+
+  <div class="runner-bot"><span>Spring Boot Testing Skills Blueprint</span><span class="folio">03 / 05</span></div>
+</section>
+
+<!-- 4: repeat the pattern -->
+<section class="page">
+  <div class="eyebrow">Repeat the pattern</div>
+  <h2 class="title">One pattern, seven testing skills</h2>
+  <p class="intro">I repeat this anatomy for the other testing aspects. For a typical Spring Boot project, this is the set of skills that I usually go with. A small router sits in front, holds the decisions that all skills share and sends each task to the right skill.</p>
+
+  <div class="library">
+    <div class="router"><b>spring-boot-testing (router)</b><span>Shared project decisions - picks the right skill for the task</span></div>
+    <div class="connector"></div>
+    <div class="skills">
+      <div class="skill"><b>unit-testing</b><span>Business logic without a Spring context.</span></div>
+      <div class="skill"><b>slice-testing</b><span>Persistence, JSON, HTTP clients and listeners.</span></div>
+      <div class="skill"><b>slice-web-testing</b><span>The web layer, including security.</span></div>
+      <div class="skill sample"><b>integration-testing</b><span>User journeys against the running application. The sample on pages 2 and 3.</span></div>
+      <div class="skill"><b>testcontainers-setup</b><span>The shared container infrastructure that other skills build on.</span></div>
+      <div class="skill"><b>e2e-ui-testing</b><span>Browser journeys through the user interface.</span></div>
+      <div class="skill"><b>test-setup-review</b><span>A read-only review of a single test or a whole suite.</span></div>
+      <div class="skill pattern"><span><strong>How fine should you cut?</strong> One skill per job with its own trigger. Each topic has exactly one owner. Split when two jobs need different decisions, merge when you cannot say which one applies.</span></div>
+    </div>
+  </div>
+
+  <h3 style="margin-top: 5mm;">What I encode, so the test suite stays fast</h3>
+  <div class="encode">
+    <div><b>Test data setup</b>My integration-testing skill knows how to set up data so that each test owns it. That is the entry ticket for running integration tests in parallel.</div>
+    <div><b>Parallelization</b>The skills know what must not be shared between tests, and how to prove that a test is safe to run next to others.</div>
+    <div><b>Spring context reuse</b>Every additional application context costs start-up time. The skill treats a new one as a decision, not as an accident.</div>
+    <div><b>End-to-end structure</b>The e2e-ui-testing skill knows how to structure a proper browser journey, so UI tests stay readable and stable.</div>
+  </div>
+
+  <div class="tip">The effect adds up: tests that the agent writes already follow the practices that keep your build fast. How much time you gain depends on your suite, so measure it before and after.</div>
+
+  <div class="runner-bot"><span>Spring Boot Testing Skills Blueprint</span><span class="folio">04 / 05</span></div>
+</section>
+
+<!-- 5: set up and course -->
+<section class="page">
+  <div class="eyebrow">Your turn</div>
+  <h2 class="title">Build and share your own skills</h2>
+
+  <ol class="steps">
+    <li><span><strong>Define the granularity.</strong> List the test types your project really uses. Start with the one that hurts most.</span></li>
+    <li><span><strong>Collect your best practices.</strong> Take them from your best tests, recurring review comments, team guidelines and past flaky tests. Add the industry practices you agree with.</span></li>
+    <li><span><strong>Write the skill.</strong> Base decisions and essentials go into <code>SKILL.md</code>, the detail into <code>references/</code>.</span></li>
+    <li><span><strong>Install it</strong> where your tool looks for skills, and mention it in your agent instruction file.</span></li>
+    <li><span><strong>Check and improve.</strong> Give the agent a real task. When it guesses or gets it wrong, fix the skill, not only the test.</span></li>
+  </ol>
+
+  <div class="scope">
+    <div class="project"><b>Project skills - my usual default</b>How a team tests depends on the team and the project. Check the skills into the repository. They are plain Markdown files: you review them in pull requests, and every teammate gets them with the next pull.</div>
+    <div class="global"><b>Global skills</b>For personal habits and general practices that you want in every project. They stay on your machine, so your team does not get them automatically.</div>
+  </div>
+
+  <table class="paths">
+    <thead><tr><th>Tool</th><th>Project</th><th>Global</th></tr></thead>
+    <tbody>
+      <tr><td>Claude Code</td><td><code>.claude/skills/</code></td><td><code>~/.claude/skills/</code></td></tr>
+      <tr><td>GitHub Copilot</td><td><code>.github/skills/</code></td><td><code>~/.copilot/skills/</code></td></tr>
+      <tr><td>Cursor</td><td><code>.cursor/skills/</code></td><td><code>~/.cursor/skills/</code></td></tr>
+      <tr><td>Codex</td><td><code>.agents/skills/</code></td><td><code>~/.agents/skills/</code></td></tr>
+    </tbody>
+  </table>
+  <p class="paths-note">Tools also read further folders (Copilot and Cursor read <code>.claude/skills/</code> and <code>.agents/skills/</code> too), and support differs between versions and surfaces. If your tool does not find nested skills, install them side by side.</p>
+
+  <div class="pitch grid-paper">
+    <h3>See how I develop and test Spring Boot applications today</h3>
+    <p>The on-demand course <strong style="color:#fff;">Agentic Testing for Spring Boot</strong>: in about two hours you learn how I work with coding agents these days.</p>
+    <ul>
+      <li>If this document is the blueprint, my skill library is the finished building. You get access to it.</li>
+      <li>See the seven testing skills at work, and how to adapt them to your project.</li>
+    </ul>
+    <a href="{{courseUrl}}">Explore the course on pragmatech.digital &rarr;</a>
+  </div>
+
+  <div class="runner-bot"><span>Spring Boot Testing Skills Blueprint</span><span class="folio">05 / 05</span></div>
+</section>
+
+</body>
+</html>
