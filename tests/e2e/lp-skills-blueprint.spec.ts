@@ -97,6 +97,20 @@ test.describe("skills blueprint landing page", () => {
     expect(pageErrors).toEqual([]);
   });
 
+  for (const [pagePath, imagePath] of [
+    [landingPath, "/images/reports/skills-blueprint/social-skills-blueprint.jpg"],
+    ["/lp/agentic-readiness-bundle/", "/images/reports/lead-bundle/social-agentic-development-readiness.jpg"],
+  ]) {
+    test(`${pagePath} has its own social preview image`, async ({ page, request }) => {
+      await page.goto(pagePath);
+
+      for (const selector of ['meta[property="og:image"]', 'meta[name="twitter:image"]']) {
+        await expect(page.locator(selector)).toHaveAttribute("content", new RegExp(`${imagePath}$`));
+      }
+      expect((await request.get(imagePath)).status()).toBe(200);
+    });
+  }
+
   test("is linked from the sidebar of a blog post", async ({ page }) => {
     await page.goto("/blog/agentic-testing-for-spring-boot-is-live/");
 
@@ -188,6 +202,13 @@ test.describe("skills blueprint follow-up pages", () => {
 
     await expect(page.locator('[data-lp="steps"] li')).toHaveCount(2);
     expect(await leadMagnetEvents(page)).toEqual([["trackEvent", "LeadMagnet", "ThankYou", campaign]]);
+  });
+
+  test("the thank-you page keeps the footer at the bottom of a tall screen", async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 2000 });
+    await page.goto(thankYouPath);
+
+    await expect.poll(() => page.locator("body > footer").evaluate((footer) => Math.round(footer.getBoundingClientRect().bottom))).toBe(2000);
   });
 
   test("the download page offers the PDF and the course, without a Confirmed event", async ({ page, request }) => {
