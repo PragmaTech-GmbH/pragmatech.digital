@@ -215,7 +215,7 @@ describe("Black Friday campaign", () => {
   const germany = { country: { code: "DE", name: "Germany" } };
 
   test("outside the window there is no campaign", async () => {
-    const before = await callJson("?now=2026-11-27T07:59:59Z", germany, "deploy-preview");
+    const before = await callJson("?now=2026-11-27T06:59:59Z", germany, "deploy-preview");
     assert.equal(before.campaign, null);
     assert.equal(before.couponCode, null);
     const after = await callJson("?now=2026-11-28T00:00:00Z", germany, "deploy-preview");

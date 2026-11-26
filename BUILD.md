@@ -125,7 +125,7 @@ down to tier 1 (full price).
 
 ### Black Friday 2026 campaign
 
-30 % off the base price for everyone, on top of PPP, on 2026-11-27 from 08:00 to 23:59 UTC
+30 % off the base price for everyone, on top of PPP, on 2026-11-27 from 07:00 to 23:59 UTC
 (Course and Bundle editions). CopeCart takes one coupon per checkout, so every tier has a
 combined coupon, PPP and Black Friday multiplied (`BLACK_FRIDAY_TIERS` in
 `netlify/edge-functions/ppp.ts`):

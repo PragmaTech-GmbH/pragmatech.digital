@@ -1,6 +1,6 @@
 ---
 title: "Agentic Spring Boot Testing - Online Course"
-description: "A hands-on 2-hour on-demand course on reliable, meaningful Spring Boot test suites with AI coding agents - the Testing Spring Boot Applications Masterclass for the era of AI. Includes seven agent skills for Claude Code, GitHub Copilot and Cursor."
+description: "A hands-on 3-hour on-demand course on reliable, meaningful Spring Boot test suites with AI coding agents - the Testing Spring Boot Applications Masterclass for the era of AI. Includes seven agent skills for Claude Code, Codex, GitHub Copilot and Cursor."
 layout: "course-landing"
 image: "/generated/images/courses/agentic-testing-course-thumbnail.webp"
 share_image: "/images/courses/agentic-testing-course-thumbnail.png"
@@ -22,7 +22,7 @@ hero:
   trust:
     - "12 months of skill updates"
     - "Team Edition: 10 seats + implementation workshop"
-    - "Works with Claude Code, Copilot, Cursor"
+    - "Works with Claude Code, Codex, Copilot, Cursor"
   # Rendered with Remotion, source: remotion/src/NoiseToTests.tsx
   video:
     webm: "/videos/noise-to-tests.webm?v=2"
@@ -37,7 +37,7 @@ hero:
 story:
   eyebrow: "Sound familiar?"
   paragraphs:
-    - "You ask Claude Code for tests. Twenty seconds later there are forty green tests and a confident summary. It feels like magic."
+    - "You ask Claude Code or Codex for tests. Twenty seconds later there are forty green tests and a confident summary. It feels like magic."
     - "Two weeks later a bug ships that the suite should have caught. You open the test class: @SpringBootTest on top, five mocks, and assertions that check for status 200. The build takes 20 minutes now, and nobody remembers what those tests prove."
     - "That is not the agent being bad at testing. It is the agent doing what every agent does without judgment: the most common pattern from its training data. Maybe it has happened to you. It happened in every team I consulted with this year."
 
@@ -67,7 +67,7 @@ statusQuo:
     - "Agents reach for @SpringBootTest for everything and the build grows with every PR."
     - "Every test class starts its own Spring context and its own containers."
     - "The suite is green while production breaks."
-    - "Your CLAUDE.md has rules the agent ignores half of the time."
+    - "Your CLAUDE.md or AGENTS.md has rules the agent ignores half of the time."
     - "You are not sure whether to let agents write tests at all."
   after:
     - "A harness that makes the agent pick the right test type before writing a line."
@@ -172,14 +172,14 @@ diagram:
     - "A fast, parallel suite with cached contexts"
     - "The reviewer skill on every pull request"
   agentsLabel: "Works with"
-  agents: ["Claude Code", "GitHub Copilot", "Cursor"]
+  agents: ["Claude Code", "Codex", "GitHub Copilot", "Cursor"]
 
 callout:
   eyebrow: "To be clear"
   title: "This is not a prompt-engineering course"
   text: "You will not learn magic prompts or yet another framework. You will learn how to harness any coding agent so it tests like a senior Spring Boot engineer: an online course that teaches the testing decisions, and a skill library that brings them into your project. And the skills are files you own, not a tool you rent."
   bullets:
-    - "Works with Claude Code, GitHub Copilot and Cursor"
+    - "Works with Claude Code, Codex, GitHub Copilot and Cursor"
     - "Plain Markdown, no vendor lock-in, no subscription"
     - "Maven and Gradle projects, Spring Boot 3 and 4"
 
@@ -200,13 +200,13 @@ included:
   intro: "The tool your agent is missing, the manual that explains it, and the complete testing education behind both."
   formatLabel: "Format"
   format:
-    - "25 video lessons, about 2 hours"
+    - "25 video lessons, about 3 hours"
     - "Written summary and code for every lesson"
     - "Skill library with 12 months of access to changes, 24 for teams"
     - "Finish in one evening, apply the next morning"
   items:
     - { icon: code,      title: "Seven agent skills, maintained",         text: "unit-testing, slice-testing, slice-testing-webmvc, integration-testing, e2e-testing, testcontainers-setup and test-setup-reviewer as SKILL.md files. Updates for 12 months, 24 for teams." }
-    - { icon: play,      title: "The 2-hour Agentic Testing course",       text: "25 lessons in 6 modules, recorded on Spring PetClinic. Watch how the skills are built and applied, then code along." }
+    - { icon: play,      title: "The 3-hour Agentic Testing course",       text: "25 lessons in 6 modules, recorded on Spring PetClinic. Watch how the skills are built and applied, then code along." }
     - { icon: refresh,   title: "Three more courses included*",            text: "Testing Spring Boot Applications Masterclass, TDD with Spring Boot Done Right and Hands-On Mocking with Mockito. Your complete testing education. *Bundle and Team editions only." }
     - { icon: beaker,    title: "The PetClinic reference test suite",      text: "The complete before-and-after test suite from the course, so you can diff what the skills changed." }
     - { icon: document,  title: "My agentic development setup",          text: "The CLAUDE.md, AGENTS.md and agent configuration I use in my own Spring Boot projects, plus the equivalent setup for GitHub Copilot and Cursor." }
@@ -253,7 +253,7 @@ skillAnatomy:
 
 curriculum:
   headline: "Curriculum"
-  intro: "Six modules. Every lesson is hands-on in Spring PetClinic with Claude Code, with notes for GitHub Copilot and Cursor."
+  intro: "Six modules. Every lesson is hands-on in Spring PetClinic with Claude Code for the demos. The skills are standardized, so you can easily adopt them for other coding agents like Codex, GitHub Copilot and Cursor."
   conceptsLabel: "Concepts you will take with you"
   concepts:
     - { term: "Context starvation", text: "why an agent without your test strategy defaults to @SpringBootTest and mocks everywhere" }
@@ -261,7 +261,7 @@ curriculum:
     - { term: "Slice first", text: "the decision rule for unit, slice or integration test, encoded in a skill" }
     - { term: "One context per build", text: "how cached contexts and reused containers keep the suite under a minute" }
     - { term: "The reviewer loop", text: "letting the agent audit its own output before you read a single line" }
-    - { term: "Harness over prompts", text: "where an instruction belongs: CLAUDE.md, a skill, or the prompt" }
+    - { term: "Harness over prompts", text: "where an instruction belongs: CLAUDE.md or AGENTS.md, a skill, or the prompt" }
   modules:
     - title: "Why AI-generated tests are bad by default"
       summary: "What agents optimize for when you say \"write tests\", and why the result looks fine and proves nothing."
@@ -363,7 +363,7 @@ ppp:
   intro: "Three editions. The Course Edition is for students who already own my testing courses. The Bundle and Team editions add the full course library, and differ in seats, the implementation workshop, support and the update window."
   pppScope: "Course and Bundle editions"
   guarantee: "60-day money-back guarantee, no questions asked"
-  # Black Friday 2026 (27 Nov, 08:00-23:59 UTC). Shown only while /api/ppp returns a `campaign`;
+  # Black Friday 2026 (27 Nov, 07:00-23:59 UTC). Shown only while /api/ppp returns a `campaign`;
   # the discount and window live in netlify/edge-functions/ppp.ts. Delete this block after the campaign.
   blackFriday:
     badge: "Black Friday deal"
@@ -478,7 +478,9 @@ faqs:
     - question: "I already own the Masterclass or one of the bundled courses. Do I pay twice?"
       answer: "No. Take the Course Edition for 329€: it is this course plus the skill library, without the three bundled courses."
     - question: "Which coding agents are supported?"
-      answer: "The lessons use Claude Code. The skills are plain Markdown, and module 2 shows how to wire them into GitHub Copilot and Cursor. Any agent that reads project files and supports skills or rules works."
+      answer: "The course uses Claude Code for the demos. The skills are standardized, plain Markdown SKILL.md files, so you can easily adopt them for other coding agents like Codex, GitHub Copilot and Cursor. Any agent that reads project files and supports skills or rules works."
+    - question: "Can I use the skills with Codex?"
+      answer: "Yes. The demos use Claude Code, but the skills follow the standardized SKILL.md format, so you can easily adopt them for Codex. The testing decisions in the skills are the same for every agent."
     - question: "Does it work with Maven and Gradle?"
       answer: "Yes. PetClinic uses Maven in the lessons, and the skills contain the Gradle equivalents for parallel execution, test tasks and Testcontainers reuse."
     - question: "Which Spring Boot and Java versions are covered?"

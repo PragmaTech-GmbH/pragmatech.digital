@@ -30,7 +30,7 @@ export const TIERS: Readonly<Record<Tier, TierPricing>> = {
 // env var and must carry the same validity window in CopeCart. Remove this block after the campaign.
 export const BLACK_FRIDAY = {
   name: "black-friday-2026",
-  startsAt: "2026-11-27T08:00:00Z",
+  startsAt: "2026-11-27T07:00:00Z",
   endsAt: "2026-11-27T23:59:59Z",
   discountPercentage: 30,
 } as const;
