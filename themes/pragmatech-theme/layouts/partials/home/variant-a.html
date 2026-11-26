@@ -70,7 +70,8 @@
                            width="1200" height="675" autoplay loop muted playsinline preload="auto"
                            poster="/generated/images/lp/safety-net-poster.webp?v=3"
                            aria-label="Animation: code changes fall onto a green safety net. Healthy changes pass through, broken ones are caught in the net, and both turn green"
-                           data-hero-video>
+                           data-hero-video
+                           data-fallback-src="/generated/images/lp/safety-net-animation.webp?v=3">
                         <source src="/videos/safety-net.webm?v=3" type="video/webm">
                         <source src="/videos/safety-net.mp4?v=3" type="video/mp4">
                     </video>
@@ -663,10 +664,24 @@
     <script>
     document.addEventListener('DOMContentLoaded', function () {
         var heroVideo = document.querySelector('[data-hero-video]');
-        if (heroVideo && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        if (!heroVideo) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
             heroVideo.removeAttribute('autoplay');
             heroVideo.pause();
+            return;
         }
+        // iOS can block autoplay (e.g. Low Power Mode or browser settings) and then
+        // draws a play button on the video. An animated image has no player UI.
+        var playPromise = heroVideo.play();
+        if (!playPromise) return;
+        playPromise.catch(function (error) {
+            if (error.name !== 'NotAllowedError') return;
+            var fallbackImage = new Image(1200, 675);
+            fallbackImage.className = heroVideo.className;
+            fallbackImage.alt = heroVideo.getAttribute('aria-label');
+            fallbackImage.src = heroVideo.dataset.fallbackSrc;
+            heroVideo.replaceWith(fallbackImage);
+        });
     });
     document.addEventListener('DOMContentLoaded', function () {
         var sectionVideos = document.querySelectorAll('[data-scroll-video]');
