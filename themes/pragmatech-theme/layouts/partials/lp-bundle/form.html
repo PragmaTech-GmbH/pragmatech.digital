@@ -1,4 +1,5 @@
-{{/* MailerLite signup of the bundle. lead-bundle.js submits it with fetch and enables
+{{/* MailerLite signup of a lead magnet (bundle and skills blueprint). The company field only
+     shows when the data file defines form.companyLabel. lead-bundle.js submits it with fetch and enables
      the button, so a visitor without JavaScript never sees MailerLite's raw JSON response.
      MailerLite's webforms.min.js is left out on purpose: it writes to localStorage. */}}
 {{ $form := .bundle.form }}
@@ -11,10 +12,12 @@
           data-campaign="{{ .bundle.campaign }}"
           data-thank-you-url="{{ strings.TrimPrefix "/" .bundle.thankYouPath | relURL }}"
           data-pending-label="{{ $form.pendingButton }}">
-        {{ range slice
-            (dict "name" "name" "type" "text" "label" $form.nameLabel "placeholder" $form.namePlaceholder "autocomplete" "name")
-            (dict "name" "company" "type" "text" "label" $form.companyLabel "placeholder" $form.companyPlaceholder "autocomplete" "organization")
-            (dict "name" "email" "type" "email" "label" $form.emailLabel "placeholder" $form.emailPlaceholder "autocomplete" "email") }}
+        {{ $fields := slice (dict "name" "name" "type" "text" "label" $form.nameLabel "placeholder" $form.namePlaceholder "autocomplete" "name") }}
+        {{ if $form.companyLabel }}
+        {{ $fields = $fields | append (dict "name" "company" "type" "text" "label" $form.companyLabel "placeholder" $form.companyPlaceholder "autocomplete" "organization") }}
+        {{ end }}
+        {{ $fields = $fields | append (dict "name" "email" "type" "email" "label" $form.emailLabel "placeholder" $form.emailPlaceholder "autocomplete" "email") }}
+        {{ range $fields }}
         <div>
             <label for="bundle-{{ .name }}" class="block text-sm font-semibold text-slate-700 mb-2">{{ .label }}</label>
             <input id="bundle-{{ .name }}" type="{{ .type }}" name="fields[{{ .name }}]" required
@@ -31,10 +34,10 @@
 
     <p id="lead-bundle-error" class="hidden text-sm text-red-600 mt-3" role="alert"></p>
     <p id="lead-bundle-fallback" class="hidden text-sm text-slate-600 mt-1">
-        Does it fail again? Write to <a class="underline" href="mailto:{{ .bundle.contactEmail }}">{{ .bundle.contactEmail }}</a> and I send the PDFs manually.
+        Does it fail again? Write to <a class="underline" href="mailto:{{ .bundle.contactEmail }}">{{ .bundle.contactEmail }}</a> {{ $form.fallbackText | default "and I send the PDFs manually." }}
     </p>
     <noscript>
-        <p class="text-sm text-slate-700 mt-3">This form needs JavaScript. Write to <a class="underline" href="mailto:{{ .bundle.contactEmail }}">{{ .bundle.contactEmail }}</a> and I send you the three PDFs.</p>
+        <p class="text-sm text-slate-700 mt-3">This form needs JavaScript. Write to <a class="underline" href="mailto:{{ .bundle.contactEmail }}">{{ .bundle.contactEmail }}</a> {{ $form.noscriptText | default "and I send you the three PDFs." }}</p>
     </noscript>
 
     <p class="text-xs text-slate-500 mt-3 text-center">

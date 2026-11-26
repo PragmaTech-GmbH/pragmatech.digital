@@ -1,4 +1,5 @@
-// MailerLite signup of the 3-PDF bundle landing page (layout: lp-bundle).
+// MailerLite signup of the lead magnet pages (layouts: lp-bundle, lp-blueprint) and of the
+// signup below blog posts.
 // Submits with fetch, so we can read MailerLite's {success, errors} response and redirect
 // only after a real success. JSONP does not work: MailerLite answers with plain JSON, and
 // browsers block that as a script (ERR_BLOCKED_BY_ORB). Nothing is stored on the visitor's device.
@@ -21,7 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const readField = (fieldName) => signupForm.elements[`fields[${fieldName}]`].value.trim();
     if (!readField('name')) return showError('Please enter your name.');
-    if (!readField('company')) return showError('Please enter your company.');
+    // Not every lead magnet asks for the company.
+    const hasCompanyField = Boolean(signupForm.elements['fields[company]']);
+    if (hasCompanyField && !readField('company')) return showError('Please enter your company.');
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(readField('email'))) {
       return showError('Please enter a valid email address.');
     }

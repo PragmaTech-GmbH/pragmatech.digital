@@ -1,0 +1,124 @@
+# Lead magnet "Spring Boot Testing Skills Blueprint": copy of the landing and download page.
+# Shared in talks. The only link on the website is the teaser in the blog post sidebar.
+campaign: "agentic-testing-skills-blueprint"
+path: "/lp/spring-boot-testing-skills-blueprint/"
+thankYouPath: "/lp/spring-boot-testing-skills-blueprint/thank-you/"
+mailerLiteActionUrl: "https://assets.mailerlite.com/jsonp/1613864/forms/205181690544391274/subscribe"
+contactEmail: "info@pragmatech.digital"
+
+badge: "Free blueprint for Spring Boot developers"
+headline: "Get the blueprint for structuring your"
+highlight: "agentic testing skills."
+subheadline: "See how I structure skills for Spring Boot testing, so your coding agent follows your team's best practices instead of guessing."
+bullets:
+  - "The base decisions to make before an agent writes an integration test"
+  - "The anatomy of one skill: SKILL.md and its reference files"
+  - "The seven testing skills I usually go with, and how fine to cut them"
+  - "Project or global: where the skills live and how your team gets them"
+
+# Second teaser in the sticky sidebar of blog posts
+blog:
+  sidebar:
+    eyebrow: "Free blueprint"
+    title: "Your Blueprint for Proper Agentic Testing of Spring Boot Apps"
+    text: "Give your coding agent a clear structure, so it tests your Spring Boot application the way your team does."
+    button: "Get the Blueprint"
+
+worksWithLabel: "Made for"
+tools:
+  - name: "Claude Code"
+    icon: "images/logos/claude.svg"
+    color: "#d97757"
+  - name: "GitHub Copilot"
+    icon: "images/logos/copilot.svg"
+  - name: "Cursor"
+    icon: "images/logos/cursor.svg"
+  - name: "Codex"
+    icon: "images/logos/openai.svg"
+
+blueprint:
+  eyebrow: "Inside the blueprint"
+  title: "One skill in detail, then repeat the pattern"
+  intro: "Integration testing is the demanding sample. Once its structure is clear, the other testing skills follow the same pattern."
+  decisionsTitle: "Make the base decisions"
+  decisions:
+    - "Abstract base class"
+    - "HTTP test client"
+    - "Containers"
+    - "External systems"
+    - "Test data setup"
+    - "Parallel execution"
+    - "Context variants"
+    - "Authentication"
+  decisionsNote: "...and more, as a worksheet for your team."
+  anatomyTitle: "Structure one skill"
+  anatomyFolder: "integration-testing/"
+  anatomyFiles:
+    - "testing-standards.md"
+    - "examples.md"
+    - "project-setup.md"
+    - "base-class.md"
+    - "external-systems.md"
+  anatomyNote: "Essentials go into SKILL.md, detail into the references."
+  patternTitle: "Repeat the pattern"
+  router: "spring-boot-testing (router)"
+  patternNote: "Test data setup, parallel execution and end-to-end structure: encode them once, so every new test follows them."
+
+skills:
+  - "unit-testing"
+  - "slice-testing"
+  - "slice-web-testing"
+  - "integration-testing"
+  - "testcontainers-setup"
+  - "e2e-ui-testing"
+  - "test-setup-review"
+
+toolbox:
+  eyebrow: "Your testing toolbox"
+  title: "Seven skills in one toolbox, ready for your coding agent"
+  intro: "Skills are plain Markdown files. Check them into your repository, review them like code and use them with the agent your team prefers."
+  label: "spring-boot-testing"
+  ctaTitle: "Give your testing skills a structure"
+  ctaText: "Enter your name and email, and the blueprint is on its way."
+  ctaButton: "Get the blueprint"
+
+cover:
+  key: "cover-skills-blueprint"
+  file: "documents/skills-blueprint/PragmaTech-Spring-Boot-Testing-Skills-Blueprint.pdf"
+  title: "The Spring Boot Testing Skills Blueprint"
+  meta: "Developer blueprint"
+
+form:
+  title: "Get the free blueprint"
+  intro: "We send it to your email address."
+  nameLabel: "Name"
+  namePlaceholder: "Jane Doe"
+  emailLabel: "Email"
+  emailPlaceholder: "you@company.com"
+  button: "Send me the blueprint"
+  pendingButton: "Sending..."
+  fallbackText: "and I send the blueprint manually."
+  noscriptText: "and I send you the blueprint."
+  note: "Free. Unsubscribe anytime."
+  privacyLabel: "Privacy policy"
+
+# Confirmation page after the double opt-in. All other texts come from "download".
+confirmed:
+  badge: "Email confirmed"
+  headline: "Your email is confirmed - here is your blueprint"
+  intro: "Open or save your blueprint below. We also send you the link by email."
+
+download:
+  badge: "Your blueprint"
+  headline: "Your blueprint is ready"
+  intro: "Thank you for your interest. Open or save your blueprint below."
+  button: "Download the blueprint"
+  courseBadge: "Agentic Testing for Spring Boot"
+  courseTitle: "See how I develop and test Spring Boot applications today"
+  courseText: "The blueprint shows the structure. The on-demand course shows it at work, in about two hours."
+  courseBenefits:
+    - "Learn how I work with coding agents on Spring Boot tests"
+    - "Get access to my testing skill library"
+    - "See how to adapt the skills to your project"
+  courseButton: "Explore the course"
+  coursePath: "/agentic-spring-boot-testing-course/"

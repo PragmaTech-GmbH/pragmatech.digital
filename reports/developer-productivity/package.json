@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "build": "node render.mjs",
-    "build:investments": "node render-investments.mjs"
+    "build:investments": "node render-investments.mjs",
+    "build:blueprint": "node render-blueprint.mjs"
   },
   "devDependencies": {
     "puppeteer": "^23.0.0"

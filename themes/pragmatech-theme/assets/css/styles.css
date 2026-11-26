@@ -927,3 +927,102 @@ summary::-webkit-details-marker { display: none; }
     font-weight: 700;
     white-space: nowrap;
 }
+
+/* Skills blueprint lead magnet (layouts: lp-blueprint, lp-blueprint-download) */
+.blueprint-grid {
+    background-color: #0f172a;
+    background-image:
+        linear-gradient(rgb(56 189 248 / 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgb(56 189 248 / 0.08) 1px, transparent 1px);
+    background-size: 28px 28px;
+}
+.lp-blueprint__tool-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: var(--logo-color, currentColor);
+    -webkit-mask: var(--logo-url) center / contain no-repeat;
+    mask: var(--logo-url) center / contain no-repeat;
+}
+.lp-blueprint__steps {
+    @apply grid gap-10 lg:grid-cols-3;
+}
+.lp-blueprint__step {
+    @apply relative min-w-0 rounded-2xl border border-slate-200 bg-slate-50 p-5 sm:p-6;
+}
+/* Arrow to the next step: downwards when stacked, to the right in the three column grid */
+.lp-blueprint__step:not(:last-child)::after {
+    content: "\2193";
+    position: absolute;
+    bottom: -2.1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    @apply text-xl font-bold text-brand-600;
+}
+@media (min-width: 1024px) {
+    .lp-blueprint__step:not(:last-child)::after {
+        content: "\2192";
+        bottom: auto;
+        left: auto;
+        right: -1.9rem;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
+.lp-blueprint__step-title {
+    @apply mb-4 flex items-center gap-3 text-lg font-bold text-slate-900;
+}
+.lp-blueprint__step-number {
+    @apply inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-brand-600 text-sm text-white;
+}
+.lp-blueprint__step-note {
+    @apply mt-4 text-sm text-slate-600;
+}
+.lp-blueprint__toolbox {
+    @apply mx-auto max-w-2xl;
+}
+.lp-blueprint__toolbox-handle {
+    @apply mx-auto h-9 w-40 rounded-t-2xl border-x-8 border-t-8 border-slate-500;
+}
+.lp-blueprint__toolbox-lid {
+    @apply flex h-8 items-end justify-around rounded-t-xl bg-brand-900 px-16;
+}
+.lp-blueprint__toolbox-latch {
+    @apply block h-4 w-8 translate-y-2 rounded-sm bg-slate-300 shadow-md;
+}
+.lp-blueprint__toolbox-body {
+    @apply rounded-b-xl bg-brand-600 px-5 py-7 shadow-2xl shadow-black/40;
+}
+.lp-blueprint__toolbox-label {
+    @apply mb-4 font-mono text-sm font-bold text-white;
+}
+.lp-blueprint__toolbox-skills {
+    @apply flex flex-wrap justify-center gap-2;
+}
+.lp-blueprint__toolbox-skill {
+    @apply rounded-md bg-white px-3 py-2 font-mono text-xs font-bold text-slate-900 shadow-md;
+}
+/* Small version for the blog sidebar */
+.lp-blueprint__toolbox--compact {
+    @apply text-center;
+}
+.lp-blueprint__toolbox--compact .lp-blueprint__toolbox-handle {
+    @apply h-4 w-16 rounded-t-lg border-x-4 border-t-4;
+}
+.lp-blueprint__toolbox--compact .lp-blueprint__toolbox-lid {
+    @apply h-4 rounded-t-lg px-8;
+}
+.lp-blueprint__toolbox--compact .lp-blueprint__toolbox-latch {
+    @apply h-2 w-4 translate-y-1;
+}
+.lp-blueprint__toolbox--compact .lp-blueprint__toolbox-body {
+    @apply rounded-b-lg px-2 py-3 shadow-md;
+}
+.lp-blueprint__toolbox--compact .lp-blueprint__toolbox-label {
+    @apply mb-2 text-[11px] leading-4;
+}
+.lp-blueprint__toolbox--compact .lp-blueprint__toolbox-skills {
+    @apply gap-1;
+}
+.lp-blueprint__toolbox--compact .lp-blueprint__toolbox-skill {
+    @apply rounded px-1.5 py-0.5 text-[10px] leading-4 shadow-none;
+}

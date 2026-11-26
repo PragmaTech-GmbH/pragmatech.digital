@@ -1,0 +1,11 @@
+{{/* File tree of the sample skill. Used in the blueprint drawing and in the blog sidebar.
+     Call with (dict "blueprint" <the "blueprint" data> "class" <size and spacing classes>). */}}
+<div data-lp="skill-tree" class="bg-slate-900 font-mono text-slate-200 overflow-x-auto {{ .class }}">
+    <div>{{ .blueprint.anatomyFolder }}</div>
+    <div class="whitespace-pre">├── <span class="font-bold text-brand-400">SKILL.md</span></div>
+    <div class="whitespace-pre">└── references/</div>
+    {{ $lastFileIndex := sub (len .blueprint.anatomyFiles) 1 }}
+    {{ range $fileIndex, $fileName := .blueprint.anatomyFiles }}
+    <div class="whitespace-pre">    {{ if eq $fileIndex $lastFileIndex }}└──{{ else }}├──{{ end }} {{ $fileName }}</div>
+    {{ end }}
+</div>
