@@ -190,6 +190,13 @@ test.describe("skills blueprint follow-up pages", () => {
     expect(await leadMagnetEvents(page)).toEqual([["trackEvent", "LeadMagnet", "ThankYou", campaign]]);
   });
 
+  test("the thank-you page keeps the footer at the bottom of a tall screen", async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 2000 });
+    await page.goto(thankYouPath);
+
+    await expect.poll(() => page.locator("body > footer").evaluate((footer) => Math.round(footer.getBoundingClientRect().bottom))).toBe(2000);
+  });
+
   test("the download page offers the PDF and the course, without a Confirmed event", async ({ page, request }) => {
     await page.goto(downloadPath);
 
