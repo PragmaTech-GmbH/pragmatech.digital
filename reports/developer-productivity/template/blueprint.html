@@ -98,13 +98,17 @@
     table.paths td, table.paths th { padding: 1.1mm 2mm; }
     table.paths code { font-size: 7.4pt; }
     .paths-note { font-size: 7.5pt; color: var(--slate-500); margin-top: 1.5mm; }
-    .pitch { border-radius: 1.5mm; color: #fff; padding: 9mm 8mm; position: absolute; left: 18mm; right: 18mm; bottom: 20mm; }
-    .pitch h3 { color: #fff; font-size: 18pt; line-height: 1.15; margin-bottom: 3.5mm; }
-    .pitch p { color: var(--slate-300); font-size: 10.5pt; }
-    .pitch ul { list-style: none; margin: 4mm 0 6mm; font-size: 10pt; }
-    .pitch li { padding: 0.6mm 0 0.6mm 5mm; position: relative; }
+    .pitch { border-radius: 2mm; border: 0.8mm solid var(--brand-400); color: #fff; padding: 6.5mm 7mm 7mm; position: absolute; left: 18mm; right: 18mm; bottom: 18mm; }
+    .pitch h3 { color: var(--brand-400); font-size: 27pt; line-height: 1.08; letter-spacing: -0.03em; margin-bottom: 2.5mm; }
+    .pitch .tagline { font-family: 'Space Grotesk', 'Inter', sans-serif; font-size: 13.5pt; font-weight: 600; color: #fff; margin-bottom: 4.5mm; }
+    .pitch-body { display: grid; grid-template-columns: 68mm 1fr; gap: 6mm; align-items: center; }
+    .pitch-image { display: block; background: #fff; border-radius: 1.5mm; padding: 1.5mm; }
+    .pitch-image img { display: block; width: 100%; }
+    .pitch p { color: var(--slate-300); font-size: 9.5pt; line-height: 1.45; margin-bottom: 2.5mm; }
+    .pitch ul { list-style: none; font-size: 9.3pt; line-height: 1.4; }
+    .pitch li { padding: 0.8mm 0 0.8mm 5mm; position: relative; }
     .pitch li::before { content: '\2713'; position: absolute; left: 0; color: var(--emerald-400); font-weight: 700; }
-    .pitch a { display: inline-block; background: var(--brand-500); color: #fff; border-radius: 1mm; padding: 2.5mm 5mm; font-weight: 700; font-size: 10pt; }
+    .pitch .pitch-button { display: block; margin-top: 5mm; background: var(--brand-500); color: #fff; border-radius: 1.5mm; padding: 4mm 5mm; font-family: 'Space Grotesk', 'Inter', sans-serif; font-weight: 700; font-size: 14pt; text-align: center; }
   </style>
 </head>
 <body>
@@ -323,13 +327,19 @@ In Java: ...</div>
   <p class="paths-note">Tools also read further folders (Copilot and Cursor read <code>.claude/skills/</code> and <code>.agents/skills/</code> too), and support differs between versions and surfaces. If your tool does not find nested skills, install them side by side.</p>
 
   <div class="pitch grid-paper">
-    <h3>See how I develop and test Spring Boot applications today</h3>
-    <p>The on-demand course <strong style="color:#fff;">Agentic Testing for Spring Boot</strong>: in about two hours you learn how I work with coding agents these days.</p>
-    <ul>
-      <li>If this document is the blueprint, my skill library is the finished building. You get access to it.</li>
-      <li>See the seven testing skills at work, and how to adapt them to your project.</li>
-    </ul>
-    <a href="{{courseUrl}}">Explore the course on pragmatech.digital &rarr;</a>
+    <h3>Want Access to My Skill Library?</h3>
+    <div class="tagline">See how I develop and test Spring Boot applications today</div>
+    <div class="pitch-body">
+      <a class="pitch-image" href="{{courseUrl}}"><img src="{{courseImageDataUri}}" alt="Agentic Testing for Spring Boot course" /></a>
+      <div>
+        <p>The on-demand course <strong style="color:#fff;">Agentic Testing for Spring Boot</strong>: in about two hours you learn how I work with coding agents these days.</p>
+        <ul>
+          <li>If this document is the blueprint, my skill library is the finished building. You get access to it.</li>
+          <li>See the seven testing skills at work, and how to adapt them to your project.</li>
+        </ul>
+      </div>
+    </div>
+    <a class="pitch-button" href="{{courseUrl}}">Get Access to My Skill Library &rarr;</a>
   </div>
 
   <div class="runner-bot"><span>Spring Boot Testing Skills Blueprint</span><span class="folio">05 / 05</span></div>

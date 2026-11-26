@@ -1,6 +1,7 @@
 # Lead magnet "Spring Boot Testing Skills Blueprint": copy of the landing and download page.
-# Not linked from the website on purpose, it is shared in talks.
+# Shared in talks. The only link on the website is the teaser in the blog post sidebar.
 campaign: "agentic-testing-skills-blueprint"
+path: "/lp/spring-boot-testing-skills-blueprint/"
 thankYouPath: "/lp/spring-boot-testing-skills-blueprint/thank-you/"
 mailerLiteActionUrl: "https://assets.mailerlite.com/jsonp/1613864/forms/205181690544391274/subscribe"
 contactEmail: "info@pragmatech.digital"
@@ -14,6 +15,14 @@ bullets:
   - "The anatomy of one skill: SKILL.md and its reference files"
   - "The seven testing skills I usually go with, and how fine to cut them"
   - "Project or global: where the skills live and how your team gets them"
+
+# Second teaser in the sticky sidebar of blog posts
+blog:
+  sidebar:
+    eyebrow: "Free blueprint"
+    title: "How Should You Structure Your Testing Skills?"
+    text: "A 5-page blueprint for Spring Boot testing skills in Claude Code, GitHub Copilot, Cursor and Codex."
+    button: "Get the Blueprint"
 
 worksWithLabel: "Made for"
 tools:

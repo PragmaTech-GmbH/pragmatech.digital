@@ -6,8 +6,18 @@
     <p class="blog-promo__title">{{ $bundle.blog.sidebar.title }}</p>
     {{/* The same grouped covers as in the site footer */}}
     <div class="blog-promo__covers">
-        {{ partial "lp-bundle/cover-stack.html" (dict "covers" $bundle.covers "class" "max-w-[15rem]" "loading" "lazy") }}
+        {{ partial "lp-bundle/cover-stack.html" (dict "covers" $bundle.covers "class" "max-w-[12rem]" "loading" "lazy") }}
     </div>
     <p class="blog-promo__text">{{ $bundle.blog.sidebar.text }}</p>
     <a href="{{ site.Params.leadBundle.path | relURL }}" class="blog-promo__button">{{ $bundle.blog.sidebar.button }}</a>
+</div>
+
+{{/* Teaser of the skills blueprint. Text only, so the sticky bar stays short.
+     Copy: data/lead_skills_blueprint.yaml */}}
+{{ $blueprint := site.Data.lead_skills_blueprint }}
+<div class="blog-promo">
+    <p class="blog-promo__eyebrow">{{ $blueprint.blog.sidebar.eyebrow }}</p>
+    <p class="blog-promo__title">{{ $blueprint.blog.sidebar.title }}</p>
+    <p class="blog-promo__text">{{ $blueprint.blog.sidebar.text }}</p>
+    <a href="{{ $blueprint.path | relURL }}" class="blog-promo__button">{{ $blueprint.blog.sidebar.button }}</a>
 </div>

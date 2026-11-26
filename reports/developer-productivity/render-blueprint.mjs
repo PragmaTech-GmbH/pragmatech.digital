@@ -30,13 +30,15 @@ const readIconDataUri = async (iconName, color) => {
   return `data:image/svg+xml;base64,${Buffer.from(coloredMarkup).toString('base64')}`;
 };
 
-const [template, logoBytes] = await Promise.all([
+const [template, logoBytes, courseImageBytes] = await Promise.all([
   readFile(join(templateDirectory, 'blueprint.html'), 'utf8'),
   readFile(join(staticDirectory, 'images', 'logo.png')),
+  readFile(join(staticDirectory, 'images', 'courses', 'agentic-testing-course-thumbnail.png')),
 ]);
 
 const values = {
   courseUrl,
+  courseImageDataUri: `data:image/png;base64,${courseImageBytes.toString('base64')}`,
   logoDataUri: `data:image/png;base64,${logoBytes.toString('base64')}`,
   claudeIconDataUri: await readIconDataUri('claude', '#d97757'),
   copilotIconDataUri: await readIconDataUri('copilot', '#f8fafc'),

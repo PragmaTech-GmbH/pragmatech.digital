@@ -219,7 +219,7 @@
 
 /* ---------- Sidebar teaser ---------- */
 .blog-promo {
-    padding: 1.5rem;
+    padding: 1.125rem 1.25rem;
     border: 1px solid var(--blogBorder);
     border-radius: 0.75rem;
     background: var(--blogSurface);
@@ -248,9 +248,9 @@
 }
 
 .blog-promo__text {
-    margin-top: 0.75rem;
+    margin-top: 0.5rem;
     font-size: 0.95rem;
-    line-height: 1.6;
+    line-height: 1.5;
 }
 
 .blog-promo__button {
@@ -262,6 +262,10 @@
     font-weight: 700;
     text-align: center;
     color: #ffffff;
+}
+
+.blog-promo + .blog-promo {
+    margin-top: 1rem;
 }
 
 /* ---------- Bundle signup below the article ---------- */

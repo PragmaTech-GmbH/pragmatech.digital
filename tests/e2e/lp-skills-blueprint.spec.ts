@@ -97,7 +97,15 @@ test.describe("skills blueprint landing page", () => {
     expect(pageErrors).toEqual([]);
   });
 
-  test("is not linked from the website", async ({ page }) => {
+  test("is linked from the sidebar of a blog post", async ({ page }) => {
+    await page.goto("/blog/agentic-testing-for-spring-boot-is-live/");
+
+    await page.locator(".blog-post__sidebar").getByRole("link", { name: "Get the Blueprint" }).click();
+
+    await expect(page).toHaveURL(new RegExp(`${landingPath}$`));
+  });
+
+  test("is not linked from the main pages", async ({ page }) => {
     for (const publicPage of ["/", "/blog/", "/lp/agentic-readiness-bundle/", "/agentic-spring-boot-testing-course/"]) {
       await page.goto(publicPage);
       await expect(page.locator('a[href*="spring-boot-testing-skills-blueprint"]'), publicPage).toHaveCount(0);
