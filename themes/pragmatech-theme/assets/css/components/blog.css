@@ -152,8 +152,13 @@
         padding-inline: 2rem;
     }
 
-    /* 80px navbar plus spacing. The aside stretches over the row, so the box can stick. */
+    /* The aside stretches over the row and the sidebar fills it, so the last card can stick.
+       80px navbar plus spacing. */
     .blog-post__sidebar {
+        height: 100%;
+    }
+
+    .blog-promo--sticky {
         position: sticky;
         top: 6.5rem;
         max-height: calc(100vh - 8rem);
@@ -219,7 +224,7 @@
 
 /* ---------- Sidebar teaser ---------- */
 .blog-promo {
-    padding: 1.125rem 1.25rem;
+    padding: 1.5rem;
     border: 1px solid var(--blogBorder);
     border-radius: 0.75rem;
     background: var(--blogSurface);
@@ -248,9 +253,9 @@
 }
 
 .blog-promo__text {
-    margin-top: 0.5rem;
+    margin-top: 0.75rem;
     font-size: 0.95rem;
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
 .blog-promo__button {
@@ -265,7 +270,31 @@
 }
 
 .blog-promo + .blog-promo {
-    margin-top: 1rem;
+    margin-top: 1.5rem;
+}
+
+/* The blueprint card has more content, so it is more compact to fit on a laptop screen */
+.blog-promo--sticky {
+    padding: 1.125rem 1.25rem;
+}
+
+.blog-promo--sticky .blog-promo__title {
+    font-size: 1.125rem;
+}
+
+.blog-promo--sticky .blog-promo__text {
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+.blog-promo--sticky .blog-promo__button {
+    margin-top: 0.75rem;
+    padding-block: 0.6rem;
+}
+
+.blog-promo__toolbox {
+    margin-top: 0.5rem;
 }
 
 /* ---------- Bundle signup below the article ---------- */

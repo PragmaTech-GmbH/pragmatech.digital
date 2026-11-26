@@ -20,8 +20,8 @@ bullets:
 blog:
   sidebar:
     eyebrow: "Free blueprint"
-    title: "How Should You Structure Your Testing Skills?"
-    text: "A 5-page blueprint for Spring Boot testing skills in Claude Code, GitHub Copilot, Cursor and Codex."
+    title: "Your Blueprint for Proper Agentic Testing of Spring Boot Apps"
+    text: "Give your coding agent a clear structure, so it tests your Spring Boot application the way your team does."
     button: "Get the Blueprint"
 
 worksWithLabel: "Made for"
@@ -78,7 +78,7 @@ toolbox:
   title: "Seven skills in one toolbox, ready for your coding agent"
   intro: "Skills are plain Markdown files. Check them into your repository, review them like code and use them with the agent your team prefers."
   label: "spring-boot-testing"
-  ctaTitle: "Five pages that give your skills a structure"
+  ctaTitle: "Give your testing skills a structure"
   ctaText: "Enter your name and email, and the blueprint is on its way."
   ctaButton: "Get the blueprint"
 
@@ -86,11 +86,11 @@ cover:
   key: "cover-skills-blueprint"
   file: "documents/skills-blueprint/PragmaTech-Spring-Boot-Testing-Skills-Blueprint.pdf"
   title: "The Spring Boot Testing Skills Blueprint"
-  meta: "Developer blueprint - 5 pages"
+  meta: "Developer blueprint"
 
 form:
   title: "Get the free blueprint"
-  intro: "A 5-page PDF, sent to your email address."
+  intro: "We send it to your email address."
   nameLabel: "Name"
   namePlaceholder: "Jane Doe"
   emailLabel: "Email"
@@ -106,12 +106,12 @@ form:
 confirmed:
   badge: "Email confirmed"
   headline: "Your email is confirmed - here is your blueprint"
-  intro: "Open or save the PDF below. We also send you the link by email."
+  intro: "Open or save your blueprint below. We also send you the link by email."
 
 download:
   badge: "Your blueprint"
   headline: "Your blueprint is ready"
-  intro: "Thank you for your interest. Open or save the PDF below."
+  intro: "Thank you for your interest. Open or save your blueprint below."
   button: "Download the blueprint"
   courseBadge: "Agentic Testing for Spring Boot"
   courseTitle: "See how I develop and test Spring Boot applications today"

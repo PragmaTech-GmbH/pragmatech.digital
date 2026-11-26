@@ -1,0 +1,17 @@
+{{/* The toolbox with the skills. Used on the landing page and, in a compact form, in the blog
+     sidebar. Call with (dict "label" <toolbox label> "skills" <list> "class" <modifier>). */}}
+<div data-lp="toolbox-box" class="lp-blueprint__toolbox {{ .class }}">
+    <div class="lp-blueprint__toolbox-handle" aria-hidden="true"></div>
+    <div class="lp-blueprint__toolbox-lid" aria-hidden="true">
+        <span class="lp-blueprint__toolbox-latch"></span>
+        <span class="lp-blueprint__toolbox-latch"></span>
+    </div>
+    <div class="lp-blueprint__toolbox-body">
+        <p class="lp-blueprint__toolbox-label">{{ .label }}/</p>
+        <ul class="lp-blueprint__toolbox-skills">
+            {{ range .skills }}
+            <li class="lp-blueprint__toolbox-skill">{{ . }}</li>
+            {{ end }}
+        </ul>
+    </div>
+</div>

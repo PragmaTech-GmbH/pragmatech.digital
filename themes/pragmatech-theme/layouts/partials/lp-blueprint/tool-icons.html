@@ -1,12 +1,13 @@
 {{/* Icons of the agentic coding tools, painted with a CSS mask like on the homepage hero.
-     Call with (dict "tools" <list> "class" <extra classes of the list>). The icons use the
-     text color unless a tool defines its own color. */}}
+     Call with (dict "tools" <list> "class" <extra classes of the list> "iconsOnly" <bool>).
+     The icons use the text color unless a tool defines its own color. With "iconsOnly" the
+     names are only for screen readers and the tooltip. */}}
 <ul data-lp="tools" aria-label="Supported coding agents" class="flex flex-wrap items-center gap-x-5 gap-y-3 {{ .class }}">
     {{ range .tools }}
-    <li class="inline-flex items-center gap-2 text-sm font-semibold">
+    <li class="inline-flex items-center gap-2 text-sm font-semibold"{{ if $.iconsOnly }} title="{{ .name }}"{{ end }}>
         <span class="lp-blueprint__tool-icon" aria-hidden="true"
               style="{{ printf "--logo-url: url('%s');" (.icon | relURL) | safeCSS }}{{ with .color }} {{ printf "--logo-color: %s;" . | safeCSS }}{{ end }}"></span>
-        {{ .name }}
+        <span{{ if $.iconsOnly }} class="sr-only"{{ end }}>{{ .name }}</span>
     </li>
     {{ end }}
 </ul>

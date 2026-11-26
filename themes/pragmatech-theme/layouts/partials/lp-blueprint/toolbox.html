@@ -7,21 +7,7 @@
         <h2 id="toolbox-title" class="text-3xl md:text-4xl font-bold text-white mb-3 text-balance">{{ $toolbox.title }}</h2>
         <p class="text-lg text-slate-300 max-w-2xl mx-auto mb-12">{{ $toolbox.intro }}</p>
 
-        <div class="lp-blueprint__toolbox">
-            <div class="lp-blueprint__toolbox-handle" aria-hidden="true"></div>
-            <div class="lp-blueprint__toolbox-lid" aria-hidden="true">
-                <span class="lp-blueprint__toolbox-latch"></span>
-                <span class="lp-blueprint__toolbox-latch"></span>
-            </div>
-            <div class="lp-blueprint__toolbox-body">
-                <p class="font-mono text-sm font-bold text-white mb-4">{{ $toolbox.label }}/</p>
-                <ul class="flex flex-wrap justify-center gap-2">
-                    {{ range .skills }}
-                    <li class="rounded-md bg-white px-3 py-2 font-mono text-xs font-bold text-slate-900 shadow-md">{{ . }}</li>
-                    {{ end }}
-                </ul>
-            </div>
-        </div>
+        {{ partial "lp-blueprint/toolbox-box.html" (dict "label" $toolbox.label "skills" .skills) }}
         <div class="mx-auto h-10 w-0 border-l-2 border-dashed border-brand-400" aria-hidden="true"></div>
         <div class="inline-block rounded-xl border border-slate-700 bg-slate-900 px-6 py-4">
             {{ partial "lp-blueprint/tool-icons.html" (dict "tools" .tools "class" "justify-center text-white") }}

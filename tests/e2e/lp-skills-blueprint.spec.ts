@@ -100,7 +100,11 @@ test.describe("skills blueprint landing page", () => {
   test("is linked from the sidebar of a blog post", async ({ page }) => {
     await page.goto("/blog/agentic-testing-for-spring-boot-is-live/");
 
-    await page.locator(".blog-post__sidebar").getByRole("link", { name: "Get the Blueprint" }).click();
+    const sidebar = page.locator(".blog-post__sidebar");
+    await expect(sidebar.locator('[data-lp="skill-tree"]')).toContainText("SKILL.md");
+    await expect(sidebar.locator('[data-lp="toolbox-box"] li')).toHaveCount(7);
+    await expect(sidebar.locator('[data-lp="tools"] li')).toHaveCount(4);
+    await sidebar.getByRole("link", { name: "Get the Blueprint" }).click();
 
     await expect(page).toHaveURL(new RegExp(`${landingPath}$`));
   });

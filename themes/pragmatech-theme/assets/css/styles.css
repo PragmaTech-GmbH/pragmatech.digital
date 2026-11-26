@@ -992,3 +992,37 @@ summary::-webkit-details-marker { display: none; }
 .lp-blueprint__toolbox-body {
     @apply rounded-b-xl bg-brand-600 px-5 py-7 shadow-2xl shadow-black/40;
 }
+.lp-blueprint__toolbox-label {
+    @apply mb-4 font-mono text-sm font-bold text-white;
+}
+.lp-blueprint__toolbox-skills {
+    @apply flex flex-wrap justify-center gap-2;
+}
+.lp-blueprint__toolbox-skill {
+    @apply rounded-md bg-white px-3 py-2 font-mono text-xs font-bold text-slate-900 shadow-md;
+}
+/* Small version for the blog sidebar */
+.lp-blueprint__toolbox--compact {
+    @apply text-center;
+}
+.lp-blueprint__toolbox--compact .lp-blueprint__toolbox-handle {
+    @apply h-4 w-16 rounded-t-lg border-x-4 border-t-4;
+}
+.lp-blueprint__toolbox--compact .lp-blueprint__toolbox-lid {
+    @apply h-4 rounded-t-lg px-8;
+}
+.lp-blueprint__toolbox--compact .lp-blueprint__toolbox-latch {
+    @apply h-2 w-4 translate-y-1;
+}
+.lp-blueprint__toolbox--compact .lp-blueprint__toolbox-body {
+    @apply rounded-b-lg px-2 py-3 shadow-md;
+}
+.lp-blueprint__toolbox--compact .lp-blueprint__toolbox-label {
+    @apply mb-2 text-[11px] leading-4;
+}
+.lp-blueprint__toolbox--compact .lp-blueprint__toolbox-skills {
+    @apply gap-1;
+}
+.lp-blueprint__toolbox--compact .lp-blueprint__toolbox-skill {
+    @apply rounded px-1.5 py-0.5 text-[10px] leading-4 shadow-none;
+}
