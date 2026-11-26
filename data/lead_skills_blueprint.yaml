@@ -115,7 +115,7 @@ download:
   button: "Download the blueprint"
   courseBadge: "Agentic Testing for Spring Boot"
   courseTitle: "See how I develop and test Spring Boot applications today"
-  courseText: "The blueprint shows the structure. The on-demand course shows it at work, in about two hours."
+  courseText: "The blueprint shows the structure. The on-demand course shows it at work, in about three hours."
   courseBenefits:
     - "Learn how I work with coding agents on Spring Boot tests"
     - "Get access to my testing skill library"
