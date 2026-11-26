@@ -97,6 +97,20 @@ test.describe("skills blueprint landing page", () => {
     expect(pageErrors).toEqual([]);
   });
 
+  for (const [pagePath, imagePath] of [
+    [landingPath, "/images/reports/skills-blueprint/social-skills-blueprint.jpg"],
+    ["/lp/agentic-readiness-bundle/", "/images/reports/lead-bundle/social-agentic-development-readiness.jpg"],
+  ]) {
+    test(`${pagePath} has its own social preview image`, async ({ page, request }) => {
+      await page.goto(pagePath);
+
+      for (const selector of ['meta[property="og:image"]', 'meta[name="twitter:image"]']) {
+        await expect(page.locator(selector)).toHaveAttribute("content", new RegExp(`${imagePath}$`));
+      }
+      expect((await request.get(imagePath)).status()).toBe(200);
+    });
+  }
+
   test("is linked from the sidebar of a blog post", async ({ page }) => {
     await page.goto("/blog/agentic-testing-for-spring-boot-is-live/");
 

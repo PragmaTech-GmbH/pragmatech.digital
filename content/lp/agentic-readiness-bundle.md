@@ -4,6 +4,6 @@ title: "Know what to fix before you scale agentic development for your Java team
 description: "Three free PDFs for engineering leaders: 2026 data on Spring Boot testing and AI, and five investments to make before you scale agentic development for your Java team."
 layout: "lp-bundle"
 url: "/lp/agentic-readiness-bundle/"
-share_image: "/images/reports/lead-bundle/cover-top-investments.png"
+share_image: "/images/reports/lead-bundle/social-agentic-development-readiness.jpg"
 standalone: true
 ---
