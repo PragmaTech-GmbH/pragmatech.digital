@@ -3,8 +3,8 @@ title: "Thanks for signing up!"
 description: "You are signed up for the free webinar on 1 December 2026, 17:00 CET. Watch your inbox for more info and the Zoom calendar invite."
 layout: "lp-thank-you"
 url: "/lp/agentic-testing-webinar/thank-you/"
-image: "/generated/images/courses/agentic-testing-course-thumbnail.webp"
-share_image: "/images/courses/agentic-testing-course-thumbnail.png"
+image: "/generated/images/courses/agentic-testing-course-thumbnail.webp?v=2"
+share_image: "/images/courses/agentic-testing-course-thumbnail.png?v=2"
 hideBanner: true
 robots: "noindex, nofollow"
 sitemap:

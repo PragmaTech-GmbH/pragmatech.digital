@@ -2,8 +2,8 @@
 title: "Devoxx Belgium 2026 - 33% Off the Agentic Spring Boot Testing Course"
 description: "For Devoxx Belgium attendees: 33% off the Agentic Spring Boot Testing course if you join."
 layout: "lp-lead-magnet"
-image: "/generated/images/courses/agentic-testing-course-thumbnail.webp"
-share_image: "/images/courses/agentic-testing-course-thumbnail.png"
+image: "/generated/images/courses/agentic-testing-course-thumbnail.webp?v=2"
+share_image: "/images/courses/agentic-testing-course-thumbnail.png?v=2"
 hideBanner: true
 robots: "noindex, nofollow"
 sitemap:
