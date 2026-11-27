@@ -27,7 +27,7 @@
         {{/* Black Friday campaign: hidden until ppp-pricing.js sees `campaign` in the /api/ppp answer
              (only inside the campaign window). Remove `ppp.blackFriday` from the frontmatter to drop it. */}}
         {{ with $blackFriday }}
-        <div class="hidden max-w-3xl mx-auto mt-8 rounded-2xl bg-slate-900 border border-slate-700 text-white px-6 py-6 shadow-lg" role="status" data-bf-banner>
+        <div class="hidden {{ cond (ge (len $.Params.ppp.products) 3) "max-w-6xl" "max-w-5xl" }} mx-auto mt-8 rounded-2xl bg-slate-900 border border-slate-700 text-white px-6 py-6 shadow-lg" role="status" data-bf-banner>
             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-5">
                 <div class="text-center md:text-left">
                     <p class="text-[11px] font-bold uppercase tracking-widest text-brand-300 mb-1">{{ .badge | default "Black Friday" }}</p>
