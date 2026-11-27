@@ -5,6 +5,10 @@ import { test, expect, type Page } from "@playwright/test";
 
 const coursePath = "/agentic-spring-boot-testing-course/";
 
+// The edge function reads the real clock, so every pricing request simulates a time outside any
+// campaign. `netlify dev` accepts `?now` without a token.
+const timeOutsideCampaign = "now=2026-01-15T12:00:00Z";
+
 // The banner shows only once the visitor scrolls (see ppp-pricing.js).
 async function scrollDown(page: Page) {
   await page.evaluate(() => window.scrollTo(0, 400));
@@ -14,7 +18,7 @@ test.describe("PPP edge function under netlify dev", () => {
   test.skip(!process.env.PPP_E2E_NETLIFY, "set PPP_E2E_NETLIFY=1 to run against netlify dev");
 
   test("GET /api/ppp resolves the mocked geolocation to tier 1", async ({ request }) => {
-    const response = await request.get("/api/ppp");
+    const response = await request.get(`/api/ppp?${timeOutsideCampaign}`);
     expect(response.status()).toBe(200);
     expect(response.headers()["cache-control"]).toBe("private, no-store");
     expect(response.headers()["content-type"]).toContain("application/json");
@@ -23,7 +27,7 @@ test.describe("PPP edge function under netlify dev", () => {
   });
 
   test("GET /api/ppp?country=in returns the tier 4 coupon from .env", async ({ request }) => {
-    const response = await request.get("/api/ppp?country=in");
+    const response = await request.get(`/api/ppp?country=in&${timeOutsideCampaign}`);
     const body = await response.json();
     expect(body).toMatchObject({ country: "IN", countryName: "India", tier: 4, discountPercentage: 70, overridden: true });
     expect(body.couponCode).toMatch(/^[A-Za-z0-9_-]+$/);
@@ -40,7 +44,7 @@ test.describe("PPP edge function under netlify dev", () => {
   });
 
   test("the landing page shows discounted prices with ?country=in", async ({ page }) => {
-    await page.goto(coursePath + "?country=in");
+    await page.goto(`${coursePath}?country=in&${timeOutsideCampaign}`);
     await expect(page.locator('[data-ppp-product="bundle_edition"] [data-ppp-price]')).toHaveText("147€");
     await scrollDown(page);
     await expect(page.locator("[data-ppp-banner]")).toBeVisible();
@@ -48,7 +52,7 @@ test.describe("PPP edge function under netlify dev", () => {
   });
 
   test("the landing page shows base prices for the mocked German visitor", async ({ page }) => {
-    await page.goto(coursePath);
+    await page.goto(`${coursePath}?${timeOutsideCampaign}`);
     await expect(page.locator('[data-ppp-product="bundle_edition"] [data-ppp-price]')).toHaveText("490€");
     await expect(page.locator("[data-ppp-banner]")).toBeHidden();
   });
