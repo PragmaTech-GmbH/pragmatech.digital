@@ -1,12 +1,21 @@
 // Unit tests for the PPP edge function. Runs on Node 24 (native TypeScript type
 // stripping) without any Netlify tooling: the handler is called directly with a fake
 // Request and a fake edge context, and the `Netlify.env` global is stubbed.
-import { test, describe, beforeEach } from "node:test";
+import { test, describe, beforeEach, afterEach, mock } from "node:test";
 import assert from "node:assert/strict";
 import handler, { handlePppRequest } from "../../netlify/edge-functions/ppp.ts";
 import { COUNTRY_TIERS } from "../../netlify/shared/ppp-country-tiers.ts";
 
 const envStore = new Map<string, string>();
+
+// The handler reads the clock, so every test runs at a fixed time outside any campaign.
+// Tests of a campaign set their own time, with `?now` or with `setClock`.
+const timeOutsideCampaign = "2026-01-15T12:00:00Z";
+
+function setClock(isoDate: string) {
+  const fixedTime = Date.parse(isoDate);
+  mock.method(Date, "now", () => fixedTime);
+}
 
 type FakeGeo = { country?: { code?: string; name?: string } } | null;
 
@@ -35,6 +44,11 @@ beforeEach(() => {
   envStore.set("BLACK_FRIDAY_COUPON_TIER_3", "BF65");
   envStore.set("BLACK_FRIDAY_COUPON_TIER_4", "BF79");
   (globalThis as any).Netlify = { env: { get: (name: string) => envStore.get(name) } };
+  setClock(timeOutsideCampaign);
+});
+
+afterEach(() => {
+  mock.restoreAll();
 });
 
 describe("tier resolution from geolocation", () => {
@@ -220,6 +234,17 @@ describe("Black Friday campaign", () => {
     assert.equal(before.couponCode, null);
     const after = await callJson("?now=2026-11-28T00:00:00Z", germany, "deploy-preview");
     assert.equal(after.campaign, null);
+  });
+
+  test("in production the real clock starts and ends the campaign", async () => {
+    setClock("2026-11-27T06:59:59Z");
+    assert.equal((await callJson("", germany, "production")).campaign, null);
+    setClock("2026-11-27T07:00:00Z");
+    assert.equal((await callJson("", germany, "production")).couponCode, "BF30");
+    setClock("2026-11-27T23:59:59Z");
+    assert.equal((await callJson("", germany, "production")).couponCode, "BF30");
+    setClock("2026-11-28T00:00:00Z");
+    assert.equal((await callJson("", germany, "production")).campaign, null);
   });
 
   test("tier 1 gets the 30 % Black Friday coupon and the campaign end time", async () => {
