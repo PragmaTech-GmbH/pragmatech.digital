@@ -2,6 +2,11 @@
 title: "Agentic Spring Boot Testing - Online Course"
 description: "A hands-on 3-hour on-demand course on reliable, meaningful Spring Boot test suites with AI coding agents - the Testing Spring Boot Applications Masterclass for the era of AI. Includes seven agent skills for Claude Code, Codex, GitHub Copilot and Cursor."
 layout: "course-landing"
+# Publish date and author for link previews and the schema.org Course data (partials/course/seo.html).
+date: 2026-10-02T09:00:00+02:00
+metaAuthor: "PragmaTech GmbH"
+# ISO 8601 duration of the video lessons.
+courseDuration: "PT3H"
 image: "/generated/images/courses/agentic-testing-course-thumbnail.webp"
 share_image: "/images/courses/agentic-testing-course-thumbnail.png"
 twitter_image: "/images/courses/agentic-testing-course-thumbnail-x.png"

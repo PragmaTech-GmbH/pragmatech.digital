@@ -27,6 +27,20 @@ test.describe("course landing page structure", () => {
     expect(pageErrors).toEqual([]);
   });
 
+  test("has author, publish date and schema.org Course metadata", async ({ page }) => {
+    await page.goto(coursePath);
+    await expect(page.locator('meta[name="author"]')).toHaveAttribute("content", "PragmaTech GmbH");
+    await expect(page.locator('meta[property="article:published_time"]')).toHaveAttribute("content", "2026-10-02T09:00:00+02:00");
+
+    const structuredData = JSON.parse((await page.locator('script[type="application/ld+json"]').textContent()) ?? "");
+    expect(structuredData).toMatchObject({
+      "@type": "Course",
+      datePublished: "2026-10-02T09:00:00+02:00",
+      author: { "@type": "Organization", name: "PragmaTech GmbH" },
+      hasCourseInstance: { "@type": "CourseInstance", courseMode: "Online", courseWorkload: "PT3H" },
+    });
+  });
+
   test("renders pains, status quo, demo and included sections from frontmatter", async ({ page }) => {
     await page.goto(coursePath);
     await expect(page.locator("[data-pain-item]")).toHaveCount(6);

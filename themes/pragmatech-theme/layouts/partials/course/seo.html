@@ -1,0 +1,22 @@
+{{/* Metadata of a course landing page (layout: course-landing). Open Graph has no course type, so
+     og:type stays "article" and schema.org Course describes the online course. No prices here:
+     they differ by country (Purchase Power Parity) and campaign. */}}
+{{ $publishedAt := .Date.Format "2006-01-02T15:04:05Z07:00" }}
+<meta name="author" content="{{ .Params.metaAuthor }}">
+<meta property="article:published_time" content="{{ $publishedAt }}">
+
+{{ $organization := dict "@type" "Organization" "name" .Params.metaAuthor "url" site.Home.Permalink }}
+{{ $structuredData := dict
+    "@context" "https://schema.org"
+    "@type" "Course"
+    "name" .Title
+    "description" .Description
+    "url" .Permalink
+    "image" (strings.TrimPrefix "/" .Params.share_image | absURL)
+    "inLanguage" "en"
+    "datePublished" $publishedAt
+    "author" $organization
+    "provider" $organization
+    "hasCourseInstance" (dict "@type" "CourseInstance" "courseMode" "Online" "courseWorkload" .Params.courseDuration)
+}}
+<script type="application/ld+json">{{ $structuredData | jsonify | safeJS }}</script>
