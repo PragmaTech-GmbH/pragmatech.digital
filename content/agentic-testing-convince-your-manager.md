@@ -5,4 +5,5 @@ layout: "convince-your-manager"
 url: "/agentic-spring-boot-testing-course/convince-your-manager/"
 image: "/generated/images/courses/agentic-testing-course-thumbnail.webp"
 share_image: "/images/courses/agentic-testing-course-thumbnail.png"
+twitter_image: "/images/courses/agentic-testing-course-thumbnail-x.png"
 ---

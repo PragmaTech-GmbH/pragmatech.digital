@@ -4,6 +4,7 @@ description: "A hands-on 3-hour on-demand course on reliable, meaningful Spring 
 layout: "course-landing"
 image: "/generated/images/courses/agentic-testing-course-thumbnail.webp"
 share_image: "/images/courses/agentic-testing-course-thumbnail.png"
+twitter_image: "/images/courses/agentic-testing-course-thumbnail-x.png"
 # Hides the site-wide announcement banner (hugo.yaml bannerText) on this page.
 hideBanner: true
 

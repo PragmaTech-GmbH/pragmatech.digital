@@ -9,6 +9,7 @@
     {{ $shareImage := .Page.Params.share_image | default "/images/pragmatech-social-banner.png" }}
     {{ $imagePrefix := strings.TrimSuffix "/" .Page.Site.BaseURL }}
     {{ $fullImagePath := printf "%s%s" $imagePrefix $shareImage }}
+    {{ $fullTwitterImagePath := printf "%s%s" $imagePrefix (.Page.Params.twitter_image | default $shareImage) }}
     {{ $desc := .Page.Description | default .Page.Site.Params.description }}
 
     <meta property="og:type" content="website">
@@ -21,7 +22,7 @@
     <meta name="twitter:url" content="{{ .Permalink }}">
     <meta name="twitter:title" content="{{ .Page.Title }}">
     <meta name="twitter:description" content="{{ $desc }}">
-    <meta name="twitter:image" content="{{ $fullImagePath }}">
+    <meta name="twitter:image" content="{{ $fullTwitterImagePath }}">
 </head>
 <body>
     <a href="{{ .Permalink }}">Redirecting&hellip;</a>

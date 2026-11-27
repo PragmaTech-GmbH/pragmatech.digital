@@ -5,6 +5,7 @@ layout: "lp-thank-you"
 url: "/lp/agentic-testing-webinar/thank-you/"
 image: "/generated/images/courses/agentic-testing-course-thumbnail.webp"
 share_image: "/images/courses/agentic-testing-course-thumbnail.png"
+twitter_image: "/images/courses/agentic-testing-course-thumbnail-x.png"
 hideBanner: true
 robots: "noindex, nofollow"
 sitemap:
