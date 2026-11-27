@@ -4,6 +4,7 @@ description: "Free live webinar on 1 December 2026, 17:00 CET: 45 minutes of tal
 layout: "lp-webinar"
 image: "/generated/images/courses/agentic-testing-course-thumbnail.webp"
 share_image: "/images/courses/agentic-testing-course-thumbnail.png"
+twitter_image: "/images/courses/agentic-testing-course-thumbnail-x.png"
 hideBanner: true
 compactForm: true
 

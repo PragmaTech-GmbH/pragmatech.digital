@@ -22,6 +22,8 @@
     {{ if eq .Section "blog" }}{{ $shareImage = partial "blog/share-image.html" . }}{{ end }}
     {{ $imagePrefix := strings.TrimSuffix "/" .Site.BaseURL }}
     {{ $fullImagePath := printf "%s%s" $imagePrefix $shareImage }}
+    {{/* Optional front matter "twitter_image": its own preview for X, which lays text over the bottom left. */}}
+    {{ $fullTwitterImagePath := printf "%s%s" $imagePrefix (.Params.twitter_image | default $shareImage) }}
     {{ $pageTitle := cond .IsHome .Site.Title .Title }}
     {{ $desc := .Description | default .Summary | default .Site.Params.description }}
     
@@ -38,7 +40,7 @@
     <meta name="twitter:url" content="{{ .Permalink }}">
     <meta name="twitter:title" content="{{ $pageTitle }}">
     <meta name="twitter:description" content="{{ $desc }}">
-    <meta name="twitter:image" content="{{ $fullImagePath }}">
+    <meta name="twitter:image" content="{{ $fullTwitterImagePath }}">
 
     {{ with (templates.Defer (dict "key" "global")) }}
         {{ $t := debug.Timer "tailwindcss" }}
