@@ -9,7 +9,7 @@ author: "philip"
 
 Today I'm launching [Agentic Testing for Spring Boot](/agentic-spring-boot-testing-course/), an on-demand course and skill library that help your coding agent write Spring Boot tests you can trust.
 
-![Agentic Testing for Spring Boot course](/generated/images/courses/agentic-testing-course-thumbnail.webp?v=2)
+![Agentic Testing for Spring Boot course](/generated/images/courses/agentic-testing-course-thumbnail.webp)
 
 ## Why I built this course
 

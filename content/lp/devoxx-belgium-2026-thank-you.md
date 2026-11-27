@@ -3,8 +3,8 @@ title: "Almost there - confirm your email"
 description: "Confirm your email to get your 33% course coupon from Devoxx Belgium 2026."
 layout: "lp-thank-you"
 url: "/lp/devoxx-belgium-2026/thank-you/"
-image: "/generated/images/courses/agentic-testing-course-thumbnail.webp?v=2"
-share_image: "/images/courses/agentic-testing-course-thumbnail.png?v=2"
+image: "/generated/images/courses/agentic-testing-course-thumbnail.webp"
+share_image: "/images/courses/agentic-testing-course-thumbnail.png"
 hideBanner: true
 robots: "noindex, nofollow"
 sitemap:

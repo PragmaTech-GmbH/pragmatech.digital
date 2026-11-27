@@ -2,8 +2,8 @@
 title: "Free Webinar - A Blazing Fast & Comprehensive Spring Boot Test Suite"
 description: "Free live webinar on 1 December 2026, 17:00 CET: 45 minutes of talk, 15 minutes of Q&A. Learn how to prompt tests, keep the pipeline fast and build a blazing fast and comprehensive test suite with AI agents. No recording."
 layout: "lp-webinar"
-image: "/generated/images/courses/agentic-testing-course-thumbnail.webp?v=2"
-share_image: "/images/courses/agentic-testing-course-thumbnail.png?v=2"
+image: "/generated/images/courses/agentic-testing-course-thumbnail.webp"
+share_image: "/images/courses/agentic-testing-course-thumbnail.png"
 hideBanner: true
 compactForm: true
 

@@ -2,8 +2,8 @@
 title: "Agentic Spring Boot Testing - Online Course"
 description: "A hands-on 3-hour on-demand course on reliable, meaningful Spring Boot test suites with AI coding agents - the Testing Spring Boot Applications Masterclass for the era of AI. Includes seven agent skills for Claude Code, Codex, GitHub Copilot and Cursor."
 layout: "course-landing"
-image: "/generated/images/courses/agentic-testing-course-thumbnail.webp?v=2"
-share_image: "/images/courses/agentic-testing-course-thumbnail.png?v=2"
+image: "/generated/images/courses/agentic-testing-course-thumbnail.webp"
+share_image: "/images/courses/agentic-testing-course-thumbnail.png"
 # Hides the site-wide announcement banner (hugo.yaml bannerText) on this page.
 hideBanner: true
 
